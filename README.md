@@ -1,82 +1,84 @@
 # Ma 間
 
-Ma ist im Japanischen der Raum zwischen zwei Dingen. Die Pause zwischen zwei Tönen, die leere Fläche im Steingarten.
+In Japanese, ma is the space between two things. The pause between two notes, the empty ground in a rock garden.
 
-Diese App schiebt so einen Raum zwischen den Daumen und den nächsten Feed. Wer Instagram, YouTube, X, LinkedIn oder TikTok öffnen will, landet erst auf einem ruhigen Papierbildschirm, atmet einmal durch und beantwortet eine Frage aus einem Thema, das er wirklich lernen will. Danach ist die App ein paar Minuten offen. Oder man lässt es, und im Garten liegt ein Kiesel mehr.
+This app puts that kind of space between your thumb and the next feed. Open Instagram, YouTube, X, LinkedIn or TikTok and you land on a quiet paper screen first, take one breath and answer a question from a topic you actually want to learn. Then the app opens for a few minutes. Or you let it be, and one more pebble lies in your garden.
 
-Ma läuft komplett auf dem iPhone. Kein Konto, kein Server, keine Analyse.
+Ma runs entirely on the iPhone. No account, no server, no analytics. It speaks English and German and follows the language of your phone.
 
-## Was drin ist
+## What's inside
 
-**Grenzen (結界).** Beliebig viele Sperrlisten mit Apps, Kategorien und Websites, jede mit eigenem Zeitfenster (immer, oder z. B. 22:00 bis 07:00 an Werktagen), eigener Anzahl Fragen und eigener Freigabedauer. Eine Grenze kann auch ganz ohne Ausweg sein. Ein- und ausschalten geht jederzeit, auf Wunsch kostet das Ausschalten selbst drei richtige Antworten.
+**Boundaries (結界).** As many block lists as you like, made of apps, categories and websites, each with its own time window (always, or say 22:00 to 07:00 on weekdays), its own number of questions and its own unlock length. A boundary can also have no way through at all. You can switch them on and off at any time; if you want, switching one off costs three right answers itself.
 
-**Die Schranke.** Auf dem gesperrten Bildschirm steht "Frage beantworten". Ein Tipp schickt eine Mitteilung, die Ma öffnet: erst ein Atemzug, dann die Fragen, dann die Entscheidung. "Ich lass es doch" steht gleichwertig neben "Öffnen".
+**The gate.** The blocked screen offers "Answer a question". Tapping it sends a notification that opens Ma: first a breath, then the questions, then the decision. "I'll leave it" sits right next to "Open", just as big.
 
-**Lernen im Duolingo-Stil.** Aus schlichten Frage-Antwort-Karten baut Ma acht Übungsarten: Auswahl, umgekehrte Auswahl, stimmt oder stimmt nicht, Lückentext, Paare finden, Satz aus Kacheln bauen, selbst tippen (mit Tippfehler-Toleranz) und Karteikarte. Neue Karten werden erkannt, sichere Karten müssen abgerufen werden. Dahinter steckt eine Leitner-Box pro Karte.
+**Duolingo-style learning.** From plain question and answer cards Ma builds eight kinds of exercise: multiple choice, reverse choice, true or not, fill the gap, match the pairs, build the sentence from tiles, type it yourself (with typo tolerance) and flash card. New cards are about recognising, cards you know well have to be recalled. Behind it sits a Leitner box per card.
 
-Mitgeliefert: Hiragana, Japanisch Alltag, japanische Sätze bauen, Zen und Stoa, Hauptstädte, Rust. Eigene Themen legt man in der App an, fügt ganze Listen auf einmal ein oder importiert JSON. Die App hat eine Vorlage zum Kopieren, mit der jede beliebige KI ein Deck zu jedem Thema erzeugt.
+Bundled topics: hiragana, everyday Japanese, building Japanese sentences, Zen and Stoicism, capital cities, Rust. Every deck ships in English and German. You can add your own topics in the app, paste whole lists at once or import JSON. The app also has a template to copy that lets any AI produce a deck on any subject.
 
-**Fokus (集中).** Pomodoro mit 25/5/15 Minuten (einstellbar). Während einer Runde schläft alles aus den Grenzen, auf Wunsch ohne jede Ausnahme. Der Timer ist ein Ensō, das sich über die Runde selbst malt, und läuft auch weiter, wenn die App geschlossen ist.
+**Focus (集中).** Pomodoro with 25/5/15 minutes (adjustable). During a round everything from your boundaries sleeps, without exceptions if you choose. The timer is an ensō that paints itself over the round, and it keeps running when the app is closed.
 
-**Reels-Filter für Safari.** Reels lassen sich in der Instagram-App nicht abschalten, das erlaubt iOS keiner App. Im Browser geht es. Ma Filter blendet Instagram Reels, YouTube Shorts, X Trends, den LinkedIn-Feed und Facebook Reels aus und leitet Shorts-Links auf normale Videos um. Zusammen mit einer Grenze auf die Instagram-App ergibt das Instagram ohne Reels.
+**Reels filter for Safari.** Reels cannot be switched off inside the Instagram app, iOS lets no app do that. In the browser it works. Ma Filter hides Instagram Reels, YouTube Shorts, X Trends, the LinkedIn feed and Facebook Reels, and turns Shorts links into normal videos. Put the Instagram app inside a boundary and you get Instagram without Reels.
 
-**Heute (今日).** Ein Karesansui-Garten, der den Tag zeigt: jede Fokusrunde ein Stein, jeder widerstandene Impuls ein Kiesel, die Lernserie als Moos.
+**Today (今日).** A karesansui garden that shows your day: every focus round a stone, every resisted impulse a pebble, your learning streak as moss.
 
-## Wie es gebaut ist
+## How it is built
 
 ```
-App/                      SwiftUI-App (iOS 18)
-Shared/                   Code, den App und Erweiterungen teilen
-  ScreenTime/             Regeln, Freigaben, Pomodoro, Zeitplanung
+App/                      SwiftUI app (iOS 18)
+Shared/                   code shared by the app and its extensions
+  ScreenTime/             rules, unlocks, pomodoro, scheduling
 Extensions/
-  ShieldConfig/           gestaltet den Sperrbildschirm
-  ShieldAction/           reagiert auf dessen Buttons
-  Monitor/                wacht über Zeitfenster und Freigaben, auch bei geschlossener App
-  Filter/                 Safari-Erweiterung gegen Reels und Shorts
-project.yml               XcodeGen, daraus entsteht das Xcode-Projekt
-ci/                       Export-Einstellungen für TestFlight
+  ShieldConfig/           draws the blocked screen
+  ShieldAction/           handles its buttons
+  Monitor/                watches time windows and unlocks, even with the app closed
+  Filter/                 Safari extension against Reels and Shorts
+project.yml               XcodeGen spec, the Xcode project is generated from it
+ci/                       export settings for TestFlight
 ```
 
-Die Sperren laufen über Apples Screen-Time-Frameworks (FamilyControls, ManagedSettings, DeviceActivity). Jede Grenze bekommt einen eigenen ManagedSettingsStore, eine Freigabe ist eine Lücke, die in jeden dieser Stores geschrieben wird. Die Erweiterungen teilen sich mit der App einen App-Group-Container, in dem jeder Zustand als kleine JSON-Datei liegt.
+Blocking runs on Apple's Screen Time frameworks (FamilyControls, ManagedSettings, DeviceActivity). Every boundary gets its own ManagedSettingsStore, and an unlock is a gap written into each of those stores. The extensions share an App Group container with the app, where every piece of state lives as a small JSON file.
 
-Zwei Eigenheiten, die man kennen sollte:
+Two quirks worth knowing:
 
-- Ein Sperrbildschirm darf keine App öffnen. Deshalb geht der Weg zur Frage über eine Mitteilung.
-- DeviceActivity akzeptiert keine Intervalle unter 15 Minuten. Kürzere Freigaben und Pausen werden auf 16 Minuten aufgefüllt, und der Warn-Callback wird auf den echten Zeitpunkt gelegt.
+- A blocked screen is not allowed to open an app. That is why the way to the question goes through a notification.
+- DeviceActivity refuses intervals shorter than 15 minutes. Shorter unlocks and breaks are padded to 16 minutes, and the warning callback is aimed at the real moment.
 
-## Bauen ohne Mac
+Both languages live inline in the code through `tr("English", "Deutsch")` rather than in a String Catalog. The project is built without Xcode's catalog editor, and a mistyped catalog key would fall back to the wrong language without a word.
 
-Alles läuft auf GitHub Actions. Weil das Repo öffentlich ist, kosten die macOS-Runner nichts.
+## Building without a Mac
 
-- Jeder Push auf `main` prüft die Decks und kompiliert die App unsigniert.
-- `Actions > iOS > Run workflow > testflight` signiert und lädt nach TestFlight hoch.
+Everything runs on GitHub Actions. Since the repo is public, the macOS runners cost nothing.
 
-Signiert wird automatisch über einen App Store Connect API-Key: `xcodebuild` holt Zertifikat und Profile selbst bei Apple. Es gibt kein Zertifikats-Repo und kein fastlane. Die einmalige Einrichtung steht in [docs/SETUP.md](docs/SETUP.md).
+- Every push to `main` validates the decks and compiles the app unsigned.
+- `Actions > iOS > Run workflow > testflight` signs and uploads to TestFlight.
 
-## Eigene Decks
+Signing is automatic through an App Store Connect API key: `xcodebuild` fetches the certificate and profiles from Apple itself. No certificate repo, no fastlane. The one-time setup is in [docs/SETUP.md](docs/SETUP.md) (in German).
 
-Ein Deck ist eine JSON-Datei:
+## Your own decks
+
+A deck is a JSON file:
 
 ```json
 {
-  "title": "Koreanisch",
-  "subtitle": "Erste Wörter",
+  "title": "Korean",
+  "subtitle": "First words",
   "symbol": "韓",
   "cards": [
     {
       "prompt": "물",
-      "answer": "Wasser",
-      "accept": ["das Wasser"],
-      "distractors": ["Feuer", "Baum", "Reis"],
-      "example": "Ich trinke Wasser.",
-      "note": "mul. Klingt fast wie das englische mull."
+      "answer": "water",
+      "accept": ["the water"],
+      "distractors": ["fire", "tree", "rice"],
+      "example": "I drink water.",
+      "note": "mul. Sounds a bit like the English mull."
     }
   ]
 }
 ```
 
-Nur `prompt` und `answer` sind Pflicht. `example` muss die Antwort wörtlich enthalten, dann gibt es Lückentexte. Eine Antwort aus mehreren durch Leerzeichen getrennten Teilen wird zur Satzbau-Übung. `python scripts/validate_decks.py` prüft die mitgelieferten Decks.
+Only `prompt` and `answer` are required. `example` has to contain the answer word for word, then you get gap exercises. An answer made of several space-separated parts becomes a sentence-building exercise. Bundled decks come as `deck-<id>.json` (German) and `deck-<id>.en.json` (English) with the same card ids; `python scripts/validate_decks.py` checks both.
 
-## Lizenz
+## License
 
 MIT

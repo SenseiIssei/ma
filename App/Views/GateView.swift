@@ -3,7 +3,7 @@ import SwiftUI
 
 /// The pause between impulse and app: breathe, answer, then decide.
 ///
-/// Deciding is the point. After the questions, "let it be" is offered as
+/// Deciding is the point. After the questions, "leave it" is offered as
 /// prominently as "open", and choosing it is celebrated, not punished.
 struct GateView: View {
     @Environment(AppModel.self) private var model
@@ -17,6 +17,13 @@ struct GateView: View {
     @State private var breaths = 0
     @State private var minutes = 5
     @State private var openUntil: Date?
+    /// Read once when the gate opens, so the rules cannot shift under the
+    /// person while they answer.
+    @State private var policy = UnlockPolicy()
+    /// End of the waiting period some boundaries ask for.
+    @State private var waitUntil: Date?
+    /// Ending a lockdown was asked for, but no topic is switched on.
+    @State private var noQuestions = false
 
     private var pending: PendingUnlock? {
         if case .unlock(let pending) = reason { return pending }
@@ -28,48 +35,27 @@ struct GateView: View {
         return nil
     }
 
+    private var isEndLockdown: Bool {
+        if case .endLockdown = reason { return true }
+        return false
+    }
+
     /// Both ways in lead to the same decision: open for a while, or let it be.
     private var isUnlock: Bool { pending != nil || shortcutApp != nil }
-
-    private var policy: UnlockPolicy {
-        if let pending { return model.policy(for: pending) }
-        if shortcutApp != nil {
-            var policy = UnlockPolicy()
-            policy.questions = model.shortcutSettings.questions
-            policy.minutes = model.shortcutSettings.minutes
-            if let session = SharedStore.focus, session.phase == .focus, Date() < session.endsAt, SharedStore.focusSettings.strict {
-                policy.focusLocked = true
-                policy.allowed = false
-                policy.focusEndsAt = session.endsAt
-            }
-            return policy
-        }
-        return UnlockPolicy()
-    }
 
     private var needed: Int {
         switch reason {
         case .unlock, .shortcut: return policy.questions
+        case .endLockdown: return LockdownState.answersToEnd
         case .disableRule, .stopFocus, .practice: return 3
         }
     }
 
     var body: some View {
         ZStack {
-            WashiBackground()
+            AppBackground()
             VStack(spacing: 0) {
-                HStack {
-                    Button(action: close) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 17, weight: .semibold))
-                            .foregroundStyle(Zen.inkSoft)
-                            .frame(width: 44, height: 44)
-                    }
-                    .accessibilityLabel(tr("Close", "Schließen"))
-                    Spacer()
-                }
-                .padding(.horizontal, 8)
-
+                topBar
                 switch stage {
                 case .breathe: breathe
                 case .quiz: quiz
@@ -79,9 +65,59 @@ struct GateView: View {
                 }
             }
         }
-        .onAppear {
-            minutes = policy.minutes
-            if isUnlock && !policy.allowed { stage = .blocked }
+        .onAppear(perform: prepare)
+    }
+
+    private func prepare() {
+        if let pending {
+            policy = model.policy(for: pending)
+        } else if shortcutApp != nil {
+            policy = model.shortcutPolicy()
+        }
+        minutes = policy.minutes
+        if isUnlock && !policy.allowed {
+            stage = .blocked
+            return
+        }
+        if isEndLockdown && !model.isLockedDown {
+            // Ran out while the gate was on its way: nothing left to earn.
+            model.endLockdown()
+            model.gate = nil
+            return
+        }
+        if isUnlock && policy.waitSeconds > 0 {
+            waitUntil = Date().addingTimeInterval(TimeInterval(policy.waitSeconds))
+        }
+    }
+
+    // MARK: Top bar
+
+    private var topBar: some View {
+        HStack(spacing: 12) {
+            Button(action: close) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(Zen.inkSoft)
+                    .frame(width: 40, height: 40)
+                    .background(Zen.sand, in: Circle())
+            }
+            .accessibilityLabel(tr("Close", "Schließen"))
+            if stage != .quiz && stage != .blocked {
+                InkProgress(value: stageProgress)
+                    .frame(maxWidth: 160)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, Zen.gutter)
+        .padding(.top, 8)
+    }
+
+    private var stageProgress: Double {
+        switch stage {
+        case .breathe: 0.15
+        case .quiz: 0.5
+        case .decide: 0.85
+        case .open, .blocked: 1
         }
     }
 
@@ -92,18 +128,18 @@ struct GateView: View {
             if let token = pending?.application {
                 Label(token)
                     .labelStyle(.titleAndIcon)
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
             } else if let web = pending?.webDomain {
                 Label(web)
                     .labelStyle(.titleAndIcon)
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
             } else if let app = shortcutApp, app != .any {
                 Text(app.displayName)
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(Zen.ink)
             } else {
                 Text(subjectText)
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(Zen.ink)
             }
         }
@@ -118,45 +154,42 @@ struct GateView: View {
         case .unlock(let pending): return pending.displayName ?? tr("A category", "Eine Kategorie")
         case .disableRule(let id):
             let name = model.rules.first { $0.id == id }?.name ?? ""
-            return tr("Switch off \(name)", "Grenze \(name) ausschalten")
+            return tr("Switch off \(name)", "\(name) ausschalten")
         case .stopFocus: return tr("End focus round", "Fokusrunde abbrechen")
         case .practice: return tr("Practice", "Übung")
         case .shortcut: return tr("Your app", "Deine App")
+        case .endLockdown: return tr("End the lockdown early", "Sperre früher beenden")
         }
     }
 
     private var breathe: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: 26) {
             Spacer()
             subject
-            BreathingEnso(inhale: inhale)
-                .frame(width: 230, height: 230)
-                .overlay(
-                    Text(breaths % 2 == 0 ? "吸" : "吐")
-                        .font(.kanji(44, bold: true))
-                        .foregroundStyle(Zen.shu)
-                        .contentTransition(.opacity)
-                )
-            Text(breaths % 2 == 0 ? tr("Breathe in", "Atme ein") : tr("Breathe out", "Atme aus"))
-                .font(.mincho(26, weight: .medium))
-                .foregroundStyle(Zen.ink)
-                .contentTransition(.opacity)
-                .animation(.easeInOut(duration: 0.6), value: breaths)
-            Text(tr("For one breath, want nothing.", "Einen Atemzug lang nichts wollen."))
-                .font(.system(size: 15))
-                .foregroundStyle(Zen.inkSoft)
+            BreathingEnso(inhale: inhale, tint: Zen.shu)
+                .frame(width: 220, height: 220)
+            VStack(spacing: 8) {
+                Text(breaths % 2 == 0 ? tr("Breathe in", "Atme ein") : tr("Breathe out", "Atme aus"))
+                    .font(.display(28, weight: .semibold))
+                    .foregroundStyle(Zen.ink)
+                    .contentTransition(.opacity)
+                    .animation(.easeInOut(duration: 0.6), value: breaths)
+                Text(breatheLine)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Zen.inkSoft)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 30)
+                if noQuestions {
+                    Text(tr("Switch on at least one topic under Learn. Without questions the lockdown stays.", "Schalte unter Lernen mindestens ein Thema ein. Ohne Fragen bleibt die Sperre."))
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(Zen.negative)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
+                }
+            }
             Spacer()
-            VStack(spacing: 12) {
-                Button(needed == 1 ? tr("To the question", "Zur Frage") : tr("To the \(needed) questions", "Zu den \(needed) Fragen")) {
-                    startQuiz()
-                }
-                .buttonStyle(.ink)
-                .opacity(breaths >= 2 ? 1 : 0.3)
-                .disabled(breaths < 2)
-                if isUnlock {
-                    Button(tr("I'll let it be", "Ich lass es gut sein")) { resist() }
-                        .buttonStyle(.quiet)
-                }
+            TimelineView(.periodic(from: .now, by: 1)) { context in
+                breatheButtons(now: context.date)
             }
             .padding(.horizontal, 28)
             .padding(.bottom, 20)
@@ -167,6 +200,42 @@ struct GateView: View {
                 try? await Task.sleep(for: .seconds(4))
                 breaths += 1
                 withAnimation(.easeInOut(duration: 4)) { inhale.toggle() }
+            }
+        }
+    }
+
+    private var breatheLine: String {
+        if isEndLockdown {
+            return tr("You chose this lockdown for a reason. \(needed) right answers end it early.", "Du hast diese Sperre aus einem Grund gewählt. \(needed) richtige Antworten beenden sie früher.")
+        }
+        if isUnlock && policy.rising && policy.unlocksToday > 0 {
+            return tr("Unlock number \(policy.unlocksToday + 1) today, so \(needed) questions this time.", "Freigabe Nummer \(policy.unlocksToday + 1) heute, darum diesmal \(needed) Fragen.")
+        }
+        return tr("For one breath, want nothing.", "Einen Atemzug lang nichts wollen.")
+    }
+
+    private func breatheButtons(now: Date) -> some View {
+        let waitLeft = max(0, (waitUntil ?? now).timeIntervalSince(now))
+        let ready = breaths >= 2 && waitLeft <= 0
+        let title: String
+        if waitLeft > 0 {
+            let seconds = Int(waitLeft.rounded(.up))
+            title = tr("Questions in \(seconds) s", "Fragen in \(seconds) s")
+        } else {
+            title = needed == 1 ? tr("To the question", "Zur Frage") : tr("To the \(needed) questions", "Zu den \(needed) Fragen")
+        }
+        return VStack(spacing: 12) {
+            Button(title) { startQuiz() }
+                .buttonStyle(.primary)
+                .monospacedDigit()
+                .opacity(ready ? 1 : 0.35)
+                .disabled(!ready)
+            if isUnlock {
+                Button(tr("I'll let it be", "Ich lass es gut sein")) { resist() }
+                    .buttonStyle(.quiet)
+            } else if isEndLockdown {
+                Button(tr("Keep the lockdown", "Sperre behalten")) { close() }
+                    .buttonStyle(.quiet)
             }
         }
     }
@@ -182,11 +251,11 @@ struct GateView: View {
     }
 
     private var decide: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 22) {
             Spacer()
-            Hanko(text: "決", size: 64)
+            IconBadge(systemName: "hand.raised.fill", tint: Zen.shu, size: 64)
             Text(tr("You have earned it.\nDo you still want it?", "Du hast es dir verdient.\nWillst du es noch?"))
-                .font(.mincho(28, weight: .semibold))
+                .font(.display(28))
                 .foregroundStyle(Zen.ink)
                 .multilineTextAlignment(.center)
             subject
@@ -195,6 +264,13 @@ struct GateView: View {
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             }
+            if let note = budgetNote {
+                Text(note)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(Zen.kin)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+            }
             HStack(spacing: 8) {
                 ForEach(minuteOptions, id: \.self) { value in
                     Chip(title: tr("\(value) min.", "\(value) Min."), selected: minutes == value) { minutes = value }
@@ -202,15 +278,31 @@ struct GateView: View {
             }
             Spacer()
             VStack(spacing: 12) {
-                Button(tr("Open for \(minutes) minutes", "Für \(minutes) Minuten öffnen")) { unlock() }
-                    .buttonStyle(.shu)
-                Button(tr("I'll leave it", "Ich lass es doch")) { resist() }
+                Button(tr("Open for \(minutes) min.", "\(minutes) Min. öffnen")) { unlock() }
+                    .buttonStyle(.primary)
+                Button(tr("I'll leave it", "Ich lass es")) { resist() }
                     .buttonStyle(.matcha)
             }
             .padding(.horizontal, 28)
             .padding(.bottom, 20)
         }
         .padding(.horizontal, Zen.gutter)
+    }
+
+    /// What this unlock does to the rest of the day, said before it happens.
+    private var budgetNote: String? {
+        var parts: [String] = []
+        if let left = policy.unlocksLeft {
+            let after = max(0, left - 1)
+            parts.append(after == 0
+                ? tr("This is your last unlock today.", "Das ist deine letzte Freigabe heute.")
+                : tr("After this, \(after) \(after == 1 ? "unlock" : "unlocks") left today.", "Danach \(after == 1 ? "bleibt noch eine Freigabe" : "bleiben noch \(after) Freigaben") für heute."))
+        }
+        if policy.rising && policy.unlocksLeft != 1 {
+            let next = min(BlockRule.maxQuestions, policy.questions + 1)
+            parts.append(tr("The next one costs \(next) questions.", "Die nächste kostet \(next) Fragen."))
+        }
+        return parts.isEmpty ? nil : parts.joined(separator: " ")
     }
 
     private var minuteOptions: [Int] {
@@ -221,11 +313,15 @@ struct GateView: View {
     private var opened: some View {
         VStack(spacing: 22) {
             Spacer()
-            EnsoView(progress: 1, lineWidth: 14, color: Zen.matcha)
-                .frame(width: 160, height: 160)
-                .overlay(Text("開").font(.kanji(48, bold: true)).foregroundStyle(Zen.ink))
-            Text(tr("Open until \(openUntil?.formatted(date: .omitted, time: .shortened) ?? "")", "Offen bis \(openUntil?.formatted(date: .omitted, time: .shortened) ?? "")"))
-                .font(.mincho(26, weight: .semibold))
+            ZStack {
+                ProgressRing(progress: 1, lineWidth: 12, tint: Zen.matcha)
+                Image(systemName: "lock.open.fill")
+                    .font(.system(size: 40, weight: .semibold))
+                    .foregroundStyle(Zen.matcha)
+            }
+            .frame(width: 150, height: 150)
+            Text(tr("Open until \(openUntil.map(BlockingFormat.time) ?? "")", "Offen bis \(openUntil.map(BlockingFormat.time) ?? "")"))
+                .font(.display(26))
                 .foregroundStyle(Zen.ink)
             Text(tr("After that the boundary closes again by itself. Just switch to the app now.", "Danach schließt sich die Grenze von selbst wieder. Wechsle jetzt einfach zur App."))
                 .font(.system(size: 15))
@@ -266,7 +362,7 @@ struct GateView: View {
             Text(tr("Back to", "Zurück zu"))
                 .font(.system(size: 14))
                 .foregroundStyle(Zen.inkSoft)
-            FlowLayout(spacing: 8) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 96), spacing: 8)], spacing: 8) {
                 ForEach(GuardedApp.allCases.filter { $0 != .any }, id: \.self) { app in
                     Chip(title: app.displayName, selected: false) {
                         if let url = app.url { UIApplication.shared.open(url) }
@@ -277,16 +373,22 @@ struct GateView: View {
         }
     }
 
+    // MARK: Blocked
+
     private var blocked: some View {
         VStack(spacing: 22) {
             Spacer()
-            Hanko(text: "結", size: 72)
-            Text(policy.focusLocked ? tr("Focus is on", "Fokus läuft") : tr("No way through", "Kein Ausweg"))
-                .font(.mincho(30, weight: .semibold))
+            if let until = policy.lockdownUntil {
+                lockdownClock(until: until)
+            } else {
+                Illustration(name: "IllustrationBlock", height: 170)
+                    .padding(.horizontal, 40)
+            }
+            Text(blockedTitle)
+                .font(.display(28))
                 .foregroundStyle(Zen.ink)
-            Text(policy.focusLocked
-                 ? tr("During a focus round Ma opens nothing. The round ends by itself, and then everything is back.", "Während einer Fokusrunde öffnet Ma nichts. Die Runde endet von selbst, und dann ist alles wieder da.")
-                 : tr("You drew this boundary with no way through. If you want to change that, you can under Boundaries.", "Diese Grenze hast du ohne Ausweg gesetzt. Wenn du das ändern willst, geht das unter Grenzen."))
+                .multilineTextAlignment(.center)
+            Text(blockedText)
                 .font(.system(size: 16))
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
@@ -299,10 +401,62 @@ struct GateView: View {
         }
     }
 
+    /// During a lockdown the gate shows only this: how long is left.
+    private func lockdownClock(until: Date) -> some View {
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let started = SharedStore.lockdown?.startedAt ?? context.date
+            let total = max(1, until.timeIntervalSince(started))
+            let left = max(0, until.timeIntervalSince(context.date))
+            ZStack {
+                ProgressRing(progress: 1 - left / total, lineWidth: 12, tint: Zen.shu)
+                VStack(spacing: 4) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(Zen.shu)
+                    Text(BlockingFormat.clock(left))
+                        .font(.display(30, weight: .semibold))
+                        .monospacedDigit()
+                        .foregroundStyle(Zen.ink)
+                        .contentTransition(.numericText(countsDown: true))
+                }
+            }
+            .frame(width: 200, height: 200)
+        }
+    }
+
+    private var blockedTitle: String {
+        if let until = policy.lockdownUntil {
+            return tr("Locked until \(BlockingFormat.time(until))", "Gesperrt bis \(BlockingFormat.time(until))")
+        }
+        if policy.focusLocked { return tr("Focus is on", "Fokus läuft") }
+        if policy.budgetSpent { return tr("No unlocks left today", "Keine Freigaben mehr für heute") }
+        return tr("No way through", "Kein Ausweg")
+    }
+
+    private var blockedText: String {
+        if policy.isLockdown {
+            return tr("Nothing opens until then, not even with questions.", "Bis dahin öffnet sich nichts, auch nicht mit Fragen.")
+        }
+        if policy.focusLocked {
+            return tr("During a focus round Ma opens nothing. The round ends by itself, and then everything is back.", "Während einer Fokusrunde öffnet Ma nichts. Die Runde endet von selbst, und dann ist alles wieder da.")
+        }
+        if policy.budgetSpent {
+            let limit = policy.dailyLimit ?? 0
+            return tr("You gave yourself \(limit) \(limit == 1 ? "unlock" : "unlocks") a day here, and they are used up. Tomorrow it opens again.", "Du hast dir hier \(limit) \(limit == 1 ? "Freigabe" : "Freigaben") am Tag gegeben, und die sind aufgebraucht. Morgen geht es wieder.")
+        }
+        return tr("You set this boundary with no way through. If you want to change that, you can under Boundaries.", "Diese Grenze hast du ohne Ausweg gesetzt. Wenn du das ändern willst, geht das unter Grenzen.")
+    }
+
     // MARK: Flow
 
     private func startQuiz() {
         let session = QuizSession(mode: .gate(required: needed), store: model.decks)
+        // No topics means no questions. Everywhere else that simply lets the
+        // person through; a lockdown must not end for free that way.
+        if isEndLockdown && session.exercises.isEmpty {
+            noQuestions = true
+            return
+        }
         self.session = session
         withAnimation(.easeInOut) {
             stage = session.finished ? .decide : .quiz
@@ -315,7 +469,7 @@ struct GateView: View {
         switch reason {
         case .unlock, .shortcut:
             withAnimation(.easeInOut) { stage = .decide }
-        case .disableRule, .stopFocus, .practice:
+        case .disableRule, .stopFocus, .practice, .endLockdown:
             Haptics.success()
             model.gatePassed(reason)
             model.gate = nil
@@ -326,8 +480,13 @@ struct GateView: View {
         Haptics.success()
         openUntil = Date().addingTimeInterval(TimeInterval(minutes * 60))
         if let pending {
-            model.grant(pending, minutes: minutes)
-            withAnimation(.easeInOut) { stage = .open }
+            if model.grant(pending, minutes: minutes) {
+                withAnimation(.easeInOut) { stage = .open }
+            } else {
+                // The day's budget or a lockdown closed the door meanwhile.
+                policy = model.policy(for: pending)
+                withAnimation(.easeInOut) { stage = .blocked }
+            }
         } else if let app = shortcutApp {
             // With a known app, go straight back to it. Otherwise show the
             // open screen with the app picker.

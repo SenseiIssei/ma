@@ -4,13 +4,12 @@ import SwiftUI
 struct OnboardingView: View {
     @Environment(AppModel.self) private var model
     @State private var page = 0
-    @State private var drawn = 0.0
     @State private var selection = FamilyActivitySelection()
     @State private var showPicker = false
 
     var body: some View {
         ZStack {
-            WashiBackground()
+            AppBackground()
             VStack(spacing: 0) {
                 TabView(selection: $page) {
                     welcome.tag(0)
@@ -40,50 +39,48 @@ struct OnboardingView: View {
 
     private var welcome: some View {
         onboardingPage(
-            kanji: "間",
-            title: "Ma",
+            title: tr("Welcome to Ma", "Willkommen bei Ma"),
             text: tr(
                 "In Japanese, Ma is the space between two things. The pause between two notes, the empty ground in a garden.\n\nThis app puts such a space between you and the next feed. Short, kind, and you learn something along the way.",
                 "Im Japanischen ist Ma der Raum zwischen zwei Dingen. Die Pause zwischen zwei Tönen, der leere Platz im Garten.\n\nDiese App schiebt so einen Raum zwischen dich und den nächsten Feed. Kurz, freundlich, und du lernst dabei etwas."
             )
         ) {
-            EnsoView(progress: drawn, lineWidth: 18, color: Zen.ink)
-                .frame(width: 200, height: 200)
-                .overlay(Text("間").font(.kanji(64, bold: true)).foregroundStyle(Zen.shu))
-                .onAppear {
-                    withAnimation(.easeInOut(duration: 2.4)) { drawn = 1 }
-                }
+            heroImage("IllustrationWelcome")
         } footer: {
-            Button(tr("Continue", "Weiter")) { page = 1 }.buttonStyle(.ink)
+            Button(tr("Continue", "Weiter")) { page = 1 }.buttonStyle(.primary)
         }
     }
 
     private var screenTime: some View {
         onboardingPage(
-            kanji: "許",
             title: tr("Screen Time", "Bildschirmzeit"),
             text: tr(
                 "Ma uses Apple's Screen Time to block apps. Only your iPhone knows which apps you pick, not even Ma itself: Apple hands the app anonymous placeholders.\n\nNothing leaves your device.",
                 "Ma nutzt Apples Bildschirmzeit, um Apps zu sperren. Welche Apps du auswählst, sieht nur dein iPhone, nicht einmal Ma selbst: Apple gibt der App nur anonyme Platzhalter.\n\nNichts verlässt dein Gerät."
             )
         ) {
-            statusBadge(done: model.authorization == .approved, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
+            VStack(spacing: 16) {
+                heroImage("IllustrationBlock")
+                if BuildFlavor.screenTimeAvailable {
+                    statusBadge(done: model.authorization == .approved, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
+                }
+            }
         } footer: {
             if !BuildFlavor.screenTimeAvailable {
                 Text(BuildFlavor.previewNote)
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.shu)
                     .fixedSize(horizontal: false, vertical: true)
-                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.ink)
+                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.primary)
             } else if model.authorization == .approved {
-                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.ink)
+                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.primary)
             } else {
                 Button(tr("Allow access", "Zugriff erlauben")) {
                     Task { await model.requestScreenTime() }
                 }
-                .buttonStyle(.shu)
+                .buttonStyle(.primary)
                 Button(tr("Later", "Später")) { page = 2 }
-                    .font(.system(size: 15))
+                    .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -91,17 +88,19 @@ struct OnboardingView: View {
 
     private var notifications: some View {
         onboardingPage(
-            kanji: "知",
             title: tr("Notifications", "Mitteilungen"),
             text: tr(
                 "When you tap \"Answer a question\" on a blocked app, Ma sends you a notification that opens your question. iOS does not let the app start any other way from there.\n\nMa also tells you when a focus round is over.",
                 "Wenn du auf einer gesperrten App \"Frage beantworten\" tippst, schickt dir Ma eine Mitteilung. Die öffnet deine Frage. Anders darf iOS die App von dort aus nicht starten.\n\nAußerdem sagt dir Ma, wann eine Fokusrunde vorbei ist."
             )
         ) {
-            statusBadge(done: model.notificationsAllowed, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
+            VStack(spacing: 16) {
+                heroImage("IllustrationFocus")
+                statusBadge(done: model.notificationsAllowed, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
+            }
         } footer: {
             if model.notificationsAllowed {
-                Button(tr("Continue", "Weiter")) { page = 3 }.buttonStyle(.ink)
+                Button(tr("Continue", "Weiter")) { page = 3 }.buttonStyle(.primary)
             } else {
                 Button(tr("Allow notifications", "Mitteilungen erlauben")) {
                     Task {
@@ -109,9 +108,9 @@ struct OnboardingView: View {
                         page = 3
                     }
                 }
-                .buttonStyle(.shu)
+                .buttonStyle(.primary)
                 Button(tr("Later", "Später")) { page = 3 }
-                    .font(.system(size: 15))
+                    .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -119,7 +118,6 @@ struct OnboardingView: View {
 
     private var topics: some View {
         onboardingPage(
-            kanji: "学",
             title: tr("What do you want to learn?", "Was willst du lernen?"),
             text: tr(
                 "Every unlock starts with a question from your topics. You can add your own topics later under Learn.",
@@ -127,6 +125,8 @@ struct OnboardingView: View {
             )
         ) {
             VStack(spacing: 10) {
+                heroImage("IllustrationLearn", size: 160)
+                    .padding(.bottom, 6)
                 ForEach(model.decks.decks) { deck in
                     let active = model.decks.isActive(deck)
                     Button {
@@ -134,7 +134,8 @@ struct OnboardingView: View {
                         model.decks.toggleActive(deck)
                     } label: {
                         HStack(spacing: 14) {
-                            Hanko(text: deck.symbol, size: 36, color: active ? Zen.shu : Zen.inkFaint)
+                            // The deck's own symbol is content, e.g. a kana.
+                            Hanko(text: deck.symbol, size: 38, color: active ? Zen.shu : Zen.inkFaint)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(deck.title).font(.system(size: 16, weight: .semibold)).foregroundStyle(Zen.ink)
                                 Text(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten")).font(.system(size: 13)).foregroundStyle(Zen.inkSoft)
@@ -145,13 +146,17 @@ struct OnboardingView: View {
                                 .foregroundStyle(active ? Zen.shu : Zen.line)
                         }
                         .padding(12)
-                        .background(Zen.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .background(Zen.card, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                                .strokeBorder(active ? Zen.shu.opacity(0.5) : Zen.line, lineWidth: 1)
+                        )
                     }
                     .buttonStyle(.plain)
                 }
             }
         } footer: {
-            Button(tr("Continue", "Weiter")) { page = 4 }.buttonStyle(.ink)
+            Button(tr("Continue", "Weiter")) { page = 4 }.buttonStyle(.primary)
         }
     }
 
@@ -167,16 +172,13 @@ struct OnboardingView: View {
     /// Without Screen Time the first boundary is a Shortcuts automation.
     private var shortcutsRule: some View {
         onboardingPage(
-            kanji: "門",
             title: tr("A pause before every app", "Eine Pause vor jeder App"),
             text: tr(
                 "One automation in the Shortcuts app starts Ma whenever Instagram, YouTube, X or any app you pick opens. You set it up once, then Ma does the rest.\n\nThe next screen shows every step.",
                 "Eine Automation in der Kurzbefehle-App startet Ma, sobald Instagram, YouTube, X oder eine andere App deiner Wahl geöffnet wird. Du richtest sie einmal ein, danach macht Ma den Rest.\n\nDie nächste Seite zeigt dir jeden Schritt."
             )
         ) {
-            EnsoView(progress: 0.82, lineWidth: 14, color: Zen.ink)
-                .frame(width: 150, height: 150)
-                .overlay(Text("門").font(.kanji(46, bold: true)).foregroundStyle(Zen.shu))
+            heroImage("IllustrationBlock")
         } footer: {
             Button(tr("Set it up", "Einrichten")) {
                 Haptics.success()
@@ -184,9 +186,9 @@ struct OnboardingView: View {
                 model.showShortcutsSetup = true
                 model.onboarded = true
             }
-            .buttonStyle(.shu)
+            .buttonStyle(.primary)
             Button(tr("Later", "Später")) { model.onboarded = true }
-                .font(.system(size: 15))
+                .font(.system(size: 15, weight: .medium))
                 .foregroundStyle(Zen.inkSoft)
         }
     }
@@ -194,7 +196,6 @@ struct OnboardingView: View {
     private var screenTimeRule: some View {
         let count = selection.applicationTokens.count + selection.categoryTokens.count + selection.webDomainTokens.count
         return onboardingPage(
-            kanji: "結",
             title: tr("Your first boundary", "Deine erste Grenze"),
             text: tr(
                 "Pick the apps that pull at you the most. Instagram, YouTube, X, LinkedIn, TikTok, or the whole Social category. You can change this any time.",
@@ -202,6 +203,7 @@ struct OnboardingView: View {
             )
         ) {
             VStack(spacing: 14) {
+                heroImage("IllustrationBlock", size: 180)
                 Button {
                     showPicker = true
                 } label: {
@@ -225,7 +227,7 @@ struct OnboardingView: View {
         } footer: {
             Button(count == 0 ? tr("Start without a boundary", "Ohne Grenze starten") : tr("Let's go", "Los geht's")) {
                 if count > 0 {
-                    var rule = BlockRule()
+                    var rule = RuleTemplate.socialMedia.makeRule()
                     rule.selection = selection
                     model.save(rule)
                 }
@@ -239,7 +241,6 @@ struct OnboardingView: View {
     // MARK: Building blocks
 
     private func onboardingPage<Hero: View, Footer: View>(
-        kanji: String,
         title: String,
         text: String,
         @ViewBuilder hero: () -> Hero,
@@ -247,11 +248,14 @@ struct OnboardingView: View {
     ) -> some View {
         VStack(spacing: 0) {
             ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 20) {
                     hero()
                         .frame(maxWidth: .infinity)
-                        .padding(.top, 36)
-                    PageTitle(kanji: kanji, title: title)
+                        .padding(.top, 28)
+                    Text(title)
+                        .font(.display(32))
+                        .foregroundStyle(Zen.ink)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text(text)
                         .font(.system(size: 17))
                         .foregroundStyle(Zen.inkSoft)
@@ -270,15 +274,23 @@ struct OnboardingView: View {
         }
     }
 
+    /// Square illustration at the top of a page.
+    private func heroImage(_ name: String, size: CGFloat = 220) -> some View {
+        Illustration(name: name, height: size, corner: 32)
+            .frame(width: size, height: size)
+    }
+
     private func statusBadge(done: Bool, doneText: String, openText: String) -> some View {
-        HStack(spacing: 10) {
-            Image(systemName: done ? "checkmark.seal.fill" : "seal")
-                .font(.system(size: 44))
-                .foregroundStyle(done ? Zen.matcha : Zen.inkFaint)
+        let tint: Color = done ? Zen.matcha : Zen.inkSoft
+        return HStack(spacing: 8) {
+            Image(systemName: done ? "checkmark.circle.fill" : "circle.dashed")
+                .font(.system(size: 18, weight: .semibold))
             Text(done ? doneText : openText)
-                .font(.mincho(20, weight: .medium))
-                .foregroundStyle(done ? Zen.matcha : Zen.inkSoft)
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
         }
-        .padding(.vertical, 30)
+        .foregroundStyle(tint)
+        .padding(.vertical, 9)
+        .padding(.horizontal, 16)
+        .background(tint.opacity(0.12), in: Capsule())
     }
 }

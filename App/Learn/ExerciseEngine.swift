@@ -1,6 +1,8 @@
 import Foundation
 
 enum ExerciseKind: String {
+    /// Not a question: the card is shown with its answer and explanation.
+    case teach
     case choice, reverse, trueFalse, typeIn, cloze, order, pairs, flash
 }
 
@@ -20,13 +22,103 @@ struct Exercise: Identifiable {
     var pairCards: [Card] = []
 }
 
-/// Turns plain prompt/answer cards into varied exercises. New cards get
-/// recognition (pick one, true or false, pairs); cards you keep getting
-/// right move on to recall (type it, build it). Same idea as Duolingo,
-/// driven by a Leitner box per card.
+/// Turns plain prompt/answer cards into varied exercises. A card is taught
+/// before it is ever asked. Freshly taught cards get recognition (pick one,
+/// true or false, pairs); cards you keep getting right move on to recall
+/// (type it, build it). Same idea as Duolingo, driven by a Leitner box per card.
 struct ExerciseEngine {
     let store: DeckStore
+    /// Keys (`deck/card`) that count as introduced although the store does
+    /// not know it yet: the cards a lesson is about to teach.
+    var alsoKnown: Set<String> = []
 
+    /// New cards per lesson. More than three at once and nothing sticks.
+    static let newPerLesson = 3
+
+    typealias Pick = (deck: Deck, card: Card)
+
+    // MARK: Plans
+
+    /// A lesson: teach up to three new cards, check each one right away
+    /// with an easy exercise, then mix a second look at them with due
+    /// reviews. `count` is the number of questions; teaching comes on top.
+    func lesson(count: Int, from decks: [Deck], teachNew: Bool = true) -> [Exercise] {
+        let slots = max(1, count)
+        let fresh: [Pick] = teachNew ? newCards(limit: min(Self.newPerLesson, max(1, slots / 2)), from: decks) : []
+        var engine = self
+
+        var plan: [Exercise] = []
+        var practised = 0
+        var lastKind: [String: ExerciseKind] = [:]
+
+        func practise(_ item: Pick) {
+            let key = store.key(item.deck, item.card)
+            let exercise = engine.recognition(card: item.card, deck: item.deck, avoiding: lastKind[key])
+            lastKind[key] = exercise.kind
+            plan.append(exercise)
+            practised += 1
+        }
+
+        // Teach, then ask straight away while it is fresh. A card joins the
+        // known set only once taught, so pairs never show a card too early.
+        for item in fresh {
+            engine.alsoKnown.insert(store.key(item.deck, item.card))
+            plan.append(engine.teach(card: item.card, deck: item.deck))
+            if practised < slots { practise(item) }
+        }
+
+        let freshKeys = Set(fresh.map { store.key($0.deck, $0.card) })
+        let pool = engine.reviewPool(from: decks, excluding: freshKeys)
+        var due = pool.due.makeIterator()
+        var later = pool.later.makeIterator()
+        var second = fresh.makeIterator()
+        var third = fresh.makeIterator()
+
+        // Due reviews take turns with a second look at the new cards, then
+        // old friends take turns with a third look.
+        var turn = 0
+        while practised < slots {
+            turn += 1
+            let reviewFirst = turn % 2 == 1
+            if reviewFirst, let next = due.next() {
+                plan.append(engine.build(card: next.card, deck: next.deck))
+                practised += 1
+            } else if let next = second.next() {
+                practise(next)
+            } else if let next = due.next() {
+                plan.append(engine.build(card: next.card, deck: next.deck))
+                practised += 1
+            } else if reviewFirst, let next = later.next() {
+                plan.append(engine.build(card: next.card, deck: next.deck))
+                practised += 1
+            } else if let next = third.next() {
+                practise(next)
+            } else if let next = later.next() {
+                plan.append(engine.build(card: next.card, deck: next.deck))
+                practised += 1
+            } else {
+                break
+            }
+        }
+        return plan
+    }
+
+    /// The gate only asks what has been taught. On the very first unlock
+    /// nothing has been, so it teaches one card and then asks about it.
+    func gate(required: Int, from decks: [Deck]) -> [Exercise] {
+        let asked = exercises(count: max(1, required), from: decks)
+        if !asked.isEmpty { return asked }
+        guard let first = newCards(limit: 1, from: decks).first else { return [] }
+        var engine = self
+        engine.alsoKnown.insert(store.key(first.deck, first.card))
+        return [
+            engine.teach(card: first.card, deck: first.deck),
+            engine.recognition(card: first.card, deck: first.deck),
+        ]
+    }
+
+    /// Review exercises from introduced cards only: due first, weakest box
+    /// first, then cards that are not due yet.
     func exercises(count: Int, from decks: [Deck]) -> [Exercise] {
         pickCards(count: count, from: decks).map { build(card: $0.card, deck: $0.deck) }
     }
@@ -38,58 +130,87 @@ struct ExerciseEngine {
 
     // MARK: Picking
 
-    private func pickCards(count: Int, from decks: [Deck], avoiding: Set<String> = []) -> [(deck: Deck, card: Card)] {
-        let now = Date()
-        var due: [(deck: Deck, card: Card, box: Int)] = []
-        var fresh: [(deck: Deck, card: Card, box: Int)] = []
-        var later: [(deck: Deck, card: Card, box: Int)] = []
-
-        for deck in decks {
-            for card in deck.cards where !avoiding.contains(card.id) {
-                let p = store.progress(of: card, in: deck)
-                if p.seen == 0 {
-                    fresh.append((deck, card, p.box))
-                } else if p.due <= now {
-                    due.append((deck, card, p.box))
-                } else {
-                    later.append((deck, card, p.box))
-                }
-            }
+    /// Cards never taught, in deck order, because bundled decks are sorted
+    /// from easy to hard. One deck at a time so a lesson stays on one topic.
+    func newCards(limit: Int, from decks: [Deck]) -> [Pick] {
+        guard limit > 0 else { return [] }
+        let candidates = decks.filter { deck in
+            deck.cards.contains { !isKnown($0, in: deck) }
         }
-
-        due.shuffle()
-        due.sort { $0.box < $1.box }
-        fresh.shuffle()
-        later.shuffle()
-
-        // Mostly review, a steady trickle of new cards, and old friends as filler.
-        var result: [(deck: Deck, card: Card)] = []
-        var d = due.makeIterator()
-        var f = fresh.makeIterator()
-        var l = later.makeIterator()
-        while result.count < count {
-            let wantNew = result.count % 3 == 2
-            if wantNew, let next = f.next() {
-                result.append((next.deck, next.card))
-            } else if let next = d.next() {
-                result.append((next.deck, next.card))
-            } else if let next = f.next() {
-                result.append((next.deck, next.card))
-            } else if let next = l.next() {
-                result.append((next.deck, next.card))
-            } else {
-                break
+        var result: [Pick] = []
+        for deck in candidates.shuffled() {
+            for card in deck.cards where !isKnown(card, in: deck) {
+                guard result.count < limit else { return result }
+                result.append((deck, card))
             }
         }
         return result
     }
 
+    private func pickCards(count: Int, from decks: [Deck], avoiding: Set<String> = []) -> [Pick] {
+        let pool = reviewPool(from: decks, avoiding: avoiding)
+        return Array((pool.due + pool.later).prefix(max(0, count)))
+    }
+
+    private func reviewPool(from decks: [Deck], avoiding: Set<String> = [], excluding keys: Set<String> = []) -> (due: [Pick], later: [Pick]) {
+        let now = Date()
+        var due: [(pick: Pick, box: Int)] = []
+        var later: [Pick] = []
+        for deck in decks {
+            for card in deck.cards where !avoiding.contains(card.id) {
+                guard !keys.contains(store.key(deck, card)) else { continue }
+                let p = store.progress(of: card, in: deck)
+                guard p.introduced else { continue }
+                if p.due <= now {
+                    due.append(((deck, card), p.box))
+                } else {
+                    later.append((deck, card))
+                }
+            }
+        }
+        due.shuffle()
+        due.sort { $0.box < $1.box }
+        return (due.map(\.pick), later.shuffled())
+    }
+
+    func isKnown(_ card: Card, in deck: Deck) -> Bool {
+        alsoKnown.contains(store.key(deck, card)) || store.progress(of: card, in: deck).introduced
+    }
+
     // MARK: Building
+
+    func teach(card: Card, deck: Deck) -> Exercise {
+        make(.teach, card: card, deck: deck)
+    }
+
+    /// An easy check right after teaching: pick one, true or false, or
+    /// pairs. Tries not to repeat the kind the card had last time.
+    func recognition(card: Card, deck: Deck, avoiding previous: ExerciseKind? = nil) -> Exercise {
+        let canChoice = !wrongAnswers(for: card, in: deck).isEmpty
+        let sentence = card.tokens.count >= 3
+        var kinds: [ExerciseKind] = []
+        if canChoice { kinds.append(.choice) }
+        if canChoice && !sentence { kinds.append(.trueFalse) }
+        if canPair(card, in: deck) { kinds.append(.pairs) }
+        if kinds.isEmpty { kinds.append(sentence && deck.cards.count >= 2 ? .order : .flash) }
+        let varied = kinds.filter { $0 != previous }
+        let kind = (varied.isEmpty ? kinds : varied).randomElement() ?? .flash
+        return make(kind, card: card, deck: deck)
+    }
 
     func build(card: Card, deck: Deck) -> Exercise {
         let box = store.progress(of: card, in: deck).box
         let kind = chooseKind(card: card, deck: deck, box: box)
         return make(kind, card: card, deck: deck)
+    }
+
+    /// Pairs only with cards the learner has been shown.
+    private func canPair(_ card: Card, in deck: Deck) -> Bool {
+        guard Self.isPairable(card) else { return false }
+        let partners = deck.cards.filter {
+            $0.id != card.id && Self.isPairable($0) && $0.answer != card.answer && $0.prompt != card.prompt && isKnown($0, in: deck)
+        }
+        return Set(partners.map(\.answer)).count >= 3
     }
 
     private func chooseKind(card: Card, deck: Deck, box: Int) -> ExerciseKind {
@@ -99,7 +220,7 @@ struct ExerciseEngine {
         let typable = !Self.containsCJK(card.answer) && card.answer.count <= 32
         let sentence = card.tokens.count >= 3
         let hasCloze = card.example.map { $0.contains(card.answer) && $0 != card.answer } ?? false
-        let pairable = Self.isPairable(card) && deck.cards.filter(Self.isPairable).count >= 4
+        let pairable = canPair(card, in: deck)
         let canReverse = card.prompt.count <= 40 && others.count >= 3
 
         var weights: [(ExerciseKind, Int)] = []
@@ -180,7 +301,7 @@ struct ExerciseEngine {
 
         case .pairs:
             let partners = deck.cards
-                .filter { $0.id != card.id && Self.isPairable($0) && $0.answer != card.answer }
+                .filter { $0.id != card.id && Self.isPairable($0) && $0.answer != card.answer && $0.prompt != card.prompt && isKnown($0, in: deck) }
                 .shuffled()
                 .reduce(into: [Card]()) { acc, next in
                     if acc.count < 3, !acc.contains(where: { $0.answer == next.answer || $0.prompt == next.prompt }) {
@@ -191,6 +312,9 @@ struct ExerciseEngine {
 
         case .flash:
             return Exercise(kind: .flash, deck: deck, card: card, instruction: tr("Do you know it?", "Weißt du es?"), prompt: card.prompt, solution: card.answer)
+
+        case .teach:
+            return Exercise(kind: .teach, deck: deck, card: card, instruction: tr("New card", "Neue Karte"), prompt: card.prompt, solution: card.answer, statement: card.example ?? "")
         }
     }
 

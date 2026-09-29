@@ -143,16 +143,15 @@
       "max-width:420px",
       "padding:28px 24px",
       "border-radius:22px",
-      "background:#F4EFE6",
-      "color:#1F1D1B",
+      "background:#FFFFFF",
+      "color:#16171B",
       "font:16px/1.5 -apple-system,system-ui,sans-serif",
       "text-align:center",
       "box-shadow:0 1px 0 rgba(0,0,0,.06)",
       "z-index:2147483646",
     ].join(";");
     const glyph = document.createElement("div");
-    glyph.textContent = "間";
-    glyph.style.cssText = "font:600 44px/1 'Hiragino Mincho ProN',serif;color:#C8412C;margin-bottom:10px";
+    glyph.style.cssText = "width:44px;height:44px;margin:0 auto 12px;border-radius:50%;border:6px solid #5B5FEF;border-top-color:transparent;box-sizing:border-box";
     const text = document.createElement("div");
     text.textContent = site === "tiktok"
       ? (german ? "TikTok ist in Ma ausgeschaltet. Was wolltest du eigentlich finden?" : "TikTok is switched off in Ma. What were you actually looking for?")

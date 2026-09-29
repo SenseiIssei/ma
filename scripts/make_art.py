@@ -137,17 +137,58 @@ def colorset(path, light, dark):
     })
 
 
+def ring(size, color=(255, 255, 255), width=0.13, gap_deg=58, supersample=4, dot=True):
+    """A clean open ring: the gap at the top is the pause Ma puts before an app."""
+    s = size * supersample
+    img = Image.new("L", (s, s), 0)
+    d = ImageDraw.Draw(img)
+    w = s * width
+    margin = s * 0.02
+    box = (margin, margin, s - margin, s - margin)
+    start = -90 + gap_deg / 2
+    end = 270 - gap_deg / 2
+    # PIL grows the stroke inwards from the box, so the centre line of the
+    # ring sits half a stroke inside it; the round caps go there.
+    d.arc(box, start=start, end=end, fill=255, width=int(w))
+    r = w / 2
+    cx = cy = s / 2
+    rad = (s - 2 * margin) / 2 - w / 2
+    for ang in (start, end):
+        a = math.radians(ang)
+        x, y = cx + rad * math.cos(a), cy + rad * math.sin(a)
+        d.ellipse((x - r, y - r, x + r, y + r), fill=255)
+    if dot:
+        dr = w * 0.62
+        d.ellipse((cx - dr, cy - dr, cx + dr, cy + dr), fill=255)
+    img = img.resize((size, size), Image.LANCZOS)
+    out = Image.new("RGBA", (size, size), color + (0,))
+    out.putalpha(img)
+    return out
+
+
+def gradient(size, top=(109, 106, 246), bottom=(77, 141, 247)):
+    img = Image.new("RGB", (size, size))
+    px = img.load()
+    for y in range(size):
+        for x in range(size):
+            t = (x + y) / (2 * (size - 1))
+            px[x, y] = tuple(int(top[i] + (bottom[i] - top[i]) * t) for i in range(3))
+    return img
+
+
 def main():
     info = {"info": {"author": "xcode", "version": 1}}
 
-    # App icon: paper, ink ensō, the red seal tucked into the gap.
+    # App icon: indigo to blue, one white open ring with a quiet centre dot.
     assets = ROOT / "App" / "Assets.xcassets"
     write_json(assets / "Contents.json", info)
-    icon = washi(1024)
-    ring = enso(820, width=0.09)
-    icon.paste(ring, (102, 102), ring)
-    stamp = seal(150)
-    icon.paste(stamp, (1024 - 102 - stamp.width + 10, 1024 - 102 - stamp.height + 10), stamp)
+    icon = gradient(1024)
+    glow = Image.new("L", (1024, 1024), 0)
+    ImageDraw.Draw(glow).ellipse((150, 80, 874, 804), fill=70)
+    glow = glow.filter(ImageFilter.GaussianBlur(120))
+    icon = Image.composite(Image.new("RGB", (1024, 1024), (255, 255, 255)), icon, glow)
+    mark = ring(560)
+    icon.paste(mark, (232, 232), mark)
     icon_dir = assets / "AppIcon.appiconset"
     icon_dir.mkdir(parents=True, exist_ok=True)
     icon.convert("RGB").save(icon_dir / "icon-1024.png")
@@ -155,29 +196,24 @@ def main():
         "images": [{"filename": "icon-1024.png", "idiom": "universal", "platform": "ios", "size": "1024x1024"}],
         **info,
     })
-    colorset(assets / "AccentColor.colorset", SHU, (217, 87, 63))
-    colorset(assets / "LaunchPaper.colorset", PAPER, (21, 20, 18))
+    colorset(assets / "AccentColor.colorset", (91, 95, 239), (130, 134, 255))
+    colorset(assets / "LaunchPaper.colorset", (246, 245, 243), (14, 15, 18))
 
-    # Shield icon: ink ensō on transparent, 60 pt at 3x.
+    # Shield icon: the same ring in the accent colour on transparent.
     shield = ROOT / "Extensions" / "ShieldConfig" / "Assets.xcassets"
     write_json(shield / "Contents.json", info)
     shield_set = shield / "ShieldEnso.imageset"
     shield_set.mkdir(parents=True, exist_ok=True)
-    enso(180, width=0.1).save(shield_set / "enso@3x.png")
+    ring(180, color=(91, 95, 239)).save(shield_set / "enso@3x.png")
     write_json(shield_set / "Contents.json", {
         "images": [{"filename": "enso@3x.png", "idiom": "universal", "scale": "3x"}],
         **info,
     })
 
-    # Safari extension icons.
+    # Safari extension icons: accent ring.
     resources = ROOT / "Extensions" / "Filter" / "Resources"
     for px in (48, 96, 128, 256, 512):
-        canvas = Image.new("RGBA", (px, px), (0, 0, 0, 0))
-        ring = enso(px, width=0.12)
-        canvas.alpha_composite(ring)
-        dot = max(2, px // 9)
-        ImageDraw.Draw(canvas).ellipse((px - dot * 2.2, px - dot * 2.2, px - dot * 0.2, px - dot * 0.2), fill=SHU + (255,))
-        canvas.save(resources / f"icon-{px}.png")
+        ring(px, color=(91, 95, 239)).save(resources / f"icon-{px}.png")
 
     print("art written")
 

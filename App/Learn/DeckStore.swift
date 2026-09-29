@@ -98,8 +98,53 @@ final class DeckStore {
     func dueCount(in deck: Deck, now: Date = Date()) -> Int {
         deck.cards.filter {
             let p = progress(of: $0, in: deck)
-            return p.seen > 0 && p.due <= now
+            return p.introduced && p.due <= now
         }.count
+    }
+
+    // MARK: Teaching
+
+    func isIntroduced(_ card: Card, in deck: Deck) -> Bool {
+        progress(of: card, in: deck).introduced
+    }
+
+    /// Called after the teaching screen. It is not an answer, so no XP and
+    /// no entry in today's right and wrong.
+    func markIntroduced(_ card: Card, in deck: Deck) {
+        var p = progress(of: card, in: deck)
+        guard !p.introduced else { return }
+        p.introduced = true
+        progress[key(deck, card)] = p
+        save(progress, to: "progress.json")
+    }
+
+    /// New, learning and known cards of one deck.
+    func counts(in deck: Deck) -> DeckCounts {
+        var counts = DeckCounts()
+        for card in deck.cards {
+            let p = progress(of: card, in: deck)
+            if !p.introduced {
+                counts.new += 1
+            } else if p.isKnown {
+                counts.known += 1
+            } else {
+                counts.learning += 1
+            }
+        }
+        return counts
+    }
+
+    func counts(in decks: [Deck]) -> DeckCounts {
+        decks.reduce(into: DeckCounts()) { total, deck in
+            let c = counts(in: deck)
+            total.new += c.new
+            total.learning += c.learning
+            total.known += c.known
+        }
+    }
+
+    func dueCount(in decks: [Deck], now: Date = Date()) -> Int {
+        decks.reduce(0) { $0 + dueCount(in: $1, now: now) }
     }
 
     func isActive(_ deck: Deck) -> Bool {

@@ -17,11 +17,15 @@ struct DeckDetailView: View {
             if let deck = store.deck(id: deckID) {
                 content(deck)
             } else {
-                Text(tr("This topic no longer exists.", "Dieses Thema gibt es nicht mehr."))
-                    .foregroundStyle(Zen.inkSoft)
+                VStack(spacing: 14) {
+                    Illustration(name: "IllustrationEmpty", height: 160)
+                    Text(tr("This topic no longer exists.", "Dieses Thema gibt es nicht mehr."))
+                        .foregroundStyle(Zen.inkSoft)
+                }
+                .padding(Zen.gutter)
             }
         }
-        .background(WashiBackground())
+        .background(AppBackground())
         .fullScreenCover(item: $lesson) { session in
             LessonScreen(session: session) { lesson = nil }
         }
@@ -31,13 +35,16 @@ struct DeckDetailView: View {
     }
 
     private func content(_ deck: Deck) -> some View {
-        ScrollView {
+        let counts = store.counts(in: deck)
+        let due = store.dueCount(in: deck)
+        let active = store.isActive(deck)
+        return ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(alignment: .center, spacing: 16) {
-                    Hanko(text: deck.symbol, size: 64, color: store.isActive(deck) ? Zen.shu : Zen.inkFaint)
+                    Hanko(text: deck.symbol, size: 64, color: active ? Zen.shu : Zen.inkFaint)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(deck.title)
-                            .font(.mincho(28, weight: .semibold))
+                            .font(.display(28))
                             .foregroundStyle(Zen.ink)
                         if !deck.subtitle.isEmpty {
                             Text(deck.subtitle)
@@ -48,61 +55,64 @@ struct DeckDetailView: View {
                 }
                 .padding(.top, 8)
 
-                HStack(spacing: 12) {
-                    StatStone(kanji: "札", value: "\(deck.cards.count)", label: tr("cards", "Karten"))
-                    StatStone(kanji: "熟", value: "\(Int(store.mastery(of: deck) * 100))%", label: tr("known", "sicher"))
-                    StatStone(kanji: "復", value: "\(store.dueCount(in: deck))", label: tr("due", "fällig"))
+                statsCard(deck, counts: counts)
+                learnCard(deck, counts: counts, due: due)
+
+                Button {
+                    Haptics.tap()
+                    store.toggleActive(deck)
+                } label: {
+                    Label(active ? tr("Used for unlock questions", "Für Freigabe-Fragen aktiv") : tr("Use for unlock questions", "Für Freigabe-Fragen nutzen"),
+                          systemImage: active ? "checkmark.circle.fill" : "circle")
                 }
-                .zenCard()
+                .buttonStyle(.quiet)
 
-                HStack(spacing: 12) {
-                    Button {
-                        lesson = QuizSession(mode: .lesson(count: min(10, max(1, deck.cards.count))), store: store, decks: [deck])
-                    } label: {
-                        Label(tr("Practise", "Üben"), systemImage: "play.fill")
-                    }
-                    .buttonStyle(.shu)
-                    .disabled(deck.cards.isEmpty)
-
-                    Button {
-                        Haptics.tap()
-                        store.toggleActive(deck)
-                    } label: {
-                        Text(store.isActive(deck) ? tr("In the gate", "In der Schranke") : tr("Use in gate", "Für Schranke"))
-                    }
-                    .buttonStyle(.quiet)
-                }
-
-                SectionHeader(kanji: "札", title: tr("Cards", "Karten")) {
+                SectionHeader(icon: "rectangle.stack.fill", title: tr("Cards", "Karten")) {
                     HStack(spacing: 16) {
                         ShareLink(item: DeckFile(data: store.exportData(deck), name: deck.title), preview: SharePreview(deck.title)) {
                             Image(systemName: "square.and.arrow.up")
                         }
+                        .accessibilityLabel(tr("Export", "Exportieren"))
                         if !deck.isBuiltIn {
                             Button {
                                 editing = deck
                             } label: {
                                 Image(systemName: "pencil")
                             }
+                            .accessibilityLabel(tr("Edit", "Bearbeiten"))
                         }
                     }
                     .foregroundStyle(Zen.shu)
                 }
 
-                VStack(spacing: 0) {
-                    ForEach(deck.cards) { card in
-                        CardLine(card: card, box: store.progress(of: card, in: deck).box)
-                        if card.id != deck.cards.last?.id {
-                            Divider().overlay(Zen.line)
+                if deck.cards.isEmpty {
+                    VStack(spacing: 12) {
+                        Illustration(name: "IllustrationEmpty", height: 150)
+                        Text(tr("No cards yet. Add some with the pencil.", "Noch keine Karten. Leg welche über den Stift an."))
+                            .font(.system(size: 14))
+                            .foregroundStyle(Zen.inkSoft)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .zenCard()
+                } else {
+                    VStack(spacing: 0) {
+                        ForEach(deck.cards) { card in
+                            let p = store.progress(of: card, in: deck)
+                            CardLine(card: card, box: p.box, introduced: p.introduced)
+                            if card.id != deck.cards.last?.id {
+                                Divider().overlay(Zen.line)
+                            }
                         }
                     }
+                    .zenCard(padding: 6)
                 }
-                .zenCard(padding: 6)
 
                 if !deck.isBuiltIn {
                     Button(tr("Delete topic", "Thema löschen"), role: .destructive) {
                         confirmDelete = true
                     }
+                    .foregroundStyle(Zen.negative)
                     .frame(maxWidth: .infinity)
                     .padding(.top, 8)
                     .confirmationDialog(tr("Delete \(deck.title)?", "\(deck.title) löschen?"), isPresented: $confirmDelete, titleVisibility: .visible) {
@@ -118,11 +128,71 @@ struct DeckDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+
+    private func statsCard(_ deck: Deck, counts: DeckCounts) -> some View {
+        let total = max(1, counts.total)
+        let known = Double(counts.known) / Double(total)
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 12) {
+                StatTile(icon: "sparkles", value: "\(counts.new)", label: tr("new", "neu"), tint: Zen.shu)
+                StatTile(icon: "arrow.triangle.2.circlepath", value: "\(counts.learning)", label: tr("learning", "in Arbeit"), tint: Zen.kin)
+                StatTile(icon: "checkmark.seal.fill", value: "\(counts.known)", label: tr("known", "sicher"), tint: Zen.matcha)
+            }
+            InkProgress(value: known, color: Zen.matcha, height: 8)
+        }
+        .zenCard()
+    }
+
+    private func learnCard(_ deck: Deck, counts: DeckCounts, due: Int) -> some View {
+        let hasNew = counts.new > 0
+        let canReview = counts.introduced > 0
+        let size = min(8, max(1, deck.cards.count))
+        let subtitle: String
+        if deck.cards.isEmpty {
+            subtitle = tr("Add cards first, then you can learn them here.", "Leg zuerst Karten an, dann kannst du sie hier lernen.")
+        } else if hasNew {
+            subtitle = tr("Up to 3 new cards, each explained before you practise it.", "Bis zu 3 neue Karten, jede wird erklärt, bevor du sie übst.")
+        } else {
+            subtitle = tr("All cards introduced. Review keeps them in your head.", "Alle Karten eingeführt. Wiederholen hält sie im Kopf.")
+        }
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 14) {
+                IconBadge(systemName: "graduationcap.fill", tint: Zen.shu, size: 46)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(tr("Learn", "Lernen"))
+                        .font(.display(19, weight: .semibold))
+                        .foregroundStyle(Zen.ink)
+                    Text(subtitle)
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            if hasNew {
+                Button {
+                    lesson = QuizSession(mode: .lesson(count: size), store: store, decks: [deck])
+                } label: {
+                    Label(tr("Learn new cards", "Neue Karten lernen"), systemImage: "sparkles")
+                }
+                .buttonStyle(.primary)
+            }
+            if canReview {
+                Button {
+                    lesson = QuizSession(mode: .review(count: size), store: store, decks: [deck])
+                } label: {
+                    Label(due > 0 ? tr("Review \(due) due", "\(due) fällige wiederholen") : tr("Review", "Wiederholen"), systemImage: "arrow.triangle.2.circlepath")
+                }
+                .buttonStyle(hasNew ? InkButtonStyle(kind: .quiet) : InkButtonStyle(kind: .shu))
+            }
+        }
+        .zenCard()
+    }
 }
 
 struct CardLine: View {
     let card: Card
     let box: Int
+    var introduced = true
 
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
@@ -135,14 +205,23 @@ struct CardLine: View {
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer(minLength: 8)
-            HStack(spacing: 3) {
-                ForEach(0..<5, id: \.self) { index in
-                    Circle()
-                        .fill(index < box ? Zen.matcha : Zen.line)
-                        .frame(width: 6, height: 6)
+            if introduced {
+                HStack(spacing: 3) {
+                    ForEach(0..<5, id: \.self) { index in
+                        Circle()
+                            .fill(index < box ? Zen.matcha : Zen.line)
+                            .frame(width: 6, height: 6)
+                    }
                 }
+                .accessibilityLabel(tr("Level \(box) of 5", "Stufe \(box) von 5"))
+            } else {
+                Text(tr("New", "Neu"))
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundStyle(Zen.shu)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .background(Zen.shu.opacity(0.12), in: Capsule())
             }
-            .accessibilityLabel(tr("Level \(box) of 5", "Stufe \(box) von 5"))
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
@@ -175,10 +254,10 @@ struct DeckEditorView: View {
             Form {
                 Section {
                     TextField(tr("Title, e.g. Korean or Anatomy", "Titel, z. B. Koreanisch oder Anatomie"), text: $deck.title)
-                        .font(.mincho(19, weight: .semibold))
+                        .font(.display(19, weight: .semibold))
                     TextField(tr("What is it about?", "Worum geht es?"), text: $deck.subtitle)
                     HStack {
-                        Text(tr("Seal", "Siegel"))
+                        Text(tr("Symbol", "Symbol"))
                         Spacer()
                         TextField("学", text: Binding(
                             get: { deck.symbol },
@@ -191,7 +270,7 @@ struct DeckEditorView: View {
                 } header: {
                     Text(tr("Topic", "Thema"))
                 } footer: {
-                    Text(tr("A single character for the seal. A kanji looks best.", "Ein einzelnes Zeichen fürs Siegel. Ein Kanji sieht am schönsten aus."))
+                    Text(tr("One character that stands for the topic, shown next to its name.", "Ein Zeichen, das für das Thema steht und neben dem Namen erscheint."))
                 }
 
                 Section {
@@ -225,7 +304,7 @@ struct DeckEditorView: View {
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(WashiBackground())
+            .background(AppBackground())
             .navigationTitle(isNew ? tr("New topic", "Neues Thema") : tr("Edit topic", "Thema bearbeiten"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -289,11 +368,11 @@ struct CardEditorView: View {
                     TextField(tr("Example sentence containing the answer", "Beispielsatz, der die Antwort enthält"), text: optionalBinding(\.example), axis: .vertical)
                     TextField(tr("Explanation after answering", "Erklärung nach dem Antworten"), text: optionalBinding(\.note), axis: .vertical)
                 } footer: {
-                    Text(tr("With an example sentence you get gap texts. The explanation shows after every answer, that is where the learning happens.", "Mit Beispielsatz gibt es Lückentexte. Die Erklärung erscheint nach jeder Antwort, dort passiert das eigentliche Lernen."))
+                    Text(tr("Both appear when the card is first taught and after every answer, that is where the learning happens. With an example sentence you also get gap texts.", "Beides erscheint, wenn die Karte zum ersten Mal erklärt wird, und nach jeder Antwort. Dort passiert das eigentliche Lernen. Mit Beispielsatz gibt es außerdem Lückentexte."))
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(WashiBackground())
+            .background(AppBackground())
             .navigationTitle(tr("Card", "Karte"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -358,7 +437,7 @@ struct BulkCardsView: View {
                     .foregroundStyle(parsed.isEmpty ? Zen.inkFaint : Zen.matcha)
             }
             .padding(Zen.gutter)
-            .background(WashiBackground())
+            .background(AppBackground())
             .navigationTitle(tr("Many cards", "Viele Karten"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

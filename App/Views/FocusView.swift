@@ -1,7 +1,7 @@
 import FamilyControls
 import SwiftUI
 
-/// Pomodoro, drawn as an ensō that paints itself over the length of a round.
+/// Pomodoro with a clean ring that fills over the length of a round.
 struct FocusView: View {
     @Environment(AppModel.self) private var model
     @State private var showSettings = false
@@ -10,20 +10,23 @@ struct FocusView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 26) {
+                VStack(spacing: 24) {
+                    ScreenHeader(title: tr("Focus", "Fokus"))
+                    if phase == nil {
+                        Illustration(name: "IllustrationFocus", height: 160)
+                    }
                     header
                     TimelineView(.periodic(from: .now, by: 1)) { context in
                         ring(at: context.date)
                     }
-                    .frame(width: 290, height: 290)
+                    .frame(width: 270, height: 270)
                     controls
                     footnote
                 }
                 .padding(.horizontal, Zen.gutter)
-                .padding(.top, 8)
                 .padding(.bottom, 40)
             }
-            .background(WashiBackground())
+            .background(AppBackground())
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -45,32 +48,54 @@ struct FocusView: View {
 
     private var phase: FocusPhase? { model.focus?.phase }
 
+    private var tint: Color {
+        switch phase {
+        case .focus, .none: Zen.shu
+        case .shortBreak, .longBreak: Zen.matcha
+        }
+    }
+
     private var header: some View {
-        VStack(spacing: 10) {
-            Text(phase?.kanji ?? "静")
-                .font(.kanji(40, bold: true))
-                .foregroundStyle(phase == .focus ? Zen.shu : (phase == nil ? Zen.ink : Zen.matcha))
-            Text(phase?.title ?? tr("Ready when you are", "Bereit, wenn du es bist"))
-                .font(.mincho(26, weight: .semibold))
-                .foregroundStyle(Zen.ink)
-            roundStones
+        VStack(spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: phaseIcon)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(tint)
+                Text(phase?.title ?? tr("Ready when you are", "Bereit, wenn du es bist"))
+                    .font(.display(24))
+                    .foregroundStyle(Zen.ink)
+            }
+            roundDots
         }
         .frame(maxWidth: .infinity)
     }
 
-    private var roundStones: some View {
+    private var phaseIcon: String {
+        switch phase {
+        case .focus: "brain.head.profile"
+        case .shortBreak: "cup.and.saucer.fill"
+        case .longBreak: "figure.walk"
+        case .none: "circle.dashed"
+        }
+    }
+
+    private var roundDots: some View {
         let total = max(1, model.focusSettings.roundsUntilLongBreak)
         let finished: Int = {
             guard let focus = model.focus else { return FocusEngine.upcomingRound - 1 }
             return focus.phase == .focus ? focus.round - 1 : focus.round
         }()
-        return HStack(spacing: 10) {
+        let current: Int? = model.focus?.phase == .focus ? model.focus?.round : nil
+        return HStack(spacing: 8) {
             ForEach(0..<total, id: \.self) { index in
-                Ellipse()
-                    .fill(index < finished ? Zen.stone : Zen.line)
-                    .frame(width: 16, height: 12)
+                let done = index < finished
+                let running = current == index + 1
+                Circle()
+                    .fill(done ? tint : (running ? tint.opacity(0.35) : Zen.line))
+                    .frame(width: 10, height: 10)
             }
         }
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel(tr("\(finished) of \(total) rounds", "\(finished) von \(total) Runden"))
     }
 
@@ -80,14 +105,13 @@ struct FocusView: View {
         let elapsed = focus.map { max(0, date.timeIntervalSince($0.startedAt)) } ?? 0
         let remaining = max(0, duration - elapsed)
         let progress = focus == nil ? 0 : min(1, elapsed / max(1, duration))
-        let color: Color = focus?.phase == .focus ? Zen.ink : Zen.matcha
 
         return ZStack {
-            EnsoView(progress: 1, lineWidth: 18, color: Zen.ink.opacity(0.06))
-            EnsoView(progress: progress, lineWidth: 18, color: color)
+            ProgressRing(progress: progress, lineWidth: 16, tint: tint)
+                .animation(.linear(duration: 1), value: progress)
             VStack(spacing: 6) {
                 Text(Self.clock(remaining))
-                    .font(.mincho(54, weight: .medium))
+                    .font(.display(56, weight: .semibold))
                     .monospacedDigit()
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.numericText(countsDown: true))
@@ -96,7 +120,7 @@ struct FocusView: View {
                         .font(.system(size: 14))
                         .foregroundStyle(Zen.inkSoft)
                 } else {
-                    Text("\(model.focusSettings.focusMinutes) · \(model.focusSettings.shortBreakMinutes) · \(model.focusSettings.longBreakMinutes)")
+                    Text(tr("\(model.focusSettings.focusMinutes) min. focus, \(model.focusSettings.shortBreakMinutes) min. break", "\(model.focusSettings.focusMinutes) Min. Fokus, \(model.focusSettings.shortBreakMinutes) Min. Pause"))
                         .font(.system(size: 14))
                         .foregroundStyle(Zen.inkSoft)
                 }
@@ -112,7 +136,7 @@ struct FocusView: View {
                     Haptics.success()
                     model.startFocus()
                 }
-                .buttonStyle(.shu)
+                .buttonStyle(.primary)
                 Text(tr("Round \(FocusEngine.upcomingRound) of \(model.focusSettings.roundsUntilLongBreak)", "Runde \(FocusEngine.upcomingRound) von \(model.focusSettings.roundsUntilLongBreak)"))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
@@ -140,8 +164,12 @@ struct FocusView: View {
             HStack(spacing: 10) {
                 Image(systemName: model.focusSettings.strict ? "lock.fill" : "lock.open")
                     .foregroundStyle(model.focusSettings.strict ? Zen.shu : Zen.inkSoft)
-                Text(count == 0
-                     ? tr("Focus blocks nothing yet. Draw a boundary or pick your own focus list.", "Im Fokus ist noch nichts gesperrt. Leg eine Grenze an oder wähle eine eigene Fokus-Liste.")
+                Text(!BuildFlavor.screenTimeAvailable
+                     ? (model.focusSettings.strict
+                        ? tr("During focus the Shortcuts gate lets nothing through.", "Im Fokus lässt die Kurzbefehle-Schranke nichts durch.")
+                        : tr("During focus the Shortcuts gate still asks its questions.", "Im Fokus stellt die Kurzbefehle-Schranke weiter ihre Fragen."))
+                     : count == 0
+                     ? tr("Focus blocks nothing yet. Add a boundary or pick your own focus list.", "Im Fokus ist noch nichts gesperrt. Leg eine Grenze an oder wähle eine eigene Fokus-Liste.")
                      : model.focusSettings.strict
                         ? tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), no way through.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), ohne Ausweg.")
                         : tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), questions allowed.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), Fragen erlaubt."))
@@ -190,31 +218,20 @@ struct FocusSettingsView: View {
 
                 Section {
                     Toggle(tr("Strict: no questions during focus", "Streng: keine Fragen im Fokus"), isOn: $settings.strict)
-                    Button {
-                        showPicker = true
-                    } label: {
-                        HStack {
-                            Text(tr("Own focus list", "Eigene Fokus-Liste"))
-                                .foregroundStyle(Zen.ink)
-                            Spacer()
-                            Text(ownCount == 0 ? tr("all boundaries", "alle Grenzen") : "\(ownCount)")
-                                .foregroundStyle(Zen.inkSoft)
-                        }
-                    }
-                    if ownCount > 0 {
-                        Button(tr("Use all boundaries again", "Wieder alle Grenzen nehmen")) {
-                            settings.selection = FamilyActivitySelection()
-                        }
+                    if BuildFlavor.screenTimeAvailable {
+                        focusListRows
                     }
                 } header: {
                     Text(tr("What sleeps during focus", "Was im Fokus schläft"))
                 } footer: {
-                    Text(tr("Without an own list, a focus round blocks everything from every boundary, including switched-off ones.", "Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten."))
+                    Text(BuildFlavor.screenTimeAvailable
+                         ? tr("Without an own list, a focus round blocks everything from every boundary, including switched-off ones.", "Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten.")
+                         : tr("Strict focus makes the Shortcuts gate show only the time left.", "Strenger Fokus lässt die Kurzbefehle-Schranke nur die Restzeit zeigen."))
                 }
             }
             .tint(Zen.shu)
             .scrollContentBackground(.hidden)
-            .background(WashiBackground())
+            .background(AppBackground())
             .navigationTitle(tr("Focus", "Fokus"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -232,6 +249,26 @@ struct FocusSettingsView: View {
             }
             .familyActivityPicker(isPresented: $showPicker, selection: $settings.selection)
             .onAppear { settings = model.focusSettings }
+        }
+    }
+
+    @ViewBuilder
+    private var focusListRows: some View {
+        Button {
+            showPicker = true
+        } label: {
+            HStack {
+                Text(tr("Own focus list", "Eigene Fokus-Liste"))
+                    .foregroundStyle(Zen.ink)
+                Spacer()
+                Text(ownCount == 0 ? tr("all boundaries", "alle Grenzen") : "\(ownCount)")
+                    .foregroundStyle(Zen.inkSoft)
+            }
+        }
+        if ownCount > 0 {
+            Button(tr("Use all boundaries again", "Wieder alle Grenzen nehmen")) {
+                settings.selection = FamilyActivitySelection()
+            }
         }
     }
 

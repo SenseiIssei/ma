@@ -1,7 +1,7 @@
 import Foundation
 
-/// Short lines for the shield and the home screen. Written for Ma, plus a
-/// few old Japanese proverbs that belong to everybody.
+/// Short lines for the shield and the home screen. Calm, plain, and never
+/// a lecture.
 enum ZenLines {
     static var shield: [String] { Loc.isGerman ? shieldDE : shieldEN }
     static var home: [String] { Loc.isGerman ? homeDE : homeEN }
@@ -11,13 +11,13 @@ enum ZenLines {
         "The feed will still be there. So will you.",
         "Three breaths. Then decide.",
         "What did you actually want to do just now?",
-        "Emptiness is not a lack. It is room.",
-        "七転び八起き. Fall seven times, stand up eight.",
+        "An empty moment is not a gap. It is room.",
+        "Fall down, get up. That is the whole trick.",
         "A calm mind does not scroll, it chooses.",
         "The world can wait one question for you.",
-        "Still water becomes clear.",
+        "Let the water settle and it clears.",
         "Boredom is the door, not the wall.",
-        "一期一会. This moment will not come again.",
+        "This moment only happens once. Spend it on purpose.",
         "You are not your thumb.",
     ]
 
@@ -26,34 +26,34 @@ enum ZenLines {
         "Der Feed läuft nicht weg. Du auch nicht.",
         "Drei Atemzüge. Dann entscheide.",
         "Was wolltest du eigentlich gerade tun?",
-        "Leere ist kein Mangel. Sie ist Platz.",
-        "七転び八起き. Siebenmal fallen, achtmal aufstehen.",
+        "Ein leerer Moment ist keine Lücke. Er ist Platz.",
+        "Hinfallen, aufstehen. Mehr Trick gibt es nicht.",
         "Ein ruhiger Kopf scrollt nicht, er wählt.",
         "Die Welt wartet eine Frage lang auf dich.",
-        "Wasser, das still steht, wird klar.",
+        "Lass das Wasser zur Ruhe kommen, dann wird es klar.",
         "Langeweile ist die Tür, nicht die Wand.",
-        "一期一会. Dieser Moment kommt so nicht wieder.",
+        "Diesen Moment gibt es nur einmal. Nutz ihn mit Absicht.",
         "Du bist nicht dein Daumen.",
     ]
 
     private static let homeEN: [String] = [
         "Today is not about how much you see, but what you notice.",
-        "猿も木から落ちる. Even monkeys fall from trees. Carry on.",
+        "Even the best slip sometimes. Carry on.",
         "One thing after another. Then the next.",
-        "石の上にも三年. Three years on a stone, and it grows warm.",
+        "Small steps, every day, add up to a lot.",
         "The shortest way to calm is putting the phone down.",
         "Learning is scrolling that gives something back.",
-        "The garden grows in the pauses.",
+        "Good days are built in the pauses.",
     ]
 
     private static let homeDE: [String] = [
         "Heute zählt nicht, wie viel du siehst, sondern was du bemerkst.",
-        "猿も木から落ちる. Auch Affen fallen von Bäumen. Weiter geht's.",
+        "Auch die Besten rutschen mal aus. Weiter geht's.",
         "Eine Sache nach der anderen. Dann die nächste.",
-        "石の上にも三年. Drei Jahre auf dem Stein, und er wird warm.",
+        "Kleine Schritte, jeden Tag, ergeben eine Menge.",
         "Der kürzeste Weg zur Ruhe führt durch das Weglegen.",
         "Lernen ist Scrollen, das dir etwas zurückgibt.",
-        "Der Garten wächst in den Pausen.",
+        "Gute Tage entstehen in den Pausen.",
     ]
 
     /// Stable for the day, so the line does not change on every redraw.

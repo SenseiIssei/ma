@@ -9,6 +9,10 @@ final class MonitorExtension: DeviceActivityMonitor {
         super.intervalDidStart(for: activity)
         if let id = Scheduler.ruleID(of: activity) {
             ShieldEngine.apply(forceActive: [id])
+        } else if activity.rawValue == Scheduler.lockdownName {
+            // Makes sure the lockdown store is up even if the app was killed
+            // right after starting it.
+            ShieldEngine.apply()
         }
     }
 
@@ -40,6 +44,13 @@ final class MonitorExtension: DeviceActivityMonitor {
             // The warning can land a few seconds early. Phases chain from
             // their planned end, never from now, so a small lead is harmless.
             if !FocusEngine.advanceIfDue(now: Date().addingTimeInterval(15)) {
+                ShieldEngine.apply()
+            }
+        } else if activity.rawValue == Scheduler.lockdownName {
+            // Same small lead as focus. A lockdown that was stretched in the
+            // meantime is still active here and stays up; its new one-shot
+            // has already been registered by the app.
+            if !LockdownEngine.liftIfDue(now: Date().addingTimeInterval(15)) {
                 ShieldEngine.apply()
             }
         }

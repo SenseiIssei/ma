@@ -60,9 +60,15 @@ struct RuleSchedule: Codable, Hashable {
 }
 
 struct BlockRule: Codable, Identifiable {
+    /// Used for rules saved before icons existed, and for new ones.
+    static let defaultIcon = "shield.lefthalf.filled"
+    /// Rising friction stops here, so a bad day never asks for twenty answers.
+    static let maxQuestions = 10
+
     var id = UUID()
     var name: String = tr("Social media", "Soziale Medien")
-    var kanji: String = "結"
+    /// SF Symbol name shown on the card.
+    var icon: String = BlockRule.defaultIcon
     var selection = FamilyActivitySelection()
     var isEnabled = true
     /// nil means the rule holds all day, every day.
@@ -71,6 +77,13 @@ struct BlockRule: Codable, Identifiable {
     var questionsRequired = 1
     /// false turns the rule into a wall: the shield offers no way through.
     var allowsUnlock = true
+    /// Unlocks allowed per calendar day. nil means no limit. Once spent, the
+    /// rule is a wall until midnight.
+    var dailyUnlockLimit: Int?
+    /// Every unlock today costs one more right answer than the last.
+    var risingFriction = false
+    /// Seconds the gate waits before the first question. 0 means no wait.
+    var waitSeconds = 0
 
     init() {}
 
@@ -79,13 +92,17 @@ struct BlockRule: Codable, Identifiable {
         let d = BlockRule()
         id = try c.decodeIfPresent(UUID.self, forKey: .id) ?? d.id
         name = try c.decodeIfPresent(String.self, forKey: .name) ?? d.name
-        kanji = try c.decodeIfPresent(String.self, forKey: .kanji) ?? d.kanji
+        // Older files carry a `kanji` instead; it is simply not read any more.
+        icon = try c.decodeIfPresent(String.self, forKey: .icon) ?? Self.defaultIcon
         selection = try c.decodeIfPresent(FamilyActivitySelection.self, forKey: .selection) ?? d.selection
         isEnabled = try c.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? d.isEnabled
         schedule = try c.decodeIfPresent(RuleSchedule.self, forKey: .schedule)
         unlockMinutes = try c.decodeIfPresent(Int.self, forKey: .unlockMinutes) ?? d.unlockMinutes
         questionsRequired = try c.decodeIfPresent(Int.self, forKey: .questionsRequired) ?? d.questionsRequired
         allowsUnlock = try c.decodeIfPresent(Bool.self, forKey: .allowsUnlock) ?? d.allowsUnlock
+        dailyUnlockLimit = try c.decodeIfPresent(Int.self, forKey: .dailyUnlockLimit)
+        risingFriction = try c.decodeIfPresent(Bool.self, forKey: .risingFriction) ?? d.risingFriction
+        waitSeconds = try c.decodeIfPresent(Int.self, forKey: .waitSeconds) ?? d.waitSeconds
     }
 
     func isActive(at date: Date) -> Bool {
@@ -99,6 +116,26 @@ struct BlockRule: Codable, Identifiable {
     }
 
     var isEmpty: Bool { itemCount == 0 }
+
+    /// Right answers the next unlock costs, given how many unlocks this rule
+    /// already gave today. With rising friction the first costs the base
+    /// number, every further one a single answer more.
+    func questionsNeeded(unlocksToday used: Int) -> Int {
+        let base = max(1, questionsRequired)
+        guard risingFriction else { return base }
+        return min(Self.maxQuestions, base + max(0, used))
+    }
+
+    /// Unlocks still left today, or nil without a daily limit.
+    func unlocksLeft(usedToday used: Int) -> Int? {
+        guard let limit = dailyUnlockLimit else { return nil }
+        return max(0, limit - max(0, used))
+    }
+
+    /// True once the daily budget is used up: a wall until midnight.
+    func budgetSpent(usedToday used: Int) -> Bool {
+        unlocksLeft(usedToday: used) == 0
+    }
 }
 
 // MARK: - Unlocks

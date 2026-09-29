@@ -38,8 +38,16 @@ final class ShieldActionExtension: ShieldActionDelegate {
         pending: PendingUnlock,
         completion: @escaping (ShieldActionResponse) -> Void
     ) {
+        // A lockdown whose one-shot never fired would keep its store up for
+        // good. Any tap on a shield is a chance to tidy that up.
+        if LockdownEngine.liftIfDue() {
+            completion(.defer)
+            return
+        }
         switch action {
         case .primaryButtonPressed:
+            // Lockdown, strict focus, a wall or a spent daily budget: the
+            // only button left leads back.
             guard policy.allowed else {
                 SharedStore.updateToday { $0.resisted += 1 }
                 completion(.close)

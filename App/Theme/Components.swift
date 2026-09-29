@@ -1,35 +1,29 @@
 import SwiftUI
 
-// MARK: - Paper
+// MARK: - Background
 
-/// Faint fibres over the paper colour, drawn once and cached as a bitmap.
-struct WashiBackground: View {
+/// Plain background with a faint accent glow at the top. `WashiBackground`
+/// is the old name and stays as an alias so every screen keeps compiling.
+struct AppBackground: View {
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             Zen.paper
-            Canvas { ctx, size in
-                var rng = SeededRandom(seed: 7)
-                let count = Int(size.width * size.height / 900)
-                for _ in 0..<count {
-                    let x = rng.next() * size.width
-                    let y = rng.next() * size.height
-                    let length = 4 + rng.next() * 14
-                    let angle = rng.next() * .pi
-                    var path = Path()
-                    path.move(to: CGPoint(x: x, y: y))
-                    path.addLine(to: CGPoint(x: x + cos(angle) * length, y: y + sin(angle) * length))
-                    ctx.stroke(path, with: .color(Zen.inkFaint.opacity(0.07 + rng.next() * 0.06)), lineWidth: 0.6)
-                }
-            }
-            .drawingGroup()
+            RadialGradient(
+                colors: [Zen.shu.opacity(0.10), .clear],
+                center: .topLeading,
+                startRadius: 0,
+                endRadius: 420
+            )
+            .frame(height: 420)
             .allowsHitTesting(false)
         }
         .ignoresSafeArea()
     }
 }
 
-/// Deterministic randomness, so textures and gardens look the same on
-/// every redraw instead of shimmering.
+typealias WashiBackground = AppBackground
+
+/// Deterministic randomness, so drawings look the same on every redraw.
 struct SeededRandom {
     private var state: UInt64
 
@@ -41,7 +35,7 @@ struct SeededRandom {
     }
 }
 
-// MARK: - Cards and headings
+// MARK: - Cards
 
 struct ZenCardModifier: ViewModifier {
     var padding: CGFloat = 18
@@ -51,49 +45,94 @@ struct ZenCardModifier: ViewModifier {
             .padding(padding)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Zen.card, in: RoundedRectangle(cornerRadius: Zen.radius, style: .continuous))
+            .shadow(color: Color.black.opacity(0.04), radius: 12, x: 0, y: 4)
             .overlay(
                 RoundedRectangle(cornerRadius: Zen.radius, style: .continuous)
-                    .strokeBorder(Zen.line, lineWidth: 0.8)
+                    .strokeBorder(Zen.line.opacity(0.6), lineWidth: 0.5)
             )
     }
 }
 
 extension View {
+    /// The standard card: white surface, soft shadow, large corner radius.
     func zenCard(padding: CGFloat = 18) -> some View {
+        modifier(ZenCardModifier(padding: padding))
+    }
+
+    func card(padding: CGFloat = 18) -> some View {
         modifier(ZenCardModifier(padding: padding))
     }
 }
 
+// MARK: - Headings
+
+/// Small section heading with an SF Symbol.
 struct SectionHeader<Trailing: View>: View {
-    let kanji: String
+    let icon: String?
     let title: String
     @ViewBuilder var trailing: () -> Trailing
 
+    init(icon: String? = nil, title: String, @ViewBuilder trailing: @escaping () -> Trailing) {
+        self.icon = icon
+        self.title = title
+        self.trailing = trailing
+    }
+
+    /// Old signature. The kanji is ignored; the heading is plain now.
+    init(kanji: String, title: String, @ViewBuilder trailing: @escaping () -> Trailing) {
+        self.init(icon: nil, title: title, trailing: trailing)
+    }
+
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
-            Text(kanji)
-                .font(.kanji(15, bold: true))
-                .foregroundStyle(Zen.shu)
-            Text(title.uppercased())
-                .font(.system(size: 12, weight: .semibold))
-                .tracking(1.6)
-                .foregroundStyle(Zen.inkSoft)
+        HStack(alignment: .firstTextBaseline, spacing: 8) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Zen.shu)
+            }
+            Text(title)
+                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .foregroundStyle(Zen.ink)
             Spacer()
             trailing()
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 2)
     }
 }
 
 extension SectionHeader where Trailing == EmptyView {
+    init(icon: String? = nil, title: String) {
+        self.init(icon: icon, title: title) { EmptyView() }
+    }
+
     init(kanji: String, title: String) {
-        self.init(kanji: kanji, title: title) { EmptyView() }
+        self.init(icon: nil, title: title) { EmptyView() }
     }
 }
 
-// MARK: - Seal
+// MARK: - Icons
 
-/// The red hanko stamp. Slightly rotated, slightly uneven, like a real one.
+/// Rounded square with an SF Symbol, the app's replacement for seals.
+struct IconBadge: View {
+    let systemName: String
+    var tint: Color = Zen.shu
+    var size: CGFloat = 44
+    var filled = false
+
+    var body: some View {
+        Image(systemName: systemName)
+            .font(.system(size: size * 0.44, weight: .semibold))
+            .foregroundStyle(filled ? Color.white : tint)
+            .frame(width: size, height: size)
+            .background(
+                RoundedRectangle(cornerRadius: size * 0.3, style: .continuous)
+                    .fill(filled ? AnyShapeStyle(tint) : AnyShapeStyle(tint.opacity(0.13)))
+            )
+    }
+}
+
+/// Old seal. Renders the first character in a tinted rounded square, used
+/// only where a deck's own symbol is content (e.g. a Japanese deck).
 struct Hanko: View {
     let text: String
     var size: CGFloat = 44
@@ -101,63 +140,86 @@ struct Hanko: View {
 
     var body: some View {
         Text(text)
-            .font(.kanji(size * 0.52, bold: true))
-            .foregroundStyle(Zen.paper)
+            .font(.system(size: size * 0.46, weight: .semibold, design: .rounded))
+            .foregroundStyle(color)
             .frame(width: size, height: size)
-            .background(color, in: RoundedRectangle(cornerRadius: size * 0.2, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: size * 0.16, style: .continuous)
-                    .strokeBorder(Zen.paper.opacity(0.55), lineWidth: 1)
-                    .padding(size * 0.08)
+            .background(
+                RoundedRectangle(cornerRadius: size * 0.3, style: .continuous)
+                    .fill(color.opacity(0.13))
             )
-            .rotationEffect(.degrees(-3))
+    }
+}
+
+// MARK: - Illustrations
+
+/// A generated illustration from the asset catalog, clipped to a card.
+struct Illustration: View {
+    let name: String
+    var height: CGFloat = 200
+    var corner: CGFloat = Zen.radius
+
+    var body: some View {
+        Image(name)
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity)
+            .frame(height: height)
+            .clipShape(RoundedRectangle(cornerRadius: corner, style: .continuous))
+            .accessibilityHidden(true)
     }
 }
 
 // MARK: - Buttons
 
 struct InkButtonStyle: ButtonStyle {
-    enum Kind { case ink, shu, quiet, matcha }
+    enum Kind { case ink, shu, quiet, matcha, negative }
     var kind: Kind = .ink
     var fullWidth = true
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 17, weight: .semibold))
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
             .foregroundStyle(foreground)
-            .padding(.vertical, 15)
+            .padding(.vertical, 16)
             .padding(.horizontal, 22)
             .frame(maxWidth: fullWidth ? .infinity : nil)
-            .background(background, in: Capsule())
-            .overlay(Capsule().strokeBorder(kind == .quiet ? Zen.line : .clear, lineWidth: 1))
+            .background(background, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .strokeBorder(kind == .quiet ? Zen.line : .clear, lineWidth: 1)
+            )
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .opacity(configuration.isPressed ? 0.9 : 1)
+            .opacity(configuration.isPressed ? 0.92 : 1)
             .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
     }
 
     private var foreground: Color {
         switch kind {
         case .ink: Zen.paper
-        case .shu, .matcha: Color.white
+        case .shu, .matcha, .negative: Color.white
         case .quiet: Zen.ink
         }
     }
 
-    private var background: Color {
+    private var background: AnyShapeStyle {
         switch kind {
-        case .ink: Zen.ink
-        case .shu: Zen.shu
-        case .matcha: Zen.matcha
-        case .quiet: Zen.card
+        case .ink: AnyShapeStyle(Zen.ink)
+        case .shu: AnyShapeStyle(Zen.accentGradient)
+        case .matcha: AnyShapeStyle(Zen.matcha)
+        case .negative: AnyShapeStyle(Zen.negative)
+        case .quiet: AnyShapeStyle(Zen.card)
         }
     }
 }
 
 extension ButtonStyle where Self == InkButtonStyle {
     static var ink: InkButtonStyle { InkButtonStyle(kind: .ink) }
+    /// Primary action in the accent gradient.
     static var shu: InkButtonStyle { InkButtonStyle(kind: .shu) }
+    static var primary: InkButtonStyle { InkButtonStyle(kind: .shu) }
     static var quiet: InkButtonStyle { InkButtonStyle(kind: .quiet) }
     static var matcha: InkButtonStyle { InkButtonStyle(kind: .matcha) }
+    static var destructive: InkButtonStyle { InkButtonStyle(kind: .negative) }
 }
 
 /// Small pill used for choices like minutes or weekdays.
@@ -172,12 +234,11 @@ struct Chip: View {
             action()
         } label: {
             Text(title)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundStyle(selected ? Zen.paper : Zen.ink)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 14)
-                .background(selected ? Zen.ink : Zen.card, in: Capsule())
-                .overlay(Capsule().strokeBorder(selected ? .clear : Zen.line, lineWidth: 1))
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .foregroundStyle(selected ? Color.white : Zen.ink)
+                .padding(.vertical, 9)
+                .padding(.horizontal, 15)
+                .background(selected ? AnyShapeStyle(Zen.shu) : AnyShapeStyle(Zen.sand), in: Capsule())
         }
         .buttonStyle(.plain)
     }
@@ -187,13 +248,13 @@ struct Chip: View {
 
 struct InkProgress: View {
     var value: Double
-    var color: Color = Zen.ink
+    var color: Color = Zen.shu
     var height: CGFloat = 6
 
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
-                Capsule().fill(Zen.line)
+                Capsule().fill(Zen.sand)
                 Capsule()
                     .fill(color)
                     .frame(width: max(height, geo.size.width * min(1, max(0, value))))
@@ -204,28 +265,64 @@ struct InkProgress: View {
     }
 }
 
-/// A big number with a kanji label, used in the stat rows.
+/// Clean circular progress with a rounded cap.
+struct ProgressRing: View, Animatable {
+    var progress: Double
+    var lineWidth: CGFloat = 14
+    var tint: Color = Zen.shu
+    var track: Color = Zen.sand
+
+    var animatableData: Double {
+        get { progress }
+        set { progress = newValue }
+    }
+
+    var body: some View {
+        ZStack {
+            Circle().stroke(track, lineWidth: lineWidth)
+            Circle()
+                .trim(from: 0, to: min(1, max(0, progress)))
+                .stroke(tint, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+        }
+        .padding(lineWidth / 2)
+    }
+}
+
+/// A number with an icon and a label, used in stat rows.
+struct StatTile: View {
+    let icon: String
+    let value: String
+    let label: String
+    var tint: Color = Zen.shu
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(tint)
+            Text(value)
+                .font(.display(26))
+                .monospacedDigit()
+                .foregroundStyle(Zen.ink)
+                .contentTransition(.numericText())
+            Text(label)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(Zen.inkSoft)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+/// Old stat signature; maps onto StatTile with a neutral icon.
 struct StatStone: View {
     let kanji: String
     let value: String
     let label: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(kanji)
-                .font(.kanji(13, bold: true))
-                .foregroundStyle(Zen.shu)
-            Text(value)
-                .font(.mincho(28, weight: .semibold))
-                .monospacedDigit()
-                .foregroundStyle(Zen.ink)
-                .contentTransition(.numericText())
-            Text(label)
-                .font(.system(size: 12))
-                .foregroundStyle(Zen.inkSoft)
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        StatTile(icon: "circle.fill", value: value, label: label)
     }
 }

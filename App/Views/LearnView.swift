@@ -14,42 +14,52 @@ struct LearnView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    PageTitle(
-                        kanji: "学び",
-                        title: tr("Learn", "Lernen"),
-                        subtitle: tr("Every question before an unlock comes from the topics that carry a red seal here.", "Jede Frage vor einer Freigabe kommt aus den Themen, die hier ein rotes Siegel tragen.")
-                    )
-                    progressCard
-                    Button {
-                        lesson = QuizSession(mode: .lesson(count: 8), store: store)
-                    } label: {
-                        Label(tr("Start a lesson", "Lektion starten"), systemImage: "play.fill")
-                    }
-                    .buttonStyle(.shu)
+                    header
+                    Illustration(name: "IllustrationLearn", height: 170)
+                    goalCard
+                    nextLessonCard
 
-                    SectionHeader(kanji: "題", title: tr("Topics", "Themen")) {
+                    SectionHeader(icon: "books.vertical.fill", title: tr("Topics", "Themen")) {
                         addMenu
                     }
-                    VStack(spacing: 12) {
-                        ForEach(store.decks) { deck in
-                            NavigationLink(value: deck.id) {
-                                DeckRow(deck: deck, active: store.isActive(deck), mastery: store.mastery(of: deck), due: store.dueCount(in: deck)) {
-                                    store.toggleActive(deck)
+                    .padding(.top, 6)
+                    Text(tr("Questions before an unlock come from the topics with a check mark.", "Die Fragen vor einer Freigabe kommen aus den Themen mit Haken."))
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, -12)
+
+                    if store.decks.isEmpty {
+                        emptyState
+                    } else {
+                        VStack(spacing: 12) {
+                            ForEach(store.decks) { deck in
+                                NavigationLink(value: deck.id) {
+                                    DeckRow(
+                                        deck: deck,
+                                        active: store.isActive(deck),
+                                        mastery: store.mastery(of: deck),
+                                        due: store.dueCount(in: deck),
+                                        counts: store.counts(in: deck)
+                                    ) {
+                                        store.toggleActive(deck)
+                                    }
                                 }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                     if let message {
-                        Text(message)
+                        Label(message, systemImage: "info.circle")
                             .font(.system(size: 14))
                             .foregroundStyle(Zen.inkSoft)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .padding(.horizontal, Zen.gutter)
                 .padding(.bottom, 40)
             }
-            .background(WashiBackground())
+            .background(AppBackground())
             .navigationDestination(for: String.self) { id in
                 DeckDetailView(deckID: id)
             }
@@ -65,28 +75,114 @@ struct LearnView: View {
         }
     }
 
-    private var progressCard: some View {
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(tr("Learn", "Lernen"))
+                .font(.display(34))
+                .foregroundStyle(Zen.ink)
+            Text(tr("New cards are explained first, then practised. Just like a real lesson.", "Neue Karten werden erst erklärt, dann geübt. Wie in einer richtigen Lektion."))
+                .font(.system(size: 15))
+                .foregroundStyle(Zen.inkSoft)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 8)
+    }
+
+    // MARK: Cards
+
+    private var goalCard: some View {
         let goal = max(1, store.profile.dailyGoal)
         let done = model.today.correct
-        return HStack(spacing: 18) {
-            ZStack {
-                EnsoView(progress: max(0.04, min(1, Double(done) / Double(goal))), lineWidth: 8, color: Zen.shu)
-                Text("\(min(done, goal))")
-                    .font(.mincho(20, weight: .semibold))
-                    .monospacedDigit()
-                    .foregroundStyle(Zen.ink)
+        let ratio = min(1, Double(done) / Double(goal))
+        let reached = done >= goal
+        let streak = store.currentStreak
+        return VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 18) {
+                ZStack {
+                    ProgressRing(progress: ratio, lineWidth: 10, tint: reached ? Zen.matcha : Zen.shu)
+                    VStack(spacing: 0) {
+                        Text("\(min(done, goal))")
+                            .font(.display(22))
+                            .monospacedDigit()
+                            .foregroundStyle(Zen.ink)
+                        Text("/ \(goal)")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundStyle(Zen.inkFaint)
+                    }
+                }
+                .frame(width: 84, height: 84)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(reached ? tr("Daily goal reached", "Tagesziel erreicht") : tr("Daily goal", "Tagesziel"))
+                        .font(.display(19, weight: .semibold))
+                        .foregroundStyle(Zen.ink)
+                    Text(reached ? tr("Anything more today is a bonus.", "Alles Weitere heute ist Bonus.") : tr("\(goal - done) right answers to go.", "Noch \(goal - done) richtige Antworten."))
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                }
+                Spacer(minLength: 0)
             }
-            .frame(width: 76, height: 76)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(done >= goal ? tr("Daily goal reached", "Tagesziel erreicht") : tr("\(goal - done) to your daily goal", "\(goal - done) bis zum Tagesziel"))
-                    .font(.system(size: 17, weight: .semibold))
-                    .foregroundStyle(Zen.ink)
-                Text(tr("\(store.profile.xp) XP · \(store.currentStreak) \(store.currentStreak == 1 ? "day" : "days") in a row", "\(store.profile.xp) Erfahrung · \(store.currentStreak) \(store.currentStreak == 1 ? "Tag" : "Tage") in Folge"))
-                    .font(.system(size: 14))
-                    .foregroundStyle(Zen.inkSoft)
+            Rectangle().fill(Zen.line).frame(height: 1)
+            HStack(spacing: 12) {
+                StatTile(icon: "flame.fill", value: "\(streak)", label: streak == 1 ? tr("day streak", "Tag in Folge") : tr("day streak", "Tage in Folge"), tint: Zen.kin)
+                StatTile(icon: "star.fill", value: "\(store.profile.xp)", label: "XP", tint: Zen.kin)
+                StatTile(icon: "checkmark.seal.fill", value: "\(store.counts(in: store.decks).known)", label: tr("cards known", "Karten sicher"), tint: Zen.matcha)
             }
-            Spacer(minLength: 0)
         }
+        .zenCard()
+    }
+
+    private var nextLessonCard: some View {
+        let decks = store.activeDecks
+        let counts = store.counts(in: decks)
+        let due = store.dueCount(in: decks)
+        let hasNew = counts.new > 0
+        let canPractise = counts.new + counts.introduced > 0
+        let title = hasNew ? tr("Learn something new", "Lern etwas Neues") : tr("Keep it fresh", "Frisch halten")
+        let subtitle = hasNew
+            ? tr("Up to 3 new cards, explained first, then practised with what you already know.", "Bis zu 3 neue Karten, erst erklärt, dann zusammen mit Bekanntem geübt.")
+            : tr("Everything has been introduced. Now it is about remembering.", "Alles ist eingeführt. Jetzt geht es ums Behalten.")
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 14) {
+                IconBadge(systemName: hasNew ? "sparkles" : "arrow.triangle.2.circlepath", tint: hasNew ? Zen.shu : Zen.ai, size: 46)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.display(19, weight: .semibold))
+                        .foregroundStyle(Zen.ink)
+                    Text(subtitle)
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            HStack(spacing: 8) {
+                CountPill(icon: "sparkles", text: tr("\(counts.new) new", "\(counts.new) neu"), tint: Zen.shu)
+                CountPill(icon: "clock.arrow.circlepath", text: tr("\(due) due", "\(due) fällig"), tint: Zen.kin)
+            }
+            Button {
+                lesson = QuizSession(mode: .lesson(count: 8), store: store)
+            } label: {
+                Label(hasNew ? tr("Start lesson", "Lektion starten") : tr("Review", "Wiederholen"), systemImage: "play.fill")
+            }
+            .buttonStyle(.primary)
+            .disabled(!canPractise)
+            .opacity(canPractise ? 1 : 0.4)
+        }
+        .zenCard()
+    }
+
+    private var emptyState: some View {
+        VStack(spacing: 14) {
+            Illustration(name: "IllustrationEmpty", height: 160)
+            Text(tr("No topics yet", "Noch keine Themen"))
+                .font(.display(20, weight: .semibold))
+                .foregroundStyle(Zen.ink)
+            Text(tr("Create one with the plus button, or import a deck.", "Leg eins über das Plus an oder importier ein Deck."))
+                .font(.system(size: 14))
+                .foregroundStyle(Zen.inkSoft)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
         .zenCard()
     }
 
@@ -115,11 +211,13 @@ struct LearnView: View {
             }
         } label: {
             Image(systemName: "plus.circle.fill")
-                .font(.system(size: 22))
+                .font(.system(size: 24))
                 .foregroundStyle(Zen.shu)
         }
         .accessibilityLabel(tr("Add topic", "Thema hinzufügen"))
     }
+
+    // MARK: Import
 
     private func importFiles(_ result: Result<[URL], Error>) {
         guard case .success(let urls) = result else {
@@ -156,28 +254,40 @@ struct LearnView: View {
     }
 }
 
+/// Small tinted capsule with an icon, for counts like "3 new".
+struct CountPill: View {
+    let icon: String
+    let text: String
+    var tint: Color = Zen.shu
+
+    var body: some View {
+        Label(text, systemImage: icon)
+            .font(.system(size: 13, weight: .semibold, design: .rounded))
+            .foregroundStyle(tint)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 10)
+            .background(tint.opacity(0.12), in: Capsule())
+    }
+}
+
 struct DeckRow: View {
     let deck: Deck
     let active: Bool
     let mastery: Double
     let due: Int
+    var counts: DeckCounts? = nil
     let toggle: () -> Void
 
     var body: some View {
         HStack(spacing: 14) {
-            Button {
-                Haptics.tap()
-                toggle()
-            } label: {
-                Hanko(text: deck.symbol, size: 48, color: active ? Zen.shu : Zen.inkFaint)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(active ? tr("Used for questions", "Für Fragen aktiv") : tr("Not used for questions", "Für Fragen inaktiv"))
+            // The deck's own symbol is content (a kana, a kanji), not decoration.
+            Hanko(text: deck.symbol, size: 48, color: active ? Zen.shu : Zen.inkFaint)
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(deck.title)
-                    .font(.mincho(19, weight: .semibold))
+                    .font(.display(18, weight: .semibold))
                     .foregroundStyle(Zen.ink)
+                    .lineLimit(1)
                 if !deck.subtitle.isEmpty {
                     Text(deck.subtitle)
                         .font(.system(size: 13))
@@ -185,24 +295,51 @@ struct DeckRow: View {
                         .lineLimit(1)
                 }
                 HStack(spacing: 8) {
-                    InkProgress(value: mastery, color: Zen.matcha, height: 5)
+                    InkProgress(value: mastery, color: Zen.matcha, height: 6)
                     Text("\(Int(mastery * 100)) %")
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.system(size: 12, weight: .semibold))
                         .monospacedDigit()
                         .foregroundStyle(Zen.inkSoft)
                         .frame(width: 42, alignment: .trailing)
                 }
-                Text(due > 0 ? tr("\(deck.cards.count) cards · \(due) to review", "\(deck.cards.count) Karten · \(due) zum Wiederholen") : tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten"))
-                    .font(.system(size: 12))
-                    .foregroundStyle(due > 0 ? Zen.shu : Zen.inkFaint)
+                Text(detail)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(due > 0 ? Zen.kin : Zen.inkFaint)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
             }
-            Image(systemName: "chevron.right").foregroundStyle(Zen.inkFaint)
+
+            Button {
+                Haptics.tap()
+                toggle()
+            } label: {
+                Image(systemName: active ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 26, weight: .medium))
+                    .foregroundStyle(active ? Zen.shu : Zen.inkFaint)
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(active ? tr("Used for questions", "Für Fragen aktiv") : tr("Not used for questions", "Für Fragen inaktiv"))
         }
         .zenCard()
     }
+
+    private var detail: String {
+        var parts: [String] = []
+        if let counts {
+            parts.append(tr("\(counts.new) new", "\(counts.new) neu"))
+            parts.append(tr("\(counts.learning) learning", "\(counts.learning) in Arbeit"))
+            parts.append(tr("\(counts.known) known", "\(counts.known) sicher"))
+        } else {
+            parts.append(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten"))
+        }
+        if due > 0 { parts.append(tr("\(due) due", "\(due) fällig")) }
+        return parts.joined(separator: " · ")
+    }
 }
 
-/// Full-screen lesson with a close button and a small summary at the end.
+/// Full-screen lesson with a close button and a small celebration at the end.
 struct LessonScreen: View {
     @Environment(AppModel.self) private var model
     let session: QuizSession
@@ -211,7 +348,7 @@ struct LessonScreen: View {
 
     var body: some View {
         ZStack {
-            WashiBackground()
+            AppBackground()
             VStack(spacing: 0) {
                 HStack {
                     Button(action: close) {
@@ -220,42 +357,113 @@ struct LessonScreen: View {
                             .foregroundStyle(Zen.inkSoft)
                             .frame(width: 44, height: 44)
                     }
+                    .accessibilityLabel(tr("Close", "Schließen"))
                     Spacer()
                 }
                 .padding(.horizontal, 8)
 
                 if done || session.finished {
-                    summary
+                    LessonSummary(session: session, streak: model.decks.currentStreak, close: close)
+                        .transition(.opacity.combined(with: .scale(scale: 0.96)))
                 } else {
                     QuizView(session: session) {
-                        withAnimation { done = true }
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.85)) { done = true }
                         model.reload()
                     }
                 }
             }
         }
     }
+}
 
-    private var summary: some View {
-        VStack(spacing: 22) {
-            Spacer()
-            EnsoView(progress: 1, lineWidth: 16, color: Zen.ink)
-                .frame(width: 180, height: 180)
-                .overlay(Text("良").font(.kanji(56, bold: true)).foregroundStyle(Zen.shu))
-            Text(session.exercises.isEmpty ? tr("No cards yet", "Noch keine Karten") : tr("Lesson done", "Lektion geschafft"))
-                .font(.mincho(30, weight: .semibold))
-                .foregroundStyle(Zen.ink)
-            if !session.exercises.isEmpty {
-                Text(tr("\(session.correct) of \(session.correct + session.wrong) right · +\(session.correct * 10) XP", "\(session.correct) von \(session.correct + session.wrong) richtig · +\(session.correct * 10) Erfahrung"))
+/// End of a lesson: accuracy ring, XP, cards learned.
+struct LessonSummary: View {
+    let session: QuizSession
+    let streak: Int
+    let close: () -> Void
+    @State private var shown = false
+
+    private var empty: Bool { session.exercises.isEmpty }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 20) {
+                    if empty {
+                        emptyContent
+                    } else {
+                        content
+                    }
+                }
+                .padding(.horizontal, Zen.gutter)
+                .padding(.top, 8)
+                .padding(.bottom, 24)
+            }
+            Button(tr("Done", "Fertig"), action: close)
+                .buttonStyle(.primary)
+                .padding(.horizontal, Zen.gutter)
+                .padding(.bottom, 20)
+        }
+        .onAppear {
+            if !empty { Haptics.success() }
+            withAnimation(.easeOut(duration: 1.0).delay(0.2)) { shown = true }
+        }
+    }
+
+    private var content: some View {
+        let accuracy = session.accuracy
+        let percent = Int((accuracy * 100).rounded())
+        let answered = session.correct + session.wrong
+        let learned = session.learned
+        return VStack(spacing: 20) {
+            Illustration(name: "IllustrationLearn", height: 170)
+
+            ZStack {
+                ProgressRing(progress: shown ? accuracy : 0, lineWidth: 14, tint: Zen.matcha)
+                VStack(spacing: 0) {
+                    Text("\(percent) %")
+                        .font(.display(32))
+                        .monospacedDigit()
+                        .foregroundStyle(Zen.ink)
+                    Text(tr("right", "richtig"))
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(Zen.inkSoft)
+                }
+            }
+            .frame(width: 150, height: 150)
+
+            VStack(spacing: 6) {
+                Text(tr("Lesson complete", "Lektion geschafft"))
+                    .font(.display(30))
+                    .foregroundStyle(Zen.ink)
+                Text(tr("\(session.correct) of \(answered) answers right", "\(session.correct) von \(answered) Antworten richtig"))
                     .font(.system(size: 16))
                     .foregroundStyle(Zen.inkSoft)
             }
-            Spacer()
-            Button(tr("Done", "Fertig"), action: close)
-                .buttonStyle(.ink)
-                .padding(.horizontal, 28)
-                .padding(.bottom, 20)
+            .multilineTextAlignment(.center)
+
+            HStack(spacing: 12) {
+                StatTile(icon: "star.fill", value: "+\(session.xpEarned)", label: "XP", tint: Zen.kin)
+                StatTile(icon: "lightbulb.fill", value: "\(learned)", label: learned == 1 ? tr("new card", "neue Karte") : tr("new cards", "neue Karten"), tint: Zen.ai)
+                StatTile(icon: "flame.fill", value: "\(streak)", label: streak == 1 ? tr("day streak", "Tag in Folge") : tr("day streak", "Tage in Folge"), tint: Zen.kin)
+            }
+            .zenCard()
         }
+    }
+
+    private var emptyContent: some View {
+        VStack(spacing: 16) {
+            Illustration(name: "IllustrationEmpty", height: 200)
+            Text(tr("Nothing to learn here yet", "Hier gibt es noch nichts zu lernen"))
+                .font(.display(24))
+                .foregroundStyle(Zen.ink)
+                .multilineTextAlignment(.center)
+            Text(tr("Add a few cards to this topic, then come back.", "Leg ein paar Karten in diesem Thema an und komm dann wieder."))
+                .font(.system(size: 15))
+                .foregroundStyle(Zen.inkSoft)
+                .multilineTextAlignment(.center)
+        }
+        .padding(.top, 20)
     }
 }
 

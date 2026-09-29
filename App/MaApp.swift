@@ -5,12 +5,16 @@ import UserNotifications
 struct MaApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var delegate
     @State private var model = AppModel()
+    /// Journal, habits and breathing; separate from AppModel because none of
+    /// it touches Screen Time or the extensions.
+    @State private var day = DayStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(model)
+                .environment(day)
                 .onOpenURL { model.handle(url: $0) }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()

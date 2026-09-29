@@ -26,36 +26,53 @@ struct MainTabs: View {
     var body: some View {
         @Bindable var model = model
         TabView(selection: $model.tab) {
-            Tab(tr("Today", "Heute"), systemImage: "sun.haze", value: MaTab.today) {
+            Tab(tr("Today", "Heute"), systemImage: "sun.max", value: MaTab.today) {
                 TodayView()
             }
             Tab(tr("Boundaries", "Grenzen"), systemImage: "shield.lefthalf.filled", value: MaTab.rules) {
                 RulesView()
             }
-            Tab(tr("Learn", "Lernen"), systemImage: "character.book.closed", value: MaTab.learn) {
+            Tab(tr("Learn", "Lernen"), systemImage: "book.closed", value: MaTab.learn) {
                 LearnView()
             }
-            Tab(tr("Focus", "Fokus"), systemImage: "circle.dashed", value: MaTab.focus) {
+            Tab(tr("Focus", "Fokus"), systemImage: "timer", value: MaTab.focus) {
                 FocusView()
             }
         }
     }
 }
 
-/// Large serif title with a kanji over it, used at the top of every tab.
+/// Large title at the top of every tab, with an optional small symbol
+/// above it. The kanji initializer stays for older call sites and shows
+/// nothing of the kanji.
 struct PageTitle: View {
-    let kanji: String
     let title: String
     var subtitle: String?
+    var icon: String?
+
+    init(title: String, subtitle: String? = nil, icon: String? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.icon = icon
+    }
+
+    init(kanji: String, title: String, subtitle: String? = nil) {
+        self.init(title: title, subtitle: subtitle)
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(kanji)
-                .font(.kanji(15, bold: true))
-                .foregroundStyle(Zen.shu)
-                .tracking(4)
+        VStack(alignment: .leading, spacing: 6) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(Zen.shu)
+                    .frame(width: 32, height: 32)
+                    .background(Zen.shu.opacity(0.12), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .padding(.bottom, 2)
+                    .accessibilityHidden(true)
+            }
             Text(title)
-                .font(.mincho(34, weight: .semibold))
+                .font(.display(34))
                 .foregroundStyle(Zen.ink)
             if let subtitle {
                 Text(subtitle)

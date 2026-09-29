@@ -7,21 +7,21 @@
   <title>Install Ma</title>
   <style>
     :root {
-      --paper: #F4EFE6;
-      --card: #FBF8F2;
-      --ink: #1F1D1B;
-      --soft: #6B645C;
-      --shu: #C8412C;
-      --line: #D9D0C0;
+      --paper: #F6F5F3;
+      --card: #FFFFFF;
+      --ink: #16171B;
+      --soft: #6B6D75;
+      --shu: #5B5FEF;
+      --line: #E6E4E0;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --paper: #151412;
-        --card: #1E1C19;
-        --ink: #ECE6DA;
-        --soft: #A69E92;
-        --shu: #D9573F;
-        --line: #302C27;
+        --paper: #0E0F12;
+        --card: #191A1F;
+        --ink: #F3F3F5;
+        --soft: #A3A5AE;
+        --shu: #8286FF;
+        --line: #2A2C33;
       }
     }
     * { box-sizing: border-box; }
@@ -37,26 +37,21 @@
       padding: 48px 16px 40px;
     }
     .seal {
-      width: 64px;
-      height: 64px;
-      border-radius: 13px;
-      background: var(--shu);
-      color: var(--paper);
-      display: grid;
-      place-items: center;
-      font: 600 34px/1 "Hiragino Mincho ProN", serif;
-      transform: rotate(-3deg);
+      width: 72px;
+      height: 72px;
+      border-radius: 17px;
+      display: block;
     }
     h1 {
-      font: 600 34px/1.15 "New York", ui-serif, Georgia, serif;
+      font: 700 34px/1.15 ui-rounded, -apple-system, system-ui, sans-serif;
       margin: 22px 0 6px;
     }
     .sub { color: var(--soft); margin: 0 0 28px; }
     .install {
       display: block;
       text-align: center;
-      background: var(--ink);
-      color: var(--paper);
+      background: linear-gradient(135deg, #6D6AF6, #4D8DF7);
+      color: #FFFFFF;
       text-decoration: none;
       font-weight: 600;
       padding: 16px 22px;
@@ -92,7 +87,7 @@
 </head>
 <body>
   <main>
-    <div class="seal">間</div>
+    <img class="seal" src="icon-512.png" alt="">
     <h1 id="title">Install Ma</h1>
     <p class="sub" id="sub">The full version with Screen Time, for your own iPhone.</p>
     <a class="install" id="install" href="#">Install</a>

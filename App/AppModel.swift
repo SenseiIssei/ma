@@ -17,6 +17,8 @@ enum GateReason: Identifiable {
     case practice
     /// Opened by the Shortcuts automation; carries the GuardedApp raw value.
     case shortcut(String)
+    /// The deliberately hard way out of a lockdown: five right answers.
+    case endLockdown
 
     var id: String {
         switch self {
@@ -25,6 +27,7 @@ enum GateReason: Identifiable {
         case .stopFocus: "focus"
         case .practice: "practice"
         case .shortcut(let app): "shortcut-\(app)"
+        case .endLockdown: "lockdown"
         }
     }
 }
@@ -48,6 +51,8 @@ final class AppModel {
     var shortcutLastRun: Date?
     /// Asks the Boundaries tab to open the Shortcuts setup, e.g. from onboarding.
     var showShortcutsSetup = false
+    /// End of the running lockdown, nil when there is none.
+    var lockdownUntil: Date?
     let decks = DeckStore()
 
     var onboarded: Bool {
@@ -72,6 +77,7 @@ final class AppModel {
     /// once a second while the focus screen is open.
     func reload() {
         FocusEngine.advanceIfDue()
+        LockdownEngine.liftIfDue()
         ShieldEngine.apply()
         rules = SharedStore.rules
         grants = SharedStore.grants.filter { $0.expiresAt > Date() }
@@ -87,6 +93,7 @@ final class AppModel {
         shortcutSettings = SharedStore.shortcutSettings
         shortcutPassUntil = SharedStore.shortcutPassUntil.flatMap { $0 > Date() ? $0 : nil }
         shortcutLastRun = SharedStore.shortcutLastRun
+        lockdownUntil = SharedStore.activeLockdown()?.until
         if gate == nil, let request = SharedStore.shortcutRequest, request.isFresh {
             gate = .shortcut(request.app)
         } else if gate == nil, let pending = SharedStore.pending, pending.isFresh {
@@ -102,6 +109,8 @@ final class AppModel {
         if let focus, focus.isOver {
             reload()
         } else if grants.contains(where: { $0.expiresAt <= Date() }) {
+            reload()
+        } else if let lockdownUntil, lockdownUntil <= Date() {
             reload()
         }
     }
@@ -134,6 +143,8 @@ final class AppModel {
     }
 
     func delete(_ rule: BlockRule) {
+        // Deleting is switching off for good, so it waits for the lockdown too.
+        guard !isLockedDown else { return }
         rules.removeAll { $0.id == rule.id }
         ShieldEngine.store(for: rule.id).clearAllSettings()
         persistRules()
@@ -142,6 +153,7 @@ final class AppModel {
     /// Switching on is always free. Switching off asks a question first if
     /// mindful release is on, so the off switch is never a reflex.
     func setEnabled(_ rule: BlockRule, _ enabled: Bool) {
+        if !enabled && isLockedDown { return }
         if !enabled && mindfulRelease {
             gate = .disableRule(rule.id)
             return
@@ -165,13 +177,56 @@ final class AppModel {
         rule.isActive(at: Date()) && !rule.isEmpty
     }
 
+    /// Unlocks this rule gave today, for the daily budget.
+    func unlocksToday(_ rule: BlockRule) -> Int {
+        SharedStore.unlocksToday(for: rule.id)
+    }
+
+    // MARK: Lockdown
+
+    var isLockedDown: Bool {
+        guard let lockdownUntil else { return false }
+        return lockdownUntil > Date()
+    }
+
+    /// Blocks everything from every boundary and the focus list for
+    /// `minutes`, with no way through. Starting again while one runs can
+    /// only make it longer.
+    func startLockdown(minutes: Int) {
+        LockdownEngine.start(minutes: minutes)
+        reload()
+    }
+
+    /// Ends the lockdown if its time is up. Before that, the only way out is
+    /// the hard gate with five right answers, which this opens instead.
+    func endLockdown() {
+        guard let until = SharedStore.lockdown?.until else {
+            lockdownUntil = nil
+            return
+        }
+        if until <= Date() {
+            LockdownEngine.lift()
+            reload()
+        } else {
+            gate = .endLockdown
+        }
+    }
+
     // MARK: Unlocks
 
     func policy(for pending: PendingUnlock) -> UnlockPolicy {
         UnlockPolicy.current(application: pending.application, webDomain: pending.webDomain)
     }
 
-    func grant(_ pending: PendingUnlock, minutes: Int) {
+    /// Opens the pending app for `minutes`. Returns false when the door
+    /// closed while the gate was open (daily budget, lockdown, strict focus).
+    @discardableResult
+    func grant(_ pending: PendingUnlock, minutes: Int) -> Bool {
+        let policy = self.policy(for: pending)
+        guard policy.allowed else {
+            dismissPending()
+            return false
+        }
         var grant = UnlockGrant(expiresAt: Date().addingTimeInterval(TimeInterval(minutes * 60)))
         if let app = pending.application { grant.applications = [app] }
         if let web = pending.webDomain { grant.webDomains = [web] }
@@ -181,9 +236,11 @@ final class AppModel {
         SharedStore.grants = all
         SharedStore.pending = nil
         SharedStore.updateToday { $0.unlocks += 1 }
+        SharedStore.recordUnlock(for: policy.matchedRuleIDs)
         Scheduler.watch(grant)
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [Notifier.gateID])
         reload()
+        return true
     }
 
     func resist(_ pending: PendingUnlock) {
@@ -279,6 +336,9 @@ final class AppModel {
         switch reason {
         case .disableRule(let id): applyEnabled(id, false)
         case .stopFocus: stopFocus()
+        case .endLockdown:
+            LockdownEngine.lift()
+            reload()
         case .unlock, .practice, .shortcut: break
         }
     }
@@ -289,10 +349,29 @@ final class AppModel {
         SharedStore.shortcutSettings = shortcutSettings
     }
 
+    /// What the Shortcuts gate may offer. It has no rules, only its own
+    /// settings, but lockdown and strict focus hold here too.
+    func shortcutPolicy() -> UnlockPolicy {
+        var policy = UnlockPolicy()
+        policy.questions = shortcutSettings.questions
+        policy.minutes = shortcutSettings.minutes
+        let now = Date()
+        if let lockdown = SharedStore.activeLockdown(at: now) {
+            policy.lockdownUntil = lockdown.until
+            policy.allowed = false
+        } else if let session = SharedStore.focus, session.phase == .focus, now < session.endsAt, SharedStore.focusSettings.strict {
+            policy.focusLocked = true
+            policy.allowed = false
+            policy.focusEndsAt = session.endsAt
+        }
+        return policy
+    }
+
     /// Opens every guarded app for a while, then sends you to the one you
     /// came from. The automation fires again on the way back, finds the pass
     /// and stays out of the way.
     func openShortcutPass(minutes: Int, app: GuardedApp) {
+        guard !isLockedDown else { return }
         SharedStore.shortcutPassUntil = Date().addingTimeInterval(TimeInterval(minutes * 60))
         SharedStore.shortcutRequest = nil
         SharedStore.updateToday { $0.unlocks += 1 }
@@ -318,11 +397,15 @@ final class AppModel {
 
     // MARK: Reset
 
+    /// Everything except a running lockdown: that one has no reset button.
     func resetEverything() {
+        guard !isLockedDown else { return }
         ShieldEngine.clearEverything()
         SharedStore.rules = []
         SharedStore.grants = []
         SharedStore.pending = nil
+        SharedStore.unlockLedger = UnlockLedger(day: SharedStore.dayKey())
+        LockdownEngine.lift()
         FocusEngine.stop()
         Scheduler.syncRules([])
         reload()
@@ -334,6 +417,7 @@ final class AppModel {
         switch url.host {
         case "focus": tab = .focus
         case "learn": tab = .learn
+        case "rules", "lockdown": tab = .rules
         case "gate":
             if let pending = SharedStore.pending, pending.isFresh { gate = .unlock(pending) }
         default: break

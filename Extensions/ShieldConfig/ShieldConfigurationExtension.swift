@@ -4,7 +4,7 @@ import UIKit
 
 /// Draws the screen iOS shows instead of a blocked app. Only text, colours,
 /// one icon and two buttons are allowed here, so the calm has to come from
-/// the words and the paper colour.
+/// the words and a quiet background.
 final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     override func configuration(shielding application: Application) -> ShieldConfiguration {
         shieldFor(application: application)
@@ -57,10 +57,26 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
 
         let backToCalm = tr("Back to calm", "Zurück zur Ruhe")
 
+        if let until = policy.lockdownUntil {
+            let clock = until.formatted(date: .omitted, time: .shortened)
+            let left = Self.duration(until.timeIntervalSinceNow)
+            return config(
+                icon: "lock.fill",
+                title: tr("Locked until \(clock)", "Gesperrt bis \(clock)"),
+                subtitle: tr(
+                    "Lockdown is on, \(left) left. Nothing opens before then, not even with questions.",
+                    "Die Sperre läuft noch \(left). Bis dahin öffnet sich nichts, auch nicht mit Fragen."
+                ),
+                primary: backToCalm,
+                secondary: nil
+            )
+        }
+
         if policy.focusLocked {
             let minutes = max(1, Int(((policy.focusEndsAt ?? Date()).timeIntervalSinceNow / 60).rounded(.up)))
             return config(
-                title: tr("集中  Focus is on", "集中  Fokus läuft"),
+                icon: "timer",
+                title: tr("Focus is on", "Fokus läuft"),
                 subtitle: tr(
                     "\(minutes) \(minutes == 1 ? "minute" : "minutes") left. \(name) will wait until the round is over.",
                     "Noch \(minutes) \(minutes == 1 ? "Minute" : "Minuten"). \(name) wartet, bis die Runde vorbei ist."
@@ -70,11 +86,27 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
             )
         }
 
+        if policy.budgetSpent {
+            let limit = policy.dailyLimit ?? 0
+            let rule = policy.ruleName ?? tr("this boundary", "diese Grenze")
+            return config(
+                icon: "hourglass.bottomhalf.filled",
+                title: tr("No unlocks left today", "Keine Freigaben mehr für heute"),
+                subtitle: tr(
+                    "You gave yourself \(limit) \(limit == 1 ? "unlock" : "unlocks") a day for \(rule), and they are used up. \(name) opens again tomorrow.",
+                    "Du hast dir für \(rule) \(limit) \(limit == 1 ? "Freigabe" : "Freigaben") am Tag gegeben, und die sind aufgebraucht. Morgen geht \(name) wieder auf."
+                ),
+                primary: backToCalm,
+                secondary: nil
+            )
+        }
+
         if !policy.allowed {
             return config(
-                title: "結界  \(policy.ruleName ?? tr("Boundary", "Grenze"))",
+                icon: "shield.lefthalf.filled",
+                title: policy.ruleName ?? tr("Boundary", "Grenze"),
                 subtitle: tr(
-                    "You drew this boundary with no way through. Your earlier self knew why.",
+                    "You set this boundary with no way through. Your earlier self knew why.",
                     "Diese Grenze hast du ohne Ausweg gesetzt. Dein früheres Ich wusste warum."
                 ),
                 primary: backToCalm,
@@ -84,7 +116,8 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
 
         if waiting {
             return config(
-                title: tr("間  Your question is waiting", "間  Deine Frage wartet"),
+                icon: "bell.badge.fill",
+                title: tr("Your question is waiting", "Deine Frage wartet"),
                 subtitle: tr(
                     "Check your notifications. Ma just sent you a question.",
                     "Schau in deine Mitteilungen. Ma hat dir gerade eine Frage geschickt."
@@ -97,28 +130,52 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         let questions = policy.questions == 1
             ? tr("one question", "eine Frage")
             : tr("\(policy.questions) questions", "\(policy.questions) Fragen")
+        var details = tr(
+            "Answer \(questions) and \(name) opens for \(policy.minutes) minutes.",
+            "Beantworte \(questions), dann ist \(name) \(policy.minutes) Minuten offen."
+        )
+        if let left = policy.unlocksLeft {
+            details += " " + tr(
+                "\(left) \(left == 1 ? "unlock" : "unlocks") left today.",
+                "Heute \(left == 1 ? "bleibt noch eine Freigabe" : "bleiben noch \(left) Freigaben")."
+            )
+        }
+        if policy.rising {
+            details += " " + tr("Every unlock today costs one question more.", "Jede Freigabe heute kostet eine Frage mehr.")
+        }
         return config(
-            title: tr("間  \(name) can wait", "間  \(name) kann warten"),
-            subtitle: "\(ZenLines.random(ZenLines.shield))\n\n" + tr(
-                "Answer \(questions) and \(name) opens for \(policy.minutes) minutes.",
-                "Beantworte \(questions), dann ist \(name) \(policy.minutes) Minuten offen."
-            ),
+            icon: "hand.raised.fill",
+            title: tr("\(name) can wait", "\(name) kann warten"),
+            subtitle: ZenLines.random(ZenLines.shield) + "\n\n" + details,
             primary: tr("Answer a question", "Frage beantworten"),
             secondary: backToCalm
         )
     }
 
-    private func config(title: String, subtitle: String, primary: String, secondary: String?) -> ShieldConfiguration {
-        ShieldConfiguration(
+    private func config(icon: String, title: String, subtitle: String, primary: String, secondary: String?) -> ShieldConfiguration {
+        let symbol = UIImage.SymbolConfiguration(pointSize: 44, weight: .semibold)
+        let image = UIImage(systemName: icon, withConfiguration: symbol)?
+            .withTintColor(Palette.accent, renderingMode: .alwaysOriginal)
+        return ShieldConfiguration(
             backgroundBlurStyle: nil,
-            backgroundColor: Palette.paper,
-            icon: UIImage(named: "ShieldEnso"),
-            title: ShieldConfiguration.Label(text: title, color: Palette.ink),
-            subtitle: ShieldConfiguration.Label(text: subtitle, color: Palette.inkSoft),
-            primaryButtonLabel: ShieldConfiguration.Label(text: primary, color: Palette.paper),
-            primaryButtonBackgroundColor: Palette.shu,
-            secondaryButtonLabel: secondary.map { ShieldConfiguration.Label(text: $0, color: Palette.ink) }
+            backgroundColor: Palette.background,
+            icon: image,
+            title: ShieldConfiguration.Label(text: title, color: Palette.text),
+            subtitle: ShieldConfiguration.Label(text: subtitle, color: Palette.secondary),
+            primaryButtonLabel: ShieldConfiguration.Label(text: primary, color: .white),
+            primaryButtonBackgroundColor: Palette.accent,
+            secondaryButtonLabel: secondary.map { ShieldConfiguration.Label(text: $0, color: Palette.text) }
         )
+    }
+
+    /// "1 h 20 min." or "25 min.", rounded up so it never reads zero.
+    private static func duration(_ seconds: TimeInterval) -> String {
+        let minutes = max(1, Int((seconds / 60).rounded(.up)))
+        let hours = minutes / 60
+        let rest = minutes % 60
+        if hours == 0 { return tr("\(minutes) min.", "\(minutes) Min.") }
+        if rest == 0 { return tr("\(hours) h", "\(hours) Std.") }
+        return tr("\(hours) h \(rest) min.", "\(hours) Std. \(rest) Min.")
     }
 
     /// iOS asks for a configuration more than once per sighting, so a
@@ -132,10 +189,10 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
 }
 
 private enum Palette {
-    static let paper = dynamic(light: 0xF4EFE6, dark: 0x151412)
-    static let ink = dynamic(light: 0x1F1D1B, dark: 0xECE6DA)
-    static let inkSoft = dynamic(light: 0x5E5850, dark: 0xA69E92)
-    static let shu = dynamic(light: 0xC8412C, dark: 0xD9573F)
+    static let background = dynamic(light: 0xF6F5F3, dark: 0x0E0F12)
+    static let text = dynamic(light: 0x16171B, dark: 0xF3F3F5)
+    static let secondary = dynamic(light: 0x6B6D75, dark: 0xA3A5AE)
+    static let accent = dynamic(light: 0x5B5FEF, dark: 0x8286FF)
 
     static func dynamic(light: UInt32, dark: UInt32) -> UIColor {
         UIColor { $0.userInterfaceStyle == .dark ? rgb(dark) : rgb(light) }

@@ -12,6 +12,7 @@ enum Scheduler {
     static let unlockPrefix = "unlock."
     static let rulePrefix = "rule."
     static let focusName = "focus"
+    static let lockdownName = "lockdown"
 
     private static var center: DeviceActivityCenter { DeviceActivityCenter() }
 
@@ -82,6 +83,16 @@ enum Scheduler {
         center.stopMonitoring([name])
         guard let session else { return }
         oneShot(name, firingAt: session.endsAt)
+    }
+
+    // MARK: Lockdown
+
+    /// One-shot that lifts the lockdown, padded like every short deadline.
+    static func watchLockdown(until: Date?) {
+        let name = DeviceActivityName(lockdownName)
+        center.stopMonitoring([name])
+        guard let until else { return }
+        oneShot(name, firingAt: until)
     }
 
     static func stop(_ activity: DeviceActivityName) {

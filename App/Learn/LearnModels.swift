@@ -85,12 +85,35 @@ struct CardProgress: Codable {
     var seen = 0
     var correct = 0
     var wrong = 0
+    /// The learner has seen the teaching screen for this card. Only
+    /// introduced cards are ever asked, nobody should be quizzed on
+    /// something they were never shown.
+    var introduced = false
 
     /// Minutes until the card comes back, per box after a correct answer.
     static let intervals: [Double] = [0, 10, 60 * 24, 60 * 24 * 3, 60 * 24 * 7, 60 * 24 * 21]
 
+    init() {}
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        box = try c.decodeIfPresent(Int.self, forKey: .box) ?? 0
+        due = try c.decodeIfPresent(Date.self, forKey: .due) ?? .distantPast
+        seen = try c.decodeIfPresent(Int.self, forKey: .seen) ?? 0
+        correct = try c.decodeIfPresent(Int.self, forKey: .correct) ?? 0
+        wrong = try c.decodeIfPresent(Int.self, forKey: .wrong) ?? 0
+        // Progress from before the teaching step: anything already answered
+        // counts as introduced, so old learners are not taught it again.
+        introduced = try c.decodeIfPresent(Bool.self, forKey: .introduced) ?? (seen > 0)
+    }
+
+    /// Introduced, but not yet in box 3.
+    var isLearning: Bool { introduced && box < 3 }
+    var isKnown: Bool { box >= 3 }
+
     mutating func record(correct right: Bool, now: Date = Date()) {
         seen += 1
+        introduced = true
         if right {
             correct += 1
             box = min(5, box + 1)
@@ -101,6 +124,16 @@ struct CardProgress: Codable {
         let minutes = right ? Self.intervals[box] : 2
         due = now.addingTimeInterval(minutes * 60)
     }
+}
+
+/// Where the cards of a deck stand: never shown, being learned, known.
+struct DeckCounts: Equatable {
+    var new = 0
+    var learning = 0
+    var known = 0
+
+    var introduced: Int { learning + known }
+    var total: Int { new + learning + known }
 }
 
 struct LearnerProfile: Codable {

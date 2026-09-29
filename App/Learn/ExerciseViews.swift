@@ -8,7 +8,9 @@ struct Outcome {
 }
 
 /// Dispatches to the view for each exercise kind. Every view owns its own
-/// selection and its own "Prüfen" button, and goes quiet once `locked`.
+/// selection and its own "Check" button, and goes quiet once `locked`.
+/// A teaching card reports a plain right outcome; QuizSession knows it is
+/// not an answer.
 struct ExerciseView: View {
     let exercise: Exercise
     let locked: Bool
@@ -16,15 +18,19 @@ struct ExerciseView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
-            HStack(spacing: 8) {
-                Text(exercise.deck.symbol)
-                    .font(.kanji(13, bold: true))
-                    .foregroundStyle(Zen.shu)
-                Text(exercise.instruction)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(Zen.inkSoft)
+            if exercise.kind != .teach {
+                HStack(spacing: 10) {
+                    IconBadge(systemName: Self.symbol(for: exercise.kind), tint: Zen.shu, size: 30)
+                    Text(exercise.instruction)
+                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Zen.inkSoft)
+                }
             }
             switch exercise.kind {
+            case .teach:
+                TeachCard(exercise: exercise, locked: locked) {
+                    onCheck(Outcome(correct: true))
+                }
             case .choice, .reverse, .cloze:
                 ChoiceExercise(exercise: exercise, locked: locked, onCheck: onCheck)
             case .trueFalse:
@@ -40,6 +46,128 @@ struct ExerciseView: View {
             }
         }
     }
+
+    static func symbol(for kind: ExerciseKind) -> String {
+        switch kind {
+        case .teach: "lightbulb.fill"
+        case .choice: "list.bullet"
+        case .reverse: "arrow.left.arrow.right"
+        case .trueFalse: "checkmark.circle"
+        case .typeIn: "keyboard"
+        case .cloze: "text.cursor"
+        case .order: "text.word.spacing"
+        case .pairs: "square.grid.2x2"
+        case .flash: "rectangle.on.rectangle"
+        }
+    }
+}
+
+// MARK: - Teaching
+
+/// The "learn first" screen: the card with its answer, why, and an example.
+/// Nothing to get wrong here, just read and tap "Got it".
+struct TeachCard: View {
+    let exercise: Exercise
+    let locked: Bool
+    let done: () -> Void
+
+    private var card: Card { exercise.card }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            HStack(spacing: 10) {
+                IconBadge(systemName: "lightbulb.fill", tint: Zen.kin, size: 34)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(tr("New card", "Neue Karte"))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundStyle(Zen.kin)
+                    Text(exercise.deck.title)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(Zen.inkSoft)
+                        .lineLimit(1)
+                }
+                Spacer(minLength: 0)
+            }
+
+            VStack(alignment: .leading, spacing: 0) {
+                PromptText(text: card.prompt)
+                    .padding(.bottom, 14)
+
+                Rectangle()
+                    .fill(Zen.line)
+                    .frame(height: 1)
+                    .padding(.bottom, 14)
+
+                Text(tr("Answer", "Antwort"))
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(Zen.inkFaint)
+                    .textCase(.uppercase)
+                    .padding(.bottom, 4)
+                Text(card.answer)
+                    .font(answerFont)
+                    .foregroundStyle(Zen.shu)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .zenCard(padding: 22)
+
+            if let note = card.note, !note.isEmpty {
+                infoBlock(icon: "info.circle.fill", tint: Zen.ai, title: tr("Why", "Warum")) {
+                    Text(note)
+                        .font(.system(size: 16))
+                        .foregroundStyle(Zen.ink)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+
+            if let example = card.example, !example.isEmpty, example != card.answer {
+                infoBlock(icon: "text.quote", tint: Zen.matcha, title: tr("Example", "Beispiel")) {
+                    Text(Self.highlighted(example, answer: card.answer))
+                        .font(ExerciseEngine.containsCJK(example) ? .kanji(19) : .system(size: 17))
+                        .foregroundStyle(Zen.ink)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+
+            if !locked {
+                Button {
+                    Haptics.tap()
+                    done()
+                } label: {
+                    Label(tr("Got it", "Verstanden"), systemImage: "checkmark")
+                }
+                .buttonStyle(.primary)
+                .padding(.top, 4)
+            }
+        }
+    }
+
+    private var answerFont: Font {
+        if ExerciseEngine.containsCJK(card.answer) {
+            return .kanji(card.answer.count <= 4 ? 44 : 28, bold: true)
+        }
+        return .display(card.answer.count > 30 ? 22 : 28, weight: .bold)
+    }
+
+    private func infoBlock<Content: View>(icon: String, tint: Color, title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label(title, systemImage: icon)
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                .foregroundStyle(tint)
+            content()
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Zen.sand, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+    }
+
+    /// The example sentence with the answer in bold accent colour.
+    static func highlighted(_ sentence: String, answer: String) -> AttributedString {
+        var text = AttributedString(sentence)
+        guard !answer.isEmpty, let range = text.range(of: answer) else { return text }
+        text[range].foregroundColor = Zen.shu
+        text[range].inlinePresentationIntent = .stronglyEmphasized
+        return text
+    }
 }
 
 // MARK: - Prompt
@@ -49,8 +177,9 @@ struct PromptText: View {
 
     var body: some View {
         let cjk = ExerciseEngine.containsCJK(text)
+        let font: Font = cjk ? .kanji(text.count <= 4 ? 64 : 30, bold: true) : .display(text.count > 60 ? 22 : 28, weight: .bold)
         Text(text)
-            .font(cjk ? .kanji(text.count <= 4 ? 64 : 30, bold: true) : .mincho(text.count > 60 ? 22 : 28, weight: .semibold))
+            .font(font)
             .foregroundStyle(Zen.ink)
             .multilineTextAlignment(.leading)
             .fixedSize(horizontal: false, vertical: true)
@@ -69,7 +198,7 @@ struct CheckButton: View {
             Haptics.tap()
             action()
         }
-        .buttonStyle(.ink)
+        .buttonStyle(.primary)
         .disabled(!enabled)
         .opacity(enabled ? 1 : 0.35)
         .padding(.top, 8)
@@ -137,9 +266,9 @@ struct OptionRow: View {
                     .multilineTextAlignment(.leading)
                 Spacer(minLength: 8)
                 if state == .right {
-                    Image(systemName: "checkmark").foregroundStyle(Zen.matcha)
+                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Zen.matcha)
                 } else if state == .wrong {
-                    Image(systemName: "xmark").foregroundStyle(Zen.shu)
+                    Image(systemName: "xmark.circle.fill").foregroundStyle(Zen.negative)
                 }
             }
             .padding(.vertical, 15)
@@ -156,17 +285,18 @@ struct OptionRow: View {
 
     private var foreground: Color {
         switch state {
-        case .idle, .picked: Zen.ink
+        case .idle: Zen.ink
+        case .picked: Zen.shu
         case .right: Zen.matcha
-        case .wrong: Zen.shu
+        case .wrong: Zen.negative
         }
     }
 
     private var background: Color {
         switch state {
-        case .picked: Zen.ink.opacity(0.06)
+        case .picked: Zen.shu.opacity(0.08)
         case .right: Zen.matcha.opacity(0.12)
-        case .wrong: Zen.shu.opacity(0.1)
+        case .wrong: Zen.negative.opacity(0.1)
         case .idle: Zen.card
         }
     }
@@ -174,9 +304,9 @@ struct OptionRow: View {
     private var border: Color {
         switch state {
         case .idle: Zen.line
-        case .picked: Zen.ink
+        case .picked: Zen.shu
         case .right: Zen.matcha
-        case .wrong: Zen.shu
+        case .wrong: Zen.negative
         }
     }
 }
@@ -196,32 +326,33 @@ struct TrueFalseExercise: View {
                 Image(systemName: "arrow.turn.down.right")
                     .foregroundStyle(Zen.inkFaint)
                 Text(exercise.statement)
-                    .font(ExerciseEngine.containsCJK(exercise.statement) ? .kanji(24, bold: true) : .mincho(22, weight: .medium))
+                    .font(ExerciseEngine.containsCJK(exercise.statement) ? .kanji(24, bold: true) : .display(22, weight: .semibold))
                     .foregroundStyle(Zen.ink)
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Zen.sand.opacity(0.6), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .background(Zen.sand, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
 
             HStack(spacing: 12) {
-                answerButton(true, title: tr("True", "Stimmt"), symbol: "○")
-                answerButton(false, title: tr("Not true", "Stimmt nicht"), symbol: "×")
+                answerButton(true, title: tr("True", "Stimmt"), symbol: "checkmark")
+                answerButton(false, title: tr("Not true", "Stimmt nicht"), symbol: "xmark")
             }
         }
     }
 
     private func answerButton(_ value: Bool, title: String, symbol: String) -> some View {
         let isRight = value == exercise.statementIsTrue
-        let tint: Color = locked ? (isRight ? Zen.matcha : (said == value ? Zen.shu : Zen.inkFaint)) : Zen.ink
+        let missed: Color = said == value ? Zen.negative : Zen.inkFaint
+        let tint: Color = locked ? (isRight ? Zen.matcha : missed) : Zen.ink
         return Button {
             guard !locked else { return }
             said = value
             Haptics.tap()
             onCheck(Outcome(correct: isRight))
         } label: {
-            VStack(spacing: 6) {
-                Text(symbol).font(.kanji(34, bold: true))
-                Text(title).font(.system(size: 15, weight: .semibold))
+            VStack(spacing: 8) {
+                Image(systemName: symbol).font(.system(size: 26, weight: .bold))
+                Text(title).font(.system(size: 15, weight: .semibold, design: .rounded))
             }
             .foregroundStyle(tint)
             .frame(maxWidth: .infinity)
@@ -254,7 +385,7 @@ struct TypeExercise: View {
                 .disabled(locked)
                 .padding(16)
                 .background(Zen.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(focused ? Zen.ink : Zen.line, lineWidth: focused ? 2 : 1))
+                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(focused ? Zen.shu : Zen.line, lineWidth: focused ? 2 : 1))
                 .onSubmit(check)
             if !locked {
                 CheckButton(enabled: !text.trimmingCharacters(in: .whitespaces).isEmpty, action: check)
@@ -445,10 +576,10 @@ struct PairsExercise: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, minHeight: 54)
                 .padding(.horizontal, 8)
-                .background(done ? Zen.matcha.opacity(0.1) : (picked ? Zen.ink.opacity(0.07) : Zen.card), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                .background(done ? Zen.matcha.opacity(0.1) : (picked ? Zen.shu.opacity(0.08) : Zen.card), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .strokeBorder(wrongFlash ? Zen.shu : (picked ? Zen.ink : Zen.line), lineWidth: picked || wrongFlash ? 2 : 1)
+                        .strokeBorder(wrongFlash ? Zen.negative : (picked ? Zen.shu : Zen.line), lineWidth: picked || wrongFlash ? 2 : 1)
                 )
         }
         .buttonStyle(.plain)
@@ -490,7 +621,7 @@ struct FlashExercise: View {
             PromptText(text: exercise.prompt)
             if revealed {
                 Text(exercise.solution)
-                    .font(.mincho(24, weight: .medium))
+                    .font(ExerciseEngine.containsCJK(exercise.solution) ? .kanji(28, bold: true) : .display(24, weight: .semibold))
                     .foregroundStyle(Zen.ai)
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 if !locked {
@@ -505,7 +636,7 @@ struct FlashExercise: View {
                 Button(tr("Reveal", "Aufdecken")) {
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.85)) { revealed = true }
                 }
-                .buttonStyle(.ink)
+                .buttonStyle(.primary)
             }
         }
     }

@@ -16,6 +16,12 @@ enum ShieldEngine {
         ManagedSettingsStore(named: ManagedSettingsStore.Name("focus"))
     }
 
+    /// Lockdown has a store of its own and never gets gaps, so no unlock,
+    /// grant or pass can reach through it.
+    static var lockdownStore: ManagedSettingsStore {
+        ManagedSettingsStore(named: ManagedSettingsStore.Name("lockdown"))
+    }
+
     /// Recomputes every shield from what is on disk. Cheap and idempotent,
     /// so every entry point simply calls it.
     ///
@@ -70,6 +76,19 @@ enum ShieldEngine {
         } else {
             focusStore.clearAllSettings()
         }
+
+        if let lockdown = SharedStore.lockdown {
+            if lockdown.isActive(at: now) {
+                let tokens = lockdownSelection(lockdown, settings: SharedStore.focusSettings, rules: rules)
+                shield(lockdownStore, with: tokens, apps: [], web: [], categories: [])
+            } else {
+                // Expired while nobody was watching: tidy up here as well.
+                lockdownStore.clearAllSettings()
+                SharedStore.lockdown = nil
+            }
+        } else {
+            lockdownStore.clearAllSettings()
+        }
     }
 
     /// Lifts everything Ma ever put up. Used by "reset" in settings.
@@ -77,6 +96,7 @@ enum ShieldEngine {
         for id in SharedStore.knownStoreIDs { store(for: id).clearAllSettings() }
         for rule in SharedStore.rules { store(for: rule.id).clearAllSettings() }
         focusStore.clearAllSettings()
+        lockdownStore.clearAllSettings()
         ManagedSettingsStore().clearAllSettings()
     }
 
@@ -95,6 +115,12 @@ enum ShieldEngine {
             web = selection.webDomainTokens
         }
 
+        mutating func merge(_ other: Tokens) {
+            apps.formUnion(other.apps)
+            categories.formUnion(other.categories)
+            web.formUnion(other.web)
+        }
+
         var count: Int { apps.count + categories.count + web.count }
         var isEmpty: Bool { count == 0 }
     }
@@ -109,6 +135,19 @@ enum ShieldEngine {
             merged.web.formUnion(rule.selection.webDomainTokens)
         }
         return merged
+    }
+
+    /// Everything a lockdown covers: what was blocked when it started, plus
+    /// every boundary (switched off ones too) and the focus list as they are
+    /// now. Adding apps during a lockdown tightens it, removing them does not.
+    static func lockdownSelection(_ lockdown: LockdownState, settings: FocusSettings, rules: [BlockRule]) -> Tokens {
+        var tokens = Tokens()
+        tokens.apps = lockdown.applications
+        tokens.categories = lockdown.categories
+        tokens.web = lockdown.webDomains
+        tokens.merge(Tokens(settings.selection))
+        for rule in rules { tokens.merge(Tokens(rule.selection)) }
+        return tokens
     }
 
     private static func shield(
@@ -142,9 +181,33 @@ struct UnlockPolicy {
     var focusLocked = false
     var ruleName: String?
     var focusEndsAt: Date?
+    /// Set while a lockdown runs. Nothing opens, not even with answers.
+    var lockdownUntil: Date?
+    /// The daily unlock budget of a matching rule is used up.
+    var budgetSpent = false
+    /// Smallest daily limit among the matching rules, if any has one.
+    var dailyLimit: Int?
+    /// Unlocks left today under that limit.
+    var unlocksLeft: Int?
+    /// Unlocks the matching rules already gave today (the highest count).
+    var unlocksToday = 0
+    /// A matching rule makes every unlock cost one answer more.
+    var rising = false
+    /// Seconds the gate waits before the first question.
+    var waitSeconds = 0
+    /// Rules the unlock will be counted against.
+    var matchedRuleIDs: [UUID] = []
+
+    var isLockdown: Bool { lockdownUntil != nil }
 
     static func current(application: ApplicationToken? = nil, webDomain: WebDomainToken? = nil, now: Date = Date()) -> UnlockPolicy {
         var policy = UnlockPolicy()
+
+        if let lockdown = SharedStore.activeLockdown(at: now) {
+            policy.lockdownUntil = lockdown.until
+            policy.allowed = false
+            return policy
+        }
 
         if let session = SharedStore.focus, session.phase == .focus, now < session.endsAt {
             policy.focusEndsAt = session.endsAt
@@ -168,10 +231,46 @@ struct UnlockPolicy {
         }
         guard !matched.isEmpty else { return policy }
 
-        policy.allowed = matched.allSatisfy(\.allowsUnlock)
-        policy.questions = max(1, matched.map(\.questionsRequired).max() ?? 1)
-        policy.minutes = max(1, matched.map(\.unlockMinutes).min() ?? 5)
-        policy.ruleName = matched.first?.name
+        let ledger = SharedStore.unlockLedger
+        let day = SharedStore.dayKey(now)
+        policy.apply(matched) { ledger.count(for: $0, on: day) }
         return policy
+    }
+
+    /// The pure part: folds the matching rules and their counts for today
+    /// into one policy. The strictest rule wins every question.
+    mutating func apply(_ matched: [BlockRule], unlocksToday used: (UUID) -> Int) {
+        guard !matched.isEmpty else { return }
+        matchedRuleIDs = matched.map(\.id)
+        ruleName = matched.first?.name
+
+        let counts: [Int] = matched.map { used($0.id) }
+        unlocksToday = counts.max() ?? 0
+
+        if let wall = matched.first(where: { !$0.allowsUnlock }) {
+            allowed = false
+            ruleName = wall.name
+            return
+        }
+
+        for (rule, count) in zip(matched, counts) {
+            guard let limit = rule.dailyUnlockLimit, let left = rule.unlocksLeft(usedToday: count) else { continue }
+            if unlocksLeft == nil || left < (unlocksLeft ?? 0) {
+                unlocksLeft = left
+                dailyLimit = limit
+                if left == 0 { ruleName = rule.name }
+            }
+        }
+        if unlocksLeft == 0 {
+            allowed = false
+            budgetSpent = true
+            return
+        }
+
+        let needed: [Int] = zip(matched, counts).map { $0.questionsNeeded(unlocksToday: $1) }
+        questions = max(1, needed.max() ?? 1)
+        minutes = max(1, matched.map(\.unlockMinutes).min() ?? 5)
+        waitSeconds = max(0, matched.map(\.waitSeconds).max() ?? 0)
+        rising = matched.contains(where: \.risingFriction)
     }
 }

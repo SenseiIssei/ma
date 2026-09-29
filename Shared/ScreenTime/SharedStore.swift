@@ -43,6 +43,37 @@ enum SharedStore {
         set { MaShared.write(newValue, to: "names.json") }
     }
 
+    // MARK: Limits
+
+    static var unlockLedger: UnlockLedger {
+        get { MaShared.read(UnlockLedger.self, from: "unlock-ledger.json") ?? UnlockLedger(day: dayKey()) }
+        set { MaShared.write(newValue, to: "unlock-ledger.json") }
+    }
+
+    /// Unlocks `rule` gave today.
+    static func unlocksToday(for rule: UUID, now: Date = Date()) -> Int {
+        unlockLedger.count(for: rule, on: dayKey(now))
+    }
+
+    static func recordUnlock(for rules: [UUID], now: Date = Date()) {
+        guard !rules.isEmpty else { return }
+        var ledger = unlockLedger
+        ledger.record(rules, on: dayKey(now))
+        unlockLedger = ledger
+    }
+
+    /// The running lockdown, if any. An expired one may still lie on disk
+    /// until the monitor or the app clears it; always ask `isActive`.
+    static var lockdown: LockdownState? {
+        get { MaShared.read(LockdownState.self, from: "lockdown.json") }
+        set { MaShared.write(newValue, to: "lockdown.json") }
+    }
+
+    static func activeLockdown(at now: Date = Date()) -> LockdownState? {
+        guard let state = lockdown, state.isActive(at: now) else { return nil }
+        return state
+    }
+
     static func name(for application: ApplicationToken) -> String? {
         tokenNames.first { $0.application == application }?.name
     }
@@ -73,8 +104,8 @@ enum SharedStore {
         set { MaShared.write(newValue, to: "stats.json") }
     }
 
-    static func dayKey(_ date: Date = Date()) -> String {
-        let c = Calendar.current.dateComponents([.year, .month, .day], from: date)
+    static func dayKey(_ date: Date = Date(), calendar: Calendar = .current) -> String {
+        let c = calendar.dateComponents([.year, .month, .day], from: date)
         return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
     }
 

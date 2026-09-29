@@ -1,18 +1,18 @@
 :root {
-  --paper: #F4EFE6;
-  --ink: #1F1D1B;
-  --soft: #5E5850;
-  --shu: #C8412C;
-  --line: rgba(31, 29, 27, 0.12);
+  --paper: #F6F5F3;
+  --ink: #16171B;
+  --soft: #6B6D75;
+  --shu: #5B5FEF;
+  --line: rgba(22, 23, 27, 0.10);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #151412;
-    --ink: #ECE6DA;
-    --soft: #A69E92;
-    --shu: #D9573F;
-    --line: rgba(236, 230, 218, 0.14);
+    --paper: #0E0F12;
+    --ink: #F3F3F5;
+    --soft: #A3A5AE;
+    --shu: #8286FF;
+    --line: rgba(243, 243, 245, 0.12);
   }
 }
 
@@ -29,12 +29,12 @@ main {
 }
 
 .glyph {
-  font: 600 40px/1 "Hiragino Mincho ProN", serif;
-  color: var(--shu);
+  width: 40px;
+  height: 40px;
 }
 
 h1 {
-  font: 600 20px/1.2 "New York", ui-serif, Georgia, serif;
+  font: 700 20px/1.2 ui-rounded, -apple-system, system-ui, sans-serif;
   margin: 10px 0 6px;
 }
 

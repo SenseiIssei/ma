@@ -1,22 +1,41 @@
 import SwiftUI
 import UIKit
 
-/// Washi paper, sumi ink, one vermilion seal. Everything else is space.
+/// Design tokens. Calm, modern, one accent. The names are kept from the
+/// first design so every view keeps compiling while it is restyled:
+/// `paper` is the background, `ink` the text, `shu` the accent.
 enum Zen {
-    static let paper = Color(light: 0xF4EFE6, dark: 0x151412)
-    static let card = Color(light: 0xFBF8F2, dark: 0x1E1C19)
-    static let sand = Color(light: 0xE9E1D1, dark: 0x25221E)
-    static let ink = Color(light: 0x1F1D1B, dark: 0xECE6DA)
-    static let inkSoft = Color(light: 0x6B645C, dark: 0xA69E92)
-    static let inkFaint = Color(light: 0xA9A196, dark: 0x6A645B)
-    static let shu = Color(light: 0xC8412C, dark: 0xD9573F)
-    static let matcha = Color(light: 0x66784A, dark: 0x9DB07A)
-    static let ai = Color(light: 0x2E3A55, dark: 0x8E9CC0)
-    static let kin = Color(light: 0xAE8537, dark: 0xD1AE63)
-    static let stone = Color(light: 0x5A554F, dark: 0x8C857B)
-    static let line = Color(light: 0xD9D0C0, dark: 0x302C27)
+    // Surfaces
+    static let paper = Color(light: 0xF6F5F3, dark: 0x0E0F12)
+    static let card = Color(light: 0xFFFFFF, dark: 0x191A1F)
+    static let sand = Color(light: 0xEFEDE9, dark: 0x23252B)
 
-    static let radius: CGFloat = 22
+    // Text
+    static let ink = Color(light: 0x16171B, dark: 0xF3F3F5)
+    static let inkSoft = Color(light: 0x6B6D75, dark: 0xA3A5AE)
+    static let inkFaint = Color(light: 0xA7A9B0, dark: 0x6A6C75)
+
+    // Colour
+    /// Primary accent: a calm indigo.
+    static let shu = Color(light: 0x5B5FEF, dark: 0x8286FF)
+    static let accent = shu
+    /// Success, "right", focus done.
+    static let matcha = Color(light: 0x22A06B, dark: 0x3DD68C)
+    /// Errors, "wrong", destructive.
+    static let negative = Color(light: 0xE5484D, dark: 0xFF6369)
+    /// Streaks and warmth.
+    static let kin = Color(light: 0xF08C2E, dark: 0xFFA94D)
+    /// Secondary tint for learning.
+    static let ai = Color(light: 0x0EA5B7, dark: 0x3CCFE0)
+    static let stone = Color(light: 0x8A8C94, dark: 0x8A8C94)
+    static let line = Color(light: 0xE6E4E0, dark: 0x2A2C33)
+
+    static let accentGradient = LinearGradient(
+        colors: [Color(light: 0x6D6AF6, dark: 0x8C89FF), Color(light: 0x4D8DF7, dark: 0x6AA6FF)],
+        startPoint: .topLeading, endPoint: .bottomTrailing
+    )
+
+    static let radius: CGFloat = 24
     static let gutter: CGFloat = 20
 }
 
@@ -40,14 +59,20 @@ extension UIColor {
 }
 
 extension Font {
-    /// Serif for headings: New York, the closest thing iOS has to a brush.
-    static func mincho(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
-        .system(size: size, weight: weight, design: .serif)
+    /// Headlines and big numbers: SF Pro Rounded, bold and friendly.
+    static func display(_ size: CGFloat, weight: Font.Weight = .bold) -> Font {
+        .system(size: size, weight: weight, design: .rounded)
     }
 
-    /// Kanji look best in Hiragino Mincho, which every iPhone ships with.
+    /// Kept for older call sites; now the same as `display`.
+    static func mincho(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        .system(size: size, weight: weight == .regular ? .semibold : weight, design: .rounded)
+    }
+
+    /// Japanese learning content (kana, kanji in cards). Only for content,
+    /// never for decoration.
     static func kanji(_ size: CGFloat, bold: Bool = false) -> Font {
-        .custom(bold ? "HiraMinProN-W6" : "HiraMinProN-W3", size: size)
+        .system(size: size, weight: bold ? .semibold : .regular)
     }
 }
 

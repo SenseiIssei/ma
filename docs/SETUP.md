@@ -1,44 +1,46 @@
-# Einrichtung
+# Setup
 
-Einmal durchgehen, danach baut ein Knopfdruck in GitHub Actions eine neue TestFlight-Version. Alles davon geht im Browser, ein Mac wird nie gebraucht.
+Go through this once. After that, one click in GitHub Actions builds a new TestFlight version. All of it happens in the browser; you never need a Mac.
 
-## 1. Identifier im Developer-Portal
+The identifiers below are the ones this repo uses. If you fork it, replace `com.sensei.ma`, the team ID in `project.yml` and `ci/ExportOptions.plist` with your own.
+
+## 1. Identifiers in the developer portal
 
 Certificates, Identifiers & Profiles > Identifiers.
 
-**App Group:** Filter oben rechts auf "App Groups", `+`, Description `Ma`, Identifier `group.com.sensei.ma`.
+**App Group:** switch the filter in the top right to "App Groups", `+`, description `Ma`, identifier `group.com.sensei.ma`.
 
-**Fünf App IDs** (Filter auf "App IDs", `+`, App, Bundle ID "Explicit"):
+**Five App IDs** (filter on "App IDs", `+`, App, bundle ID "Explicit"):
 
 | Description | Bundle ID | App Groups | Family Controls |
 |---|---|---|---|
-| Ma | `com.sensei.ma` | ja | ja |
-| Ma Shield | `com.sensei.ma.shieldconfig` | ja | ja |
-| Ma Action | `com.sensei.ma.shieldaction` | ja | ja |
-| Ma Monitor | `com.sensei.ma.monitor` | ja | ja |
-| Ma Filter | `com.sensei.ma.filter` | ja | nein |
+| Ma | `com.sensei.ma` | yes | yes |
+| Ma Shield | `com.sensei.ma.shieldconfig` | yes | yes |
+| Ma Action | `com.sensei.ma.shieldaction` | yes | yes |
+| Ma Monitor | `com.sensei.ma.monitor` | yes | yes |
+| Ma Filter | `com.sensei.ma.filter` | yes | no |
 
-Danach jede ID öffnen, bei App Groups auf **Configure** und `group.com.sensei.ma` zuweisen, speichern.
+Then open each ID, click **Configure** next to App Groups, assign `group.com.sensei.ma` and save.
 
-Zertifikate und Provisioning Profiles legst du nicht an. Die erzeugt der Build selbst.
+You do not create certificates or provisioning profiles. The build makes them itself.
 
-## 2. Family Controls Distribution beantragen
+## 2. Request Family Controls distribution
 
-Ohne Apples Freigabe gibt es die Bildschirmzeit-Schnittstelle nur in Development-Builds, und TestFlight scheitert beim Signieren.
+Without Apple's approval the Screen Time API only works in development builds, and TestFlight fails at signing.
 
-Den Antrag stellst du im Reiter **Capability Requests** der jeweiligen App ID oder über https://developer.apple.com/contact/request/family-controls-distribution, einmal für jede ID mit Family Controls (alle außer `.filter`).
+Request it in the **Capability Requests** tab of each App ID, or through https://developer.apple.com/contact/request/family-controls-distribution, once for every ID that uses Family Controls (all except `.filter`).
 
-Als Begründung reicht die ehrliche: eine App, mit der man sich selbst Social Media sperrt und vor dem Entsperren eine Lernfrage beantwortet. Apple antwortet meist innerhalb von ein bis zwei Wochen.
+The honest reason is enough: an app you use to block social media for yourself, which asks a learning question before unlocking. Apple usually answers within one or two weeks.
 
 ## 3. App Store Connect
 
-- **Lizenzvereinbarung akzeptieren**, falls oben ein gelbes Banner steht. Sonst werden Uploads abgelehnt.
-- **App anlegen:** Apps > `+` > Neue App, iOS, Bundle-ID `com.sensei.ma`, SKU `ma`. Der Store-Name muss eindeutig sein, "Ma" allein ist vergeben.
-- **API-Key:** Benutzer und Zugriff > Integrationen > App Store Connect API > Team-Schlüssel > `+`, Rolle **Admin**. Mit weniger Rechten darf Xcode keine Zertifikate erstellen. Die `.p8`-Datei gibt es nur einmal zum Herunterladen. Key ID und Issuer ID notieren.
+- **Accept the license agreement** if a yellow banner shows at the top. Otherwise uploads get rejected.
+- **Create the app:** Apps > `+` > New App, iOS, bundle ID `com.sensei.ma`, SKU `ma`. The store name must be unique; plain "Ma" is taken.
+- **API key:** Users and Access > Integrations > App Store Connect API > Team Keys > `+`, role **Admin**. With fewer rights Xcode is not allowed to create certificates. The `.p8` file can only be downloaded once. Note down the Key ID and the Issuer ID.
 
-## 4. Secrets im Repo
+## 4. Repository secrets
 
-Jeder Befehl fragt den Wert verdeckt ab:
+Each command asks for the value without echoing it:
 
 ```bash
 gh secret set ASC_KEY_ID -R SenseiIssei/ma
@@ -49,23 +51,23 @@ gh secret set ASC_ISSUER_ID -R SenseiIssei/ma
 ```
 
 ```bash
-gh secret set ASC_KEY_P8 -R SenseiIssei/ma < "C:\Users\jakob\Downloads\AuthKey_XXXXXXXXXX.p8"
+gh secret set ASC_KEY_P8 -R SenseiIssei/ma < "C:\Users\you\Downloads\AuthKey_XXXXXXXXXX.p8"
 ```
 
-## 5. Bauen und installieren
+## 5. Build and install
 
 GitHub > Actions > iOS > Run workflow > `testflight`.
 
-Der Lauf archiviert, signiert automatisch, exportiert und lädt hoch. Nach etwa zehn bis zwanzig Minuten Verarbeitung bei Apple erscheint der Build in App Store Connect unter TestFlight. Dort trägst du dich als **interner Tester** ein. Auf dem iPhone installierst du die App **TestFlight** und darüber Ma.
+The run archives, signs automatically, exports and uploads. After ten to twenty minutes of processing at Apple the build shows up in App Store Connect under TestFlight. Add yourself there as an **internal tester**, install the **TestFlight** app on the iPhone and install Ma through it.
 
-Jeder Lauf hat ein Zeitlimit, ein hängender Build kostet also nie Stunden.
+Every job has a time limit, so a hanging build never costs hours.
 
-## 6. Safari-Filter einschalten
+## 6. Switch on the Safari filter
 
-Einstellungen > Apps > Safari > Erweiterungen > Ma Filter: einschalten und für instagram.com, youtube.com, x.com, linkedin.com, facebook.com und tiktok.com erlauben.
+Settings > Apps > Safari > Extensions > Ma Filter: switch it on and allow it for instagram.com, youtube.com, x.com, linkedin.com, facebook.com and tiktok.com.
 
-## Grenzen des Systems
+## Limits of the system
 
-- Reels in der nativen Instagram-App lassen sich nicht ausblenden. Keine App darf in eine andere hineingreifen. Der Weg ist die Grenze auf die App plus Instagram im Browser.
-- Eine Grenze nimmt höchstens 50 einzelne Apps auf. Für mehr die Kategorie wählen.
-- Ma kann nur sperren, was Bildschirmzeit sperren kann. Wer die Berechtigung in den iOS-Einstellungen entzieht, hebt alle Grenzen auf. Das ist Absicht: Aufheben soll immer möglich sein.
+- Reels inside the native Instagram app cannot be hidden. No app may reach into another one. The way around is a boundary on the app plus Instagram in the browser.
+- One boundary holds at most 50 individual apps. For more, pick the category.
+- Ma can only block what Screen Time can block. Revoking the permission in iOS Settings lifts every boundary. That is on purpose: letting go should always be possible.

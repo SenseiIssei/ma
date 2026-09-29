@@ -53,7 +53,7 @@ Everything runs on GitHub Actions. Since the repo is public, the macOS runners c
 - Every push to `main` validates the decks and compiles the app unsigned.
 - `Actions > iOS > Run workflow > testflight` signs and uploads to TestFlight.
 
-Signing is automatic through an App Store Connect API key: `xcodebuild` fetches the certificate and profiles from Apple itself. No certificate repo, no fastlane. The one-time setup is in [docs/SETUP.md](docs/SETUP.md) (in German).
+Signing is automatic through an App Store Connect API key: `xcodebuild` fetches the certificate and profiles from Apple itself. No certificate repo, no fastlane. The one-time setup is in [docs/SETUP.md](docs/SETUP.md).
 
 ## Your own decks
 

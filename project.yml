@@ -42,6 +42,8 @@ targets:
         UILaunchScreen:
           UIColorName: LaunchPaper
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        # iPhone-only, but App Store validation still checks the iPad keys.
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         ITSAppUsesNonExemptEncryption: false
         CFBundleURLTypes:
           - CFBundleURLName: com.sensei.ma

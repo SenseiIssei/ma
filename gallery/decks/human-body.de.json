@@ -1,0 +1,234 @@
+{
+  "id": "human-body",
+  "locale": "de",
+  "title": "Der menschliche Körper",
+  "subtitle": "Knochen, Organe, Blut und Sinne",
+  "symbol": "体",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "human-body-001",
+      "prompt": "Wie viele Knochen hat das Skelett eines Erwachsenen normalerweise?",
+      "answer": "206",
+      "distractors": ["186", "226", "250"],
+      "example": "Ein erwachsenes Skelett hat normalerweise 206 Knochen.",
+      "note": "Babys kommen mit etwa 270 bis 300 Knochen und Knorpelteilen zur Welt. Viele davon verwachsen im Laufe des Wachstums, zum Beispiel im Schädel und am unteren Ende der Wirbelsäule."
+    },
+    {
+      "id": "human-body-002",
+      "prompt": "Was ist das größte Organ des menschlichen Körpers?",
+      "answer": "Haut",
+      "accept": ["die Haut"],
+      "distractors": ["Leber", "Lunge", "Gehirn"],
+      "example": "Die Haut eines Erwachsenen bedeckt etwa zwei Quadratmeter.",
+      "note": "Bei Erwachsenen wiegt die Haut rund 4 Kilogramm und bedeckt etwa 2 Quadratmeter. Sie schützt, regelt die Temperatur und bildet sogar Vitamin D."
+    },
+    {
+      "id": "human-body-003",
+      "prompt": "Was ist das größte innere Organ?",
+      "answer": "Leber",
+      "accept": ["die Leber"],
+      "distractors": ["Herz", "Magen", "Milz"],
+      "example": "Die Leber liegt unter den rechten Rippen und wiegt etwa 1,5 Kilogramm.",
+      "note": "Die Leber erledigt Hunderte Aufgaben, vom Speichern von Zucker über den Abbau von Giftstoffen bis zur Bildung von Galle. Bemerkenswert ist auch, dass sie verlorenes Gewebe nachbilden kann."
+    },
+    {
+      "id": "human-body-004",
+      "prompt": "Was ist der kleinste Knochen im menschlichen Körper?",
+      "answer": "Steigbügel",
+      "accept": ["Stapes", "Steigbuegel"],
+      "distractors": ["Amboss", "Hammer", "Zungenbein"],
+      "example": "Der Steigbügel im Mittelohr ist nur etwa 3 Millimeter lang.",
+      "note": "Der Steigbügel leitet Schallschwingungen ans Innenohr weiter. Er ist das letzte der drei Gehörknöchelchen, nach Hammer und Amboss."
+    },
+    {
+      "id": "human-body-005",
+      "prompt": "Was ist der längste Knochen im menschlichen Körper?",
+      "answer": "Oberschenkelknochen",
+      "accept": ["Femur", "Oberschenkel"],
+      "distractors": ["Schienbein", "Oberarmknochen", "Wadenbein"],
+      "example": "Der Oberschenkelknochen reicht von der Hüfte bis zum Knie.",
+      "note": "Der Oberschenkelknochen macht etwa ein Viertel der Körpergröße aus. Er gehört außerdem zu den stärksten Knochen und kann ein Vielfaches des Körpergewichts tragen."
+    },
+    {
+      "id": "human-body-006",
+      "prompt": "Wie viele Kammern hat das menschliche Herz?",
+      "answer": "4",
+      "accept": ["vier"],
+      "distractors": ["2", "3", "6"],
+      "example": "Das Herz hat 4 Kammern: zwei Vorhöfe oben und zwei Herzkammern unten.",
+      "note": "Die rechte Seite pumpt Blut in die Lunge, die linke in den ganzen Körper. Deshalb hat die linke Herzkammer die dickste und kräftigste Wand."
+    },
+    {
+      "id": "human-body-007",
+      "prompt": "Welches Protein in den roten Blutkörperchen transportiert Sauerstoff?",
+      "answer": "Hämoglobin",
+      "accept": ["Haemoglobin", "Hb"],
+      "distractors": ["Myoglobin", "Insulin", "Keratin"],
+      "example": "Hämoglobin bindet in der Lunge Sauerstoff und gibt ihn im Gewebe wieder ab.",
+      "note": "Jedes Hämoglobinmolekül enthält Eisen, und das macht das Blut rot. Myoglobin ist ein verwandtes Protein, das Sauerstoff in den Muskeln speichert."
+    },
+    {
+      "id": "human-body-008",
+      "prompt": "Welche kleinen Zellbruchstücke im Blut helfen bei der Gerinnung?",
+      "answer": "Blutplättchen",
+      "accept": ["Thrombozyten", "Blutplaettchen"],
+      "distractors": ["Rote Blutkörperchen", "Weiße Blutkörperchen", "Plasmazellen"],
+      "example": "Blutplättchen eilen zu einer Wunde und verkleben miteinander, um sie abzudichten.",
+      "note": "Blutplättchen sind keine vollständigen Zellen, sondern Bruchstücke großer Zellen aus dem Knochenmark. Sie leben nur etwa eine Woche bis zehn Tage, deshalb bildet der Körper ständig neue."
+    },
+    {
+      "id": "human-body-009",
+      "prompt": "Wie heißen die winzigen Luftsäckchen in der Lunge, in denen Sauerstoff ins Blut gelangt?",
+      "answer": "Lungenbläschen",
+      "accept": ["Alveolen", "Lungenblaeschen"],
+      "distractors": ["Bronchien", "Darmzotten", "Nasennebenhöhlen"],
+      "example": "Sauerstoff wandert aus den Lungenbläschen in winzige Blutgefäße.",
+      "note": "Die Lunge enthält Hunderte Millionen Lungenbläschen. Flach ausgebreitet würde ihre Oberfläche etwa 70 Quadratmeter bedecken, genug Platz für einen schnellen Gasaustausch."
+    },
+    {
+      "id": "human-body-010",
+      "prompt": "Welcher kuppelförmige Muskel unter der Lunge ist der wichtigste Atemmuskel?",
+      "answer": "Zwerchfell",
+      "accept": ["das Zwerchfell", "Diaphragma"],
+      "distractors": ["Zwischenrippenmuskeln", "Trapezmuskel", "Brustmuskel"],
+      "example": "Wenn sich das Zwerchfell zusammenzieht, flacht es ab und saugt Luft in die Lunge.",
+      "note": "Ein Schluckauf ist ein plötzliches, unwillkürliches Zucken des Zwerchfells, bei dem sich gleich danach die Stimmritze schließt. Dieses Zuschnappen erzeugt das bekannte Hicks."
+    },
+    {
+      "id": "human-body-011",
+      "prompt": "Welches Organ bildet Insulin?",
+      "answer": "Bauchspeicheldrüse",
+      "accept": ["Pankreas", "Bauchspeicheldruese"],
+      "distractors": ["Leber", "Schilddrüse", "Milz"],
+      "example": "Nach einer Mahlzeit schütten Betazellen der Bauchspeicheldrüse Insulin aus.",
+      "note": "Insulin sorgt dafür, dass Körperzellen Zucker aus dem Blut aufnehmen können. Es entsteht in kleinen Zellhaufen, den Langerhans-Inseln, während der Rest der Bauchspeicheldrüse Verdauungsenzyme bildet."
+    },
+    {
+      "id": "human-body-012",
+      "prompt": "Wie heißen die winzigen Filtereinheiten der Nieren?",
+      "answer": "Nephrone",
+      "accept": ["Nephronen", "Nephron"],
+      "distractors": ["Neurone", "Alveolen", "Zotten"],
+      "example": "Jede Niere enthält etwa eine Million Nephrone.",
+      "note": "Zusammen filtern die Nieren etwa 180 Liter Blutplasma am Tag. Fast alles wird wieder aufgenommen, nur rund 1,5 Liter bleiben als Urin übrig."
+    },
+    {
+      "id": "human-body-013",
+      "prompt": "Wie heißt die klare, gewölbte vorderste Schicht des Auges?",
+      "answer": "Hornhaut",
+      "accept": ["die Hornhaut", "Cornea", "Kornea"],
+      "distractors": ["Netzhaut", "Iris", "Linse"],
+      "example": "Die Hornhaut übernimmt den größten Teil der Lichtbrechung im Auge.",
+      "note": "Die Hornhaut hat keine Blutgefäße, deshalb bleibt sie glasklar. Sauerstoff bekommt sie direkt aus der Luft, Nährstoffe aus der Tränenflüssigkeit und dem Kammerwasser dahinter."
+    },
+    {
+      "id": "human-body-014",
+      "prompt": "Welche lichtempfindlichen Zellen der Netzhaut ermöglichen das Farbensehen?",
+      "answer": "Zapfen",
+      "accept": ["Zapfenzellen"],
+      "distractors": ["Stäbchen", "Axone", "Pupillen"],
+      "example": "Zapfen arbeiten am besten bei hellem Licht und kommen in drei Typen vor.",
+      "note": "Stäbchen sind weit zahlreicher als Zapfen und übernehmen das Sehen bei schwachem Licht, aber nur in Graustufen. Deshalb verblassen Farben nachts: Den Zapfen fehlt das Licht."
+    },
+    {
+      "id": "human-body-015",
+      "prompt": "Welcher Teil des Gehirns koordiniert vor allem Gleichgewicht und flüssige Bewegungen?",
+      "answer": "Kleinhirn",
+      "accept": ["das Kleinhirn", "Cerebellum", "Zerebellum"],
+      "distractors": ["Hypothalamus", "Stirnlappen", "Hippocampus"],
+      "example": "Das Kleinhirn hilft dir, Fahrrad zu fahren, ohne umzukippen.",
+      "note": "Auf Latein heißt es Cerebellum, wörtlich kleines Gehirn. Es sitzt am Hinterkopf unter dem Großhirn und enthält mehr als die Hälfte aller Nervenzellen des Gehirns."
+    },
+    {
+      "id": "human-body-016",
+      "prompt": "Wie heißen die Nervenzellen, die elektrische Signale weiterleiten?",
+      "answer": "Neurone",
+      "accept": ["Neuronen", "Nervenzellen", "Neuron"],
+      "distractors": ["Nephrone", "Blutplättchen", "Osteozyten"],
+      "example": "Neurone geben Signale an Kontaktstellen namens Synapsen weiter.",
+      "note": "Das menschliche Gehirn hat rund 86 Milliarden Neurone. Signale laufen entlang eines langen Fortsatzes, des Axons, in manchen Nerven schneller als 100 Meter pro Sekunde."
+    },
+    {
+      "id": "human-body-017",
+      "prompt": "Wie viele Zähne hat ein vollständiges Erwachsenengebiss, Weisheitszähne eingeschlossen?",
+      "answer": "32",
+      "accept": ["zweiunddreißig"],
+      "distractors": ["24", "36", "42"],
+      "example": "Ein vollständiges Erwachsenengebiss hat 32 Zähne, darunter vier Weisheitszähne.",
+      "note": "Kinder haben 20 Milchzähne, die ab etwa sechs Jahren ersetzt werden. Viele Erwachsene haben nur 28 Zähne, weil die Weisheitszähne nie durchbrechen oder entfernt werden."
+    },
+    {
+      "id": "human-body-018",
+      "prompt": "Welcher Kiefermuskel wird oft als stärkster Muskel des Körpers genannt, gemessen an der Kraft, die er aufbringen kann?",
+      "answer": "Kaumuskel",
+      "accept": ["Masseter", "der Kaumuskel"],
+      "distractors": ["Bizeps", "Quadrizeps", "Zunge"],
+      "example": "Beiß die Zähne zusammen, dann spürst du den Kaumuskel an der Wange.",
+      "note": "Weil er so nah am Kiefergelenk sitzt, arbeitet der Kaumuskel mit großer Hebelwirkung und lässt die Backenzähne mit Hunderten Newton zubeißen. Welcher Muskel der stärkste ist, hängt von der Messart ab, deshalb wird er oft genannt, nicht bewiesen."
+    },
+    {
+      "id": "human-body-019",
+      "prompt": "Was ist der größte Muskel im menschlichen Körper?",
+      "answer": "Gluteus maximus",
+      "accept": ["großer Gesäßmuskel", "Gesäßmuskel"],
+      "distractors": ["Latissimus dorsi", "Deltamuskel", "Großer Brustmuskel"],
+      "example": "Beim Treppensteigen arbeitet der Gluteus maximus besonders hart.",
+      "note": "Dieser Gesäßmuskel hält den Körper aufrecht und treibt Klettern, Laufen und Aufstehen an. Seine Größe hängt mit dem aufrechten Gang des Menschen zusammen."
+    },
+    {
+      "id": "human-body-020",
+      "prompt": "Wie hoch ist der normale Ruhepuls eines Erwachsenen?",
+      "answer": "60 bis 100 pro Minute",
+      "accept": ["60-100", "60 bis 100", "60-100 pro Minute"],
+      "distractors": ["20 bis 40 pro Minute", "120 bis 160 pro Minute", "180 bis 220 pro Minute"],
+      "example": "Ein Ruhepuls von 60 bis 100 pro Minute gilt bei Erwachsenen als normal.",
+      "note": "Trainierte Ausdauersportler haben oft einen niedrigeren Ruhepuls, weil ein kräftigeres Herz mit jedem Schlag mehr Blut pumpt. Der Puls lässt sich leicht am Handgelenk oder am Hals zählen."
+    },
+    {
+      "id": "human-body-021",
+      "prompt": "Wie hoch ist die normale Körpertemperatur des Menschen ungefähr?",
+      "answer": "37 °C",
+      "accept": ["37 C", "37°C", "37"],
+      "distractors": ["35 °C", "39 °C", "41 °C"],
+      "example": "Die normale Körpertemperatur liegt bei etwa 37 °C.",
+      "note": "Die Körpertemperatur ist nicht fest: Meist ist sie am frühen Morgen am niedrigsten und am späten Nachmittag am höchsten. Ein kleiner Teil des Gehirns, der Hypothalamus, arbeitet als Thermostat."
+    },
+    {
+      "id": "human-body-022",
+      "prompt": "Wo werden die meisten Nährstoffe ins Blut aufgenommen?",
+      "answer": "Dünndarm",
+      "accept": ["im Dünndarm", "Duenndarm"],
+      "distractors": ["Magen", "Dickdarm", "Speiseröhre"],
+      "example": "Der größte Teil der Nahrung wird im Dünndarm aufgenommen.",
+      "note": "Seine Wand ist mit fingerförmigen Zotten bedeckt, die wiederum winzige Mikrovilli tragen. Diese Faltung schafft eine riesige Oberfläche für die Aufnahme von Nährstoffen."
+    },
+    {
+      "id": "human-body-023",
+      "prompt": "Galle wird in der Leber gebildet. Wo wird sie gespeichert?",
+      "answer": "Gallenblase",
+      "accept": ["in der Gallenblase"],
+      "distractors": ["Milz", "Blinddarm", "Harnblase"],
+      "example": "Nach einer fettigen Mahlzeit drückt die Gallenblase Galle in den Darm.",
+      "note": "Galle zerlegt Fett in kleine Tröpfchen, ähnlich wie Spülmittel in einer fettigen Pfanne. Man kann ohne Gallenblase leben, weil die Leber trotzdem weiter Galle bildet."
+    },
+    {
+      "id": "human-body-024",
+      "prompt": "Welches Vitamin bildet die Haut, wenn Sonnenlicht auf sie fällt?",
+      "answer": "Vitamin D",
+      "accept": ["D", "Vit. D"],
+      "distractors": ["Vitamin C", "Vitamin B12", "Vitamin K"],
+      "example": "Sonnenlicht auf der Haut hilft dem Körper, Vitamin D zu bilden.",
+      "note": "UVB-Strahlen verwandeln einen cholesterinähnlichen Stoff in der Haut in Vitamin D. Der Körper braucht es, um Calcium aufzunehmen, das die Knochen stark hält."
+    },
+    {
+      "id": "human-body-025",
+      "prompt": "Was verbindet einen Muskel mit einem Knochen?",
+      "answer": "Sehne",
+      "accept": ["Sehnen", "die Sehne"],
+      "distractors": ["Band", "Knorpel", "Faszie"],
+      "example": "Die Achillessehne verbindet den Wadenmuskel mit dem Fersenbein, sie ist die kräftigste Sehne des Körpers.",
+      "note": "Sehnen verbinden Muskeln mit Knochen, Bänder dagegen Knochen mit Knochen und stabilisieren die Gelenke. Beim Umknicken reißt deshalb meist ein Band, keine Sehne."
+    }
+  ]
+}

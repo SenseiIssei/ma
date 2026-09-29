@@ -1,0 +1,235 @@
+{
+  "id": "personal-finance",
+  "locale": "de",
+  "title": "Finanzen Grundlagen",
+  "subtitle": "Grundbegriffe erklärt, Bildung statt Anlageberatung",
+  "symbol": "金",
+  "category": "life",
+  "cards": [
+    {
+      "id": "personal-finance-001",
+      "prompt": "Wie nennt man es, wenn du Zinsen nicht nur auf deine Einzahlung, sondern auch auf bereits erhaltene Zinsen bekommst?",
+      "answer": "Zinseszins",
+      "accept": ["Zinseszinseffekt", "Zinseszinsen"],
+      "distractors": ["Einfacher Zins", "Nominalzins", "Leitzins"],
+      "example": "Der Zinseszins macht aus kleinen, regelmäßigen Ersparnissen über Jahrzehnte erstaunlich große Summen.",
+      "note": "Die Zinsen jedes Jahres werden dem Guthaben zugeschlagen und verzinsen sich selbst mit, so beschleunigt sich das Wachstum. Je länger der Zeitraum, desto stärker der Effekt."
+    },
+    {
+      "id": "personal-finance-002",
+      "prompt": "Du legst 100 zu 10 % Zinsen pro Jahr an, jährlich verzinst. Wie hoch ist das Guthaben nach zwei Jahren?",
+      "answer": "121",
+      "accept": ["121,00", "121.00"],
+      "distractors": ["120", "110", "200"],
+      "example": "Nach zwei Jahren stehen 121 auf dem Konto und nicht 120, weil im zweiten Jahr auch die Zinsen des ersten Jahres verzinst werden.",
+      "note": "Jahr eins: 100 x 1,10 = 110. Jahr zwei: 110 x 1,10 = 121. Die zusätzliche 1 sind Zinsen auf Zinsen, der Keim des Zinseszinses."
+    },
+    {
+      "id": "personal-finance-003",
+      "prompt": "Wie nennt man den allgemeinen Anstieg der Preise im Lauf der Zeit?",
+      "answer": "Inflation",
+      "accept": ["Teuerung"],
+      "distractors": ["Deflation", "Rezession", "Abschreibung"],
+      "example": "Inflation bedeutet, dass derselbe Einkaufskorb dieses Jahr mehr kostet als im letzten.",
+      "note": "Steigen die Preise, kauft jede Geldeinheit etwas weniger. Viele Zentralbanken streben eine niedrige, stabile Inflation von etwa 2 % pro Jahr an."
+    },
+    {
+      "id": "personal-finance-004",
+      "prompt": "Dein Erspartes bringt 2 % pro Jahr, die Inflation liegt bei 3 %. Was passiert mit deiner Kaufkraft?",
+      "answer": "Sie sinkt",
+      "accept": ["Sie fällt", "Sie nimmt ab", "Sinkt"],
+      "distractors": ["Sie steigt", "Sie bleibt gleich", "Sie verdoppelt sich"],
+      "example": "Sie sinkt real, obwohl der Kontostand auf dem Auszug weiter wächst.",
+      "note": "Entscheidend ist die reale Rendite: Zins minus Inflation. Hier sind das etwa 2 % minus 3 %, also rund minus 1 % pro Jahr."
+    },
+    {
+      "id": "personal-finance-005",
+      "prompt": "Wie lange dauert es nach der 72er-Regel ungefähr, bis sich Geld bei 6 % pro Jahr verdoppelt?",
+      "answer": "12 Jahre",
+      "accept": ["12", "Zwölf Jahre"],
+      "distractors": ["6 Jahre", "10 Jahre", "18 Jahre"],
+      "example": "Bei 6 % im Jahr ergibt 72 geteilt durch 6 etwa 12 Jahre bis zur Verdopplung.",
+      "note": "Teile 72 durch den jährlichen Prozentsatz, um die Verdopplungszeit zu schätzen. Das gilt auch umgekehrt: Bei 3 % Inflation verdoppeln sich die Preise in etwa 24 Jahren."
+    },
+    {
+      "id": "personal-finance-006",
+      "prompt": "Wie nennt man es, Geld auf viele verschiedene Anlagen zu verteilen, um das Risiko zu senken?",
+      "answer": "Diversifikation",
+      "accept": ["Diversifizierung", "Streuung", "Risikostreuung"],
+      "distractors": ["Hebelwirkung", "Spekulation", "Konsolidierung"],
+      "example": "Dank Diversifikation fällt die Pleite eines einzelnen Unternehmens in einem Depot mit Hunderten Werten kaum ins Gewicht.",
+      "note": "Die Idee lautet: Leg nicht alle Eier in einen Korb. Das senkt das Risiko eines Einzelausfalls, kann aber nicht verhindern, dass der ganze Markt fällt."
+    },
+    {
+      "id": "personal-finance-007",
+      "prompt": "Was ist eine gängige Faustregel für die Höhe eines Notgroschens?",
+      "answer": "3 bis 6 Monatsausgaben",
+      "accept": ["3-6 Monatsausgaben", "3 bis 6 Monate"],
+      "distractors": ["1 bis 2 Wochenausgaben", "3 bis 6 Jahresausgaben", "Eine Monatsmiete"],
+      "example": "Eine gängige Faustregel lautet, 3 bis 6 Monatsausgaben auf einem schnell verfügbaren Konto zu halten.",
+      "note": "Dieser Puffer fängt Überraschungen wie ein kaputtes Auto oder einen Jobverlust ab, ohne dass du Schulden machen musst. Es ist eine Faustregel: Wer ein unsicheres Einkommen hat, peilt oft das obere Ende an."
+    },
+    {
+      "id": "personal-finance-008",
+      "prompt": "Wie heißt ein Fonds, der einfach einen Marktindex nachbilden will?",
+      "answer": "Indexfonds",
+      "accept": ["Ein Indexfonds", "Index-Fonds"],
+      "distractors": ["Hedgefonds", "Geldmarktfonds", "Wagniskapitalfonds"],
+      "example": "Ein Indexfonds versucht nicht, den Markt zu schlagen, sondern ihn abzubilden.",
+      "note": "Indexfonds werden passiv verwaltet, was ihre Kosten meist niedrig hält. Ihre Rendite folgt eng dem Index, abzüglich der Gebühren."
+    },
+    {
+      "id": "personal-finance-009",
+      "prompt": "Wofür steht die Abkürzung ETF auf Deutsch?",
+      "answer": "Börsengehandelter Fonds",
+      "accept": ["Boersengehandelter Fonds", "Exchange Traded Fund", "Exchange-traded Fund"],
+      "distractors": ["Eigenkapital-Treuhandfonds", "Elektronische Transfergebühr", "Einmaliger Tilgungsfonds"],
+      "example": "Börsengehandelter Fonds ist die deutsche Bezeichnung für einen ETF, der sich den ganzen Handelstag über kaufen und verkaufen lässt.",
+      "note": "ETF heißt Exchange Traded Fund, also ein Fonds, dessen Anteile wie Aktien an der Börse gehandelt werden. Viele ETFs bilden einen Index nach, aber nicht alle."
+    },
+    {
+      "id": "personal-finance-010",
+      "prompt": "Wie heißen die jährlichen Kosten eines Fonds, angegeben in Prozent des angelegten Geldes?",
+      "answer": "TER",
+      "accept": ["Total Expense Ratio", "Gesamtkostenquote", "Laufende Kosten"],
+      "distractors": ["Ausgabeaufschlag", "Dividendenrendite", "Tracking Error"],
+      "example": "Eine TER von 0,2 % heißt: Pro 1.000 Anlagesumme fallen etwa 2 im Jahr an.",
+      "note": "Die Kosten werden automatisch aus dem Fonds entnommen, du bekommst also nie eine Rechnung. TER steht für Total Expense Ratio, im Englischen oft expense ratio genannt."
+    },
+    {
+      "id": "personal-finance-011",
+      "prompt": "Bei 6 % Wachstum pro Jahr über 30 Jahre: Um wie viel kleiner fällt das Endergebnis etwa aus, wenn Gebühren jährlich 1 % mehr kosten?",
+      "answer": "Etwa ein Viertel",
+      "accept": ["Etwa 25 %", "Rund ein Viertel", "25 %", "25%"],
+      "distractors": ["Etwa 1 Prozent", "Etwa 3 Prozent", "Etwa zwei Drittel"],
+      "example": "Etwa ein Viertel weniger bleibt übrig, wenn das Geld 30 Jahre mit 5 % statt mit 6 % wächst.",
+      "note": "1,06 hoch 30 ergibt etwa 5,74, 1,05 hoch 30 nur etwa 4,32. Eine Gebühr, die pro Jahr winzig wirkt, wächst durch den Zinseszins zu einer großen Lücke."
+    },
+    {
+      "id": "personal-finance-012",
+      "prompt": "Wie nennt man einen Anteil am Eigentum eines Unternehmens?",
+      "answer": "Eine Aktie",
+      "accept": ["Aktie"],
+      "distractors": ["Eine Anleihe", "Ein Kredit", "Eine Option"],
+      "example": "Eine Aktie macht dich zum Miteigentümer, du bist also an Gewinnen und Verlusten beteiligt.",
+      "note": "Aktienkurse können stark schwanken, doch über lange Zeiträume haben Aktien historisch mehr erwirtschaftet als Anleihen. Diese höhere erwartete Rendite ist der Lohn für das höhere Risiko."
+    },
+    {
+      "id": "personal-finance-013",
+      "prompt": "Was hältst du, wenn du einem Staat oder Unternehmen Geld leihst und dafür regelmäßig Zinsen bekommst?",
+      "answer": "Eine Anleihe",
+      "accept": ["Anleihe", "Eine Obligation"],
+      "distractors": ["Eine Aktie", "Eine Dividende", "Ein Derivat"],
+      "example": "Eine Anleihe zahlt feste Zinsen und gibt am Ende der Laufzeit das geliehene Geld zurück.",
+      "note": "Als Anleihegläubiger bist du Geldgeber, nicht Eigentümer. Anleihen schwanken meist weniger als Aktien, bergen aber trotzdem Risiken wie einen Zahlungsausfall oder steigende Zinsen."
+    },
+    {
+      "id": "personal-finance-014",
+      "prompt": "Wie heißt der Anteil am Unternehmensgewinn, der an die Aktionäre ausgezahlt wird?",
+      "answer": "Dividende",
+      "accept": ["Eine Dividende"],
+      "distractors": ["Kupon", "Prämie", "Rabatt"],
+      "example": "Nach einem guten Jahr zahlte das Unternehmen eine Dividende von 1 pro Aktie.",
+      "note": "Dividenden sind freiwillig: Ein Unternehmen kann sie erhöhen, kürzen oder streichen. Wird eine Dividende ausgezahlt, sinkt der Aktienkurs typischerweise ungefähr um diesen Betrag."
+    },
+    {
+      "id": "personal-finance-015",
+      "prompt": "Womit geht eine höhere erwartete Rendite in der Regel einher?",
+      "answer": "Höheres Risiko",
+      "accept": ["Mehr Risiko", "Einem höheren Risiko", "Hoeheres Risiko"],
+      "distractors": ["Geringeres Risiko", "Kein Risiko", "Niedrigere Gebühren"],
+      "example": "Höheres Risiko ist der Preis, den Aktien im Vergleich zum Sparkonto für ihre höhere erwartete Rendite verlangen.",
+      "note": "Anleger verlangen einen Ausgleich dafür, Unsicherheit zu tragen. Bietet dir jemand hohe Renditen bei geringem Risiko, sei sehr misstrauisch."
+    },
+    {
+      "id": "personal-finance-016",
+      "prompt": "Wie nennt man es, wenn ein Kurs stark nach oben und unten schwankt?",
+      "answer": "Volatilität",
+      "accept": ["Volatilitaet", "Schwankungsbreite"],
+      "distractors": ["Liquidität", "Inflation", "Hebelwirkung"],
+      "example": "Die Volatilität war in jenem Jahr hoch, der Index bewegte sich in einer einzigen Woche um mehrere Prozent.",
+      "note": "Hohe Volatilität bedeutet kurzfristig eine große Bandbreite möglicher Ergebnisse. Geld, das bald gebraucht wird, hält man meist von sehr schwankungsanfälligen Anlagen fern."
+    },
+    {
+      "id": "personal-finance-017",
+      "prompt": "Was beschreibt, wie schnell sich eine Anlage ohne großen Verlust in Bargeld umwandeln lässt?",
+      "answer": "Liquidität",
+      "accept": ["Liquiditaet"],
+      "distractors": ["Volatilität", "Solvenz", "Rendite"],
+      "example": "Ein Tagesgeldkonto bietet hohe Liquidität, ein Haus zu verkaufen kann dagegen Monate dauern.",
+      "note": "Ein Notgroschen braucht hohe Liquidität. Schwer verkäufliche Anlagen muss man oft mit Abschlag verkaufen, wenn man schnell Geld braucht."
+    },
+    {
+      "id": "personal-finance-018",
+      "prompt": "Welche Angabe bezieht Gebühren mit ein und zeigt die wahren jährlichen Kosten eines Kredits?",
+      "answer": "Effektiver Jahreszins",
+      "accept": ["Effektivzins", "Effektiver Zins"],
+      "distractors": ["Sollzins", "Leitzins", "Kuponzins"],
+      "example": "Effektiver Jahreszins heißt die Angabe mit eingerechneten Gebühren, deshalb können zwei Kredite mit gleichem Sollzins unterschiedlich teuer sein.",
+      "note": "Der reine Sollzins lässt Gebühren wie Bearbeitungskosten außen vor. Um Kredite fair zu vergleichen, vergleicht man den effektiven Jahreszins."
+    },
+    {
+      "id": "personal-finance-019",
+      "prompt": "Was passiert in der Regel, wenn du bei einer Kreditkarte jeden Monat nur den Mindestbetrag zahlst?",
+      "answer": "Hohe Zinsen auf den Rest",
+      "accept": ["Zinsen auf den Rest", "Hohe Zinsen"],
+      "distractors": ["Gar keine Zinsen", "Ein niedrigeres Limit", "Eine automatische Erstattung"],
+      "example": "Hohe Zinsen auf den Rest summieren sich Monat für Monat, wenn du nur den Mindestbetrag zahlst.",
+      "note": "Kreditkartenzinsen liegen oft weit über anderen Krediten, sodass die Schuld schneller wachsen kann, als du tilgst. Eine Schuld mit 20 % Zinsen abzuzahlen wirkt wie eine garantierte Rendite von 20 %."
+    },
+    {
+      "id": "personal-finance-020",
+      "prompt": "Wie nennt man einen Plan, wie du dein Einkommen ausgibst und sparst?",
+      "answer": "Budget",
+      "accept": ["Haushaltsplan", "Ein Budget", "Haushaltsbuch"],
+      "distractors": ["Bilanz", "Rechnung", "Portfolio"],
+      "example": "Ihr Budget zeigte, dass kleine tägliche Käufe sich zu einer großen Monatssumme addierten.",
+      "note": "Ein Budget gibt jedem Euro oder Franken eine Aufgabe, bevor der Monat beginnt. Ein paar Wochen lang die echten Ausgaben aufzuschreiben ist oft der aufschlussreichste erste Schritt."
+    },
+    {
+      "id": "personal-finance-021",
+      "prompt": "Welcher Anteil des Nettoeinkommens geht nach der 50/30/20-Regel ins Sparen und Schuldenabbauen?",
+      "answer": "20 Prozent",
+      "accept": ["20 %", "20%", "20"],
+      "distractors": ["30 Prozent", "50 Prozent", "10 Prozent"],
+      "example": "Nach der 50/30/20-Regel werden 20 Prozent für Ersparnisse und zusätzliche Tilgung zurückgelegt.",
+      "note": "50 % gehen an Notwendiges, 30 % an Wünsche und 20 % an Sparen und Schuldenabbau. Das ist ein einfacher Startpunkt, kein Gesetz, und viele passen die Aufteilung an."
+    },
+    {
+      "id": "personal-finance-022",
+      "prompt": "Wie heißt dein Einkommen nach Steuern und sonstigen Abzügen?",
+      "answer": "Nettoeinkommen",
+      "accept": ["Netto", "Nettogehalt", "Nettolohn"],
+      "distractors": ["Bruttoeinkommen", "Zu versteuerndes Einkommen", "Umsatz"],
+      "example": "Das Nettoeinkommen ist der Betrag, der tatsächlich auf deinem Konto landet.",
+      "note": "Brutto ist der volle Betrag vor Abzügen, netto das, was übrig bleibt. Ein Budget plant man am besten mit dem Nettoeinkommen, denn nur das kannst du wirklich ausgeben."
+    },
+    {
+      "id": "personal-finance-023",
+      "prompt": "Wie heißt der Effekt, wenn man in festen Abständen einen festen Betrag anlegt und so bei niedrigen Kursen mehr Anteile kauft?",
+      "answer": "Cost-Average-Effekt",
+      "accept": ["Cost Average Effekt", "Durchschnittskosteneffekt", "Sparplan"],
+      "distractors": ["Market Timing", "Daytrading", "Leerverkauf"],
+      "example": "Beim Cost-Average-Effekt kauft dieselbe Monatsrate im Tief mehr Anteile und im Hoch weniger.",
+      "note": "Ein Sparplan verteilt den Einstiegspreis über die Zeit und nimmt den Druck, den perfekten Moment zu finden. Einen Gewinn garantiert das nicht, aber es schafft eine stetige Gewohnheit."
+    },
+    {
+      "id": "personal-finance-024",
+      "prompt": "Ergänze die Börsenweisheit: '___ schlägt Market Timing.'",
+      "answer": "Zeit im Markt",
+      "accept": ["Die Zeit im Markt"],
+      "distractors": ["Glück im Markt", "Tempo im Markt", "Größe im Markt"],
+      "example": "Zeit im Markt schlägt Market Timing, weil niemand die nächste Bewegung zuverlässig vorhersagt.",
+      "note": "Viele der besten Börsentage folgen direkt auf die schlechtesten. Wer aussteigt, verpasst oft genau diese Erholungen."
+    },
+    {
+      "id": "personal-finance-025",
+      "prompt": "Welches Versprechen ist ein klassisches Warnsignal für Anlagebetrug?",
+      "answer": "Garantierte hohe Renditen",
+      "accept": ["Garantierte Rendite", "Garantierte Renditen", "Hohe garantierte Renditen"],
+      "distractors": ["Eine offene Kostenliste", "Regulierte Verwahrung", "Klare Risikohinweise"],
+      "example": "Garantierte hohe Renditen standen groß in der Anzeige, genau das Warnsignal, vor dem Aufsichtsbehörden warnen.",
+      "note": "Hohe Rendite geht immer mit Risiko einher, niemand kann ehrlich beides garantieren. Zeitdruck bei der Entscheidung und Geheimniskrämerei sind weitere Warnsignale."
+    }
+  ]
+}

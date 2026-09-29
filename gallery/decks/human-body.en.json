@@ -1,0 +1,234 @@
+{
+  "id": "human-body",
+  "locale": "en",
+  "title": "Human body",
+  "subtitle": "Bones, organs, blood and senses",
+  "symbol": "体",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "human-body-001",
+      "prompt": "How many bones does an adult human skeleton usually have?",
+      "answer": "206",
+      "distractors": ["186", "226", "250"],
+      "example": "An adult skeleton usually has 206 bones.",
+      "note": "Babies are born with around 270 to 300 bones and cartilage pieces. Many of them fuse as we grow, for example in the skull and the base of the spine."
+    },
+    {
+      "id": "human-body-002",
+      "prompt": "What is the largest organ of the human body?",
+      "answer": "Skin",
+      "accept": ["the skin"],
+      "distractors": ["Liver", "Lungs", "Brain"],
+      "example": "Skin covers about two square metres in an adult.",
+      "note": "In an adult the skin weighs around 4 kilograms and covers roughly 2 square metres. It protects, regulates temperature and even makes vitamin D."
+    },
+    {
+      "id": "human-body-003",
+      "prompt": "What is the largest internal organ?",
+      "answer": "Liver",
+      "accept": ["the liver"],
+      "distractors": ["Heart", "Stomach", "Spleen"],
+      "example": "Liver tissue can regrow after part of it is removed.",
+      "note": "The liver handles hundreds of jobs, from storing sugar to breaking down toxins and making bile. It is also remarkable for being able to regrow lost tissue."
+    },
+    {
+      "id": "human-body-004",
+      "prompt": "What is the smallest bone in the human body?",
+      "answer": "Stapes",
+      "accept": ["stirrup", "stirrup bone"],
+      "distractors": ["Incus", "Malleus", "Hyoid"],
+      "example": "Stapes is the Latin word for stirrup.",
+      "note": "The stapes is shaped like a stirrup and passes sound vibrations to the inner ear. It is the last of three tiny ear bones, after the malleus (hammer) and incus (anvil)."
+    },
+    {
+      "id": "human-body-005",
+      "prompt": "What is the longest bone in the human body?",
+      "answer": "Femur",
+      "accept": ["thigh bone", "thighbone"],
+      "distractors": ["Tibia", "Humerus", "Fibula"],
+      "example": "Femur fractures take a lot of force, because the bone is so strong.",
+      "note": "The femur makes up roughly a quarter of a person's height. It is also one of the strongest bones and can carry many times the body's weight."
+    },
+    {
+      "id": "human-body-006",
+      "prompt": "How many chambers does the human heart have?",
+      "answer": "4",
+      "accept": ["four"],
+      "distractors": ["2", "3", "6"],
+      "example": "The heart has 4 chambers: two atria on top and two ventricles below.",
+      "note": "The right side pumps blood to the lungs, the left side pumps it to the whole body. That is why the left ventricle has the thickest, strongest wall."
+    },
+    {
+      "id": "human-body-007",
+      "prompt": "Which protein in red blood cells carries oxygen?",
+      "answer": "Hemoglobin",
+      "accept": ["haemoglobin", "Hb"],
+      "distractors": ["Myoglobin", "Insulin", "Keratin"],
+      "example": "Hemoglobin binds oxygen in the lungs and releases it in the tissues.",
+      "note": "Each hemoglobin molecule contains iron, which is what makes blood red. Myoglobin is a related protein that stores oxygen inside muscles."
+    },
+    {
+      "id": "human-body-008",
+      "prompt": "Which small cell fragments in the blood help it clot?",
+      "answer": "Platelets",
+      "accept": ["thrombocytes"],
+      "distractors": ["Red blood cells", "White blood cells", "Plasma cells"],
+      "example": "Platelets rush to a cut and stick together to plug it.",
+      "note": "Platelets are not full cells but fragments broken off from large cells in the bone marrow. They live only about a week to ten days, so the body makes new ones constantly."
+    },
+    {
+      "id": "human-body-009",
+      "prompt": "What are the tiny air sacs in the lungs where oxygen enters the blood called?",
+      "answer": "Alveoli",
+      "accept": ["alveolus"],
+      "distractors": ["Bronchi", "Villi", "Sinuses"],
+      "example": "Alveoli are wrapped in a dense net of tiny blood vessels.",
+      "note": "The lungs hold hundreds of millions of alveoli. Spread out flat, their surface would cover about 70 square metres, enough room for fast gas exchange."
+    },
+    {
+      "id": "human-body-010",
+      "prompt": "Which dome-shaped muscle below the lungs is the main muscle for breathing?",
+      "answer": "Diaphragm",
+      "accept": ["the diaphragm"],
+      "distractors": ["Intercostals", "Trapezius", "Pectoralis"],
+      "example": "Diaphragm contractions pull air down into the lungs.",
+      "note": "A hiccup is a sudden, involuntary twitch of the diaphragm followed by the vocal cords snapping shut. That snap makes the familiar hic sound."
+    },
+    {
+      "id": "human-body-011",
+      "prompt": "Which organ produces insulin?",
+      "answer": "Pancreas",
+      "accept": ["the pancreas"],
+      "distractors": ["Liver", "Thyroid", "Spleen"],
+      "example": "Pancreas cells called beta cells release insulin after a meal.",
+      "note": "Insulin lets body cells take up sugar from the blood. It is made in small cell clusters called the islets of Langerhans, while the rest of the pancreas makes digestive enzymes."
+    },
+    {
+      "id": "human-body-012",
+      "prompt": "What are the tiny filtering units of the kidneys called?",
+      "answer": "Nephrons",
+      "accept": ["nephron"],
+      "distractors": ["Neurons", "Alveoli", "Villi"],
+      "example": "Nephrons filter the blood and turn the waste into urine.",
+      "note": "Together the kidneys filter about 180 litres of blood plasma a day. Almost all of it is reabsorbed, leaving only around 1.5 litres as urine."
+    },
+    {
+      "id": "human-body-013",
+      "prompt": "What is the clear, dome-shaped front layer of the eye called?",
+      "answer": "Cornea",
+      "accept": ["the cornea"],
+      "distractors": ["Retina", "Iris", "Lens"],
+      "example": "Cornea transplants are among the most common tissue transplants.",
+      "note": "The cornea has no blood vessels, which keeps it crystal clear. It gets oxygen directly from the air and nutrients from tears and the fluid behind it."
+    },
+    {
+      "id": "human-body-014",
+      "prompt": "Which light-sensitive cells in the retina let us see color?",
+      "answer": "Cones",
+      "accept": ["cone cells"],
+      "distractors": ["Rods", "Axons", "Pupils"],
+      "example": "Cones work best in bright light and come in three types.",
+      "note": "Rods far outnumber cones and handle dim light, but they only see shades of gray. That is why colors fade at night: the cones have too little light to work with."
+    },
+    {
+      "id": "human-body-015",
+      "prompt": "Which part of the brain mainly coordinates balance and smooth movement?",
+      "answer": "Cerebellum",
+      "accept": ["the cerebellum"],
+      "distractors": ["Hypothalamus", "Frontal lobe", "Hippocampus"],
+      "example": "Cerebellum damage can make walking clumsy and unsteady.",
+      "note": "Its name means little brain in Latin. It sits at the back of the head below the large cerebrum and holds more than half of all neurons in the brain."
+    },
+    {
+      "id": "human-body-016",
+      "prompt": "What are the nerve cells that carry electrical signals called?",
+      "answer": "Neurons",
+      "accept": ["neurones", "nerve cells", "neuron"],
+      "distractors": ["Nephrons", "Platelets", "Osteocytes"],
+      "example": "Neurons pass signals to each other at junctions called synapses.",
+      "note": "The human brain has around 86 billion neurons. Signals travel along a long fiber called the axon, in some nerves faster than 100 metres per second."
+    },
+    {
+      "id": "human-body-017",
+      "prompt": "How many teeth does a full adult set have, including wisdom teeth?",
+      "answer": "32",
+      "accept": ["thirty-two"],
+      "distractors": ["24", "36", "42"],
+      "example": "A full adult set has 32 teeth, including four wisdom teeth.",
+      "note": "Children have 20 milk teeth, which are replaced from about age six. Many adults have only 28 teeth because their wisdom teeth never come through or are removed."
+    },
+    {
+      "id": "human-body-018",
+      "prompt": "Which jaw muscle is often named the strongest in the body, measured by the force it can exert?",
+      "answer": "Masseter",
+      "accept": ["the masseter"],
+      "distractors": ["Biceps", "Quadriceps", "Tongue"],
+      "example": "Masseter muscles bulge at your cheeks when you clench your teeth.",
+      "note": "Because it sits so close to the jaw joint, the masseter works with great leverage and lets molars bite with a force of hundreds of newtons. Which muscle is strongest depends on how you measure, so it is often named rather than proven."
+    },
+    {
+      "id": "human-body-019",
+      "prompt": "What is the largest muscle in the human body?",
+      "answer": "Gluteus maximus",
+      "accept": ["glute", "gluteus"],
+      "distractors": ["Latissimus dorsi", "Deltoid", "Pectoralis major"],
+      "example": "Gluteus maximus is the Latin name of the big buttock muscle.",
+      "note": "This buttock muscle keeps the body upright and powers climbing, running and standing up. Its size is linked to humans walking on two legs."
+    },
+    {
+      "id": "human-body-020",
+      "prompt": "What is the normal resting heart rate range for an adult?",
+      "answer": "60 to 100 bpm",
+      "accept": ["60-100 bpm", "60-100", "60 to 100"],
+      "distractors": ["20 to 40 bpm", "120 to 160 bpm", "180 to 220 bpm"],
+      "example": "A resting pulse of 60 to 100 bpm is considered normal for adults.",
+      "note": "Trained endurance athletes often have lower resting rates, because a stronger heart pumps more blood with each beat. Heart rate is easy to count at the wrist or neck."
+    },
+    {
+      "id": "human-body-021",
+      "prompt": "What is the normal human body temperature, roughly?",
+      "answer": "37 °C",
+      "accept": ["37 C", "37°C", "37"],
+      "distractors": ["35 °C", "39 °C", "41 °C"],
+      "example": "Normal body temperature is about 37 °C, which is 98.6 °F.",
+      "note": "Body temperature is not fixed: it is usually lowest in the early morning and highest in the late afternoon. A small part of the brain, the hypothalamus, works as the thermostat."
+    },
+    {
+      "id": "human-body-022",
+      "prompt": "Where are most nutrients absorbed into the blood?",
+      "answer": "Small intestine",
+      "accept": ["the small intestine"],
+      "distractors": ["Stomach", "Large intestine", "Esophagus"],
+      "example": "Small intestine villi absorb most of the nutrients from food.",
+      "note": "Its wall is covered in finger-like villi, which are covered in even tinier microvilli. This folding gives it a huge surface for absorbing nutrients."
+    },
+    {
+      "id": "human-body-023",
+      "prompt": "Bile is made in the liver. Where is it stored?",
+      "answer": "Gallbladder",
+      "accept": ["gall bladder", "the gallbladder"],
+      "distractors": ["Spleen", "Appendix", "Urinary bladder"],
+      "example": "Gallbladder contractions squeeze bile into the gut after a fatty meal.",
+      "note": "Bile breaks fat into small droplets, a bit like dish soap on a greasy pan. People can live without a gallbladder, because the liver keeps making bile anyway."
+    },
+    {
+      "id": "human-body-024",
+      "prompt": "Which vitamin does the skin make when exposed to sunlight?",
+      "answer": "Vitamin D",
+      "accept": ["D", "vit D"],
+      "distractors": ["Vitamin C", "Vitamin B12", "Vitamin K"],
+      "example": "Sunlight on the skin helps the body make Vitamin D.",
+      "note": "UVB rays turn a cholesterol-based compound in the skin into vitamin D. The body needs it to absorb calcium, which keeps bones strong."
+    },
+    {
+      "id": "human-body-025",
+      "prompt": "What connects a muscle to a bone?",
+      "answer": "Tendon",
+      "accept": ["tendons"],
+      "distractors": ["Ligament", "Cartilage", "Fascia"],
+      "example": "Tendon injuries heal slowly because tendons have little blood supply.",
+      "note": "Tendons link muscle to bone, while ligaments link bone to bone and stabilize joints. Memory trick: Ligaments Link bones."
+    }
+  ]
+}

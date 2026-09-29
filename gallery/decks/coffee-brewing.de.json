@@ -1,0 +1,232 @@
+{
+  "id": "coffee-brewing",
+  "locale": "de",
+  "title": "Kaffee zubereiten",
+  "subtitle": "Bohnen, Mahlgrad, Wasser und Methoden",
+  "symbol": "珈",
+  "category": "life",
+  "cards": [
+    {
+      "id": "coffee-brewing-001",
+      "prompt": "Welche Kaffeeart enthält ungefähr doppelt so viel Koffein wie Arabica?",
+      "answer": "Robusta",
+      "accept": ["Coffea canephora", "Canephora"],
+      "distractors": ["Stenophylla", "Liberica", "Excelsa"],
+      "example": "Viele italienische Espressomischungen enthalten etwas Robusta für Körper und dichtere Crema.",
+      "note": "Robusta hat etwa doppelt so viel Koffein wie Arabica, und Koffein wirkt als natürliches Insektizid, deshalb ist die Pflanze robuster. Arabica schmeckt süßer und vielschichtiger und stellt den Großteil des Spezialitätenkaffees."
+    },
+    {
+      "id": "coffee-brewing-002",
+      "prompt": "Wie heißt die Zone rund um den Äquator zwischen den Wendekreisen, in der Kaffee wächst?",
+      "answer": "Kaffeegürtel",
+      "accept": ["Kaffeeguertel", "Coffee Belt"],
+      "distractors": ["Teegürtel", "Sonnengürtel", "Reisgürtel"],
+      "example": "Brasilien, Äthiopien und Kolumbien liegen alle im Kaffeegürtel.",
+      "note": "Kaffee braucht Wärme, regelmäßigen Regen und keinen Frost, und das findet er zwischen dem nördlichen und dem südlichen Wendekreis. Höhenlagen im Gürtel lassen die Früchte langsamer reifen und liefern oft komplexere Bohnen."
+    },
+    {
+      "id": "coffee-brewing-003",
+      "prompt": "Eine Kaffeebohne ist der Samen einer roten Frucht. Wie heißt diese Frucht?",
+      "answer": "Kirsche",
+      "accept": ["Kaffeekirsche"],
+      "distractors": ["Schote", "Nuss", "Zapfen"],
+      "example": "Jede reife Kirsche wird gepflückt, und ihre zwei Samen werden zu Kaffeebohnen.",
+      "note": "Eine Kaffeekirsche enthält meist zwei Samen, die flach aneinanderliegen, deshalb hat die Bohne eine flache Seite. Wächst nur ein runder Samen, nennt man ihn Perlbohne."
+    },
+    {
+      "id": "coffee-brewing-004",
+      "prompt": "Welcher Röstgrad bewahrt mehr vom Herkunftsaroma und der Säure der Bohne?",
+      "answer": "helle Röstung",
+      "accept": ["hell", "helle Roestung"],
+      "distractors": ["dunkle Röstung", "French Roast", "italienische Röstung"],
+      "example": "Eine helle Röstung aus Kenia kann nach schwarzer Johannisbeere und Zitrus schmecken.",
+      "note": "Je länger die Bohnen rösten, desto mehr ersetzen Röstaromen wie Schokolade und Rauch die fruchtigen Herkunftsnoten. Dunkle Röstungen schmecken kräftiger und bitterer, helle dagegen lebendiger."
+    },
+    {
+      "id": "coffee-brewing-005",
+      "prompt": "Wie heißt das Knacken beim Rösten, wenn Wasserdampf die Bohnen aufsprengt?",
+      "answer": "First Crack",
+      "accept": ["erster Crack", "1st Crack"],
+      "distractors": ["Second Crack", "Trocknungsphase", "Maillard-Phase"],
+      "example": "Helle Röstungen werden kurz nach dem First Crack aus der Trommel geholt.",
+      "note": "Bei etwa 196 °C wird das Wasser in der Bohne zu Dampf und sprengt sie mit einem Geräusch wie Popcorn auf. Ein zweites, leiseres Knistern später markiert den Beginn dunkler Röstungen."
+    },
+    {
+      "id": "coffee-brewing-006",
+      "prompt": "Welchen Mahlgrad braucht Espresso?",
+      "answer": "Fein",
+      "accept": ["sehr fein"],
+      "distractors": ["Grob", "Mittel", "Sehr grob"],
+      "example": "Fein gemahlenes Pulver setzt dem Wasser unter Druck genug Widerstand entgegen.",
+      "note": "Beim Espresso hat das Wasser nur etwa eine halbe Minute Kontakt, deshalb braucht es viel Oberfläche. Feines Pulver lässt sich außerdem so dicht pressen, dass es Wasser mit etwa 9 bar zurückhält."
+    },
+    {
+      "id": "coffee-brewing-007",
+      "prompt": "Welcher Mahlgrad passt zur French Press?",
+      "answer": "Grob",
+      "distractors": ["Fein", "Sehr fein", "Pulverfein"],
+      "example": "Grob gemahlener Kaffee bleibt beim Herunterdrücken im Metallsieb hängen.",
+      "note": "Das Pulver zieht mehrere Minuten, große Partikel verhindern deshalb eine Überextraktion. Feines Pulver würde außerdem durch das Sieb rutschen und den Kaffee trüb machen."
+    },
+    {
+      "id": "coffee-brewing-008",
+      "prompt": "Welche Wassertemperatur wird ungefähr zum Kaffeebrühen empfohlen?",
+      "answer": "90 bis 96 °C",
+      "accept": ["90 bis 96 C", "90-96 °C", "90-96 C", "90-96"],
+      "distractors": ["60 bis 65 °C", "70 bis 75 °C", "80 bis 84 °C"],
+      "example": "Wasser mit 90 bis 96 °C löst die Aromen, ohne das Pulver zu verbrennen.",
+      "note": "Die Specialty Coffee Association empfiehlt etwa 90,5 bis 96 °C. Ein einfacher Trick: kochendes Wasser etwa 30 Sekunden stehen lassen, bevor man aufgießt."
+    },
+    {
+      "id": "coffee-brewing-009",
+      "prompt": "Welches Verhältnis von Kaffee zu Wasser ist für Filterkaffee üblich?",
+      "answer": "1:15 bis 1:17",
+      "accept": ["1:16", "1:15-1:17"],
+      "distractors": ["1:2 bis 1:3", "1:5 bis 1:7", "1:30 bis 1:35"],
+      "example": "Ein Verhältnis von 1:15 bis 1:17 bedeutet etwa 60 Gramm Kaffee pro Liter Wasser.",
+      "note": "Ein Gramm Kaffee auf etwa 16 Gramm Wasser ist ein guter Startpunkt für Filterkaffee. Espresso ist mit etwa 1:2 viel stärker, deshalb ist ein Shot so klein."
+    },
+    {
+      "id": "coffee-brewing-010",
+      "prompt": "Mit ungefähr wie viel Druck brüht eine Espressomaschine einen Shot?",
+      "answer": "9 bar",
+      "accept": ["9"],
+      "distractors": ["2 bar", "20 bar", "50 bar"],
+      "example": "Die Pumpe drückt das Wasser mit etwa 9 bar durch den Kaffeepuck.",
+      "note": "9 bar sind etwa das Neunfache des Luftdrucks auf Meereshöhe. Dieser Druck presst Öle und feinste Teilchen in die Tasse, das gibt Espresso seinen Körper und seine Crema."
+    },
+    {
+      "id": "coffee-brewing-011",
+      "prompt": "Wie lange läuft ein klassischer Espresso ungefähr durch?",
+      "answer": "25 bis 30 Sekunden",
+      "accept": ["25-30 Sekunden", "25-30 s", "25 bis 30 s"],
+      "distractors": ["5 bis 8 Sekunden", "60 bis 90 Sekunden", "3 bis 4 Minuten"],
+      "example": "Ein ausgewogener Shot läuft meist 25 bis 30 Sekunden.",
+      "note": "Schießt der Shot in 10 Sekunden heraus, feiner mahlen; tropft er eine Minute lang, gröber mahlen. Die Durchlaufzeit ist die einfachste Stellschraube beim Espresso."
+    },
+    {
+      "id": "coffee-brewing-012",
+      "prompt": "Wie heißt der goldbraune Schaum auf einem Espresso?",
+      "answer": "Crema",
+      "distractors": ["Blooming", "Latte Art", "Milchschaum"],
+      "example": "Die Crema auf einem frischen Shot ist dicht und getigert.",
+      "note": "Crema entsteht, wenn der Druck CO2 und Öle im Kaffee löst, die beim Druckabfall aufschäumen. Sehr frische Bohnen enthalten mehr CO2 und liefern deshalb mehr Crema."
+    },
+    {
+      "id": "coffee-brewing-013",
+      "prompt": "Wie heißt beim Handfilter der erste kleine Aufguss, bei dem frisches Pulver blubbert und CO2 abgibt?",
+      "answer": "Blooming",
+      "accept": ["Bloom", "Vorbrühen"],
+      "distractors": ["Crema", "Tampen", "Drawdown"],
+      "example": "Das Blooming dauert etwa 30 Sekunden, bevor der Rest des Wassers folgt.",
+      "note": "Frisch gerösteter Kaffee steckt voller Kohlendioxid, das Wasser wegdrückt. Wenn er zuerst entgast, kann das restliche Wasser gleichmäßig extrahieren."
+    },
+    {
+      "id": "coffee-brewing-014",
+      "prompt": "Wie heißt die Methode, bei der man heißes Wasser von Hand über Kaffeepulver in einem Papierfilter gießt?",
+      "answer": "Handfilter",
+      "accept": ["Pour-Over", "Pour Over", "Handaufguss"],
+      "distractors": ["Cold Brew", "Mokkakanne", "Siebträger"],
+      "example": "Ein langsamer Handfilter bringt die fruchtigen Noten einer hellen Röstung hervor.",
+      "note": "Weil man Tempo und Muster des Aufgießens selbst steuert, liefert der Handfilter eine sehr klare Tasse. Das Papier hält außerdem Öle und feinste Teilchen zurück."
+    },
+    {
+      "id": "coffee-brewing-015",
+      "prompt": "Wie lange sollte Kaffee in der French Press ungefähr ziehen, bevor man drückt?",
+      "answer": "4 Minuten",
+      "accept": ["4 min", "vier Minuten"],
+      "distractors": ["30 Sekunden", "12 Minuten", "1 Stunde"],
+      "example": "Einmal umrühren, Deckel drauf und 4 Minuten warten.",
+      "note": "Die French Press ist ein Immersionsverfahren: Das ganze Wasser berührt die ganze Zeit das ganze Pulver. Etwa 4 Minuten mit grobem Mahlgrad extrahieren vollständig, ohne bitter zu werden."
+    },
+    {
+      "id": "coffee-brewing-016",
+      "prompt": "Wie lange zieht Cold Brew ungefähr?",
+      "answer": "12 bis 24 Stunden",
+      "accept": ["12-24 Stunden", "12-24 h", "12 bis 24 h"],
+      "distractors": ["1 bis 2 Stunden", "3 bis 5 Minuten", "3 bis 4 Tage"],
+      "example": "Cold Brew zieht im Kühlschrank 12 bis 24 Stunden.",
+      "note": "Kaltes Wasser extrahiert sehr langsam, deshalb ersetzt Zeit die Hitze. Viele bittere und saure Stoffe lösen sich in kaltem Wasser schlecht, darum schmeckt Cold Brew so weich und mild."
+    },
+    {
+      "id": "coffee-brewing-017",
+      "prompt": "Welcher Kunststoff-Bereiter von 2005 drückt Kaffee mit einem Kolben und Luftdruck durch einen Papierfilter?",
+      "answer": "AeroPress",
+      "accept": ["Aero Press"],
+      "distractors": ["French Press", "Chemex", "Mokkakanne"],
+      "example": "Auf Reisen hat sie immer eine AeroPress im Rucksack.",
+      "note": "Erfunden hat sie Alan Adler, der auch die Wurfscheibe Aerobie entworfen hat. Kurze Ziehzeiten und sanfter Druck machen sie fehlertolerant und leicht zu reinigen."
+    },
+    {
+      "id": "coffee-brewing-018",
+      "prompt": "Welcher Herdkocher drückt Wasser mit Dampfdruck durch das Pulver nach oben in eine obere Kammer?",
+      "answer": "Mokkakanne",
+      "accept": ["Espressokocher", "Moka", "Bialetti"],
+      "distractors": ["AeroPress", "Siphon", "French Press"],
+      "example": "Ihre Großmutter kochte jeden Morgen starken Kaffee in der Mokkakanne.",
+      "note": "Sie wurde 1933 in Italien erfunden und erreicht nur etwa 1 bis 2 bar, weit weniger als eine Espressomaschine. Der Kaffee ist kräftig, aber kein echter Espresso."
+    },
+    {
+      "id": "coffee-brewing-019",
+      "prompt": "Welche Mühlenart zerreibt Bohnen zwischen zwei Mahlscheiben oder Kegeln für einen gleichmäßigen Mahlgrad?",
+      "answer": "Mahlwerk",
+      "accept": ["Kegelmahlwerk", "Scheibenmahlwerk"],
+      "distractors": ["Schlagwerk", "Gewürzmühle", "Mörser"],
+      "example": "Ein gutes Mahlwerk liefert Teilchen von fast gleicher Größe.",
+      "note": "Ein Schlagwerk zerhackt die Bohnen zufällig und hinterlässt Staub neben groben Brocken. Der Staub überextrahiert, die Brocken unterextrahieren, und die Tasse schmeckt zugleich bitter und sauer."
+    },
+    {
+      "id": "coffee-brewing-020",
+      "prompt": "Kaffee, der sauer und dünn schmeckt, ist höchstwahrscheinlich...?",
+      "answer": "unterextrahiert",
+      "accept": ["unter extrahiert"],
+      "distractors": ["überextrahiert", "zu dunkel geröstet", "entkoffeiniert"],
+      "example": "Zu grob gemahlen war der Kaffee unterextrahiert und sauer.",
+      "note": "Saure Stoffe lösen sich zuerst, Süße und Bitterkeit später. Zu wenig Extraktion schmeckt sauer, zu viel bitter und trocken. Gegen sauren Kaffee hilft feiner mahlen oder heißeres Wasser."
+    },
+    {
+      "id": "coffee-brewing-021",
+      "prompt": "Wie bewahrt man Kaffeebohnen am besten auf?",
+      "answer": "luftdicht und dunkel",
+      "accept": ["luftdicht, dunkel", "dunkel und luftdicht"],
+      "distractors": ["offen und sonnig", "feucht und kalt", "offen im Kühlschrank"],
+      "example": "Bewahre die Bohnen luftdicht und dunkel bei Zimmertemperatur auf.",
+      "note": "Sauerstoff, Licht, Wärme und Feuchtigkeit lassen Kaffee altern. Eine offene Tüte im Kühlschrank ist keine gute Idee, weil die Bohnen Feuchtigkeit und Gerüche anderer Lebensmittel aufnehmen."
+    },
+    {
+      "id": "coffee-brewing-022",
+      "prompt": "Wie lange nach dem Rösten schmecken ganze Bohnen ungefähr am besten?",
+      "answer": "2 bis 4 Wochen",
+      "accept": ["2-4 Wochen", "ein paar Wochen"],
+      "distractors": ["2 bis 4 Stunden", "6 bis 12 Monate", "1 bis 2 Jahre"],
+      "example": "Die meisten Bohnen sind etwa 2 bis 4 Wochen nach dem Rösten auf ihrem Höhepunkt.",
+      "note": "Bohnen ruhen ein paar Tage, um CO2 abzugeben, dann verlieren sie langsam Aroma. Gemahlener Kaffee wird viel schneller schal, oft schon innerhalb einer Stunde, also erst direkt vor dem Brühen mahlen."
+    },
+    {
+      "id": "coffee-brewing-023",
+      "prompt": "Welches Espressogetränk hat eine dünne Schicht samtigen Mikroschaums und weniger Milch als ein Latte?",
+      "answer": "Flat White",
+      "distractors": ["Cappuccino", "Caffè Latte", "Macchiato"],
+      "example": "Er bestellte einen Flat White, weil er den Kaffee schmecken wollte.",
+      "note": "Ein Cappuccino hat eine dicke Haube aus luftigem Schaum, ein Latte die meiste Milch, und der Flat White liegt dazwischen mit weniger Milch und einer dünnen glänzenden Schicht. Meist wird er mit doppeltem Espresso gemacht."
+    },
+    {
+      "id": "coffee-brewing-024",
+      "prompt": "Wie nennt man Kaffee, dem vor dem Rösten fast das ganze Koffein entzogen wurde?",
+      "answer": "entkoffeiniert",
+      "accept": ["Decaf", "koffeinfrei"],
+      "distractors": ["Ristretto", "Lungo", "Cold Brew"],
+      "example": "Nach dem Abendessen trinkt sie nur Kaffee, der entkoffeiniert ist.",
+      "note": "Das Koffein wird den grünen Bohnen mit Wasser, CO2 oder Lösungsmitteln entzogen, meist etwa 97 Prozent oder mehr. Ein kleiner Rest Koffein bleibt trotzdem enthalten."
+    },
+    {
+      "id": "coffee-brewing-025",
+      "prompt": "Welche zwei Mineralien machen Wasser vor allem hart?",
+      "answer": "Calcium und Magnesium",
+      "accept": ["Kalzium und Magnesium", "Magnesium und Calcium"],
+      "distractors": ["Natrium und Chlorid", "Eisen und Zink", "Nitrat und Sulfat"],
+      "example": "Calcium und Magnesium helfen beim Lösen der Aromen, zu viel davon hinterlässt aber Kalk.",
+      "note": "Eine mittlere Menge dieser Mineralien verbessert die Extraktion. Sehr hartes Wasser schmeckt flach und verkalkt Maschinen, sehr weiches Wasser kann dünn und sauer schmecken."
+    }
+  ]
+}

@@ -7,6 +7,7 @@ struct LearnView: View {
     @State private var newDeck: Deck?
     @State private var importing = false
     @State private var creatingWithAI = false
+    @State private var browsingGallery = false
     @State private var message: String?
     /// nil shows every shelf.
     @State private var shelf: DeckCategory?
@@ -82,6 +83,9 @@ struct LearnView: View {
             }
             .sheet(item: $newDeck) { deck in
                 DeckEditorView(deck: deck, isNew: true)
+            }
+            .sheet(isPresented: $browsingGallery) {
+                GalleryView()
             }
             .sheet(isPresented: $creatingWithAI) {
                 CreateTopicView { deck in
@@ -241,6 +245,11 @@ struct LearnView: View {
                 creatingWithAI = true
             } label: {
                 Label(tr("Create a topic with AI", "Thema mit KI erstellen"), systemImage: "wand.and.stars")
+            }
+            Button {
+                browsingGallery = true
+            } label: {
+                Label(tr("Community gallery", "Community-Galerie"), systemImage: "square.grid.2x2")
             }
             Button {
                 importing = true

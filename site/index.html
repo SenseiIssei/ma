@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ma: space between you and the feed</title>
+  <meta name="description" content="Ma is a free, open-source iPhone app that blocks social media with Screen Time and asks one learning question before an unlock. Focus timer, breathing, habits, check-ins and a Safari filter against Reels. Everything stays on your iPhone.">
+  <meta name="theme-color" content="#0A0E22">
+  <link rel="canonical" href="https://senseiissei.github.io/ma/">
+  <link rel="alternate" hreflang="en" href="https://senseiissei.github.io/ma/">
+  <link rel="alternate" hreflang="de" href="https://senseiissei.github.io/ma/de/">
+  <link rel="alternate" hreflang="x-default" href="https://senseiissei.github.io/ma/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ma: space between you and the feed">
+  <meta property="og:description" content="Blocks social media with Screen Time and asks one learning question before an unlock. Free, open source, on-device.">
+  <meta property="og:image" content="https://senseiissei.github.io/ma/assets/img/welcome.jpg">
+  <meta property="og:url" content="https://senseiissei.github.io/ma/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    // First visit with a German browser goes to the German edition. After
+    // someone uses the EN/DE switch, their choice wins.
+    try {
+      if (!localStorage.getItem("ma-lang") && /^de\b/i.test(navigator.language || "")) location.replace("de/");
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap top">
+    <a class="brand" href="./" aria-label="Ma home">
+      <img src="assets/img/favicon-64.png" alt="" width="36" height="36">
+      <span>Ma</span><span class="kanji" lang="ja">間</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#pillars">Features</a>
+      <a href="gallery/">Deck gallery</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+      <a class="lang" href="de/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow"><span class="kanji" lang="ja">間</span> ma, the space between</span>
+        <h1>A breath between your thumb and the next feed.</h1>
+        <p class="lead">Ma blocks social media with Screen Time and puts one calm question in front of it. Learn something small first, then decide whether you still want in. Free, open source, and entirely on your iPhone.</p>
+        <div class="btn-row">
+          <span class="btn btn-soon" role="link" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+            <span>App Store</span> <small>Coming soon</small>
+          </span>
+          <a class="btn btn-quiet" href="https://github.com/SenseiIssei/ma">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <ul class="meta" aria-label="At a glance">
+          <li>iPhone, iOS 26</li>
+          <li>English and Deutsch</li>
+          <li>No account</li>
+          <li>No tracking</li>
+          <li>MIT licence</li>
+        </ul>
+      </div>
+
+      <div class="hero-phone" aria-hidden="true">
+        <div class="phone">
+          <div class="screen">
+            <img class="art" src="assets/img/welcome.jpg" alt="" width="720" height="720">
+            <div class="ui">
+              <div class="s">Take one breath. Then:</div>
+              <div class="t">What is the capital of Australia?</div>
+              <div class="opt">Sydney</div>
+              <div class="opt right">Canberra</div>
+              <div class="opt">Melbourne</div>
+              <div class="pill">Open for 5 minutes</div>
+              <div class="pill quiet">I'll leave it</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="pillars">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">What Ma does</span>
+          <h2>Six quiet tools, one calm app.</h2>
+          <p>Ma is not about willpower. It adds a little space where the pull is strongest, and gives that space something worth doing.</p>
+        </div>
+
+        <div class="pillars">
+          <article class="card pillar">
+            <img src="assets/img/block.jpg" alt="" loading="lazy" width="720" height="720">
+            <div class="body">
+              <span class="tag">Boundaries</span>
+              <h3>Block what pulls at you</h3>
+              <p>Block lists of apps, categories and websites through Apple's Screen Time, each with its own time window, number of questions and unlock length.</p>
+              <ul>
+                <li>Templates for social media, morning calm, deep work and night</li>
+                <li>Daily unlock limits, rising friction, a short wait</li>
+                <li>Lockdown: everything off until the next morning</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card pillar">
+            <img src="assets/img/learn.jpg" alt="" loading="lazy" width="720" height="720">
+            <div class="body">
+              <span class="tag" style="--tint: var(--cyan)">Learn first, then practise</span>
+              <h3>A question at the gate</h3>
+              <p>Before a blocked app opens, Ma asks about a topic you chose. New cards are taught before they are asked, so the gate only asks what you have already learned.</p>
+              <ul>
+                <li>Eight exercise types, from multiple choice to typing</li>
+                <li>Spaced repetition with a Leitner box per card</li>
+                <li>Bundled decks, your own, or the <a href="gallery/">community gallery</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card pillar">
+            <img src="assets/img/focus.jpg" alt="" loading="lazy" width="720" height="720">
+            <div class="body">
+              <span class="tag" style="--tint: var(--amber)">Focus</span>
+              <h3>A timer that means it</h3>
+              <p>Pomodoro with 25, 5 and 15 minutes, all adjustable. During a round every boundary sleeps, without exceptions if you want, and the timer keeps running when Ma is closed.</p>
+              <ul>
+                <li>Rain, brown noise, ocean and a night drone, generated on the device</li>
+                <li>A jump into Spotify search if you prefer your own music</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card pillar">
+            <img src="assets/img/breathe.jpg" alt="" loading="lazy" width="720" height="720">
+            <div class="body">
+              <span class="tag" style="--tint: var(--green)">Today</span>
+              <h3>Breathing, habits, check-ins</h3>
+              <p>Three rings for the day: focus, learning and habits. Small rituals that take a minute and add up.</p>
+              <ul>
+                <li>Morning check-in with mood and one intention</li>
+                <li>Evening reflection with three short questions</li>
+                <li>Box, 4-7-8 and calm breathing with haptics</li>
+                <li>Daily habits with streaks</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card pillar">
+            <img src="assets/img/habits.jpg" alt="" loading="lazy" width="720" height="720">
+            <div class="body">
+              <span class="tag" style="--tint: var(--green)">Balance</span>
+              <h3>Movement, food and sleep</h3>
+              <p>The body side of a calmer day, kept deliberately simple. No calorie counting, no scores to chase.</p>
+              <ul>
+                <li>Guided routines: morning, desk, seven minutes, evening</li>
+                <li>Water and meals with a few honest tags</li>
+                <li>A bedtime, a wake time and a wind-down before sleep</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card pillar">
+            <img src="assets/img/evening.jpg" alt="" loading="lazy" width="960" height="480">
+            <div class="body">
+              <span class="tag">Safari filter</span>
+              <h3>The web without Reels</h3>
+              <p>Ma Filter is a Safari extension that hides the endless parts of social sites and leaves the useful parts alone.</p>
+              <ul>
+                <li>Hides Instagram Reels, YouTube Shorts, X trends, the LinkedIn feed and Facebook Reels</li>
+                <li>Opens Shorts links as normal videos</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gate">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">How the gate works</span>
+          <h2>Open Instagram. Land somewhere calm.</h2>
+        </div>
+        <ol class="steps">
+          <li class="card"><h3>You reach for an app</h3><p>Instagram, YouTube, X, LinkedIn, TikTok: whatever sits inside one of your boundaries.</p></li>
+          <li class="card"><h3>A calm screen first</h3><p>Instead of the feed you see a quiet shield. One tap sends you into Ma.</p></li>
+          <li class="card"><h3>One breath, one question</h3><p>Answer a card you have already learned. You get a few minutes of something useful out of every urge.</p></li>
+          <li class="card"><h3>Then you decide</h3><p>"Open" and "I'll leave it" are the same size. Letting it be counts too.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">A look inside</span>
+          <h2>Night by default. Quiet everywhere.</h2>
+        </div>
+        <div class="shots" aria-label="Screen previews">
+          <figure>
+            <div class="phone" aria-hidden="true">
+              <div class="screen">
+                <img class="art" src="assets/img/learn.jpg" alt="" loading="lazy" width="720" height="720">
+                <div class="ui">
+                  <div class="s">New card</div>
+                  <div class="t">Thank you</div>
+                  <div class="opt">ありがとう <span class="s">arigatou</span></div>
+                  <div class="s">Learn it first, practise it right after. The gate only asks cards you have seen.</div>
+                  <div class="pill">Got it</div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Learn</figcaption>
+          </figure>
+          <figure>
+            <div class="phone" aria-hidden="true">
+              <div class="screen">
+                <img class="art" src="assets/img/focus.jpg" alt="" loading="lazy" width="720" height="720">
+                <div class="ui">
+                  <div class="s">Focus round 2 of 4</div>
+                  <div class="t" style="font-size:40px">18:42</div>
+                  <div class="s">Rain is playing. Every boundary sleeps until the break.</div>
+                  <div class="pill quiet" style="margin-top:auto">Pause</div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Focus</figcaption>
+          </figure>
+          <figure>
+            <div class="phone" aria-hidden="true">
+              <div class="screen">
+                <img class="art" src="assets/img/morning.jpg" alt="" loading="lazy" width="960" height="480">
+                <div class="ui">
+                  <div class="t">Good morning</div>
+                  <div class="rings">
+                    <div class="ring" style="--c:#A3A1FF;--p:70" data-label="Focus"></div>
+                    <div class="ring" style="--c:#7BD8FF;--p:45" data-label="Learn"></div>
+                    <div class="ring" style="--c:#62E3B0;--p:85" data-label="Habits"></div>
+                  </div>
+                  <div class="opt">Today I want to: finish the draft</div>
+                  <div class="pill">Evening reflection</div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Today</figcaption>
+          </figure>
+        </div>
+        <p class="soon-note">Previews drawn from the app's own illustrations. Real screenshots follow with the first public build.</p>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="wrap">
+        <div class="card split">
+          <img src="assets/img/empty.jpg" alt="" loading="lazy" width="720" height="720">
+          <div class="body">
+            <span class="kicker">Private by design</span>
+            <h2>Everything stays on your iPhone.</h2>
+            <p>There is no Ma server to send anything to. Your rules, answers, habits and moods live in the app's own storage on the device.</p>
+            <ul class="checks">
+              <li>No account, no sign-in, no email address</li>
+              <li>No analytics, no ads, no trackers</li>
+              <li>Screen Time data never leaves the device</li>
+              <li>Optional AI features run on the device only</li>
+            </ul>
+            <p><a href="privacy.html">Read the privacy policy</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="limits">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Honest limits</span>
+          <h2>What Ma cannot do.</h2>
+          <p>iOS draws some firm lines, and they are there for good reasons. Better you hear it here than find out later.</p>
+        </div>
+        <div class="limits">
+          <div class="card limit">
+            <h3>Reels inside the Instagram app stay</h3>
+            <p>No iOS app may reach into another one. Ma can block the Instagram app, and the Safari filter hides Reels on instagram.com. Together that gives you Instagram without Reels.</p>
+          </div>
+          <div class="card limit">
+            <h3>You can always switch it off</h3>
+            <p>Revoking the Screen Time permission in iOS Settings lifts every boundary. That is on purpose: letting go should always be possible.</p>
+          </div>
+          <div class="card limit">
+            <h3>Screen Time needs Apple's approval</h3>
+            <p>Apple reviews every app that uses Family Controls. Until the approval is through, the Shortcuts mode puts the pause in front of your apps instead.</p>
+          </div>
+          <div class="card limit">
+            <h3>Fifty apps per boundary</h3>
+            <p>Screen Time allows at most 50 individual apps in one selection. For more, pick a whole category or split them across boundaries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="open-source">
+      <div class="wrap">
+        <div class="card split">
+          <div class="body">
+            <span class="kicker">Free and open source</span>
+            <h2>No price, no ads, no catch.</h2>
+            <p>Ma is MIT licensed and built in the open. Every line is on GitHub, the builds run on GitHub Actions, and anyone can read exactly what the app does with their phone.</p>
+            <p>Want to help? Write a deck for the community gallery, translate, report a bug or send a pull request.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://github.com/SenseiIssei/ma">Source on GitHub</a>
+              <a class="btn btn-quiet" href="gallery/">Browse decks</a>
+            </div>
+          </div>
+          <img src="assets/img/day.jpg" alt="" loading="lazy" width="960" height="480">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <a class="brand" href="./"><img src="assets/img/favicon-64.png" alt="" width="36" height="36"><span>Ma</span><span class="kanji" lang="ja">間</span></a>
+        <nav aria-label="Footer">
+          <a href="gallery/">Deck gallery</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+          <a href="https://github.com/SenseiIssei/ma/issues">Report a problem</a>
+          <a href="de/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+        </nav>
+      </div>
+      <p class="fine">&copy; <span id="year">2026</span> Ma contributors. MIT licence. No cookies, no analytics on this site either. Apple, iPhone, Safari and Screen Time are trademarks of Apple Inc.; Ma is not affiliated with Apple.</p>
+    </div>
+  </footer>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

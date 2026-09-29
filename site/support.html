@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Support: Ma</title>
+  <meta name="description" content="Answers about Ma: why Reels cannot be hidden inside apps, the Shortcuts mode, setting up the Safari filter and importing decks.">
+  <meta name="theme-color" content="#0A0E22">
+  <link rel="canonical" href="https://senseiissei.github.io/ma/support.html">
+  <link rel="alternate" hreflang="en" href="https://senseiissei.github.io/ma/support.html">
+  <link rel="alternate" hreflang="de" href="https://senseiissei.github.io/ma/de/support.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap top">
+    <a class="brand" href="./" aria-label="Ma home">
+      <img src="assets/img/favicon-64.png" alt="" width="36" height="36">
+      <span>Ma</span><span class="kanji" lang="ja">間</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="./#pillars">Features</a>
+      <a href="gallery/">Deck gallery</a>
+      <a href="support.html" aria-current="page">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+      <a class="lang" href="de/support.html" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap narrow">
+    <div class="page-head">
+      <span class="kicker">Support</span>
+      <h1>Questions and answers.</h1>
+      <p>The things people ask most. If your question is not here, open an <a href="https://github.com/SenseiIssei/ma/issues">issue on GitHub</a> and describe what you expected and what happened.</p>
+    </div>
+
+    <h2 class="faq-group">Blocking</h2>
+    <div class="faq">
+      <details class="card" id="reels" open>
+        <summary>Why can't Ma hide Reels inside the Instagram app?</summary>
+        <div class="answer">
+          <p>Because iOS does not allow any app to reach into another one. Every app runs in its own sandbox, and no App Store app, Ma included, can change what the Instagram, YouTube or TikTok app shows.</p>
+          <p>What does work is a combination:</p>
+          <ol>
+            <li>Put the Instagram app inside a boundary in Ma, so opening it asks a question first or is not possible at all.</li>
+            <li>Use instagram.com in Safari with <strong>Ma Filter</strong> switched on. The filter hides Reels there, and messages, profiles and posts keep working.</li>
+          </ol>
+          <p>The same works for YouTube Shorts on youtube.com. Shorts links open as normal videos.</p>
+        </div>
+      </details>
+
+      <details class="card" id="shortcuts">
+        <summary>What is the Shortcuts mode, and when do I need it?</summary>
+        <div class="answer">
+          <p>The Shortcuts mode puts Ma's pause in front of your apps without Screen Time. An automation in Apple's Shortcuts app starts Ma whenever one of your chosen apps opens. If you have an open pass, Ma stays invisible and the app opens as usual.</p>
+          <p>You need it while a build of Ma cannot use Screen Time yet (Apple has to approve Family Controls for every app), or if you simply prefer it. Set it up once:</p>
+          <ol>
+            <li>Open the Shortcuts app and go to the Automation tab.</li>
+            <li>Tap +, then choose "App".</li>
+            <li>Tap "Choose" and tick every app that pulls at you. One automation covers all of them.</li>
+            <li>Leave "Is Opened" ticked and choose "Run Immediately". Switch "Notify When Run" off.</li>
+            <li>Tap Next, search for "Ma Pause" and pick it. Done.</li>
+          </ol>
+          <p>Apple does not let any app create automations on its own, so this one step is yours. In Ma, Boundaries shows whether the automation has run.</p>
+        </div>
+      </details>
+
+      <details class="card" id="notification">
+        <summary>Why does the blocked screen send a notification instead of opening Ma?</summary>
+        <div class="answer">
+          <p>The screen iOS shows over a blocked app is not allowed to open another app. So "Answer a question" sends a notification, and tapping it takes you into Ma: one breath, the question, then your decision.</p>
+        </div>
+      </details>
+
+      <details class="card" id="exit">
+        <summary>I really need a blocked app right now. What can I do?</summary>
+        <div class="answer">
+          <p>Answer the question and open it: that is what the gate is for. A boundary set to "no way through" and a running lockdown have no unlock button; a lockdown ends early with five right answers.</p>
+          <p>And there is always the last resort: revoking Ma's Screen Time permission in the iOS Settings app lifts every boundary at once. That is on purpose. Letting go should always be possible.</p>
+        </div>
+      </details>
+    </div>
+
+    <h2 class="faq-group">Safari filter</h2>
+    <div class="faq">
+      <details class="card" id="safari">
+        <summary>How do I switch on the Safari filter?</summary>
+        <div class="answer">
+          <ol>
+            <li>Open the Settings app, then Apps, Safari, Extensions.</li>
+            <li>Tap <strong>Ma Filter</strong> and switch it on.</li>
+            <li>Allow it for instagram.com, youtube.com, x.com, linkedin.com, facebook.com and tiktok.com. "Allow" for those sites is enough; it does not need every website.</li>
+            <li>Reload any open tabs of those sites.</li>
+          </ol>
+          <p>You can also manage it straight from Safari: tap the page menu next to the address bar and choose Manage Extensions. What exactly the filter hides is set in Ma under Boundaries.</p>
+        </div>
+      </details>
+
+      <details class="card" id="safari-still">
+        <summary>I still see Reels or Shorts in Safari.</summary>
+        <div class="answer">
+          <p>Check that the filter is allowed for that exact site, then reload the page. If it still shows up, the site has probably changed its layout, which big sites do often. Please <a href="https://github.com/SenseiIssei/ma/issues">open an issue</a> with the site and what you see, and the filter gets updated.</p>
+        </div>
+      </details>
+    </div>
+
+    <h2 class="faq-group">Decks and learning</h2>
+    <div class="faq">
+      <details class="card" id="import" open>
+        <summary>How do I import a deck?</summary>
+        <div class="answer">
+          <p>There are four ways:</p>
+          <ul>
+            <li><strong>Community gallery in the app.</strong> In Ma, open Learn, tap + next to Topics and choose the community gallery. Pick a deck, look at the preview and tap Add.</li>
+            <li><strong>From this website.</strong> Open the <a href="gallery/">deck gallery</a> on your iPhone and tap "Open in Ma". Ma downloads the deck and adds it.</li>
+            <li><strong>A JSON file.</strong> Save the file to Files, then in Ma tap + next to Topics and choose "Import JSON file". One file can hold one deck or a list of decks.</li>
+            <li><strong>From the clipboard.</strong> Copy deck JSON, for example from an AI chat, and choose "JSON from clipboard".</li>
+          </ul>
+          <p>An import never overwrites anything: if a deck with the same id exists, the new one gets its own id. Imported decks can be edited and deleted like your own.</p>
+        </div>
+      </details>
+
+      <details class="card" id="own-deck">
+        <summary>How do I make my own deck?</summary>
+        <div class="answer">
+          <p>In Ma, tap + next to Topics and choose "New topic", then type or paste your cards. Pasting whole lists works: one card per line, question and answer separated by a tab, <code>;</code>, <code>|</code> or <code> = </code>.</p>
+          <p>For bigger decks, "Copy AI template" puts a prompt on your clipboard. Paste it into a chat with any AI, fill in your topic, and import the answer with "JSON from clipboard". The format itself is simple:</p>
+          <p><code>{"title": "Korean", "cards": [{"prompt": "물", "answer": "water", "distractors": ["fire", "tree", "rice"], "example": "I drink water.", "note": "mul"}]}</code></p>
+          <p>Only <code>prompt</code> and <code>answer</code> are required. An <code>example</code> that contains the answer word for word unlocks fill-the-gap exercises.</p>
+        </div>
+      </details>
+
+      <details class="card" id="contribute">
+        <summary>Can I add my deck to the community gallery?</summary>
+        <div class="answer">
+          <p>Yes, please. Decks live in the <code>gallery/decks</code> folder of the repository. Add your file as <code>&lt;id&gt;.en.json</code> or <code>&lt;id&gt;.de.json</code>, run <code>python gallery/build_index.py</code> to check it and refresh the index, and open a pull request. The <a href="gallery/#contribute">gallery page</a> lists the rules.</p>
+        </div>
+      </details>
+
+      <details class="card" id="gate-cards">
+        <summary>Why does the gate never ask me new cards?</summary>
+        <div class="answer">
+          <p>On purpose. Nobody should be quizzed on something they were never shown. New cards are taught first in a lesson (at most three at a time, practised right away), and only cards you have learned show up before an app.</p>
+        </div>
+      </details>
+    </div>
+
+    <h2 class="faq-group">General</h2>
+    <div class="faq">
+      <details class="card" id="language">
+        <summary>Which languages does Ma speak?</summary>
+        <div class="answer">
+          <p>English and German. Ma follows your iPhone's language. To use a different one for Ma only, open Settings, Apps, Ma, Language. Bundled decks switch edition with the app language and keep your progress.</p>
+        </div>
+      </details>
+
+      <details class="card" id="price">
+        <summary>What does Ma cost?</summary>
+        <div class="answer">
+          <p>Nothing. No ads, no in-app purchases, no subscription. Ma is open source under the MIT licence.</p>
+        </div>
+      </details>
+
+      <details class="card" id="appstore">
+        <summary>When will Ma be on the App Store?</summary>
+        <div class="answer">
+          <p>As soon as Apple has approved the Family Controls entitlement that Screen Time apps need, and the app has passed review. Until then, the code is on GitHub for anyone who wants to build it.</p>
+        </div>
+      </details>
+
+      <details class="card" id="bug">
+        <summary>Where do I report a bug or suggest an idea?</summary>
+        <div class="answer">
+          <p>On <a href="https://github.com/SenseiIssei/ma/issues">GitHub issues</a>. Mention your iPhone model, the iOS version and what you did right before it happened. Please leave out personal data, issues are public.</p>
+        </div>
+      </details>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <a class="brand" href="./"><img src="assets/img/favicon-64.png" alt="" width="36" height="36"><span>Ma</span><span class="kanji" lang="ja">間</span></a>
+        <nav aria-label="Footer">
+          <a href="gallery/">Deck gallery</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+          <a href="https://github.com/SenseiIssei/ma/issues">Report a problem</a>
+          <a href="de/support.html" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+        </nav>
+      </div>
+      <p class="fine">&copy; <span id="year">2026</span> Ma contributors. MIT licence. Apple, iPhone, Safari and Screen Time are trademarks of Apple Inc.; Ma is not affiliated with Apple.</p>
+    </div>
+  </footer>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

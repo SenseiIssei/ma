@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Themen-Galerie: Ma</title>
+  <meta name="description" content="Lernthemen der Community für Ma. Nach Thema suchen, die Karten ansehen und in Ma öffnen oder als JSON laden.">
+  <meta name="theme-color" content="#0A0E22">
+  <link rel="canonical" href="https://senseiissei.github.io/ma/de/gallery/">
+  <link rel="alternate" hreflang="en" href="https://senseiissei.github.io/ma/gallery/">
+  <link rel="alternate" hreflang="de" href="https://senseiissei.github.io/ma/de/gallery/">
+  <meta property="og:title" content="Ma Themen-Galerie">
+  <meta property="og:description" content="Lernthemen der Community für Ma, frei zum Nutzen und Teilen.">
+  <meta property="og:image" content="https://senseiissei.github.io/ma/assets/img/learn.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+
+  <header class="wrap top">
+    <a class="brand" href="../" aria-label="Ma Startseite">
+      <img src="../../assets/img/favicon-64.png" alt="" width="36" height="36">
+      <span>Ma</span><span class="kanji" lang="ja">間</span>
+    </a>
+    <nav class="nav" aria-label="Hauptmenü">
+      <a href="../#pillars">Funktionen</a>
+      <a href="./" aria-current="page">Themen-Galerie</a>
+      <a href="../support.html">Hilfe</a>
+      <a href="../privacy.html">Datenschutz</a>
+      <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+      <a class="lang" href="../../gallery/" hreflang="en" lang="en" data-set-lang="en">English</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="page-head">
+      <span class="kicker">Community-Galerie</span>
+      <h1>Etwas, das sich zu lernen lohnt.</h1>
+      <p>Themen von Menschen, die Ma nutzen. Jedes erklärt zuerst und übt danach, mit Beispielen und kurzen Notizen. Öffne ein Thema auf deinem iPhone direkt in Ma oder lade das JSON und importier es selbst.</p>
+    </div>
+
+    <div id="gallery" data-index="../../gallery/index.json" data-empty-art="../../assets/img/empty.jpg">
+      <div class="toolbar">
+        <label class="search">
+          <span class="visually-hidden">Themen durchsuchen</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Suche: Wein, Sterne, Akkorde..." autocomplete="off" spellcheck="false">
+        </label>
+        <label>
+          <span class="visually-hidden">Sprache der Themen</span>
+          <select id="locale" class="select">
+            <option value="de">Deutsche Themen</option>
+            <option value="en">Englische Themen</option>
+            <option value="all">Alle Sprachen</option>
+          </select>
+        </label>
+      </div>
+      <div id="chips" class="chips" role="group" aria-label="Kategorie"></div>
+      <p id="status" class="visually-hidden" role="status" aria-live="polite"></p>
+      <div id="decks" class="decks"></div>
+      <noscript><p class="hint">Die Galerie braucht JavaScript, um Themen aufzulisten. Die Dateien liegen auch direkt auf <a href="https://github.com/SenseiIssei/ma/tree/main/gallery/decks">GitHub</a>.</p></noscript>
+      <p class="hint">"In Ma öffnen" funktioniert auf einem iPhone mit installiertem Ma. Auf anderen Geräten lädst du das JSON und schickst es an dein Telefon.</p>
+    </div>
+
+    <section id="contribute" class="narrow" style="padding-bottom:0">
+      <div class="card summary prose">
+        <span class="kicker">Thema beisteuern</span>
+        <h2>Teil, was du weißt.</h2>
+        <p>Jedes Thema in dieser Galerie ist eine JSON-Datei im Ordner <a href="https://github.com/SenseiIssei/ma/tree/main/gallery/decks">gallery/decks</a>. So kommt deins dazu:</p>
+        <ol>
+          <li>Forke das Repository und leg <code>gallery/decks/&lt;id&gt;.de.json</code> oder <code>&lt;id&gt;.en.json</code> an. Ausgaben eines Themas teilen sich die Kennung und die Karten-Kennungen.</li>
+          <li>Gib ihm einen <code>title</code>, einen <code>subtitle</code> mit höchstens 60 Zeichen, ein <code>symbol</code> aus einem Zeichen, eine <code>category</code> (languages, knowledge, mind, tech oder life) und ein <code>locale</code>.</li>
+          <li>Schreib mindestens zehn Karten mit den Kennungen <code>&lt;id&gt;-001</code>, <code>&lt;id&gt;-002</code> und so weiter. Antworten bleiben bei höchstens 30 Zeichen, jede Karte hat drei plausible falsche Antworten, einen Beispielsatz, der die Antwort wörtlich enthält, und eine kurze Notiz, die das Warum erklärt.</li>
+          <li>Führ <code>python gallery/build_index.py</code> aus. Das Skript prüft jede Regel und schreibt <code>index.json</code> neu.</li>
+          <li>Öffne einen Pull Request. Die Fakten werden geprüft, bevor ein Thema online geht.</li>
+        </ol>
+        <p>Bitte bleib sachlich und freundlich: keine Werbung, keine als Tatsache verkleidete Medizin- oder Finanzberatung, und nur Inhalte, die du teilen darfst.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <a class="brand" href="../"><img src="../../assets/img/favicon-64.png" alt="" width="36" height="36"><span>Ma</span><span class="kanji" lang="ja">間</span></a>
+        <nav aria-label="Fußzeile">
+          <a href="./">Themen-Galerie</a>
+          <a href="../support.html">Hilfe</a>
+          <a href="../privacy.html">Datenschutz</a>
+          <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+          <a href="https://github.com/SenseiIssei/ma/issues">Problem melden</a>
+          <a href="../../gallery/" hreflang="en" lang="en" data-set-lang="en">English</a>
+        </nav>
+      </div>
+      <p class="fine">&copy; <span id="year">2026</span> Ma-Mitwirkende. Die Themen stehen unter der MIT-Lizenz des Repositorys.</p>
+    </div>
+  </footer>
+  <script src="../../assets/site.js" defer></script>
+  <script src="../../assets/gallery.js" defer></script>
+</body>
+</html>

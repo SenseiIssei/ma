@@ -1,0 +1,235 @@
+{
+  "id": "wine-basics",
+  "locale": "de",
+  "title": "Wein Grundlagen",
+  "subtitle": "Rebsorten, Regionen und Verkostung",
+  "symbol": "葡",
+  "category": "life",
+  "cards": [
+    {
+      "id": "wine-basics-001",
+      "prompt": "Wie heißt der Vorgang, bei dem Hefe den Traubenzucker in Alkohol umwandelt?",
+      "answer": "Gärung",
+      "accept": ["Fermentation", "Alkoholische Gärung"],
+      "distractors": ["Destillation", "Oxidation", "Filtration"],
+      "example": "Bei der Gärung wird aus süßem Traubenmost innerhalb von Tagen oder Wochen Wein.",
+      "note": "Die Hefe frisst den Zucker und hinterlässt Alkohol und Kohlendioxid. Genau diese Bläschen, die aus dem Gärtank entweichen, werden beim Schaumwein absichtlich eingefangen."
+    },
+    {
+      "id": "wine-basics-002",
+      "prompt": "Woher bekommt Rotwein seine Farbe?",
+      "answer": "Traubenschalen",
+      "accept": ["Schalen", "Beerenhäute", "Aus den Schalen"],
+      "distractors": ["Traubenkerne", "Eichenfässer", "Farbstoffzusatz"],
+      "example": "Traubenschalen liegen tagelang im Most und geben dem Rotwein seine Farbe.",
+      "note": "Der Saft fast aller roten Trauben ist farblos. Deshalb kann Champagner blassgolden sein, obwohl er aus der roten Sorte Pinot Noir gekeltert wird."
+    },
+    {
+      "id": "wine-basics-003",
+      "prompt": "Wie nennt man einen Wein, in dem kaum noch Zucker steckt?",
+      "answer": "Trocken",
+      "accept": [],
+      "distractors": ["Süß", "Frisch", "Holzig"],
+      "example": "Trocken ausgebaute Weine können trotzdem nach reifen Früchten duften.",
+      "note": "Trocken ist das Gegenteil von süß, nicht von fruchtig. Die Nase riecht reifes Obst, und das Gehirn erwartet Zucker, der gar nicht da ist."
+    },
+    {
+      "id": "wine-basics-004",
+      "prompt": "Aus welchem Land kommt der Portwein?",
+      "answer": "Portugal",
+      "accept": [],
+      "distractors": ["Spanien", "Italien", "Griechenland"],
+      "example": "Portwein entsteht im Douro-Tal im Norden von Portugal.",
+      "note": "Portwein ist ein gespriteter Wein: Während der Gärung wird Weinbrand zugegeben, der die Hefe stoppt und natürliche Süße im Wein lässt. Der Name stammt von der Stadt Porto."
+    },
+    {
+      "id": "wine-basics-005",
+      "prompt": "Aus welcher weißen Rebsorte werden Chablis und andere weiße Burgunder gemacht?",
+      "answer": "Chardonnay",
+      "accept": [],
+      "distractors": ["Riesling", "Viognier", "Sémillon"],
+      "example": "Chablis ist reiner Chardonnay, meist mit wenig oder gar keinem neuen Holz.",
+      "note": "Chardonnay ist ein Chamäleon: schlank und mineralisch im kühlen Chablis, üppig und buttrig in warmen Regionen mit viel Eichenholz. Die Traube selbst ist recht neutral, deshalb schmeckt man die Handschrift des Winzers."
+    },
+    {
+      "id": "wine-basics-006",
+      "prompt": "Aus welcher Rebsorte wird roter Burgunder gemacht?",
+      "answer": "Pinot Noir",
+      "accept": ["Spätburgunder", "Blauburgunder", "Pinot Nero"],
+      "distractors": ["Merlot", "Malbec", "Zinfandel"],
+      "example": "Roter Burgunder besteht fast immer zu hundert Prozent aus Pinot Noir.",
+      "note": "In Deutschland heißt die Sorte Spätburgunder. Ihre dünnen Schalen ergeben meist helle, seidige Weine mit wenig Tannin, dafür gilt sie als launisch im Anbau."
+    },
+    {
+      "id": "wine-basics-007",
+      "prompt": "Welche Rebsorte bildet das Rückgrat der Rotweine vom linken Ufer in Bordeaux?",
+      "answer": "Cabernet Sauvignon",
+      "accept": ["Cabernet"],
+      "distractors": ["Grenache", "Pinot Noir", "Gamay"],
+      "example": "Die meisten Cuvées vom linken Ufer bauen auf Cabernet Sauvignon auf.",
+      "note": "Das linke Ufer hat warme, gut drainierte Kiesböden, auf denen die spät reifende Sorte voll ausreifen kann. Cabernet Sauvignon ist eine natürliche Kreuzung aus Cabernet Franc und Sauvignon Blanc."
+    },
+    {
+      "id": "wine-basics-008",
+      "prompt": "Welche Rebsorte prägt das rechte Ufer von Bordeaux, etwa Pomerol und Saint-Émilion?",
+      "answer": "Merlot",
+      "accept": [],
+      "distractors": ["Syrah", "Barbera", "Carménère"],
+      "example": "Die berühmtesten Weine aus Pomerol bestehen größtenteils aus Merlot.",
+      "note": "Am rechten Ufer liegen kühlere Lehmböden, und die passen zu Merlot, weil er früher reift als Cabernet Sauvignon. Das Ergebnis sind rundere, weichere Weine."
+    },
+    {
+      "id": "wine-basics-009",
+      "prompt": "Welche weiße Rebsorte ist in Deutschland am meisten angebaut?",
+      "answer": "Riesling",
+      "accept": [],
+      "distractors": ["Müller-Thurgau", "Grüner Veltliner", "Sémillon"],
+      "example": "Die Steillagen an der Mosel sind weltberühmt für ihren Riesling.",
+      "note": "Riesling behält viel Säure und kann deshalb knochentrocken oder edelsüß sein und trotzdem frisch schmecken. Die besten Flaschen reifen über Jahrzehnte."
+    },
+    {
+      "id": "wine-basics-010",
+      "prompt": "Aus welcher Rebsorte wird Sancerre an der Loire gemacht?",
+      "answer": "Sauvignon Blanc",
+      "accept": [],
+      "distractors": ["Chenin Blanc", "Pinot Grigio", "Muskateller"],
+      "example": "Sancerre ist ein knackiger Weißwein aus Sauvignon Blanc.",
+      "note": "Sauvignon Blanc duftet nach frisch gemähtem Gras, Zitrus und Stachelbeere. Marlborough in Neuseeland hat einen lauteren, fruchtigeren Stil weltberühmt gemacht."
+    },
+    {
+      "id": "wine-basics-011",
+      "prompt": "Wie heißt die Rebsorte Syrah in Australien?",
+      "answer": "Shiraz",
+      "accept": [],
+      "distractors": ["Malbec", "Mourvèdre", "Grenache"],
+      "example": "Das Barossa Valley ist bekannt für kräftigen, pfeffrigen Shiraz.",
+      "note": "Syrah und Shiraz sind dieselbe Traube. Der französische Name steht oft für einen schlankeren, pfeffrigen Stil, der australische für einen reiferen, volleren."
+    },
+    {
+      "id": "wine-basics-012",
+      "prompt": "In welchem Land wächst mehr Malbec als irgendwo sonst?",
+      "answer": "Argentinien",
+      "accept": [],
+      "distractors": ["Chile", "Spanien", "Portugal"],
+      "example": "Hoch gelegene Weinberge in Mendoza haben Argentinien zur Heimat des Malbec gemacht.",
+      "note": "Malbec stammt aus Cahors im Südwesten Frankreichs, fand seine große Bühne aber in Argentinien. Die kräftige Höhensonne sorgt für dunkle Farbe und reife Frucht."
+    },
+    {
+      "id": "wine-basics-013",
+      "prompt": "Welche Stoffe lassen einen jungen Rotwein im Mund trocken und rau wirken?",
+      "answer": "Tannine",
+      "accept": ["Tannin", "Gerbstoffe", "Gerbstoff"],
+      "distractors": ["Säure", "Alkohol", "Zucker"],
+      "example": "Tannine stammen aus Schalen, Kernen und Stielen der Trauben und auch aus Eichenfässern.",
+      "note": "Tannine binden sich an die Eiweiße im Speichel, deshalb fühlt sich der Mund trocken an. Starker schwarzer Tee macht genau dasselbe."
+    },
+    {
+      "id": "wine-basics-014",
+      "prompt": "Wie nennen Verkoster die Zeit, die der Geschmack nach dem Schlucken oder Ausspucken nachklingt?",
+      "answer": "Abgang",
+      "accept": ["Nachhall", "Länge"],
+      "distractors": ["Bukett", "Kirchenfenster", "Körper"],
+      "example": "Den Abgang zählt man oft in Sekunden, und große Weine klingen zehn Sekunden und länger nach.",
+      "note": "Ein langer Abgang ist eines der deutlichsten Qualitätszeichen. Zählen Sie nach dem Probieren langsam mit: Einfache Weine verblassen nach wenigen Sekunden."
+    },
+    {
+      "id": "wine-basics-015",
+      "prompt": "Bei ungefähr welcher Temperatur serviert man einen kräftigen Rotwein?",
+      "answer": "16-18 °C",
+      "accept": ["16-18°C", "16 bis 18 °C", "16-18 C"],
+      "distractors": ["6-8 °C", "10-12 °C", "22-24 °C"],
+      "example": "Einen Bordeaux serviert man bei 16-18 °C, also etwas kühler als ein warmes Wohnzimmer.",
+      "note": "Der alte Rat, Rotwein bei Zimmertemperatur zu trinken, stammt aus Zeiten ohne Zentralheizung. Ist er zu warm, drängt sich der Alkohol vor die Frucht."
+    },
+    {
+      "id": "wine-basics-016",
+      "prompt": "Welche gleichbleibende Temperatur ist ungefähr ideal, um Wein lange zu lagern?",
+      "answer": "12 °C",
+      "accept": ["12°C", "12 C"],
+      "distractors": ["4 °C", "20 °C", "25 °C"],
+      "example": "Ein dunkler Keller mit konstant 12 °C lässt Wein langsam und gleichmäßig reifen.",
+      "note": "Wichtiger als die genaue Zahl ist, dass die Temperatur stabil bleibt; alles zwischen etwa 10 und 15 °C passt. Flaschen mit Korken lagert man liegend, damit der Korken feucht bleibt und keine Luft hereinlässt."
+    },
+    {
+      "id": "wine-basics-017",
+      "prompt": "Was verrät die Jahreszahl auf dem Etikett eines Jahrgangsweins?",
+      "answer": "Erntejahr",
+      "accept": ["Das Erntejahr", "Lesejahr"],
+      "distractors": ["Abfülljahr", "Verkaufsjahr", "Alter der Reben"],
+      "example": "Mit dem Jahrgang auf dem Etikett ist immer das Erntejahr gemeint.",
+      "note": "Die Trauben in der Flasche wurden in genau diesem Jahr gelesen. Das Wetter ist jedes Jahr anders, deshalb schmeckt derselbe Wein je nach Jahrgang verschieden."
+    },
+    {
+      "id": "wine-basics-018",
+      "prompt": "Welches französische Wort beschreibt, wie Boden, Klima und Lage einen Wein prägen?",
+      "answer": "Terroir",
+      "accept": [],
+      "distractors": ["Cuvée", "Assemblage", "Millésime"],
+      "example": "Das Terroir erklärt, warum dieselbe Rebsorte in zwei benachbarten Weinbergen anders schmecken kann.",
+      "note": "Zum Terroir gehören Boden, Hangneigung, Sonne, Regen und sogar die örtliche Tradition. Das Paradebeispiel ist Burgund, wo winzige Parzellen seit Jahrhunderten einzeln bewertet werden."
+    },
+    {
+      "id": "wine-basics-019",
+      "prompt": "Aus welcher Rebsorte wird der Barolo im Piemont gemacht?",
+      "answer": "Nebbiolo",
+      "accept": [],
+      "distractors": ["Sangiovese", "Barbera", "Primitivo"],
+      "example": "Barolo besteht ausschließlich aus Nebbiolo von den Hügeln des Piemont.",
+      "note": "Nebbiolo sieht im Glas hell aus, hat aber kräftiges Tannin und viel Säure. Der Name kommt wohl von nebbia, dem italienischen Wort für den Herbstnebel über den Weinbergen."
+    },
+    {
+      "id": "wine-basics-020",
+      "prompt": "Welche Rebsorte ist die wichtigste rote Traube der Rioja in Spanien?",
+      "answer": "Tempranillo",
+      "accept": [],
+      "distractors": ["Monastrell", "Mencía", "Touriga Nacional"],
+      "example": "Die meisten roten Riojas basieren auf Tempranillo, der im Eichenfass reift.",
+      "note": "Der Name kommt von temprano, spanisch für früh, weil die Traube früh reif wird. Angaben wie Crianza oder Reserva auf dem Etikett verraten, wie lange der Wein gereift ist."
+    },
+    {
+      "id": "wine-basics-021",
+      "prompt": "Wie heißt das Verfahren, bei dem Champagner seine Bläschen durch eine zweite Gärung in der Flasche bekommt?",
+      "answer": "Traditionelle Methode",
+      "accept": ["Flaschengärung", "Traditionelle Flaschengärung", "Méthode champenoise", "Methode champenoise", "Méthode traditionnelle"],
+      "distractors": ["Tankgärung", "Transvasierverfahren", "Ancestrale Methode"],
+      "example": "Traditionelle Methode heißt: Die zweite Gärung passiert genau in der Flasche, die man später kauft.",
+      "note": "Der Grundwein bekommt Hefe und etwas Zucker, die Flasche wird verschlossen, und das eingeschlossene Kohlendioxid bildet die Perlage. Die abgestorbene Hefe wird später am Flaschenhals entfernt, das nennt man Degorgieren."
+    },
+    {
+      "id": "wine-basics-022",
+      "prompt": "Wie bekommen die meisten Roséweine ihre rosa Farbe?",
+      "answer": "Kurzer Schalenkontakt",
+      "accept": [],
+      "distractors": ["Reifung im Holzfass", "Zugabe von Fruchtsaft", "Kalte Gärung"],
+      "example": "Kurzer Schalenkontakt, oft nur wenige Stunden, gibt dem Rosé seine zarte Farbe.",
+      "note": "Rote Trauben werden gepresst und der Saft früh von den Schalen getrennt. In der EU ist das Verschneiden von Rot- und Weißwein für stillen Rosé verboten, der Rosé-Champagner ist die berühmte Ausnahme."
+    },
+    {
+      "id": "wine-basics-023",
+      "prompt": "Welcher Vorgang kann einem Chardonnay einen weichen, buttrigen Geschmack geben?",
+      "answer": "Malolaktische Gärung",
+      "accept": ["Biologischer Säureabbau", "BSA", "Malolaktische Fermentation"],
+      "distractors": ["Kaltstabilisierung", "Kohlensäuremaischung", "Umkehrosmose"],
+      "example": "Malolaktische Gärung, auch biologischer Säureabbau genannt, wandelt herbe Apfelsäure in mildere Milchsäure um.",
+      "note": "Diese Arbeit erledigen Bakterien, nicht Hefen. Ein Nebenprodukt namens Diacetyl ist genau der Stoff, der auch Butter ihren Geschmack gibt."
+    },
+    {
+      "id": "wine-basics-024",
+      "prompt": "Wie heißt der Pilz, der die Beeren für Süßweine wie Sauternes schrumpfen lässt?",
+      "answer": "Edelfäule",
+      "accept": ["Botrytis", "Botrytis cinerea"],
+      "distractors": ["Echter Mehltau", "Falscher Mehltau", "Schwarzfäule"],
+      "example": "Die Edelfäule entzieht den Beeren Wasser und konzentriert Zucker und Säure.",
+      "note": "Wenn auf neblige Herbstmorgen sonnige Nachmittage folgen, wird dieser Schimmel zum Geschenk. Er steckt auch hinter dem ungarischen Tokajer und der deutschen Trockenbeerenauslese."
+    },
+    {
+      "id": "wine-basics-025",
+      "prompt": "Was machen Verkoster bei einer Fachprobe mit Dutzenden Weinen nach jedem Schluck?",
+      "answer": "Ausspucken",
+      "accept": ["Spucken"],
+      "distractors": ["Hinunterschlucken", "Zurückgießen", "Mit Wasser mischen"],
+      "example": "Ausspucken gehört bei Fachverkostungen einfach dazu, und niemand findet es unhöflich.",
+      "note": "Geschmack entsteht in Nase und Mund, durch das Ausspucken geht also nichts verloren. Maß halten zählt: Nur mit klarem Kopf beurteilt man den fünfzigsten Wein so fair wie den ersten."
+    }
+  ]
+}

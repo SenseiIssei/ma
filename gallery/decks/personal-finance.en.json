@@ -1,0 +1,231 @@
+{
+  "id": "personal-finance",
+  "locale": "en",
+  "title": "Personal finance basics",
+  "subtitle": "Core ideas explained, general education not advice",
+  "symbol": "金",
+  "category": "life",
+  "cards": [
+    {
+      "id": "personal-finance-001",
+      "prompt": "What is it called when you earn interest not only on your deposit but also on interest already earned?",
+      "answer": "Compound interest",
+      "accept": ["Compounding", "Interest on interest"],
+      "distractors": ["Simple interest", "Nominal interest", "Prime rate"],
+      "example": "Compound interest turns small, steady savings into surprisingly large sums over decades.",
+      "note": "Each year's interest is added to the balance and earns interest itself, so growth speeds up over time. The longer the time span, the stronger the effect."
+    },
+    {
+      "id": "personal-finance-002",
+      "prompt": "You deposit 100 at 10% interest per year, compounded yearly. What is the balance after two years?",
+      "answer": "121",
+      "accept": ["121.00"],
+      "distractors": ["120", "110", "200"],
+      "example": "After two years the account shows 121, not 120, because the second year also paid interest on the first year's 10.",
+      "note": "Year one: 100 x 1.10 = 110. Year two: 110 x 1.10 = 121. The extra 1 is interest on interest, the seed of compounding."
+    },
+    {
+      "id": "personal-finance-003",
+      "prompt": "What is the general rise in prices over time called?",
+      "answer": "Inflation",
+      "distractors": ["Deflation", "Recession", "Depreciation"],
+      "example": "Inflation means the same basket of groceries costs more this year than it did last year.",
+      "note": "When prices rise, each unit of money buys a little less. Many central banks aim for low, stable inflation of around 2% per year."
+    },
+    {
+      "id": "personal-finance-004",
+      "prompt": "Your savings earn 2% per year while inflation is 3%. What happens to your purchasing power?",
+      "answer": "It falls",
+      "accept": ["It decreases", "It shrinks", "Falls"],
+      "distractors": ["It rises", "It stays the same", "It doubles"],
+      "example": "It falls in real terms, even though the balance on the statement keeps growing.",
+      "note": "What counts is the real return: interest minus inflation. Here that is about 2% minus 3%, so roughly minus 1% per year."
+    },
+    {
+      "id": "personal-finance-005",
+      "prompt": "Using the rule of 72, roughly how long does money take to double at 6% per year?",
+      "answer": "12 years",
+      "accept": ["12", "Twelve years"],
+      "distractors": ["6 years", "10 years", "18 years"],
+      "example": "At 6% a year, 72 divided by 6 gives about 12 years to double.",
+      "note": "Divide 72 by the yearly percentage to estimate the doubling time. It works both ways: at 3% inflation, prices double in about 24 years."
+    },
+    {
+      "id": "personal-finance-006",
+      "prompt": "What is spreading money across many different investments to reduce risk called?",
+      "answer": "Diversification",
+      "accept": ["Diversifying"],
+      "distractors": ["Leverage", "Speculation", "Consolidation"],
+      "example": "Diversification means one company going bust barely dents a portfolio that holds hundreds.",
+      "note": "The idea is 'don't put all your eggs in one basket'. It lowers the risk of a single failure, but it cannot remove the risk of the whole market falling."
+    },
+    {
+      "id": "personal-finance-007",
+      "prompt": "What is a common guideline for the size of an emergency fund?",
+      "answer": "3 to 6 months of expenses",
+      "accept": ["3-6 months of expenses", "3 to 6 months"],
+      "distractors": ["1 to 2 weeks of expenses", "3 to 6 years of expenses", "One month of rent"],
+      "example": "A common guideline is to keep 3 to 6 months of expenses in an easily accessible account.",
+      "note": "This buffer covers surprises like a broken car or a job loss without forcing you into debt. It is a rule of thumb: people with less stable income often aim for the upper end."
+    },
+    {
+      "id": "personal-finance-008",
+      "prompt": "What is a fund called that simply tries to track a market index?",
+      "answer": "Index fund",
+      "accept": ["An index fund", "Tracker fund"],
+      "distractors": ["Hedge fund", "Money market fund", "Venture fund"],
+      "example": "Index fund investors do not try to beat the market, they try to copy it.",
+      "note": "Index funds are passively managed, which usually keeps their costs low. Their return closely follows the index minus fees."
+    },
+    {
+      "id": "personal-finance-009",
+      "prompt": "What does ETF stand for?",
+      "answer": "Exchange-traded fund",
+      "accept": ["Exchange traded fund"],
+      "distractors": ["Equity trust fund", "Electronic transfer fee", "Estimated tax form"],
+      "example": "Exchange-traded fund shares can be bought and sold on a stock exchange throughout the trading day.",
+      "note": "An ETF is a fund whose shares trade on an exchange like a stock. Many ETFs track an index, but not all of them do."
+    },
+    {
+      "id": "personal-finance-010",
+      "prompt": "What is the yearly cost of a fund, shown as a percentage of the money invested, called?",
+      "answer": "Expense ratio",
+      "accept": ["TER", "Total expense ratio"],
+      "distractors": ["Dividend yield", "Front-end load", "Tracking error"],
+      "example": "Expense ratio figures look small, yet 0.2% still means about 2 per year for every 1,000 invested.",
+      "note": "It is taken out of the fund automatically, so you never see a bill. In Europe the same figure is usually called TER, total expense ratio."
+    },
+    {
+      "id": "personal-finance-011",
+      "prompt": "At 6% yearly growth over 30 years, about how much smaller is the end result if fees take 1% more per year?",
+      "answer": "About a quarter",
+      "accept": ["About 25%", "Roughly a quarter", "25%"],
+      "distractors": ["About 1%", "About 3%", "About two thirds"],
+      "example": "About a quarter less money is left after 30 years of growing at 5% instead of 6%.",
+      "note": "1.06 to the power of 30 is about 5.74, while 1.05 to the power of 30 is about 4.32. A fee that looks tiny each year compounds into a big gap."
+    },
+    {
+      "id": "personal-finance-012",
+      "prompt": "What is a share of ownership in a company called?",
+      "answer": "A stock",
+      "accept": ["Stock", "A share", "Share", "Equity"],
+      "distractors": ["A bond", "A loan", "An option"],
+      "example": "A stock makes you a part owner, so you share in the company's gains and losses.",
+      "note": "Stock prices can swing a lot, but over long periods stocks have historically earned more than bonds. That higher expected return is payment for the higher risk."
+    },
+    {
+      "id": "personal-finance-013",
+      "prompt": "What do you hold when you lend money to a government or company in return for regular interest?",
+      "answer": "A bond",
+      "accept": ["Bond"],
+      "distractors": ["A stock", "A dividend", "A derivative"],
+      "example": "A bond pays a fixed interest amount and returns the loan at the end of its term.",
+      "note": "As a bondholder you are a lender, not an owner. Bonds are usually calmer than stocks, but they still carry risks such as the borrower defaulting or rising interest rates."
+    },
+    {
+      "id": "personal-finance-014",
+      "prompt": "What is a share of company profit paid out to shareholders called?",
+      "answer": "Dividend",
+      "accept": ["A dividend"],
+      "distractors": ["Coupon", "Premium", "Rebate"],
+      "example": "Dividend day came, and the company paid 1 per share after a profitable year.",
+      "note": "Dividends are optional: a company can raise, cut or skip them. When a dividend is paid, the share price typically drops by about that amount."
+    },
+    {
+      "id": "personal-finance-015",
+      "prompt": "Generally, a higher expected return comes with what?",
+      "answer": "Higher risk",
+      "accept": ["More risk"],
+      "distractors": ["Lower risk", "No risk", "Lower fees"],
+      "example": "Higher risk is the price stocks charge for their higher expected returns compared with savings accounts.",
+      "note": "Investors demand extra reward for accepting uncertainty. If someone offers high returns with low risk, be very suspicious."
+    },
+    {
+      "id": "personal-finance-016",
+      "prompt": "What is it called when a price swings strongly up and down?",
+      "answer": "Volatility",
+      "distractors": ["Liquidity", "Inflation", "Leverage"],
+      "example": "Volatility was high that year, with the index moving several percent in a single week.",
+      "note": "High volatility means a wide range of possible outcomes in the short term. Money needed soon is usually kept away from very volatile assets."
+    },
+    {
+      "id": "personal-finance-017",
+      "prompt": "What describes how quickly an asset can be turned into cash without a big loss?",
+      "answer": "Liquidity",
+      "distractors": ["Volatility", "Solvency", "Yield"],
+      "example": "Liquidity is high for a savings account, while a house can take months to sell.",
+      "note": "An emergency fund needs high liquidity. Assets that are hard to sell often have to be sold at a discount when you need cash fast."
+    },
+    {
+      "id": "personal-finance-018",
+      "prompt": "Which figure includes fees and shows the true yearly cost of a loan?",
+      "answer": "APR",
+      "accept": ["Annual percentage rate", "Effective rate", "Effective annual rate"],
+      "distractors": ["Nominal rate", "Base rate", "Coupon rate"],
+      "example": "Two loans with the same interest rate can have a different APR once fees are included.",
+      "note": "The plain interest rate ignores fees such as processing charges. To compare loans fairly, compare the APR or effective rate."
+    },
+    {
+      "id": "personal-finance-019",
+      "prompt": "What usually happens if you pay only the minimum on a credit card each month?",
+      "answer": "High interest on the rest",
+      "accept": ["Interest on the rest", "You pay high interest"],
+      "distractors": ["No interest at all", "A lower credit limit", "An automatic refund"],
+      "example": "High interest on the rest of the balance keeps piling up if you pay only the minimum.",
+      "note": "Credit card rates are often far higher than other loans, so the debt can grow faster than you repay it. Paying off a debt that costs 20% a year is like earning a guaranteed 20%."
+    },
+    {
+      "id": "personal-finance-020",
+      "prompt": "What is a plan for how you will spend and save your income called?",
+      "answer": "Budget",
+      "accept": ["A budget"],
+      "distractors": ["Balance sheet", "Invoice", "Portfolio"],
+      "example": "Budget in hand, she saw that small daily purchases added up to a large monthly sum.",
+      "note": "A budget gives every unit of income a job before the month begins. Tracking actual spending for a few weeks is often the most eye-opening first step."
+    },
+    {
+      "id": "personal-finance-021",
+      "prompt": "In the 50/30/20 rule, what share of after-tax income goes to saving and paying off debt?",
+      "answer": "20%",
+      "accept": ["20 percent", "20"],
+      "distractors": ["30%", "50%", "10%"],
+      "example": "Under the 50/30/20 rule, 20% is set aside for savings and extra debt payments.",
+      "note": "50% goes to needs, 30% to wants and 20% to savings and debt. It is a simple starting point, not a law, and many people adjust the split."
+    },
+    {
+      "id": "personal-finance-022",
+      "prompt": "What is your income after taxes and other deductions called?",
+      "answer": "Net income",
+      "accept": ["Net pay", "Take-home pay", "Net"],
+      "distractors": ["Gross income", "Taxable income", "Revenue"],
+      "example": "Net income is the amount that actually lands in your bank account.",
+      "note": "Gross is the full amount before deductions, net is what remains. Budgets are best built on net income, because that is what you can actually spend."
+    },
+    {
+      "id": "personal-finance-023",
+      "prompt": "What is it called to invest a fixed amount at regular intervals, buying more units when prices are low?",
+      "answer": "Dollar-cost averaging",
+      "accept": ["Dollar cost averaging", "Cost averaging", "DCA"],
+      "distractors": ["Market timing", "Day trading", "Short selling"],
+      "example": "Dollar-cost averaging means the same monthly amount buys more shares in a dip and fewer at a peak.",
+      "note": "It spreads the entry price over time and removes the pressure to pick the perfect moment. It does not guarantee a profit, but it builds a steady habit."
+    },
+    {
+      "id": "personal-finance-024",
+      "prompt": "Complete the saying: '___ beats timing the market.'",
+      "answer": "Time in the market",
+      "distractors": ["Luck in the market", "Speed in the market", "Size in the market"],
+      "example": "Time in the market beats timing the market, because nobody reliably predicts the next move.",
+      "note": "Many of the best days on the stock market come right after the worst ones. Investors who jump out often miss those rebounds."
+    },
+    {
+      "id": "personal-finance-025",
+      "prompt": "Which promise is a classic warning sign of investment fraud?",
+      "answer": "Guaranteed high returns",
+      "accept": ["Guaranteed returns", "High guaranteed returns"],
+      "distractors": ["A published fee list", "Regulated custody", "Clear risk warnings"],
+      "example": "Guaranteed high returns were the headline of the ad, exactly the red flag regulators warn about.",
+      "note": "High return always comes with risk, so nobody can honestly guarantee both. Pressure to decide quickly and secrecy are further warning signs."
+    }
+  ]
+}

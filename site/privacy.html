@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy: Ma</title>
+  <meta name="description" content="Ma collects no data. No account, no server, no analytics. Screen Time data never leaves your iPhone.">
+  <meta name="theme-color" content="#0A0E22">
+  <link rel="canonical" href="https://senseiissei.github.io/ma/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://senseiissei.github.io/ma/privacy.html">
+  <link rel="alternate" hreflang="de" href="https://senseiissei.github.io/ma/de/privacy.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap top">
+    <a class="brand" href="./" aria-label="Ma home">
+      <img src="assets/img/favicon-64.png" alt="" width="36" height="36">
+      <span>Ma</span><span class="kanji" lang="ja">間</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="./#pillars">Features</a>
+      <a href="gallery/">Deck gallery</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+      <a class="lang" href="de/privacy.html" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap narrow">
+    <div class="page-head">
+      <span class="kicker">Privacy policy</span>
+      <h1>Ma collects nothing.</h1>
+      <p>No account, no server, no analytics, no ads. What you do in Ma stays on your iPhone. This page explains the details, including the few moments where the app talks to the internet at all.</p>
+    </div>
+
+    <div class="prose">
+      <div class="card summary">
+        <h2>In short</h2>
+        <ul class="checks">
+          <li>Ma has no user accounts and no backend. There is nowhere to send your data.</li>
+          <li>No analytics, crash reporting, advertising or tracking SDKs are built in.</li>
+          <li>Screen Time data never leaves the device, and Ma itself cannot even read which apps you picked.</li>
+          <li>Optional AI features run on the device. Nothing is sent to a cloud AI.</li>
+          <li>The only downloads are community decks, and only when you ask for them.</li>
+        </ul>
+      </div>
+
+      <h2>What is stored, and where</h2>
+      <p>Your boundaries, unlock history, learning progress, your own decks, habits, check-ins, moods, reflections, Balance entries and settings are saved as small files inside the app's own container on your iPhone. The Screen Time extensions share a container with the app (an App Group) so the blocked screen can show the right thing. Nothing of this is copied anywhere by Ma.</p>
+      <p>Like every app's data, these files are part of your device backup if you make one, for example through iCloud Backup. That backup is handled by Apple under your Apple Account, not by Ma. Deleting the app deletes all of its data.</p>
+
+      <h2>Screen Time</h2>
+      <p>Blocking runs on Apple's Screen Time frameworks: FamilyControls, ManagedSettings and DeviceActivity. When you pick apps, categories or websites, iOS hands Ma opaque tokens, not names. Ma can ask iOS to shield those tokens, but it cannot see which apps they stand for, and it never sees your usage statistics. None of this data leaves your iPhone.</p>
+      <p>You can revoke the Screen Time permission at any time in the iOS Settings app. Every boundary is lifted immediately.</p>
+
+      <h2>Notifications</h2>
+      <p>Ma uses local notifications only, for example to lead you from the blocked screen into the app or to end a focus round. They are scheduled on the device. There is no push server.</p>
+
+      <h2>Safari filter</h2>
+      <p>Ma Filter is a Safari web extension. It runs inside Safari on your iPhone, only on the sites you allow it for (such as instagram.com, youtube.com, x.com, linkedin.com, facebook.com and tiktok.com), and only changes how those pages look. It does not read, store or send your browsing history, and it has no connection to any server.</p>
+
+      <h2>On-device AI</h2>
+      <p>Where Ma offers AI features, they use Apple's on-device model and only on iPhones that support it. Your text is processed on the iPhone and never sent to a cloud service by Ma. These features are optional.</p>
+      <p>Ma also offers a prompt template you can copy into an AI service of your own choice to generate a deck. That is you copying text into another service; what happens there is covered by that service's own privacy policy.</p>
+
+      <h2>When Ma uses the internet</h2>
+      <ul>
+        <li><strong>Community gallery.</strong> When you open the deck gallery, Ma downloads the list of decks from <code>senseiissei.github.io</code>, which is hosted by GitHub Pages. When you add a deck, it downloads that one JSON file.</li>
+        <li><strong>Import links.</strong> An <code>ma://import</code> link makes Ma download the deck file the link points to, after you opened that link yourself.</li>
+        <li><strong>Spotify search.</strong> If you tap the Spotify button in Focus, Ma opens the Spotify app or website with a search. Ma itself sends nothing.</li>
+      </ul>
+      <p>These downloads carry no identifier, no account and no usage data. As with any web request, the server that answers sees your IP address; for GitHub Pages that is covered by the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</p>
+
+      <h2>This website</h2>
+      <p>This site is a set of static pages on GitHub Pages. It sets no cookies, runs no analytics and loads nothing from other servers, not even fonts. It remembers your language choice in your browser's local storage (the key <code>ma-lang</code>), which never leaves your browser. GitHub, as the host, processes IP addresses in its server logs to deliver the pages.</p>
+
+      <h2>Children</h2>
+      <p>Ma collects no personal data from anyone, children included.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, the new version appears on this page, and every earlier version stays readable in the <a href="https://github.com/SenseiIssei/ma">public repository</a>.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy are welcome as a <a href="https://github.com/SenseiIssei/ma/issues">GitHub issue</a>. Please do not post personal data there, since issues are public.</p>
+
+      <p class="updated">Last updated: 30 September 2026</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <a class="brand" href="./"><img src="assets/img/favicon-64.png" alt="" width="36" height="36"><span>Ma</span><span class="kanji" lang="ja">間</span></a>
+        <nav aria-label="Footer">
+          <a href="gallery/">Deck gallery</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+          <a href="https://github.com/SenseiIssei/ma/issues">Report a problem</a>
+          <a href="de/privacy.html" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+        </nav>
+      </div>
+      <p class="fine">&copy; <span id="year">2026</span> Ma contributors. MIT licence. Apple, iPhone, Safari and Screen Time are trademarks of Apple Inc.; Ma is not affiliated with Apple.</p>
+    </div>
+  </footer>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

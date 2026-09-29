@@ -1,0 +1,55 @@
+name: Pages
+
+# Publishes site/ and gallery/ without rebuilding the app. install/ comes
+# from the newest device build, kept as the pages-install release asset.
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "gallery/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  pages:
+    name: Website and gallery
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate gallery decks
+        run: python3 gallery/build_index.py --check
+      - name: Fetch the latest install page
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if out=$(gh release view pages-install -R "$GITHUB_REPOSITORY" 2>&1); then
+            mkdir -p _install
+            gh release download pages-install -R "$GITHUB_REPOSITORY" -p install.tar.gz -D _install
+            tar -xzf _install/install.tar.gz -C _install
+            rm _install/install.tar.gz
+            echo "INSTALL_ARGS=--install _install" >> "$GITHUB_ENV"
+          elif grep -qi "not found" <<<"$out"; then
+            echo "::warning::No device build published yet, deploying without install/"
+          else
+            echo "::error::Could not read the pages-install release: $out"; exit 1
+          fi
+      - name: Assemble the site
+        run: python3 site/build.py _site ${INSTALL_ARGS:-}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Publish
+        id: deploy
+        uses: actions/deploy-pages@v4

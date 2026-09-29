@@ -18,6 +18,14 @@ struct RootView: View {
         .onChange(of: appearance, initial: true) { _, value in
             Appearance.current = Appearance(rawValue: value) ?? .night
         }
+        .alert(tr("Topics", "Themen"), isPresented: Binding(
+            get: { model.importMessage != nil },
+            set: { if !$0 { model.importMessage = nil } }
+        )) {
+            Button(tr("OK", "OK"), role: .cancel) { model.importMessage = nil }
+        } message: {
+            Text(model.importMessage ?? "")
+        }
         .fullScreenCover(item: $model.gate) { reason in
             GateView(reason: reason)
                 .environment(model)

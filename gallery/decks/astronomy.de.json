@@ -1,0 +1,235 @@
+{
+  "id": "astronomy",
+  "locale": "de",
+  "title": "Astronomie",
+  "subtitle": "Planeten, Sterne und der Himmel über uns",
+  "symbol": "星",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "astronomy-001",
+      "prompt": "Welcher Planet ist der Sonne am nächsten?",
+      "answer": "Merkur",
+      "accept": [],
+      "distractors": ["Venus", "Mars", "Erde"],
+      "example": "Merkur umrundet die Sonne einmal in nur 88 Tagen.",
+      "note": "Ein Jahr auf dem Merkur dauert nur 88 Erdtage. Weil er kaum Atmosphäre hat, die Wärme speichert, wechseln sich glühend heiße Tage und eisige Nächte ab."
+    },
+    {
+      "id": "astronomy-002",
+      "prompt": "Welcher Planet wird der Rote Planet genannt?",
+      "answer": "Mars",
+      "accept": [],
+      "distractors": ["Venus", "Merkur", "Jupiter"],
+      "example": "Eisenhaltiger Staub gibt dem Mars seine rostrote Farbe.",
+      "note": "Das Rot stammt von Eisenoxid, also im Grunde von Rost. Auf dem Mars steht auch Olympus Mons, der höchste bekannte Vulkan im Sonnensystem, rund 22 km hoch."
+    },
+    {
+      "id": "astronomy-003",
+      "prompt": "Welcher ist der größte Planet in unserem Sonnensystem?",
+      "answer": "Jupiter",
+      "accept": [],
+      "distractors": ["Saturn", "Neptun", "Uranus"],
+      "example": "In den Jupiter würden mehr als 1.300 Erden hineinpassen.",
+      "note": "Jupiter ist ein Gasriese aus überwiegend Wasserstoff und Helium. Sein Großer Roter Fleck ist ein Sturm, der breiter ist als die ganze Erde."
+    },
+    {
+      "id": "astronomy-004",
+      "prompt": "Welcher Planet hat das hellste und auffälligste Ringsystem?",
+      "answer": "Saturn",
+      "accept": [],
+      "distractors": ["Jupiter", "Uranus", "Neptun"],
+      "example": "Schon ein kleines Teleskop im Garten zeigt die Ringe des Saturn.",
+      "note": "Alle vier Riesenplaneten haben Ringe, doch die des Saturn sind mit Abstand am hellsten, weil sie größtenteils aus Wassereis bestehen. Saturn hat außerdem eine geringere Dichte als Wasser."
+    },
+    {
+      "id": "astronomy-005",
+      "prompt": "Welcher Stern ist der Erde am nächsten?",
+      "answer": "Die Sonne",
+      "accept": ["Sonne"],
+      "distractors": ["Sirius", "Polarstern", "Proxima Centauri"],
+      "example": "Die Sonne ist der nächste Stern, rund 150 Millionen km von uns entfernt.",
+      "note": "Man vergisst leicht, dass die Sonne ein Stern ist. Sie vereint etwa 99,8 Prozent der gesamten Masse des Sonnensystems."
+    },
+    {
+      "id": "astronomy-006",
+      "prompt": "Wie viele Planeten hat unser Sonnensystem?",
+      "answer": "8",
+      "accept": ["Acht"],
+      "distractors": ["7", "9", "10"],
+      "example": "Unser Sonnensystem hat 8 Planeten, von Merkur bis Neptun.",
+      "note": "Bis 2006 waren es neun. Dann schuf die Internationale Astronomische Union eine neue Kategorie und ordnete Pluto dort ein."
+    },
+    {
+      "id": "astronomy-007",
+      "prompt": "Als was wird Pluto seit 2006 eingestuft?",
+      "answer": "Zwergplanet",
+      "accept": [],
+      "distractors": ["Asteroid", "Komet", "Mond"],
+      "example": "Seit 2006 gilt Pluto offiziell als Zwergplanet, genau wie Ceres und Eris.",
+      "note": "Ein vollwertiger Planet muss seine Umlaufbahn von anderen Körpern freigeräumt haben, Pluto teilt seine Bahn aber mit vielen Objekten im Kuipergürtel. Er ist sogar kleiner als unser Mond."
+    },
+    {
+      "id": "astronomy-008",
+      "prompt": "Welcher Planet hat die heißeste Oberfläche?",
+      "answer": "Venus",
+      "accept": [],
+      "distractors": ["Merkur", "Mars", "Jupiter"],
+      "example": "Auf der Oberfläche der Venus ist es heiß genug, um Blei zu schmelzen.",
+      "note": "Die Venus ist weiter von der Sonne entfernt als Merkur und trotzdem heißer, etwa 465 °C. Ihre dichte Kohlendioxid-Atmosphäre hält die Wärme in einem außer Kontrolle geratenen Treibhauseffekt fest."
+    },
+    {
+      "id": "astronomy-009",
+      "prompt": "Wie heißt unsere Heimatgalaxie?",
+      "answer": "Milchstraße",
+      "accept": ["Die Milchstraße", "Milchstrasse"],
+      "distractors": ["Andromedagalaxie", "Dreiecksgalaxie", "Strudelgalaxie"],
+      "example": "In einer dunklen Nacht zieht sich die Milchstraße als blasses Band über den Himmel.",
+      "note": "Dieses blasse Band ist das gemeinsame Licht von Milliarden ferner Sterne in der Scheibe unserer eigenen Galaxie. Das Wort Galaxie kommt vom griechischen Wort für Milch."
+    },
+    {
+      "id": "astronomy-010",
+      "prompt": "Wie lange braucht das Sonnenlicht ungefähr bis zur Erde?",
+      "answer": "8 Minuten",
+      "accept": ["8 min", "Acht Minuten"],
+      "distractors": ["8 Sekunden", "8 Stunden", "80 Minuten"],
+      "example": "Das Sonnenlicht braucht etwa 8 Minuten bis zu uns.",
+      "note": "Genauer sind es etwa 8 Minuten und 20 Sekunden. Würde die Sonne plötzlich verschwinden, würden wir es erst nach dieser Zeit bemerken."
+    },
+    {
+      "id": "astronomy-011",
+      "prompt": "Was misst ein Lichtjahr?",
+      "answer": "Entfernung",
+      "accept": ["Distanz", "Strecke", "Eine Entfernung"],
+      "distractors": ["Zeit", "Geschwindigkeit", "Helligkeit"],
+      "example": "Ein Lichtjahr ist trotz des Wortes Jahr im Namen eine Entfernung.",
+      "note": "Ein Lichtjahr ist die Strecke, die Licht in einem Jahr zurücklegt, etwa 9,46 Billionen km. Wer ferne Sterne betrachtet, blickt also in die Vergangenheit."
+    },
+    {
+      "id": "astronomy-012",
+      "prompt": "Wie lange dauert es ungefähr von einem Vollmond bis zum nächsten?",
+      "answer": "29,5 Tage",
+      "accept": ["29.5 Tage", "29,5"],
+      "distractors": ["14 Tage", "21 Tage", "35 Tage"],
+      "example": "Der Zyklus der Mondphasen wiederholt sich alle 29,5 Tage.",
+      "note": "Der Mond umrundet die Erde in etwa 27,3 Tagen, doch die Erde wandert gleichzeitig um die Sonne. Der Mond braucht rund zwei Tage extra, um wieder gleich zur Sonne zu stehen."
+    },
+    {
+      "id": "astronomy-013",
+      "prompt": "Welcher Stern steht fast genau über dem Nordpol der Erde?",
+      "answer": "Polarstern",
+      "accept": ["Polaris", "Der Polarstern", "Nordstern"],
+      "distractors": ["Sirius", "Wega", "Beteigeuze"],
+      "example": "Der Polarstern bleibt fast still stehen, während sich der übrige Nachthimmel um ihn dreht.",
+      "note": "Der Polarstern ist gar nicht besonders hell, viele Sterne überstrahlen ihn. Die Erdachse taumelt langsam, deshalb wird in etwa 12.000 Jahren Wega nahe am Himmelspol stehen."
+    },
+    {
+      "id": "astronomy-014",
+      "prompt": "Welcher ist der hellste Stern am Nachthimmel?",
+      "answer": "Sirius",
+      "accept": ["Hundsstern"],
+      "distractors": ["Canopus", "Wega", "Arktur"],
+      "example": "Sirius funkelt heller als alle anderen Sterne am Winterhimmel.",
+      "note": "Sirius ist so hell, weil er leuchtstark und zugleich nah ist, nur etwa 8,6 Lichtjahre entfernt. Sein Name stammt vom griechischen Wort für glühend oder sengend."
+    },
+    {
+      "id": "astronomy-015",
+      "prompt": "Was verursacht die Jahreszeiten auf der Erde?",
+      "answer": "Achsneigung",
+      "accept": ["Neigung der Erdachse", "Erdachsenneigung", "Die Achsneigung"],
+      "distractors": ["Abstand zur Sonne", "Sonneneruptionen", "Schwerkraft des Mondes"],
+      "example": "Durch die Achsneigung von etwa 23,4 Grad ist jede Erdhälfte ein halbes Jahr lang stärker der Sonne zugewandt.",
+      "note": "Am Abstand liegt es nicht: Die Erde ist der Sonne Anfang Januar am nächsten, also mitten im Winter der Nordhalbkugel."
+    },
+    {
+      "id": "astronomy-016",
+      "prompt": "Warum sehen wir vom Mond immer dieselbe Seite?",
+      "answer": "Gebundene Rotation",
+      "accept": ["Gezeitenbindung", "Synchrone Rotation"],
+      "distractors": ["Er dreht sich nicht", "Erdschatten", "Sonnenwind"],
+      "example": "Gebundene Rotation bedeutet: Der Mond dreht sich bei jeder Erdumrundung genau einmal um sich selbst.",
+      "note": "Der Mond rotiert sehr wohl, nur eben genau einmal pro Umlauf, deshalb zeigt er uns immer dasselbe Gesicht. Die Schwerkraft der Erde hat seine Drehung vor langer Zeit auf diesen Takt abgebremst."
+    },
+    {
+      "id": "astronomy-017",
+      "prompt": "Aus welchem Element besteht die Sonne größtenteils?",
+      "answer": "Wasserstoff",
+      "accept": [],
+      "distractors": ["Helium", "Sauerstoff", "Kohlenstoff"],
+      "example": "Wasserstoff macht etwa drei Viertel der Sonnenmasse aus.",
+      "note": "Der Rest ist größtenteils Helium, das zuerst im Sonnenlicht entdeckt wurde und erst später auf der Erde. Der Name kommt von helios, griechisch für Sonne."
+    },
+    {
+      "id": "astronomy-018",
+      "prompt": "Welcher Vorgang lässt die Sonne leuchten?",
+      "answer": "Kernfusion",
+      "accept": ["Fusion"],
+      "distractors": ["Kernspaltung", "Verbrennung", "Radioaktiver Zerfall"],
+      "example": "Durch Kernfusion im Kern verwandelt die Sonne jede Sekunde rund 4 Millionen Tonnen Masse in Energie.",
+      "note": "Bei etwa 15 Millionen °C im Kern verschmelzen Wasserstoffkerne zu Helium. Die Sonne brennt also nicht wie ein Feuer, es gibt dort keinen Sauerstoff, der etwas verbrennt."
+    },
+    {
+      "id": "astronomy-019",
+      "prompt": "Welcher Stern ist der Sonne am nächsten?",
+      "answer": "Proxima Centauri",
+      "accept": ["Proxima"],
+      "distractors": ["Sirius", "Barnards Pfeilstern", "Wega"],
+      "example": "Proxima Centauri ist etwa 4,2 Lichtjahre von uns entfernt.",
+      "note": "Er ist ein kleiner Roter Zwerg und mit bloßem Auge viel zu schwach zu sehen. Er gehört zum System Alpha Centauri, dessen zwei helle Sterne man von der Südhalbkugel leicht findet."
+    },
+    {
+      "id": "astronomy-020",
+      "prompt": "Wie heißt die Zone mit felsigen Kleinkörpern zwischen Mars und Jupiter?",
+      "answer": "Asteroidengürtel",
+      "accept": ["Hauptgürtel", "Der Asteroidengürtel"],
+      "distractors": ["Kuipergürtel", "Oortsche Wolke", "Van-Allen-Gürtel"],
+      "example": "Im Asteroidengürtel liegen die Brocken so weit auseinander, dass Raumsonden ihn ohne Ausweichmanöver durchqueren.",
+      "note": "Filme zeigen dicht gedrängte Felsen, doch der Gürtel ist fast leer. Alle Asteroiden darin zusammen wiegen nur etwa 3 Prozent unseres Mondes."
+    },
+    {
+      "id": "astronomy-021",
+      "prompt": "Welcher ist der größte Mond im Sonnensystem?",
+      "answer": "Ganymed",
+      "accept": ["Ganymede"],
+      "distractors": ["Titan", "Kallisto", "Io"],
+      "example": "Ganymed, ein Mond des Jupiter, ist größer als der Planet Merkur.",
+      "note": "Ganymed hat einen Durchmesser von etwa 5.268 km. Er ist außerdem der einzige bekannte Mond mit einem eigenen Magnetfeld."
+    },
+    {
+      "id": "astronomy-022",
+      "prompt": "Welcher Planet liegt auf der Seite und ist um etwa 98 Grad geneigt?",
+      "answer": "Uranus",
+      "accept": [],
+      "distractors": ["Neptun", "Saturn", "Venus"],
+      "example": "Uranus rollt wie eine liegende Kugel um die Sonne.",
+      "note": "Vermutlich hat ihn vor langer Zeit ein gewaltiger Zusammenstoß umgekippt. Jeder Pol bekommt etwa 42 Jahre Sonnenlicht und danach 42 Jahre Dunkelheit."
+    },
+    {
+      "id": "astronomy-023",
+      "prompt": "Welche Galaxie, etwa 2,5 Millionen Lichtjahre entfernt, ist unter dunklem Himmel mit bloßem Auge zu sehen?",
+      "answer": "Andromeda",
+      "accept": ["Andromedagalaxie", "Andromeda-Galaxie", "M31"],
+      "distractors": ["Orionnebel", "Plejaden", "Krebsnebel"],
+      "example": "Andromeda erscheint am Herbsthimmel als schwacher Lichtfleck.",
+      "note": "Das Licht, das Sie sehen, ist vor etwa 2,5 Millionen Jahren losgeflogen, noch bevor es moderne Menschen gab. Sie ist die nächste große Spiralgalaxie neben der Milchstraße."
+    },
+    {
+      "id": "astronomy-024",
+      "prompt": "Wie heißt die gewaltige Explosion eines Sterns am Ende seines Lebens?",
+      "answer": "Supernova",
+      "accept": [],
+      "distractors": ["Pulsar", "Quasar", "Nebel"],
+      "example": "Eine Supernova verteilt schwere Elemente im All, aus denen später neue Sterne und Planeten entstehen.",
+      "note": "Für einige Wochen kann eine einzige Supernova eine ganze Galaxie überstrahlen. Viele Elemente in unserem Körper, etwa ein Teil des Eisens im Blut, wurden von explodierenden Sternen verteilt."
+    },
+    {
+      "id": "astronomy-025",
+      "prompt": "Wie heißt die Grenze um ein Schwarzes Loch, hinter der nichts mehr entkommen kann, nicht einmal Licht?",
+      "answer": "Ereignishorizont",
+      "accept": [],
+      "distractors": ["Akkretionsscheibe", "Singularität", "Photonensphäre"],
+      "example": "Hinter dem Ereignishorizont gibt es für nichts mehr ein Zurück.",
+      "note": "Am Ereignishorizont ist nichts Festes, er ist einfach die Grenze, ab der man zum Entkommen schneller als das Licht sein müsste. Deshalb erscheinen Schwarze Löcher schwarz."
+    }
+  ]
+}

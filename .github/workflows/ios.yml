@@ -5,7 +5,7 @@ name: iOS
 on:
   push:
     branches: [main]
-    paths-ignore: ["**.md", "docs/**"]
+    paths-ignore: ["**.md", "docs/**", "site/**", "gallery/**"]
   pull_request:
   workflow_dispatch:
     inputs:
@@ -32,6 +32,8 @@ jobs:
       - uses: actions/checkout@v5
       - name: Validate decks
         run: python3 scripts/validate_decks.py
+      - name: Validate gallery decks
+        run: python3 gallery/build_index.py --check
       - name: Parse extension scripts
         run: |
           for f in Extensions/Filter/Resources/*.js; do node --check "$f"; done
@@ -163,8 +165,13 @@ jobs:
     needs: content
     runs-on: macos-26
     timeout-minutes: 60
+    # Shares the Pages deploy slot with pages.yml so they never overwrite
+    # each other mid-deploy.
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
     environment:
@@ -227,19 +234,34 @@ jobs:
           BASE="https://${OWNER}.github.io/${{ github.event.repository.name }}/install"
           VERSION=$(grep -m1 'MARKETING_VERSION' project.yml | sed -E 's/.*"([^"]+)".*/\1/')
           BUILD=${{ github.run_number }}
-          mkdir -p site/install
-          cp "$IPA" site/install/Ma.ipa
-          sips -z 57 57 App/Assets.xcassets/AppIcon.appiconset/icon-1024.png --out site/install/icon-57.png >/dev/null
-          sips -z 512 512 App/Assets.xcassets/AppIcon.appiconset/icon-1024.png --out site/install/icon-512.png >/dev/null
+          mkdir -p build/install
+          cp "$IPA" build/install/Ma.ipa
+          sips -z 57 57 App/Assets.xcassets/AppIcon.appiconset/icon-1024.png --out build/install/icon-57.png >/dev/null
+          sips -z 512 512 App/Assets.xcassets/AppIcon.appiconset/icon-1024.png --out build/install/icon-512.png >/dev/null
           for f in manifest.plist index.html; do
-            sed -e "s|__BASE__|$BASE|g" -e "s|__VERSION__|$VERSION|g" -e "s|__BUILD__|$BUILD|g" "ci/install/$f" > "site/install/$f"
+            sed -e "s|__BASE__|$BASE|g" -e "s|__VERSION__|$VERSION|g" -e "s|__BUILD__|$BUILD|g" "ci/install/$f" > "build/install/$f"
           done
-          printf '<!doctype html><meta http-equiv="refresh" content="0; url=install/">\n' > site/index.html
           echo "Install page: $BASE/"
+      # The website deploys on its own (pages.yml); it picks up the newest
+      # install page from this release asset instead of rebuilding the app.
+      - name: Keep the install page for website-only deploys
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tar -czf build/install.tar.gz -C build/install .
+          if ! gh release view pages-install -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create pages-install -R "$GITHUB_REPOSITORY" --prerelease \
+              --title "Install page (device build)" \
+              --notes "Not a release. Holds the newest device build's install page so the website can be redeployed without rebuilding the app."
+          fi
+          gh release upload pages-install build/install.tar.gz -R "$GITHUB_REPOSITORY" --clobber
+      - name: Assemble the site
+        run: python3 site/build.py _site --install build/install
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _site
       - name: Publish
         id: deploy
         uses: actions/deploy-pages@v4

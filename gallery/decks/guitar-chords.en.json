@@ -1,0 +1,232 @@
+{
+  "id": "guitar-chords",
+  "locale": "en",
+  "title": "Guitar chords",
+  "subtitle": "Strings, notes and the chords behind every song",
+  "symbol": "弦",
+  "category": "life",
+  "cards": [
+    {
+      "id": "guitar-chords-001",
+      "prompt": "In standard tuning, what are the open strings from lowest (thickest) to highest (thinnest)?",
+      "answer": "E A D G B E",
+      "distractors": ["E A D G C E", "D A D G B E", "E A D F B E"],
+      "example": "Before every practice session she tuned to E A D G B E and checked the high string last.",
+      "note": "A classic memory aid is 'Eddie Ate Dynamite, Good Bye Eddie'. Both outer strings are E, two octaves apart."
+    },
+    {
+      "id": "guitar-chords-002",
+      "prompt": "Which string do guitarists call the 6th string?",
+      "answer": "Low E",
+      "accept": ["Low E string", "The low E"],
+      "distractors": ["High E", "A string", "G string"],
+      "example": "Low E is the thickest string and sits closest to your chin when you hold the guitar.",
+      "note": "Strings are numbered from the thinnest (1st, high E) to the thickest (6th, low E). So the number counts up as the pitch goes down."
+    },
+    {
+      "id": "guitar-chords-003",
+      "prompt": "Which note do you get at the 5th fret of the low E string?",
+      "answer": "A",
+      "distractors": ["G", "B", "C"],
+      "example": "Press the low E string at the 5th fret and you hear an A, the same pitch as the open A string.",
+      "note": "This is the basis of the 5th fret tuning method: fret 5 on one string matches the next open string. The only exception is the G string, where you use fret 4 to match B."
+    },
+    {
+      "id": "guitar-chords-004",
+      "prompt": "At which fret does a string sound exactly one octave higher than when played open?",
+      "answer": "12th fret",
+      "accept": ["12", "Fret 12", "12th"],
+      "distractors": ["7th fret", "5th fret", "10th fret"],
+      "example": "Most guitars mark the 12th fret with a double dot because the note names start over there.",
+      "note": "An octave has 12 semitones and each fret adds one, so fret 12 repeats the open note an octave up. That is why the fretboard pattern repeats after it."
+    },
+    {
+      "id": "guitar-chords-005",
+      "prompt": "How far apart in pitch are two neighbouring frets?",
+      "answer": "One semitone",
+      "accept": ["A semitone", "1 semitone", "Half step", "A half step"],
+      "distractors": ["One whole tone", "Two semitones", "A quarter tone"],
+      "example": "One semitone is what you gain each time your finger moves up a single fret.",
+      "note": "Twelve semitones make an octave. A whole tone is two frets, which is the distance from C to D."
+    },
+    {
+      "id": "guitar-chords-006",
+      "prompt": "How many different notes make up a basic triad?",
+      "answer": "Three",
+      "accept": ["3"],
+      "distractors": ["Two", "Four", "Five"],
+      "example": "Three different notes make a triad, even if you strum six strings and some of them repeat.",
+      "note": "A triad is a root, a third and a fifth stacked together. Open chords double some of these notes on several strings, which makes them sound fuller."
+    },
+    {
+      "id": "guitar-chords-007",
+      "prompt": "Which notes form a C major chord?",
+      "answer": "C E G",
+      "accept": ["C, E, G", "CEG"],
+      "distractors": ["C Eb G", "C F A", "C E A"],
+      "example": "Every C major chord, open or barred, is built only from C E G.",
+      "note": "Root C, major third E (4 semitones up), fifth G (7 semitones up). C major uses only white piano keys, which makes it a handy reference chord."
+    },
+    {
+      "id": "guitar-chords-008",
+      "prompt": "Which notes form a G major chord?",
+      "answer": "G B D",
+      "accept": ["G, B, D", "GBD"],
+      "distractors": ["G Bb D", "G C D", "G B E"],
+      "example": "The open G chord rings out with G B D spread across all six strings.",
+      "note": "Root G, major third B, fifth D. In the open shape the note G appears three times, which is why the chord sounds so big."
+    },
+    {
+      "id": "guitar-chords-009",
+      "prompt": "Which notes form a D major chord?",
+      "answer": "D F# A",
+      "accept": ["D, F#, A", "D F sharp A"],
+      "distractors": ["D F A", "D G A", "D F# B"],
+      "example": "The small triangle shape of open D gives you D F# A on the top strings.",
+      "note": "The F# is the major third, 4 semitones above D. Lower it to F and the chord turns into D minor."
+    },
+    {
+      "id": "guitar-chords-010",
+      "prompt": "Which notes form an A minor chord?",
+      "answer": "A C E",
+      "accept": ["A, C, E", "ACE"],
+      "distractors": ["A C# E", "A D E", "A C F"],
+      "example": "A minor is spelled A C E, which even reads like the word ace.",
+      "note": "The C is a minor third, only 3 semitones above A. A minor has no sharps or flats, just like C major, because they share the same notes."
+    },
+    {
+      "id": "guitar-chords-011",
+      "prompt": "Which notes form an E minor chord?",
+      "answer": "E G B",
+      "accept": ["E, G, B", "EGB"],
+      "distractors": ["E G# B", "E A B", "E G C"],
+      "example": "With just two fingers down, open E minor already gives you E G B on all six strings.",
+      "note": "Three of the six open strings (E, G, B) are already chord tones. That is why E minor is often the very first chord beginners learn."
+    },
+    {
+      "id": "guitar-chords-012",
+      "prompt": "Which notes form an E major chord?",
+      "answer": "E G# B",
+      "accept": ["E, G#, B", "E G sharp B"],
+      "distractors": ["E G B", "E A B", "E G# C#"],
+      "example": "Add one finger to E minor on the G string and you get E G# B, the E major chord.",
+      "note": "Raising the third from G to G# turns minor into major. On the guitar that is a single finger on the 1st fret of the G string."
+    },
+    {
+      "id": "guitar-chords-013",
+      "prompt": "Which notes form an A major chord?",
+      "answer": "A C# E",
+      "accept": ["A, C#, E", "A C sharp E"],
+      "distractors": ["A C E", "A D E", "A C# F#"],
+      "example": "The three fingers lined up on the 2nd fret produce A C# E in the open A shape.",
+      "note": "Compare it with A minor (A C E): only the third moves up one semitone. That single note decides if a chord sounds bright or sad."
+    },
+    {
+      "id": "guitar-chords-014",
+      "prompt": "Which notes form a D minor chord?",
+      "answer": "D F A",
+      "accept": ["D, F, A", "DFA"],
+      "distractors": ["D F# A", "D G A", "D F Bb"],
+      "example": "Many sad ballads lean on D minor, whose notes are D F A.",
+      "note": "D minor is D major with the F# lowered to F. On the high E string that is one fret lower than in the D major shape."
+    },
+    {
+      "id": "guitar-chords-015",
+      "prompt": "Which notes form an F major chord?",
+      "answer": "F A C",
+      "accept": ["F, A, C", "FAC"],
+      "distractors": ["F Ab C", "F Bb C", "F A D"],
+      "example": "Whether you play the full barre or the easy small version, F major is F A C.",
+      "note": "F major is often the first barre chord players meet. The notes F A C also spell FACE with the E in between, a common reading aid."
+    },
+    {
+      "id": "guitar-chords-016",
+      "prompt": "Which chord tone is different between C major and C minor?",
+      "answer": "The third",
+      "accept": ["Third", "The 3rd"],
+      "distractors": ["The root", "The fifth", "The octave"],
+      "example": "The third is the only note that changes: E in C major, Eb in C minor.",
+      "note": "Root and fifth stay the same. The third alone gives a chord its major (bright) or minor (dark) character."
+    },
+    {
+      "id": "guitar-chords-017",
+      "prompt": "How many semitones above the root is a minor third?",
+      "answer": "3 semitones",
+      "accept": ["3", "Three semitones", "Three"],
+      "distractors": ["4 semitones", "2 semitones", "5 semitones"],
+      "example": "From A up to C is 3 semitones, which is why A minor sounds minor.",
+      "note": "A major third is 4 semitones, a minor third is 3. On one string that is simply 3 frets versus 4 frets."
+    },
+    {
+      "id": "guitar-chords-018",
+      "prompt": "Which two chord tones make up a power chord?",
+      "answer": "Root and fifth",
+      "accept": ["Root and 5th", "Root, fifth"],
+      "distractors": ["Root and third", "Third and fifth", "Root and seventh"],
+      "example": "Root and fifth are all a power chord needs, often with the root doubled an octave up.",
+      "note": "Without a third a power chord is neither major nor minor. That neutral sound stays clear under heavy distortion, which is why rock and metal love it."
+    },
+    {
+      "id": "guitar-chords-019",
+      "prompt": "How is a power chord built on G usually written?",
+      "answer": "G5",
+      "distractors": ["G7", "Gm", "Gsus2"],
+      "example": "The tab simply said G5, so he played the root on the low E string and the fifth two frets up on the A string.",
+      "note": "The 5 stands for the fifth, the only note added to the root. With no third, the chord is neither major nor minor, so the symbol leaves out m and maj."
+    },
+    {
+      "id": "guitar-chords-020",
+      "prompt": "What is a chord called where one finger presses several strings flat across the same fret?",
+      "answer": "Barre chord",
+      "accept": ["Bar chord", "Barre"],
+      "distractors": ["Power chord", "Open chord", "Slash chord"],
+      "example": "Once you master one Barre chord shape, you can slide it up and down the neck to play any key.",
+      "note": "The index finger acts like a movable nut. An E-shape barre at fret 1 is F major, at fret 3 it is G major."
+    },
+    {
+      "id": "guitar-chords-021",
+      "prompt": "With a capo on fret 2, an open G chord shape sounds like which chord?",
+      "answer": "A major",
+      "accept": ["A"],
+      "distractors": ["G# major", "B major", "D major"],
+      "example": "With the capo on fret 2 her G shape sounded as A major, matching the singer's key.",
+      "note": "A capo raises every string by one semitone per fret. G plus two semitones is A, so the shape stays the same while the key moves up."
+    },
+    {
+      "id": "guitar-chords-022",
+      "prompt": "Which notes form a G7 chord?",
+      "answer": "G B D F",
+      "accept": ["G, B, D, F", "GBDF"],
+      "distractors": ["G B D F#", "G B D E", "G Bb D F"],
+      "example": "G7 adds an F to the triad, so its notes are G B D F.",
+      "note": "A plain 7 means a dominant seventh: the major triad plus a minor seventh (F, not F#). Its tension wants to resolve to C, which is why G7 so often leads home to C."
+    },
+    {
+      "id": "guitar-chords-023",
+      "prompt": "Which notes form a Dsus4 chord?",
+      "answer": "D G A",
+      "accept": ["D, G, A", "DGA"],
+      "distractors": ["D F# A", "D E A", "D G B"],
+      "example": "In Dsus4 the third is replaced, leaving D G A.",
+      "note": "Sus means suspended: the third is swapped for the fourth (G). Adding your pinky to the high E string at fret 3 turns D into Dsus4, a favourite folk flourish."
+    },
+    {
+      "id": "guitar-chords-024",
+      "prompt": "In the key of G, which chords are I, IV and V?",
+      "answer": "G C D",
+      "accept": ["G, C, D", "G C D major"],
+      "distractors": ["G D E", "G A D", "G C E"],
+      "example": "Countless campfire songs get by with nothing but G C D.",
+      "note": "Count up the G major scale: G is 1, C is 4, D is 5. The I IV V progression powers blues, folk and rock in every key."
+    },
+    {
+      "id": "guitar-chords-025",
+      "prompt": "When you play an open D major chord, which strings do you strum?",
+      "answer": "The four thinnest",
+      "accept": ["Four thinnest", "The four highest"],
+      "distractors": ["All six strings", "The five thinnest", "The three thinnest"],
+      "example": "The four thinnest strings are all you strum for open D, starting from the open D string.",
+      "note": "The open D string is the root, so the chord starts there. Hitting the low E adds a note that is not in the chord and makes it sound muddy."
+    }
+  ]
+}

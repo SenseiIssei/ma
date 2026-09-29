@@ -1,0 +1,232 @@
+{
+  "id": "coffee-brewing",
+  "locale": "en",
+  "title": "Coffee brewing",
+  "subtitle": "Beans, grind, water and methods",
+  "symbol": "珈",
+  "category": "life",
+  "cards": [
+    {
+      "id": "coffee-brewing-001",
+      "prompt": "Which coffee species has roughly twice the caffeine of Arabica?",
+      "answer": "Robusta",
+      "accept": ["Coffea canephora", "canephora"],
+      "distractors": ["Stenophylla", "Liberica", "Excelsa"],
+      "example": "Many Italian espresso blends add some Robusta for body and a thicker crema.",
+      "note": "Robusta has roughly twice the caffeine of Arabica, and caffeine is a natural insecticide, so the plant is hardier. Arabica tastes sweeter and more complex and makes up most specialty coffee."
+    },
+    {
+      "id": "coffee-brewing-002",
+      "prompt": "What is the band around the equator, between the tropics, where coffee grows called?",
+      "answer": "Coffee belt",
+      "accept": ["bean belt"],
+      "distractors": ["Tea belt", "Sun belt", "Rice belt"],
+      "example": "Coffee belt countries include Brazil, Ethiopia and Colombia.",
+      "note": "Coffee needs warmth, steady rain and no frost, which it finds between the Tropic of Cancer and the Tropic of Capricorn. Higher altitudes inside the belt slow ripening and often give brighter, more complex beans."
+    },
+    {
+      "id": "coffee-brewing-003",
+      "prompt": "A coffee bean is the seed of a red fruit. What is that fruit called?",
+      "answer": "Cherry",
+      "accept": ["coffee cherry"],
+      "distractors": ["Pod", "Nut", "Cone"],
+      "example": "Cherry picking by hand lets farmers choose only the ripe fruit.",
+      "note": "A coffee cherry usually holds two seeds pressed flat against each other, which is why beans have one flat side. Sometimes only one round seed grows, called a peaberry."
+    },
+    {
+      "id": "coffee-brewing-004",
+      "prompt": "Which roast level keeps more of the bean's origin flavor and acidity?",
+      "answer": "Light roast",
+      "accept": ["light"],
+      "distractors": ["Dark roast", "French roast", "Italian roast"],
+      "example": "Light roast beans from Kenya can taste of blackcurrant and citrus.",
+      "note": "The longer beans roast, the more roast flavors like chocolate and smoke replace the fruity origin notes. Dark roasts taste bolder and more bitter, while light roasts taste brighter."
+    },
+    {
+      "id": "coffee-brewing-005",
+      "prompt": "What is the popping sound during roasting, when steam bursts the beans, called?",
+      "answer": "First crack",
+      "accept": ["1st crack"],
+      "distractors": ["Second crack", "Drying phase", "Maillard phase"],
+      "example": "First crack sounds a lot like popcorn popping.",
+      "note": "Around 196 °C, water inside the bean turns to steam and cracks it open with a sound like popcorn. A second, quieter crackle later marks the start of dark roasts."
+    },
+    {
+      "id": "coffee-brewing-006",
+      "prompt": "Which grind size does espresso need?",
+      "answer": "Fine",
+      "accept": ["very fine"],
+      "distractors": ["Coarse", "Medium", "Extra coarse"],
+      "example": "Fine grounds give the water enough resistance under pressure.",
+      "note": "Espresso has only about half a minute of contact time, so it needs lots of surface area. A fine grind also packs tight enough to hold back water pushed at about 9 bar."
+    },
+    {
+      "id": "coffee-brewing-007",
+      "prompt": "Which grind size suits a French press?",
+      "answer": "Coarse",
+      "distractors": ["Fine", "Extra fine", "Powdery"],
+      "example": "Coarse grounds stay behind the metal mesh when you press the plunger.",
+      "note": "The grounds soak for minutes, so large particles prevent over-extraction. Fine powder would also slip through the mesh and make the cup muddy."
+    },
+    {
+      "id": "coffee-brewing-008",
+      "prompt": "About what water temperature is recommended for brewing coffee?",
+      "answer": "90 to 96 °C",
+      "accept": ["90 to 96 C", "90-96 °C", "90-96 C", "90-96"],
+      "distractors": ["60 to 65 °C", "70 to 75 °C", "80 to 84 °C"],
+      "example": "Water at 90 to 96 °C extracts flavor without scorching the grounds.",
+      "note": "The Specialty Coffee Association recommends about 90.5 to 96 °C. A simple trick is to let boiling water rest for about 30 seconds before pouring."
+    },
+    {
+      "id": "coffee-brewing-009",
+      "prompt": "What coffee-to-water ratio is common for filter coffee?",
+      "answer": "1:15 to 1:17",
+      "accept": ["1:16", "1:15-1:17"],
+      "distractors": ["1:2 to 1:3", "1:5 to 1:7", "1:30 to 1:35"],
+      "example": "A ratio of 1:15 to 1:17 means about 60 grams of coffee per litre of water.",
+      "note": "One gram of coffee to about 16 grams of water is a good starting point for filter. Espresso is far stronger at roughly 1:2, which is why a shot is so small."
+    },
+    {
+      "id": "coffee-brewing-010",
+      "prompt": "About how much pressure does an espresso machine use to brew a shot?",
+      "answer": "9 bar",
+      "accept": ["9"],
+      "distractors": ["2 bar", "20 bar", "50 bar"],
+      "example": "The pump pushes water through the puck at about 9 bar.",
+      "note": "9 bar is about nine times the air pressure at sea level. This pressure forces oils and fine particles into the cup, which gives espresso its body and crema."
+    },
+    {
+      "id": "coffee-brewing-011",
+      "prompt": "About how long does a classic espresso shot take to pull?",
+      "answer": "25 to 30 seconds",
+      "accept": ["25-30 seconds", "25-30 s", "25 to 30 s"],
+      "distractors": ["5 to 8 seconds", "60 to 90 seconds", "3 to 4 minutes"],
+      "example": "A balanced shot usually runs for 25 to 30 seconds.",
+      "note": "If the shot gushes out in 10 seconds, grind finer; if it drips for a minute, grind coarser. Shot time is the easiest dial for tuning espresso."
+    },
+    {
+      "id": "coffee-brewing-012",
+      "prompt": "What is the golden-brown foam on top of an espresso called?",
+      "answer": "Crema",
+      "distractors": ["Bloom", "Latte art", "Microfoam"],
+      "example": "Crema on a fresh shot is thick and tiger-striped.",
+      "note": "Crema forms when pressure dissolves CO2 and oils into the coffee, which then foam as the pressure drops. Very fresh beans hold more CO2, so they make more crema."
+    },
+    {
+      "id": "coffee-brewing-013",
+      "prompt": "In pour-over brewing, what is the first small pour that makes fresh grounds bubble and release CO2 called?",
+      "answer": "Bloom",
+      "accept": ["blooming"],
+      "distractors": ["Crema", "Tamping", "Drawdown"],
+      "example": "Bloom the grounds with a little water and wait about 30 seconds.",
+      "note": "Freshly roasted coffee is full of carbon dioxide, which pushes water away. Letting it degas first allows the rest of the water to extract evenly."
+    },
+    {
+      "id": "coffee-brewing-014",
+      "prompt": "What is the method called where you pour hot water by hand over grounds in a paper filter cone?",
+      "answer": "Pour-over",
+      "accept": ["pour over", "pourover", "hand filter"],
+      "distractors": ["Cold brew", "Moka pot", "Siphon"],
+      "example": "Pour-over brewing brings out the fruity notes of a light roast.",
+      "note": "Because you control the speed and pattern of the pour, pour-over gives a very clean cup. The paper filter also holds back oils and fine particles."
+    },
+    {
+      "id": "coffee-brewing-015",
+      "prompt": "About how long should coffee steep in a French press before you press?",
+      "answer": "4 minutes",
+      "accept": ["4 min", "four minutes"],
+      "distractors": ["30 seconds", "12 minutes", "1 hour"],
+      "example": "Stir once, put the lid on and wait 4 minutes.",
+      "note": "The French press is a full immersion brewer: all the water touches all the coffee the whole time. About 4 minutes with a coarse grind extracts fully without turning bitter."
+    },
+    {
+      "id": "coffee-brewing-016",
+      "prompt": "About how long does cold brew steep?",
+      "answer": "12 to 24 hours",
+      "accept": ["12-24 hours", "12-24 h", "12 to 24 h"],
+      "distractors": ["1 to 2 hours", "3 to 5 minutes", "3 to 4 days"],
+      "example": "Cold brew steeps in the fridge for 12 to 24 hours.",
+      "note": "Cold water extracts very slowly, so time replaces heat. Many bitter and acidic compounds dissolve poorly in cold water, which is why cold brew tastes smooth and mellow."
+    },
+    {
+      "id": "coffee-brewing-017",
+      "prompt": "Which plastic brewer, invented in 2005, pushes coffee through a paper filter with a plunger and air pressure?",
+      "answer": "AeroPress",
+      "accept": ["aero press"],
+      "distractors": ["French press", "Chemex", "Moka pot"],
+      "example": "She packs an AeroPress in her bag whenever she travels.",
+      "note": "It was invented by Alan Adler, who also designed the Aerobie flying disc. Short steep times and gentle pressure make it forgiving and easy to clean."
+    },
+    {
+      "id": "coffee-brewing-018",
+      "prompt": "Which stovetop brewer uses steam pressure to push water up through the grounds into a top chamber?",
+      "answer": "Moka pot",
+      "accept": ["moka", "stovetop espresso maker"],
+      "distractors": ["AeroPress", "Siphon", "French press"],
+      "example": "Moka pot coffee is strong, but it is not true espresso.",
+      "note": "Invented in Italy in 1933, it reaches only about 1 to 2 bar, far below an espresso machine. The coffee is strong but is not true espresso."
+    },
+    {
+      "id": "coffee-brewing-019",
+      "prompt": "Which grinder type crushes beans between two abrasive surfaces for an even grind?",
+      "answer": "Burr grinder",
+      "accept": ["burr", "burr mill"],
+      "distractors": ["Blade grinder", "Spice mill", "Mortar"],
+      "example": "Burr grinder settings let you go from espresso fine to French press coarse.",
+      "note": "A blade grinder chops randomly, leaving dust and boulders side by side. The dust over-extracts and the chunks under-extract, so the cup tastes bitter and sour at once."
+    },
+    {
+      "id": "coffee-brewing-020",
+      "prompt": "Coffee that tastes sour and thin was most likely...?",
+      "answer": "under-extracted",
+      "accept": ["underextracted", "under extracted"],
+      "distractors": ["over-extracted", "over-roasted", "decaffeinated"],
+      "example": "Ground too coarse, the coffee came out under-extracted and sour.",
+      "note": "Sour acids dissolve first, sweetness and bitterness later. Too little extraction tastes sour; too much tastes bitter and dry. Fix sour with a finer grind or hotter water."
+    },
+    {
+      "id": "coffee-brewing-021",
+      "prompt": "How should you store coffee beans?",
+      "answer": "airtight and dark",
+      "accept": ["airtight, dark", "airtight away from light"],
+      "distractors": ["open and sunny", "damp and cold", "open in the fridge"],
+      "example": "Keep the beans airtight and dark, at room temperature.",
+      "note": "Oxygen, light, heat and moisture all stale coffee. An open bag in the fridge is a bad idea because beans absorb moisture and smells from other food."
+    },
+    {
+      "id": "coffee-brewing-022",
+      "prompt": "Roughly how long after roasting do whole beans taste their best?",
+      "answer": "2 to 4 weeks",
+      "accept": ["2-4 weeks", "a few weeks"],
+      "distractors": ["2 to 4 hours", "6 to 12 months", "1 to 2 years"],
+      "example": "Most beans are at their peak for about 2 to 4 weeks after roasting.",
+      "note": "Beans rest a few days to release CO2, then slowly lose aroma. Ground coffee goes stale much faster, often within an hour, so grind right before brewing."
+    },
+    {
+      "id": "coffee-brewing-023",
+      "prompt": "Which espresso drink has a thin layer of velvety microfoam and less milk than a latte?",
+      "answer": "Flat white",
+      "distractors": ["Cappuccino", "Latte", "Macchiato"],
+      "example": "Flat white fans say it lets the espresso shine through the milk.",
+      "note": "A cappuccino has a thick cap of airy foam, a latte has the most milk, and a flat white sits between them with less milk and a thin glossy layer. It is usually made with a double shot."
+    },
+    {
+      "id": "coffee-brewing-024",
+      "prompt": "What do you call coffee that has had most of its caffeine removed before roasting?",
+      "answer": "Decaf",
+      "accept": ["decaffeinated"],
+      "distractors": ["Ristretto", "Lungo", "Cold brew"],
+      "example": "Decaf still contains a little caffeine.",
+      "note": "Caffeine is removed from the green beans with water, CO2 or solvents, typically about 97 percent or more. Decaf still contains a small amount of caffeine."
+    },
+    {
+      "id": "coffee-brewing-025",
+      "prompt": "Which two minerals mainly make water hard?",
+      "answer": "Calcium and magnesium",
+      "accept": ["magnesium and calcium"],
+      "distractors": ["Sodium and chloride", "Iron and zinc", "Nitrate and sulfate"],
+      "example": "Calcium and magnesium help pull flavor out, but too much leaves scale.",
+      "note": "A moderate amount of these minerals improves extraction. Very hard water tastes flat and clogs machines with limescale, while very soft water can taste thin and sour."
+    }
+  ]
+}

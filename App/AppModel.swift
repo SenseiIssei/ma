@@ -47,6 +47,8 @@ final class AppModel {
     var authorization: AuthorizationStatus = .notDetermined
     var notificationsAllowed = false
     var gate: GateReason?
+    /// Result of a gallery import link, shown once as an alert.
+    var importMessage: String?
     var tab: MaTab = .today
     var shortcutSettings = ShortcutSettings()
     var shortcutPassUntil: Date?
@@ -450,6 +452,13 @@ final class AppModel {
         case "rules", "lockdown": tab = .rules
         case "gate":
             if let pending = SharedStore.pending, pending.isFresh { gate = .unlock(pending) }
+        case "import":
+            // ma://import?url=... from the community gallery on the website.
+            tab = .learn
+            let store = decks
+            Task { @MainActor in
+                self.importMessage = await GalleryImport.handle(url: url, into: store)
+            }
         default: break
         }
     }

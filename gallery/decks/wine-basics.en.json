@@ -1,0 +1,235 @@
+{
+  "id": "wine-basics",
+  "locale": "en",
+  "title": "Wine basics",
+  "subtitle": "Grapes, regions and tasting",
+  "symbol": "葡",
+  "category": "life",
+  "cards": [
+    {
+      "id": "wine-basics-001",
+      "prompt": "What is the process in which yeast turns grape sugar into alcohol?",
+      "answer": "Fermentation",
+      "accept": [],
+      "distractors": ["Distillation", "Oxidation", "Filtration"],
+      "example": "Fermentation turns sweet grape juice into wine in a matter of days or weeks.",
+      "note": "Yeast eats the sugar and leaves alcohol and carbon dioxide behind. The same bubbles that escape from a fermenting tank are trapped on purpose in sparkling wine."
+    },
+    {
+      "id": "wine-basics-002",
+      "prompt": "Where does the color of red wine come from?",
+      "answer": "Grape skins",
+      "accept": ["Skins", "The skins"],
+      "distractors": ["Grape seeds", "Oak barrels", "Added dye"],
+      "example": "Grape skins soak in the juice for days to give red wine its color.",
+      "note": "The juice of almost every red grape is clear. That is why Champagne can be pale gold even when it is made from the red grape Pinot Noir."
+    },
+    {
+      "id": "wine-basics-003",
+      "prompt": "What is the tasting term for a wine with almost no sugar left in it?",
+      "answer": "Dry",
+      "accept": [],
+      "distractors": ["Sweet", "Crisp", "Oaky"],
+      "example": "Dry wines can still smell of ripe fruit even though the sugar has fermented away.",
+      "note": "Dry is the opposite of sweet, not of fruity. Your nose picks up ripe fruit aromas and your brain expects sugar that is not there."
+    },
+    {
+      "id": "wine-basics-004",
+      "prompt": "Which country does Port wine come from?",
+      "answer": "Portugal",
+      "accept": [],
+      "distractors": ["Spain", "Italy", "Greece"],
+      "example": "Port is made in the Douro Valley in northern Portugal.",
+      "note": "Port is a fortified wine: grape spirit is added during fermentation, which stops the yeast and leaves natural sweetness behind. It takes its name from the city of Porto."
+    },
+    {
+      "id": "wine-basics-005",
+      "prompt": "Which white grape is used for Chablis and other white Burgundy?",
+      "answer": "Chardonnay",
+      "accept": [],
+      "distractors": ["Riesling", "Viognier", "Sémillon"],
+      "example": "Chablis is pure Chardonnay, usually with little or no new oak.",
+      "note": "Chardonnay is a chameleon: lean and mineral in cool Chablis, rich and buttery in warm regions with lots of oak. The grape itself is fairly neutral, so winemaking shows through."
+    },
+    {
+      "id": "wine-basics-006",
+      "prompt": "Which grape makes red Burgundy?",
+      "answer": "Pinot Noir",
+      "accept": ["Spätburgunder", "Pinot Nero"],
+      "distractors": ["Merlot", "Malbec", "Zinfandel"],
+      "example": "Red Burgundy is made almost entirely from Pinot Noir.",
+      "note": "Pinot Noir has thin skins, so its wines are usually pale, silky and low in tannin. It is also famously fussy and hard to grow well."
+    },
+    {
+      "id": "wine-basics-007",
+      "prompt": "Which grape is the backbone of red wines from Bordeaux's Left Bank?",
+      "answer": "Cabernet Sauvignon",
+      "accept": ["Cabernet"],
+      "distractors": ["Grenache", "Pinot Noir", "Gamay"],
+      "example": "Most Left Bank Bordeaux blends are built on Cabernet Sauvignon.",
+      "note": "The Left Bank has warm, well-drained gravel soils that help this late-ripening grape get fully ripe. Cabernet Sauvignon is a natural cross of Cabernet Franc and Sauvignon Blanc."
+    },
+    {
+      "id": "wine-basics-008",
+      "prompt": "Which grape dominates Bordeaux's Right Bank, in Pomerol and Saint-Émilion?",
+      "answer": "Merlot",
+      "accept": [],
+      "distractors": ["Syrah", "Barbera", "Carménère"],
+      "example": "Pomerol's most famous wines rely heavily on Merlot.",
+      "note": "The Right Bank has cooler clay soils, which suit Merlot because it ripens earlier than Cabernet Sauvignon. It gives rounder, softer wines."
+    },
+    {
+      "id": "wine-basics-009",
+      "prompt": "Which white grape is the most planted variety in Germany?",
+      "answer": "Riesling",
+      "accept": [],
+      "distractors": ["Müller-Thurgau", "Grüner Veltliner", "Sémillon"],
+      "example": "The steep slopes of the Mosel are famous for Riesling.",
+      "note": "Riesling keeps high acidity, so it can be bone dry or lusciously sweet and still taste fresh. The best examples can age for decades."
+    },
+    {
+      "id": "wine-basics-010",
+      "prompt": "Which grape is used for Sancerre from the Loire Valley?",
+      "answer": "Sauvignon Blanc",
+      "accept": [],
+      "distractors": ["Chenin Blanc", "Pinot Grigio", "Muscat"],
+      "example": "Sancerre is a crisp white made from Sauvignon Blanc.",
+      "note": "Sauvignon Blanc smells of cut grass, citrus and gooseberry. Marlborough in New Zealand made a louder, fruitier style world famous."
+    },
+    {
+      "id": "wine-basics-011",
+      "prompt": "What is the grape Syrah called in Australia?",
+      "answer": "Shiraz",
+      "accept": [],
+      "distractors": ["Malbec", "Mourvèdre", "Grenache"],
+      "example": "The Barossa Valley is known for rich, peppery Shiraz.",
+      "note": "Syrah and Shiraz are the same grape. The French name often signals a leaner, peppery style, the Australian one a riper, fuller style."
+    },
+    {
+      "id": "wine-basics-012",
+      "prompt": "Which country grows more Malbec than any other?",
+      "answer": "Argentina",
+      "accept": [],
+      "distractors": ["Chile", "Spain", "Portugal"],
+      "example": "High vineyards in Mendoza have made Argentina the home of Malbec.",
+      "note": "Malbec comes from Cahors in southwest France, but it found its true stage in Argentina. The strong mountain sun at high altitude gives deep color and ripe fruit."
+    },
+    {
+      "id": "wine-basics-013",
+      "prompt": "What is the name for the substance that makes a young red wine feel drying and grippy?",
+      "answer": "Tannin",
+      "accept": ["Tannins"],
+      "distractors": ["Acidity", "Alcohol", "Sugar"],
+      "example": "Tannin comes from grape skins, seeds and stems, and also from oak barrels.",
+      "note": "Tannin binds to the proteins in your saliva, which is why your mouth feels dry. Strong black tea does exactly the same thing."
+    },
+    {
+      "id": "wine-basics-014",
+      "prompt": "What do tasters call how long the flavor lingers after you swallow or spit?",
+      "answer": "Finish",
+      "accept": ["Length"],
+      "distractors": ["Nose", "Legs", "Body"],
+      "example": "Finish is often counted in seconds, and fine wines can linger for ten or more.",
+      "note": "A long finish is one of the clearest signs of quality. Count slowly after tasting: simple wines fade in a few seconds."
+    },
+    {
+      "id": "wine-basics-015",
+      "prompt": "At roughly what temperature should a full-bodied red wine be served?",
+      "answer": "16-18 °C",
+      "accept": ["16-18°C", "16 to 18 °C", "16-18 C"],
+      "distractors": ["6-8 °C", "10-12 °C", "22-24 °C"],
+      "example": "Serve a Bordeaux at 16-18 °C, a little cooler than a warm living room.",
+      "note": "The old advice to serve reds at room temperature comes from chilly houses without central heating. Too warm, and the alcohol starts to dominate the fruit."
+    },
+    {
+      "id": "wine-basics-016",
+      "prompt": "Roughly what steady temperature is ideal for storing wine long term?",
+      "answer": "12 °C",
+      "accept": ["12°C", "12 C"],
+      "distractors": ["4 °C", "20 °C", "25 °C"],
+      "example": "A dark cellar that stays at 12 °C lets wine age slowly and evenly.",
+      "note": "A steady temperature matters more than the exact number; anything around 10 to 15 °C works. Bottles with corks are stored lying down so the cork stays moist and does not let in air."
+    },
+    {
+      "id": "wine-basics-017",
+      "prompt": "What does the year on a vintage wine label tell you?",
+      "answer": "Harvest year",
+      "accept": ["The harvest year"],
+      "distractors": ["Bottling year", "Release year", "Age of the vines"],
+      "example": "Harvest year and vintage mean the same thing on a wine label.",
+      "note": "The grapes in the bottle were picked in that year. Weather differs from year to year, which is why the same wine can taste different across vintages."
+    },
+    {
+      "id": "wine-basics-018",
+      "prompt": "Which French word describes how soil, climate and place shape a wine?",
+      "answer": "Terroir",
+      "accept": [],
+      "distractors": ["Cuvée", "Assemblage", "Millésime"],
+      "example": "Terroir explains why the same grape can taste different in two neighboring vineyards.",
+      "note": "Terroir covers soil, slope, sun, rain and even local tradition. Burgundy is the classic example, with tiny vineyard plots judged separately for centuries."
+    },
+    {
+      "id": "wine-basics-019",
+      "prompt": "Which grape is used to make Barolo in Piedmont?",
+      "answer": "Nebbiolo",
+      "accept": [],
+      "distractors": ["Sangiovese", "Barbera", "Primitivo"],
+      "example": "Barolo is made entirely from Nebbiolo grown in the hills of Piedmont.",
+      "note": "Nebbiolo looks pale in the glass but has powerful tannin and acidity. Its name probably comes from nebbia, the Italian word for the autumn fog over the vineyards."
+    },
+    {
+      "id": "wine-basics-020",
+      "prompt": "Which grape is the main red variety of Rioja in Spain?",
+      "answer": "Tempranillo",
+      "accept": [],
+      "distractors": ["Monastrell", "Mencía", "Touriga Nacional"],
+      "example": "Most red Rioja is based on Tempranillo aged in oak barrels.",
+      "note": "The name comes from temprano, Spanish for early, because the grape ripens early. Rioja labels such as Crianza and Reserva tell you how long the wine was aged."
+    },
+    {
+      "id": "wine-basics-021",
+      "prompt": "What is the method called in which Champagne gets its bubbles from a second fermentation in the bottle?",
+      "answer": "Traditional method",
+      "accept": ["Méthode champenoise", "Methode champenoise", "Méthode traditionnelle", "Methode traditionnelle"],
+      "distractors": ["Tank method", "Transfer method", "Ancestral method"],
+      "example": "Traditional method sparkling wines, like Champagne, ferment a second time in the very bottle you buy.",
+      "note": "Yeast and a little sugar are added to still wine, the bottle is sealed, and the trapped carbon dioxide makes the bubbles. The dead yeast is later removed from the neck in a step called disgorging."
+    },
+    {
+      "id": "wine-basics-022",
+      "prompt": "How do most rosé wines get their pink color?",
+      "answer": "Short skin contact",
+      "accept": [],
+      "distractors": ["Oak aging", "Added fruit juice", "Cold fermentation"],
+      "example": "Short skin contact, often just a few hours, gives rosé its pale pink color.",
+      "note": "Red grapes are crushed and the juice is drawn off the skins early. In the EU, blending red and white wine is not allowed for still rosé, with rosé Champagne as the famous exception."
+    },
+    {
+      "id": "wine-basics-023",
+      "prompt": "Which process can give Chardonnay a soft, buttery taste?",
+      "answer": "Malolactic fermentation",
+      "accept": ["Malolactic", "MLF"],
+      "distractors": ["Cold stabilization", "Carbonic maceration", "Reverse osmosis"],
+      "example": "Malolactic fermentation softens sharp malic acid into milder lactic acid.",
+      "note": "Bacteria, not yeast, do this job. A by-product called diacetyl is the same compound that gives butter its flavor."
+    },
+    {
+      "id": "wine-basics-024",
+      "prompt": "What is the fungus called that shrivels grapes for sweet wines like Sauternes?",
+      "answer": "Noble rot",
+      "accept": ["Botrytis", "Botrytis cinerea"],
+      "distractors": ["Powdery mildew", "Downy mildew", "Black rot"],
+      "example": "Noble rot pulls water out of the grapes and concentrates their sugar and acidity.",
+      "note": "In misty autumn mornings followed by sunny afternoons, this mold becomes a gift. It is also behind Hungarian Tokaji and German Trockenbeerenauslese."
+    },
+    {
+      "id": "wine-basics-025",
+      "prompt": "At a professional tasting with dozens of wines, what do tasters do after tasting each one?",
+      "answer": "Spit it out",
+      "accept": ["Spit"],
+      "distractors": ["Swallow it", "Pour it back", "Mix with water"],
+      "example": "Spit it out is the standard advice at trade tastings, and nobody finds it rude.",
+      "note": "Flavor comes from the nose and mouth, so nothing is lost by spitting. Moderation matters: a clear head is what lets tasters judge the fiftieth wine as fairly as the first."
+    }
+  ]
+}

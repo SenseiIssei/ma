@@ -1,0 +1,235 @@
+{
+  "id": "astronomy",
+  "locale": "en",
+  "title": "Astronomy",
+  "subtitle": "Planets, stars and the sky above",
+  "symbol": "星",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "astronomy-001",
+      "prompt": "Which planet is closest to the Sun?",
+      "answer": "Mercury",
+      "accept": [],
+      "distractors": ["Venus", "Mars", "Earth"],
+      "example": "Mercury races around the Sun once every 88 days.",
+      "note": "A year on Mercury lasts just 88 Earth days. With almost no atmosphere to hold heat, its surface swings from scorching days to freezing nights."
+    },
+    {
+      "id": "astronomy-002",
+      "prompt": "Which planet is known as the Red Planet?",
+      "answer": "Mars",
+      "accept": [],
+      "distractors": ["Venus", "Mercury", "Jupiter"],
+      "example": "Iron-rich dust gives Mars its rusty red color.",
+      "note": "The red comes from iron oxide, which is essentially rust. Mars also has Olympus Mons, the tallest known volcano in the Solar System, about 22 km high."
+    },
+    {
+      "id": "astronomy-003",
+      "prompt": "Which is the largest planet in our Solar System?",
+      "answer": "Jupiter",
+      "accept": [],
+      "distractors": ["Saturn", "Neptune", "Uranus"],
+      "example": "More than 1,300 Earths could fit inside Jupiter.",
+      "note": "Jupiter is a gas giant made mostly of hydrogen and helium. Its Great Red Spot is a storm wider than the whole Earth."
+    },
+    {
+      "id": "astronomy-004",
+      "prompt": "Which planet has the brightest and most prominent ring system?",
+      "answer": "Saturn",
+      "accept": [],
+      "distractors": ["Jupiter", "Uranus", "Neptune"],
+      "example": "Even a small backyard telescope shows the rings of Saturn.",
+      "note": "All four giant planets have rings, but Saturn's are by far the brightest because they are made mostly of water ice. Saturn is also less dense than water."
+    },
+    {
+      "id": "astronomy-005",
+      "prompt": "Which star is closest to Earth?",
+      "answer": "The Sun",
+      "accept": ["Sun"],
+      "distractors": ["Sirius", "Polaris", "Proxima Centauri"],
+      "example": "The Sun is the nearest star, about 150 million km away.",
+      "note": "It is easy to forget that the Sun is a star. It holds about 99.8 percent of all the mass in the Solar System."
+    },
+    {
+      "id": "astronomy-006",
+      "prompt": "How many planets are in our Solar System?",
+      "answer": "8",
+      "accept": ["Eight"],
+      "distractors": ["7", "9", "10"],
+      "example": "Our Solar System has 8 planets, from Mercury out to Neptune.",
+      "note": "There were nine until 2006, when the International Astronomical Union created a new category and moved Pluto into it."
+    },
+    {
+      "id": "astronomy-007",
+      "prompt": "What has Pluto been classified as since 2006?",
+      "answer": "Dwarf planet",
+      "accept": [],
+      "distractors": ["Asteroid", "Comet", "Moon"],
+      "example": "Dwarf planet is the official category for Pluto, Ceres and Eris.",
+      "note": "A full planet must clear its orbit of other bodies, and Pluto shares its path with many objects in the Kuiper Belt. It is also smaller than Earth's Moon."
+    },
+    {
+      "id": "astronomy-008",
+      "prompt": "Which planet has the hottest surface?",
+      "answer": "Venus",
+      "accept": [],
+      "distractors": ["Mercury", "Mars", "Jupiter"],
+      "example": "The surface of Venus is hot enough to melt lead.",
+      "note": "Venus is farther from the Sun than Mercury but hotter, around 465 °C. Its thick carbon dioxide atmosphere traps heat in a runaway greenhouse effect."
+    },
+    {
+      "id": "astronomy-009",
+      "prompt": "What is the name of our home galaxy?",
+      "answer": "Milky Way",
+      "accept": ["The Milky Way"],
+      "distractors": ["Andromeda", "Triangulum", "Whirlpool"],
+      "example": "On a dark night the Milky Way appears as a pale band across the sky.",
+      "note": "That pale band is the combined light of billions of distant stars in our own galaxy's disk. The word galaxy itself comes from the Greek word for milk."
+    },
+    {
+      "id": "astronomy-010",
+      "prompt": "About how long does sunlight take to reach Earth?",
+      "answer": "8 minutes",
+      "accept": ["8 min", "Eight minutes"],
+      "distractors": ["8 seconds", "8 hours", "80 minutes"],
+      "example": "Sunlight takes about 8 minutes to cross the gap to Earth.",
+      "note": "More precisely, it takes about 8 minutes and 20 seconds. If the Sun vanished, we would not notice until that time had passed."
+    },
+    {
+      "id": "astronomy-011",
+      "prompt": "What does a light-year measure?",
+      "answer": "Distance",
+      "accept": [],
+      "distractors": ["Time", "Speed", "Brightness"],
+      "example": "Distance is what a light-year measures, despite the word year in its name.",
+      "note": "A light-year is how far light travels in one year, about 9.46 trillion km. Looking at far-away stars means looking back in time."
+    },
+    {
+      "id": "astronomy-012",
+      "prompt": "About how long does the Moon take to go from one full moon to the next?",
+      "answer": "29.5 days",
+      "accept": ["29,5 days", "29.5"],
+      "distractors": ["14 days", "21 days", "35 days"],
+      "example": "The cycle of lunar phases repeats every 29.5 days.",
+      "note": "The Moon orbits Earth in about 27.3 days, but Earth moves around the Sun at the same time. The Moon needs about two extra days to line up with the Sun again."
+    },
+    {
+      "id": "astronomy-013",
+      "prompt": "Which star sits almost directly above Earth's North Pole?",
+      "answer": "Polaris",
+      "accept": ["North Star", "The North Star", "Pole Star"],
+      "distractors": ["Sirius", "Vega", "Betelgeuse"],
+      "example": "Polaris barely moves while the rest of the night sky turns around it.",
+      "note": "Polaris is not especially bright; many stars outshine it. Earth's axis slowly wobbles, so in about 12,000 years Vega will be close to the pole instead."
+    },
+    {
+      "id": "astronomy-014",
+      "prompt": "Which is the brightest star in the night sky?",
+      "answer": "Sirius",
+      "accept": ["Dog Star"],
+      "distractors": ["Canopus", "Vega", "Arcturus"],
+      "example": "Sirius shines brightest of all the stars in the winter sky.",
+      "note": "Sirius is bright because it is both luminous and close, only about 8.6 light-years away. Its name comes from the Greek word for scorching."
+    },
+    {
+      "id": "astronomy-015",
+      "prompt": "What causes the seasons on Earth?",
+      "answer": "Axial tilt",
+      "accept": ["Tilt", "Earth's tilt", "Earth's axial tilt"],
+      "distractors": ["Distance to the Sun", "Solar flares", "The Moon's gravity"],
+      "example": "Axial tilt of about 23.4 degrees means each hemisphere leans toward the Sun for half the year.",
+      "note": "Distance is not the reason: Earth is actually closest to the Sun in early January, in the middle of the northern winter."
+    },
+    {
+      "id": "astronomy-016",
+      "prompt": "Why do we always see the same side of the Moon?",
+      "answer": "Tidal locking",
+      "accept": ["Tidally locked", "Synchronous rotation"],
+      "distractors": ["It does not rotate", "Earth's shadow", "Solar wind"],
+      "example": "Tidal locking makes the Moon spin once on its axis for every trip around Earth.",
+      "note": "The Moon does rotate, exactly once per orbit, so the same face keeps pointing at us. Earth's gravity slowed its spin to this rhythm long ago."
+    },
+    {
+      "id": "astronomy-017",
+      "prompt": "Which element makes up most of the Sun?",
+      "answer": "Hydrogen",
+      "accept": [],
+      "distractors": ["Helium", "Oxygen", "Carbon"],
+      "example": "Hydrogen makes up about three quarters of the Sun's mass.",
+      "note": "Most of the rest is helium, which was first discovered in sunlight before it was found on Earth. Its name comes from helios, Greek for Sun."
+    },
+    {
+      "id": "astronomy-018",
+      "prompt": "What process powers the Sun?",
+      "answer": "Nuclear fusion",
+      "accept": ["Fusion"],
+      "distractors": ["Nuclear fission", "Combustion", "Radioactive decay"],
+      "example": "Nuclear fusion in the core turns about 4 million tonnes of mass into energy every second.",
+      "note": "At about 15 million °C in the core, hydrogen nuclei fuse into helium. The Sun is not burning like a fire; there is no oxygen fueling it."
+    },
+    {
+      "id": "astronomy-019",
+      "prompt": "Which star is the closest to the Sun?",
+      "answer": "Proxima Centauri",
+      "accept": ["Proxima"],
+      "distractors": ["Sirius", "Barnard's Star", "Vega"],
+      "example": "Proxima Centauri lies about 4.2 light-years from us.",
+      "note": "It is a small red dwarf, far too faint to see with the naked eye. It belongs to the Alpha Centauri system, whose two bright stars are easy to spot from the southern hemisphere."
+    },
+    {
+      "id": "astronomy-020",
+      "prompt": "What is the region of rocky bodies between Mars and Jupiter called?",
+      "answer": "Asteroid belt",
+      "accept": ["Main belt", "The asteroid belt"],
+      "distractors": ["Kuiper Belt", "Oort Cloud", "Van Allen belt"],
+      "example": "Asteroid belt objects are so spread out that spacecraft cross the region without dodging anything.",
+      "note": "Movies show crowded rocks, but the belt is mostly empty space. All its asteroids together weigh only about 3 percent of our Moon."
+    },
+    {
+      "id": "astronomy-021",
+      "prompt": "Which is the largest moon in the Solar System?",
+      "answer": "Ganymede",
+      "accept": [],
+      "distractors": ["Titan", "Callisto", "Io"],
+      "example": "Ganymede, a moon of Jupiter, is wider than the planet Mercury.",
+      "note": "Ganymede is about 5,268 km across. It is also the only moon known to have its own magnetic field."
+    },
+    {
+      "id": "astronomy-022",
+      "prompt": "Which planet rotates on its side, tilted about 98 degrees?",
+      "answer": "Uranus",
+      "accept": [],
+      "distractors": ["Neptune", "Saturn", "Venus"],
+      "example": "Uranus rolls around the Sun like a ball on its side.",
+      "note": "A giant collision long ago probably knocked it over. Each pole gets about 42 years of sunlight followed by 42 years of darkness."
+    },
+    {
+      "id": "astronomy-023",
+      "prompt": "Which galaxy, about 2.5 million light-years away, can be seen with the naked eye under dark skies?",
+      "answer": "Andromeda",
+      "accept": ["Andromeda Galaxy", "M31"],
+      "distractors": ["Orion Nebula", "Pleiades", "Crab Nebula"],
+      "example": "Andromeda looks like a faint smudge of light in the autumn sky.",
+      "note": "The light you see from it left about 2.5 million years ago, before modern humans existed. It is the nearest large spiral galaxy to the Milky Way."
+    },
+    {
+      "id": "astronomy-024",
+      "prompt": "What is the huge explosion of a star at the end of its life called?",
+      "answer": "Supernova",
+      "accept": [],
+      "distractors": ["Pulsar", "Quasar", "Nebula"],
+      "example": "Supernova explosions scatter heavy elements through space, where they become part of new stars and planets.",
+      "note": "For a few weeks a single supernova can outshine an entire galaxy. Many elements in your body, such as some of the iron in your blood, were spread by exploding stars."
+    },
+    {
+      "id": "astronomy-025",
+      "prompt": "What is the boundary around a black hole beyond which nothing, not even light, can escape?",
+      "answer": "Event horizon",
+      "accept": [],
+      "distractors": ["Accretion disk", "Singularity", "Photon sphere"],
+      "example": "Event horizon is the name for the point of no return around a black hole.",
+      "note": "Nothing is solid at the event horizon; it is simply the distance where escape would require going faster than light. That is why black holes look black."
+    }
+  ]
+}

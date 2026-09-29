@@ -1,0 +1,232 @@
+{
+  "id": "guitar-chords",
+  "locale": "de",
+  "title": "Gitarrenakkorde",
+  "subtitle": "Saiten, Töne und die Akkorde hinter jedem Song",
+  "symbol": "弦",
+  "category": "life",
+  "cards": [
+    {
+      "id": "guitar-chords-001",
+      "prompt": "Wie heißen die Leersaiten in Standardstimmung, von der tiefsten (dicksten) zur höchsten (dünnsten)?",
+      "answer": "E A D G H E",
+      "distractors": ["E A D G B E", "D A D G H E", "E A D F H E"],
+      "example": "Vor jeder Übungsstunde stimmte sie auf E A D G H E und prüfte die hohe Saite zuletzt.",
+      "note": "Im Deutschen heißt der Ton, den man im Englischen B nennt, H. Das deutsche B ist dagegen das englische Bb. Deshalb steht in englischen Noten E A D G B E und hier E A D G H E, gemeint ist dieselbe Stimmung."
+    },
+    {
+      "id": "guitar-chords-002",
+      "prompt": "Welche Saite nennen Gitarristen die 6. Saite?",
+      "answer": "Tiefe E-Saite",
+      "accept": ["Tiefe E", "Die tiefe E-Saite", "Tiefes E"],
+      "distractors": ["Hohe E-Saite", "A-Saite", "G-Saite"],
+      "example": "Tiefe E-Saite nennt man die dickste Saite, sie liegt beim Spielen oben, nah am Kinn.",
+      "note": "Gezählt wird von der dünnsten Saite (1., hohes E) zur dicksten (6., tiefes E). Die Nummer steigt also, während der Ton sinkt."
+    },
+    {
+      "id": "guitar-chords-003",
+      "prompt": "Welchen Ton bekommst du im 5. Bund der tiefen E-Saite?",
+      "answer": "A",
+      "distractors": ["G", "H", "C"],
+      "example": "Drückst du die tiefe E-Saite im 5. Bund, klingt ein A, genau wie die leere A-Saite.",
+      "note": "Darauf beruht das Stimmen nach dem 5. Bund: Bund 5 einer Saite entspricht der nächsten Leersaite. Einzige Ausnahme ist die G-Saite, dort nimmt man Bund 4, um das H zu treffen."
+    },
+    {
+      "id": "guitar-chords-004",
+      "prompt": "In welchem Bund klingt eine Saite genau eine Oktave höher als leer gespielt?",
+      "answer": "12. Bund",
+      "accept": ["12", "Bund 12", "Im 12. Bund"],
+      "distractors": ["7. Bund", "5. Bund", "10. Bund"],
+      "example": "Die meisten Gitarren markieren den 12. Bund mit einem Doppelpunkt, weil die Tonnamen dort von vorn beginnen.",
+      "note": "Eine Oktave hat 12 Halbtöne und jeder Bund fügt einen hinzu, also wiederholt Bund 12 den Leersaitenton eine Oktave höher. Danach wiederholt sich das ganze Griffbrettmuster."
+    },
+    {
+      "id": "guitar-chords-005",
+      "prompt": "Wie weit liegen zwei benachbarte Bünde in der Tonhöhe auseinander?",
+      "answer": "Ein Halbton",
+      "accept": ["1 Halbton", "Einen Halbton", "Halbton"],
+      "distractors": ["Ein Ganzton", "Zwei Halbtöne", "Ein Viertelton"],
+      "example": "Ein Halbton ist das, was du gewinnst, wenn dein Finger einen Bund weiterrutscht.",
+      "note": "Zwölf Halbtöne ergeben eine Oktave. Ein Ganzton sind zwei Bünde, zum Beispiel von C nach D."
+    },
+    {
+      "id": "guitar-chords-006",
+      "prompt": "Aus wie vielen verschiedenen Tönen besteht ein einfacher Dreiklang?",
+      "answer": "Drei",
+      "accept": ["3"],
+      "distractors": ["Zwei", "Vier", "Fünf"],
+      "example": "Drei verschiedene Töne bilden einen Dreiklang, auch wenn du sechs Saiten anschlägst und sich einige wiederholen.",
+      "note": "Ein Dreiklang besteht aus Grundton, Terz und Quinte. Offene Akkorde verdoppeln einige davon auf mehreren Saiten, deshalb klingen sie voller."
+    },
+    {
+      "id": "guitar-chords-007",
+      "prompt": "Aus welchen Tönen besteht C-Dur?",
+      "answer": "C E G",
+      "accept": ["C, E, G", "CEG"],
+      "distractors": ["C Es G", "C F A", "C E A"],
+      "example": "Jeder C-Dur-Akkord, ob offen oder als Barré, besteht nur aus C E G.",
+      "note": "Grundton C, große Terz E (4 Halbtöne höher), Quinte G (7 Halbtöne höher). C-Dur nutzt nur weiße Klaviertasten und ist deshalb ein praktischer Bezugsakkord."
+    },
+    {
+      "id": "guitar-chords-008",
+      "prompt": "Aus welchen Tönen besteht G-Dur?",
+      "answer": "G H D",
+      "accept": ["G, H, D", "GHD"],
+      "distractors": ["G B D", "G C D", "G H E"],
+      "example": "Der offene G-Dur-Akkord lässt G H D über alle sechs Saiten klingen.",
+      "note": "Grundton G, große Terz H, Quinte D. Vorsicht: G B D wäre im Deutschen G-Moll, denn das deutsche B ist das englische Bb."
+    },
+    {
+      "id": "guitar-chords-009",
+      "prompt": "Aus welchen Tönen besteht D-Dur?",
+      "answer": "D Fis A",
+      "accept": ["D F# A", "D, Fis, A", "D, F#, A"],
+      "distractors": ["D F A", "D G A", "D Fis H"],
+      "example": "Die kleine Dreiecksform des offenen D-Akkords liefert D Fis A auf den hohen Saiten.",
+      "note": "Fis ist das deutsche Wort für F# und hier die große Terz, 4 Halbtöne über D. Senkst du es auf F, wird daraus D-Moll."
+    },
+    {
+      "id": "guitar-chords-010",
+      "prompt": "Aus welchen Tönen besteht A-Moll?",
+      "answer": "A C E",
+      "accept": ["A, C, E", "ACE"],
+      "distractors": ["A Cis E", "A D E", "A C F"],
+      "example": "A-Moll schreibt man A C E, was sich fast wie ein Wort liest.",
+      "note": "Das C ist eine kleine Terz, nur 3 Halbtöne über A. A-Moll hat wie C-Dur keine Vorzeichen, weil beide dieselben Töne teilen."
+    },
+    {
+      "id": "guitar-chords-011",
+      "prompt": "Aus welchen Tönen besteht E-Moll?",
+      "answer": "E G H",
+      "accept": ["E, G, H", "EGH"],
+      "distractors": ["E Gis H", "E A H", "E G C"],
+      "example": "Mit nur zwei Fingern ergibt das offene E-Moll bereits E G H auf allen sechs Saiten.",
+      "note": "Drei der sechs Leersaiten (E, G, H) sind schon Akkordtöne. Deshalb ist E-Moll oft der allererste Akkord, den Anfänger lernen."
+    },
+    {
+      "id": "guitar-chords-012",
+      "prompt": "Aus welchen Tönen besteht E-Dur?",
+      "answer": "E Gis H",
+      "accept": ["E G# H", "E, Gis, H", "E, G#, H"],
+      "distractors": ["E G H", "E A H", "E Gis Cis"],
+      "example": "Setzt du bei E-Moll einen Finger auf die G-Saite, erhältst du E Gis H, also E-Dur.",
+      "note": "Wird die Terz von G auf Gis angehoben, wird aus Moll Dur. Auf der Gitarre ist das ein einziger Finger im 1. Bund der G-Saite."
+    },
+    {
+      "id": "guitar-chords-013",
+      "prompt": "Aus welchen Tönen besteht A-Dur?",
+      "answer": "A Cis E",
+      "accept": ["A C# E", "A, Cis, E", "A, C#, E"],
+      "distractors": ["A C E", "A D E", "A Cis Fis"],
+      "example": "Die drei Finger nebeneinander im 2. Bund ergeben in der offenen A-Form A Cis E.",
+      "note": "Vergleiche mit A-Moll (A C E): Nur die Terz rückt einen Halbton höher. Dieser eine Ton entscheidet, ob ein Akkord hell oder traurig klingt."
+    },
+    {
+      "id": "guitar-chords-014",
+      "prompt": "Aus welchen Tönen besteht D-Moll?",
+      "answer": "D F A",
+      "accept": ["D, F, A", "DFA"],
+      "distractors": ["D Fis A", "D G A", "D F B"],
+      "example": "Viele traurige Balladen stützen sich auf D-Moll mit den Tönen D F A.",
+      "note": "D-Moll ist D-Dur mit einem F statt Fis. Auf der hohen E-Saite greifst du dafür einen Bund tiefer als in der D-Dur-Form."
+    },
+    {
+      "id": "guitar-chords-015",
+      "prompt": "Aus welchen Tönen besteht F-Dur?",
+      "answer": "F A C",
+      "accept": ["F, A, C", "FAC"],
+      "distractors": ["F As C", "F B C", "F A D"],
+      "example": "Ob voller Barré oder kleine Version, F-Dur besteht immer aus F A C.",
+      "note": "F-Dur ist oft der erste Barréakkord, dem man begegnet. As ist das deutsche Wort für Ab, und B steht hier für das englische Bb."
+    },
+    {
+      "id": "guitar-chords-016",
+      "prompt": "Welcher Akkordton unterscheidet C-Dur von C-Moll?",
+      "answer": "Die Terz",
+      "accept": ["Terz"],
+      "distractors": ["Der Grundton", "Die Quinte", "Die Oktave"],
+      "example": "Die Terz ist der einzige Ton, der sich ändert: E in C-Dur, Es in C-Moll.",
+      "note": "Grundton und Quinte bleiben gleich. Allein die Terz gibt einem Akkord seinen Dur- (hell) oder Moll-Charakter (dunkel)."
+    },
+    {
+      "id": "guitar-chords-017",
+      "prompt": "Wie viele Halbtöne liegt eine kleine Terz über dem Grundton?",
+      "answer": "3 Halbtöne",
+      "accept": ["3", "Drei Halbtöne", "Drei"],
+      "distractors": ["4 Halbtöne", "2 Halbtöne", "5 Halbtöne"],
+      "example": "Von A bis C sind es 3 Halbtöne, deshalb klingt A-Moll nach Moll.",
+      "note": "Eine große Terz hat 4 Halbtöne, eine kleine Terz 3. Auf einer Saite sind das einfach 3 statt 4 Bünde."
+    },
+    {
+      "id": "guitar-chords-018",
+      "prompt": "Aus welchen zwei Akkordtönen besteht ein Powerchord?",
+      "answer": "Grundton und Quinte",
+      "accept": ["Grundton, Quinte"],
+      "distractors": ["Grundton und Terz", "Terz und Quinte", "Grundton und Septime"],
+      "example": "Grundton und Quinte reichen einem Powerchord, oft noch mit dem Grundton eine Oktave höher.",
+      "note": "Ohne Terz ist ein Powerchord weder Dur noch Moll. Dieser neutrale Klang bleibt auch mit starker Verzerrung sauber, deshalb lieben ihn Rock und Metal."
+    },
+    {
+      "id": "guitar-chords-019",
+      "prompt": "Wie schreibt man einen Powerchord auf G üblicherweise?",
+      "answer": "G5",
+      "distractors": ["G7", "Gm", "Gsus2"],
+      "example": "In der Tabulatur stand nur G5, also spielte er den Grundton auf der tiefen E-Saite und die Quinte zwei Bünde höher auf der A-Saite.",
+      "note": "Die 5 steht für die Quinte, den einzigen Ton neben dem Grundton. Ohne Terz ist der Akkord weder Dur noch Moll, deshalb fehlt im Symbol auch das m."
+    },
+    {
+      "id": "guitar-chords-020",
+      "prompt": "Wie heißt ein Akkord, bei dem ein Finger mehrere Saiten flach im selben Bund drückt?",
+      "answer": "Barréakkord",
+      "accept": ["Barreakkord", "Barré-Akkord", "Barre-Akkord", "Barré"],
+      "distractors": ["Powerchord", "Offener Akkord", "Slash-Akkord"],
+      "example": "Wer einen Barréakkord beherrscht, kann ihn über das Griffbrett schieben und jede Tonart spielen.",
+      "note": "Der Zeigefinger wirkt wie ein verschiebbarer Sattel. Eine E-Form im 1. Bund ist F-Dur, im 3. Bund G-Dur."
+    },
+    {
+      "id": "guitar-chords-021",
+      "prompt": "Mit einem Kapodaster im 2. Bund klingt die offene G-Dur-Griffform wie welcher Akkord?",
+      "answer": "A-Dur",
+      "accept": ["A", "A Dur"],
+      "distractors": ["Gis-Dur", "H-Dur", "D-Dur"],
+      "example": "Mit dem Kapo im 2. Bund klang ihre G-Form als A-Dur und passte zur Tonart des Sängers.",
+      "note": "Ein Kapodaster hebt jede Saite pro Bund um einen Halbton. G plus zwei Halbtöne ergibt A, die Griffform bleibt gleich, nur die Tonart wandert nach oben."
+    },
+    {
+      "id": "guitar-chords-022",
+      "prompt": "Aus welchen Tönen besteht G7?",
+      "answer": "G H D F",
+      "accept": ["G, H, D, F", "GHDF"],
+      "distractors": ["G H D Fis", "G H D E", "G B D F"],
+      "example": "G7 ergänzt den Dreiklang um ein F, seine Töne sind also G H D F.",
+      "note": "Eine einfache 7 bedeutet Dominantseptakkord: Durdreiklang plus kleine Septime (F, nicht Fis). Seine Spannung will sich nach C auflösen, deshalb führt G7 so oft zurück zu C."
+    },
+    {
+      "id": "guitar-chords-023",
+      "prompt": "Aus welchen Tönen besteht Dsus4?",
+      "answer": "D G A",
+      "accept": ["D, G, A", "DGA"],
+      "distractors": ["D Fis A", "D E A", "D G H"],
+      "example": "Bei Dsus4 wird die Terz ersetzt, übrig bleiben D G A.",
+      "note": "Sus heißt vorgehalten: Die Terz wird gegen die Quarte (G) getauscht. Setzt du den kleinen Finger im 3. Bund auf die hohe E-Saite, wird aus D ein Dsus4, eine beliebte Verzierung im Folk."
+    },
+    {
+      "id": "guitar-chords-024",
+      "prompt": "Welche Akkorde sind in G-Dur die Stufen I, IV und V?",
+      "answer": "G C D",
+      "accept": ["G, C, D", "G-Dur C-Dur D-Dur"],
+      "distractors": ["G D E", "G A D", "G C E"],
+      "example": "Unzählige Lagerfeuerlieder kommen mit nichts als G C D aus.",
+      "note": "Zähl die G-Dur-Tonleiter hoch: G ist 1, C ist 4, D ist 5. Die Folge I IV V trägt Blues, Folk und Rock in jeder Tonart."
+    },
+    {
+      "id": "guitar-chords-025",
+      "prompt": "Welche Saiten schlägst du beim offenen D-Dur-Akkord an?",
+      "answer": "Die vier dünnsten",
+      "accept": ["Vier dünnsten", "Die vier höchsten"],
+      "distractors": ["Alle sechs Saiten", "Die fünf dünnsten", "Die drei dünnsten"],
+      "example": "Die vier dünnsten Saiten reichen für das offene D, angefangen bei der leeren D-Saite.",
+      "note": "Die leere D-Saite ist der Grundton, dort beginnt der Akkord. Das tiefe E gehört nicht zum Akkord und lässt ihn matschig klingen."
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deck gallery: Ma</title>
+  <meta name="description" content="Community learning decks for Ma. Search by topic, preview the cards, and open them in Ma or download the JSON.">
+  <meta name="theme-color" content="#0A0E22">
+  <link rel="canonical" href="https://senseiissei.github.io/ma/gallery/">
+  <link rel="alternate" hreflang="en" href="https://senseiissei.github.io/ma/gallery/">
+  <link rel="alternate" hreflang="de" href="https://senseiissei.github.io/ma/de/gallery/">
+  <meta property="og:title" content="Ma deck gallery">
+  <meta property="og:description" content="Community learning decks for Ma, free to use and to share.">
+  <meta property="og:image" content="https://senseiissei.github.io/ma/assets/img/learn.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap top">
+    <a class="brand" href="../" aria-label="Ma home">
+      <img src="../assets/img/favicon-64.png" alt="" width="36" height="36">
+      <span>Ma</span><span class="kanji" lang="ja">間</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="../#pillars">Features</a>
+      <a href="./" aria-current="page">Deck gallery</a>
+      <a href="../support.html">Support</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+      <a class="lang" href="../de/gallery/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="page-head">
+      <span class="kicker">Community gallery</span>
+      <h1>Something worth learning.</h1>
+      <p>Decks written by people who use Ma. Each one teaches first and practises after, with examples and short notes. Open a deck in Ma on your iPhone, or download the JSON and import it yourself.</p>
+    </div>
+
+    <div id="gallery" data-index="index.json" data-empty-art="../assets/img/empty.jpg">
+      <div class="toolbar">
+        <label class="search">
+          <span class="visually-hidden">Search decks</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Search: wine, stars, chords..." autocomplete="off" spellcheck="false">
+        </label>
+        <label>
+          <span class="visually-hidden">Deck language</span>
+          <select id="locale" class="select">
+            <option value="en">English decks</option>
+            <option value="de">German decks</option>
+            <option value="all">All languages</option>
+          </select>
+        </label>
+      </div>
+      <div id="chips" class="chips" role="group" aria-label="Category"></div>
+      <p id="status" class="visually-hidden" role="status" aria-live="polite"></p>
+      <div id="decks" class="decks"></div>
+      <noscript><p class="hint">The gallery needs JavaScript to list decks. You can also browse the files directly on <a href="https://github.com/SenseiIssei/ma/tree/main/gallery/decks">GitHub</a>.</p></noscript>
+      <p class="hint">"Open in Ma" works on an iPhone with Ma installed. On other devices, download the JSON and send it to your phone.</p>
+    </div>
+
+    <section id="contribute" class="narrow" style="padding-bottom:0">
+      <div class="card summary prose">
+        <span class="kicker">Contribute a deck</span>
+        <h2>Share what you know.</h2>
+        <p>Every deck in this gallery is a JSON file in the <a href="https://github.com/SenseiIssei/ma/tree/main/gallery/decks">gallery/decks</a> folder. To add yours:</p>
+        <ol>
+          <li>Fork the repository and add <code>gallery/decks/&lt;id&gt;.en.json</code> or <code>&lt;id&gt;.de.json</code>. Editions of one deck share the id and the card ids.</li>
+          <li>Give it a <code>title</code>, a <code>subtitle</code> of at most 60 characters, a one-character <code>symbol</code>, a <code>category</code> (languages, knowledge, mind, tech or life) and a <code>locale</code>.</li>
+          <li>Write at least ten cards with ids <code>&lt;id&gt;-001</code>, <code>&lt;id&gt;-002</code> and so on. Answers stay at 30 characters or less, each card has three plausible wrong answers, an example sentence that contains the answer word for word, and a short note that explains why.</li>
+          <li>Run <code>python gallery/build_index.py</code>. It checks every rule and rewrites <code>index.json</code>.</li>
+          <li>Open a pull request. Facts get checked before a deck goes live.</li>
+        </ol>
+        <p>Please keep it factual and kind: no advertising, no medical or financial advice dressed up as fact, and only content you have the right to share.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <a class="brand" href="../"><img src="../assets/img/favicon-64.png" alt="" width="36" height="36"><span>Ma</span><span class="kanji" lang="ja">間</span></a>
+        <nav aria-label="Footer">
+          <a href="./">Deck gallery</a>
+          <a href="../support.html">Support</a>
+          <a href="../privacy.html">Privacy</a>
+          <a href="https://github.com/SenseiIssei/ma">GitHub</a>
+          <a href="https://github.com/SenseiIssei/ma/issues">Report a problem</a>
+          <a href="../de/gallery/" hreflang="de" lang="de" data-set-lang="de">Deutsch</a>
+        </nav>
+      </div>
+      <p class="fine">&copy; <span id="year">2026</span> Ma contributors. Decks are shared under the MIT licence of the repository.</p>
+    </div>
+  </footer>
+  <script src="../assets/site.js" defer></script>
+  <script src="../assets/gallery.js" defer></script>
+</body>
+</html>

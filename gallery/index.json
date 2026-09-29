@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "decks": [
+    {
+      "id": "astronomy",
+      "title": "Astronomie",
+      "subtitle": "Planeten, Sterne und der Himmel über uns",
+      "symbol": "星",
+      "category": "knowledge",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/astronomy.de.json"
+    },
+    {
+      "id": "astronomy",
+      "title": "Astronomy",
+      "subtitle": "Planets, stars and the sky above",
+      "symbol": "星",
+      "category": "knowledge",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/astronomy.en.json"
+    },
+    {
+      "id": "human-body",
+      "title": "Der menschliche Körper",
+      "subtitle": "Knochen, Organe, Blut und Sinne",
+      "symbol": "体",
+      "category": "knowledge",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/human-body.de.json"
+    },
+    {
+      "id": "human-body",
+      "title": "Human body",
+      "subtitle": "Bones, organs, blood and senses",
+      "symbol": "体",
+      "category": "knowledge",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/human-body.en.json"
+    },
+    {
+      "id": "coffee-brewing",
+      "title": "Kaffee zubereiten",
+      "subtitle": "Bohnen, Mahlgrad, Wasser und Methoden",
+      "symbol": "珈",
+      "category": "life",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/coffee-brewing.de.json"
+    },
+    {
+      "id": "coffee-brewing",
+      "title": "Coffee brewing",
+      "subtitle": "Beans, grind, water and methods",
+      "symbol": "珈",
+      "category": "life",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/coffee-brewing.en.json"
+    },
+    {
+      "id": "guitar-chords",
+      "title": "Gitarrenakkorde",
+      "subtitle": "Saiten, Töne und die Akkorde hinter jedem Song",
+      "symbol": "弦",
+      "category": "life",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/guitar-chords.de.json"
+    },
+    {
+      "id": "guitar-chords",
+      "title": "Guitar chords",
+      "subtitle": "Strings, notes and the chords behind every song",
+      "symbol": "弦",
+      "category": "life",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/guitar-chords.en.json"
+    },
+    {
+      "id": "personal-finance",
+      "title": "Finanzen Grundlagen",
+      "subtitle": "Grundbegriffe erklärt, Bildung statt Anlageberatung",
+      "symbol": "金",
+      "category": "life",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/personal-finance.de.json"
+    },
+    {
+      "id": "personal-finance",
+      "title": "Personal finance basics",
+      "subtitle": "Core ideas explained, general education not advice",
+      "symbol": "金",
+      "category": "life",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/personal-finance.en.json"
+    },
+    {
+      "id": "wine-basics",
+      "title": "Wein Grundlagen",
+      "subtitle": "Rebsorten, Regionen und Verkostung",
+      "symbol": "葡",
+      "category": "life",
+      "locale": "de",
+      "cardCount": 25,
+      "path": "decks/wine-basics.de.json"
+    },
+    {
+      "id": "wine-basics",
+      "title": "Wine basics",
+      "subtitle": "Grapes, regions and tasting",
+      "symbol": "葡",
+      "category": "life",
+      "locale": "en",
+      "cardCount": 25,
+      "path": "decks/wine-basics.en.json"
+    }
+  ]
+}

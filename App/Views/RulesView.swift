@@ -19,8 +19,8 @@ struct RulesView: View {
                         permissionCard
                     }
 
-                    NavigationLink {
-                        ShortcutsModeView()
+                    Button {
+                        model.showShortcutsSetup = true
                     } label: {
                         HStack(spacing: 14) {
                             Hanko(text: "門", size: 40, color: model.shortcutLastRun == nil ? Zen.inkFaint : Zen.shu)
@@ -42,6 +42,9 @@ struct RulesView: View {
                     }
                     .buttonStyle(.plain)
 
+                    // Screen Time boundaries need Apple's approval. Without it the
+                    // picker cannot open, so the preview only offers Shortcuts mode.
+                    if BuildFlavor.screenTimeAvailable {
                     VStack(spacing: 12) {
                         ForEach(model.rules) { rule in
                             RuleCard(rule: rule, shielding: model.isShielding(rule)) {
@@ -58,6 +61,7 @@ struct RulesView: View {
                             Label(tr("Draw a new boundary", "Neue Grenze ziehen"), systemImage: "plus")
                         }
                         .buttonStyle(.quiet)
+                    }
                     }
 
                     if !model.grants.isEmpty {
@@ -100,6 +104,12 @@ struct RulesView: View {
                 .padding(.bottom, 40)
             }
             .background(WashiBackground())
+            .navigationDestination(isPresented: Binding(
+                get: { model.showShortcutsSetup },
+                set: { model.showShortcutsSetup = $0 }
+            )) {
+                ShortcutsModeView()
+            }
             .sheet(item: $editing) { rule in
                 RuleEditorView(rule: rule, isNew: !model.rules.contains { $0.id == rule.id })
             }

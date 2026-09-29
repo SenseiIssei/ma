@@ -46,6 +46,8 @@ final class AppModel {
     var shortcutSettings = ShortcutSettings()
     var shortcutPassUntil: Date?
     var shortcutLastRun: Date?
+    /// Asks the Boundaries tab to open the Shortcuts setup, e.g. from onboarding.
+    var showShortcutsSetup = false
     let decks = DeckStore()
 
     var onboarded: Bool {

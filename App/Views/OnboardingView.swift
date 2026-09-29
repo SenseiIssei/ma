@@ -155,7 +155,43 @@ struct OnboardingView: View {
         }
     }
 
+    @ViewBuilder
     private var firstRule: some View {
+        if BuildFlavor.screenTimeAvailable {
+            screenTimeRule
+        } else {
+            shortcutsRule
+        }
+    }
+
+    /// Without Screen Time the first boundary is a Shortcuts automation.
+    private var shortcutsRule: some View {
+        onboardingPage(
+            kanji: "門",
+            title: tr("A pause before every app", "Eine Pause vor jeder App"),
+            text: tr(
+                "One automation in the Shortcuts app starts Ma whenever Instagram, YouTube, X or any app you pick opens. You set it up once, then Ma does the rest.\n\nThe next screen shows every step.",
+                "Eine Automation in der Kurzbefehle-App startet Ma, sobald Instagram, YouTube, X oder eine andere App deiner Wahl geöffnet wird. Du richtest sie einmal ein, danach macht Ma den Rest.\n\nDie nächste Seite zeigt dir jeden Schritt."
+            )
+        ) {
+            EnsoView(progress: 0.82, lineWidth: 14, color: Zen.ink)
+                .frame(width: 150, height: 150)
+                .overlay(Text("門").font(.kanji(46, bold: true)).foregroundStyle(Zen.shu))
+        } footer: {
+            Button(tr("Set it up", "Einrichten")) {
+                Haptics.success()
+                model.tab = .rules
+                model.showShortcutsSetup = true
+                model.onboarded = true
+            }
+            .buttonStyle(.shu)
+            Button(tr("Later", "Später")) { model.onboarded = true }
+                .font(.system(size: 15))
+                .foregroundStyle(Zen.inkSoft)
+        }
+    }
+
+    private var screenTimeRule: some View {
         let count = selection.applicationTokens.count + selection.categoryTokens.count + selection.webDomainTokens.count
         return onboardingPage(
             kanji: "結",

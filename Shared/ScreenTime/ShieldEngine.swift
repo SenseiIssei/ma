@@ -197,6 +197,9 @@ struct UnlockPolicy {
     var waitSeconds = 0
     /// Rules the unlock will be counted against.
     var matchedRuleIDs: [UUID] = []
+    /// The app's website in Safari, where Ma Filter strips Reels and feeds.
+    /// Offered next to the questions, and during focus as the one way in.
+    var reelFreeWeb: URL?
 
     var isLockdown: Bool { lockdownUntil != nil }
 
@@ -209,11 +212,18 @@ struct UnlockPolicy {
             return policy
         }
 
+        var name: String?
+        if let application { name = SharedStore.name(for: application) }
+        if let webDomain, name == nil { name = SharedStore.name(for: webDomain) }
+        // A shield on the website itself would only loop back to itself.
+        policy.reelFreeWeb = webDomain == nil ? ReelFreeWeb.url(forAppName: name) : nil
+
         if let session = SharedStore.focus, session.phase == .focus, now < session.endsAt {
             policy.focusEndsAt = session.endsAt
             if SharedStore.focusSettings.strict {
                 policy.focusLocked = true
                 policy.allowed = false
+                if !SharedStore.focusSettings.allowReelFreeWeb { policy.reelFreeWeb = nil }
                 return policy
             }
         }

@@ -1,0 +1,268 @@
+{
+  "id": "english-basics",
+  "title": "Englisch: Grundlagen",
+  "subtitle": "30 nützliche Wörter und Wendungen auf B1-Niveau",
+  "symbol": "E",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "english-basics-001",
+      "prompt": "der Termin (Arzt, Friseur)",
+      "answer": "appointment",
+      "distractors": ["date", "deadline", "schedule"],
+      "example": "I have a doctor's appointment tomorrow.",
+      "note": "Ein appointment hast du beim Arzt oder Friseur. Vorsicht: date ist ein Kalenderdatum oder ein romantisches Treffen."
+    },
+    {
+      "id": "english-basics-002",
+      "prompt": "eigentlich",
+      "answer": "actually",
+      "accept": ["in fact"],
+      "distractors": ["currently", "eventually", "finally"],
+      "example": "I actually prefer tea.",
+      "note": "Falscher Freund: actually heißt eigentlich oder tatsächlich, nicht aktuell. Aktuell heißt auf Englisch current."
+    },
+    {
+      "id": "english-basics-003",
+      "prompt": "schließlich, irgendwann",
+      "answer": "eventually",
+      "accept": ["in the end"],
+      "distractors": ["actually", "possibly", "immediately"],
+      "example": "We eventually found the hotel.",
+      "note": "Falscher Freund: eventually heißt schließlich oder irgendwann, nicht eventuell. Eventuell ist auf Englisch possibly."
+    },
+    {
+      "id": "english-basics-004",
+      "prompt": "sich beschweren",
+      "answer": "complain",
+      "distractors": ["compliment", "explain", "complete"],
+      "example": "Many guests complain about the noise.",
+      "note": "Man beschwert sich about something: to complain about the food. Das Nomen dazu ist a complaint."
+    },
+    {
+      "id": "english-basics-005",
+      "prompt": "vorschlagen",
+      "answer": "suggest",
+      "accept": ["propose"],
+      "distractors": ["suppose", "support", "request"],
+      "example": "I suggest we leave early.",
+      "note": "Nach suggest folgt kein to: I suggest going oder I suggest that we go, aber nie I suggest to go."
+    },
+    {
+      "id": "english-basics-006",
+      "prompt": "zuverlässig",
+      "answer": "reliable",
+      "accept": ["dependable"],
+      "distractors": ["responsible", "relieved", "reasonable"],
+      "example": "My old car is still reliable.",
+      "note": "Betont wird die zweite Silbe: re-LY-able. Das Verb dazu ist to rely on, sich verlassen auf."
+    },
+    {
+      "id": "english-basics-007",
+      "prompt": "die Rechnung (im Restaurant)",
+      "answer": "bill",
+      "accept": ["check"],
+      "distractors": ["receipt", "tip", "menu"],
+      "example": "Could we have the bill, please?",
+      "note": "Britisch sagt man the bill, amerikanisch the check. Die Quittung danach ist the receipt, mit stummem p."
+    },
+    {
+      "id": "english-basics-008",
+      "prompt": "die Erfahrung",
+      "answer": "experience",
+      "distractors": ["experiment", "expertise", "expense"],
+      "example": "She has a lot of experience.",
+      "note": "Berufserfahrung ist unzählbar: a lot of experience, nicht many experiences. Ein einzelnes Erlebnis ist dagegen an experience."
+    },
+    {
+      "id": "english-basics-009",
+      "prompt": "die Verspätung",
+      "answer": "delay",
+      "distractors": ["detour", "display", "decay"],
+      "example": "There is a delay of ten minutes.",
+      "note": "Als Verb: The flight was delayed. Wer selbst zu spät kommt, ist einfach late."
+    },
+    {
+      "id": "english-basics-010",
+      "prompt": "Entschuldigung! (um jemanden anzusprechen)",
+      "answer": "Excuse me",
+      "distractors": ["After you", "Never mind", "Bless you"],
+      "example": "Excuse me, is this seat free?",
+      "note": "Excuse me sagst du vorher, um jemanden anzusprechen oder vorbeizukommen. Sorry sagst du hinterher, wenn schon etwas passiert ist."
+    },
+    {
+      "id": "english-basics-011",
+      "prompt": "Gern geschehen.",
+      "answer": "You're welcome",
+      "accept": ["No problem", "Not at all"],
+      "distractors": ["Welcome back", "Well done", "You're right"],
+      "example": "You're welcome, it was no trouble.",
+      "note": "Genauso üblich sind No problem und, eher britisch, Not at all. Welcome allein heißt willkommen."
+    },
+    {
+      "id": "english-basics-012",
+      "prompt": "Keine Ahnung.",
+      "answer": "No idea",
+      "accept": ["No clue", "I have no idea"],
+      "distractors": ["No way", "No matter", "Never mind"],
+      "example": "No idea, ask Tom.",
+      "note": "Etwas lockerer ist No clue. Vollständig und etwas höflicher: I have no idea."
+    },
+    {
+      "id": "english-basics-013",
+      "prompt": "Schon gut, vergiss es.",
+      "answer": "Never mind",
+      "distractors": ["Mind you", "No way", "Nevertheless"],
+      "example": "Never mind, it's not important.",
+      "note": "Never mind nimmt zurück, was du gerade gesagt oder gefragt hast. Wörtlich heißt es ungefähr: denk nicht mehr dran."
+    },
+    {
+      "id": "english-basics-014",
+      "prompt": "Wie bitte?",
+      "answer": "Pardon",
+      "accept": ["Sorry", "I beg your pardon"],
+      "distractors": ["Please", "What's up", "Here you are"],
+      "example": "Pardon? Could you say that again?",
+      "note": "Pardon? ist höflich und klingt britisch. Im Alltag reicht auch ein fragendes Sorry?, ein bloßes What? wirkt dagegen unhöflich."
+    },
+    {
+      "id": "english-basics-015",
+      "prompt": "gemütlich",
+      "answer": "cosy",
+      "accept": ["cozy"],
+      "distractors": ["crazy", "costly", "busy"],
+      "example": "The café is small but cosy.",
+      "note": "Britisch schreibt man cosy, amerikanisch cozy. Für Räume trifft es gemütlich gut, für eine entspannte Stimmung passt oft relaxed."
+    },
+    {
+      "id": "english-basics-016",
+      "prompt": "günstig, preiswert",
+      "answer": "cheap",
+      "accept": ["affordable", "inexpensive"],
+      "distractors": ["cheat", "chip", "expensive"],
+      "example": "The bus is cheap and fast.",
+      "note": "Cheap kann auch billig im abwertenden Sinn heißen. Neutraler und freundlicher klingt affordable."
+    },
+    {
+      "id": "english-basics-017",
+      "prompt": "teilen (mit anderen)",
+      "answer": "share",
+      "distractors": ["shave", "shake", "spare"],
+      "example": "Let's share a pizza.",
+      "note": "Share heißt etwas gemeinsam nutzen. Etwas in Teile zerlegen, etwa in der Mathematik, ist to divide."
+    },
+    {
+      "id": "english-basics-018",
+      "prompt": "sich etwas ausleihen",
+      "answer": "borrow",
+      "distractors": ["lend", "rent", "owe"],
+      "example": "Can I borrow your pen?",
+      "note": "Borrow heißt sich etwas ausleihen, lend heißt jemandem etwas leihen. Also: Can I borrow your pen? oder Can you lend me your pen?"
+    },
+    {
+      "id": "english-basics-019",
+      "prompt": "sich bewerben",
+      "answer": "apply",
+      "accept": ["apply for"],
+      "distractors": ["advertise", "appeal", "approve"],
+      "example": "I want to apply for this job.",
+      "note": "Du bewirbst dich for a job, aber to a company. Die Bewerbung selbst heißt application."
+    },
+    {
+      "id": "english-basics-020",
+      "prompt": "kündigen (den eigenen Job)",
+      "answer": "quit",
+      "accept": ["resign"],
+      "distractors": ["quite", "quiet", "retire"],
+      "example": "She wants to quit her job.",
+      "note": "Formeller ist to resign. Achte auf die Schreibung: quit (kündigen, aufhören), quite (ziemlich), quiet (leise)."
+    },
+    {
+      "id": "english-basics-021",
+      "prompt": "umziehen (in eine neue Wohnung)",
+      "answer": "move",
+      "accept": ["move house"],
+      "distractors": ["get changed", "remove", "travel"],
+      "example": "We will move to Berlin next month.",
+      "note": "Britisch sagt man auch move house. Sich umziehen im Sinn von Kleidung wechseln heißt dagegen to get changed."
+    },
+    {
+      "id": "english-basics-022",
+      "prompt": "der Nachbar",
+      "answer": "neighbour",
+      "accept": ["neighbor"],
+      "distractors": ["neighbourhood", "nephew", "landlord"],
+      "example": "Our neighbour has a big dog.",
+      "note": "Britisch neighbour, amerikanisch neighbor. Das gh ist stumm: NAY-ber."
+    },
+    {
+      "id": "english-basics-023",
+      "prompt": "wenigstens",
+      "answer": "at least",
+      "distractors": ["at last", "at most", "at first"],
+      "example": "It's cold, but at least it's dry.",
+      "note": "Nicht verwechseln: at last heißt endlich, at most höchstens."
+    },
+    {
+      "id": "english-basics-024",
+      "prompt": "endlich",
+      "answer": "finally",
+      "accept": ["at last"],
+      "distractors": ["endless", "eventually", "lately"],
+      "example": "The bus is finally here.",
+      "note": "Endless heißt endlos, ein typischer Fehlgriff. At last klingt noch erleichterter: At last, the weekend!"
+    },
+    {
+      "id": "english-basics-025",
+      "prompt": "neulich, kürzlich",
+      "answer": "recently",
+      "accept": ["lately"],
+      "distractors": ["newly", "nearly", "presently"],
+      "example": "I recently started a new job.",
+      "note": "Lately steht meist mit dem Present Perfect: I haven't slept well lately. Nearly heißt fast, nicht neulich."
+    },
+    {
+      "id": "english-basics-026",
+      "prompt": "ungefähr",
+      "answer": "about",
+      "accept": ["around", "roughly", "approximately"],
+      "distractors": ["above", "almost", "exactly"],
+      "example": "It takes about an hour.",
+      "note": "Für Zeiten und Mengen sagst du locker about oder around. Almost heißt fast: almost ready."
+    },
+    {
+      "id": "english-basics-027",
+      "prompt": "sich kümmern um",
+      "answer": "look after",
+      "accept": ["take care of"],
+      "distractors": ["look for", "look up", "look into"],
+      "example": "Can you look after my cat?",
+      "note": "Look for heißt suchen, look up nachschlagen. Eine kleine Präposition, ein ganz anderes Verb."
+    },
+    {
+      "id": "english-basics-028",
+      "prompt": "aufgeben",
+      "answer": "give up",
+      "distractors": ["give in", "give away", "get up"],
+      "example": "Don't give up now.",
+      "note": "Give in heißt nachgeben, give away verschenken. Nach give up folgt die -ing-Form: give up smoking."
+    },
+    {
+      "id": "english-basics-029",
+      "prompt": "herausfinden",
+      "answer": "find out",
+      "distractors": ["look out", "check in", "point out"],
+      "example": "I need to find out the price.",
+      "note": "Find out heißt eine Information erfahren. Ein Problem durch Nachdenken lösen ist eher to figure out."
+    },
+    {
+      "id": "english-basics-030",
+      "prompt": "sich freuen auf",
+      "answer": "look forward",
+      "accept": ["look forward to"],
+      "distractors": ["look ahead", "look around", "look out"],
+      "example": "I look forward to the weekend.",
+      "note": "Nach to folgt ein Nomen oder die -ing-Form: I look forward to seeing you. In E-Mails ist das eine feste Schlussformel."
+    }
+  ]
+}

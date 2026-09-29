@@ -1,0 +1,391 @@
+{
+  "id": "world-history",
+  "title": "Weltgeschichte",
+  "subtitle": "Wendepunkte von der Antike bis zum Jahr 2000",
+  "symbol": "H",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "world-history-001",
+      "prompt": "Welche Pyramide ist die größte von Gizeh?",
+      "answer": "Cheops-Pyramide",
+      "accept": [
+        "Cheops",
+        "Große Pyramide",
+        "Chufu"
+      ],
+      "distractors": [
+        "Chephren-Pyramide",
+        "Mykerinos-Pyramide",
+        "Djoser-Pyramide"
+      ],
+      "note": "Sie entstand um 2560 v. Chr. und war fast 4000 Jahre lang das höchste Bauwerk der Welt. Als einziges der sieben antiken Weltwunder steht sie noch."
+    },
+    {
+      "id": "world-history-002",
+      "prompt": "In welchem Jahr fanden der Überlieferung nach die ersten antiken Olympischen Spiele statt?",
+      "answer": "776 v. Chr.",
+      "accept": [
+        "776 v.Chr.",
+        "776"
+      ],
+      "distractors": [
+        "753 v. Chr.",
+        "490 v. Chr.",
+        "508 v. Chr."
+      ],
+      "note": "Die Griechen zählten später ihre Jahre in Olympiaden ab diesem Datum. 753 v. Chr. ist dagegen das sagenhafte Gründungsjahr Roms."
+    },
+    {
+      "id": "world-history-003",
+      "prompt": "In welchem Jahr wurde Julius Caesar ermordet?",
+      "answer": "44 v. Chr.",
+      "accept": [
+        "44 v.Chr.",
+        "44 vor Christus"
+      ],
+      "distractors": [
+        "49 v. Chr.",
+        "31 v. Chr.",
+        "27 v. Chr."
+      ],
+      "note": "An den Iden des März, dem 15. März, erstach ihn eine Gruppe von Senatoren um Brutus und Cassius."
+    },
+    {
+      "id": "world-history-004",
+      "prompt": "Welche Stadt wurde 79 n. Chr. beim Ausbruch des Vesuvs verschüttet?",
+      "answer": "Pompeji",
+      "accept": [
+        "Pompeii"
+      ],
+      "distractors": [
+        "Karthago",
+        "Ostia",
+        "Syrakus"
+      ],
+      "note": "Die Asche konservierte die Stadt so gut, dass Archäologen bis heute Brote in Öfen und Graffiti an den Wänden finden."
+    },
+    {
+      "id": "world-history-005",
+      "prompt": "In welchem Jahr endete das Weströmische Reich?",
+      "answer": "476",
+      "accept": [
+        "476 n. Chr."
+      ],
+      "distractors": [
+        "395",
+        "410",
+        "486"
+      ],
+      "note": "Der germanische Heerführer Odoaker setzte den letzten Kaiser Romulus Augustulus ab. Das Oströmische Reich hielt noch fast tausend Jahre, bis 1453."
+    },
+    {
+      "id": "world-history-006",
+      "prompt": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?",
+      "answer": "Karl der Große",
+      "accept": [
+        "Karl I.",
+        "Charlemagne"
+      ],
+      "distractors": [
+        "Otto der Große",
+        "Chlodwig",
+        "Pippin der Jüngere"
+      ],
+      "note": "Papst Leo III. krönte ihn am Weihnachtstag. Weil sein Reich große Teile Westeuropas vereinte, gilt Karl oft als „Vater Europas“."
+    },
+    {
+      "id": "world-history-007",
+      "prompt": "Wer erfand um 1450 den Buchdruck mit beweglichen Lettern in Europa?",
+      "answer": "Johannes Gutenberg",
+      "accept": [
+        "Gutenberg"
+      ],
+      "distractors": [
+        "Albrecht Dürer",
+        "Aldus Manutius",
+        "William Caxton"
+      ],
+      "note": "Sein berühmtestes Werk ist die Gutenberg-Bibel. In China und Korea gab es bewegliche Lettern schon früher, in Europa löste seine Technik aber eine Medienrevolution aus."
+    },
+    {
+      "id": "world-history-008",
+      "prompt": "In welchem Jahr erreichte Kolumbus zum ersten Mal Amerika?",
+      "answer": "1492",
+      "distractors": [
+        "1488",
+        "1498",
+        "1519"
+      ],
+      "note": "Er landete auf einer Insel der Bahamas und glaubte, einen Seeweg nach Asien gefunden zu haben. Wikinger waren schon um das Jahr 1000 in Nordamerika."
+    },
+    {
+      "id": "world-history-009",
+      "prompt": "In welchem Jahr veröffentlichte Martin Luther seine 95 Thesen?",
+      "answer": "1517",
+      "distractors": [
+        "1492",
+        "1521",
+        "1555"
+      ],
+      "note": "Ob er sie wirklich an die Tür der Wittenberger Schlosskirche nagelte, ist umstritten. Sicher ist, dass er sie am 31. Oktober verschickte, dem heutigen Reformationstag."
+    },
+    {
+      "id": "world-history-010",
+      "prompt": "Welcher Krieg endete 1648 mit dem Westfälischen Frieden?",
+      "answer": "Dreißigjähriger Krieg",
+      "accept": [
+        "30-jähriger Krieg",
+        "Dreissigjähriger Krieg"
+      ],
+      "distractors": [
+        "Hundertjähriger Krieg",
+        "Siebenjähriger Krieg",
+        "Spanischer Erbfolgekrieg"
+      ],
+      "note": "Verhandelt wurde in Münster und Osnabrück. Der Frieden gilt als Geburtsstunde der Idee souveräner, gleichberechtigter Staaten."
+    },
+    {
+      "id": "world-history-011",
+      "prompt": "In welchem Jahr erklärten die USA ihre Unabhängigkeit?",
+      "answer": "1776",
+      "distractors": [
+        "1770",
+        "1783",
+        "1789"
+      ],
+      "note": "Die Erklärung wurde am 4. Juli verabschiedet. Großbritannien erkannte die Unabhängigkeit erst 1783 im Frieden von Paris an."
+    },
+    {
+      "id": "world-history-012",
+      "prompt": "In welchem Jahr begann die Französische Revolution?",
+      "answer": "1789",
+      "distractors": [
+        "1776",
+        "1793",
+        "1799"
+      ],
+      "note": "Als symbolischer Beginn gilt der Sturm auf die Bastille am 14. Juli, bis heute französischer Nationalfeiertag."
+    },
+    {
+      "id": "world-history-013",
+      "prompt": "Bei welcher Schlacht wurde Napoleon 1815 endgültig besiegt?",
+      "answer": "Waterloo",
+      "accept": [
+        "Schlacht bei Waterloo"
+      ],
+      "distractors": [
+        "Leipzig",
+        "Austerlitz",
+        "Borodino"
+      ],
+      "note": "Waterloo liegt im heutigen Belgien. Danach wurde Napoleon auf die Atlantikinsel St. Helena verbannt, wo er 1821 starb."
+    },
+    {
+      "id": "world-history-014",
+      "prompt": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?",
+      "answer": "1871",
+      "distractors": [
+        "1848",
+        "1866",
+        "1890"
+      ],
+      "note": "Wilhelm I. wurde am 18. Januar 1871 im Spiegelsaal von Versailles zum Kaiser ausgerufen, mitten im Krieg gegen Frankreich."
+    },
+    {
+      "id": "world-history-015",
+      "prompt": "Wessen Ermordung in Sarajevo löste 1914 den Ersten Weltkrieg aus?",
+      "answer": "Franz Ferdinand",
+      "accept": [
+        "Erzherzog Franz Ferdinand"
+      ],
+      "distractors": [
+        "Kaiser Franz Joseph",
+        "Wilhelm II.",
+        "Zar Nikolaus II."
+      ],
+      "note": "Der österreichische Thronfolger wurde am 28. Juni 1914 erschossen. Über Bündnisse zog das Attentat binnen Wochen die Großmächte in den Krieg."
+    },
+    {
+      "id": "world-history-016",
+      "prompt": "In welchem Jahr fand die Oktoberrevolution in Russland statt?",
+      "answer": "1917",
+      "distractors": [
+        "1905",
+        "1914",
+        "1922"
+      ],
+      "note": "Nach dem damals in Russland gültigen julianischen Kalender war es Oktober. Nach unserem Kalender war es schon der 7. November."
+    },
+    {
+      "id": "world-history-017",
+      "prompt": "In welchem Jahr endete der Erste Weltkrieg?",
+      "answer": "1918",
+      "distractors": [
+        "1916",
+        "1917",
+        "1919"
+      ],
+      "note": "Am 11. November 1918 trat der Waffenstillstand von Compiègne in Kraft. Der Versailler Vertrag folgte 1919."
+    },
+    {
+      "id": "world-history-018",
+      "prompt": "In welchem Jahr begann der Zweite Weltkrieg in Europa?",
+      "answer": "1939",
+      "distractors": [
+        "1938",
+        "1940",
+        "1941"
+      ],
+      "note": "Er begann mit dem deutschen Überfall auf Polen am 1. September 1939. Großbritannien und Frankreich erklärten zwei Tage später den Krieg."
+    },
+    {
+      "id": "world-history-019",
+      "prompt": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
+      "answer": "1945",
+      "distractors": [
+        "1943",
+        "1944",
+        "1946"
+      ],
+      "note": "Die bedingungslose Kapitulation Deutschlands trat am 8. Mai 1945 in Kraft. In Asien endete der Krieg erst mit der Kapitulation Japans im September."
+    },
+    {
+      "id": "world-history-020",
+      "prompt": "In welchem Jahr wurden die Vereinten Nationen gegründet?",
+      "answer": "1945",
+      "distractors": [
+        "1919",
+        "1948",
+        "1949"
+      ],
+      "note": "Die Charta trat am 24. Oktober 1945 mit 51 Gründungsstaaten in Kraft. Der Vorgänger, der Völkerbund, war daran gescheitert, den Krieg zu verhindern."
+    },
+    {
+      "id": "world-history-021",
+      "prompt": "Welches Land wurde 1947 von Großbritannien unabhängig und zugleich geteilt?",
+      "answer": "Indien",
+      "accept": [
+        "Britisch-Indien"
+      ],
+      "distractors": [
+        "Ägypten",
+        "Kenia",
+        "Myanmar"
+      ],
+      "note": "Die Teilung in Indien und Pakistan löste eine der größten Fluchtbewegungen der Geschichte aus. Gandhis gewaltfreier Widerstand hatte die Unabhängigkeit maßgeblich vorangetrieben."
+    },
+    {
+      "id": "world-history-022",
+      "prompt": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "answer": "1949",
+      "distractors": [
+        "1945",
+        "1948",
+        "1955"
+      ],
+      "note": "Das Grundgesetz trat am 23. Mai 1949 in Kraft. Im Oktober desselben Jahres wurde die DDR gegründet."
+    },
+    {
+      "id": "world-history-023",
+      "prompt": "In welchem Jahr wurde die Berliner Mauer gebaut?",
+      "answer": "1961",
+      "distractors": [
+        "1953",
+        "1958",
+        "1968"
+      ],
+      "note": "In der Nacht zum 13. August 1961 riegelte die DDR die Grenze nach West-Berlin ab. Die Mauer stand gut 28 Jahre."
+    },
+    {
+      "id": "world-history-024",
+      "prompt": "Welche Krise brachte die Welt 1962 an den Rand eines Atomkriegs?",
+      "answer": "Kubakrise",
+      "accept": [
+        "Kuba-Krise"
+      ],
+      "distractors": [
+        "Berlin-Blockade",
+        "Suezkrise",
+        "Koreakrieg"
+      ],
+      "note": "Die Sowjetunion hatte Atomraketen auf Kuba stationiert. Nach 13 Tagen zog sie sie ab, im Gegenzug verzichteten die USA auf eine Invasion und zogen später Raketen aus der Türkei ab."
+    },
+    {
+      "id": "world-history-025",
+      "prompt": "Wer hielt 1963 in Washington die Rede „I Have a Dream“?",
+      "answer": "Martin Luther King Jr.",
+      "accept": [
+        "Martin Luther King",
+        "MLK"
+      ],
+      "distractors": [
+        "Malcolm X",
+        "John Lewis",
+        "John F. Kennedy"
+      ],
+      "note": "Er sprach vor rund 250.000 Menschen am Lincoln Memorial. 1964 erhielt er den Friedensnobelpreis."
+    },
+    {
+      "id": "world-history-026",
+      "prompt": "Wer betrat 1969 als erster Mensch den Mond?",
+      "answer": "Neil Armstrong",
+      "accept": [
+        "Armstrong"
+      ],
+      "distractors": [
+        "Buzz Aldrin",
+        "Michael Collins",
+        "Juri Gagarin"
+      ],
+      "note": "Apollo 11 landete am 20. Juli 1969. Buzz Aldrin folgte ihm kurz darauf, Michael Collins blieb in der Kapsel im Mondorbit."
+    },
+    {
+      "id": "world-history-027",
+      "prompt": "In welchem Jahr fiel die Berliner Mauer?",
+      "answer": "1989",
+      "distractors": [
+        "1987",
+        "1990",
+        "1991"
+      ],
+      "note": "Am Abend des 9. November verkündete Günter Schabowski versehentlich die sofortige Reisefreiheit. Noch in der Nacht öffneten sich die Grenzübergänge."
+    },
+    {
+      "id": "world-history-028",
+      "prompt": "In welchem Jahr wurde Deutschland wiedervereinigt?",
+      "answer": "1990",
+      "distractors": [
+        "1989",
+        "1991",
+        "1992"
+      ],
+      "note": "Am 3. Oktober 1990 trat die DDR der Bundesrepublik bei. Seitdem ist der 3. Oktober deutscher Nationalfeiertag."
+    },
+    {
+      "id": "world-history-029",
+      "prompt": "In welchem Jahr zerfiel die Sowjetunion?",
+      "answer": "1991",
+      "distractors": [
+        "1989",
+        "1990",
+        "1993"
+      ],
+      "note": "Am 25. Dezember 1991 trat Michail Gorbatschow zurück, am Tag darauf löste sich die UdSSR offiziell auf. Aus ihr gingen 15 Staaten hervor."
+    },
+    {
+      "id": "world-history-030",
+      "prompt": "Wer wurde 1994 erster schwarzer Präsident Südafrikas?",
+      "answer": "Nelson Mandela",
+      "accept": [
+        "Mandela"
+      ],
+      "distractors": [
+        "Desmond Tutu",
+        "Thabo Mbeki",
+        "Jacob Zuma"
+      ],
+      "note": "Mandela hatte 27 Jahre in Haft verbracht. 1993 erhielt er zusammen mit Frederik Willem de Klerk den Friedensnobelpreis für das Ende der Apartheid."
+    }
+  ]
+}

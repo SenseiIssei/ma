@@ -33,6 +33,8 @@ targets:
       - target: MaShieldAction
       - target: MaMonitor
       - target: MaFilter
+      - target: MaWidgets
+      - target: MaReport
     info:
       path: App/Info.plist
       properties:
@@ -45,6 +47,9 @@ targets:
         # iPhone-only, but App Store validation still checks the iPad keys.
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         ITSAppUsesNonExemptEncryption: false
+        # Focus sounds keep playing while the screen is locked.
+        UIBackgroundModes: [audio]
+        NSSupportsLiveActivities: true
         CFBundleURLTypes:
           - CFBundleURLName: com.sensei.ma
             CFBundleURLSchemes: [ma]
@@ -162,3 +167,58 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.filter
+
+  # Home Screen and Lock Screen widgets plus the focus Live Activity.
+  MaWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/Widgets
+      # Only files that import Foundation or ActivityKit. Models.swift and
+      # SharedStore.swift pull in FamilyControls and stay out.
+      - path: Shared/MaShared.swift
+      - path: Shared/Loc.swift
+      - path: Shared/FocusActivity.swift
+    info:
+      path: Extensions/Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Widgets
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Extensions/Widgets/Widgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.widgets
+
+  # Draws the weekly Screen Time report inside the app. iOS runs it sealed
+  # off: it may read usage data and draw it, but nothing leaves it.
+  # An ExtensionKit extension: this extension point loads no NSExtension appex.
+  MaReport:
+    type: extensionkit-extension
+    platform: iOS
+    sources:
+      - path: Extensions/Report
+      - path: Shared/Loc.swift
+      - path: Shared/MaShared.swift
+    info:
+      path: Extensions/Report/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Report
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundlePackageType: "XPC!"
+        EXAppExtensionAttributes:
+          EXExtensionPointIdentifier: com.apple.deviceactivityui.report-extension
+    entitlements:
+      path: Extensions/Report/Report.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.report

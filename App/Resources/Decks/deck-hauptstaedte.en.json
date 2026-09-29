@@ -4,6 +4,7 @@
   "title": "Capital Cities",
   "subtitle": "40 countries, 40 capitals, a few traps",
   "symbol": "都",
+  "category": "knowledge",
   "cards": [
     {
       "id": "hauptstaedte-001",

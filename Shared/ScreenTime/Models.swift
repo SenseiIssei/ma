@@ -220,6 +220,8 @@ struct FocusSettings: Codable {
     var selection = FamilyActivitySelection()
     /// Strict: during focus the shield offers no quiz, only patience.
     var strict = true
+    /// Even strict focus lets you into the reel-free web version.
+    var allowReelFreeWeb = true
 
     init() {}
 
@@ -233,6 +235,7 @@ struct FocusSettings: Codable {
         autoStartFocus = try c.decodeIfPresent(Bool.self, forKey: .autoStartFocus) ?? d.autoStartFocus
         selection = try c.decodeIfPresent(FamilyActivitySelection.self, forKey: .selection) ?? d.selection
         strict = try c.decodeIfPresent(Bool.self, forKey: .strict) ?? d.strict
+        allowReelFreeWeb = try c.decodeIfPresent(Bool.self, forKey: .allowReelFreeWeb) ?? d.allowReelFreeWeb
     }
 }
 

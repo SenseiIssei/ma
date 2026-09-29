@@ -6,9 +6,22 @@ struct LearnView: View {
     @State private var lesson: QuizSession?
     @State private var newDeck: Deck?
     @State private var importing = false
+    @State private var creatingWithAI = false
     @State private var message: String?
+    /// nil shows every shelf.
+    @State private var shelf: DeckCategory?
 
     private var store: DeckStore { model.decks }
+
+    private var shelves: [DeckCategory] {
+        let present = Set(store.decks.map { DeckCategory(deck: $0) })
+        return DeckCategory.allCases.filter { present.contains($0) }
+    }
+
+    private var shownDecks: [Deck] {
+        guard let shelf else { return store.decks }
+        return store.decks.filter { DeckCategory(deck: $0) == shelf }
+    }
 
     var body: some View {
         NavigationStack {
@@ -32,8 +45,9 @@ struct LearnView: View {
                     if store.decks.isEmpty {
                         emptyState
                     } else {
+                        shelfPicker
                         VStack(spacing: 12) {
-                            ForEach(store.decks) { deck in
+                            ForEach(shownDecks) { deck in
                                 NavigationLink(value: deck.id) {
                                     DeckRow(
                                         deck: deck,
@@ -68,6 +82,12 @@ struct LearnView: View {
             }
             .sheet(item: $newDeck) { deck in
                 DeckEditorView(deck: deck, isNew: true)
+            }
+            .sheet(isPresented: $creatingWithAI) {
+                CreateTopicView { deck in
+                    message = tr("\(deck.title) is ready with \(deck.cards.count) cards and already checked for questions.",
+                                 "\(deck.title) ist fertig, mit \(deck.cards.count) Karten, und schon für Fragen aktiv.")
+                }
             }
             .fileImporter(isPresented: $importing, allowedContentTypes: [.json], allowsMultipleSelection: true) { result in
                 importFiles(result)
@@ -186,12 +206,41 @@ struct LearnView: View {
         .zenCard()
     }
 
+    /// Horizontal shelf chips: all topics or one category.
+    private var shelfPicker: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                Chip(title: tr("All", "Alle"), selected: shelf == nil) { shelf = nil }
+                ForEach(shelves) { category in
+                    Button {
+                        Haptics.tap()
+                        shelf = shelf == category ? nil : category
+                    } label: {
+                        Label(category.title, systemImage: category.icon)
+                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .foregroundStyle(shelf == category ? Color.white : Zen.ink)
+                            .padding(.vertical, 9)
+                            .padding(.horizontal, 14)
+                            .background(shelf == category ? AnyShapeStyle(Zen.shu) : AnyShapeStyle(Zen.sand), in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+
     private var addMenu: some View {
         Menu {
             Button {
                 newDeck = Deck(title: "", symbol: "学")
             } label: {
                 Label(tr("New topic", "Neues Thema"), systemImage: "square.and.pencil")
+            }
+            Button {
+                creatingWithAI = true
+            } label: {
+                Label(tr("Create a topic with AI", "Thema mit KI erstellen"), systemImage: "wand.and.stars")
             }
             Button {
                 importing = true

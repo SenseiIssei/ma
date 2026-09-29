@@ -1,0 +1,395 @@
+{
+  "id": "general-knowledge",
+  "title": "Allgemeinwissen",
+  "subtitle": "Quer durch alles, was man mal gehört haben sollte",
+  "symbol": "?",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "general-knowledge-001",
+      "prompt": "Wie viele Kontinente gibt es nach der gängigsten Zählung?",
+      "answer": "7",
+      "accept": [
+        "Sieben"
+      ],
+      "distractors": [
+        "5",
+        "6",
+        "8"
+      ],
+      "note": "Afrika, Antarktika, Asien, Australien, Europa, Nordamerika und Südamerika. In manchen Ländern gilt Amerika als ein Kontinent, dann kommt man auf sechs."
+    },
+    {
+      "id": "general-knowledge-002",
+      "prompt": "Welcher ist der größte Ozean der Erde?",
+      "answer": "Pazifik",
+      "accept": [
+        "Pazifischer Ozean",
+        "Stiller Ozean"
+      ],
+      "distractors": [
+        "Atlantik",
+        "Indischer Ozean",
+        "Arktischer Ozean"
+      ],
+      "note": "Er bedeckt rund ein Drittel der Erdoberfläche und ist damit größer als alle Landflächen zusammen."
+    },
+    {
+      "id": "general-knowledge-003",
+      "prompt": "Wer malte die Mona Lisa?",
+      "answer": "Leonardo da Vinci",
+      "accept": [
+        "Da Vinci",
+        "Leonardo"
+      ],
+      "distractors": [
+        "Michelangelo",
+        "Raffael",
+        "Botticelli"
+      ],
+      "note": "Sie hängt im Louvre in Paris hinter Panzerglas. Erst ein Diebstahl im Jahr 1911 machte sie richtig weltberühmt."
+    },
+    {
+      "id": "general-knowledge-004",
+      "prompt": "Welcher ist der höchste Berg der Erde über dem Meeresspiegel?",
+      "answer": "Mount Everest",
+      "accept": [
+        "Everest",
+        "Chomolungma"
+      ],
+      "distractors": [
+        "K2",
+        "Kangchenjunga",
+        "Lhotse"
+      ],
+      "note": "Er ist rund 8849 Meter hoch. Misst man vom Erdmittelpunkt aus, liegt der Chimborazo in Ecuador vorn, weil die Erde am Äquator ausgebeult ist."
+    },
+    {
+      "id": "general-knowledge-005",
+      "prompt": "Welcher Fluss gilt klassisch als längster der Welt?",
+      "answer": "Nil",
+      "distractors": [
+        "Amazonas",
+        "Jangtse",
+        "Mississippi"
+      ],
+      "note": "Mit rund 6650 Kilometern steht meist der Nil vorn, manche Messungen sehen aber den Amazonas knapp vorne. Der wasserreichste Fluss ist ganz klar der Amazonas."
+    },
+    {
+      "id": "general-knowledge-006",
+      "prompt": "Wie viele Knochen hat ein erwachsener Mensch?",
+      "answer": "206",
+      "distractors": [
+        "186",
+        "216",
+        "306"
+      ],
+      "note": "Babys kommen mit rund 300 Knochenanlagen zur Welt. Viele davon verwachsen im Laufe der Kindheit miteinander, etwa im Schädel."
+    },
+    {
+      "id": "general-knowledge-007",
+      "prompt": "Wer schrieb das Drama „Faust“?",
+      "answer": "Johann Wolfgang von Goethe",
+      "accept": [
+        "Goethe"
+      ],
+      "distractors": [
+        "Friedrich Schiller",
+        "Heinrich Heine",
+        "Gotthold Ephraim Lessing"
+      ],
+      "note": "Goethe arbeitete rund 60 Jahre daran. Faust II erschien erst 1832, kurz nach seinem Tod."
+    },
+    {
+      "id": "general-knowledge-008",
+      "prompt": "Welches chemische Symbol hat Gold?",
+      "answer": "Au",
+      "distractors": [
+        "Ag",
+        "Go",
+        "Gd"
+      ],
+      "note": "Au kommt vom lateinischen aurum. Das ähnliche Ag steht für Silber, von argentum."
+    },
+    {
+      "id": "general-knowledge-009",
+      "prompt": "Wie viele Spieler einer Fußballmannschaft stehen gleichzeitig auf dem Feld?",
+      "answer": "11",
+      "accept": [
+        "Elf"
+      ],
+      "distractors": [
+        "9",
+        "10",
+        "12"
+      ],
+      "note": "Zehn Feldspieler plus Torwart. Sinkt die Zahl durch Platzverweise unter sieben, wird das Spiel abgebrochen."
+    },
+    {
+      "id": "general-knowledge-010",
+      "prompt": "Wie viele Tasten hat ein normales Klavier?",
+      "answer": "88",
+      "distractors": [
+        "76",
+        "86",
+        "96"
+      ],
+      "note": "52 weiße und 36 schwarze Tasten, verteilt über gut sieben Oktaven."
+    },
+    {
+      "id": "general-knowledge-011",
+      "prompt": "Welches ist das größte Tier der Erde?",
+      "answer": "Blauwal",
+      "distractors": [
+        "Finnwal",
+        "Pottwal",
+        "Walhai"
+      ],
+      "note": "Er wird bis zu rund 30 Meter lang und über 150 Tonnen schwer. Damit ist er größer als jeder bekannte Dinosaurier."
+    },
+    {
+      "id": "general-knowledge-012",
+      "prompt": "Welche Sprache hat die meisten Muttersprachler?",
+      "answer": "Mandarin",
+      "accept": [
+        "Chinesisch",
+        "Hochchinesisch"
+      ],
+      "distractors": [
+        "Englisch",
+        "Spanisch",
+        "Hindi"
+      ],
+      "note": "Rund 900 Millionen Menschen sprechen Mandarin als Muttersprache. Zählt man Zweitsprachler mit, liegt Englisch vorn."
+    },
+    {
+      "id": "general-knowledge-013",
+      "prompt": "Wie viele Sekunden hat ein Tag?",
+      "answer": "86400",
+      "accept": [
+        "86.400",
+        "86 400"
+      ],
+      "distractors": [
+        "84600",
+        "86000",
+        "864000"
+      ],
+      "note": "24 × 60 × 60 ergibt 86400. Die Zahl taucht beim Programmieren ständig auf, etwa wenn du Zeitstempel in Tage umrechnest."
+    },
+    {
+      "id": "general-knowledge-014",
+      "prompt": "Aus wie vielen Feldern besteht ein Schachbrett?",
+      "answer": "64",
+      "distractors": [
+        "49",
+        "72",
+        "81"
+      ],
+      "note": "8 × 8 Felder. Die Legende vom Reiskorn, das sich von Feld zu Feld verdoppelt, zeigt, wie schnell exponentielles Wachstum explodiert."
+    },
+    {
+      "id": "general-knowledge-015",
+      "prompt": "Wer komponierte die „Mondscheinsonate“?",
+      "answer": "Ludwig van Beethoven",
+      "accept": [
+        "Beethoven"
+      ],
+      "distractors": [
+        "Wolfgang Amadeus Mozart",
+        "Frédéric Chopin",
+        "Franz Schubert"
+      ],
+      "note": "Den Namen bekam die Klaviersonate Nr. 14 erst nach Beethovens Tod, durch den Dichter Ludwig Rellstab."
+    },
+    {
+      "id": "general-knowledge-016",
+      "prompt": "Welches Land hat die meisten Einwohner?",
+      "answer": "Indien",
+      "distractors": [
+        "China",
+        "USA",
+        "Indonesien"
+      ],
+      "note": "Laut UN-Schätzung hat Indien China im Jahr 2023 überholt. Beide Länder haben gut 1,4 Milliarden Einwohner."
+    },
+    {
+      "id": "general-knowledge-017",
+      "prompt": "Welches ist das flächenmäßig größte Land der Erde?",
+      "answer": "Russland",
+      "distractors": [
+        "Kanada",
+        "China",
+        "USA"
+      ],
+      "note": "Russland erstreckt sich über elf Zeitzonen und ist rund 1,7-mal so groß wie Kanada auf Platz zwei."
+    },
+    {
+      "id": "general-knowledge-018",
+      "prompt": "In welcher Stadt steht der berühmte schiefe Turm?",
+      "answer": "Pisa",
+      "distractors": [
+        "Florenz",
+        "Siena",
+        "Bologna"
+      ],
+      "note": "Er neigte sich schon während des Baus im 12. Jahrhundert, weil der Boden zu weich ist. Aufwendige Sanierungen um das Jahr 2000 haben die Neigung verringert."
+    },
+    {
+      "id": "general-knowledge-019",
+      "prompt": "Wie viele Saiten hat eine normale Gitarre?",
+      "answer": "6",
+      "accept": [
+        "Sechs"
+      ],
+      "distractors": [
+        "4",
+        "5",
+        "8"
+      ],
+      "note": "Die Standardstimmung von tief nach hoch ist E A D G H E. Merksatz: „Eine Alte Dame Geht Heute Einkaufen.“"
+    },
+    {
+      "id": "general-knowledge-020",
+      "prompt": "Wie heißt die Währung Japans?",
+      "answer": "Yen",
+      "accept": [
+        "Japanischer Yen"
+      ],
+      "distractors": [
+        "Won",
+        "Yuan",
+        "Ringgit"
+      ],
+      "note": "Das Zeichen 円 bedeutet „rund“. Der koreanische Won und der chinesische Yuan gehen auf dasselbe Schriftzeichen zurück."
+    },
+    {
+      "id": "general-knowledge-021",
+      "prompt": "Wer entwickelte die Relativitätstheorie?",
+      "answer": "Albert Einstein",
+      "accept": [
+        "Einstein"
+      ],
+      "distractors": [
+        "Isaac Newton",
+        "Max Planck",
+        "Niels Bohr"
+      ],
+      "note": "Den Nobelpreis bekam Einstein 1921 aber nicht dafür, sondern für die Erklärung des photoelektrischen Effekts."
+    },
+    {
+      "id": "general-knowledge-022",
+      "prompt": "Wie viele Farben hat ein Regenbogen in der klassischen Einteilung?",
+      "answer": "7",
+      "accept": [
+        "Sieben"
+      ],
+      "distractors": [
+        "5",
+        "6",
+        "8"
+      ],
+      "note": "Rot, Orange, Gelb, Grün, Blau, Indigo und Violett. Die Zahl sieben geht auf Isaac Newton zurück, in Wahrheit ist das Spektrum fließend."
+    },
+    {
+      "id": "general-knowledge-023",
+      "prompt": "Welches ist das größte Organ des Menschen?",
+      "answer": "Haut",
+      "accept": [
+        "Die Haut"
+      ],
+      "distractors": [
+        "Leber",
+        "Lunge",
+        "Darm"
+      ],
+      "note": "Beim Erwachsenen misst sie rund 1,5 bis 2 Quadratmeter. Das größte innere Organ ist die Leber."
+    },
+    {
+      "id": "general-knowledge-024",
+      "prompt": "Wie viele Bundesländer hat Deutschland?",
+      "answer": "16",
+      "accept": [
+        "Sechzehn"
+      ],
+      "distractors": [
+        "12",
+        "15",
+        "18"
+      ],
+      "note": "Drei davon sind Stadtstaaten: Berlin, Hamburg und Bremen."
+    },
+    {
+      "id": "general-knowledge-025",
+      "prompt": "Auf welchem Kontinent liegt die Sahara?",
+      "answer": "Afrika",
+      "distractors": [
+        "Asien",
+        "Australien",
+        "Südamerika"
+      ],
+      "note": "Sie ist die größte Trockenwüste außerhalb der Polargebiete. Streng genommen ist die Antarktis die größte Wüste, weil dort kaum Niederschlag fällt."
+    },
+    {
+      "id": "general-knowledge-026",
+      "prompt": "Wer schrieb „Romeo und Julia“?",
+      "answer": "William Shakespeare",
+      "accept": [
+        "Shakespeare"
+      ],
+      "distractors": [
+        "Christopher Marlowe",
+        "Charles Dickens",
+        "Oscar Wilde"
+      ],
+      "note": "Das Stück spielt in Verona. Shakespeare hat die Geschichte nicht erfunden, sondern aus älteren italienischen Novellen übernommen."
+    },
+    {
+      "id": "general-knowledge-027",
+      "prompt": "Welches Metall ist bei Raumtemperatur flüssig?",
+      "answer": "Quecksilber",
+      "distractors": [
+        "Blei",
+        "Zinn",
+        "Gallium"
+      ],
+      "note": "Sein chemisches Symbol ist Hg. Gallium schmilzt schon bei knapp 30 Grad, also in deiner Hand, ist bei Raumtemperatur aber noch fest."
+    },
+    {
+      "id": "general-knowledge-028",
+      "prompt": "Wie viele Tage hat ein Schaltjahr?",
+      "answer": "366",
+      "distractors": [
+        "364",
+        "365",
+        "367"
+      ],
+      "note": "Faustregel: Durch 4 teilbare Jahre sind Schaltjahre, volle Jahrhunderte aber nur, wenn sie durch 400 teilbar sind. Deshalb war 2000 ein Schaltjahr, 1900 nicht."
+    },
+    {
+      "id": "general-knowledge-029",
+      "prompt": "In welchem Land liegt die Inkastadt Machu Picchu?",
+      "answer": "Peru",
+      "distractors": [
+        "Bolivien",
+        "Chile",
+        "Ecuador"
+      ],
+      "note": "Sie wurde im 15. Jahrhundert hoch in den Anden gebaut. Die spanischen Eroberer fanden sie nie, deshalb ist sie so gut erhalten."
+    },
+    {
+      "id": "general-knowledge-030",
+      "prompt": "Wie heißt das berühmteste Bild von Edvard Munch?",
+      "answer": "Der Schrei",
+      "accept": [
+        "Schrei"
+      ],
+      "distractors": [
+        "Die Sternennacht",
+        "Der Kuss",
+        "Das Mädchen mit dem Perlenohrgehänge"
+      ],
+      "note": "Munch schuf mehrere Fassungen als Gemälde, Pastell und Lithografie. Zu sehen sind sie in Oslo, im Nationalmuseum und im Munch-Museum."
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "id": "spanish-basics",
+  "locale": "en",
+  "title": "Spanish: Basics",
+  "subtitle": "30 starter words with pronunciation tips",
+  "symbol": "Ñ",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "spanish-basics-001",
+      "prompt": "hello",
+      "answer": "hola",
+      "distractors": ["ola", "hora", "hoja"],
+      "example": "Siempre me dice hola al entrar.",
+      "note": "The h is always silent in Spanish: OH-la."
+    },
+    {
+      "id": "spanish-basics-002",
+      "prompt": "thank you",
+      "answer": "gracias",
+      "distractors": ["por favor", "de nada", "perdón"],
+      "example": "Muchas gracias por todo.",
+      "note": "In Spain the c before i sounds like the th in think: GRA-thyas. In Latin America it's an s."
+    },
+    {
+      "id": "spanish-basics-003",
+      "prompt": "please",
+      "answer": "por favor",
+      "distractors": ["de nada", "favorito", "gracias"],
+      "example": "Un café, por favor.",
+      "note": "Tap the r once with the tip of your tongue. The stress falls on the last syllable: fa-VOR."
+    },
+    {
+      "id": "spanish-basics-004",
+      "prompt": "you're welcome",
+      "answer": "de nada",
+      "distractors": ["nada más", "por favor", "lo siento"],
+      "example": "Siempre dice de nada con una sonrisa.",
+      "note": "Literally \"of nothing\". A d between vowels is soft, close to the th in \"this\"."
+    },
+    {
+      "id": "spanish-basics-005",
+      "prompt": "sorry, excuse me",
+      "answer": "perdón",
+      "accept": ["disculpe", "perdone"],
+      "distractors": ["perdido", "gracias", "por favor"],
+      "example": "Ay, perdón, no te vi.",
+      "note": "The accent marks the stress: per-DÓN. Save lo siento for when you're truly sorry."
+    },
+    {
+      "id": "spanish-basics-006",
+      "prompt": "water",
+      "answer": "el agua",
+      "accept": ["agua"],
+      "distractors": ["el aire", "la leche", "el vino"],
+      "example": "Me gusta el agua con gas.",
+      "note": "Agua is feminine but takes el because it starts with a stressed a: el agua fría."
+    },
+    {
+      "id": "spanish-basics-007",
+      "prompt": "house",
+      "answer": "la casa",
+      "accept": ["casa"],
+      "distractors": ["la cosa", "la cama", "la caja"],
+      "example": "Mi abuela vive en la casa azul.",
+      "note": "The s is always crisp like in \"sun\", never buzzing like a z. En casa means at home."
+    },
+    {
+      "id": "spanish-basics-008",
+      "prompt": "friend",
+      "answer": "el amigo",
+      "accept": ["amigo", "la amiga", "amiga"],
+      "distractors": ["el enemigo", "el hermano", "el vecino"],
+      "example": "Pedro es el amigo de mi hermano.",
+      "note": "A female friend is la amiga. A boyfriend or girlfriend is el novio or la novia."
+    },
+    {
+      "id": "spanish-basics-009",
+      "prompt": "to eat",
+      "answer": "comer",
+      "distractors": ["beber", "cocinar", "correr"],
+      "example": "Vamos a comer a las dos.",
+      "note": "In Spain comer often means having lunch, and that tends to happen around 2 pm. The stress is on the last syllable: co-MER."
+    },
+    {
+      "id": "spanish-basics-010",
+      "prompt": "to drink",
+      "answer": "beber",
+      "accept": ["tomar"],
+      "distractors": ["comer", "deber", "vivir"],
+      "example": "Quiero beber algo frío.",
+      "note": "Spanish b and v sound the same. Between vowels the b is very soft, the lips barely touch."
+    },
+    {
+      "id": "spanish-basics-011",
+      "prompt": "to speak",
+      "answer": "hablar",
+      "distractors": ["hacer", "llamar", "escuchar"],
+      "example": "¿Puedes hablar más despacio?",
+      "note": "The h is silent: a-BLAR. ¿Hablas inglés? asks whether someone speaks English."
+    },
+    {
+      "id": "spanish-basics-012",
+      "prompt": "today",
+      "answer": "hoy",
+      "distractors": ["ayer", "hay", "mañana"],
+      "example": "¿Qué hacemos hoy?",
+      "note": "The h is silent, so it sounds just like \"oy\" in \"boy\"."
+    },
+    {
+      "id": "spanish-basics-013",
+      "prompt": "tomorrow",
+      "answer": "mañana",
+      "distractors": ["ayer", "hoy", "semana"],
+      "example": "Nos vemos mañana.",
+      "note": "ñ sounds like the ny in canyon: ma-NYA-na. Por la mañana, on the other hand, means in the morning."
+    },
+    {
+      "id": "spanish-basics-014",
+      "prompt": "yesterday",
+      "answer": "ayer",
+      "distractors": ["hoy", "mañana", "anoche"],
+      "example": "Llegué ayer por la noche.",
+      "note": "The stress is on the last syllable: a-YER. The day before yesterday is anteayer."
+    },
+    {
+      "id": "spanish-basics-015",
+      "prompt": "good (adjective)",
+      "answer": "bueno",
+      "accept": ["buena", "buen"],
+      "distractors": ["bien", "malo", "nuevo"],
+      "example": "Es un libro muy bueno.",
+      "note": "Before a masculine noun it shortens to buen: un buen día. For the adverb, as in I'm fine, use bien."
+    },
+    {
+      "id": "spanish-basics-016",
+      "prompt": "big",
+      "answer": "grande",
+      "accept": ["gran"],
+      "distractors": ["largo", "gordo", "grueso"],
+      "example": "Madrid es una ciudad grande.",
+      "note": "False friend: largo means long, not large. Before a singular noun grande shortens to gran: un gran día."
+    },
+    {
+      "id": "spanish-basics-017",
+      "prompt": "small",
+      "answer": "pequeño",
+      "accept": ["pequeña", "chico"],
+      "distractors": ["poco", "pesado", "corto"],
+      "example": "Tengo un perro pequeño.",
+      "note": "The ñ sounds like ny: pe-KE-nyo. In Latin America you'll often hear chico instead."
+    },
+    {
+      "id": "spanish-basics-018",
+      "prompt": "pretty, beautiful",
+      "answer": "bonito",
+      "accept": ["bonita", "lindo", "hermoso"],
+      "distractors": ["feo", "bueno", "barato"],
+      "example": "¡Qué pueblo tan bonito!",
+      "note": "Lindo is very common in Latin America. The feminine form is bonita: una casa bonita."
+    },
+    {
+      "id": "spanish-basics-019",
+      "prompt": "expensive",
+      "answer": "caro",
+      "accept": ["cara"],
+      "distractors": ["carro", "claro", "barato"],
+      "example": "Este hotel es muy caro.",
+      "note": "A single r is tapped once. With rr, as in carro (car), you roll it longer."
+    },
+    {
+      "id": "spanish-basics-020",
+      "prompt": "cheap",
+      "answer": "barato",
+      "accept": ["barata"],
+      "distractors": ["caro", "bajo", "rápido"],
+      "example": "El autobús es barato.",
+      "note": "Spanish vowels are short and clear: ba-RA-to. Nothing gets swallowed."
+    },
+    {
+      "id": "spanish-basics-021",
+      "prompt": "where?",
+      "answer": "dónde",
+      "distractors": ["cuándo", "cómo", "quién"],
+      "example": "¿Sabes dónde está la estación?",
+      "note": "Question words carry an accent, even in indirect questions. Questions open with an upside-down mark: ¿...?"
+    },
+    {
+      "id": "spanish-basics-022",
+      "prompt": "how much?",
+      "answer": "cuánto",
+      "accept": ["cuánta"],
+      "distractors": ["cuándo", "cuál", "cómo"],
+      "example": "¿Sabes cuánto cuesta el billete?",
+      "note": "cu sounds like kw: KWAN-to. With feminine nouns it's cuánta, in the plural cuántos."
+    },
+    {
+      "id": "spanish-basics-023",
+      "prompt": "station",
+      "answer": "la estación",
+      "accept": ["estación"],
+      "distractors": ["el aeropuerto", "la parada", "la estancia"],
+      "example": "Voy a la estación en taxi.",
+      "note": "Words ending in -ción are feminine and stressed on the last syllable: es-ta-THYON in Spain, es-ta-SYON in Latin America."
+    },
+    {
+      "id": "spanish-basics-024",
+      "prompt": "the bill (restaurant)",
+      "answer": "la cuenta",
+      "accept": ["cuenta"],
+      "distractors": ["la cuesta", "el cuento", "la propina"],
+      "example": "¿Nos trae la cuenta, por favor?",
+      "note": "Say it KWEN-ta. In a restaurant, catch the waiter's eye and say: La cuenta, por favor."
+    },
+    {
+      "id": "spanish-basics-025",
+      "prompt": "breakfast",
+      "answer": "el desayuno",
+      "accept": ["desayuno"],
+      "distractors": ["la comida", "la cena", "el almuerzo"],
+      "example": "Tomo el desayuno a las ocho.",
+      "note": "Literally breaking the fast, just like English breakfast. Stress: de-sa-YU-no."
+    },
+    {
+      "id": "spanish-basics-026",
+      "prompt": "room (in a hotel)",
+      "answer": "la habitación",
+      "accept": ["habitación"],
+      "distractors": ["el habitante", "la ventana", "la cocina"],
+      "example": "¿Está lista la habitación?",
+      "note": "The h is silent: a-bi-ta-THYON. In a hotel you ask for una habitación doble or individual."
+    },
+    {
+      "id": "spanish-basics-027",
+      "prompt": "to work",
+      "answer": "trabajar",
+      "distractors": ["viajar", "descansar", "tratar"],
+      "example": "Mañana tengo que trabajar.",
+      "note": "The j is a throaty sound like the ch in Scottish loch: tra-ba-HAR."
+    },
+    {
+      "id": "spanish-basics-028",
+      "prompt": "to understand",
+      "answer": "entender",
+      "accept": ["comprender"],
+      "distractors": ["tender", "atender", "aprender"],
+      "example": "No puedo entender el menú.",
+      "note": "In the present tense the stem changes: entiendo, entiendes. No entiendo is one of the most useful phrases for beginners."
+    },
+    {
+      "id": "spanish-basics-029",
+      "prompt": "I don't know.",
+      "answer": "no sé",
+      "accept": ["yo no sé"],
+      "distractors": ["no soy", "no es", "ya sé"],
+      "example": "Lo siento, no sé dónde está.",
+      "note": "Sé with an accent means I know, se without one is a pronoun. They sound exactly the same."
+    },
+    {
+      "id": "spanish-basics-030",
+      "prompt": "goodbye",
+      "answer": "adiós",
+      "accept": ["hasta luego", "chao"],
+      "distractors": ["hola", "buenos días", "gracias"],
+      "example": "Se fue sin decir adiós.",
+      "note": "Adiós sounds rather final. Day to day people say hasta luego (see you later), even if they won't meet again."
+    }
+  ]
+}

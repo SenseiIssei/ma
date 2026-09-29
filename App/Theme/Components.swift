@@ -2,22 +2,49 @@ import SwiftUI
 
 // MARK: - Background
 
-/// Plain background with a faint accent glow at the top. `WashiBackground`
-/// is the old name and stays as an alias so every screen keeps compiling.
+/// A night sky: deep navy fading up into violet, a soft moon glow in the
+/// top corner and a scatter of faint stars. In light mode only the glow
+/// stays. `WashiBackground` is the old name and stays as an alias.
 struct AppBackground: View {
+    @Environment(\.colorScheme) private var scheme
+
     var body: some View {
         ZStack(alignment: .top) {
-            Zen.paper
+            LinearGradient(colors: [Zen.sky, Zen.paper], startPoint: .top, endPoint: .center)
             RadialGradient(
-                colors: [Zen.shu.opacity(0.10), .clear],
-                center: .topLeading,
+                colors: [Zen.shu.opacity(scheme == .dark ? 0.22 : 0.10), .clear],
+                center: .topTrailing,
                 startRadius: 0,
-                endRadius: 420
+                endRadius: 380
             )
-            .frame(height: 420)
-            .allowsHitTesting(false)
+            .frame(height: 460)
+            if scheme == .dark {
+                StarField()
+                    .frame(height: 420)
+                    .mask(LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom))
+            }
         }
+        .allowsHitTesting(false)
         .ignoresSafeArea()
+    }
+}
+
+/// Faint, fixed stars. Seeded, so they never jump between redraws.
+struct StarField: View {
+    var count = 70
+
+    var body: some View {
+        Canvas { ctx, size in
+            var rng = SeededRandom(seed: 42)
+            for _ in 0..<count {
+                let x = CGFloat(rng.next()) * size.width
+                let y = CGFloat(rng.next()) * size.height
+                let r = CGFloat(0.4 + rng.next() * 1.1)
+                let alpha = 0.18 + rng.next() * 0.5
+                ctx.fill(Path(ellipseIn: CGRect(x: x - r, y: y - r, width: r * 2, height: r * 2)), with: .color(Color.white.opacity(alpha)))
+            }
+        }
+        .drawingGroup()
     }
 }
 

@@ -1,0 +1,393 @@
+{
+  "id": "world-history",
+  "locale": "en",
+  "title": "World History",
+  "subtitle": "Turning points from antiquity to the year 2000",
+  "symbol": "H",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "world-history-001",
+      "prompt": "Which is the largest pyramid at Giza?",
+      "answer": "Pyramid of Khufu",
+      "accept": [
+        "Great Pyramid",
+        "Khufu",
+        "Cheops"
+      ],
+      "distractors": [
+        "Pyramid of Khafre",
+        "Pyramid of Menkaure",
+        "Pyramid of Djoser"
+      ],
+      "note": "Built around 2560 BC, it was the tallest structure in the world for almost 4,000 years. It is the only one of the Seven Wonders of the ancient world still standing."
+    },
+    {
+      "id": "world-history-002",
+      "prompt": "In what year, according to tradition, were the first ancient Olympic Games held?",
+      "answer": "776 BC",
+      "accept": [
+        "776 BCE",
+        "776"
+      ],
+      "distractors": [
+        "753 BC",
+        "490 BC",
+        "508 BC"
+      ],
+      "note": "The Greeks later counted years in Olympiads from this date. 753 BC, by contrast, is the legendary founding year of Rome."
+    },
+    {
+      "id": "world-history-003",
+      "prompt": "In what year was Julius Caesar assassinated?",
+      "answer": "44 BC",
+      "accept": [
+        "44 BCE",
+        "44 B.C."
+      ],
+      "distractors": [
+        "49 BC",
+        "31 BC",
+        "27 BC"
+      ],
+      "note": "On the Ides of March, the 15th, a group of senators led by Brutus and Cassius stabbed him to death."
+    },
+    {
+      "id": "world-history-004",
+      "prompt": "Which city was buried by the eruption of Vesuvius in AD 79?",
+      "answer": "Pompeii",
+      "accept": [
+        "Pompeji"
+      ],
+      "distractors": [
+        "Carthage",
+        "Ostia",
+        "Syracuse"
+      ],
+      "note": "The ash preserved the city so well that archaeologists still find loaves in ovens and graffiti on the walls."
+    },
+    {
+      "id": "world-history-005",
+      "prompt": "In what year did the Western Roman Empire end?",
+      "answer": "476",
+      "accept": [
+        "AD 476",
+        "476 AD"
+      ],
+      "distractors": [
+        "395",
+        "410",
+        "486"
+      ],
+      "note": "The Germanic commander Odoacer deposed the last emperor, Romulus Augustulus. The Eastern Roman Empire lasted almost another thousand years, until 1453."
+    },
+    {
+      "id": "world-history-006",
+      "prompt": "Who was crowned emperor in Rome in the year 800?",
+      "answer": "Charlemagne",
+      "accept": [
+        "Charles the Great",
+        "Karl der Große"
+      ],
+      "distractors": [
+        "Otto the Great",
+        "Clovis",
+        "Pepin the Short"
+      ],
+      "note": "Pope Leo III crowned him on Christmas Day. Because his empire united much of Western Europe, he is often called the \"Father of Europe\"."
+    },
+    {
+      "id": "world-history-007",
+      "prompt": "Who invented printing with movable type in Europe around 1450?",
+      "answer": "Johannes Gutenberg",
+      "accept": [
+        "Gutenberg"
+      ],
+      "distractors": [
+        "Albrecht Dürer",
+        "Aldus Manutius",
+        "William Caxton"
+      ],
+      "note": "His most famous work is the Gutenberg Bible. China and Korea had movable type earlier, but in Europe his technique set off a media revolution."
+    },
+    {
+      "id": "world-history-008",
+      "prompt": "In what year did Columbus first reach the Americas?",
+      "answer": "1492",
+      "distractors": [
+        "1488",
+        "1498",
+        "1519"
+      ],
+      "note": "He landed on an island in the Bahamas and believed he had found a sea route to Asia. Vikings had already reached North America around the year 1000."
+    },
+    {
+      "id": "world-history-009",
+      "prompt": "In what year did Martin Luther publish his 95 Theses?",
+      "answer": "1517",
+      "distractors": [
+        "1492",
+        "1521",
+        "1555"
+      ],
+      "note": "Whether he really nailed them to the door of the castle church in Wittenberg is disputed. What is certain is that he sent them out on 31 October, now Reformation Day."
+    },
+    {
+      "id": "world-history-010",
+      "prompt": "Which war ended in 1648 with the Peace of Westphalia?",
+      "answer": "Thirty Years' War",
+      "accept": [
+        "Thirty Years War",
+        "30 Years War"
+      ],
+      "distractors": [
+        "Hundred Years' War",
+        "Seven Years' War",
+        "War of the Spanish Succession"
+      ],
+      "note": "The talks took place in Münster and Osnabrück. The peace is seen as the birth of the idea of sovereign, equal states."
+    },
+    {
+      "id": "world-history-011",
+      "prompt": "In what year did the United States declare independence?",
+      "answer": "1776",
+      "distractors": [
+        "1770",
+        "1783",
+        "1789"
+      ],
+      "note": "The Declaration was adopted on 4 July. Britain only recognised independence in 1783 with the Treaty of Paris."
+    },
+    {
+      "id": "world-history-012",
+      "prompt": "In what year did the French Revolution begin?",
+      "answer": "1789",
+      "distractors": [
+        "1776",
+        "1793",
+        "1799"
+      ],
+      "note": "Its symbolic start is the storming of the Bastille on 14 July, still France's national holiday."
+    },
+    {
+      "id": "world-history-013",
+      "prompt": "At which battle was Napoleon finally defeated in 1815?",
+      "answer": "Waterloo",
+      "accept": [
+        "Battle of Waterloo"
+      ],
+      "distractors": [
+        "Leipzig",
+        "Austerlitz",
+        "Borodino"
+      ],
+      "note": "Waterloo lies in today's Belgium. Napoleon was then exiled to the Atlantic island of Saint Helena, where he died in 1821."
+    },
+    {
+      "id": "world-history-014",
+      "prompt": "In what year was the German Empire founded?",
+      "answer": "1871",
+      "distractors": [
+        "1848",
+        "1866",
+        "1890"
+      ],
+      "note": "Wilhelm I was proclaimed emperor on 18 January 1871 in the Hall of Mirrors at Versailles, in the middle of the war against France."
+    },
+    {
+      "id": "world-history-015",
+      "prompt": "Whose assassination in Sarajevo triggered the First World War in 1914?",
+      "answer": "Franz Ferdinand",
+      "accept": [
+        "Archduke Franz Ferdinand"
+      ],
+      "distractors": [
+        "Emperor Franz Joseph",
+        "Wilhelm II",
+        "Tsar Nicholas II"
+      ],
+      "note": "The heir to the Austrian throne was shot on 28 June 1914. Through alliances, the assassination drew the great powers into war within weeks."
+    },
+    {
+      "id": "world-history-016",
+      "prompt": "In what year did the October Revolution take place in Russia?",
+      "answer": "1917",
+      "distractors": [
+        "1905",
+        "1914",
+        "1922"
+      ],
+      "note": "By the Julian calendar then used in Russia it was October. By our calendar it was already 7 November."
+    },
+    {
+      "id": "world-history-017",
+      "prompt": "In what year did the First World War end?",
+      "answer": "1918",
+      "distractors": [
+        "1916",
+        "1917",
+        "1919"
+      ],
+      "note": "The Armistice of Compiègne took effect on 11 November 1918. The Treaty of Versailles followed in 1919."
+    },
+    {
+      "id": "world-history-018",
+      "prompt": "In what year did the Second World War begin in Europe?",
+      "answer": "1939",
+      "distractors": [
+        "1938",
+        "1940",
+        "1941"
+      ],
+      "note": "It began with the German invasion of Poland on 1 September 1939. Britain and France declared war two days later."
+    },
+    {
+      "id": "world-history-019",
+      "prompt": "In what year did the Second World War end in Europe?",
+      "answer": "1945",
+      "distractors": [
+        "1943",
+        "1944",
+        "1946"
+      ],
+      "note": "Germany's unconditional surrender took effect on 8 May 1945. In Asia the war only ended with Japan's surrender in September."
+    },
+    {
+      "id": "world-history-020",
+      "prompt": "In what year were the United Nations founded?",
+      "answer": "1945",
+      "distractors": [
+        "1919",
+        "1948",
+        "1949"
+      ],
+      "note": "The Charter came into force on 24 October 1945 with 51 founding members. Its predecessor, the League of Nations, had failed to prevent the war."
+    },
+    {
+      "id": "world-history-021",
+      "prompt": "Which country gained independence from Britain in 1947 and was partitioned at the same time?",
+      "answer": "India",
+      "accept": [
+        "British India"
+      ],
+      "distractors": [
+        "Egypt",
+        "Kenya",
+        "Myanmar"
+      ],
+      "note": "The partition into India and Pakistan caused one of the largest migrations in history. Gandhi's non-violent resistance had been a major force behind independence."
+    },
+    {
+      "id": "world-history-022",
+      "prompt": "In what year was the Federal Republic of Germany founded?",
+      "answer": "1949",
+      "distractors": [
+        "1945",
+        "1948",
+        "1955"
+      ],
+      "note": "The Basic Law came into force on 23 May 1949. The GDR was founded in October of the same year."
+    },
+    {
+      "id": "world-history-023",
+      "prompt": "In what year was the Berlin Wall built?",
+      "answer": "1961",
+      "distractors": [
+        "1953",
+        "1958",
+        "1968"
+      ],
+      "note": "Overnight on 13 August 1961 the GDR sealed the border to West Berlin. The Wall stood for just over 28 years."
+    },
+    {
+      "id": "world-history-024",
+      "prompt": "Which crisis brought the world to the brink of nuclear war in 1962?",
+      "answer": "Cuban Missile Crisis",
+      "accept": [
+        "Cuban crisis"
+      ],
+      "distractors": [
+        "Berlin Blockade",
+        "Suez Crisis",
+        "Korean War"
+      ],
+      "note": "The Soviet Union had placed nuclear missiles in Cuba. After 13 days it withdrew them; in return the US promised not to invade and later removed missiles from Turkey."
+    },
+    {
+      "id": "world-history-025",
+      "prompt": "Who gave the \"I Have a Dream\" speech in Washington in 1963?",
+      "answer": "Martin Luther King Jr.",
+      "accept": [
+        "Martin Luther King",
+        "MLK"
+      ],
+      "distractors": [
+        "Malcolm X",
+        "John Lewis",
+        "John F. Kennedy"
+      ],
+      "note": "He spoke to about 250,000 people at the Lincoln Memorial. In 1964 he received the Nobel Peace Prize."
+    },
+    {
+      "id": "world-history-026",
+      "prompt": "Who became the first person to walk on the Moon in 1969?",
+      "answer": "Neil Armstrong",
+      "accept": [
+        "Armstrong"
+      ],
+      "distractors": [
+        "Buzz Aldrin",
+        "Michael Collins",
+        "Yuri Gagarin"
+      ],
+      "note": "Apollo 11 landed on 20 July 1969. Buzz Aldrin followed him shortly afterwards, while Michael Collins stayed in lunar orbit."
+    },
+    {
+      "id": "world-history-027",
+      "prompt": "In what year did the Berlin Wall fall?",
+      "answer": "1989",
+      "distractors": [
+        "1987",
+        "1990",
+        "1991"
+      ],
+      "note": "On the evening of 9 November, Günter Schabowski mistakenly announced that travel was allowed with immediate effect. The border crossings opened that same night."
+    },
+    {
+      "id": "world-history-028",
+      "prompt": "In what year was Germany reunified?",
+      "answer": "1990",
+      "distractors": [
+        "1989",
+        "1991",
+        "1992"
+      ],
+      "note": "On 3 October 1990 the GDR joined the Federal Republic. Since then, 3 October has been Germany's national holiday."
+    },
+    {
+      "id": "world-history-029",
+      "prompt": "In what year did the Soviet Union collapse?",
+      "answer": "1991",
+      "distractors": [
+        "1989",
+        "1990",
+        "1993"
+      ],
+      "note": "Mikhail Gorbachev resigned on 25 December 1991 and the USSR was formally dissolved the next day. Fifteen states emerged from it."
+    },
+    {
+      "id": "world-history-030",
+      "prompt": "Who became South Africa's first Black president in 1994?",
+      "answer": "Nelson Mandela",
+      "accept": [
+        "Mandela"
+      ],
+      "distractors": [
+        "Desmond Tutu",
+        "Thabo Mbeki",
+        "Jacob Zuma"
+      ],
+      "note": "Mandela had spent 27 years in prison. In 1993 he shared the Nobel Peace Prize with F. W. de Klerk for ending apartheid."
+    }
+  ]
+}

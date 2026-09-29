@@ -10,7 +10,7 @@ Certificates, Identifiers & Profiles > Identifiers.
 
 **App Group:** switch the filter in the top right to "App Groups", `+`, description `Ma`, identifier `group.com.sensei.ma`.
 
-**Five App IDs** (filter on "App IDs", `+`, App, bundle ID "Explicit"):
+**Seven App IDs** (filter on "App IDs", `+`, App, bundle ID "Explicit"):
 
 | Description | Bundle ID | App Groups | Family Controls |
 |---|---|---|---|
@@ -19,6 +19,8 @@ Certificates, Identifiers & Profiles > Identifiers.
 | Ma Action | `com.sensei.ma.shieldaction` | yes | yes |
 | Ma Monitor | `com.sensei.ma.monitor` | yes | yes |
 | Ma Filter | `com.sensei.ma.filter` | yes | no |
+| Ma Widgets | `com.sensei.ma.widgets` | yes | no |
+| Ma Report | `com.sensei.ma.report` | yes | yes |
 
 Then open each ID, click **Configure** next to App Groups, assign `group.com.sensei.ma` and save.
 
@@ -28,7 +30,7 @@ You do not create certificates or provisioning profiles. The build makes them it
 
 Without Apple's approval the Screen Time API only works in development builds, and TestFlight fails at signing.
 
-Request it in the **Capability Requests** tab of each App ID, or through https://developer.apple.com/contact/request/family-controls-distribution, once for every ID that uses Family Controls (all except `.filter`).
+Request it in the **Capability Requests** tab of each App ID, or through https://developer.apple.com/contact/request/family-controls-distribution, once for every ID that uses Family Controls (all except `.filter` and `.widgets`).
 
 The honest reason is enough: an app you use to block social media for yourself, which asks a learning question before unlocking. Apple usually answers within one or two weeks.
 

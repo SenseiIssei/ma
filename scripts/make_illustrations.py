@@ -21,9 +21,10 @@ CATALOG = ROOT / "App" / "Assets.xcassets" / "Illustrations"
 
 STYLE = (
     "soft 3D render, minimal modern app illustration, smooth matte clay shapes, "
-    "gentle pastel gradient background in lavender, periwinkle blue and soft peach, "
-    "soft diffused studio lighting, subtle shadows, generous negative space, calm and "
-    "optimistic mood, clean composition, no text, no letters"
+    "calm night atmosphere, deep midnight blue and soft violet gradient background, "
+    "gentle moonlight glow, a few tiny distant stars, soft lavender and warm amber highlights, "
+    "dreamy and relaxing, subtle shadows, generous negative space, clean composition, "
+    "no text, no letters"
 )
 NEGATIVE = "text, watermark, logo, letters, clutter, harsh light, people, faces, asian symbols, kanji"
 
@@ -36,8 +37,8 @@ SCENES = {
     "Breathe": ("soft translucent concentric spheres floating like bubbles in the air, airy and light, ", 1024, 1024, 25),
     "Habits": ("a small watering can pouring water onto a sprouting plant, a glass of water and a rolled yoga mat nearby, ", 1024, 1024, 26),
     "Empty": ("a single smooth pebble on soft sand with a tiny green sprout growing beside it, ", 1024, 1024, 27),
-    "Morning": ("sunrise over soft rolling pastel hills, a round warm sun rising, a calm morning sky, wide landscape, ", 1536, 768, 31),
-    "Day": ("a bright soft sky with a few round fluffy clouds over gentle rolling hills, wide landscape, ", 1536, 768, 32),
+    "Morning": ("first light before dawn over soft rolling hills, a warm amber glow on the horizon fading into deep blue, a last star, wide landscape, ", 1536, 768, 31),
+    "Day": ("soft blue hour sky with a few round glowing clouds over gentle rolling hills, a pale moon, wide landscape, ", 1536, 768, 32),
     "Evening": ("dusk over soft rolling hills, a glowing crescent moon and a few tiny stars, deep lavender sky, wide landscape, ", 1536, 768, 33),
 }
 

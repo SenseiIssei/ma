@@ -35,3 +35,16 @@ enum BuildFlavor {
            "Diese Version kann Bildschirmzeit noch nicht nutzen, Apple muss sie für Ma erst freigeben. Bis dahin legt der Kurzbefehle-Modus unter Grenzen die Pause vor deine Apps.")
     }
 }
+
+/// Night is Ma's default look. "System" follows the phone instead. Stored in
+/// the App Group so the shield can dress the same way as the app.
+enum Appearance: String, CaseIterable {
+    case night, system
+
+    static let fileName = "appearance.json"
+
+    static var current: Appearance {
+        get { MaShared.read(String.self, from: fileName).flatMap(Appearance.init(rawValue:)) ?? .night }
+        set { MaShared.write(newValue.rawValue, to: fileName) }
+    }
+}

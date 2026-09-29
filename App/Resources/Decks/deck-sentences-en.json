@@ -1,0 +1,213 @@
+{
+  "id": "sentences-en",
+  "title": "Englisch: Sätze bauen",
+  "subtitle": "Einfache englische Sätze Baustein für Baustein",
+  "symbol": "¶",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "sentences-en-001",
+      "prompt": "Ich trinke jeden Morgen Kaffee.",
+      "answer": "I drink coffee every morning",
+      "note": "Im Englischen steht die Zeitangabe meist am Ende: Subjekt, Verb, Objekt, dann Zeit. Für Gewohnheiten nimmst du das Simple Present."
+    },
+    {
+      "id": "sentences-en-002",
+      "prompt": "Sie wohnt in Berlin.",
+      "answer": "She lives in Berlin",
+      "note": "In der dritten Person Singular bekommt das Verb ein -s: she lives. Das vergisst man leicht, also achte bewusst darauf."
+    },
+    {
+      "id": "sentences-en-003",
+      "prompt": "Wir fahren morgen nach Rom.",
+      "answer": "We are going to Rome tomorrow",
+      "accept": ["We're going to Rome tomorrow"],
+      "note": "Für feste Pläne nimmt das Englische gern das Present Progressive: we are going. Das Deutsche nutzt dafür einfach das Präsens."
+    },
+    {
+      "id": "sentences-en-004",
+      "prompt": "Kannst du mir bitte helfen?",
+      "answer": "Can you please help me",
+      "accept": ["Can you help me please"],
+      "note": "In Fragen tauscht das Englische Subjekt und Hilfsverb: you can wird zu can you. Please steht vor dem Verb oder am Ende."
+    },
+    {
+      "id": "sentences-en-005",
+      "prompt": "Ich habe keine Zeit.",
+      "answer": "I don't have time",
+      "accept": ["I have no time", "I do not have time"],
+      "note": "Die Verneinung bildest du mit do not, kurz don't, vor dem Verb. I have no time geht auch, klingt aber nachdrücklicher."
+    },
+    {
+      "id": "sentences-en-006",
+      "prompt": "Wo ist die nächste Bank?",
+      "answer": "Where is the nearest bank",
+      "accept": ["Where's the nearest bank"],
+      "note": "Nearest ist der Superlativ von near. The next bank wäre dagegen die nächste in einer Reihe, also die folgende."
+    },
+    {
+      "id": "sentences-en-007",
+      "prompt": "Er wohnt seit Jahren hier.",
+      "answer": "He has lived here for years",
+      "accept": ["He has been living here for years"],
+      "note": "Für etwas, das bis jetzt andauert, nimmt das Englische das Present Perfect, nicht das Präsens. For steht bei Zeitspannen, since bei Zeitpunkten."
+    },
+    {
+      "id": "sentences-en-008",
+      "prompt": "Das Wetter ist heute schön.",
+      "answer": "The weather is nice today",
+      "accept": ["The weather is lovely today"],
+      "note": "Weather hat keinen Plural und keinen unbestimmten Artikel. Nice ist das Allzweckwort für schön im Alltag."
+    },
+    {
+      "id": "sentences-en-009",
+      "prompt": "Ich habe gestern Brot gekauft.",
+      "answer": "I bought bread yesterday",
+      "accept": ["Yesterday I bought bread"],
+      "note": "Mit einer abgeschlossenen Zeitangabe wie yesterday steht im Englischen das Simple Past, nie das Present Perfect. Buy ist unregelmäßig: buy, bought, bought."
+    },
+    {
+      "id": "sentences-en-010",
+      "prompt": "Mein Bruder ist älter als ich.",
+      "answer": "My brother is older than me",
+      "accept": ["My brother is older than I am"],
+      "note": "Vergleiche bildest du mit -er und than. Im Alltag sagt man than me, formeller than I am."
+    },
+    {
+      "id": "sentences-en-011",
+      "prompt": "Wir müssen um acht Uhr gehen.",
+      "answer": "We have to leave at eight",
+      "accept": ["We must leave at eight", "We have to go at eight"],
+      "note": "Have to drückt eine äußere Pflicht aus, must eher eine eigene Überzeugung. Bei Uhrzeiten steht at: at eight."
+    },
+    {
+      "id": "sentences-en-012",
+      "prompt": "Sie spricht drei Sprachen.",
+      "answer": "She speaks three languages",
+      "note": "Language ist zählbar: one language, three languages. Achte auf das -s in speaks."
+    },
+    {
+      "id": "sentences-en-013",
+      "prompt": "Das Buch liegt auf dem Tisch.",
+      "answer": "The book is on the table",
+      "note": "Wo das Deutsche liegen, stehen oder sitzen sagt, reicht im Englischen meist einfach is. On heißt auf einer Oberfläche."
+    },
+    {
+      "id": "sentences-en-014",
+      "prompt": "Ich gehe heute Abend aus.",
+      "answer": "I'm going out tonight",
+      "accept": ["I am going out tonight"],
+      "note": "Heute Abend ist auf Englisch ein Wort: tonight. Für feste Pläne steht das Present Progressive: I'm going out."
+    },
+    {
+      "id": "sentences-en-015",
+      "prompt": "Könntest du das Fenster öffnen?",
+      "answer": "Could you open the window",
+      "accept": ["Can you open the window"],
+      "note": "Could you klingt höflicher als can you, genau wie könntest du. Danach folgt das Verb ohne to."
+    },
+    {
+      "id": "sentences-en-016",
+      "prompt": "Ich mag keinen Fisch.",
+      "answer": "I don't like fish",
+      "accept": ["I do not like fish"],
+      "note": "Bei allgemeinen Vorlieben steht kein Artikel: I like fish, I don't like fish. Die Verneinung trägt das Hilfsverb do."
+    },
+    {
+      "id": "sentences-en-017",
+      "prompt": "Der Zug hat Verspätung.",
+      "answer": "The train is late",
+      "accept": ["The train is delayed"],
+      "note": "Das Englische sagt is late, wörtlich ist spät. Mit Zahl heißt es: The train is ten minutes late."
+    },
+    {
+      "id": "sentences-en-018",
+      "prompt": "Wie lange dauert die Fahrt?",
+      "answer": "How long does the trip take",
+      "accept": ["How long does the journey take", "How long is the trip"],
+      "note": "Mit take fragst du nach der Dauer: it takes two hours. In der Frage braucht es das Hilfsverb does."
+    },
+    {
+      "id": "sentences-en-019",
+      "prompt": "Ich möchte gern bestellen.",
+      "answer": "I would like to order",
+      "accept": ["I'd like to order"],
+      "note": "I would like to ist die höfliche Form von I want. Kurz sagt man I'd like to order."
+    },
+    {
+      "id": "sentences-en-020",
+      "prompt": "Morgen wird es regnen.",
+      "answer": "It will rain tomorrow",
+      "accept": ["It is going to rain tomorrow"],
+      "note": "Für Vorhersagen nimmst du will. Das Wetter braucht im Englischen ein it, genau wie im Deutschen ein es."
+    },
+    {
+      "id": "sentences-en-021",
+      "prompt": "Ich verstehe dich nicht.",
+      "answer": "I don't understand you",
+      "accept": ["I do not understand you"],
+      "note": "Die Verneinung steht im Englischen vor dem Verb, im Deutschen oft am Ende. Understand bekommt kein -ing, weil es einen Zustand beschreibt."
+    },
+    {
+      "id": "sentences-en-022",
+      "prompt": "Wir haben zwei Kinder.",
+      "answer": "We have two children",
+      "accept": ["We have got two children"],
+      "note": "Child hat einen unregelmäßigen Plural: children. Ebenso man, men und woman, women."
+    },
+    {
+      "id": "sentences-en-023",
+      "prompt": "Wann fängt der Film an?",
+      "answer": "When does the film start",
+      "accept": ["When does the movie start", "When does the film begin"],
+      "note": "Fragen im Simple Present brauchen does, und das Verb bleibt dann ohne -s: does the film start."
+    },
+    {
+      "id": "sentences-en-024",
+      "prompt": "Ich bin heute sehr müde.",
+      "answer": "I am very tired today",
+      "accept": ["I'm very tired today"],
+      "note": "Zeitangaben wie today stehen im Englischen meist am Satzende. Tired heißt müde, tiring dagegen ermüdend."
+    },
+    {
+      "id": "sentences-en-025",
+      "prompt": "Er hat sein Handy vergessen.",
+      "answer": "He forgot his phone",
+      "accept": ["He has forgotten his phone", "He forgot his mobile"],
+      "note": "Handy ist ein Scheinanglizismus: Auf Englisch heißt es phone, mobile oder cell phone. Handy bedeutet dort praktisch."
+    },
+    {
+      "id": "sentences-en-026",
+      "prompt": "Ich wohne direkt am Bahnhof.",
+      "answer": "I live right by the station",
+      "accept": ["I live right next to the station", "I live near the station"],
+      "note": "Right verstärkt hier wie direkt: right by, right next to. By heißt dicht an, wie in by the sea."
+    },
+    {
+      "id": "sentences-en-027",
+      "prompt": "Du solltest mehr schlafen.",
+      "answer": "You should sleep more",
+      "note": "Should ist ein Modalverb: danach kein to und in der dritten Person kein -s. More steht im Englischen hinter dem Verb: sleep more."
+    },
+    {
+      "id": "sentences-en-028",
+      "prompt": "Kann ich mit Karte bezahlen?",
+      "answer": "Can I pay by card",
+      "note": "Das Englische sagt by card, aber in cash für bar. Diese kleinen Präpositionen lernst du am besten als feste Paare."
+    },
+    {
+      "id": "sentences-en-029",
+      "prompt": "Ich freue mich schon darauf.",
+      "answer": "I'm looking forward to it",
+      "accept": ["I am looking forward to it", "I look forward to it"],
+      "note": "Das to in look forward to ist eine Präposition. Deshalb folgt ein Nomen, ein it oder die -ing-Form: looking forward to seeing you."
+    },
+    {
+      "id": "sentences-en-030",
+      "prompt": "Kannst du mich morgen anrufen?",
+      "answer": "Can you call me tomorrow",
+      "accept": ["Could you call me tomorrow"],
+      "note": "Britisch sagt man auch ring me. Tomorrow steht wie andere Zeitangaben am Ende."
+    }
+  ]
+}

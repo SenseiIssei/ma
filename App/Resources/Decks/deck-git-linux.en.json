@@ -1,0 +1,403 @@
+{
+  "id": "git-linux",
+  "locale": "en",
+  "title": "Git & Linux",
+  "subtitle": "The commands you reach for every day",
+  "symbol": "$",
+  "category": "tech",
+  "cards": [
+    {
+      "id": "git-linux-001",
+      "prompt": "How do you turn the current folder into a new Git repository?",
+      "answer": "git init",
+      "distractors": [
+        "git start",
+        "git create",
+        "git new"
+      ],
+      "note": "This creates the hidden `.git` folder that holds the entire history. Delete it and the project is just an ordinary folder again."
+    },
+    {
+      "id": "git-linux-002",
+      "prompt": "How do you download an existing repository, for example from GitHub, for the first time?",
+      "answer": "git clone",
+      "accept": [
+        "git clone <url>"
+      ],
+      "distractors": [
+        "git pull",
+        "git fetch",
+        "git copy"
+      ],
+      "note": "`git clone <url>` fetches the entire history, not just the latest state. Afterwards `origin` is set up as the remote automatically."
+    },
+    {
+      "id": "git-linux-003",
+      "prompt": "Which command shows which files are changed or staged?",
+      "answer": "git status",
+      "distractors": [
+        "git log",
+        "git diff",
+        "git show"
+      ],
+      "note": "It is the command you should type most often, before every commit. `git status -s` shows the same in a compact form."
+    },
+    {
+      "id": "git-linux-004",
+      "prompt": "How do you stage changes for the next commit?",
+      "answer": "git add",
+      "accept": [
+        "git add <file>",
+        "git add ."
+      ],
+      "distractors": [
+        "git commit",
+        "git push",
+        "git save"
+      ],
+      "note": "`git add -p` walks through the changes hunk by hunk so you can pick exactly what goes in. That keeps commits small and clean."
+    },
+    {
+      "id": "git-linux-005",
+      "prompt": "How do you commit with a message right on the command line?",
+      "answer": "git commit -m",
+      "accept": [
+        "git commit -m \"...\""
+      ],
+      "distractors": [
+        "git save -m",
+        "git push -m",
+        "git add -m"
+      ],
+      "note": "Keep the first line short and in the imperative, such as \"Fix login timeout\". Without `-m`, Git opens your editor for longer messages."
+    },
+    {
+      "id": "git-linux-006",
+      "prompt": "How do you show the commit history in compact form?",
+      "answer": "git log --oneline",
+      "accept": [
+        "git log"
+      ],
+      "distractors": [
+        "git history",
+        "git status",
+        "git show --all"
+      ],
+      "note": "Add `--graph --all` to also see how branches split off and join again."
+    },
+    {
+      "id": "git-linux-007",
+      "prompt": "How do you see line by line what you have changed since the last commit?",
+      "answer": "git diff",
+      "distractors": [
+        "git status",
+        "git show",
+        "git compare"
+      ],
+      "note": "`git diff` shows unstaged changes, while `git diff --staged` shows what will go into the next commit."
+    },
+    {
+      "id": "git-linux-008",
+      "prompt": "How do you create a new branch and switch to it right away?",
+      "answer": "git switch -c",
+      "accept": [
+        "git checkout -b",
+        "git switch -c <name>"
+      ],
+      "distractors": [
+        "git branch -m",
+        "git merge -b",
+        "git new-branch"
+      ],
+      "note": "`git switch -c feature` is the modern form of `git checkout -b feature`. Plain `git branch feature` creates the branch without switching."
+    },
+    {
+      "id": "git-linux-009",
+      "prompt": "How do you bring another branch into your current one?",
+      "answer": "git merge",
+      "accept": [
+        "git merge <branch>"
+      ],
+      "distractors": [
+        "git join",
+        "git switch",
+        "git stash"
+      ],
+      "note": "If your branch is simply behind, Git fast-forwards. Otherwise it creates a merge commit, and on conflicts you resolve the marked spots by hand."
+    },
+    {
+      "id": "git-linux-010",
+      "prompt": "How do you upload your commits to the remote?",
+      "answer": "git push",
+      "distractors": [
+        "git pull",
+        "git upload",
+        "git send"
+      ],
+      "note": "If the push is rejected because others pushed first, get their work with `git pull` first. Keep your hands off `--force` on shared branches."
+    },
+    {
+      "id": "git-linux-011",
+      "prompt": "How do you fetch changes from the remote and merge them in one step?",
+      "answer": "git pull",
+      "distractors": [
+        "git fetch",
+        "git clone",
+        "git push"
+      ],
+      "note": "`git pull` is `git fetch` plus `git merge`. With `git pull --rebase` the history stays linear."
+    },
+    {
+      "id": "git-linux-012",
+      "prompt": "How do you put unfinished changes aside briefly without committing?",
+      "answer": "git stash",
+      "distractors": [
+        "git reset",
+        "git save",
+        "git hold"
+      ],
+      "note": "`git stash pop` brings them back. Handy when you need to switch branches in a hurry."
+    },
+    {
+      "id": "git-linux-013",
+      "prompt": "How do you undo an already pushed commit without rewriting history?",
+      "answer": "git revert",
+      "accept": [
+        "git revert <commit>"
+      ],
+      "distractors": [
+        "git reset --hard",
+        "git undo",
+        "git checkout"
+      ],
+      "note": "`revert` creates a new commit that reverses the changes. That is safe on shared branches, unlike `reset`, which rewrites history."
+    },
+    {
+      "id": "git-linux-014",
+      "prompt": "Which file tells Git which files to ignore?",
+      "answer": ".gitignore",
+      "accept": [
+        "gitignore"
+      ],
+      "distractors": [
+        ".gitconfig",
+        ".gitkeep",
+        ".ignore"
+      ],
+      "note": "Build folders, `.env` files with secrets and `node_modules` belong in it. Git only ignores already tracked files once you remove them with `git rm --cached`."
+    },
+    {
+      "id": "git-linux-015",
+      "prompt": "Which command tells you which directory you are in?",
+      "answer": "pwd",
+      "distractors": [
+        "cd",
+        "ls",
+        "whoami"
+      ],
+      "note": "It stands for \"print working directory\". `cd ~` takes you home at any time, `cd -` back to the previous directory."
+    },
+    {
+      "id": "git-linux-016",
+      "prompt": "How do you list all files, including hidden ones, with details?",
+      "answer": "ls -la",
+      "accept": [
+        "ls -al",
+        "ls -a -l"
+      ],
+      "distractors": [
+        "ls -h",
+        "ls -r",
+        "dir -all"
+      ],
+      "note": "`-l` shows permissions, owner, size and date; `-a` includes files starting with a dot. Add `-h` for readable sizes such as 4.0K."
+    },
+    {
+      "id": "git-linux-017",
+      "prompt": "How do you create a folder including any missing parent folders?",
+      "answer": "mkdir -p",
+      "accept": [
+        "mkdir -p <path>"
+      ],
+      "distractors": [
+        "mkdir -r",
+        "md -all",
+        "touch -p"
+      ],
+      "note": "`mkdir -p project/src/tests` creates every missing level at once. If the folder already exists, it doesn't complain."
+    },
+    {
+      "id": "git-linux-018",
+      "prompt": "Which command creates an empty file or updates its timestamp?",
+      "answer": "touch",
+      "distractors": [
+        "mkdir",
+        "cat",
+        "new"
+      ],
+      "note": "`touch notes.txt` creates the file if it is missing. If it already exists, only its modification time changes."
+    },
+    {
+      "id": "git-linux-019",
+      "prompt": "How do you copy a folder with everything in it?",
+      "answer": "cp -r",
+      "accept": [
+        "cp -R"
+      ],
+      "distractors": [
+        "mv -r",
+        "cp -f",
+        "copy -r"
+      ],
+      "note": "Without `-r`, `cp` refuses to copy folders. `cp -a` also keeps permissions and timestamps."
+    },
+    {
+      "id": "git-linux-020",
+      "prompt": "Which command moves or renames a file?",
+      "answer": "mv",
+      "distractors": [
+        "cp",
+        "rn",
+        "move"
+      ],
+      "note": "To the shell, renaming is just moving under a new name: `mv old.txt new.txt`. With `-i`, `mv` asks before overwriting anything."
+    },
+    {
+      "id": "git-linux-021",
+      "prompt": "How do you delete a folder and its contents without being asked?",
+      "answer": "rm -rf",
+      "accept": [
+        "rm -rf <folder>",
+        "rm -fr"
+      ],
+      "distractors": [
+        "rm -i",
+        "rmdir",
+        "del -all"
+      ],
+      "note": "There is no recycle bin and no confirmation. Check with `ls` first what you are deleting, and read the path twice."
+    },
+    {
+      "id": "git-linux-022",
+      "prompt": "Which command searches for text inside files?",
+      "answer": "grep",
+      "distractors": [
+        "find",
+        "locate",
+        "sed"
+      ],
+      "note": "`grep -rn \"TODO\" src/` searches recursively and shows line numbers. `-i` ignores case."
+    },
+    {
+      "id": "git-linux-023",
+      "prompt": "Which command searches the directory tree for files by name?",
+      "answer": "find",
+      "distractors": [
+        "grep",
+        "which",
+        "ls"
+      ],
+      "note": "`find . -name \"*.log\"` finds every log file below the current folder. Add `-mtime -1` to only get files changed in the last 24 hours."
+    },
+    {
+      "id": "git-linux-024",
+      "prompt": "How do you make a script executable?",
+      "answer": "chmod +x",
+      "accept": [
+        "chmod +x <file>",
+        "chmod 755"
+      ],
+      "distractors": [
+        "chown +x",
+        "chmod 644",
+        "exec +x"
+      ],
+      "note": "Then run it with `./script.sh`. The numeric form `chmod 755` means the owner may do everything, everyone else may read and execute."
+    },
+    {
+      "id": "git-linux-025",
+      "prompt": "How do you follow new lines of a log file live?",
+      "answer": "tail -f",
+      "accept": [
+        "tail -f <file>"
+      ],
+      "distractors": [
+        "head -f",
+        "cat -f",
+        "less -n"
+      ],
+      "note": "`tail -f /var/log/syslog` prints new lines as soon as they are written. Stop it with Ctrl+C."
+    },
+    {
+      "id": "git-linux-026",
+      "prompt": "Which command shows running processes interactively with CPU load?",
+      "answer": "top",
+      "accept": [
+        "htop"
+      ],
+      "distractors": [
+        "ps",
+        "jobs",
+        "lsof"
+      ],
+      "note": "`htop` is the friendlier version with colours and mouse support, but often has to be installed first. Press `q` to quit either."
+    },
+    {
+      "id": "git-linux-027",
+      "prompt": "How do you end a process whose PID you know?",
+      "answer": "kill",
+      "accept": [
+        "kill <PID>"
+      ],
+      "distractors": [
+        "stop",
+        "end",
+        "exit"
+      ],
+      "note": "`kill 1234` politely asks the process to terminate. Only if it doesn't respond does `kill -9 1234` force it."
+    },
+    {
+      "id": "git-linux-028",
+      "prompt": "How do you pass the output of one command into another?",
+      "answer": "Pipe (|)",
+      "accept": [
+        "|",
+        "Pipe"
+      ],
+      "distractors": [
+        "Redirect (>)",
+        "And (&&)",
+        "Append (>>)"
+      ],
+      "note": "`ps aux | grep python` filters the process list. `>`, by contrast, writes to a file and overwrites it, while `>>` appends."
+    },
+    {
+      "id": "git-linux-029",
+      "prompt": "How do you open an encrypted shell on a server?",
+      "answer": "ssh",
+      "accept": [
+        "ssh user@host"
+      ],
+      "distractors": [
+        "ftp",
+        "ping",
+        "curl"
+      ],
+      "note": "`ssh user@server` opens an encrypted shell. Keys instead of a password, set up with `ssh-keygen` and `ssh-copy-id`, are safer and more convenient."
+    },
+    {
+      "id": "git-linux-030",
+      "prompt": "How do you run a single command with administrator rights?",
+      "answer": "sudo",
+      "accept": [
+        "sudo <command>"
+      ],
+      "distractors": [
+        "root",
+        "admin",
+        "runas"
+      ],
+      "note": "It stands for \"superuser do\". It asks for your own password, not root's, and logs who ran what."
+    }
+  ]
+}

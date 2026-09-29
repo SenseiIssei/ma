@@ -48,7 +48,9 @@ final class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             // Lockdown, strict focus, a wall or a spent daily budget: the
             // only button left leads back.
-            guard policy.allowed else {
+            // The reel-free web version stays open even in strict focus;
+            // Ma is the one that can open Safari, so the tap goes there.
+            guard policy.allowed || policy.reelFreeWeb != nil else {
                 SharedStore.updateToday { $0.resisted += 1 }
                 completion(.close)
                 return

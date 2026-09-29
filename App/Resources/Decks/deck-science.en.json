@@ -1,0 +1,428 @@
+{
+  "id": "science",
+  "locale": "en",
+  "title": "Science Basics",
+  "subtitle": "Physics, chemistry and biology essentials",
+  "symbol": "Ω",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "science-001",
+      "prompt": "What is the SI unit of force?",
+      "answer": "Newton",
+      "accept": [
+        "N"
+      ],
+      "distractors": [
+        "Joule",
+        "Pascal",
+        "Watt"
+      ],
+      "note": "1 newton accelerates 1 kg by 1 m/s². Roughly, a 100 g bar of chocolate presses on your hand with about 1 N."
+    },
+    {
+      "id": "science-002",
+      "prompt": "What is the SI unit of energy?",
+      "answer": "Joule",
+      "accept": [
+        "J"
+      ],
+      "distractors": [
+        "Watt",
+        "Newton",
+        "Volt"
+      ],
+      "note": "One kilocalorie is about 4,184 joules. The watt, by contrast, measures power, which is energy per second."
+    },
+    {
+      "id": "science-003",
+      "prompt": "What unit is electrical voltage measured in?",
+      "answer": "Volt",
+      "accept": [
+        "V"
+      ],
+      "distractors": [
+        "Ampere",
+        "Ohm",
+        "Watt"
+      ],
+      "note": "Voltage is like the pressure in a water pipe, current like the amount flowing through. Ohm's law links them: V = R × I."
+    },
+    {
+      "id": "science-004",
+      "prompt": "What unit is electric current measured in?",
+      "answer": "Ampere",
+      "accept": [
+        "A",
+        "Amp"
+      ],
+      "distractors": [
+        "Volt",
+        "Ohm",
+        "Coulomb"
+      ],
+      "note": "Named after André-Marie Ampère. Power is voltage times current: 230 V × 10 A gives 2,300 W."
+    },
+    {
+      "id": "science-005",
+      "prompt": "How fast is light in a vacuum, rounded?",
+      "answer": "300,000 km/s",
+      "accept": [
+        "300000 km/s",
+        "299,792 km/s",
+        "3 × 10^8 m/s"
+      ],
+      "distractors": [
+        "30,000 km/s",
+        "150,000 km/s",
+        "3,000,000 km/s"
+      ],
+      "note": "Exactly 299,792,458 m/s, because since 1983 the metre has been defined by the speed of light. Light from the Sun takes a little over 8 minutes to reach us."
+    },
+    {
+      "id": "science-006",
+      "prompt": "What is Newton's second law as a formula?",
+      "answer": "F = m × a",
+      "accept": [
+        "F=ma",
+        "F = ma",
+        "F=m*a"
+      ],
+      "distractors": [
+        "E = m × c²",
+        "p = m × v",
+        "W = F × s"
+      ],
+      "note": "Force equals mass times acceleration. A shopping trolley twice as heavy needs twice the force for the same acceleration."
+    },
+    {
+      "id": "science-007",
+      "prompt": "What is the gravitational acceleration on Earth, rounded?",
+      "answer": "9.81 m/s²",
+      "accept": [
+        "9.81",
+        "9.8 m/s²",
+        "9,81 m/s²"
+      ],
+      "distractors": [
+        "8.91 m/s²",
+        "6.67 m/s²",
+        "1.62 m/s²"
+      ],
+      "note": "Without air resistance everything falls equally fast, no matter how heavy. By the way, 1.62 m/s² is the value on the Moon."
+    },
+    {
+      "id": "science-008",
+      "prompt": "What does the unit hertz measure?",
+      "answer": "Frequency",
+      "accept": [
+        "Cycles per second"
+      ],
+      "distractors": [
+        "Loudness",
+        "Wavelength",
+        "Power"
+      ],
+      "note": "1 Hz is one cycle per second. Concert pitch A vibrates at 440 Hz."
+    },
+    {
+      "id": "science-009",
+      "prompt": "At what temperature does water boil at sea level?",
+      "answer": "100 °C",
+      "accept": [
+        "100",
+        "100 degrees",
+        "100°C",
+        "212 °F"
+      ],
+      "distractors": [
+        "90 °C",
+        "110 °C",
+        "120 °C"
+      ],
+      "note": "On a high mountain water boils well below 100 °C because the air pressure is lower. That is why pasta cooks more slowly at altitude."
+    },
+    {
+      "id": "science-010",
+      "prompt": "Where is absolute zero in degrees Celsius?",
+      "answer": "-273.15 °C",
+      "accept": [
+        "-273.15",
+        "-273 °C",
+        "0 K",
+        "0 kelvin"
+      ],
+      "distractors": [
+        "-100 °C",
+        "-373.15 °C",
+        "-459.67 °C"
+      ],
+      "note": "It equals 0 kelvin. Nothing can get colder, because particles there have the lowest possible energy of motion."
+    },
+    {
+      "id": "science-011",
+      "prompt": "Which particle in the atom has no electric charge?",
+      "answer": "Neutron",
+      "distractors": [
+        "Proton",
+        "Electron",
+        "Positron"
+      ],
+      "note": "Protons and neutrons make up the nucleus. The number of protons determines the element, the number of neutrons the isotope."
+    },
+    {
+      "id": "science-012",
+      "prompt": "Which element has atomic number 1?",
+      "answer": "Hydrogen",
+      "accept": [
+        "H"
+      ],
+      "distractors": [
+        "Helium",
+        "Lithium",
+        "Oxygen"
+      ],
+      "note": "It is the lightest and most common element in the universe. Stars like the Sun get their energy by fusing hydrogen into helium."
+    },
+    {
+      "id": "science-013",
+      "prompt": "What is the chemical symbol for sodium?",
+      "answer": "Na",
+      "distractors": [
+        "S",
+        "So",
+        "Sd"
+      ],
+      "note": "Na comes from the Latin natrium. That is why table salt is written NaCl."
+    },
+    {
+      "id": "science-014",
+      "prompt": "What is the chemical formula of water?",
+      "answer": "H₂O",
+      "accept": [
+        "H2O"
+      ],
+      "distractors": [
+        "H₂O₂",
+        "HO",
+        "CO₂"
+      ],
+      "note": "Two hydrogen atoms and one oxygen atom. H₂O₂, on the other hand, is hydrogen peroxide, a bleach."
+    },
+    {
+      "id": "science-015",
+      "prompt": "Which gas makes up most of Earth's atmosphere?",
+      "answer": "Nitrogen",
+      "accept": [
+        "N2",
+        "N₂"
+      ],
+      "distractors": [
+        "Oxygen",
+        "Carbon dioxide",
+        "Argon"
+      ],
+      "note": "Air is about 78 percent nitrogen, 21 percent oxygen and just under 1 percent argon. CO₂ is only about 0.04 percent."
+    },
+    {
+      "id": "science-016",
+      "prompt": "Which element is the most common in the Earth's crust?",
+      "answer": "Oxygen",
+      "accept": [
+        "O"
+      ],
+      "distractors": [
+        "Silicon",
+        "Iron",
+        "Aluminium"
+      ],
+      "note": "About 46 percent of the crust is oxygen, bound up in rocks such as quartz (SiO₂). Silicon comes second."
+    },
+    {
+      "id": "science-017",
+      "prompt": "What is the pH of pure water at 25 °C?",
+      "answer": "7",
+      "distractors": [
+        "6",
+        "8",
+        "14"
+      ],
+      "note": "Below 7 is acidic, above 7 is alkaline. The scale is logarithmic: pH 5 is ten times more acidic than pH 6."
+    },
+    {
+      "id": "science-018",
+      "prompt": "Which planet is closest to the Sun?",
+      "answer": "Mercury",
+      "distractors": [
+        "Venus",
+        "Mars",
+        "Earth"
+      ],
+      "note": "Even so, it is not the hottest planet. That is Venus, because its thick CO₂ atmosphere traps the heat."
+    },
+    {
+      "id": "science-019",
+      "prompt": "Which is the largest planet in our solar system?",
+      "answer": "Jupiter",
+      "distractors": [
+        "Saturn",
+        "Neptune",
+        "Uranus"
+      ],
+      "note": "Jupiter has more than twice the mass of all the other planets combined. Its Great Red Spot is a storm larger than the Earth."
+    },
+    {
+      "id": "science-020",
+      "prompt": "How many planets are there in our solar system?",
+      "answer": "8",
+      "accept": [
+        "Eight"
+      ],
+      "distractors": [
+        "7",
+        "9",
+        "10"
+      ],
+      "note": "Since 2006 Pluto has counted as a dwarf planet, because it has not cleared its orbit of other bodies."
+    },
+    {
+      "id": "science-021",
+      "prompt": "What is the name of the galaxy we live in?",
+      "answer": "Milky Way",
+      "accept": [
+        "The Milky Way"
+      ],
+      "distractors": [
+        "Andromeda",
+        "Sombrero Galaxy",
+        "Large Magellanic Cloud"
+      ],
+      "note": "It contains an estimated 100 to 400 billion stars. In a few billion years it may merge with the Andromeda Galaxy."
+    },
+    {
+      "id": "science-022",
+      "prompt": "Which effect makes the sky blue?",
+      "answer": "Rayleigh scattering",
+      "accept": [
+        "Rayleigh",
+        "Scattering",
+        "Light scattering"
+      ],
+      "distractors": [
+        "Ocean reflection",
+        "Ozone layer",
+        "Absorption of red"
+      ],
+      "note": "Short-wavelength blue light is scattered by air molecules much more strongly than red. At sunset the path through the air is so long that mostly red and orange are left."
+    },
+    {
+      "id": "science-023",
+      "prompt": "Which organelle is known as the powerhouse of the cell?",
+      "answer": "Mitochondrion",
+      "accept": [
+        "Mitochondria"
+      ],
+      "distractors": [
+        "Ribosome",
+        "Nucleus",
+        "Golgi apparatus"
+      ],
+      "note": "Mitochondria produce ATP, the cell's energy carrier. They have their own DNA, which you inherit only from your mother."
+    },
+    {
+      "id": "science-024",
+      "prompt": "Where is most of the DNA in a human cell?",
+      "answer": "In the nucleus",
+      "accept": [
+        "Nucleus",
+        "The nucleus"
+      ],
+      "distractors": [
+        "In the cell membrane",
+        "In the cytoplasm",
+        "In the ribosomes"
+      ],
+      "note": "A small amount also sits in the mitochondria. Bacteria have no nucleus at all; their DNA floats freely in the cell."
+    },
+    {
+      "id": "science-025",
+      "prompt": "Which molecule carries genetic information?",
+      "answer": "DNA",
+      "accept": [
+        "Deoxyribonucleic acid"
+      ],
+      "distractors": [
+        "RNA",
+        "ATP",
+        "Haemoglobin"
+      ],
+      "note": "DNA is a double helix built from four bases: A, T, G and C. A always pairs with T, and G always with C."
+    },
+    {
+      "id": "science-026",
+      "prompt": "How many chromosomes does a normal human body cell have?",
+      "answer": "46",
+      "distractors": [
+        "23",
+        "44",
+        "48"
+      ],
+      "note": "That is 23 pairs, one set from each parent. Chimpanzees, by the way, have 48."
+    },
+    {
+      "id": "science-027",
+      "prompt": "Which blood cells carry oxygen?",
+      "answer": "Red blood cells",
+      "accept": [
+        "Erythrocytes",
+        "RBCs"
+      ],
+      "distractors": [
+        "White blood cells",
+        "Platelets",
+        "Lymphocytes"
+      ],
+      "note": "They contain iron-rich haemoglobin, which binds oxygen and gives blood its colour. A red blood cell lives about 120 days."
+    },
+    {
+      "id": "science-028",
+      "prompt": "How many chambers does the human heart have?",
+      "answer": "4",
+      "accept": [
+        "Four"
+      ],
+      "distractors": [
+        "2",
+        "3",
+        "6"
+      ],
+      "note": "Two atria and two ventricles. The right side pumps blood to the lungs, the left side to the whole body, which is why its wall is thicker."
+    },
+    {
+      "id": "science-029",
+      "prompt": "Which pigment makes leaves green?",
+      "answer": "Chlorophyll",
+      "distractors": [
+        "Carotene",
+        "Melanin",
+        "Haemoglobin"
+      ],
+      "note": "Chlorophyll absorbs mostly red and blue light and reflects green. In autumn it breaks down and yellow carotenoids show through."
+    },
+    {
+      "id": "science-030",
+      "prompt": "Which gas do plants release during photosynthesis?",
+      "answer": "Oxygen",
+      "accept": [
+        "O2",
+        "O₂"
+      ],
+      "distractors": [
+        "Carbon dioxide",
+        "Nitrogen",
+        "Hydrogen"
+      ],
+      "note": "Plants build sugar from CO₂, water and light. The oxygen they release comes from the water, not from the CO₂."
+    }
+  ]
+}

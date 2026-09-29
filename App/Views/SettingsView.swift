@@ -5,11 +5,25 @@ struct SettingsView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var confirmReset = false
+    @AppStorage("ma.appearance") private var appearance = Appearance.night.rawValue
 
     var body: some View {
         @Bindable var model = model
         NavigationStack {
             Form {
+                Section {
+                    Picker(tr("Look", "Aussehen"), selection: $appearance) {
+                        Text(tr("Night", "Nacht")).tag(Appearance.night.rawValue)
+                        Text(tr("System", "System")).tag(Appearance.system.rawValue)
+                    }
+                    .pickerStyle(.segmented)
+                } header: {
+                    FormHeader(icon: "moon.stars.fill", title: tr("Appearance", "Erscheinungsbild"))
+                } footer: {
+                    Text(tr("Night is calm and easy on the eyes in the evening. System follows your iPhone's light or dark mode.",
+                            "Nacht ist ruhig und schont abends die Augen. System folgt dem hellen oder dunklen Modus deines iPhones."))
+                }
+
                 Section {
                     if BuildFlavor.screenTimeAvailable {
                         statusRow(icon: "hourglass", title: tr("Screen Time", "Bildschirmzeit"), ok: model.authorization == .approved) {
@@ -62,12 +76,20 @@ struct SettingsView: View {
                     FormHeader(icon: "square.stack.3d.up.fill", title: tr("More ways", "Weitere Wege"))
                 }
 
+                TipJarSection()
+
                 Section {
                     LabeledContent("Version", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0")
                     Link(destination: URL(string: "https://github.com/SenseiIssei/ma")!) {
                         Label(tr("Source code on GitHub", "Quellcode auf GitHub"), systemImage: "chevron.left.forwardslash.chevron.right")
                     }
-                    Text(tr("Ma stores nothing outside your iPhone. No accounts, no analytics, no server.", "Ma speichert nichts außerhalb deines iPhones. Keine Konten, keine Analyse, kein Server."))
+                    Link(destination: URL(string: "https://senseiissei.github.io/ma/privacy.html")!) {
+                        Label(tr("Privacy", "Datenschutz"), systemImage: "hand.raised.fill")
+                    }
+                    Link(destination: URL(string: "https://senseiissei.github.io/ma/support.html")!) {
+                        Label(tr("Help and support", "Hilfe und Support"), systemImage: "questionmark.circle.fill")
+                    }
+                    Text(tr("Ma stores everything on your iPhone. No accounts, no ads, no analytics. Only if you join a friends circle, a random id, your nickname and daily numbers go to Ma's server.", "Ma speichert alles auf deinem iPhone. Keine Konten, keine Werbung, keine Analyse. Nur wenn du einem Freundeskreis beitrittst, gehen eine zufällige ID, dein Spitzname und Tageszahlen an Mas Server."))
                         .font(.system(size: 14))
                         .foregroundStyle(Zen.inkSoft)
                 } header: {

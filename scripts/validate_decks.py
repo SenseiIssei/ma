@@ -42,6 +42,9 @@ for path in sorted(glob.glob(os.path.join(DIR, "deck-*.json"))):
             errors.append(f"{name}: missing {k}")
     if len(d["symbol"]) != 1:
         errors.append(f"{name}: symbol not one char: {d['symbol']!r}")
+    # optional; older decks predate it
+    if "category" in d and d["category"] not in ("languages", "knowledge", "mind", "tech", "life"):
+        errors.append(f"{name}: unknown category {d['category']!r}")
     if len(d["subtitle"]) > 60:
         errors.append(f"{name}: subtitle too long ({len(d['subtitle'])})")
     all_card_ids = card_ids_by_edition[edition]

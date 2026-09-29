@@ -71,8 +71,11 @@ struct GateView: View {
     private func prepare() {
         if let pending {
             policy = model.policy(for: pending)
-        } else if shortcutApp != nil {
+        } else if let app = shortcutApp {
             policy = model.shortcutPolicy()
+            if policy.lockdownUntil == nil, !policy.focusLocked || SharedStore.focusSettings.allowReelFreeWeb {
+                policy.reelFreeWeb = ReelFreeWeb.url(forAppName: app == .any ? nil : app.displayName)
+            }
         }
         minutes = policy.minutes
         if isUnlock && !policy.allowed {
@@ -231,6 +234,7 @@ struct GateView: View {
                 .opacity(ready ? 1 : 0.35)
                 .disabled(!ready)
             if isUnlock {
+                reelFreeButton
                 Button(tr("I'll let it be", "Ich lass es gut sein")) { resist() }
                     .buttonStyle(.quiet)
             } else if isEndLockdown {
@@ -394,10 +398,13 @@ struct GateView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
             Spacer()
-            Button(tr("Back to calm", "Zurück zur Ruhe")) { resist() }
-                .buttonStyle(.ink)
-                .padding(.horizontal, 28)
-                .padding(.bottom, 20)
+            VStack(spacing: 12) {
+                reelFreeButton
+                Button(tr("Back to calm", "Zurück zur Ruhe")) { resist() }
+                    .buttonStyle(.ink)
+            }
+            .padding(.horizontal, 28)
+            .padding(.bottom, 20)
         }
     }
 
@@ -497,6 +504,22 @@ struct GateView: View {
                 model.openShortcutPass(minutes: minutes, app: .any)
                 withAnimation(.easeInOut) { stage = .open }
             }
+        }
+    }
+
+    /// The website without Reels, in Safari. No questions: choosing the
+    /// calmer version is the point.
+    @ViewBuilder
+    private var reelFreeButton: some View {
+        if let url = policy.reelFreeWeb, policy.lockdownUntil == nil {
+            Button {
+                Haptics.success()
+                model.openReelFree(url)
+                model.gate = nil
+            } label: {
+                Label(tr("Open without Reels", "Ohne Reels öffnen"), systemImage: "safari")
+            }
+            .buttonStyle(.primary)
         }
     }
 

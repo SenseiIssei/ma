@@ -1,0 +1,442 @@
+{
+  "id": "psychology",
+  "locale": "en",
+  "title": "Everyday Psychology",
+  "subtitle": "Spot thinking traps and decide better",
+  "symbol": "Ψ",
+  "category": "mind",
+  "cards": [
+    {
+      "id": "psychology-001",
+      "prompt": "You mainly seek out and remember information that confirms what you already believe.",
+      "answer": "Confirmation bias",
+      "accept": [
+        "Confirmation"
+      ],
+      "distractors": [
+        "Anchoring",
+        "Hindsight bias",
+        "Halo effect"
+      ],
+      "note": "For every firm opinion, ask which observation would change your mind, then go looking for it. It is uncomfortable, but it protects you from costly mistakes."
+    },
+    {
+      "id": "psychology-002",
+      "prompt": "People who know little about a topic often overestimate their skill the most.",
+      "answer": "Dunning-Kruger effect",
+      "accept": [
+        "Dunning-Kruger",
+        "Dunning Kruger"
+      ],
+      "distractors": [
+        "Impostor syndrome",
+        "Spotlight effect",
+        "Barnum effect"
+      ],
+      "note": "Strong confidence early on is not a reliable sign of skill. Get feedback early from people who have truly mastered the field."
+    },
+    {
+      "id": "psychology-003",
+      "prompt": "You keep going with something hopeless because you have already put so much into it.",
+      "answer": "Sunk cost fallacy",
+      "accept": [
+        "Sunk cost",
+        "Sunk cost effect"
+      ],
+      "distractors": [
+        "Loss aversion",
+        "Endowment effect",
+        "Status quo bias"
+      ],
+      "note": "Ask yourself: would I start this today if I were beginning from zero? What is already spent will not come back either way."
+    },
+    {
+      "id": "psychology-004",
+      "prompt": "Cue, routine, reward: the pattern behind every habit.",
+      "answer": "Habit loop",
+      "accept": [
+        "The habit loop"
+      ],
+      "distractors": [
+        "Delayed gratification",
+        "Zeigarnik effect",
+        "Priming"
+      ],
+      "note": "To change a habit, keep the cue and the reward and swap only the routine. For example, a short walk instead of your phone when you get bored."
+    },
+    {
+      "id": "psychology-005",
+      "prompt": "Total absorption in a task that challenges you just right, and your sense of time disappears.",
+      "answer": "Flow",
+      "accept": [
+        "Flow state"
+      ],
+      "distractors": [
+        "Mindfulness",
+        "Hyperfocus",
+        "Tunnel vision"
+      ],
+      "note": "Mihaly Csikszentmihalyi described it: flow happens when challenge and skill are in balance. If you are bored, make the task harder; if you are overwhelmed, break it down."
+    },
+    {
+      "id": "psychology-006",
+      "prompt": "The first number you hear shapes your estimate, even if it is completely arbitrary.",
+      "answer": "Anchoring",
+      "accept": [
+        "Anchoring effect",
+        "Anchoring bias"
+      ],
+      "distractors": [
+        "Framing effect",
+        "Availability heuristic",
+        "Confirmation bias"
+      ],
+      "note": "In negotiations it pays to name the first number yourself. When someone sets an anchor for you, consciously ask what you would have guessed without it."
+    },
+    {
+      "id": "psychology-007",
+      "prompt": "Losses hurt roughly twice as much as equal gains feel good.",
+      "answer": "Loss aversion",
+      "distractors": [
+        "Endowment effect",
+        "Sunk cost fallacy",
+        "Status quo bias"
+      ],
+      "note": "Daniel Kahneman and Amos Tversky described this in their prospect theory. When fear of losing freezes you, write the upsides and downsides side by side."
+    },
+    {
+      "id": "psychology-008",
+      "prompt": "As soon as you know the outcome, you feel you knew it all along.",
+      "answer": "Hindsight bias",
+      "accept": [
+        "Hindsight"
+      ],
+      "distractors": [
+        "Confirmation bias",
+        "Déjà vu",
+        "Optimism bias"
+      ],
+      "note": "Before important decisions, write down what you expect and why. That way you learn from what you actually knew, not from a flattering memory."
+    },
+    {
+      "id": "psychology-009",
+      "prompt": "One striking good trait, such as good looks, colours your judgement of everything else.",
+      "answer": "Halo effect",
+      "accept": [
+        "Halo"
+      ],
+      "distractors": [
+        "Horn effect",
+        "Mere exposure effect",
+        "Anchoring"
+      ],
+      "note": "Judge people and things on separate, specific criteria. When hiring, it helps to rate one question across all candidates before moving on to the next."
+    },
+    {
+      "id": "psychology-010",
+      "prompt": "What comes to mind easily seems more common than it is, for example plane crashes.",
+      "answer": "Availability heuristic",
+      "accept": [
+        "Availability bias",
+        "Availability"
+      ],
+      "distractors": [
+        "Representativeness heuristic",
+        "Anchoring",
+        "Gambler's fallacy"
+      ],
+      "note": "Look at numbers instead of headlines when judging risk. Per kilometre, cars are far more dangerous than planes, even though crashes get more attention."
+    },
+    {
+      "id": "psychology-011",
+      "prompt": "After five reds at roulette, you believe black is now due.",
+      "answer": "Gambler's fallacy",
+      "accept": [
+        "Gamblers fallacy",
+        "Monte Carlo fallacy"
+      ],
+      "distractors": [
+        "Illusion of control",
+        "Hot hand fallacy",
+        "Anchoring"
+      ],
+      "note": "Independent events have no memory. The ball does not know what came before; the odds are the same on every spin."
+    },
+    {
+      "id": "psychology-012",
+      "prompt": "You learn about something new and then suddenly see it everywhere.",
+      "answer": "Baader-Meinhof phenomenon",
+      "accept": [
+        "Baader-Meinhof",
+        "Frequency illusion"
+      ],
+      "distractors": [
+        "Déjà vu",
+        "Spotlight effect",
+        "Priming"
+      ],
+      "note": "The thing has not become more common; your attention just filters differently. Use it on purpose: name a goal clearly and you start noticing matching opportunities."
+    },
+    {
+      "id": "psychology-013",
+      "prompt": "You believe others notice your stain or slip of the tongue far more than they do.",
+      "answer": "Spotlight effect",
+      "accept": [
+        "Spotlight"
+      ],
+      "distractors": [
+        "Impostor syndrome",
+        "Social desirability bias",
+        "Halo effect"
+      ],
+      "note": "In one study, people wearing an embarrassing T-shirt guessed half the room noticed; in fact it was about a quarter. Most people are busy thinking about themselves."
+    },
+    {
+      "id": "psychology-014",
+      "prompt": "Work expands to fill the time available for its completion.",
+      "answer": "Parkinson's law",
+      "accept": [
+        "Parkinsons law",
+        "Parkinson law"
+      ],
+      "distractors": [
+        "Pareto principle",
+        "Murphy's law",
+        "Hofstadter's law"
+      ],
+      "note": "Give yourself short, fixed time boxes, say 25 minutes for a round of email. The work adapts surprisingly often."
+    },
+    {
+      "id": "psychology-015",
+      "prompt": "Unfinished tasks stay on your mind longer than finished ones.",
+      "answer": "Zeigarnik effect",
+      "accept": [
+        "Zeigarnik"
+      ],
+      "distractors": [
+        "Habit loop",
+        "Primacy effect",
+        "Flow"
+      ],
+      "note": "Before you stop for the day, write down open items and plan the next concrete step. It calms your mind almost as if the task were done."
+    },
+    {
+      "id": "psychology-016",
+      "prompt": "The same information feels different depending on wording: \"90% survive\" versus \"10% die\".",
+      "answer": "Framing effect",
+      "accept": [
+        "Framing"
+      ],
+      "distractors": [
+        "Anchoring",
+        "Priming",
+        "Halo effect"
+      ],
+      "note": "Phrase important decisions to yourself once positively and once negatively. If your judgement shifts, the frame was steering you, not the facts."
+    },
+    {
+      "id": "psychology-017",
+      "prompt": "Once people agree to a small request, they are more likely to agree to a big one.",
+      "answer": "Foot-in-the-door technique",
+      "accept": [
+        "Foot in the door",
+        "Foot-in-the-door"
+      ],
+      "distractors": [
+        "Door-in-the-face technique",
+        "Reciprocity",
+        "Scarcity principle"
+      ],
+      "note": "You can use it on yourself: start a new habit ridiculously small, say a single push-up. The first yes makes the next step easier."
+    },
+    {
+      "id": "psychology-018",
+      "prompt": "You feel obliged to return a favour, even one you never asked for.",
+      "answer": "Reciprocity",
+      "accept": [
+        "Reciprocity principle",
+        "Reciprocation"
+      ],
+      "distractors": [
+        "Conformity",
+        "Authority principle",
+        "Scarcity principle"
+      ],
+      "note": "That is why free samples exist. When you feel the pull, ask whether you would have said yes without the gift."
+    },
+    {
+      "id": "psychology-019",
+      "prompt": "Whatever is scarce or might soon be gone suddenly seems more valuable.",
+      "answer": "Scarcity principle",
+      "accept": [
+        "Scarcity",
+        "Scarcity effect"
+      ],
+      "distractors": [
+        "Reciprocity",
+        "Endowment effect",
+        "Social proof"
+      ],
+      "note": "\"Only 2 rooms left!\" is often pure sales design. Give yourself a night to think before bigger purchases; genuine deals usually survive that."
+    },
+    {
+      "id": "psychology-020",
+      "prompt": "You follow what many others are doing, especially when you are unsure.",
+      "answer": "Social proof",
+      "accept": [
+        "Herd behaviour",
+        "Herd behavior"
+      ],
+      "distractors": [
+        "Groupthink",
+        "Authority principle",
+        "Reciprocity"
+      ],
+      "note": "Use it for yourself by spending time with people who already live the way you want to. With reviews and queues, though, take a second, critical look."
+    },
+    {
+      "id": "psychology-021",
+      "prompt": "You value things you own more highly than the same item in a shop.",
+      "answer": "Endowment effect",
+      "accept": [
+        "Endowment"
+      ],
+      "distractors": [
+        "Loss aversion",
+        "Sunk cost fallacy",
+        "Status quo bias"
+      ],
+      "note": "When decluttering, ask: would I buy this today at this price? If not, it can go."
+    },
+    {
+      "id": "psychology-022",
+      "prompt": "You put other people's behaviour down to their character and underrate the circumstances.",
+      "answer": "Fundamental attribution error",
+      "accept": [
+        "Attribution error",
+        "Correspondence bias"
+      ],
+      "distractors": [
+        "Halo effect",
+        "Self-serving bias",
+        "Projection"
+      ],
+      "note": "When someone cuts you off in traffic, think of three harmless reasons, such as an emergency. You will usually be closer to the truth and less annoyed."
+    },
+    {
+      "id": "psychology-023",
+      "prompt": "You regularly plan too little time, even though experience should have taught you better.",
+      "answer": "Planning fallacy",
+      "accept": [
+        "Planning bias"
+      ],
+      "distractors": [
+        "Parkinson's law",
+        "Procrastination",
+        "Dunning-Kruger effect"
+      ],
+      "note": "Don't estimate from your gut; check how long similar projects really took in the past. Then add a buffer on top."
+    },
+    {
+      "id": "psychology-024",
+      "prompt": "The more decisions you have already made today, the worse your next ones become.",
+      "answer": "Decision fatigue",
+      "accept": [
+        "Decision-fatigue"
+      ],
+      "distractors": [
+        "Paradox of choice",
+        "Analysis paralysis",
+        "Burnout"
+      ],
+      "note": "How strong the effect really is remains debated in research. Still, making important calls early and automating small stuff like breakfast or clothes never hurts."
+    },
+    {
+      "id": "psychology-025",
+      "prompt": "Too many options make you less satisfied and freeze the decision.",
+      "answer": "Paradox of choice",
+      "accept": [
+        "Choice overload"
+      ],
+      "distractors": [
+        "Decision fatigue",
+        "Loss aversion",
+        "Anchoring"
+      ],
+      "note": "Limit yourself on purpose, say to three candidates, and take the first option that meets your criteria. \"Good enough\" often makes you happier than \"the best\"."
+    },
+    {
+      "id": "psychology-026",
+      "prompt": "You pass up a small reward now to get a bigger one later.",
+      "answer": "Delayed gratification",
+      "accept": [
+        "Marshmallow test"
+      ],
+      "distractors": [
+        "Habit loop",
+        "Loss aversion",
+        "Procrastination"
+      ],
+      "note": "It became famous through the marshmallow test. It gets easier when you move the temptation out of sight instead of relying on willpower alone."
+    },
+    {
+      "id": "psychology-027",
+      "prompt": "You would rather stick with what you know, even when a change would be better.",
+      "answer": "Status quo bias",
+      "accept": [
+        "Status-quo bias"
+      ],
+      "distractors": [
+        "Confirmation bias",
+        "Groupthink",
+        "Hindsight bias"
+      ],
+      "note": "That is why defaults are so powerful. Set up your own so that doing nothing leads somewhere good, such as a standing order into a savings account."
+    },
+    {
+      "id": "psychology-028",
+      "prompt": "In a crowd, everyone helps less because they all assume someone else will.",
+      "answer": "Bystander effect",
+      "accept": [
+        "Bystander"
+      ],
+      "distractors": [
+        "Groupthink",
+        "Social proof",
+        "Social loafing"
+      ],
+      "note": "In an emergency, address one person directly: \"You in the red jacket, call 112!\" That makes someone feel personally responsible."
+    },
+    {
+      "id": "psychology-029",
+      "prompt": "You feel you don't deserve your success and fear being exposed as a fraud.",
+      "answer": "Impostor syndrome",
+      "accept": [
+        "Imposter syndrome",
+        "Impostor"
+      ],
+      "distractors": [
+        "Dunning-Kruger effect",
+        "Spotlight effect",
+        "Perfectionism"
+      ],
+      "note": "Keep a list of concrete wins and the feedback others have given you. Facts on paper hold up better against the feeling than brooding does."
+    },
+    {
+      "id": "psychology-030",
+      "prompt": "Simply encountering something often makes you like it more.",
+      "answer": "Mere exposure effect",
+      "accept": [
+        "Mere-exposure effect",
+        "Mere exposure",
+        "Familiarity principle"
+      ],
+      "distractors": [
+        "Halo effect",
+        "Priming",
+        "Baader-Meinhof phenomenon"
+      ],
+      "note": "That is why adverts run so often. The flip side: you can get used to new things like vegetables or exercise simply by repeating them regularly."
+    }
+  ]
+}

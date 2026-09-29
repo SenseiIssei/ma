@@ -1,11 +1,14 @@
 import FamilyControls
 import SwiftUI
 
-/// Pomodoro with a clean ring that fills over the length of a round.
+/// Pomodoro with a glowing ring that fills over the length of a round, plus
+/// calm sounds and music shortcuts for the time in between.
 struct FocusView: View {
     @Environment(AppModel.self) private var model
     @State private var showSettings = false
     private let ticker = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    private var sound: SoundEngine { SoundEngine.shared }
 
     var body: some View {
         NavigationStack {
@@ -19,14 +22,20 @@ struct FocusView: View {
                     TimelineView(.periodic(from: .now, by: 1)) { context in
                         ring(at: context.date)
                     }
-                    .frame(width: 270, height: 270)
+                    .frame(width: 280, height: 280)
+                    .padding(.vertical, 6)
                     controls
+                    soundCard
+                    MusicCard()
                     footnote
                 }
                 .padding(.horizontal, Zen.gutter)
                 .padding(.bottom, 40)
             }
             .background(AppBackground())
+            .onChange(of: focusKey) { old, new in
+                focusChanged(from: old, to: new)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -105,16 +114,18 @@ struct FocusView: View {
         let elapsed = focus.map { max(0, date.timeIntervalSince($0.startedAt)) } ?? 0
         let remaining = max(0, duration - elapsed)
         let progress = focus == nil ? 0 : min(1, elapsed / max(1, duration))
+        let running: Bool = focus != nil
 
         return ZStack {
-            ProgressRing(progress: progress, lineWidth: 16, tint: tint)
+            GlowRing(progress: progress, tint: tint, running: running)
                 .animation(.linear(duration: 1), value: progress)
             VStack(spacing: 6) {
                 Text(Self.clock(remaining))
-                    .font(.display(56, weight: .semibold))
+                    .font(.display(66, weight: .semibold))
                     .monospacedDigit()
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.numericText(countsDown: true))
+                    .shadow(color: tint.opacity(running ? 0.35 : 0), radius: 12)
                 if let focus {
                     Text(tr("until \(focus.endsAt.formatted(date: .omitted, time: .shortened))", "bis \(focus.endsAt.formatted(date: .omitted, time: .shortened))"))
                         .font(.system(size: 14))
@@ -183,9 +194,160 @@ struct FocusView: View {
         .zenCard()
     }
 
+    // MARK: Sound
+
+    private var soundCard: some View {
+        let engine = sound
+        let during = Binding<Bool>(
+            get: { engine.playsDuringFocus },
+            set: { engine.playsDuringFocus = $0 }
+        )
+        // A sound picked mid round ends with that round.
+        let roundEnd: Date? = model.focus?.phase == .focus ? model.focus?.endsAt : nil
+        return VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(icon: "waveform", title: tr("Sound", "Klang"))
+            VStack(alignment: .leading, spacing: 14) {
+                SoundPicker(scope: .focus, until: roundEnd, showsSleepTimer: true)
+                Divider().overlay(Zen.line)
+                Toggle(isOn: during) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(tr("Play sound during focus", "Klang im Fokus abspielen"))
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundStyle(Zen.ink)
+                        Text(tr("Starts with each round and fades out when it ends.", "Beginnt mit jeder Runde und klingt mit ihr aus."))
+                            .font(.system(size: 13))
+                            .foregroundStyle(Zen.inkSoft)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                .tint(Zen.shu)
+            }
+            .zenCard()
+        }
+    }
+
+    /// Identity and phase of the running session: enough to tell a new round
+    /// from a round that ended.
+    private var focusKey: FocusSoundKey {
+        FocusSoundKey(id: model.focus?.id, phase: model.focus?.phase)
+    }
+
+    /// A new focus round starts the chosen sound (when the user asked for
+    /// that) or ties a sound that already plays to the round. When the round
+    /// ends or is stopped, the focus sound fades out. The engine also keeps
+    /// its own deadline, so this holds with the screen locked.
+    private func focusChanged(from old: FocusSoundKey, to new: FocusSoundKey) {
+        let wasFocus: Bool = old.phase == .focus
+        let isFocus: Bool = new.phase == .focus
+        if isFocus && (!wasFocus || old.id != new.id) {
+            let endsAt: Date? = model.focus?.endsAt
+            let chosen: AmbientSound = sound.sound(for: .focus)
+            if sound.isPlaying(in: .focus) {
+                sound.bind(until: endsAt)
+            } else if sound.playsDuringFocus && chosen != .off && sound.playing == .off {
+                sound.play(chosen, scope: .focus, until: endsAt)
+            }
+        } else if wasFocus && !isFocus {
+            sound.stop(scope: .focus)
+        }
+    }
+
     static func clock(_ seconds: TimeInterval) -> String {
         let total = Int(seconds.rounded(.up))
         return String(format: "%02d:%02d", total / 60, total % 60)
+    }
+}
+
+private struct FocusSoundKey: Equatable {
+    var id: UUID?
+    var phase: FocusPhase?
+}
+
+/// The focus ring. A blurred copy of the arc under the real one gives it a
+/// soft glow against the night background, and while a round runs the glow
+/// breathes slowly, so the screen feels alive without asking for attention.
+private struct GlowRing: View {
+    var progress: Double
+    var tint: Color
+    var running: Bool
+    var lineWidth: CGFloat = 16
+
+    var body: some View {
+        Group {
+            if running {
+                PhaseAnimator([0.0, 1.0]) { pulse in
+                    rings(pulse: pulse)
+                } animation: { _ in
+                    .easeInOut(duration: 2.6)
+                }
+            } else {
+                // Idle: no animator at all, so nothing ticks while nothing runs.
+                rings(pulse: 0)
+            }
+        }
+        .padding(lineWidth / 2)
+        .accessibilityHidden(true)
+    }
+
+    private func rings(pulse: Double) -> some View {
+        let clamped: Double = min(1, max(0, progress))
+        let glowOpacity: Double = 0.5 + 0.4 * pulse
+        return ZStack {
+            Circle()
+                .stroke(tint.opacity(running ? 0.10 : 0.16), lineWidth: lineWidth)
+                .blur(radius: 10)
+            Circle()
+                .stroke(Zen.sand.opacity(0.85), lineWidth: lineWidth)
+            RingArc(progress: clamped, tint: tint, lineWidth: lineWidth)
+                .blur(radius: 12)
+                .opacity(glowOpacity)
+            RingArc(progress: clamped, tint: tint, lineWidth: lineWidth)
+        }
+        // Behind the ring and outside its frame, so it never shifts the layout.
+        .background { halo(pulse: pulse) }
+    }
+
+    private func halo(pulse: Double) -> some View {
+        let strength: Double = running ? 0.20 + 0.10 * pulse : 0.12
+        let gradient = RadialGradient(
+            colors: [tint.opacity(strength), .clear],
+            center: .center,
+            startRadius: 60,
+            endRadius: 200
+        )
+        return Circle()
+            .fill(gradient)
+            .frame(width: 380, height: 380)
+            .scaleEffect(1 + 0.04 * pulse)
+            .allowsHitTesting(false)
+    }
+}
+
+/// The filled part of the ring: a gradient along the arc, round caps.
+private struct RingArc: View, Animatable {
+    var progress: Double
+    var tint: Color
+    var lineWidth: CGFloat
+
+    var animatableData: Double {
+        get { progress }
+        set { progress = newValue }
+    }
+
+    var body: some View {
+        let sweep: Double = max(progress, 0.001) * 360
+        let gradient = AngularGradient(
+            colors: [tint.opacity(0.55), tint],
+            center: .center,
+            startAngle: .degrees(0),
+            endAngle: .degrees(sweep)
+        )
+        let style = StrokeStyle(lineWidth: lineWidth, lineCap: .round)
+        return Circle()
+            .trim(from: 0, to: progress)
+            .stroke(gradient, style: style)
+            .rotationEffect(.degrees(-90))
+            .opacity(progress > 0 ? 1 : 0)
     }
 }
 
@@ -218,15 +380,18 @@ struct FocusSettingsView: View {
 
                 Section {
                     Toggle(tr("Strict: no questions during focus", "Streng: keine Fragen im Fokus"), isOn: $settings.strict)
+                    Toggle(tr("Allow the web version without Reels", "Web-Version ohne Reels erlauben"), isOn: $settings.allowReelFreeWeb)
                     if BuildFlavor.screenTimeAvailable {
                         focusListRows
                     }
                 } header: {
                     Text(tr("What sleeps during focus", "Was im Fokus schläft"))
                 } footer: {
-                    Text(BuildFlavor.screenTimeAvailable
-                         ? tr("Without an own list, a focus round blocks everything from every boundary, including switched-off ones.", "Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten.")
-                         : tr("Strict focus makes the Shortcuts gate show only the time left.", "Strenger Fokus lässt die Kurzbefehle-Schranke nur die Restzeit zeigen."))
+                    Text((BuildFlavor.screenTimeAvailable
+                          ? tr("Without an own list, a focus round blocks everything from every boundary, including switched-off ones.", "Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten.")
+                          : tr("Strict focus makes the Shortcuts gate show only the time left.", "Strenger Fokus lässt die Kurzbefehle-Schranke nur die Restzeit zeigen."))
+                         + " " + tr("With the web version allowed, tapping Instagram, YouTube, X, LinkedIn or Facebook during focus offers the website in Safari, where Ma Filter hides Reels, Shorts and feeds.",
+                                    "Ist die Web-Version erlaubt, bietet ein Tipp auf Instagram, YouTube, X, LinkedIn oder Facebook im Fokus die Website in Safari an. Dort blendet Ma Filter Reels, Shorts und Feeds aus."))
                 }
             }
             .tint(Zen.shu)

@@ -1,0 +1,461 @@
+{
+  "id": "first-aid",
+  "title": "Erste Hilfe",
+  "subtitle": "Kursgrundlagen zum Auffrischen, kein Ersatz für den Kurs",
+  "symbol": "+",
+  "category": "life",
+  "cards": [
+    {
+      "id": "first-aid-001",
+      "prompt": "Was hat an einer Unfallstelle immer Vorrang, bevor du hilfst?",
+      "answer": "Eigenschutz",
+      "accept": [
+        "Eigene Sicherheit",
+        "Selbstschutz"
+      ],
+      "distractors": [
+        "Notruf",
+        "Beatmung",
+        "Verband"
+      ],
+      "note": "Warnweste an, Warnblinker ein, Unfallstelle mit dem Warndreieck absichern. Ein zweites Opfer hilft niemandem."
+    },
+    {
+      "id": "first-aid-002",
+      "prompt": "Jemand liegt reglos am Boden. Was prüfst du zuerst?",
+      "answer": "Bewusstsein",
+      "accept": [
+        "Ansprechbarkeit",
+        "Reaktion",
+        "Ob sie reagiert"
+      ],
+      "distractors": [
+        "Puls",
+        "Blutzucker",
+        "Pupillen"
+      ],
+      "note": "Sprich die Person laut an und rüttle sie an den Schultern. Reagiert sie nicht, ruf laut um Hilfe und prüfe dann die Atmung."
+    },
+    {
+      "id": "first-aid-003",
+      "prompt": "Welche Notrufnummer gilt in allen Ländern der EU?",
+      "answer": "112",
+      "distractors": [
+        "110",
+        "911",
+        "999"
+      ],
+      "note": "Die 112 ist in der ganzen EU kostenlos erreichbar, vom Festnetz wie vom Handy. In Deutschland erreichst du die Polizei zusätzlich unter der 110."
+    },
+    {
+      "id": "first-aid-004",
+      "prompt": "Was ist beim Notruf die wichtigste Angabe?",
+      "answer": "Der Ort",
+      "accept": [
+        "Ort",
+        "Wo",
+        "Unfallort"
+      ],
+      "distractors": [
+        "Dein Name",
+        "Die Uhrzeit",
+        "Die Unfallursache"
+      ],
+      "note": "Ohne Ort kann niemand kommen. Nenn Adresse oder markante Punkte, auf der Autobahn auch Fahrtrichtung und Kilometerangabe."
+    },
+    {
+      "id": "first-aid-005",
+      "prompt": "Wer beendet das Gespräch beim Notruf?",
+      "answer": "Die Leitstelle",
+      "accept": [
+        "Leitstelle",
+        "Disponent"
+      ],
+      "distractors": [
+        "Du als Anrufer",
+        "Die Polizei",
+        "Der Notarzt"
+      ],
+      "note": "Die Leitstelle fragt gezielt nach und gibt dir oft Anweisungen, etwa zur Herzdruckmassage. Leg erst auf, wenn sie das Gespräch beendet."
+    },
+    {
+      "id": "first-aid-006",
+      "prompt": "Wie prüfst du bei einer bewusstlosen Person die Atmung?",
+      "answer": "Sehen, hören, fühlen",
+      "accept": [
+        "Hören, sehen, fühlen"
+      ],
+      "distractors": [
+        "Puls am Handgelenk tasten",
+        "Spiegel vor den Mund",
+        "Pupillen prüfen"
+      ],
+      "note": "Kopf überstrecken, Kinn anheben, dann höchstens 10 Sekunden auf Brustkorb, Atemgeräusche und Luftstrom achten. Vereinzelte Schnappatmung zählt nicht als normale Atmung."
+    },
+    {
+      "id": "first-aid-007",
+      "prompt": "Bewusstlos, atmet aber normal: Wie lagerst du die Person?",
+      "answer": "Stabile Seitenlage",
+      "accept": [
+        "Seitenlage"
+      ],
+      "distractors": [
+        "Schocklage",
+        "Rückenlage",
+        "Oberkörper hoch"
+      ],
+      "note": "So bleiben die Atemwege frei und Erbrochenes kann abfließen. Prüfe danach regelmäßig die Atmung, bis der Rettungsdienst da ist."
+    },
+    {
+      "id": "first-aid-008",
+      "prompt": "Bewusstlos und keine normale Atmung: Was beginnst du nach dem Notruf sofort?",
+      "answer": "Herzdruckmassage",
+      "accept": [
+        "Wiederbelebung",
+        "Reanimation",
+        "HLW"
+      ],
+      "distractors": [
+        "Stabile Seitenlage",
+        "Schocklage",
+        "Abwarten"
+      ],
+      "note": "Wer nicht normal atmet, hat meist einen Kreislaufstillstand. Jede Minute ohne Druckmassage senkt die Überlebenschance deutlich, also fang sofort an."
+    },
+    {
+      "id": "first-aid-009",
+      "prompt": "Wo drückst du bei der Herzdruckmassage?",
+      "answer": "Mitte der Brust",
+      "accept": [
+        "Brustmitte",
+        "Brustbein",
+        "Unteres Brustbein"
+      ],
+      "distractors": [
+        "Linke Brustseite",
+        "Oberbauch",
+        "Direkt unter dem Hals"
+      ],
+      "note": "Handballen auf die untere Hälfte des Brustbeins, die zweite Hand darauf, Arme gestreckt. Das Herz liegt fast mittig, nicht links."
+    },
+    {
+      "id": "first-aid-010",
+      "prompt": "In welchem Tempo drückst du bei der Herzdruckmassage?",
+      "answer": "100 bis 120 pro Minute",
+      "accept": [
+        "100-120",
+        "100 bis 120"
+      ],
+      "distractors": [
+        "60 bis 80 pro Minute",
+        "80 bis 100 pro Minute",
+        "140 bis 160 pro Minute"
+      ],
+      "note": "Der Song „Stayin' Alive“ liegt mit rund 104 Schlägen genau im Bereich. Lass den Brustkorb nach jedem Druck vollständig zurückkommen."
+    },
+    {
+      "id": "first-aid-011",
+      "prompt": "Wie tief drückst du bei einem Erwachsenen?",
+      "answer": "5 bis 6 cm",
+      "accept": [
+        "5-6 cm",
+        "5 bis 6 Zentimeter"
+      ],
+      "distractors": [
+        "1 bis 2 cm",
+        "2 bis 3 cm",
+        "8 bis 10 cm"
+      ],
+      "note": "Das fühlt sich erschreckend tief an. Eine gebrochene Rippe ist aber viel weniger schlimm als eine zu zaghafte Massage."
+    },
+    {
+      "id": "first-aid-012",
+      "prompt": "In welchem Verhältnis wechseln sich Druckmassage und Beatmung ab?",
+      "answer": "30:2",
+      "accept": [
+        "30 zu 2"
+      ],
+      "distractors": [
+        "15:2",
+        "30:1",
+        "5:1"
+      ],
+      "note": "30-mal drücken, zweimal beatmen, immer so weiter. Kannst oder willst du nicht beatmen, drück einfach ohne Pause weiter, das ist viel besser als nichts."
+    },
+    {
+      "id": "first-aid-013",
+      "prompt": "Bis wann setzt du die Wiederbelebung fort?",
+      "answer": "Bis Profis übernehmen",
+      "accept": [
+        "Bis der Rettungsdienst kommt",
+        "Rettungsdienst übernimmt"
+      ],
+      "distractors": [
+        "Genau 5 Minuten lang",
+        "Nur 10 Durchgänge",
+        "Bis du einen Puls fühlst"
+      ],
+      "note": "Aufhören darfst du auch, wenn die Person wieder normal atmet oder du nicht mehr kannst. Seid ihr zu zweit, wechselt euch etwa alle zwei Minuten ab."
+    },
+    {
+      "id": "first-aid-014",
+      "prompt": "Welches Gerät aus Bahnhöfen und Einkaufszentren gibt Stromstöße bei Kammerflimmern?",
+      "answer": "Defibrillator",
+      "accept": [
+        "AED",
+        "Defi"
+      ],
+      "distractors": [
+        "Beatmungsgerät",
+        "EKG-Monitor",
+        "Herzschrittmacher"
+      ],
+      "note": "Ein AED sagt dir per Sprachanweisung jeden Schritt an und löst nur aus, wenn ein Schock nötig ist. Schick jemanden los, ihn zu holen, und drück weiter, bis er da ist."
+    },
+    {
+      "id": "first-aid-015",
+      "prompt": "Womit kühlst du eine kleine Verbrennung?",
+      "answer": "Handwarmes Wasser",
+      "accept": [
+        "Lauwarmes Wasser",
+        "Leitungswasser",
+        "Lauwarm"
+      ],
+      "distractors": [
+        "Eiswasser",
+        "Butter oder Öl",
+        "Mehl"
+      ],
+      "note": "Eis kann das Gewebe zusätzlich schädigen. Hausmittel wie Butter, Mehl oder Zahnpasta gehören nie auf eine Brandwunde."
+    },
+    {
+      "id": "first-aid-016",
+      "prompt": "Wie lange kühlst du eine kleine Verbrennung ungefähr?",
+      "answer": "Etwa 10 Minuten",
+      "accept": [
+        "10 Minuten",
+        "10 min",
+        "10 bis 20 Minuten"
+      ],
+      "distractors": [
+        "30 Sekunden",
+        "1 Minute",
+        "1 Stunde"
+      ],
+      "note": "Je nach Leitlinie sind es 10 bis 20 Minuten, und zwar nur bei kleinen Flächen, weil sonst Unterkühlung droht. Danach keimfrei abdecken und bei großen oder tiefen Verbrennungen die 112 rufen."
+    },
+    {
+      "id": "first-aid-017",
+      "prompt": "Was tust du zuerst bei einer stark blutenden Wunde am Arm?",
+      "answer": "Druck auf die Wunde",
+      "accept": [
+        "Druck ausüben",
+        "Draufdrücken",
+        "Druckverband"
+      ],
+      "distractors": [
+        "Wunde auswaschen",
+        "Arm nach unten halten",
+        "Pflaster aufkleben"
+      ],
+      "note": "Drück mit einer Kompresse oder notfalls einem sauberen Tuch fest auf die Wunde und leg dann einen Druckverband an. Einmalhandschuhe aus dem Verbandkasten schützen dich."
+    },
+    {
+      "id": "first-aid-018",
+      "prompt": "Wie heißt die Lagerung mit erhöhten Beinen bei Schockzeichen?",
+      "answer": "Schocklage",
+      "accept": [
+        "Beine hochlegen"
+      ],
+      "distractors": [
+        "Stabile Seitenlage",
+        "Oberkörperhochlage",
+        "Bauchlage"
+      ],
+      "note": "Nur bei Bewusstsein und ohne Verletzungen an Beinen, Becken oder Wirbelsäule und ohne Atemnot. Zudecken, beruhigen und nicht allein lassen gehört immer dazu."
+    },
+    {
+      "id": "first-aid-019",
+      "prompt": "Ein Erwachsener hat sich verschluckt und kann nicht mehr husten. Was machst du zuerst?",
+      "answer": "Schläge auf den Rücken",
+      "accept": [
+        "Rückenschläge",
+        "Rückenschlag"
+      ],
+      "distractors": [
+        "Wasser trinken lassen",
+        "Mund-zu-Mund-Beatmung",
+        "Flach hinlegen"
+      ],
+      "note": "Solange die Person kräftig hustet, ermutige sie nur weiterzuhusten. Wirkt das Husten nicht, gib bis zu fünf kräftige Schläge zwischen die Schulterblätter, danach bis zu fünf Oberbauchkompressionen im Wechsel."
+    },
+    {
+      "id": "first-aid-020",
+      "prompt": "Wie heißt der Griff, bei dem du von hinten ruckartig in den Oberbauch drückst?",
+      "answer": "Heimlich-Manöver",
+      "accept": [
+        "Heimlich-Griff",
+        "Heimlich",
+        "Oberbauchkompression"
+      ],
+      "distractors": [
+        "Rautek-Griff",
+        "Esmarch-Handgriff",
+        "Valsalva-Manöver"
+      ],
+      "note": "Er kann innere Verletzungen verursachen, deshalb muss die Person danach immer ärztlich untersucht werden. Bei Säuglingen wendest du ihn nicht an."
+    },
+    {
+      "id": "first-aid-021",
+      "prompt": "Mit welchem Griff ziehst du eine Person aus einer Gefahrenzone, etwa aus einem Auto?",
+      "answer": "Rautek-Rettungsgriff",
+      "accept": [
+        "Rautek-Griff",
+        "Rautekgriff",
+        "Rautek"
+      ],
+      "distractors": [
+        "Heimlich-Manöver",
+        "Esmarch-Handgriff",
+        "Feuerwehrgriff"
+      ],
+      "note": "Du greifst von hinten unter den Achseln durch und fasst einen Unterarm der Person. Wende ihn nur an, wenn akute Gefahr droht, etwa durch Feuer oder Verkehr."
+    },
+    {
+      "id": "first-aid-022",
+      "prompt": "Ein Motorradfahrer ist bewusstlos. Was machst du mit seinem Helm?",
+      "answer": "Abnehmen",
+      "accept": [
+        "Helm abnehmen"
+      ],
+      "distractors": [
+        "Aufbehalten",
+        "Nur das Visier öffnen",
+        "Auf die Polizei warten"
+      ],
+      "note": "Nur ohne Helm kannst du die Atemwege freimachen und die Atmung prüfen. Am besten zu zweit: Einer stützt den Kopf, der andere zieht den Helm vorsichtig ab."
+    },
+    {
+      "id": "first-aid-023",
+      "prompt": "Mit welchem Kurztest erkennst du einen Schlaganfall?",
+      "answer": "FAST",
+      "accept": [
+        "FAST-Test"
+      ],
+      "distractors": [
+        "ABC",
+        "PECH",
+        "SAMPLE"
+      ],
+      "note": "Face, Arms, Speech, Time: Hängt ein Mundwinkel, sinkt ein Arm ab, ist die Sprache verwaschen? Dann sofort die 112 rufen, denn bei einem Schlaganfall zählt jede Minute."
+    },
+    {
+      "id": "first-aid-024",
+      "prompt": "Was ist das typische Leitsymptom eines Herzinfarkts?",
+      "answer": "Brustschmerz",
+      "accept": [
+        "Schmerzen in der Brust",
+        "Druck auf der Brust",
+        "Engegefühl"
+      ],
+      "distractors": [
+        "Kopfschmerz",
+        "Fieber",
+        "Bauchkrämpfe"
+      ],
+      "note": "Oft strahlt er in Arm, Hals, Kiefer oder Rücken aus. Frauen haben häufiger untypische Zeichen wie Übelkeit oder Atemnot, deshalb im Zweifel immer die 112."
+    },
+    {
+      "id": "first-aid-025",
+      "prompt": "Wie hältst du den Kopf bei Nasenbluten?",
+      "answer": "Nach vorne beugen",
+      "accept": [
+        "Vorbeugen",
+        "Kopf nach vorne"
+      ],
+      "distractors": [
+        "In den Nacken legen",
+        "Flach hinlegen",
+        "Zur Seite drehen"
+      ],
+      "note": "Drück die Nasenflügel etwa 10 Minuten zusammen und kühl den Nacken. Legst du den Kopf in den Nacken, läuft Blut in den Magen und kann Übelkeit auslösen."
+    },
+    {
+      "id": "first-aid-026",
+      "prompt": "Was gibst du einem ansprechbaren Diabetiker mit Unterzuckerung?",
+      "answer": "Zucker",
+      "accept": [
+        "Traubenzucker",
+        "Saft",
+        "Cola",
+        "Süßes Getränk"
+      ],
+      "distractors": [
+        "Insulin",
+        "Wasser",
+        "Nichts"
+      ],
+      "note": "Traubenzucker oder ein zuckerhaltiges Getränk wirken schnell. Gib es nur, wenn die Person wach ist und sicher schlucken kann, sonst stabile Seitenlage und 112."
+    },
+    {
+      "id": "first-aid-027",
+      "prompt": "Was tust du während eines epileptischen Krampfanfalls?",
+      "answer": "Vor Verletzungen schützen",
+      "accept": [
+        "Schützen",
+        "Gegenstände wegräumen"
+      ],
+      "distractors": [
+        "Festhalten",
+        "Beißkeil in den Mund",
+        "Wasser geben"
+      ],
+      "note": "Räum harte Gegenstände weg, polstere den Kopf und miss die Zeit. Halt die Person nie fest, schieb ihr nichts zwischen die Zähne und ruf die 112, wenn der Anfall länger als 5 Minuten dauert."
+    },
+    {
+      "id": "first-aid-028",
+      "prompt": "Jemand hat Reinigungsmittel geschluckt. Was solltest du auf keinen Fall tun?",
+      "answer": "Erbrechen auslösen",
+      "accept": [
+        "Zum Erbrechen bringen",
+        "Erbrechen"
+      ],
+      "distractors": [
+        "Giftnotruf anrufen",
+        "Verpackung aufheben",
+        "Ruhe bewahren"
+      ],
+      "note": "Ätzende Stoffe verletzen die Speiseröhre beim Erbrechen ein zweites Mal, und Schaum kann in die Lunge geraten. Ruf den Giftnotruf oder die 112 an und halte die Verpackung bereit."
+    },
+    {
+      "id": "first-aid-029",
+      "prompt": "Wie gehst du mit einem vermuteten Knochenbruch um?",
+      "answer": "Ruhigstellen",
+      "accept": [
+        "Nicht bewegen",
+        "Stillhalten"
+      ],
+      "distractors": [
+        "Einrenken",
+        "Kräftig massieren",
+        "Bewegen und aufwärmen"
+      ],
+      "note": "Stütze die Stelle in der Lage, die die Person selbst gewählt hat, etwa mit Decken oder Kleidung. Das ganze Wissen hier ersetzt keinen echten Erste-Hilfe-Kurs, frische ihn alle paar Jahre auf."
+    },
+    {
+      "id": "first-aid-030",
+      "prompt": "Was muss in Deutschland neben dem Warndreieck in jedem Auto sein?",
+      "answer": "Verbandkasten",
+      "accept": [
+        "Verbandskasten",
+        "Erste-Hilfe-Kasten"
+      ],
+      "distractors": [
+        "Feuerlöscher",
+        "Abschleppseil",
+        "Taschenlampe"
+      ],
+      "note": "Seit 2014 ist außerdem eine Warnweste Pflicht. Pack sie griffbereit in den Innenraum, nicht in den Kofferraum."
+    }
+  ]
+}

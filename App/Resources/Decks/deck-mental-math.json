@@ -1,0 +1,357 @@
+{
+  "id": "mental-math",
+  "title": "Kopfrechnen",
+  "subtitle": "30 Aufgaben, jede schwerer, jede mit Trick",
+  "symbol": "×",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "mental-math-001",
+      "prompt": "Wie viel ist 7 × 8?",
+      "answer": "56",
+      "distractors": [
+        "48",
+        "54",
+        "58"
+      ],
+      "note": "Die Folge 5, 6, 7, 8 hilft: 56 = 7 × 8."
+    },
+    {
+      "id": "mental-math-002",
+      "prompt": "Wie viel ist 45 + 38?",
+      "answer": "83",
+      "distractors": [
+        "73",
+        "82",
+        "93"
+      ],
+      "note": "Runde auf: 45 + 40 = 85, dann 2 abziehen. Mit runden Zahlen rechnet der Kopf viel sicherer."
+    },
+    {
+      "id": "mental-math-003",
+      "prompt": "Wie viel ist 100 − 37?",
+      "answer": "63",
+      "distractors": [
+        "53",
+        "67",
+        "73"
+      ],
+      "note": "Ergänze von 37 aus: 3 bis 40, dann 60 bis 100, zusammen 63. So zählen Kassierer das Wechselgeld ab."
+    },
+    {
+      "id": "mental-math-004",
+      "prompt": "Wie viel ist 10 % von 250?",
+      "answer": "25",
+      "distractors": [
+        "2,5",
+        "20",
+        "50"
+      ],
+      "note": "10 Prozent heißt: Komma eine Stelle nach links. Daraus baust du alles andere, 5 % ist die Hälfte davon, 20 % das Doppelte."
+    },
+    {
+      "id": "mental-math-005",
+      "prompt": "Wie viel ist 48 × 5?",
+      "answer": "240",
+      "distractors": [
+        "220",
+        "245",
+        "250"
+      ],
+      "note": "Mal 5 heißt mal 10 und dann halbieren: 480 ÷ 2 = 240."
+    },
+    {
+      "id": "mental-math-006",
+      "prompt": "Wie viel ist 17 × 6?",
+      "answer": "102",
+      "distractors": [
+        "96",
+        "108",
+        "112"
+      ],
+      "note": "Zerlege die Zahl: 10 × 6 = 60 und 7 × 6 = 42, zusammen 102."
+    },
+    {
+      "id": "mental-math-007",
+      "prompt": "Wie viel ist 144 ÷ 12?",
+      "answer": "12",
+      "distractors": [
+        "11",
+        "13",
+        "14"
+      ],
+      "note": "12 × 12 = 144, das sogenannte Gros. Wer die Quadratzahlen bis 20² auswendig kennt, spart ständig Zeit."
+    },
+    {
+      "id": "mental-math-008",
+      "prompt": "Wie viel ist 25 × 16?",
+      "answer": "400",
+      "distractors": [
+        "350",
+        "380",
+        "425"
+      ],
+      "note": "25 ist ein Viertel von 100: 16 ÷ 4 = 4, also 400. Mal 25 heißt immer durch 4 und mal 100."
+    },
+    {
+      "id": "mental-math-009",
+      "prompt": "Wie viel ist 15 % von 80?",
+      "answer": "12",
+      "distractors": [
+        "8",
+        "13",
+        "16"
+      ],
+      "note": "10 % sind 8, 5 % die Hälfte davon, also 4. Zusammen 12, der klassische Trinkgeld-Trick."
+    },
+    {
+      "id": "mental-math-010",
+      "prompt": "Wie viel ist 360 ÷ 8?",
+      "answer": "45",
+      "distractors": [
+        "40",
+        "42",
+        "48"
+      ],
+      "note": "Dreimal halbieren: 180, 90, 45. Durch 8 ist nichts anderes als dreimal durch 2."
+    },
+    {
+      "id": "mental-math-011",
+      "prompt": "Wie viel ist 1,5 × 18?",
+      "answer": "27",
+      "distractors": [
+        "24",
+        "26",
+        "28"
+      ],
+      "note": "18 plus die Hälfte von 18: 18 + 9 = 27. Mal 1,5 heißt immer die Zahl plus ihre Hälfte."
+    },
+    {
+      "id": "mental-math-012",
+      "prompt": "Wie viel ist 20 % von 45?",
+      "answer": "9",
+      "distractors": [
+        "4,5",
+        "8",
+        "11"
+      ],
+      "note": "10 % sind 4,5, das Doppelte davon ist 9. Alternativ: 20 % sind ein Fünftel, und 45 ÷ 5 = 9."
+    },
+    {
+      "id": "mental-math-013",
+      "prompt": "Wie viel ist 47 + 36 + 53?",
+      "answer": "136",
+      "distractors": [
+        "126",
+        "134",
+        "146"
+      ],
+      "note": "Such Partner, die runde Zahlen ergeben: 47 + 53 = 100, plus 36 macht 136. Beim Addieren ist die Reihenfolge egal."
+    },
+    {
+      "id": "mental-math-014",
+      "prompt": "Wie viel ist 11 × 43?",
+      "answer": "473",
+      "distractors": [
+        "443",
+        "463",
+        "483"
+      ],
+      "note": "Elfertrick: Zieh die Ziffern auseinander und setz ihre Summe in die Mitte. 4, dann 4 + 3 = 7, dann 3 ergibt 473."
+    },
+    {
+      "id": "mental-math-015",
+      "prompt": "Wie viel ist 99 × 7?",
+      "answer": "693",
+      "distractors": [
+        "683",
+        "697",
+        "703"
+      ],
+      "note": "Rechne 100 × 7 = 700 und zieh einmal 7 ab. Mal 99 ist immer mal 100 minus einmal die Zahl."
+    },
+    {
+      "id": "mental-math-016",
+      "prompt": "Wie viel ist 1000 − 347?",
+      "answer": "653",
+      "distractors": [
+        "643",
+        "663",
+        "753"
+      ],
+      "note": "Ergänze jede Ziffer auf 9 und die letzte auf 10: aus 3, 4, 7 wird 6, 5, 3. So klappt jede Differenz zu einer Zehnerpotenz."
+    },
+    {
+      "id": "mental-math-017",
+      "prompt": "Wie viel ist 3/4 von 120?",
+      "answer": "90",
+      "distractors": [
+        "80",
+        "85",
+        "96"
+      ],
+      "note": "Ein Viertel ist 30, drei Viertel sind 90. Erst durch den Nenner teilen, dann mit dem Zähler malnehmen."
+    },
+    {
+      "id": "mental-math-018",
+      "prompt": "Wie viel ist 13²?",
+      "answer": "169",
+      "distractors": [
+        "139",
+        "159",
+        "196"
+      ],
+      "note": "(10 + 3)² = 100 + 60 + 9 = 169. Nicht verwechseln: 196 ist 14²."
+    },
+    {
+      "id": "mental-math-019",
+      "prompt": "Wie viel ist 0,5 × 0,4?",
+      "answer": "0,2",
+      "accept": [
+        "0.2",
+        "0,20"
+      ],
+      "distractors": [
+        "0,02",
+        "0,9",
+        "2"
+      ],
+      "note": "Mal 0,5 ist dasselbe wie halbieren: die Hälfte von 0,4 ist 0,2. Oder 5 × 4 = 20 und dann zwei Nachkommastellen setzen."
+    },
+    {
+      "id": "mental-math-020",
+      "prompt": "Wie viel ist 72 ÷ 0,5?",
+      "answer": "144",
+      "distractors": [
+        "36",
+        "142",
+        "154"
+      ],
+      "note": "Durch ein Halb teilen heißt verdoppeln. Wer das mit Halbieren verwechselt, landet bei 36."
+    },
+    {
+      "id": "mental-math-021",
+      "prompt": "Wie viel ist 8 % von 25?",
+      "answer": "2",
+      "distractors": [
+        "0,2",
+        "2,5",
+        "4"
+      ],
+      "note": "Prozent lassen sich tauschen: 8 % von 25 ist dasselbe wie 25 % von 8, also ein Viertel von 8."
+    },
+    {
+      "id": "mental-math-022",
+      "prompt": "Wie viel ist 23 × 21?",
+      "answer": "483",
+      "distractors": [
+        "463",
+        "473",
+        "493"
+      ],
+      "note": "23 × 20 = 460, dann noch einmal 23 dazu: 483. Zahlen knapp über einer runden Zahl zerlegst du am besten so."
+    },
+    {
+      "id": "mental-math-023",
+      "prompt": "Wie viel ist 25²?",
+      "answer": "625",
+      "distractors": [
+        "525",
+        "600",
+        "650"
+      ],
+      "note": "Zahlen mit 5 am Ende quadrierst du so: vordere Ziffer mal ihren Nachfolger, 2 × 3 = 6, dann 25 anhängen. Das ergibt 625."
+    },
+    {
+      "id": "mental-math-024",
+      "prompt": "Wie viel ist 12,5 % von 64?",
+      "answer": "8",
+      "distractors": [
+        "6",
+        "7,5",
+        "12"
+      ],
+      "note": "12,5 % ist ein Achtel. Diese Brüche lohnen sich: 25 % sind ein Viertel, 12,5 % ein Achtel, 20 % ein Fünftel."
+    },
+    {
+      "id": "mental-math-025",
+      "prompt": "Wie viel ist 125 × 8?",
+      "answer": "1000",
+      "accept": [
+        "1.000",
+        "1 000"
+      ],
+      "distractors": [
+        "900",
+        "1025",
+        "1200"
+      ],
+      "note": "125 ist ein Achtel von 1000. Mal 125 heißt deshalb mal 1000 und durch 8."
+    },
+    {
+      "id": "mental-math-026",
+      "prompt": "Wie viel ist √196?",
+      "answer": "14",
+      "distractors": [
+        "13",
+        "16",
+        "18"
+      ],
+      "note": "196 liegt zwischen 13² = 169 und 15² = 225. Endet ein Quadrat auf 6, endet die Wurzel auf 4 oder 6, also 14."
+    },
+    {
+      "id": "mental-math-027",
+      "prompt": "Wie viel ist 19²?",
+      "answer": "361",
+      "distractors": [
+        "351",
+        "371",
+        "381"
+      ],
+      "note": "(20 − 1)² = 400 − 40 + 1 = 361. Knapp unter runden Zahlen lohnt sich die binomische Formel."
+    },
+    {
+      "id": "mental-math-028",
+      "prompt": "Wie viel ist 2¹⁰?",
+      "answer": "1024",
+      "accept": [
+        "1.024"
+      ],
+      "distractors": [
+        "512",
+        "1000",
+        "2048"
+      ],
+      "note": "Merk dir 2¹⁰ ≈ 1000. Damit ist 2²⁰ ungefähr eine Million, praktisch für Speichergrößen und Wahrscheinlichkeiten."
+    },
+    {
+      "id": "mental-math-029",
+      "prompt": "Wie viel ist 98 × 102?",
+      "answer": "9996",
+      "accept": [
+        "9.996",
+        "9 996"
+      ],
+      "distractors": [
+        "9904",
+        "9994",
+        "10004"
+      ],
+      "note": "(100 − 2)(100 + 2) = 100² − 2² = 10000 − 4. Die dritte binomische Formel macht solche Paare zum Einzeiler."
+    },
+    {
+      "id": "mental-math-030",
+      "prompt": "Wie viel ist 85²?",
+      "answer": "7225",
+      "accept": [
+        "7.225"
+      ],
+      "distractors": [
+        "7025",
+        "7250",
+        "7325"
+      ],
+      "note": "Derselbe Trick wie bei 25²: 8 × 9 = 72, dann 25 anhängen. Das klappt bei jeder Zahl, die auf 5 endet."
+    }
+  ]
+}

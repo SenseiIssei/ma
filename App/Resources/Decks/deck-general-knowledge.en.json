@@ -1,0 +1,398 @@
+{
+  "id": "general-knowledge",
+  "locale": "en",
+  "title": "General Knowledge",
+  "subtitle": "A bit of everything worth knowing",
+  "symbol": "?",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "general-knowledge-001",
+      "prompt": "How many continents are there in the most common count?",
+      "answer": "7",
+      "accept": [
+        "Seven"
+      ],
+      "distractors": [
+        "5",
+        "6",
+        "8"
+      ],
+      "note": "Africa, Antarctica, Asia, Australia, Europe, North America and South America. Some countries count the Americas as one continent and arrive at six."
+    },
+    {
+      "id": "general-knowledge-002",
+      "prompt": "Which is the largest ocean on Earth?",
+      "answer": "Pacific Ocean",
+      "accept": [
+        "Pacific"
+      ],
+      "distractors": [
+        "Atlantic Ocean",
+        "Indian Ocean",
+        "Arctic Ocean"
+      ],
+      "note": "It covers about a third of the Earth's surface, more than all the land put together."
+    },
+    {
+      "id": "general-knowledge-003",
+      "prompt": "Who painted the Mona Lisa?",
+      "answer": "Leonardo da Vinci",
+      "accept": [
+        "Da Vinci",
+        "Leonardo"
+      ],
+      "distractors": [
+        "Michelangelo",
+        "Raphael",
+        "Botticelli"
+      ],
+      "note": "It hangs in the Louvre in Paris behind bulletproof glass. A theft in 1911 is what really made it world famous."
+    },
+    {
+      "id": "general-knowledge-004",
+      "prompt": "Which is the highest mountain on Earth above sea level?",
+      "answer": "Mount Everest",
+      "accept": [
+        "Everest",
+        "Chomolungma"
+      ],
+      "distractors": [
+        "K2",
+        "Kangchenjunga",
+        "Lhotse"
+      ],
+      "note": "It stands about 8,849 metres tall. Measured from the Earth's centre, Chimborazo in Ecuador wins, because the Earth bulges at the equator."
+    },
+    {
+      "id": "general-knowledge-005",
+      "prompt": "Which river is traditionally considered the longest in the world?",
+      "answer": "Nile",
+      "accept": [
+        "The Nile"
+      ],
+      "distractors": [
+        "Amazon",
+        "Yangtze",
+        "Mississippi"
+      ],
+      "note": "At about 6,650 km the Nile usually comes first, though some measurements put the Amazon slightly ahead. The Amazon clearly carries the most water."
+    },
+    {
+      "id": "general-knowledge-006",
+      "prompt": "How many bones does an adult human have?",
+      "answer": "206",
+      "distractors": [
+        "186",
+        "216",
+        "306"
+      ],
+      "note": "Babies are born with around 300 bone elements. Many of them fuse during childhood, for example in the skull."
+    },
+    {
+      "id": "general-knowledge-007",
+      "prompt": "Who wrote the German drama \"Faust\"?",
+      "answer": "Johann Wolfgang von Goethe",
+      "accept": [
+        "Goethe"
+      ],
+      "distractors": [
+        "Friedrich Schiller",
+        "Heinrich Heine",
+        "Gotthold Ephraim Lessing"
+      ],
+      "note": "Goethe worked on it for about 60 years. Faust Part Two was only published in 1832, shortly after his death."
+    },
+    {
+      "id": "general-knowledge-008",
+      "prompt": "What is the chemical symbol for gold?",
+      "answer": "Au",
+      "distractors": [
+        "Ag",
+        "Go",
+        "Gd"
+      ],
+      "note": "Au comes from the Latin aurum. The similar-looking Ag is silver, from argentum."
+    },
+    {
+      "id": "general-knowledge-009",
+      "prompt": "How many players of a football team are on the pitch at once?",
+      "answer": "11",
+      "accept": [
+        "Eleven"
+      ],
+      "distractors": [
+        "9",
+        "10",
+        "12"
+      ],
+      "note": "Ten outfield players plus the goalkeeper. If sendings-off leave a team with fewer than seven, the match is abandoned."
+    },
+    {
+      "id": "general-knowledge-010",
+      "prompt": "How many keys does a standard piano have?",
+      "answer": "88",
+      "distractors": [
+        "76",
+        "86",
+        "96"
+      ],
+      "note": "52 white and 36 black keys, spread over a little more than seven octaves."
+    },
+    {
+      "id": "general-knowledge-011",
+      "prompt": "What is the largest animal on Earth?",
+      "answer": "Blue whale",
+      "distractors": [
+        "Fin whale",
+        "Sperm whale",
+        "Whale shark"
+      ],
+      "note": "It grows up to about 30 metres long and over 150 tonnes. That makes it bigger than any known dinosaur."
+    },
+    {
+      "id": "general-knowledge-012",
+      "prompt": "Which language has the most native speakers?",
+      "answer": "Mandarin",
+      "accept": [
+        "Mandarin Chinese",
+        "Chinese"
+      ],
+      "distractors": [
+        "English",
+        "Spanish",
+        "Hindi"
+      ],
+      "note": "Roughly 900 million people speak Mandarin as their first language. Count second-language speakers too and English comes first."
+    },
+    {
+      "id": "general-knowledge-013",
+      "prompt": "How many seconds are there in a day?",
+      "answer": "86400",
+      "accept": [
+        "86,400",
+        "86 400"
+      ],
+      "distractors": [
+        "84600",
+        "86000",
+        "864000"
+      ],
+      "note": "24 × 60 × 60 gives 86,400. The number shows up constantly in programming, for example when converting timestamps into days."
+    },
+    {
+      "id": "general-knowledge-014",
+      "prompt": "How many squares does a chessboard have?",
+      "answer": "64",
+      "distractors": [
+        "49",
+        "72",
+        "81"
+      ],
+      "note": "8 × 8 squares. The legend of the grain of rice that doubles on every square shows how fast exponential growth explodes."
+    },
+    {
+      "id": "general-knowledge-015",
+      "prompt": "Who composed the \"Moonlight Sonata\"?",
+      "answer": "Ludwig van Beethoven",
+      "accept": [
+        "Beethoven"
+      ],
+      "distractors": [
+        "Wolfgang Amadeus Mozart",
+        "Frédéric Chopin",
+        "Franz Schubert"
+      ],
+      "note": "Piano Sonata No. 14 only got its nickname after Beethoven's death, from the poet Ludwig Rellstab."
+    },
+    {
+      "id": "general-knowledge-016",
+      "prompt": "Which country has the largest population?",
+      "answer": "India",
+      "distractors": [
+        "China",
+        "United States",
+        "Indonesia"
+      ],
+      "note": "According to UN estimates, India overtook China in 2023. Both countries have a little over 1.4 billion people."
+    },
+    {
+      "id": "general-knowledge-017",
+      "prompt": "Which is the largest country on Earth by area?",
+      "answer": "Russia",
+      "distractors": [
+        "Canada",
+        "China",
+        "United States"
+      ],
+      "note": "Russia spans eleven time zones and is about 1.7 times the size of Canada in second place."
+    },
+    {
+      "id": "general-knowledge-018",
+      "prompt": "In which city does the famous leaning tower stand?",
+      "answer": "Pisa",
+      "distractors": [
+        "Florence",
+        "Siena",
+        "Bologna"
+      ],
+      "note": "It started to lean during construction in the 12th century because the ground is too soft. Extensive repairs around the year 2000 reduced the tilt."
+    },
+    {
+      "id": "general-knowledge-019",
+      "prompt": "How many strings does a standard guitar have?",
+      "answer": "6",
+      "accept": [
+        "Six"
+      ],
+      "distractors": [
+        "4",
+        "5",
+        "8"
+      ],
+      "note": "Standard tuning from low to high is E A D G B E. Mnemonic: \"Eddie Ate Dynamite, Good Bye Eddie.\""
+    },
+    {
+      "id": "general-knowledge-020",
+      "prompt": "What is the currency of Japan?",
+      "answer": "Yen",
+      "accept": [
+        "Japanese yen"
+      ],
+      "distractors": [
+        "Won",
+        "Yuan",
+        "Ringgit"
+      ],
+      "note": "The character 円 means \"round\". The Korean won and the Chinese yuan go back to the same character."
+    },
+    {
+      "id": "general-knowledge-021",
+      "prompt": "Who developed the theory of relativity?",
+      "answer": "Albert Einstein",
+      "accept": [
+        "Einstein"
+      ],
+      "distractors": [
+        "Isaac Newton",
+        "Max Planck",
+        "Niels Bohr"
+      ],
+      "note": "His 1921 Nobel Prize was not for relativity, though, but for explaining the photoelectric effect."
+    },
+    {
+      "id": "general-knowledge-022",
+      "prompt": "How many colours does a rainbow have in the classic division?",
+      "answer": "7",
+      "accept": [
+        "Seven"
+      ],
+      "distractors": [
+        "5",
+        "6",
+        "8"
+      ],
+      "note": "Red, orange, yellow, green, blue, indigo and violet. The number seven goes back to Isaac Newton; in reality the spectrum is continuous."
+    },
+    {
+      "id": "general-knowledge-023",
+      "prompt": "What is the largest organ of the human body?",
+      "answer": "Skin",
+      "accept": [
+        "The skin"
+      ],
+      "distractors": [
+        "Liver",
+        "Lungs",
+        "Intestine"
+      ],
+      "note": "In adults it covers about 1.5 to 2 square metres. The largest internal organ is the liver."
+    },
+    {
+      "id": "general-knowledge-024",
+      "prompt": "How many federal states does Germany have?",
+      "answer": "16",
+      "accept": [
+        "Sixteen"
+      ],
+      "distractors": [
+        "12",
+        "15",
+        "18"
+      ],
+      "note": "Three of them are city states: Berlin, Hamburg and Bremen."
+    },
+    {
+      "id": "general-knowledge-025",
+      "prompt": "On which continent is the Sahara?",
+      "answer": "Africa",
+      "distractors": [
+        "Asia",
+        "Australia",
+        "South America"
+      ],
+      "note": "It is the largest hot desert on Earth. Strictly speaking, Antarctica is the largest desert, because it gets almost no precipitation."
+    },
+    {
+      "id": "general-knowledge-026",
+      "prompt": "Who wrote \"Romeo and Juliet\"?",
+      "answer": "William Shakespeare",
+      "accept": [
+        "Shakespeare"
+      ],
+      "distractors": [
+        "Christopher Marlowe",
+        "Charles Dickens",
+        "Oscar Wilde"
+      ],
+      "note": "The play is set in Verona. Shakespeare did not invent the story; he adapted it from older Italian novellas."
+    },
+    {
+      "id": "general-knowledge-027",
+      "prompt": "Which metal is liquid at room temperature?",
+      "answer": "Mercury",
+      "distractors": [
+        "Lead",
+        "Tin",
+        "Gallium"
+      ],
+      "note": "Its chemical symbol is Hg. Gallium melts at just under 30 °C, so in your hand, but at room temperature it is still solid."
+    },
+    {
+      "id": "general-knowledge-028",
+      "prompt": "How many days does a leap year have?",
+      "answer": "366",
+      "distractors": [
+        "364",
+        "365",
+        "367"
+      ],
+      "note": "Rule of thumb: years divisible by 4 are leap years, but full centuries only if divisible by 400. That is why 2000 was a leap year and 1900 was not."
+    },
+    {
+      "id": "general-knowledge-029",
+      "prompt": "In which country is the Inca city of Machu Picchu?",
+      "answer": "Peru",
+      "distractors": [
+        "Bolivia",
+        "Chile",
+        "Ecuador"
+      ],
+      "note": "It was built high in the Andes in the 15th century. The Spanish conquerors never found it, which is why it is so well preserved."
+    },
+    {
+      "id": "general-knowledge-030",
+      "prompt": "What is Edvard Munch's most famous picture called?",
+      "answer": "The Scream",
+      "accept": [
+        "Scream"
+      ],
+      "distractors": [
+        "The Starry Night",
+        "The Kiss",
+        "Girl with a Pearl Earring"
+      ],
+      "note": "Munch made several versions as paintings, pastels and lithographs. You can see them in Oslo, at the National Museum and the Munch Museum."
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "id": "korean-hangul",
+  "locale": "en",
+  "title": "Korean: Hangul",
+  "subtitle": "Read the basic letters and your first syllables",
+  "symbol": "한",
+  "category": "languages",
+  "language": "ko",
+  "cards": [
+    {
+      "id": "korean-hangul-001",
+      "prompt": "ㄱ",
+      "answer": "g",
+      "accept": ["k"],
+      "distractors": ["n", "kk", "d"],
+      "note": "Shows the tongue's shape for g: the back of the tongue rises to the soft palate. At the end of a syllable it sounds like k, as in 한국 (Hanguk)."
+    },
+    {
+      "id": "korean-hangul-002",
+      "prompt": "ㄴ",
+      "answer": "n",
+      "distractors": ["d", "r", "m"],
+      "note": "The shape shows the tongue tip touching behind the upper teeth: n. Think of a nose in profile."
+    },
+    {
+      "id": "korean-hangul-003",
+      "prompt": "ㄷ",
+      "answer": "d",
+      "accept": ["t"],
+      "distractors": ["n", "r", "tt"],
+      "note": "Like ㄴ with a lid on top: n becomes d. At the start of a word it sounds between d and t, softer than an English t."
+    },
+    {
+      "id": "korean-hangul-004",
+      "prompt": "ㄹ",
+      "answer": "r",
+      "accept": ["l"],
+      "distractors": ["n", "d", "ng"],
+      "note": "A zigzag like a fluttering tongue: between vowels it's a tapped r, at the end of a syllable an l, as in 서울 (Seoul)."
+    },
+    {
+      "id": "korean-hangul-005",
+      "prompt": "ㅁ",
+      "answer": "m",
+      "distractors": ["b", "ng", "p"],
+      "note": "A square like a closed mouth: you say m with your lips shut."
+    },
+    {
+      "id": "korean-hangul-006",
+      "prompt": "ㅂ",
+      "answer": "b",
+      "accept": ["p"],
+      "distractors": ["m", "pp", "s"],
+      "note": "A bucket with two handles: b. It's ㅁ with ears, and both sounds are made with the lips."
+    },
+    {
+      "id": "korean-hangul-007",
+      "prompt": "ㅅ",
+      "answer": "s",
+      "distractors": ["j", "ch", "ss"],
+      "note": "A tooth with air hissing past it: s. Before i it sounds like sh, as in 시 (si)."
+    },
+    {
+      "id": "korean-hangul-008",
+      "prompt": "ㅇ",
+      "answer": "ng",
+      "distractors": ["m", "h", "o"],
+      "note": "A circle that is silent at the start of a syllable and just holds the place, as in 아 (a). At the end of a syllable it sounds like the ng in \"song\"."
+    },
+    {
+      "id": "korean-hangul-009",
+      "prompt": "ㅈ",
+      "answer": "j",
+      "distractors": ["ch", "s", "jj"],
+      "note": "Like ㅅ with a lid on top: j as in \"jeans\". Add one more stroke and it becomes ㅊ (ch)."
+    },
+    {
+      "id": "korean-hangul-010",
+      "prompt": "ㅊ",
+      "answer": "ch",
+      "distractors": ["j", "s", "h"],
+      "note": "ㅈ with a little hat: an aspirated ch with a puff of air. The hat is the extra breath."
+    },
+    {
+      "id": "korean-hangul-011",
+      "prompt": "ㅋ",
+      "answer": "k",
+      "distractors": ["g", "kk", "h"],
+      "note": "ㄱ with an extra stroke: the stroke is a puff of air, so a strongly aspirated k."
+    },
+    {
+      "id": "korean-hangul-012",
+      "prompt": "ㅌ",
+      "answer": "t",
+      "distractors": ["d", "tt", "ch"],
+      "note": "ㄷ with an extra stroke in the middle: again the puff of air, so an aspirated t."
+    },
+    {
+      "id": "korean-hangul-013",
+      "prompt": "ㅍ",
+      "answer": "p",
+      "distractors": ["b", "pp", "h"],
+      "note": "Looks like a table with two legs: the aspirated p, the stronger sibling of ㅂ (b)."
+    },
+    {
+      "id": "korean-hangul-014",
+      "prompt": "ㅎ",
+      "answer": "h",
+      "distractors": ["ng", "ch", "p"],
+      "note": "A circle wearing a hat with a brim: h for hat."
+    },
+    {
+      "id": "korean-hangul-015",
+      "prompt": "ㅏ",
+      "answer": "a",
+      "distractors": ["eo", "ya", "o"],
+      "note": "The short branch points right: a as in \"father\". If it points left, it's ㅓ (eo)."
+    },
+    {
+      "id": "korean-hangul-016",
+      "prompt": "ㅑ",
+      "answer": "ya",
+      "distractors": ["yeo", "a", "yo"],
+      "note": "Like ㅏ but with two branches: a second stroke always adds a y in front, so ya."
+    },
+    {
+      "id": "korean-hangul-017",
+      "prompt": "ㅓ",
+      "answer": "eo",
+      "distractors": ["a", "o", "yeo"],
+      "note": "The branch points left: eo, close to the u in \"up\" with slightly rounder lips. Compare ㅏ (a), whose branch points right."
+    },
+    {
+      "id": "korean-hangul-018",
+      "prompt": "ㅕ",
+      "answer": "yeo",
+      "distractors": ["ya", "eo", "yo"],
+      "note": "ㅓ with two branches: add the y, so yeo, roughly like \"yuh\" with rounder lips."
+    },
+    {
+      "id": "korean-hangul-019",
+      "prompt": "ㅗ",
+      "answer": "o",
+      "distractors": ["u", "eo", "yo"],
+      "note": "The branch points up: o as in \"go\", with rounded lips. If it points down, it's ㅜ (u)."
+    },
+    {
+      "id": "korean-hangul-020",
+      "prompt": "ㅛ",
+      "answer": "yo",
+      "distractors": ["o", "yu", "ya"],
+      "note": "ㅗ with two branches pointing up: add y, so yo as in \"yoga\"."
+    },
+    {
+      "id": "korean-hangul-021",
+      "prompt": "ㅜ",
+      "answer": "u",
+      "distractors": ["o", "eu", "yu"],
+      "note": "The branch points down: u as in \"moon\". Think: u for under."
+    },
+    {
+      "id": "korean-hangul-022",
+      "prompt": "ㅠ",
+      "answer": "yu",
+      "distractors": ["u", "yo", "eu"],
+      "note": "ㅜ with two branches pointing down: yu as in \"you\"."
+    },
+    {
+      "id": "korean-hangul-023",
+      "prompt": "ㅡ",
+      "answer": "eu",
+      "distractors": ["u", "i", "eo"],
+      "note": "A flat line like a mouth pulled wide: eu is an oo sound with your lips spread instead of rounded."
+    },
+    {
+      "id": "korean-hangul-024",
+      "prompt": "ㅣ",
+      "answer": "i",
+      "distractors": ["eu", "e", "ya"],
+      "note": "An upright stroke, a person standing: i as in \"ski\". The inventors of the script really meant it to stand for a human."
+    },
+    {
+      "id": "korean-hangul-025",
+      "prompt": "ㅐ",
+      "answer": "ae",
+      "distractors": ["e", "a", "eo"],
+      "note": "ㅏ plus ㅣ gives ae, said like the e in \"bed\". The small branch sits between the two vertical lines."
+    },
+    {
+      "id": "korean-hangul-026",
+      "prompt": "ㅔ",
+      "answer": "e",
+      "distractors": ["ae", "eo", "i"],
+      "note": "ㅓ plus ㅣ gives e as in \"bet\". Here the small branch sits outside on the left; in ㅐ (ae) it's between the lines."
+    },
+    {
+      "id": "korean-hangul-027",
+      "prompt": "한",
+      "answer": "han",
+      "distractors": ["hang", "nan", "hal"],
+      "note": "ㅎ (h) and ㅏ (a) side by side, with ㄴ (n) underneath: han. It's in 한글 (Hangeul) and 한국 (Hanguk), Korea."
+    },
+    {
+      "id": "korean-hangul-028",
+      "prompt": "글",
+      "answer": "geul",
+      "accept": ["keul", "kul"],
+      "distractors": ["gol", "geun", "gil"],
+      "note": "ㄱ (g) above ㅡ (eu), with ㄹ at the bottom, which sounds like l at the end: geul. It means writing or script."
+    },
+    {
+      "id": "korean-hangul-029",
+      "prompt": "서울",
+      "answer": "seoul",
+      "distractors": ["soeul", "seoil", "suul"],
+      "note": "서 is ㅅ plus ㅓ (seo), 울 is ㅇ plus ㅜ plus ㄹ (ul). Say it in two syllables, not like English \"soul\"."
+    },
+    {
+      "id": "korean-hangul-030",
+      "prompt": "사랑",
+      "answer": "sarang",
+      "distractors": ["salang", "saran", "sarong"],
+      "note": "ㅅ plus ㅏ, then ㄹ plus ㅏ plus ㅇ: love. The ㄹ sits between vowels, so it's romanized as r."
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "id": "french-basics",
+  "locale": "en",
+  "title": "French: Basics",
+  "subtitle": "30 starter words with pronunciation tips",
+  "symbol": "Ç",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "french-basics-001",
+      "prompt": "hello, good day",
+      "answer": "bonjour",
+      "accept": ["salut"],
+      "distractors": ["bonsoir", "bonne nuit", "merci"],
+      "example": "Il dit bonjour à tout le monde.",
+      "note": "The n isn't pronounced, it just makes the vowel nasal: bohn-ZHOOR. The j sounds like the s in \"measure\"."
+    },
+    {
+      "id": "french-basics-002",
+      "prompt": "thank you",
+      "answer": "merci",
+      "distractors": ["pardon", "bonjour", "mercredi"],
+      "example": "Encore merci pour le cadeau.",
+      "note": "Stress the last syllable: mehr-SEE. The French r is a soft gargle at the back of the throat."
+    },
+    {
+      "id": "french-basics-003",
+      "prompt": "please",
+      "answer": "s'il vous plaît",
+      "accept": ["s'il te plaît"],
+      "distractors": ["de rien", "merci", "pardon"],
+      "example": "Un café, s'il vous plaît.",
+      "note": "Literally \"if it pleases you\". With friends say s'il te plaît; the final t of plaît stays silent."
+    },
+    {
+      "id": "french-basics-004",
+      "prompt": "sorry, excuse me",
+      "answer": "pardon",
+      "accept": ["excusez-moi"],
+      "distractors": ["perdu", "merci", "de rien"],
+      "example": "Oh, pardon, je ne vous avais pas vu.",
+      "note": "Said the French way: par-DOHN, with a nasal o and no real n. To get someone's attention, use excusez-moi."
+    },
+    {
+      "id": "french-basics-005",
+      "prompt": "yes",
+      "answer": "oui",
+      "distractors": ["non", "nous", "où"],
+      "example": "Je crois que oui.",
+      "note": "Sounds like \"we\". To contradict a negative question, answer si: Tu n'as pas faim ? Si !"
+    },
+    {
+      "id": "french-basics-006",
+      "prompt": "water",
+      "answer": "l'eau",
+      "accept": ["eau"],
+      "distractors": ["le lait", "l'air", "le vin"],
+      "example": "Je voudrais de l'eau, s'il vous plaît.",
+      "note": "Sounds just like \"oh\". Eau is feminine: l'eau minérale, l'eau froide."
+    },
+    {
+      "id": "french-basics-007",
+      "prompt": "bread",
+      "answer": "le pain",
+      "accept": ["pain"],
+      "distractors": ["la main", "le pont", "le bain"],
+      "example": "J'achète le pain à la boulangerie.",
+      "note": "The ain becomes a nasal vowel with no real n, roughly \"pan\" said through the nose. You buy it at the boulangerie."
+    },
+    {
+      "id": "french-basics-008",
+      "prompt": "friend",
+      "answer": "l'ami",
+      "accept": ["ami", "l'amie", "amie"],
+      "distractors": ["l'amour", "l'homme", "l'âme"],
+      "example": "C'est l'ami de ma sœur.",
+      "note": "A female friend is l'amie, pronounced exactly the same. Mon petit ami means my boyfriend."
+    },
+    {
+      "id": "french-basics-009",
+      "prompt": "to eat",
+      "answer": "manger",
+      "distractors": ["ranger", "changer", "boire"],
+      "example": "On va manger au restaurant.",
+      "note": "The g before e is soft like the s in \"measure\", and the final r is silent: mahn-ZHAY."
+    },
+    {
+      "id": "french-basics-010",
+      "prompt": "to drink",
+      "answer": "boire",
+      "distractors": ["voir", "manger", "croire"],
+      "example": "Tu veux boire quelque chose ?",
+      "note": "oi sounds like \"wa\": bwahr. Je bois, tu bois and il boit all sound the same."
+    },
+    {
+      "id": "french-basics-011",
+      "prompt": "to speak",
+      "answer": "parler",
+      "distractors": ["partir", "parier", "écouter"],
+      "example": "Tu peux parler plus lentement ?",
+      "note": "In verbs ending in -er the final r is silent: par-LAY. Parlez-vous anglais ? asks whether someone speaks English."
+    },
+    {
+      "id": "french-basics-012",
+      "prompt": "today",
+      "answer": "aujourd'hui",
+      "distractors": ["demain", "hier", "toujours"],
+      "example": "Il fait beau aujourd'hui.",
+      "note": "Roughly oh-zhoor-DWEE. It literally means \"on the day of today\", saying today twice."
+    },
+    {
+      "id": "french-basics-013",
+      "prompt": "tomorrow",
+      "answer": "demain",
+      "distractors": ["hier", "le matin", "aujourd'hui"],
+      "example": "On se voit demain.",
+      "note": "Stress the second syllable, with a nasal vowel: duh-MAN. The morning as a time of day is le matin."
+    },
+    {
+      "id": "french-basics-014",
+      "prompt": "yesterday",
+      "answer": "hier",
+      "distractors": ["demain", "ici", "avant"],
+      "example": "Je suis arrivé hier soir.",
+      "note": "The h is silent: ee-YEHR. Hier soir means last night."
+    },
+    {
+      "id": "french-basics-015",
+      "prompt": "good (adjective)",
+      "answer": "bon",
+      "accept": ["bonne"],
+      "distractors": ["bien", "beau", "mauvais"],
+      "example": "Ce gâteau est très bon.",
+      "note": "The feminine form is bonne, where you do hear the n: bonne nuit. As an adverb use bien: ça va bien."
+    },
+    {
+      "id": "french-basics-016",
+      "prompt": "big, tall",
+      "answer": "grand",
+      "accept": ["grande"],
+      "distractors": ["gros", "large", "long"],
+      "example": "Mon frère est très grand.",
+      "note": "The final d is silent: grahn. False friend: large means wide, not big."
+    },
+    {
+      "id": "french-basics-017",
+      "prompt": "small",
+      "answer": "petit",
+      "accept": ["petite"],
+      "distractors": ["peu", "court", "mince"],
+      "example": "J'habite dans un petit village.",
+      "note": "The final t is silent: puh-TEE. Before a vowel it links over: petit ami, puh-tee-ta-MEE."
+    },
+    {
+      "id": "french-basics-018",
+      "prompt": "beautiful",
+      "answer": "beau",
+      "accept": ["belle", "bel", "joli", "jolie"],
+      "distractors": ["bon", "laid", "bas"],
+      "example": "Quel beau jardin !",
+      "note": "eau sounds like \"oh\". The feminine is belle, and before a masculine noun starting with a vowel it's bel: un bel homme."
+    },
+    {
+      "id": "french-basics-019",
+      "prompt": "expensive",
+      "answer": "cher",
+      "accept": ["chère"],
+      "distractors": ["chaud", "chair", "pas cher"],
+      "example": "Ce restaurant est trop cher.",
+      "note": "Sounds like \"share\". Cher also means dear, as at the start of a letter: Cher Paul."
+    },
+    {
+      "id": "french-basics-020",
+      "prompt": "cheap",
+      "answer": "bon marché",
+      "accept": ["pas cher"],
+      "distractors": ["cher", "gratuit", "bon appétit"],
+      "example": "Le métro est bon marché.",
+      "note": "Literally \"good market\", and it never changes form. In everyday speech people often just say pas cher."
+    },
+    {
+      "id": "french-basics-021",
+      "prompt": "where?",
+      "answer": "où",
+      "distractors": ["quand", "qui", "comment"],
+      "example": "Tu sais où est la gare ?",
+      "note": "The accent separates où (where) from ou (or). Both sound like \"oo\"."
+    },
+    {
+      "id": "french-basics-022",
+      "prompt": "how much?",
+      "answer": "combien",
+      "distractors": ["comment", "combat", "quand"],
+      "example": "Ça coûte combien ?",
+      "note": "Said kohm-BYAN, with both vowels nasal. Combien de temps ? means how long?"
+    },
+    {
+      "id": "french-basics-023",
+      "prompt": "station",
+      "answer": "la gare",
+      "accept": ["gare"],
+      "distractors": ["la guerre", "le quai", "la garde"],
+      "example": "Le train part de la gare centrale.",
+      "note": "The final e is silent: gahr. Don't confuse it with la guerre, which means war."
+    },
+    {
+      "id": "french-basics-024",
+      "prompt": "the bill (restaurant)",
+      "answer": "l'addition",
+      "accept": ["addition"],
+      "distractors": ["la monnaie", "le pourboire", "la carte"],
+      "example": "On peut avoir l'addition ?",
+      "note": "In a restaurant the bill is l'addition. In a hotel you get la note instead."
+    },
+    {
+      "id": "french-basics-025",
+      "prompt": "breakfast",
+      "answer": "le petit-déjeuner",
+      "accept": ["petit-déjeuner"],
+      "distractors": ["le déjeuner", "le dîner", "le goûter"],
+      "example": "On prend le petit-déjeuner à huit heures.",
+      "note": "Literally \"little lunch\". Le déjeuner alone is lunch, and le dîner is dinner."
+    },
+    {
+      "id": "french-basics-026",
+      "prompt": "room (in a hotel)",
+      "answer": "la chambre",
+      "accept": ["chambre"],
+      "distractors": ["la salle", "la cuisine", "la cave"],
+      "example": "Est-ce que la chambre est prête ?",
+      "note": "It's related to English chamber. In a hotel you ask for une chambre double."
+    },
+    {
+      "id": "french-basics-027",
+      "prompt": "to work",
+      "answer": "travailler",
+      "distractors": ["voyager", "traverser", "trouver"],
+      "example": "Je dois travailler demain.",
+      "note": "The ill sounds like y: tra-vah-YAY. As with all -er verbs, the final r is silent."
+    },
+    {
+      "id": "french-basics-028",
+      "prompt": "to understand",
+      "answer": "comprendre",
+      "distractors": ["prendre", "apprendre", "surprendre"],
+      "example": "C'est difficile à comprendre.",
+      "note": "Je ne comprends pas is one of the most useful sentences. The final s of comprends is silent."
+    },
+    {
+      "id": "french-basics-029",
+      "prompt": "How are you?",
+      "answer": "ça va",
+      "accept": ["comment ça va"],
+      "distractors": ["ça y est", "à bientôt", "voilà"],
+      "example": "Salut Marie, ça va ?",
+      "note": "Ça va works as both question and answer: Ça va ? Ça va ! The ç with its little hook always sounds like s."
+    },
+    {
+      "id": "french-basics-030",
+      "prompt": "goodbye",
+      "answer": "au revoir",
+      "accept": ["salut", "à bientôt"],
+      "distractors": ["bonjour", "au secours", "bienvenue"],
+      "example": "Il est parti sans dire au revoir.",
+      "note": "Literally \"until seeing again\". Said oh-ruh-VWAHR, with the middle e almost swallowed."
+    }
+  ]
+}

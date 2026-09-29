@@ -1,0 +1,468 @@
+{
+  "id": "first-aid",
+  "locale": "en",
+  "title": "First Aid",
+  "subtitle": "Course basics to refresh, not a substitute for one",
+  "symbol": "+",
+  "category": "life",
+  "cards": [
+    {
+      "id": "first-aid-001",
+      "prompt": "What always comes first at an accident scene, before you help?",
+      "answer": "Your own safety",
+      "accept": [
+        "Own safety",
+        "Self-protection",
+        "Safety"
+      ],
+      "distractors": [
+        "Emergency call",
+        "Rescue breaths",
+        "Bandaging"
+      ],
+      "note": "High-visibility vest on, hazard lights on, warning triangle out. A second casualty helps nobody."
+    },
+    {
+      "id": "first-aid-002",
+      "prompt": "Someone is lying motionless on the ground. What do you check first?",
+      "answer": "Responsiveness",
+      "accept": [
+        "Consciousness",
+        "Response",
+        "Whether they respond"
+      ],
+      "distractors": [
+        "Pulse",
+        "Blood sugar",
+        "Pupils"
+      ],
+      "note": "Speak to them loudly and gently shake their shoulders. If they don't respond, shout for help and then check their breathing."
+    },
+    {
+      "id": "first-aid-003",
+      "prompt": "Which emergency number works in every EU country?",
+      "answer": "112",
+      "distractors": [
+        "110",
+        "911",
+        "999"
+      ],
+      "note": "112 is free to call throughout the EU, from landlines and mobiles. In the US and Canada the number is 911; in the UK both 999 and 112 work."
+    },
+    {
+      "id": "first-aid-004",
+      "prompt": "What is the most important information in an emergency call?",
+      "answer": "The location",
+      "accept": [
+        "Location",
+        "Where",
+        "Address"
+      ],
+      "distractors": [
+        "Your name",
+        "The time",
+        "The cause"
+      ],
+      "note": "Without a location nobody can come. Give the address or landmarks, and on a motorway the direction of travel and nearest marker post."
+    },
+    {
+      "id": "first-aid-005",
+      "prompt": "Who ends the emergency call?",
+      "answer": "The dispatcher",
+      "accept": [
+        "Dispatcher",
+        "Operator",
+        "The operator"
+      ],
+      "distractors": [
+        "You, the caller",
+        "The police",
+        "The paramedic"
+      ],
+      "note": "The dispatcher asks targeted questions and often gives you instructions, for example for chest compressions. Only hang up when they end the call."
+    },
+    {
+      "id": "first-aid-006",
+      "prompt": "How do you check breathing in an unresponsive person?",
+      "answer": "Look, listen, feel",
+      "accept": [
+        "Look listen feel"
+      ],
+      "distractors": [
+        "Take the wrist pulse",
+        "Mirror under the nose",
+        "Check the pupils"
+      ],
+      "note": "Tilt the head back, lift the chin, then spend no more than 10 seconds watching the chest, listening and feeling for air. Occasional gasps do not count as normal breathing."
+    },
+    {
+      "id": "first-aid-007",
+      "prompt": "Unresponsive but breathing normally: how do you position them?",
+      "answer": "Recovery position",
+      "accept": [
+        "Recovery",
+        "Side position"
+      ],
+      "distractors": [
+        "Shock position",
+        "Flat on the back",
+        "Sitting upright"
+      ],
+      "note": "It keeps the airway open and lets vomit drain out. Keep checking their breathing regularly until the ambulance arrives."
+    },
+    {
+      "id": "first-aid-008",
+      "prompt": "Unresponsive and not breathing normally: what do you start right after the emergency call?",
+      "answer": "Chest compressions",
+      "accept": [
+        "CPR",
+        "Resuscitation"
+      ],
+      "distractors": [
+        "Recovery position",
+        "Shock position",
+        "Waiting"
+      ],
+      "note": "Someone who isn't breathing normally has most likely had a cardiac arrest. Every minute without compressions sharply lowers the chance of survival, so start straight away."
+    },
+    {
+      "id": "first-aid-009",
+      "prompt": "Where do you press during chest compressions?",
+      "answer": "Centre of the chest",
+      "accept": [
+        "Center of the chest",
+        "Middle of the chest",
+        "Lower breastbone"
+      ],
+      "distractors": [
+        "Left side of the chest",
+        "Upper abdomen",
+        "Just below the neck"
+      ],
+      "note": "Heel of your hand on the lower half of the breastbone, the other hand on top, arms straight. The heart sits almost in the middle, not on the left."
+    },
+    {
+      "id": "first-aid-010",
+      "prompt": "At what rate do you do chest compressions?",
+      "answer": "100 to 120 per minute",
+      "accept": [
+        "100-120",
+        "100 to 120"
+      ],
+      "distractors": [
+        "60 to 80 per minute",
+        "80 to 100 per minute",
+        "140 to 160 per minute"
+      ],
+      "note": "The song \"Stayin' Alive\" at about 104 beats sits right in the range. Let the chest rise back fully after every push."
+    },
+    {
+      "id": "first-aid-011",
+      "prompt": "How deep do you press on an adult?",
+      "answer": "5 to 6 cm",
+      "accept": [
+        "5-6 cm",
+        "2 to 2.4 inches"
+      ],
+      "distractors": [
+        "1 to 2 cm",
+        "2 to 3 cm",
+        "8 to 10 cm"
+      ],
+      "note": "It feels frighteningly deep. A broken rib is far less serious than compressions that are too timid."
+    },
+    {
+      "id": "first-aid-012",
+      "prompt": "What is the ratio of compressions to rescue breaths?",
+      "answer": "30:2",
+      "accept": [
+        "30 to 2"
+      ],
+      "distractors": [
+        "15:2",
+        "30:1",
+        "5:1"
+      ],
+      "note": "30 compressions, 2 breaths, and repeat. If you can't or won't give breaths, just keep pressing without a break; that is far better than nothing."
+    },
+    {
+      "id": "first-aid-013",
+      "prompt": "How long do you keep up CPR?",
+      "answer": "Until pros take over",
+      "accept": [
+        "Until help arrives",
+        "Until paramedics take over"
+      ],
+      "distractors": [
+        "For exactly 5 minutes",
+        "For only 10 cycles",
+        "Until you feel a pulse"
+      ],
+      "note": "You may also stop if the person starts breathing normally or you are physically exhausted. If there are two of you, swap roughly every two minutes."
+    },
+    {
+      "id": "first-aid-014",
+      "prompt": "Which device found in stations and shopping centres delivers shocks for ventricular fibrillation?",
+      "answer": "Defibrillator",
+      "accept": [
+        "AED",
+        "Defib"
+      ],
+      "distractors": [
+        "Ventilator",
+        "ECG monitor",
+        "Pacemaker"
+      ],
+      "note": "An AED talks you through every step and only delivers a shock if one is needed. Send someone to fetch it and keep pressing until it arrives."
+    },
+    {
+      "id": "first-aid-015",
+      "prompt": "What do you cool a small burn with?",
+      "answer": "Lukewarm water",
+      "accept": [
+        "Cool running water",
+        "Tap water",
+        "Tepid water"
+      ],
+      "distractors": [
+        "Ice water",
+        "Butter or oil",
+        "Flour"
+      ],
+      "note": "Ice can damage the tissue further. Home remedies such as butter, flour or toothpaste never belong on a burn."
+    },
+    {
+      "id": "first-aid-016",
+      "prompt": "Roughly how long do you cool a small burn?",
+      "answer": "About 10 minutes",
+      "accept": [
+        "10 minutes",
+        "10 min",
+        "10 to 20 minutes"
+      ],
+      "distractors": [
+        "30 seconds",
+        "1 minute",
+        "1 hour"
+      ],
+      "note": "Depending on the guideline it is 10 to 20 minutes, and only for small areas, since large burns risk hypothermia. Then cover it with a sterile dressing and call for help for large or deep burns."
+    },
+    {
+      "id": "first-aid-017",
+      "prompt": "What do you do first for a heavily bleeding wound on the arm?",
+      "answer": "Press on the wound",
+      "accept": [
+        "Direct pressure",
+        "Pressure",
+        "Apply pressure"
+      ],
+      "distractors": [
+        "Rinse the wound",
+        "Hold the arm down",
+        "Apply a plaster"
+      ],
+      "note": "Press firmly on the wound with a dressing, or a clean cloth if nothing else is at hand, then apply a pressure bandage. Disposable gloves from the first aid kit protect you."
+    },
+    {
+      "id": "first-aid-018",
+      "prompt": "What is the position with raised legs for signs of shock called?",
+      "answer": "Shock position",
+      "accept": [
+        "Legs raised",
+        "Raise the legs"
+      ],
+      "distractors": [
+        "Recovery position",
+        "Semi-sitting position",
+        "Lying face down"
+      ],
+      "note": "Only if they are conscious, have no injuries to the legs, pelvis or spine and no breathing difficulty. Always cover them, reassure them and don't leave them alone."
+    },
+    {
+      "id": "first-aid-019",
+      "prompt": "An adult is choking and can no longer cough. What do you do first?",
+      "answer": "Back blows",
+      "accept": [
+        "Back slaps",
+        "Blows to the back"
+      ],
+      "distractors": [
+        "Give them water",
+        "Rescue breaths",
+        "Lay them flat"
+      ],
+      "note": "As long as they can cough forcefully, just encourage them to keep coughing. If coughing fails, give up to five firm blows between the shoulder blades, then up to five abdominal thrusts, and alternate."
+    },
+    {
+      "id": "first-aid-020",
+      "prompt": "What is the technique of thrusting sharply into the upper abdomen from behind called?",
+      "answer": "Heimlich manoeuvre",
+      "accept": [
+        "Heimlich maneuver",
+        "Heimlich",
+        "Abdominal thrusts"
+      ],
+      "distractors": [
+        "Rautek manoeuvre",
+        "Jaw thrust",
+        "Valsalva manoeuvre"
+      ],
+      "note": "It can cause internal injuries, so the person must always see a doctor afterwards. It is not used on babies."
+    },
+    {
+      "id": "first-aid-021",
+      "prompt": "Which hold do you use to pull someone out of danger, for example out of a car?",
+      "answer": "Rautek manoeuvre",
+      "accept": [
+        "Rautek grip",
+        "Rautek hold",
+        "Rautek"
+      ],
+      "distractors": [
+        "Heimlich manoeuvre",
+        "Jaw thrust",
+        "Fireman's carry"
+      ],
+      "note": "You reach under their armpits from behind and grip one of their forearms. Only use it when there is acute danger, such as fire or traffic."
+    },
+    {
+      "id": "first-aid-022",
+      "prompt": "A motorcyclist is unresponsive. What do you do with the helmet?",
+      "answer": "Take it off",
+      "accept": [
+        "Remove it",
+        "Remove",
+        "Take off"
+      ],
+      "distractors": [
+        "Leave it on",
+        "Only open the visor",
+        "Wait for the police"
+      ],
+      "note": "Only without the helmet can you open the airway and check breathing. Ideally work in pairs: one supports the head while the other carefully pulls the helmet off."
+    },
+    {
+      "id": "first-aid-023",
+      "prompt": "Which quick test helps you recognise a stroke?",
+      "answer": "FAST",
+      "accept": [
+        "FAST test"
+      ],
+      "distractors": [
+        "ABC",
+        "RICE",
+        "SAMPLE"
+      ],
+      "note": "Face, Arms, Speech, Time: does one side of the face droop, does an arm drift down, is speech slurred? Then call 112 or 911 at once, because every minute counts in a stroke."
+    },
+    {
+      "id": "first-aid-024",
+      "prompt": "What is the typical key symptom of a heart attack?",
+      "answer": "Chest pain",
+      "accept": [
+        "Chest pressure",
+        "Tightness in the chest"
+      ],
+      "distractors": [
+        "Headache",
+        "Fever",
+        "Stomach cramps"
+      ],
+      "note": "It often spreads to the arm, neck, jaw or back. Women more often have atypical signs such as nausea or shortness of breath, so when in doubt, always call."
+    },
+    {
+      "id": "first-aid-025",
+      "prompt": "How should the head be held during a nosebleed?",
+      "answer": "Lean forward",
+      "accept": [
+        "Lean forwards",
+        "Head forward",
+        "Tilt forward"
+      ],
+      "distractors": [
+        "Tilt it back",
+        "Lie flat",
+        "Turn it sideways"
+      ],
+      "note": "Pinch the soft part of the nose for about 10 minutes and cool the neck. Tilting the head back sends blood into the stomach and can make them sick."
+    },
+    {
+      "id": "first-aid-026",
+      "prompt": "What do you give a responsive diabetic with low blood sugar?",
+      "answer": "Sugar",
+      "accept": [
+        "Glucose",
+        "Glucose tablets",
+        "Juice",
+        "Sugary drink"
+      ],
+      "distractors": [
+        "Insulin",
+        "Water",
+        "Nothing"
+      ],
+      "note": "Glucose tablets or a sugary drink work quickly. Only give it if they are alert and can swallow safely; otherwise use the recovery position and call for help."
+    },
+    {
+      "id": "first-aid-027",
+      "prompt": "What do you do during an epileptic seizure?",
+      "answer": "Protect from injury",
+      "accept": [
+        "Protect them",
+        "Clear the area"
+      ],
+      "distractors": [
+        "Hold them down",
+        "Put something in the mouth",
+        "Give them water"
+      ],
+      "note": "Move hard objects away, cushion the head and time the seizure. Never restrain them or put anything between their teeth, and call for help if it lasts longer than 5 minutes."
+    },
+    {
+      "id": "first-aid-028",
+      "prompt": "Someone has swallowed a cleaning product. What must you never do?",
+      "answer": "Induce vomiting",
+      "accept": [
+        "Make them vomit",
+        "Vomiting"
+      ],
+      "distractors": [
+        "Call poison control",
+        "Keep the packaging",
+        "Stay calm"
+      ],
+      "note": "Corrosive substances burn the gullet a second time on the way up, and foam can get into the lungs. Call poison control or the emergency number and have the packaging ready."
+    },
+    {
+      "id": "first-aid-029",
+      "prompt": "How do you deal with a suspected broken bone?",
+      "answer": "Immobilise it",
+      "accept": [
+        "Immobilize it",
+        "Keep it still",
+        "Immobilise"
+      ],
+      "distractors": [
+        "Set it straight",
+        "Massage it firmly",
+        "Move it to warm it up"
+      ],
+      "note": "Support it in the position the person has chosen themselves, for example with blankets or clothing. None of this replaces a real first aid course, so refresh yours every few years."
+    },
+    {
+      "id": "first-aid-030",
+      "prompt": "In Germany, what must every car carry besides a warning triangle?",
+      "answer": "First aid kit",
+      "accept": [
+        "First-aid kit",
+        "Medical kit"
+      ],
+      "distractors": [
+        "Fire extinguisher",
+        "Tow rope",
+        "Torch"
+      ],
+      "note": "Since 2014 a high-visibility vest has been mandatory too. Keep it within reach inside the car, not in the boot."
+    }
+  ]
+}

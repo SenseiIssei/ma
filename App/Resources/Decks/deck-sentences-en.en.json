@@ -1,0 +1,200 @@
+{
+  "id": "sentences-en",
+  "locale": "en",
+  "title": "German: Building Sentences",
+  "subtitle": "Simple German sentences, piece by piece",
+  "symbol": "¶",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "sentences-en-001",
+      "prompt": "I drink coffee every morning.",
+      "answer": "Ich trinke jeden Morgen Kaffee",
+      "note": "German likes the time before the object: jeden Morgen Kaffee. The verb always sits in second position."
+    },
+    {
+      "id": "sentences-en-002",
+      "prompt": "She lives in Berlin.",
+      "answer": "Sie wohnt in Berlin",
+      "accept": ["Sie lebt in Berlin"],
+      "note": "Wohnen means to live somewhere, to reside. Leben means to be alive, though Sie lebt in Berlin works too."
+    },
+    {
+      "id": "sentences-en-003",
+      "prompt": "We are going to Rome tomorrow.",
+      "answer": "Wir fahren morgen nach Rom",
+      "note": "German often uses the present tense for the future when a time word is there. Nach is used for cities and most countries."
+    },
+    {
+      "id": "sentences-en-004",
+      "prompt": "Can you please help me?",
+      "answer": "Kannst du mir bitte helfen",
+      "note": "In yes/no questions the verb comes first. Helfen takes the dative, so it's mir, not mich."
+    },
+    {
+      "id": "sentences-en-005",
+      "prompt": "I don't have time.",
+      "answer": "Ich habe keine Zeit",
+      "note": "Kein negates nouns, nicht negates verbs and adjectives. So it's keine Zeit, never nicht Zeit."
+    },
+    {
+      "id": "sentences-en-006",
+      "prompt": "Where is the nearest bank?",
+      "answer": "Wo ist die nächste Bank",
+      "note": "Nächste means both next and nearest. W-questions put the verb in second place: Wo ist...?"
+    },
+    {
+      "id": "sentences-en-007",
+      "prompt": "He has lived here for years.",
+      "answer": "Er wohnt seit Jahren hier",
+      "note": "German uses the present tense with seit for something still going on. Seit takes the dative: seit Jahren, seit drei Tagen."
+    },
+    {
+      "id": "sentences-en-008",
+      "prompt": "The weather is nice today.",
+      "answer": "Das Wetter ist heute schön",
+      "note": "Heute comes before the adjective here: ist heute schön. Wetter is neuter: das Wetter."
+    },
+    {
+      "id": "sentences-en-009",
+      "prompt": "I bought bread yesterday.",
+      "answer": "Ich habe gestern Brot gekauft",
+      "note": "Spoken German uses the Perfekt for the past: haben plus participle, and the participle gekauft goes to the end."
+    },
+    {
+      "id": "sentences-en-010",
+      "prompt": "My brother is older than me.",
+      "answer": "Mein Bruder ist älter als ich",
+      "note": "Comparisons use -er plus als, and short adjectives often get an umlaut: alt, älter."
+    },
+    {
+      "id": "sentences-en-011",
+      "prompt": "We have to leave at eight.",
+      "answer": "Wir müssen um acht Uhr gehen",
+      "accept": ["Wir müssen um acht gehen"],
+      "note": "With modal verbs like müssen, the main verb goes to the end as an infinitive. Clock times take um: um acht Uhr."
+    },
+    {
+      "id": "sentences-en-012",
+      "prompt": "She speaks three languages.",
+      "answer": "Sie spricht drei Sprachen",
+      "note": "Sprechen changes its vowel: ich spreche, du sprichst, sie spricht. Die Sprache means language."
+    },
+    {
+      "id": "sentences-en-013",
+      "prompt": "The book is on the table.",
+      "answer": "Das Buch liegt auf dem Tisch",
+      "note": "German says whether something lies or stands: liegt for flat things, steht for upright ones. Auf plus dative shows location."
+    },
+    {
+      "id": "sentences-en-014",
+      "prompt": "I'm going out tonight.",
+      "answer": "Ich gehe heute Abend aus",
+      "note": "Ausgehen is separable, so aus jumps to the end. Heute Abend means this evening or tonight."
+    },
+    {
+      "id": "sentences-en-015",
+      "prompt": "Could you open the window?",
+      "answer": "Könntest du das Fenster öffnen",
+      "accept": ["Kannst du das Fenster öffnen"],
+      "note": "Könntest du is the polite form, just like could you. The infinitive öffnen goes to the end."
+    },
+    {
+      "id": "sentences-en-016",
+      "prompt": "I don't like fish.",
+      "answer": "Ich mag keinen Fisch",
+      "note": "Fisch is masculine, so kein becomes keinen in the accusative."
+    },
+    {
+      "id": "sentences-en-017",
+      "prompt": "The train is late.",
+      "answer": "Der Zug hat Verspätung",
+      "note": "German says the train has lateness: hat Verspätung. Verspätung is a noun, from spät."
+    },
+    {
+      "id": "sentences-en-018",
+      "prompt": "How long does the trip take?",
+      "answer": "Wie lange dauert die Fahrt",
+      "note": "Dauern means to last or take time. Die Fahrt is a trip by car, bus or train."
+    },
+    {
+      "id": "sentences-en-019",
+      "prompt": "I would like to order.",
+      "answer": "Ich möchte gern bestellen",
+      "accept": ["Ich möchte bestellen", "Ich würde gern bestellen"],
+      "note": "Möchte is the polite way to say what you want, like would like. The infinitive bestellen goes to the end."
+    },
+    {
+      "id": "sentences-en-020",
+      "prompt": "It will rain tomorrow.",
+      "answer": "Morgen wird es regnen",
+      "accept": ["Es wird morgen regnen"],
+      "note": "Werden plus infinitive forms the future, and the infinitive goes to the end. Because morgen comes first, the verb wird moves before es."
+    },
+    {
+      "id": "sentences-en-021",
+      "prompt": "I don't understand you.",
+      "answer": "Ich verstehe dich nicht",
+      "accept": ["Ich verstehe Sie nicht"],
+      "note": "Nicht usually goes to the end of a simple main clause. Dich is the informal you; to a stranger you'd say Ich verstehe Sie nicht."
+    },
+    {
+      "id": "sentences-en-022",
+      "prompt": "We have two children.",
+      "answer": "Wir haben zwei Kinder",
+      "note": "Das Kind, die Kinder: many neuter nouns form the plural with -er, often with an umlaut."
+    },
+    {
+      "id": "sentences-en-023",
+      "prompt": "When does the film start?",
+      "answer": "Wann fängt der Film an",
+      "accept": ["Wann beginnt der Film"],
+      "note": "Anfangen is separable: the prefix an jumps to the end. Fangen also changes its vowel: fängt."
+    },
+    {
+      "id": "sentences-en-024",
+      "prompt": "I am very tired today.",
+      "answer": "Ich bin heute sehr müde",
+      "note": "German puts the time word early: bin heute sehr müde. Time before manner before place is a good rule of thumb."
+    },
+    {
+      "id": "sentences-en-025",
+      "prompt": "He forgot his phone.",
+      "answer": "Er hat sein Handy vergessen",
+      "note": "Germans call a mobile phone das Handy. The participle vergessen goes to the end of the sentence."
+    },
+    {
+      "id": "sentences-en-026",
+      "prompt": "I live right by the station.",
+      "answer": "Ich wohne direkt am Bahnhof",
+      "accept": ["Ich wohne gleich am Bahnhof"],
+      "note": "Am is short for an dem. An plus dative describes a place right next to something."
+    },
+    {
+      "id": "sentences-en-027",
+      "prompt": "You should sleep more.",
+      "answer": "Du solltest mehr schlafen",
+      "note": "Solltest is the advice form of sollen. The infinitive schlafen goes last."
+    },
+    {
+      "id": "sentences-en-028",
+      "prompt": "Can I pay by card?",
+      "answer": "Kann ich mit Karte bezahlen",
+      "accept": ["Kann ich mit Karte zahlen"],
+      "note": "Mit Karte means by card, bar means in cash. The verb bezahlen goes to the end after the modal kann."
+    },
+    {
+      "id": "sentences-en-029",
+      "prompt": "I'm looking forward to it.",
+      "answer": "Ich freue mich schon darauf",
+      "accept": ["Ich freue mich darauf"],
+      "note": "Sich freuen auf is reflexive: ich freue mich. Darauf stands in for auf es, and schon adds a warm already."
+    },
+    {
+      "id": "sentences-en-030",
+      "prompt": "Can you call me tomorrow?",
+      "answer": "Kannst du mich morgen anrufen",
+      "note": "Anrufen is separable, but after a modal verb it stays in one piece at the end. It takes the accusative: mich."
+    }
+  ]
+}

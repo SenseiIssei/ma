@@ -81,8 +81,8 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
                     "\(minutes) \(minutes == 1 ? "minute" : "minutes") left. \(name) will wait until the round is over.",
                     "Noch \(minutes) \(minutes == 1 ? "Minute" : "Minuten"). \(name) wartet, bis die Runde vorbei ist."
                 ),
-                primary: tr("Back to work", "Zurück zur Arbeit"),
-                secondary: nil
+                primary: policy.reelFreeWeb != nil ? tr("Open without Reels", "Ohne Reels öffnen") : tr("Back to work", "Zurück zur Arbeit"),
+                secondary: policy.reelFreeWeb != nil ? tr("Back to work", "Zurück zur Arbeit") : nil
             )
         }
 
@@ -189,13 +189,16 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
 }
 
 private enum Palette {
-    static let background = dynamic(light: 0xF6F5F3, dark: 0x0E0F12)
-    static let text = dynamic(light: 0x16171B, dark: 0xF3F3F5)
-    static let secondary = dynamic(light: 0x6B6D75, dark: 0xA3A5AE)
-    static let accent = dynamic(light: 0x5B5FEF, dark: 0x8286FF)
+    static let background = dynamic(light: 0xF6F5F3, dark: 0x0A0E22)
+    static let text = dynamic(light: 0x16171B, dark: 0xEEF0FF)
+    static let secondary = dynamic(light: 0x6B6D75, dark: 0xA9AED3)
+    static let accent = dynamic(light: 0x5B5FEF, dark: 0xA3A1FF)
 
+    /// Night is the app's default look, so the shield wears it too unless
+    /// the person chose to follow the system.
     static func dynamic(light: UInt32, dark: UInt32) -> UIColor {
-        UIColor { $0.userInterfaceStyle == .dark ? rgb(dark) : rgb(light) }
+        if Appearance.current == .night { return rgb(dark) }
+        return UIColor { $0.userInterfaceStyle == .dark ? rgb(dark) : rgb(light) }
     }
 
     static func rgb(_ hex: UInt32) -> UIColor {

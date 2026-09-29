@@ -124,6 +124,11 @@ struct FeedbackBanner: View {
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            // After a miss is when an extra explanation helps most. Pairs touch
+            // several cards at once, so there is no single card to explain.
+            if showsExplainMore {
+                ExplainMorePanel(deck: exercise.deck, card: exercise.card, afterMistake: true, maxTextHeight: 200)
+            }
             Button(tr("Continue", "Weiter"), action: next)
                 .buttonStyle(outcome.correct ? InkButtonStyle(kind: .matcha) : InkButtonStyle(kind: .negative))
                 .padding(.top, 4)
@@ -144,6 +149,10 @@ struct FeedbackBanner: View {
     }
 
     private var tint: Color { outcome.correct ? Zen.matcha : Zen.negative }
+
+    private var showsExplainMore: Bool {
+        !outcome.correct && exercise.kind != .pairs && MaAI.offersInline
+    }
 
     private var answerFont: Font {
         ExerciseEngine.containsCJK(exercise.card.answer) ? .kanji(22, bold: true) : .system(size: 18, weight: .bold, design: .rounded)

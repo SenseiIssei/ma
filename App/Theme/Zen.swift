@@ -1,37 +1,41 @@
 import SwiftUI
 import UIKit
 
-/// Design tokens. Calm, modern, one accent. The names are kept from the
-/// first design so every view keeps compiling while it is restyled:
+/// Design tokens. The dark side is the heart of it: a calm night, deep
+/// navy and violet, moonlit lavender as the accent. The app runs dark by
+/// default; the light side stays for people who choose "System".
+/// The names are kept from the first design so every view keeps compiling:
 /// `paper` is the background, `ink` the text, `shu` the accent.
 enum Zen {
     // Surfaces
-    static let paper = Color(light: 0xF6F5F3, dark: 0x0E0F12)
-    static let card = Color(light: 0xFFFFFF, dark: 0x191A1F)
-    static let sand = Color(light: 0xEFEDE9, dark: 0x23252B)
+    static let paper = Color(light: 0xF6F5F3, dark: 0x0A0E22)
+    static let card = Color(light: 0xFFFFFF, dark: 0x141A36)
+    static let sand = Color(light: 0xEFEDE9, dark: 0x1C2347)
 
     // Text
-    static let ink = Color(light: 0x16171B, dark: 0xF3F3F5)
-    static let inkSoft = Color(light: 0x6B6D75, dark: 0xA3A5AE)
-    static let inkFaint = Color(light: 0xA7A9B0, dark: 0x6A6C75)
+    static let ink = Color(light: 0x16171B, dark: 0xEEF0FF)
+    static let inkSoft = Color(light: 0x6B6D75, dark: 0xA9AED3)
+    static let inkFaint = Color(light: 0xA7A9B0, dark: 0x656C98)
 
     // Colour
-    /// Primary accent: a calm indigo.
-    static let shu = Color(light: 0x5B5FEF, dark: 0x8286FF)
+    /// Primary accent: indigo by day, moonlit lavender by night.
+    static let shu = Color(light: 0x5B5FEF, dark: 0xA3A1FF)
     static let accent = shu
     /// Success, "right", focus done.
-    static let matcha = Color(light: 0x22A06B, dark: 0x3DD68C)
+    static let matcha = Color(light: 0x22A06B, dark: 0x62E3B0)
     /// Errors, "wrong", destructive.
-    static let negative = Color(light: 0xE5484D, dark: 0xFF6369)
-    /// Streaks and warmth.
-    static let kin = Color(light: 0xF08C2E, dark: 0xFFA94D)
+    static let negative = Color(light: 0xE5484D, dark: 0xFF7F8A)
+    /// Streaks and warmth, like a lamp in the window.
+    static let kin = Color(light: 0xF08C2E, dark: 0xFFC477)
     /// Secondary tint for learning.
-    static let ai = Color(light: 0x0EA5B7, dark: 0x3CCFE0)
-    static let stone = Color(light: 0x8A8C94, dark: 0x8A8C94)
-    static let line = Color(light: 0xE6E4E0, dark: 0x2A2C33)
+    static let ai = Color(light: 0x0EA5B7, dark: 0x7BD8FF)
+    static let stone = Color(light: 0x8A8C94, dark: 0x7A80A8)
+    static let line = Color(light: 0xE6E4E0, dark: 0x252D58)
+    /// The night sky at the top of the background.
+    static let sky = Color(light: 0xE9E8FF, dark: 0x1B1F4A)
 
     static let accentGradient = LinearGradient(
-        colors: [Color(light: 0x6D6AF6, dark: 0x8C89FF), Color(light: 0x4D8DF7, dark: 0x6AA6FF)],
+        colors: [Color(light: 0x6D6AF6, dark: 0xB7A6FF), Color(light: 0x4D8DF7, dark: 0x7FA6FF)],
         startPoint: .topLeading, endPoint: .bottomTrailing
     )
 

@@ -15,6 +15,8 @@ struct Deck: Codable, Identifiable, Hashable {
     /// Language edition of a built-in deck. Editions share deck and card
     /// ids, so progress carries over when the app language changes.
     var locale: String?
+    /// Shelf in the topic catalog: languages, knowledge, mind, tech, life.
+    var category: String?
 
     init(id: String = UUID().uuidString, title: String, subtitle: String = "", symbol: String = "学", language: String? = nil, cards: [Card] = [], isBuiltIn: Bool = false) {
         self.id = id
@@ -36,6 +38,7 @@ struct Deck: Codable, Identifiable, Hashable {
         cards = try c.decodeIfPresent([Card].self, forKey: .cards) ?? []
         isBuiltIn = try c.decodeIfPresent(Bool.self, forKey: .isBuiltIn) ?? false
         locale = try c.decodeIfPresent(String.self, forKey: .locale)
+        category = try c.decodeIfPresent(String.self, forKey: .category)
     }
 }
 
@@ -152,5 +155,43 @@ struct LearnerProfile: Codable {
         streakDays = try c.decodeIfPresent(Int.self, forKey: .streakDays) ?? 0
         lastLearnedDay = try c.decodeIfPresent(String.self, forKey: .lastLearnedDay)
         dailyGoal = try c.decodeIfPresent(Int.self, forKey: .dailyGoal) ?? 20
+    }
+}
+
+/// Shelves for the topic catalog. Your own decks without a category land
+/// in "Yours".
+enum DeckCategory: String, CaseIterable, Identifiable {
+    case languages, knowledge, mind, tech, life, own
+
+    var id: String { rawValue }
+
+    init(deck: Deck) {
+        if let raw = deck.category, let known = DeckCategory(rawValue: raw) {
+            self = known
+        } else {
+            self = deck.isBuiltIn ? .knowledge : .own
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .languages: tr("Languages", "Sprachen")
+        case .knowledge: tr("Knowledge", "Wissen")
+        case .mind: tr("Mind", "Geist")
+        case .tech: tr("Tech", "Technik")
+        case .life: tr("Life", "Leben")
+        case .own: tr("Yours", "Eigene")
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .languages: "character.bubble.fill"
+        case .knowledge: "globe.europe.africa.fill"
+        case .mind: "brain.head.profile.fill"
+        case .tech: "chevron.left.forwardslash.chevron.right"
+        case .life: "heart.fill"
+        case .own: "square.and.pencil"
+        }
     }
 }

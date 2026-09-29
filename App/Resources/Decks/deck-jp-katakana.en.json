@@ -1,0 +1,339 @@
+{
+  "id": "jp-katakana",
+  "locale": "en",
+  "title": "Katakana",
+  "subtitle": "The 46 basic characters of the angular syllabary",
+  "symbol": "ア",
+  "category": "languages",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-katakana-001",
+      "prompt": "ア",
+      "answer": "a",
+      "distractors": ["ma", "ku", "yo"],
+      "note": "An axe with the blade on top and the handle falling down to the left: a for axe. In マ (ma) the second stroke is only a short tick."
+    },
+    {
+      "id": "jp-katakana-002",
+      "prompt": "イ",
+      "answer": "i",
+      "distractors": ["ri", "ni", "te"],
+      "note": "It's the left half of the kanji 伊, which it comes from: a person leaning on a post. Sounds like the ee in \"eagle\"."
+    },
+    {
+      "id": "jp-katakana-003",
+      "prompt": "ウ",
+      "answer": "u",
+      "distractors": ["wa", "ra", "fu"],
+      "note": "Like hiragana う but angular: a roof with a chimney, under which someone groans \"ooh\". Without the chimney it looks close to ラ (ra)."
+    },
+    {
+      "id": "jp-katakana-004",
+      "prompt": "エ",
+      "answer": "e",
+      "distractors": ["ko", "yu", "ni"],
+      "note": "A steel girder seen from the side, like an elevator shaft: e for elevator. It looks just like the kanji 工 (craft)."
+    },
+    {
+      "id": "jp-katakana-005",
+      "prompt": "オ",
+      "answer": "o",
+      "distractors": ["a", "ho", "su"],
+      "note": "An old man leaning forward on his cane, saying \"oh!\". Compare ホ (ho), which has two little legs instead of one slanted stroke."
+    },
+    {
+      "id": "jp-katakana-006",
+      "prompt": "カ",
+      "answer": "ka",
+      "distractors": ["ki", "ta", "ya"],
+      "note": "Almost like hiragana か, just without the little stroke on the right. It also looks like the kanji 力 (power)."
+    },
+    {
+      "id": "jp-katakana-007",
+      "prompt": "キ",
+      "answer": "ki",
+      "distractors": ["chi", "sa", "ka"],
+      "note": "A key with two teeth: ki. It's hiragana き without the curve at the bottom."
+    },
+    {
+      "id": "jp-katakana-008",
+      "prompt": "ク",
+      "answer": "ku",
+      "distractors": ["ke", "wa", "ta"],
+      "note": "A cuckoo's beak opening to the left, calling \"ku ku\". In ワ (wa) the roof is flat and there's a wall on the left."
+    },
+    {
+      "id": "jp-katakana-009",
+      "prompt": "ケ",
+      "answer": "ke",
+      "distractors": ["ku", "ta", "ri"],
+      "note": "Looks like a tilted letter K: ke. The third stroke hangs down freely, while in ク (ku) the strokes are joined."
+    },
+    {
+      "id": "jp-katakana-010",
+      "prompt": "コ",
+      "answer": "ko",
+      "distractors": ["yu", "ro", "e"],
+      "note": "A corner like a box open to the left: ko. In ユ (yu) the bottom stroke is longer and sticks out."
+    },
+    {
+      "id": "jp-katakana-011",
+      "prompt": "サ",
+      "answer": "sa",
+      "distractors": ["se", "ki", "chi"],
+      "note": "A crossbar on two posts, the right one bending down to the left: sa. Picture a saddle on two legs."
+    },
+    {
+      "id": "jp-katakana-012",
+      "prompt": "シ",
+      "answer": "shi",
+      "accept": ["si"],
+      "distractors": ["tsu", "n", "so"],
+      "note": "The two short strokes are stacked on the left and the long one sweeps up from the bottom. In ツ (tsu) the short strokes sit side by side on top and the long one falls downward."
+    },
+    {
+      "id": "jp-katakana-013",
+      "prompt": "ス",
+      "answer": "su",
+      "distractors": ["nu", "ra", "fu"],
+      "note": "Like a coat hanger with one leg kicked out: su. In ヌ (nu) an extra stroke crosses the curve."
+    },
+    {
+      "id": "jp-katakana-014",
+      "prompt": "セ",
+      "answer": "se",
+      "distractors": ["sa", "hi", "ya"],
+      "note": "Like hiragana せ, just with an angular hook instead of a curve: se."
+    },
+    {
+      "id": "jp-katakana-015",
+      "prompt": "ソ",
+      "answer": "so",
+      "distractors": ["n", "shi", "tsu"],
+      "note": "Short stroke at the top left, the long one falls from the top right: so. In ン (n) the long stroke rises from the bottom upward."
+    },
+    {
+      "id": "jp-katakana-016",
+      "prompt": "タ",
+      "answer": "ta",
+      "distractors": ["ku", "ma", "ke"],
+      "note": "Like ク (ku) with a small stroke in the middle: ta."
+    },
+    {
+      "id": "jp-katakana-017",
+      "prompt": "チ",
+      "answer": "chi",
+      "accept": ["ti"],
+      "distractors": ["te", "ki", "sa"],
+      "note": "Like キ (ki) but the top stroke is slanted like a hat: chi. テ (te), by contrast, has two straight horizontal lines."
+    },
+    {
+      "id": "jp-katakana-018",
+      "prompt": "ツ",
+      "answer": "tsu",
+      "accept": ["tu"],
+      "distractors": ["shi", "so", "n"],
+      "note": "Two short strokes side by side on top, the long one falls from the top right: tsu. In シ (shi) the short strokes are stacked on the left."
+    },
+    {
+      "id": "jp-katakana-019",
+      "prompt": "テ",
+      "answer": "te",
+      "distractors": ["chi", "ra", "ki"],
+      "note": "A TV antenna on a roof, and TV in Japanese is テレビ (terebi): te."
+    },
+    {
+      "id": "jp-katakana-020",
+      "prompt": "ト",
+      "answer": "to",
+      "distractors": ["ha", "ka", "ne"],
+      "note": "A post with a small branch to the right, like a totem pole: to. It has just two strokes."
+    },
+    {
+      "id": "jp-katakana-021",
+      "prompt": "ナ",
+      "answer": "na",
+      "distractors": ["me", "ta", "ki"],
+      "note": "A cross whose vertical stroke curves down to the left, like a knife, which is ナイフ (naifu) in Japanese: na."
+    },
+    {
+      "id": "jp-katakana-022",
+      "prompt": "ニ",
+      "answer": "ni",
+      "distractors": ["ko", "e", "yu"],
+      "note": "Two horizontal lines, just like the number two, 二, which is read ni."
+    },
+    {
+      "id": "jp-katakana-023",
+      "prompt": "ヌ",
+      "answer": "nu",
+      "distractors": ["su", "me", "fu"],
+      "note": "Like ス (su) with an extra stroke crossing it, like chopsticks in a bowl of noodles: nu."
+    },
+    {
+      "id": "jp-katakana-024",
+      "prompt": "ネ",
+      "answer": "ne",
+      "distractors": ["ra", "ho", "wo"],
+      "note": "A person with outstretched arms under a roof, holding a net: ne."
+    },
+    {
+      "id": "jp-katakana-025",
+      "prompt": "ノ",
+      "answer": "no",
+      "distractors": ["n", "so", "ku"],
+      "note": "A single slash, like a sweep that says no: no. It appears inside many other characters, for example メ (me)."
+    },
+    {
+      "id": "jp-katakana-026",
+      "prompt": "ハ",
+      "answer": "ha",
+      "distractors": ["ru", "ho", "hi"],
+      "note": "Two strokes spreading apart like a laughing mouth: ha ha. It looks almost like the kanji 八 (eight)."
+    },
+    {
+      "id": "jp-katakana-027",
+      "prompt": "ヒ",
+      "answer": "hi",
+      "distractors": ["se", "re", "ha"],
+      "note": "A person leaning back and giggling \"hee hee\". The bottom stroke hooks off to the right."
+    },
+    {
+      "id": "jp-katakana-028",
+      "prompt": "フ",
+      "answer": "fu",
+      "accept": ["hu"],
+      "distractors": ["wo", "ra", "u"],
+      "note": "A single hook like the slope of Mount Fuji: fu. Blow lightly through your lips, halfway between f and h."
+    },
+    {
+      "id": "jp-katakana-029",
+      "prompt": "ヘ",
+      "answer": "he",
+      "distractors": ["ku", "re", "no"],
+      "note": "Looks almost exactly like hiragana へ: a small hill. One of the few characters you get for free."
+    },
+    {
+      "id": "jp-katakana-030",
+      "prompt": "ホ",
+      "answer": "ho",
+      "distractors": ["o", "ne", "ki"],
+      "note": "A cross with two little legs, like a wooden cross on a hill: ho. Compare オ (o), which has only one slanted stroke."
+    },
+    {
+      "id": "jp-katakana-031",
+      "prompt": "マ",
+      "answer": "ma",
+      "distractors": ["a", "mu", "ku"],
+      "note": "A big hook with a short tick below it, like a mask seen from the side: ma. In ア (a) the second stroke runs long and down."
+    },
+    {
+      "id": "jp-katakana-032",
+      "prompt": "ミ",
+      "answer": "mi",
+      "distractors": ["shi", "ni", "tsu"],
+      "note": "Three slanted strokes stacked up, like three missiles flying: mi."
+    },
+    {
+      "id": "jp-katakana-033",
+      "prompt": "ム",
+      "answer": "mu",
+      "distractors": ["ma", "ru", "yo"],
+      "note": "A triangle with a small nose on the right, like a cow's head going \"moo\": mu."
+    },
+    {
+      "id": "jp-katakana-034",
+      "prompt": "メ",
+      "answer": "me",
+      "distractors": ["na", "nu", "no"],
+      "note": "A slanted X, like a winking eye, and eye in Japanese is 目 (me)."
+    },
+    {
+      "id": "jp-katakana-035",
+      "prompt": "モ",
+      "answer": "mo",
+      "distractors": ["ki", "te", "ni"],
+      "note": "Like hiragana も but angular, with two crossbars and a hook to the right: mo."
+    },
+    {
+      "id": "jp-katakana-036",
+      "prompt": "ヤ",
+      "answer": "ya",
+      "distractors": ["ka", "se", "ma"],
+      "note": "Like hiragana や without the small dot: ya. Picture a yak with one long horn."
+    },
+    {
+      "id": "jp-katakana-037",
+      "prompt": "ユ",
+      "answer": "yu",
+      "distractors": ["ko", "yo", "e"],
+      "note": "Like a U lying on its side, with a longer bottom stroke that sticks out: yu. In コ (ko) the strokes end flush."
+    },
+    {
+      "id": "jp-katakana-038",
+      "prompt": "ヨ",
+      "answer": "yo",
+      "distractors": ["e", "ko", "yu"],
+      "note": "A backwards E, like a comb with three teeth pointing left: yo."
+    },
+    {
+      "id": "jp-katakana-039",
+      "prompt": "ラ",
+      "answer": "ra",
+      "distractors": ["u", "fu", "wo"],
+      "note": "A short lid above a hook: ra. In ウ (u) there's a little chimney instead of the lid."
+    },
+    {
+      "id": "jp-katakana-040",
+      "prompt": "リ",
+      "answer": "ri",
+      "distractors": ["ru", "ha", "ni"],
+      "note": "Almost exactly like hiragana り: two vertical strokes, the right one longer and curved."
+    },
+    {
+      "id": "jp-katakana-041",
+      "prompt": "ル",
+      "answer": "ru",
+      "distractors": ["ri", "ha", "re"],
+      "note": "Two legs, the right one kicking upward at the end: ru. リ (ri) has no kick."
+    },
+    {
+      "id": "jp-katakana-042",
+      "prompt": "レ",
+      "answer": "re",
+      "distractors": ["ru", "ri", "n"],
+      "note": "A single stroke that bends up to the right at the bottom, like the right leg of ル (ru): re."
+    },
+    {
+      "id": "jp-katakana-043",
+      "prompt": "ロ",
+      "answer": "ro",
+      "distractors": ["ko", "yo", "mu"],
+      "note": "A square, almost like the kanji 口 (mouth): ro. The katakana is a little smaller."
+    },
+    {
+      "id": "jp-katakana-044",
+      "prompt": "ワ",
+      "answer": "wa",
+      "distractors": ["ku", "u", "ra"],
+      "note": "A roof with a wall on the left and a curve going down: wa. ク (ku) has no wall."
+    },
+    {
+      "id": "jp-katakana-045",
+      "prompt": "ヲ",
+      "answer": "wo",
+      "accept": ["o"],
+      "distractors": ["fu", "yo", "wa"],
+      "note": "Like フ (fu) with an extra horizontal stroke in the middle: wo. As a particle it's almost always written in hiragana, を."
+    },
+    {
+      "id": "jp-katakana-046",
+      "prompt": "ン",
+      "answer": "n",
+      "accept": ["nn", "n'"],
+      "distractors": ["so", "shi", "tsu"],
+      "note": "A short stroke at the top left and a long one rising from the bottom: n. In ソ (so) the long stroke falls downward."
+    }
+  ]
+}

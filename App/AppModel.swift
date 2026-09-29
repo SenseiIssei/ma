@@ -1,9 +1,11 @@
+import ActivityKit
 import FamilyControls
 import Foundation
 import ManagedSettings
 import Observation
 import SwiftUI
 import UserNotifications
+import WidgetKit
 
 enum MaTab: Hashable {
     case today, rules, learn, focus
@@ -55,6 +57,15 @@ final class AppModel {
     var lockdownUntil: Date?
     let decks = DeckStore()
 
+    /// What the widgets last saw, so reload() (once a second on the focus
+    /// screen) only asks WidgetKit for new timelines when something changed.
+    @ObservationIgnored private var widgetSignature = ""
+    /// Focus phase the Live Activity was last requested for. Keeps a card the
+    /// person swiped away from coming back until the next phase starts.
+    @ObservationIgnored private var activitySessionID: UUID?
+    /// Set by stopFocus so the next sync removes the card without delay.
+    @ObservationIgnored private var dismissActivityNow = false
+
     var onboarded: Bool {
         didSet { UserDefaults.standard.set(onboarded, forKey: "ma.onboarded") }
     }
@@ -103,6 +114,11 @@ final class AppModel {
             let allowed = settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional
             Task { @MainActor in self.notificationsAllowed = allowed }
         }
+        // Every focus action (startFocus, startBreak, skipBreak, stopFocus)
+        // ends in reload(), and so does a phase the monitor moved on while
+        // the app was closed. Syncing here covers all of them in one place.
+        syncFocusActivity()
+        reloadWidgetsIfChanged()
     }
 
     func tick() {
@@ -316,6 +332,9 @@ final class AppModel {
 
     func stopFocus() {
         FocusEngine.stop()
+        // Stopped by hand: the reload below ends the Live Activity at once
+        // instead of letting it linger like a phase that ran out.
+        dismissActivityNow = true
         reload()
     }
 
@@ -367,6 +386,16 @@ final class AppModel {
         return policy
     }
 
+    /// Opens an app's website in Safari, where the filter strips Reels.
+    /// Counts as resisting: the app itself stayed closed.
+    func openReelFree(_ url: URL) {
+        SharedStore.pending = nil
+        SharedStore.shortcutRequest = nil
+        SharedStore.updateToday { $0.resisted += 1 }
+        reload()
+        UIApplication.shared.open(url)
+    }
+
     /// Opens every guarded app for a while, then sends you to the one you
     /// came from. The automation fires again on the way back, finds the pass
     /// and stays out of the way.
@@ -415,6 +444,7 @@ final class AppModel {
 
     func handle(url: URL) {
         switch url.host {
+        case "today": tab = .today
         case "focus": tab = .focus
         case "learn": tab = .learn
         case "rules", "lockdown": tab = .rules
@@ -422,5 +452,90 @@ final class AppModel {
             if let pending = SharedStore.pending, pending.isFresh { gate = .unlock(pending) }
         default: break
         }
+    }
+}
+
+// MARK: - Live Activity and widgets
+
+extension AppModel {
+    /// Brings the focus Live Activity in line with `focus`: requests one when
+    /// a phase starts, updates it when the phase changes, ends it once focus
+    /// is over. reload() runs once a second on the focus screen, so this only
+    /// talks to ActivityKit when the content really differs.
+    fileprivate func syncFocusActivity() {
+        let all: [Activity<FocusActivityAttributes>] = Activity<FocusActivityAttributes>.activities
+        let live: [Activity<FocusActivityAttributes>] = all.filter {
+            $0.activityState != .ended && $0.activityState != .dismissed
+        }
+
+        guard let focus else {
+            let immediately: Bool = dismissActivityNow
+            dismissActivityNow = false
+            activitySessionID = nil
+            endFocusActivities(live, immediately: immediately)
+            return
+        }
+        dismissActivityNow = false
+
+        let state: FocusActivityAttributes.ContentState = activityState(for: focus)
+        // Stale at the planned end: if the app is closed by then, the card
+        // says the time is up instead of sitting at 0:00.
+        let content = ActivityContent(state: state, staleDate: focus.endsAt)
+
+        if let current = live.first {
+            // A second one can only be left over from a crash; keep the first.
+            endFocusActivities(Array(live.dropFirst()), immediately: true)
+            activitySessionID = focus.id
+            guard current.content.state != state else { return }
+            Task { await current.update(content) }
+            return
+        }
+
+        // Requested for this phase already, so the person swiped it away.
+        guard activitySessionID != focus.id else { return }
+        activitySessionID = focus.id
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        do {
+            _ = try Activity.request(attributes: FocusActivityAttributes(), content: content, pushType: nil)
+        } catch {
+            // Switched off in Settings or over the system limit. The in-app
+            // timer and the phase notification still carry the round.
+        }
+    }
+
+    fileprivate func activityState(for session: FocusSession) -> FocusActivityAttributes.ContentState {
+        FocusActivityAttributes.ContentState(
+            phase: session.phase.rawValue,
+            title: session.phase.title,
+            startedAt: session.startedAt,
+            endsAt: session.endsAt,
+            round: session.round,
+            totalRounds: max(1, focusSettings.roundsUntilLongBreak)
+        )
+    }
+
+    /// A phase that ran out stays readable on the Lock Screen for a few
+    /// minutes; a round stopped by hand disappears at once.
+    fileprivate func endFocusActivities(_ activities: [Activity<FocusActivityAttributes>], immediately: Bool) {
+        guard !activities.isEmpty else { return }
+        let later: Date = Date().addingTimeInterval(10 * 60)
+        let policy: ActivityUIDismissalPolicy = immediately ? .immediate : .after(later)
+        for activity in activities {
+            Task { await activity.end(nil, dismissalPolicy: policy) }
+        }
+    }
+
+    /// Asks WidgetKit for fresh timelines, but only when something a widget
+    /// draws has changed. Reloads from the app in the foreground do not count
+    /// against the widget budget, yet once a second would still be wasteful.
+    fileprivate func reloadWidgetsIfChanged() {
+        let focusPart: String = focus.map { "\($0.id.uuidString):\($0.phase.rawValue)" } ?? "idle"
+        let statsPart: String = "\(today.focusMinutes):\(today.correct):\(today.resisted)"
+        let s = focusSettings
+        let settingsPart: String = "\(s.focusMinutes):\(s.shortBreakMinutes):\(s.longBreakMinutes):\(s.roundsUntilLongBreak):\(s.autoStartFocus)"
+        let signature: String = [SharedStore.dayKey(), statsPart, settingsPart, focusPart].joined(separator: "|")
+        guard signature != widgetSignature else { return }
+        widgetSignature = signature
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

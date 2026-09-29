@@ -1,0 +1,457 @@
+{
+  "id": "psychology",
+  "title": "Psychologie im Alltag",
+  "subtitle": "Denkfallen erkennen und klüger entscheiden",
+  "symbol": "Ψ",
+  "category": "mind",
+  "cards": [
+    {
+      "id": "psychology-001",
+      "prompt": "Du suchst und merkst dir vor allem Infos, die deine Meinung bestätigen.",
+      "answer": "Bestätigungsfehler",
+      "accept": [
+        "Confirmation Bias",
+        "Bestätigungsverzerrung"
+      ],
+      "distractors": [
+        "Ankereffekt",
+        "Rückschaufehler",
+        "Halo-Effekt"
+      ],
+      "note": "Frag dich bei jeder festen Meinung, welche Beobachtung dich umstimmen würde, und such gezielt danach. Das ist unbequem, schützt aber vor teuren Irrtümern."
+    },
+    {
+      "id": "psychology-002",
+      "prompt": "Wer wenig über ein Thema weiß, überschätzt sein Können oft am stärksten.",
+      "answer": "Dunning-Kruger-Effekt",
+      "accept": [
+        "Dunning-Kruger",
+        "Dunning Kruger"
+      ],
+      "distractors": [
+        "Hochstapler-Syndrom",
+        "Spotlight-Effekt",
+        "Barnum-Effekt"
+      ],
+      "note": "Große Sicherheit am Anfang ist kein gutes Zeichen für Können. Hol dir früh Feedback von Leuten, die das Feld wirklich beherrschen."
+    },
+    {
+      "id": "psychology-003",
+      "prompt": "Du machst mit etwas Aussichtslosem weiter, weil du schon so viel hineingesteckt hast.",
+      "answer": "Sunk-Cost-Effekt",
+      "accept": [
+        "Sunk Cost Fallacy",
+        "Sunk Cost",
+        "Versunkene Kosten"
+      ],
+      "distractors": [
+        "Verlustaversion",
+        "Besitztumseffekt",
+        "Status-quo-Bias"
+      ],
+      "note": "Frag dich: Würde ich heute neu einsteigen, wenn ich bei null anfinge? Was schon ausgegeben ist, kommt so oder so nicht zurück."
+    },
+    {
+      "id": "psychology-004",
+      "prompt": "Auslöser, Routine, Belohnung: das Muster hinter jeder Gewohnheit.",
+      "answer": "Gewohnheitsschleife",
+      "accept": [
+        "Habit Loop"
+      ],
+      "distractors": [
+        "Belohnungsaufschub",
+        "Zeigarnik-Effekt",
+        "Priming"
+      ],
+      "note": "Willst du eine Gewohnheit ändern, behalte Auslöser und Belohnung und tausche nur die Routine. Zum Beispiel ein kurzer Spaziergang statt Handy, wenn dir langweilig ist."
+    },
+    {
+      "id": "psychology-005",
+      "prompt": "Völlige Vertiefung in eine Aufgabe, die genau richtig fordert, das Zeitgefühl verschwindet.",
+      "answer": "Flow",
+      "accept": [
+        "Flow-Erlebnis",
+        "Flow-Zustand"
+      ],
+      "distractors": [
+        "Achtsamkeit",
+        "Hyperfokus",
+        "Tunnelblick"
+      ],
+      "note": "Beschrieben hat ihn Mihaly Csikszentmihalyi: Flow entsteht, wenn Anspruch und Können im Gleichgewicht sind. Ist dir langweilig, mach die Aufgabe schwerer, bist du überfordert, zerleg sie."
+    },
+    {
+      "id": "psychology-006",
+      "prompt": "Die erste Zahl, die du hörst, prägt deine Schätzung, selbst wenn sie völlig willkürlich ist.",
+      "answer": "Ankereffekt",
+      "accept": [
+        "Anchoring",
+        "Anker-Effekt"
+      ],
+      "distractors": [
+        "Framing-Effekt",
+        "Verfügbarkeitsheuristik",
+        "Bestätigungsfehler"
+      ],
+      "note": "In Verhandlungen lohnt es sich, selbst die erste Zahl zu nennen. Setzt dir jemand einen Anker, überleg bewusst, was du ohne ihn geschätzt hättest."
+    },
+    {
+      "id": "psychology-007",
+      "prompt": "Verluste schmerzen etwa doppelt so stark, wie gleich große Gewinne freuen.",
+      "answer": "Verlustaversion",
+      "accept": [
+        "Loss Aversion"
+      ],
+      "distractors": [
+        "Besitztumseffekt",
+        "Sunk-Cost-Effekt",
+        "Status-quo-Bias"
+      ],
+      "note": "Daniel Kahneman und Amos Tversky beschrieben das in ihrer Prospect Theory. Wenn dich die Angst vor einem Verlust lähmt, schreib Chancen und Risiken nüchtern nebeneinander."
+    },
+    {
+      "id": "psychology-008",
+      "prompt": "Kaum kennst du das Ergebnis, glaubst du, du hättest es schon immer gewusst.",
+      "answer": "Rückschaufehler",
+      "accept": [
+        "Hindsight Bias",
+        "Rückschauverzerrung"
+      ],
+      "distractors": [
+        "Bestätigungsfehler",
+        "Déjà-vu",
+        "Überoptimismus"
+      ],
+      "note": "Schreib vor wichtigen Entscheidungen auf, was du erwartest und warum. So lernst du aus deinem echten Wissensstand, nicht aus der geschönten Erinnerung."
+    },
+    {
+      "id": "psychology-009",
+      "prompt": "Eine auffällige gute Eigenschaft, etwa gutes Aussehen, färbt dein Urteil über alles andere.",
+      "answer": "Halo-Effekt",
+      "accept": [
+        "Heiligenschein-Effekt",
+        "Halo"
+      ],
+      "distractors": [
+        "Horn-Effekt",
+        "Mere-Exposure-Effekt",
+        "Ankereffekt"
+      ],
+      "note": "Bewerte Menschen und Dinge nach einzelnen, getrennten Kriterien. Bei Bewerbungen hilft es, jede Frage für alle Kandidaten nacheinander zu beurteilen."
+    },
+    {
+      "id": "psychology-010",
+      "prompt": "Was dir leicht einfällt, hältst du für häufiger, als es ist, zum Beispiel Flugzeugabstürze.",
+      "answer": "Verfügbarkeitsheuristik",
+      "accept": [
+        "Verfügbarkeitsfehler",
+        "Availability Heuristic"
+      ],
+      "distractors": [
+        "Repräsentativitätsheuristik",
+        "Ankereffekt",
+        "Spielerfehlschluss"
+      ],
+      "note": "Schau bei Risiken auf Zahlen statt auf Schlagzeilen. Pro Kilometer ist das Auto viel gefährlicher als das Flugzeug, auch wenn Abstürze mehr Aufmerksamkeit bekommen."
+    },
+    {
+      "id": "psychology-011",
+      "prompt": "Nach fünfmal Rot beim Roulette glaubst du, jetzt müsse Schwarz kommen.",
+      "answer": "Spielerfehlschluss",
+      "accept": [
+        "Gambler's Fallacy",
+        "Monte-Carlo-Fehlschluss"
+      ],
+      "distractors": [
+        "Kontrollillusion",
+        "Hot-Hand-Fehlschluss",
+        "Ankereffekt"
+      ],
+      "note": "Unabhängige Ereignisse haben kein Gedächtnis. Die Kugel weiß nicht, was vorher kam, die Chance bleibt bei jedem Wurf gleich."
+    },
+    {
+      "id": "psychology-012",
+      "prompt": "Du lernst etwas Neues kennen und siehst es danach plötzlich überall.",
+      "answer": "Baader-Meinhof-Phänomen",
+      "accept": [
+        "Baader-Meinhof",
+        "Frequenzillusion"
+      ],
+      "distractors": [
+        "Déjà-vu",
+        "Spotlight-Effekt",
+        "Priming"
+      ],
+      "note": "Die Sache ist nicht häufiger geworden, nur deine Aufmerksamkeit filtert anders. Nutze das bewusst: Wer ein Ziel klar benennt, bemerkt plötzlich passende Gelegenheiten."
+    },
+    {
+      "id": "psychology-013",
+      "prompt": "Du glaubst, andere bemerken deinen Fleck oder Versprecher viel eher, als sie es tun.",
+      "answer": "Spotlight-Effekt",
+      "accept": [
+        "Scheinwerfer-Effekt",
+        "Spotlight Effect"
+      ],
+      "distractors": [
+        "Hochstapler-Syndrom",
+        "Soziale Erwünschtheit",
+        "Halo-Effekt"
+      ],
+      "note": "In einer Studie schätzten Leute mit peinlichem T-Shirt, dass die Hälfte es bemerkt, tatsächlich war es etwa ein Viertel. Die meisten sind vor allem mit sich selbst beschäftigt."
+    },
+    {
+      "id": "psychology-014",
+      "prompt": "Arbeit dehnt sich genau so weit aus, wie Zeit für sie zur Verfügung steht.",
+      "answer": "Parkinsonsches Gesetz",
+      "accept": [
+        "Parkinson's Law",
+        "Parkinson-Gesetz"
+      ],
+      "distractors": [
+        "Pareto-Prinzip",
+        "Murphys Gesetz",
+        "Hofstadters Gesetz"
+      ],
+      "note": "Setz dir kurze, feste Zeitfenster, etwa 25 Minuten für eine Runde E-Mails. Die Arbeit passt sich erstaunlich oft an."
+    },
+    {
+      "id": "psychology-015",
+      "prompt": "Unerledigte Aufgaben gehen dir länger im Kopf herum als erledigte.",
+      "answer": "Zeigarnik-Effekt",
+      "accept": [
+        "Zeigarnik"
+      ],
+      "distractors": [
+        "Gewohnheitsschleife",
+        "Primacy-Effekt",
+        "Flow"
+      ],
+      "note": "Schreib offene Punkte vor dem Feierabend auf und plane den nächsten konkreten Schritt. Das beruhigt den Kopf fast so, als wäre die Aufgabe schon erledigt."
+    },
+    {
+      "id": "psychology-016",
+      "prompt": "Dieselbe Info wirkt je nach Formulierung anders: „90 % überleben“ statt „10 % sterben“.",
+      "answer": "Framing-Effekt",
+      "accept": [
+        "Framing"
+      ],
+      "distractors": [
+        "Ankereffekt",
+        "Priming",
+        "Halo-Effekt"
+      ],
+      "note": "Formuliere wichtige Entscheidungen für dich einmal positiv und einmal negativ. Ändert sich dein Urteil dabei, hat dich der Rahmen gelenkt, nicht die Fakten."
+    },
+    {
+      "id": "psychology-017",
+      "prompt": "Wer erst einer kleinen Bitte zustimmt, sagt danach eher auch zu einer großen Ja.",
+      "answer": "Fuß-in-der-Tür-Technik",
+      "accept": [
+        "Fuß in der Tür",
+        "Foot in the Door"
+      ],
+      "distractors": [
+        "Tür-ins-Gesicht-Technik",
+        "Reziprozität",
+        "Knappheitsprinzip"
+      ],
+      "note": "Du kannst das für dich nutzen: Starte eine neue Gewohnheit lächerlich klein, etwa mit einer einzigen Liegestütze. Das erste Ja macht den nächsten Schritt leichter."
+    },
+    {
+      "id": "psychology-018",
+      "prompt": "Du fühlst dich verpflichtet, einen Gefallen zu erwidern, selbst einen ungebetenen.",
+      "answer": "Reziprozität",
+      "accept": [
+        "Reziprozitätsprinzip",
+        "Gegenseitigkeit"
+      ],
+      "distractors": [
+        "Konformität",
+        "Autoritätsprinzip",
+        "Knappheitsprinzip"
+      ],
+      "note": "Deshalb gibt es Gratisproben. Spürst du den Druck, frag dich, ob du auch ohne das Geschenk zugesagt hättest."
+    },
+    {
+      "id": "psychology-019",
+      "prompt": "Was knapp ist oder bald weg sein könnte, wirkt plötzlich wertvoller.",
+      "answer": "Knappheitsprinzip",
+      "accept": [
+        "Knappheit",
+        "Knappheitseffekt"
+      ],
+      "distractors": [
+        "Reziprozität",
+        "Besitztumseffekt",
+        "Sozialer Beweis"
+      ],
+      "note": "„Nur noch 2 Zimmer frei!“ ist oft reines Verkaufsdesign. Gönn dir bei größeren Käufen eine Nacht Bedenkzeit, echte Angebote überleben das meistens."
+    },
+    {
+      "id": "psychology-020",
+      "prompt": "Du richtest dich danach, was viele andere tun, vor allem wenn du unsicher bist.",
+      "answer": "Sozialer Beweis",
+      "accept": [
+        "Social Proof",
+        "Herdentrieb"
+      ],
+      "distractors": [
+        "Gruppendenken",
+        "Autoritätsprinzip",
+        "Reziprozität"
+      ],
+      "note": "Nutze es für dich und umgib dich mit Menschen, die schon so leben, wie du es möchtest. Bei Bewertungen und Warteschlangen lohnt dagegen ein zweiter, kritischer Blick."
+    },
+    {
+      "id": "psychology-021",
+      "prompt": "Deinen eigenen Besitz bewertest du höher als denselben Gegenstand im Laden.",
+      "answer": "Besitztumseffekt",
+      "accept": [
+        "Endowment-Effekt",
+        "Endowment Effect"
+      ],
+      "distractors": [
+        "Verlustaversion",
+        "Sunk-Cost-Effekt",
+        "Status-quo-Bias"
+      ],
+      "note": "Beim Ausmisten hilft die Frage: Würde ich das heute zu diesem Preis kaufen? Wenn nicht, darf es gehen."
+    },
+    {
+      "id": "psychology-022",
+      "prompt": "Das Verhalten anderer schreibst du ihrem Charakter zu und unterschätzt die Umstände.",
+      "answer": "Attributionsfehler",
+      "accept": [
+        "Fundamentaler Attributionsfehler",
+        "Korrespondenzverzerrung"
+      ],
+      "distractors": [
+        "Halo-Effekt",
+        "Selbstwertdienliche Verzerrung",
+        "Projektion"
+      ],
+      "note": "Schneidet dich jemand im Verkehr, denk an drei harmlose Gründe, etwa einen Notfall. Meist liegst du damit näher an der Wahrheit und ärgerst dich weniger."
+    },
+    {
+      "id": "psychology-023",
+      "prompt": "Du planst regelmäßig zu wenig Zeit ein, obwohl du es aus Erfahrung besser wissen müsstest.",
+      "answer": "Planungsfehlschluss",
+      "accept": [
+        "Planning Fallacy",
+        "Planungsfehler"
+      ],
+      "distractors": [
+        "Parkinsonsches Gesetz",
+        "Prokrastination",
+        "Dunning-Kruger-Effekt"
+      ],
+      "note": "Schätz nicht aus dem Bauch, sondern schau, wie lange ähnliche Projekte früher wirklich gedauert haben. Dann rechne einen Puffer obendrauf."
+    },
+    {
+      "id": "psychology-024",
+      "prompt": "Je mehr Entscheidungen du am Tag schon getroffen hast, desto schlechter werden die nächsten.",
+      "answer": "Entscheidungsmüdigkeit",
+      "accept": [
+        "Decision Fatigue"
+      ],
+      "distractors": [
+        "Auswahlparadox",
+        "Analyseparalyse",
+        "Burnout"
+      ],
+      "note": "Wie stark der Effekt ist, wird in der Forschung noch diskutiert. Wichtiges früh am Tag zu entscheiden und Kleinkram wie Frühstück oder Kleidung zu automatisieren, schadet aber nie."
+    },
+    {
+      "id": "psychology-025",
+      "prompt": "Zu viele Optionen machen unzufriedener und lähmen die Entscheidung.",
+      "answer": "Auswahlparadox",
+      "accept": [
+        "Paradox of Choice",
+        "Choice Overload",
+        "Qual der Wahl"
+      ],
+      "distractors": [
+        "Entscheidungsmüdigkeit",
+        "Verlustaversion",
+        "Ankereffekt"
+      ],
+      "note": "Begrenz dich bewusst, etwa auf drei Kandidaten, und nimm die erste Option, die deine Kriterien erfüllt. „Gut genug“ macht oft zufriedener als „das Beste“."
+    },
+    {
+      "id": "psychology-026",
+      "prompt": "Du verzichtest auf eine kleine Belohnung jetzt, um später eine größere zu bekommen.",
+      "answer": "Belohnungsaufschub",
+      "accept": [
+        "Bedürfnisaufschub",
+        "Marshmallow-Test"
+      ],
+      "distractors": [
+        "Gewohnheitsschleife",
+        "Verlustaversion",
+        "Prokrastination"
+      ],
+      "note": "Bekannt wurde das durch den Marshmallow-Test. Leichter wird es, wenn du die Versuchung aus dem Blickfeld räumst, statt dich auf reine Willenskraft zu verlassen."
+    },
+    {
+      "id": "psychology-027",
+      "prompt": "Du bleibst lieber beim Gewohnten, selbst wenn eine Änderung besser wäre.",
+      "answer": "Status-quo-Bias",
+      "accept": [
+        "Status-quo-Verzerrung",
+        "Status quo bias"
+      ],
+      "distractors": [
+        "Bestätigungsfehler",
+        "Gruppendenken",
+        "Rückschaufehler"
+      ],
+      "note": "Deshalb sind Voreinstellungen so mächtig. Richte deine eigenen so ein, dass Nichtstun zum Guten führt, etwa mit einem Dauerauftrag aufs Sparkonto."
+    },
+    {
+      "id": "psychology-028",
+      "prompt": "In einer Menschenmenge hilft jeder weniger, weil alle denken, ein anderer macht es.",
+      "answer": "Zuschauereffekt",
+      "accept": [
+        "Bystander-Effekt",
+        "Bystander Effect"
+      ],
+      "distractors": [
+        "Gruppendenken",
+        "Sozialer Beweis",
+        "Soziales Faulenzen"
+      ],
+      "note": "Sprich im Notfall eine Person direkt an: „Sie in der roten Jacke, rufen Sie die 112!“ So fühlt sich jemand persönlich verantwortlich."
+    },
+    {
+      "id": "psychology-029",
+      "prompt": "Du glaubst, deinen Erfolg nicht verdient zu haben, und fürchtest, als Blender aufzufliegen.",
+      "answer": "Hochstapler-Syndrom",
+      "accept": [
+        "Impostor-Syndrom",
+        "Imposter-Syndrom",
+        "Impostor Syndrome"
+      ],
+      "distractors": [
+        "Dunning-Kruger-Effekt",
+        "Spotlight-Effekt",
+        "Perfektionismus"
+      ],
+      "note": "Führ eine Liste mit konkreten Erfolgen und dem Feedback anderer. Fakten auf Papier halten dem Gefühl besser stand als Grübeln."
+    },
+    {
+      "id": "psychology-030",
+      "prompt": "Allein durch häufigen Kontakt findest du etwas sympathischer.",
+      "answer": "Mere-Exposure-Effekt",
+      "accept": [
+        "Mere Exposure",
+        "Mere-Exposure"
+      ],
+      "distractors": [
+        "Halo-Effekt",
+        "Priming",
+        "Baader-Meinhof-Phänomen"
+      ],
+      "note": "Deshalb laufen Werbespots so oft. Umgekehrt kannst du dich an Neues wie Gemüse oder Sport gewöhnen, indem du es einfach regelmäßig wiederholst."
+    }
+  ]
+}

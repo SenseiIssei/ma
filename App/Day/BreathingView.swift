@@ -15,6 +15,8 @@ struct BreathingView: View {
 
     private static let durations = [1, 3, 5]
 
+    private var sound: SoundEngine { SoundEngine.shared }
+
     var body: some View {
         ZStack {
             AppBackground()
@@ -33,7 +35,11 @@ struct BreathingView: View {
             }
         }
         .task(id: startedAt) { await run() }
-        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
+        .onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
+            // Leaving the screen ends the background sound too, even a preview.
+            sound.stop(scope: .breathing)
+        }
     }
 
     private var topBar: some View {
@@ -49,8 +55,41 @@ struct BreathingView: View {
             }
             .accessibilityLabel(tr("Close", "Schließen"))
             Spacer()
+            if startedAt != nil {
+                soundToggle
+            }
         }
         .padding(.horizontal, 8)
+    }
+
+    /// The off switch during a session, one tap away from the circle.
+    private var soundToggle: some View {
+        let on: Bool = sound.isPlaying(in: .breathing)
+        return Button {
+            Haptics.tap()
+            toggleSound()
+        } label: {
+            Image(systemName: on ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundStyle(on ? Zen.shu : Zen.inkSoft)
+                .contentTransition(.symbolEffect(.replace))
+                .frame(width: 44, height: 44)
+        }
+        .accessibilityLabel(on ? tr("Turn the sound off", "Klang ausschalten") : tr("Turn the sound on", "Klang einschalten"))
+    }
+
+    private var soundSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            SectionHeader(icon: "waveform", title: tr("Background sound", "Hintergrundklang"))
+            VStack(alignment: .leading, spacing: 10) {
+                SoundPicker(scope: .breathing)
+                Text(tr("Plays softly while you breathe. Choose Off for silence.", "Läuft leise, während du atmest. Mit Aus bleibt es still."))
+                    .font(.system(size: 13))
+                    .foregroundStyle(Zen.inkSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .zenCard()
+        }
     }
 
     // MARK: Setup
@@ -96,6 +135,8 @@ struct BreathingView: View {
                         Spacer()
                     }
                 }
+
+                soundSection
 
                 if day.breath.sessions > 0 {
                     Label(statsLine, systemImage: "chart.bar.fill")
@@ -248,10 +289,33 @@ struct BreathingView: View {
         Haptics.tap()
         lastTick = -1
         UIApplication.shared.isIdleTimerDisabled = true
+        let now = Date()
         withAnimation(.easeInOut(duration: 0.4)) {
             finishedSeconds = nil
-            startedAt = Date()
+            startedAt = now
         }
+        let chosen: AmbientSound = sound.sound(for: .breathing)
+        if chosen != .off {
+            sound.play(chosen, scope: .breathing, until: sessionEnd(from: now))
+        }
+    }
+
+    /// The sound's own deadline: it ends with the session even when the
+    /// phone is locked and this view no longer updates.
+    private func sessionEnd(from start: Date) -> Date {
+        start.addingTimeInterval(pattern.sessionLength(minutes: minutes) + 1)
+    }
+
+    private func toggleSound() {
+        if sound.isPlaying(in: .breathing) {
+            sound.stop(scope: .breathing)
+            return
+        }
+        guard let startedAt else { return }
+        let chosen: AmbientSound = sound.sound(for: .breathing)
+        // "Off" in the picker still means a sound when you ask for one here.
+        let pick: AmbientSound = chosen == .off ? .nightDrone : chosen
+        sound.play(pick, scope: .breathing, until: sessionEnd(from: startedAt))
     }
 
     /// Ending early still counts once there was at least half a minute of it.
@@ -263,6 +327,7 @@ struct BreathingView: View {
 
     private func finish(seconds: Int, record: Bool) {
         UIApplication.shared.isIdleTimerDisabled = false
+        sound.stop(scope: .breathing)
         if record {
             day.recordBreath(seconds: seconds)
             Haptics.success()

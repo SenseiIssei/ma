@@ -8,6 +8,8 @@ struct MaApp: App {
     /// Journal, habits and breathing; separate from AppModel because none of
     /// it touches Screen Time or the extensions.
     @State private var day = DayStore()
+    /// Movement, water, meals and sleep for the Balance tab. Also app-only.
+    @State private var balance = BalanceStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -15,6 +17,7 @@ struct MaApp: App {
             RootView()
                 .environment(model)
                 .environment(day)
+                .environment(balance)
                 .onOpenURL { model.handle(url: $0) }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()

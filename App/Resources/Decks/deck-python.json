@@ -1,0 +1,417 @@
+{
+  "id": "python",
+  "title": "Python-Grundlagen",
+  "subtitle": "Typen, Listen, Dicts und die Werkzeuge für jeden Tag",
+  "symbol": "λ",
+  "category": "tech",
+  "cards": [
+    {
+      "id": "python-001",
+      "prompt": "Welchen Typ hat das Ergebnis von `3 / 2` in Python 3?",
+      "answer": "float",
+      "distractors": [
+        "int",
+        "Decimal",
+        "str"
+      ],
+      "note": "`/` teilt immer als Gleitkommazahl, `3 / 2` ergibt 1.5. Für ganzzahlige Division gibt es `//`, also `3 // 2` gleich 1."
+    },
+    {
+      "id": "python-002",
+      "prompt": "Was ergibt `7 // 2`?",
+      "answer": "3",
+      "distractors": [
+        "3.5",
+        "4",
+        "1"
+      ],
+      "note": "`//` ist Ganzzahldivision und rundet Richtung minus unendlich, deshalb ergibt `-7 // 2` sogar -4. Den Rest liefert `7 % 2`, also 1."
+    },
+    {
+      "id": "python-003",
+      "prompt": "Welcher dieser Typen ist unveränderlich: list, dict, set oder tuple?",
+      "answer": "tuple",
+      "accept": [
+        "Tupel"
+      ],
+      "distractors": [
+        "list",
+        "dict",
+        "set"
+      ],
+      "note": "Ein Tupel lässt sich nach dem Erstellen nicht mehr ändern. Deshalb taugt es als Dict-Schlüssel, eine Liste dagegen nicht."
+    },
+    {
+      "id": "python-004",
+      "prompt": "Welche List Comprehension liefert die Quadrate von 0 bis 4?",
+      "answer": "[x**2 for x in range(5)]",
+      "accept": [
+        "[x*x for x in range(5)]"
+      ],
+      "distractors": [
+        "[x**2 in range(5)]",
+        "(x**2 for x in range(5))",
+        "[range(5)**2]"
+      ],
+      "note": "Der Aufbau ist `[ausdruck for element in iterable if bedingung]`. Mit runden Klammern entsteht stattdessen ein Generator, der die Werte erst bei Bedarf berechnet."
+    },
+    {
+      "id": "python-005",
+      "prompt": "Wie liest du `d[\"x\"]` ohne `KeyError`, mit 0 als Standardwert?",
+      "answer": "d.get(\"x\", 0)",
+      "accept": [
+        "d.get('x', 0)",
+        "d.get(\"x\",0)"
+      ],
+      "distractors": [
+        "d[\"x\"] or 0",
+        "d.find(\"x\", 0)",
+        "d.value(\"x\", 0)"
+      ],
+      "note": "Ohne zweites Argument gibt `get` einfach `None` zurück. Willst du den Standardwert gleich im Dict speichern, nimm `d.setdefault(\"x\", 0)`."
+    },
+    {
+      "id": "python-006",
+      "prompt": "Wie gehst du in einer Schleife über Schlüssel und Werte eines Dicts gleichzeitig?",
+      "answer": "d.items()",
+      "accept": [
+        "items()",
+        "for k, v in d.items()"
+      ],
+      "distractors": [
+        "d.keys()",
+        "d.values()",
+        "d.pairs()"
+      ],
+      "note": "`for k, v in d.items():` entpackt jedes Paar direkt. Seit Python 3.7 behalten Dicts garantiert die Einfügereihenfolge."
+    },
+    {
+      "id": "python-007",
+      "prompt": "Wie setzt du in einem f-String die Variable `name` ein?",
+      "answer": "f\"Hallo {name}\"",
+      "accept": [
+        "f'Hallo {name}'"
+      ],
+      "distractors": [
+        "\"Hallo {name}\"",
+        "f\"Hallo $name\"",
+        "f\"Hallo %name\""
+      ],
+      "note": "In die geschweiften Klammern passt jeder Ausdruck, etwa `{preis:.2f}` für zwei Nachkommastellen. Seit Python 3.8 zeigt `{x=}` Name und Wert, praktisch zum Debuggen."
+    },
+    {
+      "id": "python-008",
+      "prompt": "Was garantiert `with open(\"a.txt\") as f:`?",
+      "answer": "Die Datei wird geschlossen",
+      "accept": [
+        "Datei wird geschlossen",
+        "Automatisches Schließen"
+      ],
+      "distractors": [
+        "Die Datei wird gesperrt",
+        "Die Datei wird neu angelegt",
+        "Die Datei wird gepuffert"
+      ],
+      "note": "`with` nutzt einen Kontextmanager: Beim Verlassen des Blocks wird aufgeräumt, auch wenn eine Exception fliegt. Dasselbe Muster gibt es für Locks und Datenbankverbindungen."
+    },
+    {
+      "id": "python-009",
+      "prompt": "Welches Schlüsselwort macht eine Funktion zum Generator?",
+      "answer": "yield",
+      "distractors": [
+        "return",
+        "async",
+        "lambda"
+      ],
+      "note": "Ein Generator liefert Werte einzeln und merkt sich seinen Zustand zwischen den Aufrufen. So verarbeitest du riesige Dateien Zeile für Zeile, ohne alles in den Speicher zu laden."
+    },
+    {
+      "id": "python-010",
+      "prompt": "Wie fängst du eine Division durch null ab?",
+      "answer": "except ZeroDivisionError:",
+      "accept": [
+        "except ZeroDivisionError",
+        "ZeroDivisionError"
+      ],
+      "distractors": [
+        "except DivideError:",
+        "catch ZeroDivisionError:",
+        "except MathError:"
+      ],
+      "note": "Fang möglichst konkrete Exceptions statt eines nackten `except:`. Sonst verschluckst du auch echte Bugs und sogar Strg+C."
+    },
+    {
+      "id": "python-011",
+      "prompt": "Welcher Block läuft immer, egal ob eine Exception auftritt?",
+      "answer": "finally",
+      "distractors": [
+        "else",
+        "except",
+        "always"
+      ],
+      "note": "`else` läuft nur, wenn keine Exception kam, `finally` in jedem Fall. Ideal zum Aufräumen, wenn du kein `with` benutzen kannst."
+    },
+    {
+      "id": "python-012",
+      "prompt": "Mit welchem Schlüsselwort löst du selbst eine Exception aus?",
+      "answer": "raise",
+      "accept": [
+        "raise ValueError"
+      ],
+      "distractors": [
+        "throw",
+        "error",
+        "panic"
+      ],
+      "note": "Zum Beispiel `raise ValueError(\"Alter muss positiv sein\")`. Wähle einen passenden eingebauten Typ oder leite eine eigene Klasse von `Exception` ab."
+    },
+    {
+      "id": "python-013",
+      "prompt": "Wie legst du eine virtuelle Umgebung im Ordner `.venv` an?",
+      "answer": "python -m venv .venv",
+      "accept": [
+        "python3 -m venv .venv"
+      ],
+      "distractors": [
+        "pip install venv",
+        "python venv .venv",
+        "virtualenv --new .venv"
+      ],
+      "note": "Aktiviert wird sie mit `source .venv/bin/activate` unter macOS und Linux oder `.venv\\Scripts\\activate` unter Windows. So hat jedes Projekt seine eigenen Paketversionen."
+    },
+    {
+      "id": "python-014",
+      "prompt": "Wie installierst du das Paket `requests`?",
+      "answer": "pip install requests",
+      "accept": [
+        "python -m pip install requests"
+      ],
+      "distractors": [
+        "pip get requests",
+        "python install requests",
+        "pip add requests"
+      ],
+      "note": "`python -m pip` ist die sicherere Schreibweise, weil sie garantiert das pip des aktuellen Pythons nutzt. Installiere möglichst in einer aktiven venv, nicht global."
+    },
+    {
+      "id": "python-015",
+      "prompt": "Wie schreibst du die installierten Pakete in eine Datei?",
+      "answer": "pip freeze > requirements.txt",
+      "accept": [
+        "pip freeze"
+      ],
+      "distractors": [
+        "pip save requirements.txt",
+        "pip export > requirements.txt",
+        "pip list > requirements.txt"
+      ],
+      "note": "Auf einem anderen Rechner stellst du alles mit `pip install -r requirements.txt` wieder her. So läuft dein Projekt überall mit denselben Versionen."
+    },
+    {
+      "id": "python-016",
+      "prompt": "Was ergibt `len([1, [2, 3], 4])`?",
+      "answer": "3",
+      "distractors": [
+        "2",
+        "4",
+        "5"
+      ],
+      "note": "`len` zählt nur die oberste Ebene. Die innere Liste `[2, 3]` ist ein einziges Element."
+    },
+    {
+      "id": "python-017",
+      "prompt": "Was ergibt `\"abc\"[::-1]`?",
+      "answer": "cba",
+      "accept": [
+        "\"cba\"",
+        "'cba'"
+      ],
+      "distractors": [
+        "abc",
+        "c",
+        "bca"
+      ],
+      "note": "Slicing hat die Form `[start:stop:step]`. Schritt -1 läuft rückwärts, der schnellste Weg, einen String umzudrehen."
+    },
+    {
+      "id": "python-018",
+      "prompt": "Was ergibt `[10, 20, 30][-1]`?",
+      "answer": "30",
+      "distractors": [
+        "10",
+        "20",
+        "IndexError"
+      ],
+      "note": "Negative Indizes zählen vom Ende her. `-1` ist das letzte Element, `-2` das vorletzte."
+    },
+    {
+      "id": "python-019",
+      "prompt": "Welcher Wert steht in Python für „nichts“?",
+      "answer": "None",
+      "distractors": [
+        "null",
+        "nil",
+        "undefined"
+      ],
+      "note": "Prüfe mit `x is None`, nicht mit `==`. Es gibt genau ein `None`-Objekt, deshalb ist der Identitätsvergleich richtig und schneller."
+    },
+    {
+      "id": "python-020",
+      "prompt": "Was ergibt `bool([])`?",
+      "answer": "False",
+      "distractors": [
+        "True",
+        "None",
+        "[]"
+      ],
+      "note": "Leere Container, 0, `\"\"` und `None` gelten als falsch. Deshalb schreibst du idiomatisch `if not items:` statt `if len(items) == 0:`."
+    },
+    {
+      "id": "python-021",
+      "prompt": "Mit welcher Methode hängst du ein einzelnes Element ans Ende einer Liste?",
+      "answer": "append",
+      "accept": [
+        "append()",
+        ".append()",
+        "xs.append(x)"
+      ],
+      "distractors": [
+        "add",
+        "push",
+        "extend"
+      ],
+      "note": "`append` fügt ein einzelnes Element an, `extend` alle Elemente einer anderen Liste. `xs.append([1, 2])` hängt also eine ganze Liste als ein Element an."
+    },
+    {
+      "id": "python-022",
+      "prompt": "Wie entfernst du am einfachsten Duplikate aus der Liste `xs`?",
+      "answer": "set(xs)",
+      "accept": [
+        "list(set(xs))",
+        "set"
+      ],
+      "distractors": [
+        "xs.unique()",
+        "xs.distinct()",
+        "dedup(xs)"
+      ],
+      "note": "Ein Set speichert jedes Element nur einmal, verliert aber die Reihenfolge. Mit `list(dict.fromkeys(xs))` bleibt sie erhalten."
+    },
+    {
+      "id": "python-023",
+      "prompt": "Welche eingebaute Funktion liefert beim Iterieren Index und Wert zusammen?",
+      "answer": "enumerate",
+      "accept": [
+        "enumerate()"
+      ],
+      "distractors": [
+        "range",
+        "zip",
+        "index"
+      ],
+      "note": "`for i, name in enumerate(namen, start=1):` zählt ab 1. Das ist lesbarer als `range(len(namen))`."
+    },
+    {
+      "id": "python-024",
+      "prompt": "Welche Funktion geht zwei Listen parallel durch?",
+      "answer": "zip",
+      "accept": [
+        "zip()"
+      ],
+      "distractors": [
+        "map",
+        "enumerate",
+        "merge"
+      ],
+      "note": "`zip(namen, alter)` liefert Paare und stoppt bei der kürzeren Liste. `dict(zip(keys, values))` baut schnell ein Dict."
+    },
+    {
+      "id": "python-025",
+      "prompt": "Wie schreibst du eine anonyme Funktion, die `x` verdoppelt?",
+      "answer": "lambda x: x * 2",
+      "accept": [
+        "lambda x: x*2",
+        "lambda x:x*2"
+      ],
+      "distractors": [
+        "def x: x * 2",
+        "fn x => x * 2",
+        "lambda(x) { x * 2 }"
+      ],
+      "note": "Lambdas passen für kurze Ausdrücke, etwa `sorted(leute, key=lambda p: p.alter)`. Alles Längere gehört in eine normale `def`-Funktion."
+    },
+    {
+      "id": "python-026",
+      "prompt": "Was prüft `if __name__ == \"__main__\":`?",
+      "answer": "Ob das Skript direkt läuft",
+      "accept": [
+        "Direkt ausgeführt",
+        "Direkter Start"
+      ],
+      "distractors": [
+        "Ob main() existiert",
+        "Ob Python 3 läuft",
+        "Ob Fehler auftraten"
+      ],
+      "note": "Beim Import bekommt `__name__` den Modulnamen, beim direkten Start den Wert `\"__main__\"`. So läuft Testcode nur, wenn du die Datei selbst startest."
+    },
+    {
+      "id": "python-027",
+      "prompt": "Wie bekommst du die Anzahl der Zeichen im String `s`?",
+      "answer": "len(s)",
+      "accept": [
+        "len"
+      ],
+      "distractors": [
+        "s.length",
+        "s.size()",
+        "count(s)"
+      ],
+      "note": "`len` funktioniert für Strings, Listen, Dicts und alles, was `__len__` implementiert. Bei Strings zählt Python Unicode-Zeichen, nicht Bytes."
+    },
+    {
+      "id": "python-028",
+      "prompt": "Wie verbindest du `[\"a\", \"b\", \"c\"]` zum String `\"a,b,c\"`?",
+      "answer": "\",\".join(xs)",
+      "accept": [
+        "','.join(xs)",
+        "join"
+      ],
+      "distractors": [
+        "xs.join(\",\")",
+        "\",\".concat(xs)",
+        "xs.merge(\",\")"
+      ],
+      "note": "`join` ist eine Methode des Trennzeichens, nicht der Liste, darüber stolpert fast jeder. Die Umkehrung ist `\"a,b,c\".split(\",\")`."
+    },
+    {
+      "id": "python-029",
+      "prompt": "Welche Datenstruktur findet einen Eintrag per Schlüssel im Schnitt in O(1)?",
+      "answer": "dict",
+      "accept": [
+        "Dictionary"
+      ],
+      "distractors": [
+        "list",
+        "tuple",
+        "deque"
+      ],
+      "note": "Dicts sind Hashtabellen. `x in liste` muss alles durchsuchen, `x in dict` oder `x in set` springt direkt zum Eintrag."
+    },
+    {
+      "id": "python-030",
+      "prompt": "Wie nennt man `@lru_cache` über einer Funktionsdefinition?",
+      "answer": "Dekorator",
+      "accept": [
+        "Decorator",
+        "Dekorierer"
+      ],
+      "distractors": [
+        "Annotation",
+        "Makro",
+        "Kommentar"
+      ],
+      "note": "Ein Dekorator ist eine Funktion, die eine andere Funktion umhüllt. `@lru_cache` aus `functools` merkt sich Ergebnisse, damit teure Aufrufe nur einmal rechnen."
+    }
+  ]
+}

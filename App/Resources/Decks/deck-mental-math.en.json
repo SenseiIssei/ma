@@ -1,0 +1,359 @@
+{
+  "id": "mental-math",
+  "locale": "en",
+  "title": "Mental Math",
+  "subtitle": "30 sums, each harder, each with a trick",
+  "symbol": "×",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "mental-math-001",
+      "prompt": "What is 7 × 8?",
+      "answer": "56",
+      "distractors": [
+        "48",
+        "54",
+        "58"
+      ],
+      "note": "Think of the sequence 5, 6, 7, 8: 56 = 7 × 8."
+    },
+    {
+      "id": "mental-math-002",
+      "prompt": "What is 45 + 38?",
+      "answer": "83",
+      "distractors": [
+        "73",
+        "82",
+        "93"
+      ],
+      "note": "Round up: 45 + 40 = 85, then take away 2. Your head is far more reliable with round numbers."
+    },
+    {
+      "id": "mental-math-003",
+      "prompt": "What is 100 − 37?",
+      "answer": "63",
+      "distractors": [
+        "53",
+        "67",
+        "73"
+      ],
+      "note": "Count up from 37: 3 to reach 40, then 60 to reach 100, together 63. That is how cashiers count out change."
+    },
+    {
+      "id": "mental-math-004",
+      "prompt": "What is 10% of 250?",
+      "answer": "25",
+      "distractors": [
+        "2.5",
+        "20",
+        "50"
+      ],
+      "note": "10 percent means moving the decimal point one place left. Everything else builds on it: 5% is half of that, 20% double."
+    },
+    {
+      "id": "mental-math-005",
+      "prompt": "What is 48 × 5?",
+      "answer": "240",
+      "distractors": [
+        "220",
+        "245",
+        "250"
+      ],
+      "note": "Times 5 means times 10, then halve: 480 ÷ 2 = 240."
+    },
+    {
+      "id": "mental-math-006",
+      "prompt": "What is 17 × 6?",
+      "answer": "102",
+      "distractors": [
+        "96",
+        "108",
+        "112"
+      ],
+      "note": "Split the number: 10 × 6 = 60 and 7 × 6 = 42, together 102."
+    },
+    {
+      "id": "mental-math-007",
+      "prompt": "What is 144 ÷ 12?",
+      "answer": "12",
+      "distractors": [
+        "11",
+        "13",
+        "14"
+      ],
+      "note": "12 × 12 = 144, known as a gross. Knowing the squares up to 20² by heart saves time constantly."
+    },
+    {
+      "id": "mental-math-008",
+      "prompt": "What is 25 × 16?",
+      "answer": "400",
+      "distractors": [
+        "350",
+        "380",
+        "425"
+      ],
+      "note": "25 is a quarter of 100: 16 ÷ 4 = 4, so 400. Times 25 always means divide by 4 and multiply by 100."
+    },
+    {
+      "id": "mental-math-009",
+      "prompt": "What is 15% of 80?",
+      "answer": "12",
+      "distractors": [
+        "8",
+        "13",
+        "16"
+      ],
+      "note": "10% is 8, and 5% is half of that, so 4. Together 12, the classic tipping trick."
+    },
+    {
+      "id": "mental-math-010",
+      "prompt": "What is 360 ÷ 8?",
+      "answer": "45",
+      "distractors": [
+        "40",
+        "42",
+        "48"
+      ],
+      "note": "Halve three times: 180, 90, 45. Dividing by 8 is just dividing by 2 three times."
+    },
+    {
+      "id": "mental-math-011",
+      "prompt": "What is 1.5 × 18?",
+      "answer": "27",
+      "distractors": [
+        "24",
+        "26",
+        "28"
+      ],
+      "note": "18 plus half of 18: 18 + 9 = 27. Times 1.5 always means the number plus its half."
+    },
+    {
+      "id": "mental-math-012",
+      "prompt": "What is 20% of 45?",
+      "answer": "9",
+      "distractors": [
+        "4.5",
+        "8",
+        "11"
+      ],
+      "note": "10% is 4.5, double that is 9. Alternatively: 20% is a fifth, and 45 ÷ 5 = 9."
+    },
+    {
+      "id": "mental-math-013",
+      "prompt": "What is 47 + 36 + 53?",
+      "answer": "136",
+      "distractors": [
+        "126",
+        "134",
+        "146"
+      ],
+      "note": "Look for partners that make round numbers: 47 + 53 = 100, plus 36 makes 136. Order does not matter when adding."
+    },
+    {
+      "id": "mental-math-014",
+      "prompt": "What is 11 × 43?",
+      "answer": "473",
+      "distractors": [
+        "443",
+        "463",
+        "483"
+      ],
+      "note": "The 11 trick: spread the digits apart and put their sum in the middle. 4, then 4 + 3 = 7, then 3 gives 473."
+    },
+    {
+      "id": "mental-math-015",
+      "prompt": "What is 99 × 7?",
+      "answer": "693",
+      "distractors": [
+        "683",
+        "697",
+        "703"
+      ],
+      "note": "Work out 100 × 7 = 700 and subtract 7 once. Times 99 is always times 100 minus the number once."
+    },
+    {
+      "id": "mental-math-016",
+      "prompt": "What is 1000 − 347?",
+      "answer": "653",
+      "distractors": [
+        "643",
+        "663",
+        "753"
+      ],
+      "note": "Take each digit to 9 and the last one to 10: 3, 4, 7 become 6, 5, 3. This works for any subtraction from a power of ten."
+    },
+    {
+      "id": "mental-math-017",
+      "prompt": "What is 3/4 of 120?",
+      "answer": "90",
+      "distractors": [
+        "80",
+        "85",
+        "96"
+      ],
+      "note": "A quarter is 30, three quarters are 90. Divide by the bottom number first, then multiply by the top."
+    },
+    {
+      "id": "mental-math-018",
+      "prompt": "What is 13²?",
+      "answer": "169",
+      "distractors": [
+        "139",
+        "159",
+        "196"
+      ],
+      "note": "(10 + 3)² = 100 + 60 + 9 = 169. Don't mix it up: 196 is 14²."
+    },
+    {
+      "id": "mental-math-019",
+      "prompt": "What is 0.5 × 0.4?",
+      "answer": "0.2",
+      "accept": [
+        "0,2",
+        "0.20",
+        ".2"
+      ],
+      "distractors": [
+        "0.02",
+        "0.9",
+        "2"
+      ],
+      "note": "Times 0.5 is the same as halving: half of 0.4 is 0.2. Or 5 × 4 = 20, then place two decimal digits."
+    },
+    {
+      "id": "mental-math-020",
+      "prompt": "What is 72 ÷ 0.5?",
+      "answer": "144",
+      "distractors": [
+        "36",
+        "142",
+        "154"
+      ],
+      "note": "Dividing by a half means doubling. Mixing it up with halving gets you 36."
+    },
+    {
+      "id": "mental-math-021",
+      "prompt": "What is 8% of 25?",
+      "answer": "2",
+      "distractors": [
+        "0.2",
+        "2.5",
+        "4"
+      ],
+      "note": "Percentages can be swapped: 8% of 25 is the same as 25% of 8, which is a quarter of 8."
+    },
+    {
+      "id": "mental-math-022",
+      "prompt": "What is 23 × 21?",
+      "answer": "483",
+      "distractors": [
+        "463",
+        "473",
+        "493"
+      ],
+      "note": "23 × 20 = 460, then add one more 23: 483. Numbers just above a round number are best split like this."
+    },
+    {
+      "id": "mental-math-023",
+      "prompt": "What is 25²?",
+      "answer": "625",
+      "distractors": [
+        "525",
+        "600",
+        "650"
+      ],
+      "note": "To square a number ending in 5, multiply the front digit by the next number up, 2 × 3 = 6, then append 25. That gives 625."
+    },
+    {
+      "id": "mental-math-024",
+      "prompt": "What is 12.5% of 64?",
+      "answer": "8",
+      "distractors": [
+        "6",
+        "7.5",
+        "12"
+      ],
+      "note": "12.5% is one eighth. These fractions pay off: 25% is a quarter, 12.5% an eighth, 20% a fifth."
+    },
+    {
+      "id": "mental-math-025",
+      "prompt": "What is 125 × 8?",
+      "answer": "1000",
+      "accept": [
+        "1,000",
+        "1 000"
+      ],
+      "distractors": [
+        "900",
+        "1025",
+        "1200"
+      ],
+      "note": "125 is one eighth of 1000. So times 125 means times 1000, divided by 8."
+    },
+    {
+      "id": "mental-math-026",
+      "prompt": "What is √196?",
+      "answer": "14",
+      "distractors": [
+        "13",
+        "16",
+        "18"
+      ],
+      "note": "196 lies between 13² = 169 and 15² = 225. A square ending in 6 has a root ending in 4 or 6, so 14."
+    },
+    {
+      "id": "mental-math-027",
+      "prompt": "What is 19²?",
+      "answer": "361",
+      "distractors": [
+        "351",
+        "371",
+        "381"
+      ],
+      "note": "(20 − 1)² = 400 − 40 + 1 = 361. Just below a round number, the binomial formula pays off."
+    },
+    {
+      "id": "mental-math-028",
+      "prompt": "What is 2¹⁰?",
+      "answer": "1024",
+      "accept": [
+        "1,024"
+      ],
+      "distractors": [
+        "512",
+        "1000",
+        "2048"
+      ],
+      "note": "Remember 2¹⁰ ≈ 1000. Then 2²⁰ is roughly a million, handy for memory sizes and probabilities."
+    },
+    {
+      "id": "mental-math-029",
+      "prompt": "What is 98 × 102?",
+      "answer": "9996",
+      "accept": [
+        "9,996",
+        "9 996"
+      ],
+      "distractors": [
+        "9904",
+        "9994",
+        "10004"
+      ],
+      "note": "(100 − 2)(100 + 2) = 100² − 2² = 10000 − 4. The difference of squares turns pairs like this into one line."
+    },
+    {
+      "id": "mental-math-030",
+      "prompt": "What is 85²?",
+      "answer": "7225",
+      "accept": [
+        "7,225"
+      ],
+      "distractors": [
+        "7025",
+        "7250",
+        "7325"
+      ],
+      "note": "Same trick as for 25²: 8 × 9 = 72, then append 25. It works for every number ending in 5."
+    }
+  ]
+}

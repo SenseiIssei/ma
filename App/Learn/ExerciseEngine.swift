@@ -187,7 +187,7 @@ struct ExerciseEngine {
     /// pairs. Tries not to repeat the kind the card had last time.
     func recognition(card: Card, deck: Deck, avoiding previous: ExerciseKind? = nil) -> Exercise {
         let canChoice = !wrongAnswers(for: card, in: deck).isEmpty
-        let sentence = card.tokens.count >= 3
+        let sentence = Self.isSentence(card, in: deck)
         var kinds: [ExerciseKind] = []
         if canChoice { kinds.append(.choice) }
         if canChoice && !sentence { kinds.append(.trueFalse) }
@@ -204,6 +204,13 @@ struct ExerciseEngine {
         return make(kind, card: card, deck: deck)
     }
 
+    /// Word-order tiles only make sense for language decks. In a first aid
+    /// or Python deck, "100 to 120 per minute" is an answer, not a sentence.
+    static func isSentence(_ card: Card, in deck: Deck) -> Bool {
+        let languageDeck = deck.language != nil || deck.category == "languages"
+        return languageDeck && card.tokens.count >= 3
+    }
+
     /// Pairs only with cards the learner has been shown.
     private func canPair(_ card: Card, in deck: Deck) -> Bool {
         guard Self.isPairable(card) else { return false }
@@ -218,7 +225,7 @@ struct ExerciseEngine {
         let wrongPool = wrongAnswers(for: card, in: deck)
         let canChoice = !wrongPool.isEmpty
         let typable = !Self.containsCJK(card.answer) && card.answer.count <= 32
-        let sentence = card.tokens.count >= 3
+        let sentence = Self.isSentence(card, in: deck)
         let hasCloze = card.example.map { $0.contains(card.answer) && $0 != card.answer } ?? false
         let pairable = canPair(card, in: deck)
         let canReverse = card.prompt.count <= 40 && others.count >= 3

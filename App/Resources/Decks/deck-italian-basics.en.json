@@ -1,0 +1,266 @@
+{
+  "id": "italian-basics",
+  "locale": "en",
+  "title": "Italian: Basics",
+  "subtitle": "30 starter words with pronunciation tips",
+  "symbol": "I",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "italian-basics-001",
+      "prompt": "hi (with people you know)",
+      "answer": "ciao",
+      "distractors": ["buona", "grazie", "caro"],
+      "example": "Mi ha salutato con un ciao.",
+      "note": "Said \"chow\"; the i only signals that the c is soft like ch. Use ciao with people you know and buongiorno with strangers."
+    },
+    {
+      "id": "italian-basics-002",
+      "prompt": "thank you",
+      "answer": "grazie",
+      "distractors": ["prego", "grazioso", "scusi"],
+      "example": "Ti dico grazie di cuore.",
+      "note": "Said GRAHT-syeh, and the final e is clearly pronounced. Grazie mille means a thousand thanks."
+    },
+    {
+      "id": "italian-basics-003",
+      "prompt": "you're welcome",
+      "answer": "prego",
+      "distractors": ["per favore", "pregare", "grazie"],
+      "example": "Lui risponde sempre prego.",
+      "note": "Prego is an all-rounder: you're welcome, here you go, come in. To ask for something, say per favore instead."
+    },
+    {
+      "id": "italian-basics-004",
+      "prompt": "sorry, excuse me",
+      "answer": "scusa",
+      "accept": ["scusi", "mi scusi"],
+      "distractors": ["scuola", "prego", "scossa"],
+      "example": "Ti chiedo scusa per il ritardo.",
+      "note": "Say scusa to friends and the polite scusi to strangers. The sc before u sounds like sk: SKOO-za."
+    },
+    {
+      "id": "italian-basics-005",
+      "prompt": "yes",
+      "answer": "sì",
+      "distractors": ["no", "se", "su"],
+      "example": "Credo di sì.",
+      "note": "With the accent, sì means yes; without it, si is a pronoun (oneself). Both sound the same."
+    },
+    {
+      "id": "italian-basics-006",
+      "prompt": "water",
+      "answer": "l'acqua",
+      "accept": ["acqua"],
+      "distractors": ["l'aria", "l'aquila", "il latte"],
+      "example": "Mi porti l'acqua frizzante?",
+      "note": "cq sounds like a long kw: AHK-kwah. In a restaurant you choose naturale (still) or frizzante (sparkling)."
+    },
+    {
+      "id": "italian-basics-007",
+      "prompt": "bread",
+      "answer": "il pane",
+      "accept": ["pane"],
+      "distractors": ["la pasta", "il cane", "la panna"],
+      "example": "Compro il pane ogni mattina.",
+      "note": "Italian vowels are always full: PAH-neh, and the final e is spoken. Don't mix it up with la panna, which is cream."
+    },
+    {
+      "id": "italian-basics-008",
+      "prompt": "friend",
+      "answer": "l'amico",
+      "accept": ["amico", "l'amica", "amica"],
+      "distractors": ["l'amore", "l'uomo", "il nemico"],
+      "example": "Marco è l'amico di mio fratello.",
+      "note": "The plural of amico is amici, said ah-MEE-chee. The c before i sounds like ch."
+    },
+    {
+      "id": "italian-basics-009",
+      "prompt": "to eat",
+      "answer": "mangiare",
+      "distractors": ["bere", "cucinare", "mancare"],
+      "example": "Andiamo a mangiare una pizza.",
+      "note": "gi sounds like j, and the i isn't spoken separately: mahn-JAH-reh."
+    },
+    {
+      "id": "italian-basics-010",
+      "prompt": "to drink",
+      "answer": "bere",
+      "distractors": ["mangiare", "vedere", "avere"],
+      "example": "Vuoi bere qualcosa?",
+      "note": "Short and clear: BEH-reh, with one tap of the r. I drink is irregular: io bevo."
+    },
+    {
+      "id": "italian-basics-011",
+      "prompt": "to speak",
+      "answer": "parlare",
+      "distractors": ["partire", "pagare", "ascoltare"],
+      "example": "Puoi parlare più piano?",
+      "note": "Roll the r with the tip of your tongue. Parla inglese? politely asks whether someone speaks English."
+    },
+    {
+      "id": "italian-basics-012",
+      "prompt": "today",
+      "answer": "oggi",
+      "distractors": ["ieri", "domani", "ogni"],
+      "example": "Che cosa facciamo oggi?",
+      "note": "Double consonants are held longer: OHD-jee. The gi sounds like j."
+    },
+    {
+      "id": "italian-basics-013",
+      "prompt": "tomorrow",
+      "answer": "domani",
+      "distractors": ["ieri", "oggi", "mattina"],
+      "example": "Ci vediamo domani.",
+      "note": "Stress the middle syllable: doh-MAH-nee. A domani means see you tomorrow."
+    },
+    {
+      "id": "italian-basics-014",
+      "prompt": "yesterday",
+      "answer": "ieri",
+      "distractors": ["oggi", "domani", "prima"],
+      "example": "Sono arrivato ieri sera.",
+      "note": "Two syllables: YEH-ree, the first i sounds like y. Ieri sera means last night."
+    },
+    {
+      "id": "italian-basics-015",
+      "prompt": "good (adjective)",
+      "answer": "buono",
+      "accept": ["buona", "buon"],
+      "distractors": ["bene", "bello", "cattivo"],
+      "example": "Questo caffè è molto buono.",
+      "note": "Before masculine nouns it often shortens to buon: buon giorno. For the adverb, as in I'm fine, use bene."
+    },
+    {
+      "id": "italian-basics-016",
+      "prompt": "big",
+      "answer": "grande",
+      "distractors": ["largo", "lungo", "grasso"],
+      "example": "Roma è una città grande.",
+      "note": "False friend: largo means wide, not large. Said GRAHN-deh, with a full e at the end."
+    },
+    {
+      "id": "italian-basics-017",
+      "prompt": "small",
+      "answer": "piccolo",
+      "accept": ["piccola"],
+      "distractors": ["poco", "corto", "magro"],
+      "example": "Abito in un paese piccolo.",
+      "note": "The double c is a long k: PEEK-koh-loh. A piccolo is simply the small flute."
+    },
+    {
+      "id": "italian-basics-018",
+      "prompt": "beautiful",
+      "answer": "bello",
+      "accept": ["bella", "bel"],
+      "distractors": ["buono", "brutto", "basso"],
+      "example": "Che bello questo panorama!",
+      "note": "Hold the double l: BEHL-loh. Before nouns it often shortens to bel: un bel giorno."
+    },
+    {
+      "id": "italian-basics-019",
+      "prompt": "expensive",
+      "answer": "caro",
+      "accept": ["cara"],
+      "distractors": ["carro", "carino", "economico"],
+      "example": "Questo albergo è troppo caro.",
+      "note": "Caro also means dear, as at the start of a letter: Caro Luca. Tap the r once."
+    },
+    {
+      "id": "italian-basics-020",
+      "prompt": "cheap",
+      "answer": "economico",
+      "accept": ["economica", "a buon mercato"],
+      "distractors": ["caro", "ecologico", "gratuito"],
+      "example": "Il treno è economico.",
+      "note": "Stress the third syllable: eh-koh-NOH-mee-koh. You'll also hear a buon mercato."
+    },
+    {
+      "id": "italian-basics-021",
+      "prompt": "where?",
+      "answer": "dove",
+      "distractors": ["quando", "come", "chi"],
+      "example": "Non so dove abita.",
+      "note": "Two syllables: DOH-veh. Before è it usually shortens to dov'è: Dov'è il bagno?"
+    },
+    {
+      "id": "italian-basics-022",
+      "prompt": "how much?",
+      "answer": "quanto",
+      "accept": ["quanta"],
+      "distractors": ["quando", "quale", "come"],
+      "example": "Mi dici quanto costa?",
+      "note": "qu sounds like kw: KWAHN-toh. The ending adapts: quanti giorni, quante ore."
+    },
+    {
+      "id": "italian-basics-023",
+      "prompt": "station",
+      "answer": "la stazione",
+      "accept": ["stazione"],
+      "distractors": ["la stanza", "la fermata", "l'aeroporto"],
+      "example": "Dov'è la stazione?",
+      "note": "zi sounds like tsy: stah-TSYOH-neh. The main station is often called stazione centrale."
+    },
+    {
+      "id": "italian-basics-024",
+      "prompt": "the bill (restaurant)",
+      "answer": "il conto",
+      "accept": ["conto"],
+      "distractors": ["il costo", "il racconto", "la mancia"],
+      "example": "Ci porta il conto, per favore?",
+      "note": "Conto also means bank account. Il conto, per favore! is the standard line in a restaurant."
+    },
+    {
+      "id": "italian-basics-025",
+      "prompt": "breakfast",
+      "answer": "la colazione",
+      "accept": ["colazione"],
+      "distractors": ["la cena", "il pranzo", "la merenda"],
+      "example": "È inclusa la colazione?",
+      "note": "Many Italians have breakfast standing at a bar, with a cappuccino and a cornetto. Said koh-lah-TSYOH-neh."
+    },
+    {
+      "id": "italian-basics-026",
+      "prompt": "room (in a hotel)",
+      "answer": "la camera",
+      "accept": ["camera"],
+      "distractors": ["la cucina", "la cantina", "la macchina"],
+      "example": "Posso vedere la camera?",
+      "note": "False friend: camera means room; a camera is la macchina fotografica. Stress the first syllable: KAH-meh-rah."
+    },
+    {
+      "id": "italian-basics-027",
+      "prompt": "to work",
+      "answer": "lavorare",
+      "distractors": ["lavare", "viaggiare", "lasciare"],
+      "example": "Domani devo lavorare.",
+      "note": "Stress: lah-voh-RAH-reh. Don't confuse it with lavare, to wash."
+    },
+    {
+      "id": "italian-basics-028",
+      "prompt": "to understand",
+      "answer": "capire",
+      "distractors": ["capitare", "sapere", "prendere"],
+      "example": "Non riesco a capire questa parola.",
+      "note": "Non capisco is one of the most useful sentences. In the present tense the verb adds -isc-: capisco, capisci."
+    },
+    {
+      "id": "italian-basics-029",
+      "prompt": "How are you?",
+      "answer": "come stai",
+      "accept": ["come va", "come sta"],
+      "distractors": ["come mai", "dove sei", "cosa fai"],
+      "example": "Ciao Anna, come stai?",
+      "note": "Come stai is for friends, come sta for strangers. The answer: bene, grazie!"
+    },
+    {
+      "id": "italian-basics-030",
+      "prompt": "goodbye",
+      "answer": "arrivederci",
+      "accept": ["ciao"],
+      "distractors": ["buongiorno", "benvenuto", "piacere"],
+      "example": "Se n'è andato senza dire arrivederci.",
+      "note": "Literally \"until we see each other again\". Said ahr-ree-veh-DEHR-chee, with a strongly rolled double r."
+    }
+  ]
+}

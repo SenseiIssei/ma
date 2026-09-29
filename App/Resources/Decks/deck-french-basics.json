@@ -1,0 +1,267 @@
+{
+  "id": "french-basics",
+  "title": "Französisch: Grundlagen",
+  "subtitle": "30 Wörter für den Start, mit Aussprachetipps",
+  "symbol": "Ç",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "french-basics-001",
+      "prompt": "Guten Tag, hallo",
+      "answer": "bonjour",
+      "accept": ["salut"],
+      "distractors": ["bonsoir", "bonne nuit", "merci"],
+      "example": "Il dit bonjour à tout le monde.",
+      "note": "Das n wird nicht gesprochen, es macht nur den Vokal nasal: bõ-SCHUR. Das j klingt wie das g in Garage."
+    },
+    {
+      "id": "french-basics-002",
+      "prompt": "danke",
+      "answer": "merci",
+      "distractors": ["pardon", "bonjour", "mercredi"],
+      "example": "Encore merci pour le cadeau.",
+      "note": "Betont wird die letzte Silbe: mer-SI. Das r kommt kratzig aus dem Rachen."
+    },
+    {
+      "id": "french-basics-003",
+      "prompt": "bitte (wenn du um etwas bittest)",
+      "answer": "s'il vous plaît",
+      "accept": ["s'il te plaît"],
+      "distractors": ["de rien", "merci", "pardon"],
+      "example": "Un café, s'il vous plaît.",
+      "note": "Wörtlich: wenn es Ihnen gefällt. Unter Freunden sagst du s'il te plaît, das t am Ende von plaît bleibt stumm."
+    },
+    {
+      "id": "french-basics-004",
+      "prompt": "Entschuldigung",
+      "answer": "pardon",
+      "accept": ["excusez-moi"],
+      "distractors": ["perdu", "merci", "de rien"],
+      "example": "Oh, pardon, je ne vous avais pas vu.",
+      "note": "Französisch gesprochen: par-DÕ, mit nasalem o und ohne hörbares n. Um jemanden anzusprechen, sagst du excusez-moi."
+    },
+    {
+      "id": "french-basics-005",
+      "prompt": "ja",
+      "answer": "oui",
+      "distractors": ["non", "nous", "où"],
+      "example": "Je crois que oui.",
+      "note": "Klingt wie wi. Auf eine verneinte Frage antwortest du mit si: Tu n'as pas faim ? Si !"
+    },
+    {
+      "id": "french-basics-006",
+      "prompt": "das Wasser",
+      "answer": "l'eau",
+      "accept": ["eau"],
+      "distractors": ["le lait", "l'air", "le vin"],
+      "example": "Je voudrais de l'eau, s'il vous plaît.",
+      "note": "Klingt nur wie o. Eau ist weiblich: l'eau minérale, l'eau froide."
+    },
+    {
+      "id": "french-basics-007",
+      "prompt": "das Brot",
+      "answer": "le pain",
+      "accept": ["pain"],
+      "distractors": ["la main", "le pont", "le bain"],
+      "example": "J'achète le pain à la boulangerie.",
+      "note": "Das ain wird zu einem nasalen ä, das n selbst hörst du nicht: pẽ. Brot kaufst du in der boulangerie."
+    },
+    {
+      "id": "french-basics-008",
+      "prompt": "der Freund (nicht der feste)",
+      "answer": "l'ami",
+      "accept": ["ami", "l'amie", "amie"],
+      "distractors": ["l'amour", "l'homme", "l'âme"],
+      "example": "C'est l'ami de ma sœur.",
+      "note": "Eine Freundin ist l'amie, gesprochen genau gleich. Mon petit ami heißt mein fester Freund."
+    },
+    {
+      "id": "french-basics-009",
+      "prompt": "essen",
+      "answer": "manger",
+      "distractors": ["ranger", "changer", "boire"],
+      "example": "On va manger au restaurant.",
+      "note": "Das g vor e klingt weich wie in Garage, das r am Ende bleibt stumm: mã-SCHE."
+    },
+    {
+      "id": "french-basics-010",
+      "prompt": "trinken",
+      "answer": "boire",
+      "distractors": ["voir", "manger", "croire"],
+      "example": "Tu veux boire quelque chose ?",
+      "note": "oi klingt wie wa: bwar. Je bois, tu bois und il boit klingen alle gleich."
+    },
+    {
+      "id": "french-basics-011",
+      "prompt": "sprechen",
+      "answer": "parler",
+      "distractors": ["partir", "parier", "écouter"],
+      "example": "Tu peux parler plus lentement ?",
+      "note": "Bei Verben auf -er bleibt das r am Ende stumm: par-LE. Parlez-vous allemand ? fragt, ob jemand Deutsch spricht."
+    },
+    {
+      "id": "french-basics-012",
+      "prompt": "heute",
+      "answer": "aujourd'hui",
+      "distractors": ["demain", "hier", "toujours"],
+      "example": "Il fait beau aujourd'hui.",
+      "note": "Gesprochen etwa o-schur-DÜI. Wörtlich steckt darin am Tag von heute, also doppelt gemoppelt."
+    },
+    {
+      "id": "french-basics-013",
+      "prompt": "morgen (der Tag nach heute)",
+      "answer": "demain",
+      "distractors": ["hier", "le matin", "aujourd'hui"],
+      "example": "On se voit demain.",
+      "note": "Betont wird die zweite Silbe mit nasalem Vokal: de-MẼ. Der Morgen als Tageszeit heißt dagegen le matin."
+    },
+    {
+      "id": "french-basics-014",
+      "prompt": "gestern",
+      "answer": "hier",
+      "distractors": ["demain", "ici", "avant"],
+      "example": "Je suis arrivé hier soir.",
+      "note": "Das h ist stumm: i-JER. Nicht mit dem deutschen hier verwechseln, das heißt auf Französisch ici."
+    },
+    {
+      "id": "french-basics-015",
+      "prompt": "gut (Adjektiv)",
+      "answer": "bon",
+      "accept": ["bonne"],
+      "distractors": ["bien", "beau", "mauvais"],
+      "example": "Ce gâteau est très bon.",
+      "note": "Weiblich heißt es bonne, dann hört man das n: bonne nuit. Als Adverb nimmst du bien: ça va bien."
+    },
+    {
+      "id": "french-basics-016",
+      "prompt": "groß",
+      "answer": "grand",
+      "accept": ["grande"],
+      "distractors": ["gros", "large", "long"],
+      "example": "Mon frère est très grand.",
+      "note": "Das d am Ende ist stumm: grã. Vorsicht, falscher Freund: large heißt breit, nicht groß."
+    },
+    {
+      "id": "french-basics-017",
+      "prompt": "klein",
+      "answer": "petit",
+      "accept": ["petite"],
+      "distractors": ["peu", "court", "mince"],
+      "example": "J'habite dans un petit village.",
+      "note": "Das t am Ende ist stumm: pe-TI. Vor einem Vokal wird es gebunden: petit ami, pe-ti-ta-MI."
+    },
+    {
+      "id": "french-basics-018",
+      "prompt": "schön",
+      "answer": "beau",
+      "accept": ["belle", "bel", "joli", "jolie"],
+      "distractors": ["bon", "laid", "bas"],
+      "example": "Quel beau jardin !",
+      "note": "eau klingt wie o. Weiblich heißt es belle, vor einem männlichen Nomen mit Vokal bel: un bel homme."
+    },
+    {
+      "id": "french-basics-019",
+      "prompt": "teuer",
+      "answer": "cher",
+      "accept": ["chère"],
+      "distractors": ["chaud", "chair", "pas cher"],
+      "example": "Ce restaurant est trop cher.",
+      "note": "Klingt wie schär mit kratzigem r. Cher heißt auch lieb, etwa am Briefanfang: Cher Paul."
+    },
+    {
+      "id": "french-basics-020",
+      "prompt": "billig",
+      "answer": "bon marché",
+      "accept": ["pas cher"],
+      "distractors": ["cher", "gratuit", "bon appétit"],
+      "example": "Le métro est bon marché.",
+      "note": "Wörtlich guter Markt, und die Form ändert sich nie. Im Alltag sagt man oft einfach pas cher."
+    },
+    {
+      "id": "french-basics-021",
+      "prompt": "wo?",
+      "answer": "où",
+      "distractors": ["quand", "qui", "comment"],
+      "example": "Tu sais où est la gare ?",
+      "note": "Der Akzent unterscheidet où (wo) von ou (oder). Gesprochen klingen beide wie u."
+    },
+    {
+      "id": "french-basics-022",
+      "prompt": "wie viel?",
+      "answer": "combien",
+      "distractors": ["comment", "combat", "quand"],
+      "example": "Ça coûte combien ?",
+      "note": "Gesprochen kõ-BJẼ, beide Vokale nasal. Combien de temps ? heißt wie lange?"
+    },
+    {
+      "id": "french-basics-023",
+      "prompt": "der Bahnhof",
+      "answer": "la gare",
+      "accept": ["gare"],
+      "distractors": ["la guerre", "le quai", "la garde"],
+      "example": "Le train part de la gare centrale.",
+      "note": "Das e am Ende ist stumm: gar. Nicht mit la guerre verwechseln, das heißt Krieg."
+    },
+    {
+      "id": "french-basics-024",
+      "prompt": "die Rechnung (im Restaurant)",
+      "answer": "l'addition",
+      "accept": ["addition"],
+      "distractors": ["la monnaie", "le pourboire", "la carte"],
+      "example": "On peut avoir l'addition ?",
+      "note": "Im Restaurant heißt die Rechnung l'addition. Im Hotel bekommst du dagegen la note."
+    },
+    {
+      "id": "french-basics-025",
+      "prompt": "das Frühstück",
+      "answer": "le petit-déjeuner",
+      "accept": ["petit-déjeuner"],
+      "distractors": ["le déjeuner", "le dîner", "le goûter"],
+      "example": "On prend le petit-déjeuner à huit heures.",
+      "note": "Wörtlich das kleine Mittagessen. Le déjeuner allein ist das Mittagessen, le dîner das Abendessen."
+    },
+    {
+      "id": "french-basics-026",
+      "prompt": "das Zimmer (im Hotel)",
+      "answer": "la chambre",
+      "accept": ["chambre"],
+      "distractors": ["la salle", "la cuisine", "la cave"],
+      "example": "Est-ce que la chambre est prête ?",
+      "note": "Das Wort ist verwandt mit dem deutschen Kammer. Im Hotel fragst du nach une chambre double."
+    },
+    {
+      "id": "french-basics-027",
+      "prompt": "arbeiten",
+      "answer": "travailler",
+      "distractors": ["voyager", "traverser", "trouver"],
+      "example": "Je dois travailler demain.",
+      "note": "ill klingt wie j: tra-va-JE. Das r am Ende bleibt wie bei allen Verben auf -er stumm."
+    },
+    {
+      "id": "french-basics-028",
+      "prompt": "verstehen",
+      "answer": "comprendre",
+      "distractors": ["prendre", "apprendre", "surprendre"],
+      "example": "C'est difficile à comprendre.",
+      "note": "Je ne comprends pas ist einer der wichtigsten Sätze. Das s am Ende von comprends bleibt stumm."
+    },
+    {
+      "id": "french-basics-029",
+      "prompt": "Wie geht's?",
+      "answer": "ça va",
+      "accept": ["comment ça va"],
+      "distractors": ["ça y est", "à bientôt", "voilà"],
+      "example": "Salut Marie, ça va ?",
+      "note": "Ça va funktioniert als Frage und als Antwort: Ça va ? Ça va ! Das ç mit Häkchen klingt immer wie ein scharfes s."
+    },
+    {
+      "id": "french-basics-030",
+      "prompt": "auf Wiedersehen",
+      "answer": "au revoir",
+      "accept": ["salut", "à bientôt"],
+      "distractors": ["bonjour", "au secours", "bienvenue"],
+      "example": "Il est parti sans dire au revoir.",
+      "note": "Wörtlich bis zum Wiedersehen. Gesprochen o-re-WUAR, das e in der Mitte wird fast verschluckt."
+    }
+  ]
+}

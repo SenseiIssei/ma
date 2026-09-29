@@ -4,6 +4,7 @@
   "title": "Rust Basics",
   "subtitle": "Ownership, borrowing and the most important tools",
   "symbol": "錆",
+  "category": "tech",
   "cards": [
     {
       "id": "rust-001",

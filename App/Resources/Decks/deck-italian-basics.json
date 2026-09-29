@@ -1,0 +1,265 @@
+{
+  "id": "italian-basics",
+  "title": "Italienisch: Grundlagen",
+  "subtitle": "30 Wörter für den Start, mit Aussprachetipps",
+  "symbol": "I",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "italian-basics-001",
+      "prompt": "Hallo (unter Bekannten)",
+      "answer": "ciao",
+      "distractors": ["buona", "grazie", "caro"],
+      "example": "Mi ha salutato con un ciao.",
+      "note": "Gesprochen tschau, das i zeigt nur an, dass das c weich wie tsch klingt. Ciao sagst du zu Bekannten, zu Fremden eher buongiorno."
+    },
+    {
+      "id": "italian-basics-002",
+      "prompt": "danke",
+      "answer": "grazie",
+      "distractors": ["prego", "grazioso", "scusi"],
+      "example": "Ti dico grazie di cuore.",
+      "note": "Gesprochen GRA-tsje, das e am Ende wird deutlich ausgesprochen. Grazie mille heißt tausend Dank."
+    },
+    {
+      "id": "italian-basics-003",
+      "prompt": "bitte (als Antwort auf danke)",
+      "answer": "prego",
+      "distractors": ["per favore", "pregare", "grazie"],
+      "example": "Lui risponde sempre prego.",
+      "note": "Prego ist ein Allzweckwort: gern geschehen, bitte sehr, treten Sie ein. Um etwas zu bitten, sagst du per favore."
+    },
+    {
+      "id": "italian-basics-004",
+      "prompt": "Entschuldigung",
+      "answer": "scusa",
+      "accept": ["scusi", "mi scusi"],
+      "distractors": ["scuola", "prego", "scossa"],
+      "example": "Ti chiedo scusa per il ritardo.",
+      "note": "Zu Freunden sagst du scusa, zu Fremden höflich scusi. Das sc vor u klingt wie sk: SKU-sa."
+    },
+    {
+      "id": "italian-basics-005",
+      "prompt": "ja",
+      "answer": "sì",
+      "distractors": ["no", "se", "su"],
+      "example": "Credo di sì.",
+      "note": "Mit Akzent heißt sì ja, ohne Akzent ist si ein Pronomen (sich). Gesprochen klingen beide gleich."
+    },
+    {
+      "id": "italian-basics-006",
+      "prompt": "das Wasser",
+      "answer": "l'acqua",
+      "accept": ["acqua"],
+      "distractors": ["l'aria", "l'aquila", "il latte"],
+      "example": "Mi porti l'acqua frizzante?",
+      "note": "cq klingt wie ein langes kw: AK-kwa. Im Restaurant wählst du naturale (still) oder frizzante (mit Kohlensäure)."
+    },
+    {
+      "id": "italian-basics-007",
+      "prompt": "das Brot",
+      "answer": "il pane",
+      "accept": ["pane"],
+      "distractors": ["la pasta", "il cane", "la panna"],
+      "example": "Compro il pane ogni mattina.",
+      "note": "Italienische Vokale klingen immer voll: PA-ne, das e am Ende wird gesprochen. Nicht mit la panna verwechseln, das ist Sahne."
+    },
+    {
+      "id": "italian-basics-008",
+      "prompt": "der Freund (nicht der feste)",
+      "answer": "l'amico",
+      "accept": ["amico", "l'amica", "amica"],
+      "distractors": ["l'amore", "l'uomo", "il nemico"],
+      "example": "Marco è l'amico di mio fratello.",
+      "note": "Im Plural wird aus amico amici, gesprochen a-MI-tschi. Das c vor i klingt wie tsch."
+    },
+    {
+      "id": "italian-basics-009",
+      "prompt": "essen",
+      "answer": "mangiare",
+      "distractors": ["bere", "cucinare", "mancare"],
+      "example": "Andiamo a mangiare una pizza.",
+      "note": "gi klingt wie dsch, das i wird dabei nicht extra gesprochen: man-DSCHA-re."
+    },
+    {
+      "id": "italian-basics-010",
+      "prompt": "trinken",
+      "answer": "bere",
+      "distractors": ["mangiare", "vedere", "avere"],
+      "example": "Vuoi bere qualcosa?",
+      "note": "Kurz und klar: BE-re, das r wird einmal angetippt. Ich trinke heißt unregelmäßig io bevo."
+    },
+    {
+      "id": "italian-basics-011",
+      "prompt": "sprechen",
+      "answer": "parlare",
+      "distractors": ["partire", "pagare", "ascoltare"],
+      "example": "Puoi parlare più piano?",
+      "note": "Das r wird mit der Zungenspitze gerollt. Parla tedesco? fragt höflich, ob jemand Deutsch spricht."
+    },
+    {
+      "id": "italian-basics-012",
+      "prompt": "heute",
+      "answer": "oggi",
+      "distractors": ["ieri", "domani", "ogni"],
+      "example": "Che cosa facciamo oggi?",
+      "note": "Doppelte Konsonanten werden hörbar länger gehalten: OD-dschi. Das gi klingt wie dsch."
+    },
+    {
+      "id": "italian-basics-013",
+      "prompt": "morgen (der Tag nach heute)",
+      "answer": "domani",
+      "distractors": ["ieri", "oggi", "mattina"],
+      "example": "Ci vediamo domani.",
+      "note": "Betont wird die mittlere Silbe: do-MA-ni. A domani heißt bis morgen."
+    },
+    {
+      "id": "italian-basics-014",
+      "prompt": "gestern",
+      "answer": "ieri",
+      "distractors": ["oggi", "domani", "prima"],
+      "example": "Sono arrivato ieri sera.",
+      "note": "Zwei Silben: JE-ri, das i am Anfang klingt wie ein deutsches j. Ieri sera heißt gestern Abend."
+    },
+    {
+      "id": "italian-basics-015",
+      "prompt": "gut (Adjektiv)",
+      "answer": "buono",
+      "accept": ["buona", "buon"],
+      "distractors": ["bene", "bello", "cattivo"],
+      "example": "Questo caffè è molto buono.",
+      "note": "Vor männlichen Nomen wird es oft zu buon: buon giorno. Als Adverb, wie in mir geht es gut, sagst du bene."
+    },
+    {
+      "id": "italian-basics-016",
+      "prompt": "groß",
+      "answer": "grande",
+      "distractors": ["largo", "lungo", "grasso"],
+      "example": "Roma è una città grande.",
+      "note": "Falscher Freund: largo heißt breit, nicht groß. Gesprochen GRAN-de, mit vollem e am Ende."
+    },
+    {
+      "id": "italian-basics-017",
+      "prompt": "klein",
+      "answer": "piccolo",
+      "accept": ["piccola"],
+      "distractors": ["poco", "corto", "magro"],
+      "example": "Abito in un paese piccolo.",
+      "note": "Das doppelte c klingt wie ein langes k: PIK-ko-lo. Die Piccoloflöte ist einfach die kleine Flöte."
+    },
+    {
+      "id": "italian-basics-018",
+      "prompt": "schön",
+      "answer": "bello",
+      "accept": ["bella", "bel"],
+      "distractors": ["buono", "brutto", "basso"],
+      "example": "Che bello questo panorama!",
+      "note": "Das doppelte l wird hörbar gehalten: BEL-lo. Vor Nomen wird es oft zu bel: un bel giorno."
+    },
+    {
+      "id": "italian-basics-019",
+      "prompt": "teuer",
+      "answer": "caro",
+      "accept": ["cara"],
+      "distractors": ["carro", "carino", "economico"],
+      "example": "Questo albergo è troppo caro.",
+      "note": "Caro heißt auch lieb, etwa am Briefanfang: Caro Luca. Das r wird einmal kurz angetippt."
+    },
+    {
+      "id": "italian-basics-020",
+      "prompt": "billig",
+      "answer": "economico",
+      "accept": ["economica", "a buon mercato"],
+      "distractors": ["caro", "ecologico", "gratuito"],
+      "example": "Il treno è economico.",
+      "note": "Betont wird die dritte Silbe: e-ko-NO-mi-ko. Umgangssprachlich hörst du auch a buon mercato."
+    },
+    {
+      "id": "italian-basics-021",
+      "prompt": "wo?",
+      "answer": "dove",
+      "distractors": ["quando", "come", "chi"],
+      "example": "Non so dove abita.",
+      "note": "Zwei Silben: DO-ve. Vor è wird es meist zu dov'è verkürzt: Dov'è il bagno?"
+    },
+    {
+      "id": "italian-basics-022",
+      "prompt": "wie viel?",
+      "answer": "quanto",
+      "accept": ["quanta"],
+      "distractors": ["quando", "quale", "come"],
+      "example": "Mi dici quanto costa?",
+      "note": "qu klingt wie kw: KWAN-to. Die Endung passt sich an: quanti giorni, quante ore."
+    },
+    {
+      "id": "italian-basics-023",
+      "prompt": "der Bahnhof",
+      "answer": "la stazione",
+      "accept": ["stazione"],
+      "distractors": ["la stanza", "la fermata", "l'aeroporto"],
+      "example": "Dov'è la stazione?",
+      "note": "zi klingt wie tsj: sta-TSJO-ne. Den Hauptbahnhof nennt man oft stazione centrale."
+    },
+    {
+      "id": "italian-basics-024",
+      "prompt": "die Rechnung (im Restaurant)",
+      "answer": "il conto",
+      "accept": ["conto"],
+      "distractors": ["il costo", "il racconto", "la mancia"],
+      "example": "Ci porta il conto, per favore?",
+      "note": "Conto heißt auch Konto. Il conto, per favore! ist der Standardsatz im Restaurant."
+    },
+    {
+      "id": "italian-basics-025",
+      "prompt": "das Frühstück",
+      "answer": "la colazione",
+      "accept": ["colazione"],
+      "distractors": ["la cena", "il pranzo", "la merenda"],
+      "example": "È inclusa la colazione?",
+      "note": "Viele Italiener frühstücken im Stehen an der Bar, mit cappuccino und cornetto. Gesprochen ko-la-TSJO-ne."
+    },
+    {
+      "id": "italian-basics-026",
+      "prompt": "das Zimmer (im Hotel)",
+      "answer": "la camera",
+      "accept": ["camera"],
+      "distractors": ["la cucina", "la cantina", "la macchina"],
+      "example": "Posso vedere la camera?",
+      "note": "Falscher Freund: camera heißt Zimmer, die Kamera ist la macchina fotografica. Betont wird die erste Silbe: KA-me-ra."
+    },
+    {
+      "id": "italian-basics-027",
+      "prompt": "arbeiten",
+      "answer": "lavorare",
+      "distractors": ["lavare", "viaggiare", "lasciare"],
+      "example": "Domani devo lavorare.",
+      "note": "Betont: la-vo-RA-re. Nicht mit lavare verwechseln, das heißt waschen."
+    },
+    {
+      "id": "italian-basics-028",
+      "prompt": "verstehen",
+      "answer": "capire",
+      "distractors": ["capitare", "sapere", "prendere"],
+      "example": "Non riesco a capire questa parola.",
+      "note": "Non capisco ist einer der wichtigsten Sätze. Im Präsens schiebt sich -isc- ein: capisco, capisci."
+    },
+    {
+      "id": "italian-basics-029",
+      "prompt": "Wie geht's dir?",
+      "answer": "come stai",
+      "accept": ["come va", "come sta"],
+      "distractors": ["come mai", "dove sei", "cosa fai"],
+      "example": "Ciao Anna, come stai?",
+      "note": "Come stai fragt Freunde, come sta höflich Fremde. Die Antwort: bene, grazie!"
+    },
+    {
+      "id": "italian-basics-030",
+      "prompt": "auf Wiedersehen",
+      "answer": "arrivederci",
+      "accept": ["ciao"],
+      "distractors": ["buongiorno", "benvenuto", "piacere"],
+      "example": "Se n'è andato senza dire arrivederci.",
+      "note": "Wörtlich auf ein Wiedersehen. Gesprochen ar-ri-ve-DER-tschi, das doppelte r wird kräftig gerollt."
+    }
+  ]
+}

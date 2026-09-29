@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(AppModel.self) private var model
+    @AppStorage("ma.appearance") private var appearance = Appearance.night.rawValue
 
     var body: some View {
         @Bindable var model = model
@@ -13,6 +14,10 @@ struct RootView: View {
             }
         }
         .tint(Zen.shu)
+        .preferredColorScheme(appearance == Appearance.system.rawValue ? nil : .dark)
+        .onChange(of: appearance, initial: true) { _, value in
+            Appearance.current = Appearance(rawValue: value) ?? .night
+        }
         .fullScreenCover(item: $model.gate) { reason in
             GateView(reason: reason)
                 .environment(model)
@@ -20,23 +25,77 @@ struct RootView: View {
     }
 }
 
+/// The tabs as the tab bar sees them. `MaTab` in AppModel knows the four
+/// tabs the rest of the app can jump to; Balance lives only here, so the
+/// bar keeps its own selection and mirrors `model.tab` both ways.
+enum RootTab: Hashable {
+    case today, rules, learn, focus, balance
+
+    init(_ tab: MaTab) {
+        switch tab {
+        case .today: self = .today
+        case .rules: self = .rules
+        case .learn: self = .learn
+        case .focus: self = .focus
+        }
+    }
+
+    var maTab: MaTab? {
+        switch self {
+        case .today: .today
+        case .rules: .rules
+        case .learn: .learn
+        case .focus: .focus
+        case .balance: nil
+        }
+    }
+}
+
+extension EnvironmentValues {
+    /// Switches the tab bar from inside a tab, Balance included.
+    @Entry var selectRootTab: (RootTab) -> Void = { _ in }
+}
+
 struct MainTabs: View {
     @Environment(AppModel.self) private var model
+    @State private var selection: RootTab = .today
 
     var body: some View {
-        @Bindable var model = model
-        TabView(selection: $model.tab) {
-            Tab(tr("Today", "Heute"), systemImage: "sun.max", value: MaTab.today) {
+        TabView(selection: $selection) {
+            Tab(tr("Today", "Heute"), systemImage: "sun.max", value: RootTab.today) {
                 TodayView()
             }
-            Tab(tr("Boundaries", "Grenzen"), systemImage: "shield.lefthalf.filled", value: MaTab.rules) {
+            Tab(tr("Boundaries", "Grenzen"), systemImage: "shield.lefthalf.filled", value: RootTab.rules) {
                 RulesView()
             }
-            Tab(tr("Learn", "Lernen"), systemImage: "book.closed", value: MaTab.learn) {
+            Tab(tr("Learn", "Lernen"), systemImage: "book.closed", value: RootTab.learn) {
                 LearnView()
             }
-            Tab(tr("Focus", "Fokus"), systemImage: "timer", value: MaTab.focus) {
+            Tab(tr("Focus", "Fokus"), systemImage: "timer", value: RootTab.focus) {
                 FocusView()
+            }
+            Tab(tr("Balance", "Balance"), systemImage: "leaf", value: RootTab.balance) {
+                BalanceView()
+            }
+        }
+        .environment(\.selectRootTab, { tab in selection = tab })
+        .onChange(of: model.tab, initial: true) { _, tab in
+            // While Balance is open, `model.tab` is parked on .today (see
+            // below). That parking move must not pull the bar back to Today.
+            if selection == .balance && tab == .today { return }
+            selection = RootTab(tab)
+        }
+        .onChange(of: selection) { _, tab in
+            // Park `model.tab` on .today while Balance is open. Nothing jumps
+            // to Today from outside, so any later `model.tab = .focus` from a
+            // notification or a deep link is a real change and is seen above,
+            // even when Focus was the tab before Balance.
+            let mirrored: MaTab = tab.maTab ?? .today
+            if model.tab != mirrored { model.tab = mirrored }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
+            if (note.userInfo?[Notifier.routeKey] as? String) == BalanceStore.windDownRoute {
+                selection = .balance
             }
         }
     }

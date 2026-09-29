@@ -3,6 +3,7 @@
   "title": "Hauptstädte",
   "subtitle": "40 Länder, 40 Hauptstädte, ein paar Fallen",
   "symbol": "都",
+  "category": "knowledge",
   "cards": [
     {
       "id": "hauptstaedte-001",

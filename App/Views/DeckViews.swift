@@ -9,6 +9,7 @@ struct DeckDetailView: View {
     @State private var lesson: QuizSession?
     @State private var editing: Deck?
     @State private var confirmDelete = false
+    @State private var writingMore = false
 
     private var store: DeckStore { model.decks }
 
@@ -31,6 +32,9 @@ struct DeckDetailView: View {
         }
         .sheet(item: $editing) { deck in
             DeckEditorView(deck: deck, isNew: false)
+        }
+        .sheet(isPresented: $writingMore) {
+            MoreCardsView(deckID: deckID)
         }
     }
 
@@ -106,6 +110,16 @@ struct DeckDetailView: View {
                         }
                     }
                     .zenCard(padding: 6)
+                }
+
+                // Only own decks grow: bundled ones ship in two languages with matching card ids.
+                if !deck.isBuiltIn && !deck.cards.isEmpty {
+                    Button {
+                        writingMore = true
+                    } label: {
+                        Label(tr("Make more cards like these", "Mehr Karten wie diese"), systemImage: "wand.and.stars")
+                    }
+                    .buttonStyle(.quiet)
                 }
 
                 if !deck.isBuiltIn {

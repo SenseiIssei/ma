@@ -3,6 +3,7 @@
   "title": "Rust Grundlagen",
   "subtitle": "Ownership, Borrowing und die wichtigsten Werkzeuge",
   "symbol": "錆",
+  "category": "tech",
   "cards": [
     {
       "id": "rust-001",

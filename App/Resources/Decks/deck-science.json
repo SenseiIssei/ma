@@ -1,0 +1,429 @@
+{
+  "id": "science",
+  "title": "Naturwissenschaften",
+  "subtitle": "Physik, Chemie und Biologie: die Grundlagen",
+  "symbol": "Ω",
+  "category": "knowledge",
+  "cards": [
+    {
+      "id": "science-001",
+      "prompt": "Wie heißt die SI-Einheit der Kraft?",
+      "answer": "Newton",
+      "accept": [
+        "N"
+      ],
+      "distractors": [
+        "Joule",
+        "Pascal",
+        "Watt"
+      ],
+      "note": "1 Newton beschleunigt 1 kg um 1 m/s². Grob gesagt drückt eine Tafel Schokolade mit 100 g etwa mit 1 N auf deine Hand."
+    },
+    {
+      "id": "science-002",
+      "prompt": "Wie heißt die SI-Einheit der Energie?",
+      "answer": "Joule",
+      "accept": [
+        "J"
+      ],
+      "distractors": [
+        "Watt",
+        "Newton",
+        "Volt"
+      ],
+      "note": "Eine Kilokalorie sind rund 4184 Joule. Watt ist dagegen Leistung, also Energie pro Sekunde."
+    },
+    {
+      "id": "science-003",
+      "prompt": "In welcher Einheit misst man elektrische Spannung?",
+      "answer": "Volt",
+      "accept": [
+        "V"
+      ],
+      "distractors": [
+        "Ampere",
+        "Ohm",
+        "Watt"
+      ],
+      "note": "Spannung ist wie der Druck in einer Wasserleitung, Stromstärke wie die Menge, die hindurchfließt. Das Ohmsche Gesetz verbindet beide: U = R × I."
+    },
+    {
+      "id": "science-004",
+      "prompt": "In welcher Einheit misst man die elektrische Stromstärke?",
+      "answer": "Ampere",
+      "accept": [
+        "A"
+      ],
+      "distractors": [
+        "Volt",
+        "Ohm",
+        "Coulomb"
+      ],
+      "note": "Benannt nach André-Marie Ampère. Die Leistung ist Spannung mal Strom: 230 V × 10 A ergeben 2300 W."
+    },
+    {
+      "id": "science-005",
+      "prompt": "Wie schnell ist Licht im Vakuum, gerundet?",
+      "answer": "300.000 km/s",
+      "accept": [
+        "300000 km/s",
+        "299.792 km/s",
+        "3 × 10^8 m/s"
+      ],
+      "distractors": [
+        "30.000 km/s",
+        "150.000 km/s",
+        "3.000.000 km/s"
+      ],
+      "note": "Genau sind es 299.792.458 m/s, denn der Meter ist seit 1983 über die Lichtgeschwindigkeit definiert. Von der Sonne braucht Licht gut 8 Minuten bis zu uns."
+    },
+    {
+      "id": "science-006",
+      "prompt": "Wie lautet Newtons zweites Gesetz als Formel?",
+      "answer": "F = m × a",
+      "accept": [
+        "F=ma",
+        "F = ma",
+        "F=m*a"
+      ],
+      "distractors": [
+        "E = m × c²",
+        "p = m × v",
+        "W = F × s"
+      ],
+      "note": "Kraft ist Masse mal Beschleunigung. Ein doppelt so schwerer Einkaufswagen braucht für dieselbe Beschleunigung doppelt so viel Kraft."
+    },
+    {
+      "id": "science-007",
+      "prompt": "Wie groß ist die Fallbeschleunigung auf der Erde, gerundet?",
+      "answer": "9,81 m/s²",
+      "accept": [
+        "9,81",
+        "9,8 m/s²",
+        "9.81 m/s²"
+      ],
+      "distractors": [
+        "8,91 m/s²",
+        "6,67 m/s²",
+        "1,62 m/s²"
+      ],
+      "note": "Ohne Luftwiderstand fällt alles gleich schnell, egal wie schwer. 1,62 m/s² ist übrigens die Fallbeschleunigung auf dem Mond."
+    },
+    {
+      "id": "science-008",
+      "prompt": "Was misst die Einheit Hertz?",
+      "answer": "Frequenz",
+      "accept": [
+        "Schwingungen pro Sekunde"
+      ],
+      "distractors": [
+        "Lautstärke",
+        "Wellenlänge",
+        "Leistung"
+      ],
+      "note": "1 Hz ist eine Schwingung pro Sekunde. Der Kammerton a schwingt mit 440 Hz."
+    },
+    {
+      "id": "science-009",
+      "prompt": "Bei welcher Temperatur siedet Wasser auf Meereshöhe?",
+      "answer": "100 °C",
+      "accept": [
+        "100",
+        "100 Grad",
+        "100°C"
+      ],
+      "distractors": [
+        "90 °C",
+        "110 °C",
+        "212 °C"
+      ],
+      "note": "Auf der Zugspitze kocht Wasser schon bei rund 90 °C, weil der Luftdruck geringer ist. Deshalb werden Nudeln in großer Höhe langsamer gar."
+    },
+    {
+      "id": "science-010",
+      "prompt": "Wo liegt der absolute Nullpunkt in Grad Celsius?",
+      "answer": "-273,15 °C",
+      "accept": [
+        "-273,15",
+        "-273 °C",
+        "0 K",
+        "0 Kelvin"
+      ],
+      "distractors": [
+        "-100 °C",
+        "-373,15 °C",
+        "-459,67 °C"
+      ],
+      "note": "Das entspricht 0 Kelvin. Kälter geht es nicht, weil die Teilchen dort ihre geringstmögliche Bewegungsenergie haben."
+    },
+    {
+      "id": "science-011",
+      "prompt": "Welches Teilchen im Atom hat keine elektrische Ladung?",
+      "answer": "Neutron",
+      "distractors": [
+        "Proton",
+        "Elektron",
+        "Positron"
+      ],
+      "note": "Protonen und Neutronen bilden den Atomkern. Die Zahl der Protonen bestimmt das Element, die Zahl der Neutronen das Isotop."
+    },
+    {
+      "id": "science-012",
+      "prompt": "Welches Element hat die Ordnungszahl 1?",
+      "answer": "Wasserstoff",
+      "accept": [
+        "H"
+      ],
+      "distractors": [
+        "Helium",
+        "Lithium",
+        "Sauerstoff"
+      ],
+      "note": "Es ist das leichteste und häufigste Element im Universum. Sterne wie die Sonne gewinnen ihre Energie, indem sie Wasserstoff zu Helium verschmelzen."
+    },
+    {
+      "id": "science-013",
+      "prompt": "Welches chemische Symbol hat Natrium?",
+      "answer": "Na",
+      "distractors": [
+        "N",
+        "Ne",
+        "So"
+      ],
+      "note": "Na kommt vom lateinischen natrium, auf Englisch heißt es sodium. Kochsalz ist deshalb chemisch NaCl."
+    },
+    {
+      "id": "science-014",
+      "prompt": "Wie lautet die chemische Formel von Wasser?",
+      "answer": "H₂O",
+      "accept": [
+        "H2O"
+      ],
+      "distractors": [
+        "H₂O₂",
+        "HO",
+        "CO₂"
+      ],
+      "note": "Zwei Wasserstoffatome und ein Sauerstoffatom. H₂O₂ ist dagegen Wasserstoffperoxid, ein Bleichmittel."
+    },
+    {
+      "id": "science-015",
+      "prompt": "Welches Gas macht den größten Teil der Erdatmosphäre aus?",
+      "answer": "Stickstoff",
+      "accept": [
+        "N2",
+        "N₂"
+      ],
+      "distractors": [
+        "Sauerstoff",
+        "Kohlendioxid",
+        "Argon"
+      ],
+      "note": "Die Luft besteht zu rund 78 Prozent aus Stickstoff, 21 Prozent Sauerstoff und knapp 1 Prozent Argon. CO₂ macht nur etwa 0,04 Prozent aus."
+    },
+    {
+      "id": "science-016",
+      "prompt": "Welches Element ist das häufigste in der Erdkruste?",
+      "answer": "Sauerstoff",
+      "accept": [
+        "O"
+      ],
+      "distractors": [
+        "Silizium",
+        "Eisen",
+        "Aluminium"
+      ],
+      "note": "Rund 46 Prozent der Erdkruste sind Sauerstoff, gebunden in Gesteinen wie Quarz (SiO₂). Silizium folgt auf Platz zwei."
+    },
+    {
+      "id": "science-017",
+      "prompt": "Welchen pH-Wert hat reines Wasser bei 25 °C?",
+      "answer": "7",
+      "distractors": [
+        "6",
+        "8",
+        "14"
+      ],
+      "note": "Unter 7 ist sauer, über 7 basisch. Die Skala ist logarithmisch: pH 5 ist zehnmal saurer als pH 6."
+    },
+    {
+      "id": "science-018",
+      "prompt": "Welcher Planet ist der Sonne am nächsten?",
+      "answer": "Merkur",
+      "distractors": [
+        "Venus",
+        "Mars",
+        "Erde"
+      ],
+      "note": "Trotzdem ist er nicht der heißeste Planet. Das ist die Venus, weil ihre dichte CO₂-Atmosphäre die Wärme einschließt."
+    },
+    {
+      "id": "science-019",
+      "prompt": "Welcher ist der größte Planet unseres Sonnensystems?",
+      "answer": "Jupiter",
+      "distractors": [
+        "Saturn",
+        "Neptun",
+        "Uranus"
+      ],
+      "note": "Jupiter hat mehr als die doppelte Masse aller anderen Planeten zusammen. Sein Großer Roter Fleck ist ein Sturm, der größer ist als die Erde."
+    },
+    {
+      "id": "science-020",
+      "prompt": "Wie viele Planeten hat unser Sonnensystem?",
+      "answer": "8",
+      "accept": [
+        "Acht"
+      ],
+      "distractors": [
+        "7",
+        "9",
+        "10"
+      ],
+      "note": "Seit 2006 zählt Pluto als Zwergplanet, weil er seine Umlaufbahn nicht von anderen Himmelskörpern freigeräumt hat."
+    },
+    {
+      "id": "science-021",
+      "prompt": "Wie heißt die Galaxie, in der wir leben?",
+      "answer": "Milchstraße",
+      "accept": [
+        "Milchstrasse"
+      ],
+      "distractors": [
+        "Andromeda",
+        "Sombrero-Galaxie",
+        "Große Magellansche Wolke"
+      ],
+      "note": "Sie enthält schätzungsweise 100 bis 400 Milliarden Sterne. In einigen Milliarden Jahren könnte sie mit der Andromeda-Galaxie verschmelzen."
+    },
+    {
+      "id": "science-022",
+      "prompt": "Welcher Effekt macht den Himmel blau?",
+      "answer": "Rayleigh-Streuung",
+      "accept": [
+        "Rayleigh",
+        "Lichtstreuung",
+        "Streuung"
+      ],
+      "distractors": [
+        "Spiegelung des Meeres",
+        "Ozonschicht",
+        "Absorption von Rot"
+      ],
+      "note": "Kurzwelliges blaues Licht wird an den Luftmolekülen viel stärker gestreut als rotes. Bei Sonnenuntergang ist der Weg durch die Luft so lang, dass vor allem Rot und Orange übrig bleiben."
+    },
+    {
+      "id": "science-023",
+      "prompt": "Welches Zellorganell gilt als Kraftwerk der Zelle?",
+      "answer": "Mitochondrium",
+      "accept": [
+        "Mitochondrien"
+      ],
+      "distractors": [
+        "Ribosom",
+        "Zellkern",
+        "Golgi-Apparat"
+      ],
+      "note": "Mitochondrien erzeugen ATP, den Energieträger der Zelle. Sie haben eine eigene DNA, die du nur von deiner Mutter erbst."
+    },
+    {
+      "id": "science-024",
+      "prompt": "Wo liegt die DNA in einer menschlichen Zelle hauptsächlich?",
+      "answer": "Im Zellkern",
+      "accept": [
+        "Zellkern",
+        "Kern",
+        "Nukleus"
+      ],
+      "distractors": [
+        "In der Zellmembran",
+        "Im Cytoplasma",
+        "In den Ribosomen"
+      ],
+      "note": "Ein kleiner Teil steckt außerdem in den Mitochondrien. Bakterien haben gar keinen Zellkern, ihre DNA liegt frei in der Zelle."
+    },
+    {
+      "id": "science-025",
+      "prompt": "Welches Molekül trägt die Erbinformation?",
+      "answer": "DNA",
+      "accept": [
+        "DNS",
+        "Desoxyribonukleinsäure"
+      ],
+      "distractors": [
+        "RNA",
+        "ATP",
+        "Hämoglobin"
+      ],
+      "note": "Die DNA ist eine Doppelhelix aus vier Basen: A, T, G und C. A paart sich immer mit T, G immer mit C."
+    },
+    {
+      "id": "science-026",
+      "prompt": "Wie viele Chromosomen hat eine normale menschliche Körperzelle?",
+      "answer": "46",
+      "distractors": [
+        "23",
+        "44",
+        "48"
+      ],
+      "note": "Es sind 23 Paare, je eines von Mutter und Vater. Schimpansen haben übrigens 48."
+    },
+    {
+      "id": "science-027",
+      "prompt": "Welche Blutzellen transportieren Sauerstoff?",
+      "answer": "Rote Blutkörperchen",
+      "accept": [
+        "Erythrozyten"
+      ],
+      "distractors": [
+        "Weiße Blutkörperchen",
+        "Blutplättchen",
+        "Lymphozyten"
+      ],
+      "note": "Sie enthalten das eisenhaltige Hämoglobin, das Sauerstoff bindet und dem Blut seine Farbe gibt. Ein rotes Blutkörperchen lebt etwa 120 Tage."
+    },
+    {
+      "id": "science-028",
+      "prompt": "Aus wie vielen Hohlräumen besteht das Herz, Vorhöfe und Kammern zusammen?",
+      "answer": "4",
+      "accept": [
+        "Vier"
+      ],
+      "distractors": [
+        "2",
+        "3",
+        "6"
+      ],
+      "note": "Zwei Vorhöfe und zwei Kammern. Die rechte Seite pumpt Blut zur Lunge, die linke in den ganzen Körper, deshalb ist ihre Wand dicker."
+    },
+    {
+      "id": "science-029",
+      "prompt": "Welcher Farbstoff macht Blätter grün?",
+      "answer": "Chlorophyll",
+      "accept": [
+        "Blattgrün"
+      ],
+      "distractors": [
+        "Carotin",
+        "Melanin",
+        "Hämoglobin"
+      ],
+      "note": "Chlorophyll schluckt vor allem rotes und blaues Licht und wirft Grün zurück. Im Herbst wird es abgebaut, dann werden gelbe Carotinoide sichtbar."
+    },
+    {
+      "id": "science-030",
+      "prompt": "Welches Gas geben Pflanzen bei der Photosynthese ab?",
+      "answer": "Sauerstoff",
+      "accept": [
+        "O2",
+        "O₂"
+      ],
+      "distractors": [
+        "Kohlendioxid",
+        "Stickstoff",
+        "Wasserstoff"
+      ],
+      "note": "Aus CO₂, Wasser und Licht bauen Pflanzen Zucker. Der freigesetzte Sauerstoff stammt dabei aus dem Wasser, nicht aus dem CO₂."
+    }
+  ]
+}

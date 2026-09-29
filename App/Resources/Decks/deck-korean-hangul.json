@@ -1,0 +1,225 @@
+{
+  "id": "korean-hangul",
+  "title": "Koreanisch: Hangeul",
+  "subtitle": "Die Grundbuchstaben und erste Silben lesen",
+  "symbol": "한",
+  "category": "languages",
+  "language": "ko",
+  "cards": [
+    {
+      "id": "korean-hangul-001",
+      "prompt": "ㄱ",
+      "answer": "g",
+      "accept": ["k"],
+      "distractors": ["n", "kk", "d"],
+      "note": "Zeigt die Zungenform bei g: der hintere Zungenrücken hebt sich zum Gaumen. Am Silbenende klingt es wie k, etwa in 한국 (Hanguk)."
+    },
+    {
+      "id": "korean-hangul-002",
+      "prompt": "ㄴ",
+      "answer": "n",
+      "distractors": ["d", "r", "m"],
+      "note": "Die Form zeigt die Zungenspitze, die sich hinter die oberen Zähne legt: n. Stell dir eine Nase im Profil vor."
+    },
+    {
+      "id": "korean-hangul-003",
+      "prompt": "ㄷ",
+      "answer": "d",
+      "accept": ["t"],
+      "distractors": ["n", "r", "tt"],
+      "note": "Wie ㄴ mit einem Deckel obendrauf: aus n wird d. Am Wortanfang klingt es weicher als ein deutsches t."
+    },
+    {
+      "id": "korean-hangul-004",
+      "prompt": "ㄹ",
+      "answer": "r",
+      "accept": ["l"],
+      "distractors": ["n", "d", "ng"],
+      "note": "Ein Zickzack wie eine flatternde Zunge: zwischen Vokalen ein getipptes r, am Silbenende ein l wie in 서울 (Seoul)."
+    },
+    {
+      "id": "korean-hangul-005",
+      "prompt": "ㅁ",
+      "answer": "m",
+      "distractors": ["b", "ng", "p"],
+      "note": "Ein Quadrat wie ein geschlossener Mund: m sprichst du mit geschlossenen Lippen."
+    },
+    {
+      "id": "korean-hangul-006",
+      "prompt": "ㅂ",
+      "answer": "b",
+      "accept": ["p"],
+      "distractors": ["m", "pp", "s"],
+      "note": "Ein Eimer (englisch bucket) mit zwei Henkeln: b. Wie ㅁ, nur mit Öhrchen, und beide Laute bildest du mit den Lippen."
+    },
+    {
+      "id": "korean-hangul-007",
+      "prompt": "ㅅ",
+      "answer": "s",
+      "distractors": ["j", "ch", "ss"],
+      "note": "Ein Zahn, an dem die Luft vorbeizischt: s. Vor i klingt es wie sch, etwa in 시 (si)."
+    },
+    {
+      "id": "korean-hangul-008",
+      "prompt": "ㅇ",
+      "answer": "ng",
+      "distractors": ["m", "h", "o"],
+      "note": "Ein Kreis, der am Silbenanfang stumm ist und nur den Platz hält, wie in 아 (a). Am Silbenende klingt er wie ng in lang."
+    },
+    {
+      "id": "korean-hangul-009",
+      "prompt": "ㅈ",
+      "answer": "j",
+      "distractors": ["ch", "s", "jj"],
+      "note": "Wie ㅅ mit einem Dach obendrauf: j wie in Jeans. Kommt noch ein Strich dazu, wird daraus ㅊ (ch)."
+    },
+    {
+      "id": "korean-hangul-010",
+      "prompt": "ㅊ",
+      "answer": "ch",
+      "distractors": ["j", "s", "h"],
+      "note": "ㅈ mit einem kleinen Hut: behaucht, wie tsch mit einem Luftstoß. Merke: der Hut ist die Extraluft."
+    },
+    {
+      "id": "korean-hangul-011",
+      "prompt": "ㅋ",
+      "answer": "k",
+      "distractors": ["g", "kk", "h"],
+      "note": "ㄱ mit einem zusätzlichen Strich: der Strich ist ein Luftstoß, also ein kräftig behauchtes k."
+    },
+    {
+      "id": "korean-hangul-012",
+      "prompt": "ㅌ",
+      "answer": "t",
+      "distractors": ["d", "tt", "ch"],
+      "note": "ㄷ mit einem Extrastrich in der Mitte: wieder der Luftstoß, also ein behauchtes t."
+    },
+    {
+      "id": "korean-hangul-013",
+      "prompt": "ㅍ",
+      "answer": "p",
+      "distractors": ["b", "pp", "h"],
+      "note": "Sieht aus wie ein Tisch mit zwei Beinen: das behauchte p, der kräftige Bruder von ㅂ (b)."
+    },
+    {
+      "id": "korean-hangul-014",
+      "prompt": "ㅎ",
+      "answer": "h",
+      "distractors": ["ng", "ch", "p"],
+      "note": "Ein Kreis mit Hut und Hutkrempe: h wie Hut."
+    },
+    {
+      "id": "korean-hangul-015",
+      "prompt": "ㅏ",
+      "answer": "a",
+      "distractors": ["eo", "ya", "o"],
+      "note": "Der kurze Ast zeigt nach rechts: a wie in Mann. Zeigt er nach links, ist es ㅓ (eo)."
+    },
+    {
+      "id": "korean-hangul-016",
+      "prompt": "ㅑ",
+      "answer": "ya",
+      "distractors": ["yeo", "a", "yo"],
+      "note": "Wie ㅏ, aber mit zwei Ästen: ein zweiter Strich setzt immer ein y davor, also ya."
+    },
+    {
+      "id": "korean-hangul-017",
+      "prompt": "ㅓ",
+      "answer": "eo",
+      "distractors": ["a", "o", "yeo"],
+      "note": "Der Ast zeigt nach links: eo, ein offenes o wie in Sonne. Vergleiche ㅏ (a) mit dem Ast nach rechts."
+    },
+    {
+      "id": "korean-hangul-018",
+      "prompt": "ㅕ",
+      "answer": "yeo",
+      "distractors": ["ya", "eo", "yo"],
+      "note": "ㅓ mit zwei Ästen: das y kommt dazu, also yeo, etwa wie jo in Joch."
+    },
+    {
+      "id": "korean-hangul-019",
+      "prompt": "ㅗ",
+      "answer": "o",
+      "distractors": ["u", "eo", "yo"],
+      "note": "Der Ast zeigt nach oben: o wie in Ohr, mit runden Lippen. Zeigt er nach unten, ist es ㅜ (u)."
+    },
+    {
+      "id": "korean-hangul-020",
+      "prompt": "ㅛ",
+      "answer": "yo",
+      "distractors": ["o", "yu", "ya"],
+      "note": "ㅗ mit zwei Ästen nach oben: y davor, also yo wie in Yoga."
+    },
+    {
+      "id": "korean-hangul-021",
+      "prompt": "ㅜ",
+      "answer": "u",
+      "distractors": ["o", "eu", "yu"],
+      "note": "Der Ast zeigt nach unten: u wie in Uhr. Merke: unten ist u."
+    },
+    {
+      "id": "korean-hangul-022",
+      "prompt": "ㅠ",
+      "answer": "yu",
+      "distractors": ["u", "yo", "eu"],
+      "note": "ㅜ mit zwei Ästen nach unten: yu wie in Jugend."
+    },
+    {
+      "id": "korean-hangul-023",
+      "prompt": "ㅡ",
+      "answer": "eu",
+      "distractors": ["u", "i", "eo"],
+      "note": "Ein flacher Strich wie ein breit gezogener Mund: eu ist ein u, bei dem du die Lippen breit ziehst statt sie zu runden."
+    },
+    {
+      "id": "korean-hangul-024",
+      "prompt": "ㅣ",
+      "answer": "i",
+      "distractors": ["eu", "e", "ya"],
+      "note": "Ein aufrechter Strich, ein stehender Mensch: i wie in Igel. Die Erfinder der Schrift sahen darin tatsächlich den Menschen."
+    },
+    {
+      "id": "korean-hangul-025",
+      "prompt": "ㅐ",
+      "answer": "ae",
+      "distractors": ["e", "a", "eo"],
+      "note": "ㅏ plus ㅣ ergibt ae, gesprochen wie ä in Bär. Der kleine Ast sitzt zwischen den beiden Strichen."
+    },
+    {
+      "id": "korean-hangul-026",
+      "prompt": "ㅔ",
+      "answer": "e",
+      "distractors": ["ae", "eo", "i"],
+      "note": "ㅓ plus ㅣ ergibt e wie in Bett. Hier steht der kleine Ast links außen, bei ㅐ (ae) liegt er zwischen den Strichen."
+    },
+    {
+      "id": "korean-hangul-027",
+      "prompt": "한",
+      "answer": "han",
+      "distractors": ["hang", "nan", "hal"],
+      "note": "ㅎ (h) und ㅏ (a) nebeneinander, darunter ㄴ (n): han. Es steckt in 한글 (Hangeul) und 한국 (Hanguk), Korea."
+    },
+    {
+      "id": "korean-hangul-028",
+      "prompt": "글",
+      "answer": "geul",
+      "accept": ["keul", "kul"],
+      "distractors": ["gol", "geun", "gil"],
+      "note": "ㄱ (g) über ㅡ (eu), darunter ㄹ, das am Silbenende wie l klingt: geul. Das Wort heißt Schrift."
+    },
+    {
+      "id": "korean-hangul-029",
+      "prompt": "서울",
+      "answer": "seoul",
+      "distractors": ["soeul", "seoil", "suul"],
+      "note": "서 ist ㅅ plus ㅓ (seo), 울 ist ㅇ plus ㅜ plus ㄹ (ul). Gesprochen zweisilbig: so-ul, nicht wie das englische soul."
+    },
+    {
+      "id": "korean-hangul-030",
+      "prompt": "사랑",
+      "answer": "sarang",
+      "distractors": ["salang", "saran", "sarong"],
+      "note": "ㅅ plus ㅏ, dann ㄹ plus ㅏ plus ㅇ: Liebe. Das ㄹ steht zwischen Vokalen und wird darum als r geschrieben."
+    }
+  ]
+}

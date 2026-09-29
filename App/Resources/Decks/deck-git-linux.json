@@ -1,0 +1,402 @@
+{
+  "id": "git-linux",
+  "title": "Git & Linux",
+  "subtitle": "Die Befehle, die du jeden Tag brauchst",
+  "symbol": "$",
+  "category": "tech",
+  "cards": [
+    {
+      "id": "git-linux-001",
+      "prompt": "Wie machst du den aktuellen Ordner zu einem neuen Git-Repository?",
+      "answer": "git init",
+      "distractors": [
+        "git start",
+        "git create",
+        "git new"
+      ],
+      "note": "Dabei entsteht der versteckte Ordner `.git`, in dem die komplette Geschichte liegt. Löschst du ihn, ist das Projekt wieder ein ganz normaler Ordner."
+    },
+    {
+      "id": "git-linux-002",
+      "prompt": "Wie lädst du ein bestehendes Repository, etwa von GitHub, erstmals herunter?",
+      "answer": "git clone",
+      "accept": [
+        "git clone <url>"
+      ],
+      "distractors": [
+        "git pull",
+        "git fetch",
+        "git copy"
+      ],
+      "note": "`git clone <url>` holt die komplette Geschichte, nicht nur den aktuellen Stand. Danach ist `origin` automatisch als Remote eingetragen."
+    },
+    {
+      "id": "git-linux-003",
+      "prompt": "Welcher Befehl zeigt, welche Dateien geändert oder vorgemerkt sind?",
+      "answer": "git status",
+      "distractors": [
+        "git log",
+        "git diff",
+        "git show"
+      ],
+      "note": "Den solltest du am häufigsten tippen, vor jedem Commit. `git status -s` zeigt dasselbe in kompakter Form."
+    },
+    {
+      "id": "git-linux-004",
+      "prompt": "Wie merkst du Änderungen für den nächsten Commit vor?",
+      "answer": "git add",
+      "accept": [
+        "git add <datei>",
+        "git add ."
+      ],
+      "distractors": [
+        "git commit",
+        "git push",
+        "git save"
+      ],
+      "note": "`git add -p` geht Änderung für Änderung durch und lässt dich gezielt auswählen. So werden Commits klein und sauber."
+    },
+    {
+      "id": "git-linux-005",
+      "prompt": "Wie committest du mit einer Nachricht direkt in der Befehlszeile?",
+      "answer": "git commit -m",
+      "accept": [
+        "git commit -m \"...\""
+      ],
+      "distractors": [
+        "git save -m",
+        "git push -m",
+        "git add -m"
+      ],
+      "note": "Schreib die erste Zeile kurz und im Imperativ, etwa „Fix login timeout“. Ohne `-m` öffnet Git deinen Editor für längere Nachrichten."
+    },
+    {
+      "id": "git-linux-006",
+      "prompt": "Wie zeigst du den Verlauf der Commits kompakt an?",
+      "answer": "git log --oneline",
+      "accept": [
+        "git log"
+      ],
+      "distractors": [
+        "git history",
+        "git status",
+        "git show --all"
+      ],
+      "note": "Mit `--graph --all` siehst du zusätzlich, wie sich Branches verzweigen und wieder zusammenlaufen."
+    },
+    {
+      "id": "git-linux-007",
+      "prompt": "Wie siehst du zeilenweise, was du seit dem letzten Commit geändert hast?",
+      "answer": "git diff",
+      "distractors": [
+        "git status",
+        "git show",
+        "git compare"
+      ],
+      "note": "`git diff` zeigt noch nicht vorgemerkte Änderungen, `git diff --staged` das, was im nächsten Commit landet."
+    },
+    {
+      "id": "git-linux-008",
+      "prompt": "Wie legst du einen neuen Branch an und wechselst gleich hinein?",
+      "answer": "git switch -c",
+      "accept": [
+        "git checkout -b",
+        "git switch -c <name>"
+      ],
+      "distractors": [
+        "git branch -m",
+        "git merge -b",
+        "git new-branch"
+      ],
+      "note": "`git switch -c feature` ist die moderne Form von `git checkout -b feature`. Nur `git branch feature` legt den Branch an, ohne zu wechseln."
+    },
+    {
+      "id": "git-linux-009",
+      "prompt": "Wie übernimmst du einen anderen Branch in deinen aktuellen?",
+      "answer": "git merge",
+      "accept": [
+        "git merge <branch>"
+      ],
+      "distractors": [
+        "git join",
+        "git switch",
+        "git stash"
+      ],
+      "note": "Ist dein Branch nur hinterher, spult Git einfach vor. Sonst entsteht ein Merge-Commit, und bei Konflikten löst du die markierten Stellen von Hand."
+    },
+    {
+      "id": "git-linux-010",
+      "prompt": "Wie lädst du deine Commits auf das Remote hoch?",
+      "answer": "git push",
+      "distractors": [
+        "git pull",
+        "git upload",
+        "git send"
+      ],
+      "note": "Wird der Push abgelehnt, weil andere schon gepusht haben, hol dir erst mit `git pull` deren Stand. Von `--force` auf geteilten Branches lässt du besser die Finger."
+    },
+    {
+      "id": "git-linux-011",
+      "prompt": "Wie holst du Änderungen vom Remote und führst sie gleich zusammen?",
+      "answer": "git pull",
+      "distractors": [
+        "git fetch",
+        "git clone",
+        "git push"
+      ],
+      "note": "`git pull` ist `git fetch` plus `git merge`. Mit `git pull --rebase` bleibt die Geschichte linear."
+    },
+    {
+      "id": "git-linux-012",
+      "prompt": "Wie legst du unfertige Änderungen kurz beiseite, ohne zu committen?",
+      "answer": "git stash",
+      "distractors": [
+        "git reset",
+        "git save",
+        "git hold"
+      ],
+      "note": "Mit `git stash pop` holst du sie zurück. Praktisch, wenn du schnell den Branch wechseln musst."
+    },
+    {
+      "id": "git-linux-013",
+      "prompt": "Wie machst du einen schon gepushten Commit rückgängig, ohne die Geschichte umzuschreiben?",
+      "answer": "git revert",
+      "accept": [
+        "git revert <commit>"
+      ],
+      "distractors": [
+        "git reset --hard",
+        "git undo",
+        "git checkout"
+      ],
+      "note": "`revert` legt einen neuen Commit an, der die Änderungen umkehrt. Das ist sicher auf geteilten Branches, anders als `reset`, das Geschichte umschreibt."
+    },
+    {
+      "id": "git-linux-014",
+      "prompt": "Welche Datei legt fest, welche Dateien Git ignoriert?",
+      "answer": ".gitignore",
+      "accept": [
+        "gitignore"
+      ],
+      "distractors": [
+        ".gitconfig",
+        ".gitkeep",
+        ".ignore"
+      ],
+      "note": "Build-Ordner, `.env`-Dateien mit Geheimnissen und `node_modules` gehören hinein. Schon getrackte Dateien ignoriert Git erst, wenn du sie mit `git rm --cached` entfernst."
+    },
+    {
+      "id": "git-linux-015",
+      "prompt": "Welcher Befehl zeigt dir, in welchem Verzeichnis du gerade bist?",
+      "answer": "pwd",
+      "distractors": [
+        "cd",
+        "ls",
+        "whoami"
+      ],
+      "note": "Das steht für „print working directory“. `cd ~` bringt dich jederzeit ins Home-Verzeichnis, `cd -` zurück ins vorherige."
+    },
+    {
+      "id": "git-linux-016",
+      "prompt": "Wie listest du alle Dateien, auch versteckte, mit Details auf?",
+      "answer": "ls -la",
+      "accept": [
+        "ls -al",
+        "ls -a -l"
+      ],
+      "distractors": [
+        "ls -h",
+        "ls -r",
+        "dir -all"
+      ],
+      "note": "`-l` zeigt Rechte, Besitzer, Größe und Datum, `-a` auch Dateien, die mit einem Punkt beginnen. Mit `-h` werden Größen lesbar, etwa 4.0K."
+    },
+    {
+      "id": "git-linux-017",
+      "prompt": "Wie legst du einen Ordner samt fehlender Zwischenordner an?",
+      "answer": "mkdir -p",
+      "accept": [
+        "mkdir -p <pfad>"
+      ],
+      "distractors": [
+        "mkdir -r",
+        "md -all",
+        "touch -p"
+      ],
+      "note": "`mkdir -p projekt/src/tests` legt alle fehlenden Ebenen auf einmal an. Gibt es den Ordner schon, meckert es nicht."
+    },
+    {
+      "id": "git-linux-018",
+      "prompt": "Welcher Befehl legt eine leere Datei an oder aktualisiert ihren Zeitstempel?",
+      "answer": "touch",
+      "distractors": [
+        "mkdir",
+        "cat",
+        "new"
+      ],
+      "note": "`touch notizen.txt` legt die Datei an, falls sie fehlt. Existiert sie schon, ändert sich nur das Änderungsdatum."
+    },
+    {
+      "id": "git-linux-019",
+      "prompt": "Wie kopierst du einen Ordner mit allem Inhalt?",
+      "answer": "cp -r",
+      "accept": [
+        "cp -R"
+      ],
+      "distractors": [
+        "mv -r",
+        "cp -f",
+        "copy -r"
+      ],
+      "note": "Ohne `-r` weigert sich `cp`, Ordner zu kopieren. `cp -a` übernimmt zusätzlich Rechte und Zeitstempel."
+    },
+    {
+      "id": "git-linux-020",
+      "prompt": "Mit welchem Befehl verschiebst oder benennst du eine Datei um?",
+      "answer": "mv",
+      "distractors": [
+        "cp",
+        "rn",
+        "move"
+      ],
+      "note": "Umbenennen ist für die Shell nur Verschieben unter neuem Namen: `mv alt.txt neu.txt`. Mit `-i` fragt `mv` nach, bevor es etwas überschreibt."
+    },
+    {
+      "id": "git-linux-021",
+      "prompt": "Wie löschst du einen Ordner samt Inhalt ohne Rückfrage?",
+      "answer": "rm -rf",
+      "accept": [
+        "rm -rf <ordner>",
+        "rm -fr"
+      ],
+      "distractors": [
+        "rm -i",
+        "rmdir",
+        "del -all"
+      ],
+      "note": "Es gibt keinen Papierkorb und keine Rückfrage. Prüf vorher mit `ls`, was du löschst, und lies den Pfad lieber zweimal."
+    },
+    {
+      "id": "git-linux-022",
+      "prompt": "Mit welchem Befehl suchst du nach Text in Dateien?",
+      "answer": "grep",
+      "distractors": [
+        "find",
+        "locate",
+        "sed"
+      ],
+      "note": "`grep -rn \"TODO\" src/` sucht rekursiv und zeigt Zeilennummern an. `-i` ignoriert Groß- und Kleinschreibung."
+    },
+    {
+      "id": "git-linux-023",
+      "prompt": "Mit welchem Befehl suchst du Dateien nach Namen im Verzeichnisbaum?",
+      "answer": "find",
+      "distractors": [
+        "grep",
+        "which",
+        "ls"
+      ],
+      "note": "`find . -name \"*.log\"` sucht ab dem aktuellen Ordner alle Log-Dateien. Mit `-mtime -1` findest du nur, was in den letzten 24 Stunden geändert wurde."
+    },
+    {
+      "id": "git-linux-024",
+      "prompt": "Wie machst du ein Skript ausführbar?",
+      "answer": "chmod +x",
+      "accept": [
+        "chmod +x <datei>",
+        "chmod 755"
+      ],
+      "distractors": [
+        "chown +x",
+        "chmod 644",
+        "exec +x"
+      ],
+      "note": "Danach startest du es mit `./skript.sh`. Die Zahlenform `chmod 755` heißt: Besitzer darf alles, alle anderen lesen und ausführen."
+    },
+    {
+      "id": "git-linux-025",
+      "prompt": "Wie verfolgst du neue Zeilen einer Logdatei live?",
+      "answer": "tail -f",
+      "accept": [
+        "tail -f <datei>"
+      ],
+      "distractors": [
+        "head -f",
+        "cat -f",
+        "less -n"
+      ],
+      "note": "`tail -f /var/log/syslog` zeigt neue Zeilen, sobald sie geschrieben werden. Beenden kannst du mit Strg+C."
+    },
+    {
+      "id": "git-linux-026",
+      "prompt": "Welcher Befehl zeigt laufende Prozesse interaktiv mit CPU-Last an?",
+      "answer": "top",
+      "accept": [
+        "htop"
+      ],
+      "distractors": [
+        "ps",
+        "jobs",
+        "lsof"
+      ],
+      "note": "`htop` ist die komfortablere Variante mit Farben und Mausbedienung, muss aber oft nachinstalliert werden. Mit `q` beendest du beide."
+    },
+    {
+      "id": "git-linux-027",
+      "prompt": "Wie beendest du einen Prozess, dessen PID du kennst?",
+      "answer": "kill",
+      "accept": [
+        "kill <PID>"
+      ],
+      "distractors": [
+        "stop",
+        "end",
+        "exit"
+      ],
+      "note": "`kill 1234` bittet den Prozess höflich um das Ende. Erst wenn er nicht reagiert, erzwingt `kill -9 1234` den Abbruch."
+    },
+    {
+      "id": "git-linux-028",
+      "prompt": "Wie reichst du die Ausgabe eines Befehls an einen anderen weiter?",
+      "answer": "Pipe (|)",
+      "accept": [
+        "|",
+        "Pipe"
+      ],
+      "distractors": [
+        "Umleitung (>)",
+        "Und (&&)",
+        "Anhängen (>>)"
+      ],
+      "note": "`ps aux | grep python` filtert die Prozessliste. `>` schreibt dagegen in eine Datei und überschreibt sie, `>>` hängt an."
+    },
+    {
+      "id": "git-linux-029",
+      "prompt": "Wie verbindest du dich verschlüsselt mit einer Shell auf einem Server?",
+      "answer": "ssh",
+      "accept": [
+        "ssh user@host"
+      ],
+      "distractors": [
+        "ftp",
+        "ping",
+        "curl"
+      ],
+      "note": "`ssh nutzer@server` öffnet eine verschlüsselte Shell. Mit Schlüsseln statt Passwort, eingerichtet über `ssh-keygen` und `ssh-copy-id`, ist es sicherer und bequemer."
+    },
+    {
+      "id": "git-linux-030",
+      "prompt": "Wie führst du einen einzelnen Befehl mit Administratorrechten aus?",
+      "answer": "sudo",
+      "accept": [
+        "sudo <befehl>"
+      ],
+      "distractors": [
+        "root",
+        "admin",
+        "runas"
+      ],
+      "note": "Das steht für „superuser do“. Es fragt nach deinem eigenen Passwort, nicht dem von root, und protokolliert, wer was ausgeführt hat."
+    }
+  ]
+}

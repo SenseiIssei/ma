@@ -1,0 +1,269 @@
+{
+  "id": "english-basics",
+  "locale": "en",
+  "title": "German: Basics",
+  "subtitle": "30 useful words and phrases at B1 level",
+  "symbol": "E",
+  "category": "languages",
+  "cards": [
+    {
+      "id": "english-basics-001",
+      "prompt": "appointment (doctor, hairdresser)",
+      "answer": "Termin",
+      "distractors": ["Datum", "Frist", "Zeitplan"],
+      "example": "Ich habe morgen einen Termin beim Arzt.",
+      "note": "It's der Termin, plural die Termine. You make one with einen Termin vereinbaren."
+    },
+    {
+      "id": "english-basics-002",
+      "prompt": "actually",
+      "answer": "eigentlich",
+      "accept": ["tatsächlich"],
+      "distractors": ["aktuell", "endlich", "schließlich"],
+      "example": "Ich trinke eigentlich lieber Tee.",
+      "note": "Eigentlich often softens a statement: Eigentlich habe ich keine Zeit. False friend: aktuell means current, not actual."
+    },
+    {
+      "id": "english-basics-003",
+      "prompt": "eventually",
+      "answer": "schließlich",
+      "accept": ["irgendwann", "letztendlich", "am Ende"],
+      "distractors": ["eventuell", "möglicherweise", "sofort"],
+      "example": "Wir haben das Hotel schließlich gefunden.",
+      "note": "False friend: eventuell means possibly, not eventually. For an unknown point in the future, use irgendwann."
+    },
+    {
+      "id": "english-basics-004",
+      "prompt": "to complain",
+      "answer": "beschweren",
+      "accept": ["sich beschweren"],
+      "distractors": ["beschreiben", "bestellen", "beschützen"],
+      "example": "Viele Gäste beschweren sich über den Lärm.",
+      "note": "It's reflexive and takes über: Ich beschwere mich über den Lärm. The noun is die Beschwerde."
+    },
+    {
+      "id": "english-basics-005",
+      "prompt": "to suggest",
+      "answer": "vorschlagen",
+      "distractors": ["vorstellen", "voraussetzen", "vorschreiben"],
+      "example": "Was würdest du vorschlagen?",
+      "note": "It's a separable verb: in a main clause the prefix jumps to the end. Ich schlage vor, dass wir gehen."
+    },
+    {
+      "id": "english-basics-006",
+      "prompt": "reliable",
+      "answer": "zuverlässig",
+      "accept": ["verlässlich"],
+      "distractors": ["verantwortlich", "erleichtert", "vernünftig"],
+      "example": "Mein altes Auto ist immer noch zuverlässig.",
+      "note": "It comes from sich verlassen auf, to rely on. The ä sounds like the e in \"bed\"."
+    },
+    {
+      "id": "english-basics-007",
+      "prompt": "the bill (restaurant)",
+      "answer": "Rechnung",
+      "distractors": ["Quittung", "Trinkgeld", "Speisekarte"],
+      "example": "Die Rechnung, bitte!",
+      "note": "It's die Rechnung. To ask for it, say Die Rechnung, bitte! or simply Zahlen, bitte!"
+    },
+    {
+      "id": "english-basics-008",
+      "prompt": "experience",
+      "answer": "Erfahrung",
+      "distractors": ["Erfindung", "Erfüllung", "Ergebnis"],
+      "example": "Sie hat viel Erfahrung.",
+      "note": "It's die Erfahrung, from erfahren, to find out or experience. Nouns ending in -ung are always feminine."
+    },
+    {
+      "id": "english-basics-009",
+      "prompt": "delay (train, flight)",
+      "answer": "Verspätung",
+      "distractors": ["Umleitung", "Anzeige", "Abfahrt"],
+      "example": "Der Zug hat zehn Minuten Verspätung.",
+      "note": "It's die Verspätung, from spät, late. Germans say Der Zug hat Verspätung, literally the train has lateness."
+    },
+    {
+      "id": "english-basics-010",
+      "prompt": "Excuse me! (to get attention)",
+      "answer": "Entschuldigung",
+      "accept": ["Entschuldigen Sie"],
+      "distractors": ["Gern geschehen", "Keine Ursache", "Nach Ihnen"],
+      "example": "Entschuldigung, ist der Platz noch frei?",
+      "note": "Entschuldigung works both before and after, like excuse me and sorry. For extra politeness say Entschuldigen Sie."
+    },
+    {
+      "id": "english-basics-011",
+      "prompt": "You're welcome.",
+      "answer": "Gern geschehen",
+      "accept": ["Bitte", "Bitte schön", "Keine Ursache", "Gerne"],
+      "distractors": ["Willkommen", "Danke schön", "Gut gemacht"],
+      "example": "Gern geschehen, das war doch selbstverständlich.",
+      "note": "The shortest version is simply Bitte. Willkommen only means welcome as in welcome home."
+    },
+    {
+      "id": "english-basics-012",
+      "prompt": "No idea.",
+      "answer": "Keine Ahnung",
+      "accept": ["Ich habe keine Ahnung"],
+      "distractors": ["Keine Sorge", "Kein Problem", "Keine Zeit"],
+      "example": "Keine Ahnung, frag Tom.",
+      "note": "Ahnung means a hunch or notion. Keine Ahnung is casual; more politely you'd say Das weiß ich leider nicht."
+    },
+    {
+      "id": "english-basics-013",
+      "prompt": "Never mind.",
+      "answer": "Schon gut",
+      "accept": ["Vergiss es", "Macht nichts"],
+      "distractors": ["Na und", "Auf keinen Fall", "Trotzdem"],
+      "example": "Schon gut, es ist nicht wichtig.",
+      "note": "Schon gut literally means already good. Vergiss es is blunter and can sound annoyed."
+    },
+    {
+      "id": "english-basics-014",
+      "prompt": "Pardon? (didn't hear)",
+      "answer": "Wie bitte",
+      "accept": ["Bitte"],
+      "distractors": ["Bitte schön", "Wieso", "Wie geht's"],
+      "example": "Wie bitte? Kannst du das wiederholen?",
+      "note": "Wie bitte? is the polite way to ask someone to repeat. A bare Was? sounds rude, just like What? in English."
+    },
+    {
+      "id": "english-basics-015",
+      "prompt": "cosy",
+      "answer": "gemütlich",
+      "distractors": ["gemeinsam", "gefährlich", "geräumig"],
+      "example": "Das Café ist klein, aber gemütlich.",
+      "note": "Gemütlichkeit is a cherished German idea: warmth, calm and good company. It also describes a relaxed pace: Wir gehen gemütlich spazieren."
+    },
+    {
+      "id": "english-basics-016",
+      "prompt": "cheap, inexpensive",
+      "answer": "günstig",
+      "accept": ["billig", "preiswert"],
+      "distractors": ["teuer", "gültig", "gründlich"],
+      "example": "Der Bus ist günstig und schnell.",
+      "note": "Günstig is neutral or positive. Billig also means cheap, but often hints at poor quality."
+    },
+    {
+      "id": "english-basics-017",
+      "prompt": "to share",
+      "answer": "teilen",
+      "distractors": ["tauschen", "teilnehmen", "leihen"],
+      "example": "Wir können uns eine Pizza teilen.",
+      "note": "Teilen covers both share and divide: Zehn geteilt durch zwei ist fünf. Teilnehmen looks similar but means to take part."
+    },
+    {
+      "id": "english-basics-018",
+      "prompt": "to borrow",
+      "answer": "ausleihen",
+      "accept": ["leihen", "sich ausleihen"],
+      "distractors": ["verleihen", "mieten", "schulden"],
+      "example": "Kann ich mir deinen Stift ausleihen?",
+      "note": "German uses leihen for both directions: Ich leihe dir (lend) and Ich leihe mir (borrow). The reflexive mir makes the difference."
+    },
+    {
+      "id": "english-basics-019",
+      "prompt": "to apply (for a job)",
+      "answer": "bewerben",
+      "accept": ["sich bewerben"],
+      "distractors": ["bewerten", "bewegen", "erwerben"],
+      "example": "Ich will mich um diese Stelle bewerben.",
+      "note": "It's reflexive with um: sich um eine Stelle bewerben. Don't mix it up with bewerten, to rate."
+    },
+    {
+      "id": "english-basics-020",
+      "prompt": "to quit (your job)",
+      "answer": "kündigen",
+      "distractors": ["entlassen", "verkünden", "kürzen"],
+      "example": "Sie will ihren Job kündigen.",
+      "note": "You kündigen a job, a flat or a contract. If your boss ends it, then dir wird gekündigt."
+    },
+    {
+      "id": "english-basics-021",
+      "prompt": "to move (house)",
+      "answer": "umziehen",
+      "distractors": ["sich umziehen", "bewegen", "umsteigen"],
+      "example": "Wir wollen nächsten Monat nach Berlin umziehen.",
+      "note": "Careful: sich umziehen means to get changed. Moving your body is sich bewegen."
+    },
+    {
+      "id": "english-basics-022",
+      "prompt": "neighbour",
+      "answer": "Nachbar",
+      "accept": ["Nachbarin"],
+      "distractors": ["Vermieter", "Neffe", "Nachfolger"],
+      "example": "Unser Nachbar hat einen großen Hund.",
+      "note": "A female neighbour is die Nachbarin. The word comes from nah (near) and an old word for someone who lives somewhere."
+    },
+    {
+      "id": "english-basics-023",
+      "prompt": "at least",
+      "answer": "wenigstens",
+      "accept": ["mindestens", "zumindest", "immerhin"],
+      "distractors": ["endlich", "höchstens", "zuerst"],
+      "example": "Es ist kalt, aber wenigstens ist es trocken.",
+      "note": "For numbers use mindestens: mindestens drei Tage. Wenigstens and zumindest fit when you look on the bright side."
+    },
+    {
+      "id": "english-basics-024",
+      "prompt": "finally, at last",
+      "answer": "endlich",
+      "distractors": ["endlos", "endgültig", "eventuell"],
+      "example": "Der Bus ist endlich da.",
+      "note": "Endlich expresses relief after waiting. Endgültig means final or definitive, as in eine endgültige Entscheidung."
+    },
+    {
+      "id": "english-basics-025",
+      "prompt": "recently",
+      "answer": "neulich",
+      "accept": ["kürzlich", "vor Kurzem", "letztens"],
+      "distractors": ["nachher", "nächstens", "ungefähr"],
+      "example": "Ich habe neulich einen neuen Job angefangen.",
+      "note": "Neulich points to one moment in the recent past. For a new habit, use neuerdings: Neuerdings joggt er jeden Tag."
+    },
+    {
+      "id": "english-basics-026",
+      "prompt": "about, approximately",
+      "answer": "ungefähr",
+      "accept": ["etwa", "circa", "rund"],
+      "distractors": ["genau", "fast", "über"],
+      "example": "Das dauert ungefähr eine Stunde.",
+      "note": "Fast means almost, not fast: fast fertig, almost ready. Etwa and circa are common synonyms for ungefähr."
+    },
+    {
+      "id": "english-basics-027",
+      "prompt": "to look after",
+      "answer": "kümmern",
+      "accept": ["sich kümmern", "aufpassen"],
+      "distractors": ["suchen", "nachschlagen", "kämmen"],
+      "example": "Kannst du dich um meine Katze kümmern?",
+      "note": "It's reflexive with um: Ich kümmere mich um die Katze. Aufpassen auf works too, especially for children."
+    },
+    {
+      "id": "english-basics-028",
+      "prompt": "to give up",
+      "answer": "aufgeben",
+      "distractors": ["nachgeben", "aufstehen", "abgeben"],
+      "example": "Du darfst jetzt nicht aufgeben.",
+      "note": "Separable: Ich gebe nie auf. Aufgeben also means to post a parcel or place an order: ein Paket aufgeben."
+    },
+    {
+      "id": "english-basics-029",
+      "prompt": "to find out",
+      "answer": "herausfinden",
+      "accept": ["rausfinden", "erfahren"],
+      "distractors": ["herausgeben", "finden", "hinausgehen"],
+      "example": "Ich muss den Preis herausfinden.",
+      "note": "Separable: Ich finde es heraus. In speech people often shorten it to rausfinden."
+    },
+    {
+      "id": "english-basics-030",
+      "prompt": "to look forward to",
+      "answer": "freuen",
+      "accept": ["sich freuen", "sich freuen auf"],
+      "distractors": ["fragen", "feiern", "führen"],
+      "example": "Wir freuen uns auf das Wochenende.",
+      "note": "Sich freuen auf looks ahead, sich freuen über is about something that already happened: Wir freuen uns über das Geschenk."
+    }
+  ]
+}

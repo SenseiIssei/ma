@@ -1,0 +1,338 @@
+{
+  "id": "jp-katakana",
+  "title": "Katakana",
+  "subtitle": "Die 46 Grundzeichen der eckigen Silbenschrift",
+  "symbol": "ア",
+  "category": "languages",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-katakana-001",
+      "prompt": "ア",
+      "answer": "a",
+      "distractors": ["ma", "ku", "yo"],
+      "note": "Eine Axt, deren Klinge oben sitzt und deren Stiel nach links unten fällt: a wie Axt. Bei マ (ma) ist der zweite Strich nur ein kurzer Haken."
+    },
+    {
+      "id": "jp-katakana-002",
+      "prompt": "イ",
+      "answer": "i",
+      "distractors": ["ri", "ni", "te"],
+      "note": "Die linke Hälfte des Kanji 伊, aus dem es entstanden ist: ein Mensch, der sich an einen Pfahl lehnt. Klingt wie i in Igel."
+    },
+    {
+      "id": "jp-katakana-003",
+      "prompt": "ウ",
+      "answer": "u",
+      "distractors": ["wa", "ra", "fu"],
+      "note": "Wie das Hiragana う, nur eckiger: ein Dach mit Kamin, unter dem jemand „uh“ ruft. Ohne den Kamin sieht es fast aus wie ラ (ra)."
+    },
+    {
+      "id": "jp-katakana-004",
+      "prompt": "エ",
+      "answer": "e",
+      "distractors": ["ko", "yu", "ni"],
+      "note": "Ein Stahlträger von der Seite, ein Element auf jeder Baustelle: e wie Element. Es sieht aus wie das Kanji 工 (Handwerk)."
+    },
+    {
+      "id": "jp-katakana-005",
+      "prompt": "オ",
+      "answer": "o",
+      "distractors": ["a", "ho", "su"],
+      "note": "Ein Opa, der sich mit dem Stock nach vorne beugt und „oh!“ sagt. Vergleiche ホ (ho), das zwei kleine Beine statt eines schrägen Strichs hat."
+    },
+    {
+      "id": "jp-katakana-006",
+      "prompt": "カ",
+      "answer": "ka",
+      "distractors": ["ki", "ta", "ya"],
+      "note": "Fast wie das Hiragana か, nur ohne den kleinen Strich rechts. Es sieht auch aus wie das Kanji 力 (Kraft)."
+    },
+    {
+      "id": "jp-katakana-007",
+      "prompt": "キ",
+      "answer": "ki",
+      "distractors": ["chi", "sa", "ka"],
+      "note": "Ein Schlüssel (englisch key) mit zwei Bärten: ki. Es ist das Hiragana き ohne den Bogen unten."
+    },
+    {
+      "id": "jp-katakana-008",
+      "prompt": "ク",
+      "answer": "ku",
+      "distractors": ["ke", "wa", "ta"],
+      "note": "Ein Schnabel, der sich nach links öffnet und „ku ku“ ruft. Bei ワ (wa) ist das Dach gerade und links steht eine Wand."
+    },
+    {
+      "id": "jp-katakana-009",
+      "prompt": "ケ",
+      "answer": "ke",
+      "distractors": ["ku", "ta", "ri"],
+      "note": "Erinnert an ein schief stehendes K: ke. Der dritte Strich hängt frei nach unten, bei ク (ku) sind die Striche verbunden."
+    },
+    {
+      "id": "jp-katakana-010",
+      "prompt": "コ",
+      "answer": "ko",
+      "distractors": ["yu", "ro", "e"],
+      "note": "Eine Ecke wie ein Korb, der nach links offen ist: ko. Bei ユ (yu) ist der untere Strich länger und steht über."
+    },
+    {
+      "id": "jp-katakana-011",
+      "prompt": "サ",
+      "answer": "sa",
+      "distractors": ["se", "ki", "chi"],
+      "note": "Ein Querbalken auf zwei Stützen, der rechte Pfosten biegt nach links unten: sa. Stell dir einen Sattel auf zwei Beinen vor."
+    },
+    {
+      "id": "jp-katakana-012",
+      "prompt": "シ",
+      "answer": "shi",
+      "accept": ["si"],
+      "distractors": ["tsu", "n", "so"],
+      "note": "Die zwei kurzen Striche liegen links übereinander, der lange schwingt von unten nach oben. Bei ツ (tsu) stehen die kurzen Striche oben nebeneinander und der lange fällt nach unten."
+    },
+    {
+      "id": "jp-katakana-013",
+      "prompt": "ス",
+      "answer": "su",
+      "distractors": ["nu", "ra", "fu"],
+      "note": "Wie ein Kleiderbügel mit einem abgespreizten Bein: su. Bei ヌ (nu) kreuzt ein zusätzlicher Strich den Bogen."
+    },
+    {
+      "id": "jp-katakana-014",
+      "prompt": "セ",
+      "answer": "se",
+      "distractors": ["sa", "hi", "ya"],
+      "note": "Wie das Hiragana せ, nur mit einem eckigen Haken statt eines Bogens: se."
+    },
+    {
+      "id": "jp-katakana-015",
+      "prompt": "ソ",
+      "answer": "so",
+      "distractors": ["n", "shi", "tsu"],
+      "note": "Der kurze Strich oben links, der lange fällt von oben rechts nach unten: so. Bei ン (n) steigt der lange Strich von unten nach oben."
+    },
+    {
+      "id": "jp-katakana-016",
+      "prompt": "タ",
+      "answer": "ta",
+      "distractors": ["ku", "ma", "ke"],
+      "note": "Wie ク (ku) mit einem kleinen Strich in der Mitte: ta."
+    },
+    {
+      "id": "jp-katakana-017",
+      "prompt": "チ",
+      "answer": "chi",
+      "accept": ["ti"],
+      "distractors": ["te", "ki", "sa"],
+      "note": "Wie キ (ki), aber der obere Strich liegt schräg wie ein Hut: chi, gesprochen tschi. テ (te) hat dagegen zwei gerade Querstriche."
+    },
+    {
+      "id": "jp-katakana-018",
+      "prompt": "ツ",
+      "answer": "tsu",
+      "accept": ["tu"],
+      "distractors": ["shi", "so", "n"],
+      "note": "Zwei kurze Striche oben nebeneinander, der lange fällt von oben rechts nach unten: tsu. Bei シ (shi) liegen die kurzen Striche links übereinander."
+    },
+    {
+      "id": "jp-katakana-019",
+      "prompt": "テ",
+      "answer": "te",
+      "distractors": ["chi", "ra", "ki"],
+      "note": "Eine Antenne auf dem Dach für den Fernseher, auf Japanisch テレビ (terebi): te."
+    },
+    {
+      "id": "jp-katakana-020",
+      "prompt": "ト",
+      "answer": "to",
+      "distractors": ["ha", "ka", "ne"],
+      "note": "Ein Pfosten mit einem kleinen Ast nach rechts, wie ein Totempfahl: to. Es besteht aus nur zwei Strichen."
+    },
+    {
+      "id": "jp-katakana-021",
+      "prompt": "ナ",
+      "answer": "na",
+      "distractors": ["me", "ta", "ki"],
+      "note": "Ein Kreuz, dessen senkrechter Strich nach links unten ausläuft, wie ein Messer, auf Japanisch ナイフ (naifu): na."
+    },
+    {
+      "id": "jp-katakana-022",
+      "prompt": "ニ",
+      "answer": "ni",
+      "distractors": ["ko", "e", "yu"],
+      "note": "Zwei waagerechte Striche, genau wie die Zahl zwei, 二, die ni gelesen wird."
+    },
+    {
+      "id": "jp-katakana-023",
+      "prompt": "ヌ",
+      "answer": "nu",
+      "distractors": ["su", "me", "fu"],
+      "note": "Wie ス (su) mit einem Extrastrich quer durch den Bogen, wie Stäbchen in einer Nudelschale: nu."
+    },
+    {
+      "id": "jp-katakana-024",
+      "prompt": "ネ",
+      "answer": "ne",
+      "distractors": ["ra", "ho", "wo"],
+      "note": "Ein Mensch mit ausgebreiteten Armen unter einem Dach, der ein Netz hält: ne."
+    },
+    {
+      "id": "jp-katakana-025",
+      "prompt": "ノ",
+      "answer": "no",
+      "distractors": ["n", "so", "ku"],
+      "note": "Ein einziger Schrägstrich, wie ein Wisch, der no sagt: no. Er steckt in vielen anderen Zeichen, etwa in メ (me)."
+    },
+    {
+      "id": "jp-katakana-026",
+      "prompt": "ハ",
+      "answer": "ha",
+      "distractors": ["ru", "ho", "hi"],
+      "note": "Zwei Striche, die wie ein lachender Mund auseinandergehen: ha ha. Es sieht fast aus wie das Kanji 八 (acht)."
+    },
+    {
+      "id": "jp-katakana-027",
+      "prompt": "ヒ",
+      "answer": "hi",
+      "distractors": ["se", "re", "ha"],
+      "note": "Ein Mensch, der sich zurücklehnt und kichert: hihi. Der Strich unten biegt nach rechts ab."
+    },
+    {
+      "id": "jp-katakana-028",
+      "prompt": "フ",
+      "answer": "fu",
+      "accept": ["hu"],
+      "distractors": ["wo", "ra", "u"],
+      "note": "Ein einzelner Haken wie der Hang des Fuji: fu. Die Lippen pusten dabei nur leicht, halb f, halb h."
+    },
+    {
+      "id": "jp-katakana-029",
+      "prompt": "ヘ",
+      "answer": "he",
+      "distractors": ["ku", "re", "no"],
+      "note": "Sieht fast genau aus wie das Hiragana へ: ein kleiner Hügel. Eines der wenigen Zeichen, die du gratis mitnimmst."
+    },
+    {
+      "id": "jp-katakana-030",
+      "prompt": "ホ",
+      "answer": "ho",
+      "distractors": ["o", "ne", "ki"],
+      "note": "Ein Kreuz mit zwei kleinen Beinchen links und rechts, wie ein Holzkreuz auf einem Hügel: ho. Vergleiche オ (o) mit nur einem schrägen Strich."
+    },
+    {
+      "id": "jp-katakana-031",
+      "prompt": "マ",
+      "answer": "ma",
+      "distractors": ["a", "mu", "ku"],
+      "note": "Ein großer Haken mit einem kurzen Strich darunter, wie eine Maske von der Seite: ma. Bei ア (a) läuft der zweite Strich lang nach unten."
+    },
+    {
+      "id": "jp-katakana-032",
+      "prompt": "ミ",
+      "answer": "mi",
+      "distractors": ["shi", "ni", "tsu"],
+      "note": "Drei Schrägstriche übereinander, wie drei Mikado-Stäbchen: mi."
+    },
+    {
+      "id": "jp-katakana-033",
+      "prompt": "ム",
+      "answer": "mu",
+      "distractors": ["ma", "ru", "yo"],
+      "note": "Ein Dreieck mit einer kleinen Nase rechts, wie ein Kuhkopf, der muh macht: mu."
+    },
+    {
+      "id": "jp-katakana-034",
+      "prompt": "メ",
+      "answer": "me",
+      "distractors": ["na", "nu", "no"],
+      "note": "Ein schiefes X, wie ein zwinkerndes Auge. Auge heißt auf Japanisch 目 (me)."
+    },
+    {
+      "id": "jp-katakana-035",
+      "prompt": "モ",
+      "answer": "mo",
+      "distractors": ["ki", "te", "ni"],
+      "note": "Wie das Hiragana も, nur eckig, mit zwei Querstrichen und einem Haken nach rechts: mo."
+    },
+    {
+      "id": "jp-katakana-036",
+      "prompt": "ヤ",
+      "answer": "ya",
+      "distractors": ["ka", "se", "ma"],
+      "note": "Wie das Hiragana や ohne den kleinen Punkt: ya. Stell dir einen Yak mit einem langen Horn vor."
+    },
+    {
+      "id": "jp-katakana-037",
+      "prompt": "ユ",
+      "answer": "yu",
+      "distractors": ["ko", "yo", "e"],
+      "note": "Wie ein U auf der Seite, dessen unterer Strich länger ist und übersteht: yu. Bei コ (ko) schließen die Striche bündig ab."
+    },
+    {
+      "id": "jp-katakana-038",
+      "prompt": "ヨ",
+      "answer": "yo",
+      "distractors": ["e", "ko", "yu"],
+      "note": "Ein spiegelverkehrtes E, wie ein Kamm mit drei Zinken nach links: yo."
+    },
+    {
+      "id": "jp-katakana-039",
+      "prompt": "ラ",
+      "answer": "ra",
+      "distractors": ["u", "fu", "wo"],
+      "note": "Ein kurzer Deckel über einem Haken: ra. Bei ウ (u) steht statt des Deckels ein kleiner Kamin."
+    },
+    {
+      "id": "jp-katakana-040",
+      "prompt": "リ",
+      "answer": "ri",
+      "distractors": ["ru", "ha", "ni"],
+      "note": "Fast genau wie das Hiragana り: zwei senkrechte Striche, der rechte länger und gebogen."
+    },
+    {
+      "id": "jp-katakana-041",
+      "prompt": "ル",
+      "answer": "ru",
+      "distractors": ["ri", "ha", "re"],
+      "note": "Zwei Beine, das rechte tritt am Ende mit einem Kick nach oben: ru. Bei リ (ri) gibt es keinen Kick."
+    },
+    {
+      "id": "jp-katakana-042",
+      "prompt": "レ",
+      "answer": "re",
+      "distractors": ["ru", "ri", "n"],
+      "note": "Ein einziger Strich, der unten nach rechts oben abknickt, wie das rechte Bein von ル (ru): re."
+    },
+    {
+      "id": "jp-katakana-043",
+      "prompt": "ロ",
+      "answer": "ro",
+      "distractors": ["ko", "yo", "mu"],
+      "note": "Ein Quadrat, fast wie das Kanji 口 (Mund): ro. Die Katakana-Form ist etwas kleiner."
+    },
+    {
+      "id": "jp-katakana-044",
+      "prompt": "ワ",
+      "answer": "wa",
+      "distractors": ["ku", "u", "ra"],
+      "note": "Ein Dach mit einer Wand links und einem Bogen nach unten: wa. Bei ク (ku) fehlt die Wand."
+    },
+    {
+      "id": "jp-katakana-045",
+      "prompt": "ヲ",
+      "answer": "wo",
+      "accept": ["o"],
+      "distractors": ["fu", "yo", "wa"],
+      "note": "Wie フ (fu) mit einem zusätzlichen Querstrich in der Mitte: wo. Als Partikel schreibt man heute fast immer das Hiragana を."
+    },
+    {
+      "id": "jp-katakana-046",
+      "prompt": "ン",
+      "answer": "n",
+      "accept": ["nn", "n'"],
+      "distractors": ["so", "shi", "tsu"],
+      "note": "Ein kurzer Strich oben links und ein langer, der von unten nach oben steigt: n. Bei ソ (so) fällt der lange Strich nach unten."
+    }
+  ]
+}

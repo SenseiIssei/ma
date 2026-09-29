@@ -128,6 +128,12 @@ struct TeachCard: View {
                 }
             }
 
+            // Optional deeper explanation from the on-device model. Hidden on
+            // iPhones that can never run it, so nothing changes for them.
+            if MaAI.offersInline {
+                ExplainMorePanel(deck: exercise.deck, card: card)
+            }
+
             if !locked {
                 Button {
                     Haptics.tap()

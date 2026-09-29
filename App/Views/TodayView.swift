@@ -11,6 +11,7 @@ struct TodayView: View {
     @State private var newHabit: Habit?
     @State private var askLockdown = false
     @State private var askEndLockdown = false
+    @State private var showWeekReview = false
 
     enum JournalSheet: String, Identifiable {
         case morning, evening
@@ -47,6 +48,11 @@ struct TodayView: View {
             }
             .sheet(item: $newHabit) { habit in
                 HabitEditor(habit: habit).environment(day)
+            }
+            .sheet(isPresented: $showWeekReview) {
+                WeekReviewView()
+                    .environment(model)
+                    .presentationDragIndicator(.visible)
             }
             .fullScreenCover(item: $lesson) { session in
                 LessonScreen(session: session) { lesson = nil }
@@ -91,6 +97,7 @@ struct TodayView: View {
                 if !model.grants.isEmpty { openNow }
                 boundaries
                 week(now: now)
+                weekReviewEntry
             }
             .padding(.horizontal, Zen.gutter)
             .padding(.bottom, 40)
@@ -498,6 +505,43 @@ struct TodayView: View {
                 .foregroundStyle(Zen.inkFaint)
                 .fixedSize(horizontal: false, vertical: true)
         }
+    }
+
+    /// Door to the weekly review. The teaser number is this week's resisted
+    /// impulses, the one count that is always worth seeing grow.
+    private var weekReviewEntry: some View {
+        let resisted: Int = model.week.reduce(0) { $0 + $1.resisted }
+        let impulses: String = WeekSummary.count(resisted, "impulse", "impulses", "Impuls", "Impulse")
+        let detail: String = resisted > 0
+            ? tr("\(impulses) resisted so far. Screen time, focus and how it compares with last week.",
+                 "\(impulses) bisher widerstanden. Bildschirmzeit, Fokus und der Vergleich zur Vorwoche.")
+            : tr("Screen time, focus and how it compares with last week.",
+                 "Bildschirmzeit, Fokus und der Vergleich zur Vorwoche.")
+
+        return Button {
+            Haptics.tap()
+            showWeekReview = true
+        } label: {
+            HStack(alignment: .center, spacing: 14) {
+                IconBadge(systemName: "calendar.badge.clock", tint: Zen.shu, size: 46)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(tr("Your week", "Deine Woche"))
+                        .font(.display(19, weight: .semibold))
+                        .foregroundStyle(Zen.ink)
+                    Text(detail)
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Zen.inkFaint)
+            }
+            .zenCard(padding: 18)
+        }
+        .buttonStyle(.plain)
     }
 
     @ViewBuilder

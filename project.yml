@@ -16,14 +16,9 @@ settings:
     VERSIONING_SYSTEM: apple-generic
     TARGETED_DEVICE_FAMILY: "1"
     ENABLE_USER_SCRIPT_SANDBOXING: YES
-    # Signing is manual and driven by fastlane match. The two MA_* macros let
-    # one spec serve both profile kinds: the device lane overrides them with
-    # Development, the TestFlight lane keeps the defaults.
-    CODE_SIGN_STYLE: Manual
-    MA_PROFILE_KIND: AppStore
-    MA_SIGN_IDENTITY: Apple Distribution
-    CODE_SIGN_IDENTITY: $(MA_SIGN_IDENTITY)
-    PROVISIONING_PROFILE_SPECIFIER: match $(MA_PROFILE_KIND) $(PRODUCT_BUNDLE_IDENTIFIER)
+    # Automatic, cloud-managed signing: on CI xcodebuild gets the App Store
+    # Connect API key and fetches certificates and profiles from Apple itself.
+    CODE_SIGN_STYLE: Automatic
 
 targets:
   Ma:

@@ -34,7 +34,7 @@ Extensions/
   Monitor/                wacht über Zeitfenster und Freigaben, auch bei geschlossener App
   Filter/                 Safari-Erweiterung gegen Reels und Shorts
 project.yml               XcodeGen, daraus entsteht das Xcode-Projekt
-fastlane/                 Signieren und Hochladen
+ci/                       Export-Einstellungen für TestFlight
 ```
 
 Die Sperren laufen über Apples Screen-Time-Frameworks (FamilyControls, ManagedSettings, DeviceActivity). Jede Grenze bekommt einen eigenen ManagedSettingsStore, eine Freigabe ist eine Lücke, die in jeden dieser Stores geschrieben wird. Die Erweiterungen teilen sich mit der App einen App-Group-Container, in dem jeder Zustand als kleine JSON-Datei liegt.
@@ -49,10 +49,9 @@ Zwei Eigenheiten, die man kennen sollte:
 Alles läuft auf GitHub Actions. Weil das Repo öffentlich ist, kosten die macOS-Runner nichts.
 
 - Jeder Push auf `main` prüft die Decks und kompiliert die App unsigniert.
-- `Actions > iOS > Run workflow > device` baut eine signierte IPA für das eigene iPhone.
-- `Actions > iOS > Run workflow > testflight` lädt nach TestFlight hoch.
+- `Actions > iOS > Run workflow > testflight` signiert und lädt nach TestFlight hoch.
 
-Die einmalige Einrichtung (Apple-Portal, Secrets, Installation aufs iPhone) steht in [docs/SETUP.md](docs/SETUP.md).
+Signiert wird automatisch über einen App Store Connect API-Key: `xcodebuild` holt Zertifikat und Profile selbst bei Apple. Es gibt kein Zertifikats-Repo und kein fastlane. Die einmalige Einrichtung steht in [docs/SETUP.md](docs/SETUP.md).
 
 ## Eigene Decks
 

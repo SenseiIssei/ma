@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       lane:
-        description: "check = nur kompilieren, device = IPA fürs eigene iPhone, testflight = Upload"
+        description: "check = nur kompilieren, testflight = signieren und hochladen"
         type: choice
-        options: [check, device, testflight]
+        options: [check, testflight]
         default: check
 
 concurrency:
@@ -61,12 +61,15 @@ jobs:
             CODE_SIGN_IDENTITY="" PROVISIONING_PROFILE_SPECIFIER="" \
             build | { command -v xcbeautify >/dev/null && xcbeautify --renderer github-actions || cat; }
 
-  signed:
-    name: Signed ${{ inputs.lane }}
-    if: github.event_name == 'workflow_dispatch' && inputs.lane != 'check'
+  testflight:
+    name: TestFlight
+    if: github.event_name == 'workflow_dispatch' && inputs.lane == 'testflight'
     needs: content
     runs-on: macos-26
     timeout-minutes: 60
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
     steps:
       - uses: actions/checkout@v5
       - name: Use the newest Xcode on the runner
@@ -74,38 +77,66 @@ jobs:
           set -euo pipefail
           NEWEST=$(ls -d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1)
           sudo xcode-select -s "$NEWEST"
-          xcodebuild -version
-      - name: Generate the Xcode project
+          VERSION=$(xcodebuild -version | head -1 | awk '{print $2}')
+          echo "Xcode $VERSION"
+          if [ "${VERSION%%.*}" -lt 26 ]; then
+            echo "::error::App Store Connect wants the iOS 26 SDK, which means Xcode 26 or later."
+            exit 1
+          fi
+      - name: Check the secrets are there
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: |
-          brew install xcodegen
-          xcodegen generate
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3"
-          bundler-cache: true
+          missing=""
+          [ -n "$ASC_KEY_ID" ] || missing="$missing ASC_KEY_ID"
+          [ -n "$ASC_ISSUER_ID" ] || missing="$missing ASC_ISSUER_ID"
+          [ -n "$ASC_KEY_P8" ] || missing="$missing ASC_KEY_P8"
+          if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing"; exit 1; fi
+      # altool looks in this folder by name; xcodebuild gets the path directly.
       - name: Write App Store Connect key
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: |
-          mkdir -p fastlane/.keys
-          printf '%s' "$ASC_KEY_P8" > fastlane/.keys/AuthKey.p8
-      - name: fastlane ${{ inputs.lane == 'device' && 'device' || 'beta' }}
-        env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
-          MATCH_GIT_TOKEN: ${{ secrets.MATCH_GIT_TOKEN }}
-          DEVICE_UDID: ${{ secrets.DEVICE_UDID }}
-          DEVICE_NAME: ${{ secrets.DEVICE_NAME }}
-        run: bundle exec fastlane ${{ inputs.lane == 'device' && 'device' || 'beta' }}
-      - name: Keep the IPA
-        if: inputs.lane == 'device'
-        uses: actions/upload-artifact@v4
-        with:
-          name: Ma-device-${{ github.run_number }}
-          path: build/Ma.ipa
-          retention-days: 14
+          mkdir -p ~/.appstoreconnect/private_keys
+          printf '%s\n' "$ASC_KEY_P8" > ~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
+          echo "ASC_KEY_PATH=$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" >> "$GITHUB_ENV"
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      # Cloud-managed signing: with the API key and -allowProvisioningUpdates,
+      # Xcode creates or fetches the certificate and every profile itself.
+      - name: Archive
+        run: |
+          set -o pipefail
+          xcodebuild -project Ma.xcodeproj -scheme Ma \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath build/Ma.xcarchive \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            archive | { command -v xcbeautify >/dev/null && xcbeautify --renderer github-actions || cat; }
+      - name: Export IPA
+        run: |
+          set -o pipefail
+          xcodebuild -exportArchive \
+            -archivePath build/Ma.xcarchive \
+            -exportOptionsPlist ci/ExportOptions.plist \
+            -exportPath build/export \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          ls -la build/export
+      - name: Upload to TestFlight
+        run: |
+          set -euo pipefail
+          IPA=$(ls build/export/*.ipa | head -1)
+          test -n "$IPA" || { echo "::error::the export produced no ipa"; exit 1; }
+          xcrun altool --upload-app -f "$IPA" -t ios \
+            --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID"
       - name: Remove the key
         if: always()
-        run: rm -rf fastlane/.keys
+        run: rm -rf ~/.appstoreconnect/private_keys

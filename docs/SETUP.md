@@ -1,74 +1,64 @@
 # Einrichtung
 
-Einmal durchgehen, danach baut jeder Knopfdruck in GitHub Actions eine neue Version. Alles davon geht im Browser, ein Mac wird nie gebraucht.
+Einmal durchgehen, danach baut ein Knopfdruck in GitHub Actions eine neue TestFlight-Version. Alles davon geht im Browser, ein Mac wird nie gebraucht.
 
-## 1. Family Controls bei Apple beantragen
+## 1. Identifier im Developer-Portal
 
-Ohne Apples Freigabe gibt es die Bildschirmzeit-Schnittstelle nur für Development-Builds. Die reichen für das eigene iPhone, aber nicht für TestFlight oder den App Store.
+Certificates, Identifiers & Profiles > Identifiers.
 
-Antrag: https://developer.apple.com/contact/request/family-controls-distribution
+**App Group:** Filter oben rechts auf "App Groups", `+`, Description `Ma`, Identifier `group.com.sensei.ma`.
 
-Einmal pro Bundle-ID stellen, die Family Controls nutzt:
+**Fünf App IDs** (Filter auf "App IDs", `+`, App, Bundle ID "Explicit"):
 
-- `com.sensei.ma`
-- `com.sensei.ma.shieldconfig`
-- `com.sensei.ma.shieldaction`
-- `com.sensei.ma.monitor`
+| Description | Bundle ID | App Groups | Family Controls |
+|---|---|---|---|
+| Ma | `com.sensei.ma` | ja | ja |
+| Ma Shield | `com.sensei.ma.shieldconfig` | ja | ja |
+| Ma Action | `com.sensei.ma.shieldaction` | ja | ja |
+| Ma Monitor | `com.sensei.ma.monitor` | ja | ja |
+| Ma Filter | `com.sensei.ma.filter` | ja | nein |
 
-Als Begründung reicht die ehrliche: eine App, mit der man sich selbst Social Media sperrt und vor dem Entsperren eine Lernfrage beantwortet. Apple antwortet meist innerhalb von ein bis zwei Wochen. Bis dahin läuft Schritt 5 mit dem `device`-Build.
+Danach jede ID öffnen, bei App Groups auf **Configure** und `group.com.sensei.ma` zuweisen, speichern.
 
-## 2. App Group und Capabilities im Developer-Portal
+Zertifikate und Provisioning Profiles legst du nicht an. Die erzeugt der Build selbst.
 
-Die App Store Connect API kann keine App Groups anlegen, das ist der einzige Handgriff im Portal.
+## 2. Family Controls Distribution beantragen
 
-1. https://developer.apple.com/account/resources/identifiers/list/applicationGroup öffnen, `+`, App Group `group.com.sensei.ma` anlegen.
-2. Den Workflow einmal mit `device` starten (Schritt 4). Der Lauf legt die fünf Bundle-IDs an und schaltet an, was die API anschalten kann. Er darf beim Signieren noch scheitern.
-3. Jede der fünf IDs öffnen (`com.sensei.ma`, `.shieldconfig`, `.shieldaction`, `.monitor`, `.filter`):
-   - **App Groups** anhaken, auf "Configure" und `group.com.sensei.ma` zuweisen.
-   - Bei allen außer `.filter`: **Family Controls (Development)** anhaken. Nach Apples Freigabe steht dort zusätzlich die Distribution-Variante.
+Ohne Apples Freigabe gibt es die Bildschirmzeit-Schnittstelle nur in Development-Builds, und TestFlight scheitert beim Signieren.
 
-## 3. Secrets im Repo
+Den Antrag stellst du im Reiter **Capability Requests** der jeweiligen App ID oder über https://developer.apple.com/contact/request/family-controls-distribution, einmal für jede ID mit Family Controls (alle außer `.filter`).
 
-Unter Settings > Secrets and variables > Actions. Die ersten sechs sind dieselben wie bei Lovebyte, der match-Speicher `Lovebyte-certs` kann weiterverwendet werden.
+Als Begründung reicht die ehrliche: eine App, mit der man sich selbst Social Media sperrt und vor dem Entsperren eine Lernfrage beantwortet. Apple antwortet meist innerhalb von ein bis zwei Wochen.
 
-| Secret | Inhalt |
-|---|---|
-| `ASC_KEY_ID` | Key ID des App Store Connect API Keys |
-| `ASC_ISSUER_ID` | Issuer ID |
-| `ASC_KEY_P8` | Inhalt der `.p8`-Datei |
-| `MATCH_PASSWORD` | Passwort, mit dem match die Zertifikate verschlüsselt |
-| `MATCH_GIT_URL` | `https://github.com/SenseiIssei/Lovebyte-certs.git` |
-| `MATCH_GIT_TOKEN` | GitHub-Token mit Lese- und Schreibrecht auf dieses Repo |
-| `DEVICE_UDID` | UDID des iPhones (siehe unten) |
-| `DEVICE_NAME` | optional, Name für das Gerät im Portal |
+## 3. App Store Connect
 
-Mit der GitHub CLI geht das auch so, der Wert wird dann abgefragt statt in der Shell-History zu landen:
+- **Lizenzvereinbarung akzeptieren**, falls oben ein gelbes Banner steht. Sonst werden Uploads abgelehnt.
+- **App anlegen:** Apps > `+` > Neue App, iOS, Bundle-ID `com.sensei.ma`, SKU `ma`. Der Store-Name muss eindeutig sein, "Ma" allein ist vergeben.
+- **API-Key:** Benutzer und Zugriff > Integrationen > App Store Connect API > Team-Schlüssel > `+`, Rolle **Admin**. Mit weniger Rechten darf Xcode keine Zertifikate erstellen. Die `.p8`-Datei gibt es nur einmal zum Herunterladen. Key ID und Issuer ID notieren.
+
+## 4. Secrets im Repo
+
+Jeder Befehl fragt den Wert verdeckt ab:
 
 ```bash
-gh secret set DEVICE_UDID -R SenseiIssei/ma
+gh secret set ASC_KEY_ID -R SenseiIssei/ma
 ```
 
-**UDID unter Windows finden:** iPhone per Kabel anschließen, die App "Apple Geräte" (oder iTunes) öffnen, auf das Gerät gehen und so lange auf die Seriennummer klicken, bis die UDID erscheint. Rechtsklick kopiert sie.
+```bash
+gh secret set ASC_ISSUER_ID -R SenseiIssei/ma
+```
 
-## 4. Bauen
+```bash
+gh secret set ASC_KEY_P8 -R SenseiIssei/ma < "C:\Users\jakob\Downloads\AuthKey_XXXXXXXXXX.p8"
+```
 
-GitHub > Actions > iOS > Run workflow, dann `lane` wählen:
+## 5. Bauen und installieren
 
-- `check`: kompiliert nur. Läuft ohnehin bei jedem Push.
-- `device`: signierte Development-IPA. Liegt danach unter dem Lauf als Artifact `Ma-device-<nummer>`.
-- `testflight`: App-Store-Build nach TestFlight. Erst nach Schritt 1, und nachdem in App Store Connect eine App mit der Bundle-ID `com.sensei.ma` angelegt wurde.
+GitHub > Actions > iOS > Run workflow > `testflight`.
+
+Der Lauf archiviert, signiert automatisch, exportiert und lädt hoch. Nach etwa zehn bis zwanzig Minuten Verarbeitung bei Apple erscheint der Build in App Store Connect unter TestFlight. Dort trägst du dich als **interner Tester** ein. Auf dem iPhone installierst du die App **TestFlight** und darüber Ma.
 
 Jeder Lauf hat ein Zeitlimit, ein hängender Build kostet also nie Stunden.
-
-## 5. Development-Build aufs iPhone
-
-Die IPA ist für genau das iPhone mit der hinterlegten UDID signiert. Drei Wege von Windows aus:
-
-- **ideviceinstaller** (libimobiledevice, Open Source): `ideviceinstaller -i Ma.ipa` bei angeschlossenem iPhone.
-- **3uTools** oder **iMazing**: IPA auf das Gerät ziehen. Wichtig ist nur, dass das Tool nicht neu signiert, sonst fehlt die Family-Controls-Berechtigung.
-- **Über eine eigene HTTPS-Seite** mit `itms-services`-Link und `manifest.plist`, falls das iPhone nicht am PC hängen soll.
-
-Danach auf dem iPhone unter Einstellungen > Datenschutz & Sicherheit den **Entwicklermodus** einschalten, neu starten, fertig.
 
 ## 6. Safari-Filter einschalten
 

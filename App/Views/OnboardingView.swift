@@ -42,7 +42,10 @@ struct OnboardingView: View {
         onboardingPage(
             kanji: "間",
             title: "Ma",
-            text: "Im Japanischen ist Ma der Raum zwischen zwei Dingen. Die Pause zwischen zwei Tönen, der leere Platz im Garten.\n\nDiese App schiebt so einen Raum zwischen dich und den nächsten Feed. Kurz, freundlich, und du lernst dabei etwas."
+            text: tr(
+                "In Japanese, Ma is the space between two things. The pause between two notes, the empty ground in a garden.\n\nThis app puts such a space between you and the next feed. Short, kind, and you learn something along the way.",
+                "Im Japanischen ist Ma der Raum zwischen zwei Dingen. Die Pause zwischen zwei Tönen, der leere Platz im Garten.\n\nDiese App schiebt so einen Raum zwischen dich und den nächsten Feed. Kurz, freundlich, und du lernst dabei etwas."
+            )
         ) {
             EnsoView(progress: drawn, lineWidth: 18, color: Zen.ink)
                 .frame(width: 200, height: 200)
@@ -51,26 +54,29 @@ struct OnboardingView: View {
                     withAnimation(.easeInOut(duration: 2.4)) { drawn = 1 }
                 }
         } footer: {
-            Button("Weiter") { page = 1 }.buttonStyle(.ink)
+            Button(tr("Continue", "Weiter")) { page = 1 }.buttonStyle(.ink)
         }
     }
 
     private var screenTime: some View {
         onboardingPage(
             kanji: "許",
-            title: "Bildschirmzeit",
-            text: "Ma nutzt Apples Bildschirmzeit, um Apps zu sperren. Welche Apps du auswählst, sieht nur dein iPhone, nicht einmal Ma selbst: Apple gibt der App nur anonyme Platzhalter.\n\nNichts verlässt dein Gerät."
+            title: tr("Screen Time", "Bildschirmzeit"),
+            text: tr(
+                "Ma uses Apple's Screen Time to block apps. Only your iPhone knows which apps you pick, not even Ma itself: Apple hands the app anonymous placeholders.\n\nNothing leaves your device.",
+                "Ma nutzt Apples Bildschirmzeit, um Apps zu sperren. Welche Apps du auswählst, sieht nur dein iPhone, nicht einmal Ma selbst: Apple gibt der App nur anonyme Platzhalter.\n\nNichts verlässt dein Gerät."
+            )
         ) {
-            statusBadge(done: model.authorization == .approved, doneText: "Erlaubt", openText: "Noch nicht erlaubt")
+            statusBadge(done: model.authorization == .approved, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
         } footer: {
             if model.authorization == .approved {
-                Button("Weiter") { page = 2 }.buttonStyle(.ink)
+                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.ink)
             } else {
-                Button("Zugriff erlauben") {
+                Button(tr("Allow access", "Zugriff erlauben")) {
                     Task { await model.requestScreenTime() }
                 }
                 .buttonStyle(.shu)
-                Button("Später") { page = 2 }
+                Button(tr("Later", "Später")) { page = 2 }
                     .font(.system(size: 15))
                     .foregroundStyle(Zen.inkSoft)
             }
@@ -80,22 +86,25 @@ struct OnboardingView: View {
     private var notifications: some View {
         onboardingPage(
             kanji: "知",
-            title: "Mitteilungen",
-            text: "Wenn du auf einer gesperrten App \"Frage beantworten\" tippst, schickt dir Ma eine Mitteilung. Die öffnet deine Frage. Anders darf iOS die App von dort aus nicht starten.\n\nAußerdem sagt dir Ma, wann eine Fokusrunde vorbei ist."
+            title: tr("Notifications", "Mitteilungen"),
+            text: tr(
+                "When you tap \"Answer a question\" on a blocked app, Ma sends you a notification that opens your question. iOS does not let the app start any other way from there.\n\nMa also tells you when a focus round is over.",
+                "Wenn du auf einer gesperrten App \"Frage beantworten\" tippst, schickt dir Ma eine Mitteilung. Die öffnet deine Frage. Anders darf iOS die App von dort aus nicht starten.\n\nAußerdem sagt dir Ma, wann eine Fokusrunde vorbei ist."
+            )
         ) {
-            statusBadge(done: model.notificationsAllowed, doneText: "Erlaubt", openText: "Noch nicht erlaubt")
+            statusBadge(done: model.notificationsAllowed, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
         } footer: {
             if model.notificationsAllowed {
-                Button("Weiter") { page = 3 }.buttonStyle(.ink)
+                Button(tr("Continue", "Weiter")) { page = 3 }.buttonStyle(.ink)
             } else {
-                Button("Mitteilungen erlauben") {
+                Button(tr("Allow notifications", "Mitteilungen erlauben")) {
                     Task {
                         await model.requestNotifications()
                         page = 3
                     }
                 }
                 .buttonStyle(.shu)
-                Button("Später") { page = 3 }
+                Button(tr("Later", "Später")) { page = 3 }
                     .font(.system(size: 15))
                     .foregroundStyle(Zen.inkSoft)
             }
@@ -105,8 +114,11 @@ struct OnboardingView: View {
     private var topics: some View {
         onboardingPage(
             kanji: "学",
-            title: "Was willst du lernen?",
-            text: "Vor jeder Freigabe kommt eine Frage aus deinen Themen. Eigene Themen legst du später unter Lernen an."
+            title: tr("What do you want to learn?", "Was willst du lernen?"),
+            text: tr(
+                "Every unlock starts with a question from your topics. You can add your own topics later under Learn.",
+                "Vor jeder Freigabe kommt eine Frage aus deinen Themen. Eigene Themen legst du später unter Lernen an."
+            )
         ) {
             VStack(spacing: 10) {
                 ForEach(model.decks.decks) { deck in
@@ -119,7 +131,7 @@ struct OnboardingView: View {
                             Hanko(text: deck.symbol, size: 36, color: active ? Zen.shu : Zen.inkFaint)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(deck.title).font(.system(size: 16, weight: .semibold)).foregroundStyle(Zen.ink)
-                                Text("\(deck.cards.count) Karten").font(.system(size: 13)).foregroundStyle(Zen.inkSoft)
+                                Text(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten")).font(.system(size: 13)).foregroundStyle(Zen.inkSoft)
                             }
                             Spacer()
                             Image(systemName: active ? "checkmark.circle.fill" : "circle")
@@ -133,7 +145,7 @@ struct OnboardingView: View {
                 }
             }
         } footer: {
-            Button("Weiter") { page = 4 }.buttonStyle(.ink)
+            Button(tr("Continue", "Weiter")) { page = 4 }.buttonStyle(.ink)
         }
     }
 
@@ -141,8 +153,11 @@ struct OnboardingView: View {
         let count = selection.applicationTokens.count + selection.categoryTokens.count + selection.webDomainTokens.count
         return onboardingPage(
             kanji: "結",
-            title: "Deine erste Grenze",
-            text: "Wähl die Apps, die dich am meisten ziehen. Instagram, YouTube, X, LinkedIn, TikTok, oder gleich die ganze Kategorie Soziale Netze. Ändern kannst du das jederzeit."
+            title: tr("Your first boundary", "Deine erste Grenze"),
+            text: tr(
+                "Pick the apps that pull at you the most. Instagram, YouTube, X, LinkedIn, TikTok, or the whole Social category. You can change this any time.",
+                "Wähl die Apps, die dich am meisten ziehen. Instagram, YouTube, X, LinkedIn, TikTok, oder gleich die ganze Kategorie Soziale Netze. Ändern kannst du das jederzeit."
+            )
         ) {
             VStack(spacing: 14) {
                 Button {
@@ -150,7 +165,7 @@ struct OnboardingView: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus.app")
-                        Text(count == 0 ? "Apps auswählen" : "\(count) ausgewählt")
+                        Text(count == 0 ? tr("Choose apps", "Apps auswählen") : tr("\(count) selected", "\(count) ausgewählt"))
                     }
                 }
                 .buttonStyle(.quiet)
@@ -166,7 +181,7 @@ struct OnboardingView: View {
                 }
             }
         } footer: {
-            Button(count == 0 ? "Ohne Grenze starten" : "Los geht's") {
+            Button(count == 0 ? tr("Start without a boundary", "Ohne Grenze starten") : tr("Let's go", "Los geht's")) {
                 if count > 0 {
                     var rule = BlockRule()
                     rule.selection = selection

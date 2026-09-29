@@ -1,0 +1,360 @@
+{
+  "id": "jp-alltag",
+  "locale": "en",
+  "title": "Japanese: Everyday Words",
+  "subtitle": "40 words and phrases for every day",
+  "symbol": "日",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-alltag-001",
+      "prompt": "水 (みず)",
+      "answer": "water",
+      "distractors": ["fire", "ice", "rain"],
+      "example": "I drink a glass of water.",
+      "note": "mizu. The kanji shows a stream with splashes. 水曜日 (suiyōbi), Wednesday, is literally \"water day\"."
+    },
+    {
+      "id": "jp-alltag-002",
+      "prompt": "火 (ひ)",
+      "answer": "fire",
+      "accept": ["flame"],
+      "distractors": ["water", "light", "sun"],
+      "example": "The fire keeps us warm in the evening.",
+      "note": "hi. The kanji shows a campfire with sparks. 火曜日 (kayōbi), Tuesday, is \"fire day\"."
+    },
+    {
+      "id": "jp-alltag-003",
+      "prompt": "山 (やま)",
+      "answer": "mountain",
+      "accept": ["mount"],
+      "distractors": ["river", "forest", "island"],
+      "example": "The mountain is covered in snow.",
+      "note": "yama. Three peaks, easy to recognize. In mountain names the character is often read \"san\", as in 富士山 (Fujisan)."
+    },
+    {
+      "id": "jp-alltag-004",
+      "prompt": "川 (かわ)",
+      "answer": "river",
+      "accept": ["stream", "creek"],
+      "distractors": ["mountain", "sea", "lake"],
+      "example": "The river flows through the city.",
+      "note": "kawa. Three flowing lines like running water. In names it is often pronounced \"gawa\", as in 品川 (Shinagawa)."
+    },
+    {
+      "id": "jp-alltag-005",
+      "prompt": "木 (き)",
+      "answer": "tree",
+      "accept": ["wood"],
+      "distractors": ["forest", "flower", "grass"],
+      "example": "It is shady under the tree.",
+      "note": "ki. A tree with a trunk, branches and roots. Two trees 林 (hayashi) make a grove, three trees 森 (mori) a forest."
+    },
+    {
+      "id": "jp-alltag-006",
+      "prompt": "花 (はな)",
+      "answer": "flower",
+      "accept": ["blossom", "bloom"],
+      "distractors": ["tree", "leaf", "grass"],
+      "example": "The flower blooms in spring.",
+      "note": "hana. At the top sits the grass radical 艹. 花見 (hanami) is the picnic under blossoming cherry trees."
+    },
+    {
+      "id": "jp-alltag-007",
+      "prompt": "犬 (いぬ)",
+      "answer": "dog",
+      "distractors": ["cat", "bird", "horse"],
+      "example": "The dog is sleeping on the sofa.",
+      "note": "inu. The kanji is 大 (big) with an extra dot, like a big dog with a pricked-up ear."
+    },
+    {
+      "id": "jp-alltag-008",
+      "prompt": "猫 (ねこ)",
+      "answer": "cat",
+      "accept": ["kitty"],
+      "distractors": ["dog", "mouse", "fox"],
+      "example": "The cat is sitting by the window.",
+      "note": "neko. On the left is the animal radical 犭. By the way, Japanese cats say \"nyā\" instead of \"meow\"."
+    },
+    {
+      "id": "jp-alltag-009",
+      "prompt": "本 (ほん)",
+      "answer": "book",
+      "distractors": ["notebook", "letter", "newspaper"],
+      "example": "I read a book in the evening.",
+      "note": "hon. A tree 木 with a stroke at its root means \"origin\". That is why it also appears in 日本 (Nihon), \"origin of the sun\"."
+    },
+    {
+      "id": "jp-alltag-010",
+      "prompt": "車 (くるま)",
+      "answer": "car",
+      "accept": ["vehicle", "automobile"],
+      "distractors": ["bicycle", "train", "bus"],
+      "example": "The car is parked outside the door.",
+      "note": "kuruma. The kanji shows a cart seen from above, with axle and wheels. In 電車 (densha, train) it is read \"sha\"."
+    },
+    {
+      "id": "jp-alltag-011",
+      "prompt": "駅 (えき)",
+      "answer": "station",
+      "accept": ["train station", "railway station"],
+      "distractors": ["airport", "harbor", "bus stop"],
+      "example": "The station is not far.",
+      "note": "eki. On the left is the horse 馬: stations used to be post stations where travelers changed horses."
+    },
+    {
+      "id": "jp-alltag-012",
+      "prompt": "家 (いえ)",
+      "answer": "house",
+      "accept": ["home"],
+      "distractors": ["room", "garden", "school"],
+      "example": "Our house has a small garden.",
+      "note": "ie. A pig 豕 under a roof 宀, because livestock used to live in the house. For one's own home it is often read \"uchi\"."
+    },
+    {
+      "id": "jp-alltag-013",
+      "prompt": "友達 (ともだち)",
+      "answer": "friend",
+      "accept": ["friends"],
+      "distractors": ["teacher", "brother", "neighbor"],
+      "example": "My friend is coming to visit today.",
+      "note": "tomodachi. 達 was originally a plural marker. Today 友達 can also mean a single friend, but never a romantic partner."
+    },
+    {
+      "id": "jp-alltag-014",
+      "prompt": "先生 (せんせい)",
+      "answer": "teacher",
+      "accept": ["master", "instructor"],
+      "distractors": ["student", "parent", "friend"],
+      "example": "The teacher explains the task.",
+      "note": "sensei. Literally \"born earlier\". It is used not only for teachers but also for doctors, lawyers and masters of their craft. You never use it about yourself."
+    },
+    {
+      "id": "jp-alltag-015",
+      "prompt": "学生 (がくせい)",
+      "answer": "student",
+      "accept": ["pupil"],
+      "distractors": ["teacher", "child", "colleague"],
+      "example": "He is a student in Kyoto.",
+      "note": "gakusei. 学 means to learn, 生 life or person. For schoolchildren, 生徒 (seito) is more common."
+    },
+    {
+      "id": "jp-alltag-016",
+      "prompt": "今日 (きょう)",
+      "answer": "today",
+      "distractors": ["tomorrow", "yesterday", "now"],
+      "example": "I have the day off today.",
+      "note": "kyō. An irregular reading you simply have to learn: on their own, the characters mean \"now\" and \"day\"."
+    },
+    {
+      "id": "jp-alltag-017",
+      "prompt": "明日 (あした)",
+      "answer": "tomorrow",
+      "distractors": ["today", "yesterday", "the day after tomorrow"],
+      "example": "See you tomorrow.",
+      "note": "ashita. 明 (bright) plus 日 (day): the next day to grow bright. More formal readings are \"asu\" and \"myōnichi\"."
+    },
+    {
+      "id": "jp-alltag-018",
+      "prompt": "昨日 (きのう)",
+      "answer": "yesterday",
+      "distractors": ["today", "tomorrow", "the day before yesterday"],
+      "example": "I went to the movies yesterday.",
+      "note": "kinō. 昨 means \"previous\". In formal texts the same characters are read \"sakujitsu\"."
+    },
+    {
+      "id": "jp-alltag-019",
+      "prompt": "時間 (じかん)",
+      "answer": "time",
+      "accept": ["hour", "hours"],
+      "distractors": ["clock", "day", "money"],
+      "example": "Do you have time tomorrow?",
+      "note": "jikan. 時 is the hour, 間 the space in between, the same character as in \"Ma\". So time is the space between the hours."
+    },
+    {
+      "id": "jp-alltag-020",
+      "prompt": "天気 (てんき)",
+      "answer": "weather",
+      "distractors": ["sky", "wind", "rain"],
+      "example": "The weather is nice today.",
+      "note": "tenki. Literally something like \"heavenly energy\". Small talk often starts with いい天気ですね (ii tenki desu ne), \"nice weather, isn't it?\"."
+    },
+    {
+      "id": "jp-alltag-021",
+      "prompt": "雨 (あめ)",
+      "answer": "rain",
+      "distractors": ["snow", "wind", "cloud"],
+      "example": "The rain will stop soon.",
+      "note": "ame. The kanji shows drops falling from a cloud. Careful: 飴 (ame) means candy and differs only in pitch."
+    },
+    {
+      "id": "jp-alltag-022",
+      "prompt": "空 (そら)",
+      "answer": "sky",
+      "accept": ["heavens"],
+      "distractors": ["cloud", "sea", "air"],
+      "example": "The sky is clear today.",
+      "note": "sora. The same character can also be read \"kara\", and then it means empty: 空手 (karate) is the \"empty hand\"."
+    },
+    {
+      "id": "jp-alltag-023",
+      "prompt": "朝ご飯 (あさごはん)",
+      "answer": "breakfast",
+      "distractors": ["lunch", "dinner", "dessert"],
+      "example": "We eat breakfast at seven.",
+      "note": "asagohan. 朝 means morning, ご飯 cooked rice or meal. Lunch is 昼ご飯 (hirugohan), dinner is 晩ご飯 (bangohan)."
+    },
+    {
+      "id": "jp-alltag-024",
+      "prompt": "お茶 (おちゃ)",
+      "answer": "tea",
+      "accept": ["green tea"],
+      "distractors": ["coffee", "water", "juice"],
+      "example": "Would you like some tea?",
+      "note": "ocha. The お is a polite prefix. Without anything added, お茶 in Japan usually means green tea."
+    },
+    {
+      "id": "jp-alltag-025",
+      "prompt": "電話 (でんわ)",
+      "answer": "phone",
+      "accept": ["telephone", "phone call", "call"],
+      "distractors": ["computer", "letter", "television"],
+      "example": "The phone is ringing again.",
+      "note": "denwa. 電 means electricity, 話 to speak: \"electric speaking\". When you answer the phone, you say もしもし (moshi moshi)."
+    },
+    {
+      "id": "jp-alltag-026",
+      "prompt": "静か (しずか)",
+      "answer": "quiet",
+      "accept": ["calm", "silent", "still"],
+      "distractors": ["loud", "beautiful", "fast"],
+      "example": "It is nice and quiet here.",
+      "note": "shizuka. A な-adjective: 静かな部屋 (shizuka na heya) is a quiet room. That quiet moment is exactly what this app wants to give you."
+    },
+    {
+      "id": "jp-alltag-027",
+      "prompt": "大きい (おおきい)",
+      "answer": "big",
+      "accept": ["large"],
+      "distractors": ["small", "long", "heavy"],
+      "example": "The park is very big.",
+      "note": "ōkii. The kanji 大 shows a person with arms spread wide."
+    },
+    {
+      "id": "jp-alltag-028",
+      "prompt": "小さい (ちいさい)",
+      "answer": "small",
+      "accept": ["little"],
+      "distractors": ["big", "short", "light"],
+      "example": "The apartment is small but cozy.",
+      "note": "chiisai. The kanji 小 shows something small splitting into three parts. The opposite is 大きい (ōkii)."
+    },
+    {
+      "id": "jp-alltag-029",
+      "prompt": "高い (たかい)",
+      "answer": "expensive",
+      "accept": ["high", "tall"],
+      "distractors": ["cheap", "new", "beautiful"],
+      "example": "The hotel is quite expensive.",
+      "note": "takai. Means both high and expensive. The opposite depends on the meaning: 安い (yasui) is cheap, 低い (hikui) is low."
+    },
+    {
+      "id": "jp-alltag-030",
+      "prompt": "食べる (たべる)",
+      "answer": "eat",
+      "accept": ["to eat"],
+      "distractors": ["drink", "cook", "sleep"],
+      "example": "We eat at seven o'clock.",
+      "note": "taberu. A ru-verb: you form the polite form by replacing る with ます, giving 食べます (tabemasu)."
+    },
+    {
+      "id": "jp-alltag-031",
+      "prompt": "飲む (のむ)",
+      "answer": "drink",
+      "accept": ["to drink"],
+      "distractors": ["eat", "cook", "wash"],
+      "example": "I would like something to drink.",
+      "note": "nomu. In Japanese you also \"drink\" medicine, even pills: 薬を飲む (kusuri o nomu)."
+    },
+    {
+      "id": "jp-alltag-032",
+      "prompt": "行く (いく)",
+      "answer": "go",
+      "accept": ["to go"],
+      "distractors": ["come", "stay", "return"],
+      "example": "Shall we go for a walk?",
+      "note": "iku. The destination takes the particle に or へ: 駅に行く (eki ni iku), to go to the station. Whether on foot or by train doesn't matter."
+    },
+    {
+      "id": "jp-alltag-033",
+      "prompt": "見る (みる)",
+      "answer": "see",
+      "accept": ["to see", "look", "to look", "watch", "to watch"],
+      "distractors": ["hear", "read", "say"],
+      "example": "Can you see the moon?",
+      "note": "miru. The kanji shows an eye 目 on two legs. The polite form is 見ます (mimasu)."
+    },
+    {
+      "id": "jp-alltag-034",
+      "prompt": "休む (やすむ)",
+      "answer": "rest",
+      "accept": ["to rest", "take a break", "relax"],
+      "distractors": ["work", "study", "wait"],
+      "example": "I want to rest on Sunday.",
+      "note": "yasumu. The kanji shows a person 亻 leaning against a tree 木. It is also where おやすみ, good night, comes from."
+    },
+    {
+      "id": "jp-alltag-035",
+      "prompt": "ありがとう",
+      "answer": "Thank you",
+      "accept": ["Thanks", "Thank you very much"],
+      "distractors": ["Please", "Hello", "Bye"],
+      "example": "Thank you for your help.",
+      "note": "arigatō. More polite is ありがとうございます. The word comes from 有り難い, \"hard to come by\", meaning something rare and precious."
+    },
+    {
+      "id": "jp-alltag-036",
+      "prompt": "すみません",
+      "answer": "Excuse me",
+      "accept": ["Sorry", "I'm sorry", "Pardon me"],
+      "distractors": ["Please", "Welcome", "Good luck"],
+      "example": "Excuse me, where is the station?",
+      "note": "sumimasen. You use it to apologize, to address strangers or to call a waiter. It is often a thank-you too, when someone has gone to trouble for you."
+    },
+    {
+      "id": "jp-alltag-037",
+      "prompt": "おはよう",
+      "answer": "Good morning",
+      "accept": ["Morning"],
+      "distractors": ["Good afternoon", "Good evening", "Good night"],
+      "example": "Good morning, did you sleep well?",
+      "note": "ohayō. Among friends おはよう is enough; to be polite you say おはようございます. The word is related to 早い (hayai, early)."
+    },
+    {
+      "id": "jp-alltag-038",
+      "prompt": "こんばんは",
+      "answer": "Good evening",
+      "distractors": ["Good morning", "Good afternoon", "Good night"],
+      "example": "Good evening, nice to see you.",
+      "note": "konbanwa. The final は is pronounced \"wa\" because it was originally the topic particle: \"as for this evening\"."
+    },
+    {
+      "id": "jp-alltag-039",
+      "prompt": "おやすみ",
+      "answer": "Good night",
+      "accept": ["Sleep well"],
+      "distractors": ["Good evening", "See you tomorrow", "Good morning"],
+      "example": "Good night and sweet dreams.",
+      "note": "oyasumi. Comes from 休む (yasumu, to rest). To be polite you say おやすみなさい."
+    },
+    {
+      "id": "jp-alltag-040",
+      "prompt": "いただきます",
+      "answer": "Let's eat",
+      "accept": ["Bon appétit", "Bon appetit", "Enjoy your meal", "Thank you for the food"],
+      "distractors": ["Cheers", "Good night", "Welcome"],
+      "example": "Let's eat, it smells wonderful.",
+      "note": "itadakimasu. Said before eating, literally something like \"I humbly receive\". After the meal comes ごちそうさまでした."
+    }
+  ]
+}

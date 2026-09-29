@@ -9,328 +9,525 @@
       "id": "jp-hiragana-001",
       "prompt": "あ",
       "answer": "a",
-      "distractors": ["o", "me", "nu"],
-      "note": "Sieht aus wie ein Apfel, durch den ein Kreuz gestochen ist. Verwechsle es nicht mit お (o), dem der Querstrich oben rechts fehlt."
+      "distractors": [
+        "o",
+        "me",
+        "nu"
+      ],
+      "note": "Sieht aus wie ein Apfel, durch den ein Kreuz gestochen ist. Verwechsle es nicht mit お (o), das oben rechts einen kleinen Extrastrich hat."
     },
     {
       "id": "jp-hiragana-002",
       "prompt": "い",
       "answer": "i",
-      "distractors": ["ri", "ko", "u"],
+      "distractors": [
+        "ri",
+        "ko",
+        "u"
+      ],
       "note": "Zwei Striche nebeneinander, wie zwei kleine i ohne Punkt. Bei り (ri) ist der rechte Strich deutlich länger."
     },
     {
       "id": "jp-hiragana-003",
       "prompt": "う",
       "answer": "u",
-      "distractors": ["ra", "tsu", "fu"],
+      "distractors": [
+        "ra",
+        "tsu",
+        "fu"
+      ],
       "note": "Ein Mund, der „uuh“ ruft, mit einem kleinen Strich darüber. Ohne den Strich oben und mit anderem Schwung wird daraus ら (ra)."
     },
     {
       "id": "jp-hiragana-004",
       "prompt": "え",
       "answer": "e",
-      "distractors": ["n", "ne", "ra"],
+      "distractors": [
+        "n",
+        "ne",
+        "ra"
+      ],
       "note": "Eine Figur mit Federschmuck, die elegant tanzt: e wie elegant. Unten läuft der Strich in einem Zickzack aus."
     },
     {
       "id": "jp-hiragana-005",
       "prompt": "お",
       "answer": "o",
-      "distractors": ["a", "nu", "mu"],
+      "distractors": [
+        "a",
+        "nu",
+        "mu"
+      ],
       "note": "Wie あ, aber mit einem kleinen Extrastrich oben rechts, als würde jemand „Oh!“ rufen."
     },
     {
       "id": "jp-hiragana-006",
       "prompt": "か",
       "answer": "ka",
-      "distractors": ["ki", "ke", "ya"],
+      "distractors": [
+        "ki",
+        "ke",
+        "ya"
+      ],
       "note": "Ein Kämpfer mit Stock, der „Ka!“ ruft, der kleine Strich rechts ist sein Schrei. Mit zwei Punkten (が) wird daraus ga."
     },
     {
       "id": "jp-hiragana-007",
       "prompt": "き",
       "answer": "ki",
-      "distractors": ["sa", "chi", "ka"],
+      "distractors": [
+        "sa",
+        "chi",
+        "ka"
+      ],
       "note": "Sieht aus wie ein alter Schlüssel (englisch key) mit Bart unten. Zwei Querstriche: ki. Nur einer: さ (sa)."
     },
     {
       "id": "jp-hiragana-008",
       "prompt": "く",
       "answer": "ku",
-      "distractors": ["he", "tsu", "ko"],
+      "distractors": [
+        "he",
+        "tsu",
+        "ko"
+      ],
       "note": "Ein offener Kuckucksschnabel, der „ku ku“ ruft. Liegt der Winkel flach wie ein Dach, ist es へ (he)."
     },
     {
       "id": "jp-hiragana-009",
       "prompt": "け",
       "answer": "ke",
-      "distractors": ["ha", "ho", "ki"],
+      "distractors": [
+        "ha",
+        "ho",
+        "ki"
+      ],
       "note": "Links ein Pfosten, rechts ein Kegel mit Stange. Endet der rechte Strich in einer Schlaufe, ist es は (ha)."
     },
     {
       "id": "jp-hiragana-010",
       "prompt": "こ",
       "answer": "ko",
-      "distractors": ["i", "ni", "ro"],
+      "distractors": [
+        "i",
+        "ni",
+        "ro"
+      ],
       "note": "Zwei Striche übereinander wie zwei Koi-Karpfen im Teich. Steht links noch ein Strich davor, wird daraus に (ni)."
     },
     {
       "id": "jp-hiragana-011",
       "prompt": "さ",
       "answer": "sa",
-      "distractors": ["ki", "chi", "ra"],
-      "note": "Wie き, aber mit nur einem Querstrich: ein Samurai-Säbel, der schräg durchschneidet. Der Bogen öffnet sich nach links."
+      "distractors": [
+        "ki",
+        "chi",
+        "ra"
+      ],
+      "note": "Wie き, aber mit nur einem Querstrich: ein Samurai-Säbel, der schräg durchschneidet. Der Bogen unten wölbt sich nach links, wie ein c."
     },
     {
       "id": "jp-hiragana-012",
       "prompt": "し",
       "answer": "shi",
-      "accept": ["si"],
-      "distractors": ["tsu", "ri", "ku"],
+      "accept": [
+        "si"
+      ],
+      "distractors": [
+        "tsu",
+        "ri",
+        "ku"
+      ],
       "note": "Ein Angelhaken, an dem sie (shi) fischt. Die Hepburn-Umschrift schreibt shi, weil es wie „schi“ klingt, nicht wie „si“."
     },
     {
       "id": "jp-hiragana-013",
       "prompt": "す",
       "answer": "su",
-      "distractors": ["mu", "nu", "o"],
+      "distractors": [
+        "mu",
+        "nu",
+        "o"
+      ],
       "note": "Eine Schaukel mit Schlaufe, auf der du „suuu“ durch die Luft schwingst. Das u am Ende ist oft kaum hörbar: desu klingt wie „dess“."
     },
     {
       "id": "jp-hiragana-014",
       "prompt": "せ",
       "answer": "se",
-      "distractors": ["sa", "ke", "yo"],
+      "distractors": [
+        "sa",
+        "ke",
+        "yo"
+      ],
       "note": "Ein Segel an einem Mast, der Querbalken zeigt nach links. Merke: se wie Segel."
     },
     {
       "id": "jp-hiragana-015",
       "prompt": "そ",
       "answer": "so",
-      "distractors": ["ro", "ra", "te"],
+      "distractors": [
+        "ro",
+        "ra",
+        "te"
+      ],
       "note": "Ein Zickzack wie eine genähte Naht, die so weiterläuft. Manche schreiben das obere Stück getrennt, beides ist richtig."
     },
     {
       "id": "jp-hiragana-016",
       "prompt": "た",
       "answer": "ta",
-      "distractors": ["na", "ha", "ka"],
+      "distractors": [
+        "na",
+        "ha",
+        "ka"
+      ],
       "note": "Links steht ein kleines t, rechts ein schiefes a: zusammen ta. Mit Schlaufe unten rechts wird daraus な (na)."
     },
     {
       "id": "jp-hiragana-017",
       "prompt": "ち",
       "answer": "chi",
-      "accept": ["ti"],
-      "distractors": ["sa", "ra", "tsu"],
-      "note": "Wie さ, aber der Bogen öffnet sich nach rechts, wie ein runder Bauch voller Chips. Gesprochen wie „tschi“."
+      "accept": [
+        "ti"
+      ],
+      "distractors": [
+        "sa",
+        "ra",
+        "tsu"
+      ],
+      "note": "Wie さ, aber der Bogen wölbt sich nach rechts, wie ein runder Bauch voller Chips. Gesprochen wie „tschi“."
     },
     {
       "id": "jp-hiragana-018",
       "prompt": "つ",
       "answer": "tsu",
-      "accept": ["tu"],
-      "distractors": ["shi", "u", "ku"],
+      "accept": [
+        "tu"
+      ],
+      "distractors": [
+        "shi",
+        "u",
+        "ku"
+      ],
       "note": "Eine einzige große Welle, wie ein Tsunami. Klein geschrieben (っ) verdoppelt es den folgenden Konsonanten, etwa in きって (kitte, Briefmarke)."
     },
     {
       "id": "jp-hiragana-019",
       "prompt": "て",
       "answer": "te",
-      "distractors": ["to", "so", "ke"],
+      "distractors": [
+        "to",
+        "so",
+        "ke"
+      ],
       "note": "Ein T mit geschwungenem Stiel, wie eine ausgestreckte Hand (te heißt auch Hand, 手)."
     },
     {
       "id": "jp-hiragana-020",
       "prompt": "と",
       "answer": "to",
-      "distractors": ["te", "ko", "ri"],
+      "distractors": [
+        "te",
+        "ko",
+        "ri"
+      ],
       "note": "Ein Zeh (englisch toe) mit einem Splitter darin. Als Partikel verbindet と Nomen wie „und“: 犬と猫, Hund und Katze."
     },
     {
       "id": "jp-hiragana-021",
       "prompt": "な",
       "answer": "na",
-      "distractors": ["ta", "ha", "ho"],
+      "distractors": [
+        "ta",
+        "ha",
+        "ho"
+      ],
       "note": "Ein Kreuz, ein kleiner Strich und unten eine Schlaufe, wie ein Nagel mit Knoten. Denk an た mit Schlaufe."
     },
     {
       "id": "jp-hiragana-022",
       "prompt": "に",
       "answer": "ni",
-      "distractors": ["ko", "ke", "ta"],
+      "distractors": [
+        "ko",
+        "ke",
+        "ta"
+      ],
       "note": "Ein senkrechter Strich neben こ, wie ein Knie (englisch knee) neben zwei Knochen. Als Partikel markiert に Ziel und Zeitpunkt."
     },
     {
       "id": "jp-hiragana-023",
       "prompt": "ぬ",
       "answer": "nu",
-      "distractors": ["me", "ne", "a"],
+      "distractors": [
+        "me",
+        "ne",
+        "a"
+      ],
       "note": "Ein Teller Nudeln mit Gabel, unten die Nudel als Schlaufe. Ohne Schlaufe ist es め (me)."
     },
     {
       "id": "jp-hiragana-024",
       "prompt": "ね",
       "answer": "ne",
-      "distractors": ["re", "wa", "nu"],
+      "distractors": [
+        "re",
+        "wa",
+        "nu"
+      ],
       "note": "Eine Katze (neko) mit eingerolltem Schwanz. ね, れ und わ beginnen gleich, nur das Ende unterscheidet sie: Schlaufe, Schwung, Bogen."
     },
     {
       "id": "jp-hiragana-025",
       "prompt": "の",
       "answer": "no",
-      "distractors": ["me", "a", "ru"],
+      "distractors": [
+        "me",
+        "a",
+        "ru"
+      ],
       "note": "Sieht aus wie ein Verbotsschild: No! Als Partikel zeigt の Zugehörigkeit, 私の本 heißt „mein Buch“."
     },
     {
       "id": "jp-hiragana-026",
       "prompt": "は",
       "answer": "ha",
-      "distractors": ["ho", "ke", "ma"],
+      "distractors": [
+        "ho",
+        "ke",
+        "ma"
+      ],
       "note": "Wie け, nur mit Schlaufe unten rechts, als würde jemand „ha ha“ lachen. Als Themenpartikel wird は „wa“ gesprochen."
     },
     {
       "id": "jp-hiragana-027",
       "prompt": "ひ",
       "answer": "hi",
-      "distractors": ["shi", "fu", "he"],
+      "distractors": [
+        "shi",
+        "fu",
+        "he"
+      ],
       "note": "Ein breiter, grinsender Mund, der „hi hi“ kichert."
     },
     {
       "id": "jp-hiragana-028",
       "prompt": "ふ",
       "answer": "fu",
-      "accept": ["hu"],
-      "distractors": ["hi", "u", "mu"],
+      "accept": [
+        "hu"
+      ],
+      "distractors": [
+        "hi",
+        "u",
+        "mu"
+      ],
       "note": "Der Berg Fuji mit kleinen Wolken links und rechts. Gesprochen wird es zwischen f und h, die Lippen berühren sich dabei nicht."
     },
     {
       "id": "jp-hiragana-029",
       "prompt": "へ",
       "answer": "he",
-      "distractors": ["ku", "ha", "e"],
+      "distractors": [
+        "ku",
+        "ha",
+        "e"
+      ],
       "note": "Ein flacher Berg: „Hey, da wollen wir hoch!“ In Hiragana und Katakana sieht へ fast gleich aus. Als Richtungspartikel spricht man es „e“."
     },
     {
       "id": "jp-hiragana-030",
       "prompt": "ほ",
       "answer": "ho",
-      "distractors": ["ha", "ma", "ke"],
+      "distractors": [
+        "ha",
+        "ma",
+        "ke"
+      ],
       "note": "Wie は, aber mit einem zusätzlichen Querstrich oben, wie ein Haus mit Dach. Mehr Striche, runder Klang: ho."
     },
     {
       "id": "jp-hiragana-031",
       "prompt": "ま",
       "answer": "ma",
-      "distractors": ["ho", "yo", "mo"],
+      "distractors": [
+        "ho",
+        "yo",
+        "mo"
+      ],
       "note": "Ein Mast mit zwei Querstreben und einer Schlaufe unten. Ma ist auch das Wort 間, die bewusste Pause, nach der diese App benannt ist."
     },
     {
       "id": "jp-hiragana-032",
       "prompt": "み",
       "answer": "mi",
-      "distractors": ["me", "ru", "nu"],
+      "distractors": [
+        "me",
+        "ru",
+        "nu"
+      ],
       "note": "Eine Schlaufe mit langem Schwänzchen, wie eine Musiknote: do, re, mi."
     },
     {
       "id": "jp-hiragana-033",
       "prompt": "む",
       "answer": "mu",
-      "distractors": ["su", "o", "nu"],
+      "distractors": [
+        "su",
+        "o",
+        "nu"
+      ],
       "note": "Eine Kuh mit Schlaufe als Bauch und Punkt als Ohr, die „muh“ macht. Nicht mit す (su) verwechseln, das keinen Punkt hat."
     },
     {
       "id": "jp-hiragana-034",
       "prompt": "め",
       "answer": "me",
-      "distractors": ["nu", "a", "no"],
+      "distractors": [
+        "nu",
+        "a",
+        "no"
+      ],
       "note": "Ein Auge mit Wimpern, und me (目) heißt tatsächlich Auge. Mit Schlaufe am Ende wird es ぬ (nu)."
     },
     {
       "id": "jp-hiragana-035",
       "prompt": "も",
       "answer": "mo",
-      "distractors": ["shi", "ma", "ke"],
+      "distractors": [
+        "shi",
+        "ma",
+        "ke"
+      ],
       "note": "Ein Angelhaken mit zwei Querstrichen: noch mehr (englisch more) Köder. Als Partikel heißt も „auch“."
     },
     {
       "id": "jp-hiragana-036",
       "prompt": "や",
       "answer": "ya",
-      "distractors": ["ka", "se", "yu"],
+      "distractors": [
+        "ka",
+        "se",
+        "yu"
+      ],
       "note": "Ein Yak mit gebogenen Hörnern. Klein geschrieben (ゃ) verbindet es Silben wie in きゃ (kya)."
     },
     {
       "id": "jp-hiragana-037",
       "prompt": "ゆ",
       "answer": "yu",
-      "distractors": ["yo", "ya", "nu"],
+      "distractors": [
+        "yo",
+        "ya",
+        "nu"
+      ],
       "note": "Sieht aus wie ein Fisch, der im heißen Wasser schwimmt. Yu (湯) heißt heißes Wasser, ein Onsen-Vorhang trägt oft dieses Zeichen."
     },
     {
       "id": "jp-hiragana-038",
       "prompt": "よ",
       "answer": "yo",
-      "distractors": ["ma", "ho", "yu"],
+      "distractors": [
+        "ma",
+        "ho",
+        "yu"
+      ],
       "note": "Ein Jo-Jo, das an seiner Schnur hängt. Am Satzende betont よ eine Information: そうですよ, „so ist es, glaub mir“."
     },
     {
       "id": "jp-hiragana-039",
       "prompt": "ら",
       "answer": "ra",
-      "distractors": ["u", "chi", "ru"],
+      "distractors": [
+        "u",
+        "chi",
+        "ru"
+      ],
       "note": "Ein Rabe, der sich duckt, oben ein kleiner Strich als Schnabel. Das japanische r liegt zwischen r, l und d."
     },
     {
       "id": "jp-hiragana-040",
       "prompt": "り",
       "answer": "ri",
-      "distractors": ["i", "ru", "ko"],
+      "distractors": [
+        "i",
+        "ru",
+        "ko"
+      ],
       "note": "Wie い, aber der rechte Strich ist lang, wie ein Rinnsal, das nach unten fließt."
     },
     {
       "id": "jp-hiragana-041",
       "prompt": "る",
       "answer": "ru",
-      "distractors": ["ro", "ra", "me"],
+      "distractors": [
+        "ro",
+        "ra",
+        "me"
+      ],
       "note": "Endet unten in einer runden Schlaufe: ru wie rund. Ohne Schlaufe wird daraus ろ (ro)."
     },
     {
       "id": "jp-hiragana-042",
       "prompt": "れ",
       "answer": "re",
-      "distractors": ["ne", "wa", "nu"],
+      "distractors": [
+        "ne",
+        "wa",
+        "nu"
+      ],
       "note": "Wie ね, aber der Strich endet in einem Schwung nach rechts statt in einer Schlaufe, wie ein Bein, das lässig ausschreitet."
     },
     {
       "id": "jp-hiragana-043",
       "prompt": "ろ",
       "answer": "ro",
-      "distractors": ["ru", "ra", "so"],
+      "distractors": [
+        "ru",
+        "ra",
+        "so"
+      ],
       "note": "Wie る, nur ohne Schlaufe am Ende. Merke: Ohne Kreis wird aus ru ein ro."
     },
     {
       "id": "jp-hiragana-044",
       "prompt": "わ",
       "answer": "wa",
-      "distractors": ["ne", "re", "ha"],
+      "distractors": [
+        "ne",
+        "re",
+        "ha"
+      ],
       "note": "Wie ね und れ, aber rechts ein offener, weicher Bogen wie eine Welle. 和 (wa) heißt übrigens Harmonie."
     },
     {
       "id": "jp-hiragana-045",
       "prompt": "を",
       "answer": "wo",
-      "accept": ["o"],
-      "distractors": ["wa", "yo", "ho"],
+      "accept": [
+        "o"
+      ],
+      "distractors": [
+        "wa",
+        "yo",
+        "ho"
+      ],
       "note": "Kommt fast nur als Objektpartikel vor und wird dann wie „o“ gesprochen: 水を飲む, Wasser trinken."
     },
     {
       "id": "jp-hiragana-046",
       "prompt": "ん",
       "answer": "n",
-      "accept": ["nn", "n'"],
-      "distractors": ["nu", "no", "mu"],
+      "accept": [
+        "nn",
+        "n'"
+      ],
+      "distractors": [
+        "nu",
+        "no",
+        "mu"
+      ],
       "note": "Sieht aus wie ein kleines n in Schreibschrift. Es ist das einzige Zeichen, das nur aus einem Konsonanten besteht, und steht nie am Wortanfang."
     }
   ]

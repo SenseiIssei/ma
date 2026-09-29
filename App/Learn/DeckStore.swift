@@ -26,7 +26,7 @@ final class DeckStore {
 
     func load() {
         let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) ?? []
-        builtIn = urls
+        let editions = urls
             .filter { $0.lastPathComponent.hasPrefix("deck-") }
             .compactMap { url -> Deck? in
                 guard let data = try? Data(contentsOf: url),
@@ -34,6 +34,14 @@ final class DeckStore {
                 deck.isBuiltIn = true
                 return deck
             }
+        // One edition per deck: the app language if there is one, otherwise
+        // whatever exists. Files without a locale are the German originals.
+        var chosen: [String: Deck] = [:]
+        for deck in editions {
+            let fits = (deck.locale ?? "de") == Loc.code
+            if chosen[deck.id] == nil || fits { chosen[deck.id] = deck }
+        }
+        builtIn = chosen.values
             .sorted { $0.title.localizedCompare($1.title) == .orderedAscending }
         custom = read([Deck].self, from: "decks.json") ?? []
         progress = read([String: CardProgress].self, from: "progress.json") ?? [:]

@@ -26,16 +26,16 @@ struct MainTabs: View {
     var body: some View {
         @Bindable var model = model
         TabView(selection: $model.tab) {
-            Tab("Heute", systemImage: "sun.haze", value: MaTab.today) {
+            Tab(tr("Today", "Heute"), systemImage: "sun.haze", value: MaTab.today) {
                 TodayView()
             }
-            Tab("Grenzen", systemImage: "shield.lefthalf.filled", value: MaTab.rules) {
+            Tab(tr("Boundaries", "Grenzen"), systemImage: "shield.lefthalf.filled", value: MaTab.rules) {
                 RulesView()
             }
-            Tab("Lernen", systemImage: "character.book.closed", value: MaTab.learn) {
+            Tab(tr("Learn", "Lernen"), systemImage: "character.book.closed", value: MaTab.learn) {
                 LearnView()
             }
-            Tab("Fokus", systemImage: "circle.dashed", value: MaTab.focus) {
+            Tab(tr("Focus", "Fokus"), systemImage: "circle.dashed", value: MaTab.focus) {
                 FocusView()
             }
         }

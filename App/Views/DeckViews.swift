@@ -17,7 +17,7 @@ struct DeckDetailView: View {
             if let deck = store.deck(id: deckID) {
                 content(deck)
             } else {
-                Text("Dieses Thema gibt es nicht mehr.")
+                Text(tr("This topic no longer exists.", "Dieses Thema gibt es nicht mehr."))
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -49,9 +49,9 @@ struct DeckDetailView: View {
                 .padding(.top, 8)
 
                 HStack(spacing: 12) {
-                    StatStone(kanji: "札", value: "\(deck.cards.count)", label: "Karten")
-                    StatStone(kanji: "熟", value: "\(Int(store.mastery(of: deck) * 100))%", label: "sicher")
-                    StatStone(kanji: "復", value: "\(store.dueCount(in: deck))", label: "fällig")
+                    StatStone(kanji: "札", value: "\(deck.cards.count)", label: tr("cards", "Karten"))
+                    StatStone(kanji: "熟", value: "\(Int(store.mastery(of: deck) * 100))%", label: tr("known", "sicher"))
+                    StatStone(kanji: "復", value: "\(store.dueCount(in: deck))", label: tr("due", "fällig"))
                 }
                 .zenCard()
 
@@ -59,7 +59,7 @@ struct DeckDetailView: View {
                     Button {
                         lesson = QuizSession(mode: .lesson(count: min(10, max(1, deck.cards.count))), store: store, decks: [deck])
                     } label: {
-                        Label("Üben", systemImage: "play.fill")
+                        Label(tr("Practise", "Üben"), systemImage: "play.fill")
                     }
                     .buttonStyle(.shu)
                     .disabled(deck.cards.isEmpty)
@@ -68,12 +68,12 @@ struct DeckDetailView: View {
                         Haptics.tap()
                         store.toggleActive(deck)
                     } label: {
-                        Text(store.isActive(deck) ? "In der Schranke" : "Für Schranke")
+                        Text(store.isActive(deck) ? tr("In the gate", "In der Schranke") : tr("Use in gate", "Für Schranke"))
                     }
                     .buttonStyle(.quiet)
                 }
 
-                SectionHeader(kanji: "札", title: "Karten") {
+                SectionHeader(kanji: "札", title: tr("Cards", "Karten")) {
                     HStack(spacing: 16) {
                         ShareLink(item: DeckFile(data: store.exportData(deck), name: deck.title), preview: SharePreview(deck.title)) {
                             Image(systemName: "square.and.arrow.up")
@@ -100,13 +100,13 @@ struct DeckDetailView: View {
                 .zenCard(padding: 6)
 
                 if !deck.isBuiltIn {
-                    Button("Thema löschen", role: .destructive) {
+                    Button(tr("Delete topic", "Thema löschen"), role: .destructive) {
                         confirmDelete = true
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.top, 8)
-                    .confirmationDialog("\(deck.title) löschen?", isPresented: $confirmDelete, titleVisibility: .visible) {
-                        Button("Löschen", role: .destructive) {
+                    .confirmationDialog(tr("Delete \(deck.title)?", "\(deck.title) löschen?"), isPresented: $confirmDelete, titleVisibility: .visible) {
+                        Button(tr("Delete", "Löschen"), role: .destructive) {
                             store.delete(deck)
                             dismiss()
                         }
@@ -142,7 +142,7 @@ struct CardLine: View {
                         .frame(width: 6, height: 6)
                 }
             }
-            .accessibilityLabel("Stufe \(box) von 5")
+            .accessibilityLabel(tr("Level \(box) of 5", "Stufe \(box) von 5"))
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
@@ -174,11 +174,11 @@ struct DeckEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Titel, z. B. Koreanisch oder Anatomie", text: $deck.title)
+                    TextField(tr("Title, e.g. Korean or Anatomy", "Titel, z. B. Koreanisch oder Anatomie"), text: $deck.title)
                         .font(.mincho(19, weight: .semibold))
-                    TextField("Worum geht es?", text: $deck.subtitle)
+                    TextField(tr("What is it about?", "Worum geht es?"), text: $deck.subtitle)
                     HStack {
-                        Text("Siegel")
+                        Text(tr("Seal", "Siegel"))
                         Spacer()
                         TextField("学", text: Binding(
                             get: { deck.symbol },
@@ -189,9 +189,9 @@ struct DeckEditorView: View {
                         .frame(width: 60)
                     }
                 } header: {
-                    Text("Thema")
+                    Text(tr("Topic", "Thema"))
                 } footer: {
-                    Text("Ein einzelnes Zeichen fürs Siegel. Ein Kanji sieht am schönsten aus.")
+                    Text(tr("A single character for the seal. A kanji looks best.", "Ein einzelnes Zeichen fürs Siegel. Ein Kanji sieht am schönsten aus."))
                 }
 
                 Section {
@@ -211,31 +211,31 @@ struct DeckEditorView: View {
                     Button {
                         editingCard = Card(prompt: "", answer: "")
                     } label: {
-                        Label("Karte hinzufügen", systemImage: "plus")
+                        Label(tr("Add card", "Karte hinzufügen"), systemImage: "plus")
                     }
                     Button {
                         bulk = true
                     } label: {
-                        Label("Viele auf einmal einfügen", systemImage: "list.bullet.rectangle")
+                        Label(tr("Paste many at once", "Viele auf einmal einfügen"), systemImage: "list.bullet.rectangle")
                     }
                 } header: {
-                    Text("\(deck.cards.count) Karten")
+                    Text(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten"))
                 } footer: {
-                    Text("Ab vier Karten baut Ma daraus Auswahl-, Lücken-, Paar- und Schreibübungen.")
+                    Text(tr("From four cards on, Ma builds choice, gap, pair and typing exercises from them.", "Ab vier Karten baut Ma daraus Auswahl-, Lücken-, Paar- und Schreibübungen."))
                 }
             }
             .scrollContentBackground(.hidden)
             .background(WashiBackground())
-            .navigationTitle(isNew ? "Neues Thema" : "Thema bearbeiten")
+            .navigationTitle(isNew ? tr("New topic", "Neues Thema") : tr("Edit topic", "Thema bearbeiten"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(tr("Cancel", "Abbrechen")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Sichern") {
+                    Button(tr("Save", "Sichern")) {
                         var saved = deck
-                        if saved.title.trimmingCharacters(in: .whitespaces).isEmpty { saved.title = "Mein Thema" }
+                        if saved.title.trimmingCharacters(in: .whitespaces).isEmpty { saved.title = tr("My topic", "Mein Thema") }
                         if saved.symbol.isEmpty { saved.symbol = "学" }
                         model.decks.upsert(saved)
                         if isNew { model.decks.profile.activeDeckIDs.insert(saved.id) }
@@ -272,36 +272,36 @@ struct CardEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Frage", text: $card.prompt, axis: .vertical)
-                    TextField("Richtige Antwort", text: $card.answer)
+                    TextField(tr("Question", "Frage"), text: $card.prompt, axis: .vertical)
+                    TextField(tr("Right answer", "Richtige Antwort"), text: $card.answer)
                 } header: {
-                    Text("Karte")
+                    Text(tr("Card", "Karte"))
                 }
                 Section {
-                    TextField("Falsche Antworten, durch Komma getrennt", text: listBinding(\.distractors), axis: .vertical)
-                    TextField("Auch richtig, durch Komma getrennt", text: listBinding(\.accept), axis: .vertical)
+                    TextField(tr("Wrong answers, separated by commas", "Falsche Antworten, durch Komma getrennt"), text: listBinding(\.distractors), axis: .vertical)
+                    TextField(tr("Also right, separated by commas", "Auch richtig, durch Komma getrennt"), text: listBinding(\.accept), axis: .vertical)
                 } header: {
-                    Text("Optional")
+                    Text(tr("Optional", "Optional"))
                 } footer: {
-                    Text("Ohne falsche Antworten leiht sich Ma welche von anderen Karten.")
+                    Text(tr("Without wrong answers Ma borrows some from other cards.", "Ohne falsche Antworten leiht sich Ma welche von anderen Karten."))
                 }
                 Section {
-                    TextField("Beispielsatz, der die Antwort enthält", text: optionalBinding(\.example), axis: .vertical)
-                    TextField("Erklärung nach dem Antworten", text: optionalBinding(\.note), axis: .vertical)
+                    TextField(tr("Example sentence containing the answer", "Beispielsatz, der die Antwort enthält"), text: optionalBinding(\.example), axis: .vertical)
+                    TextField(tr("Explanation after answering", "Erklärung nach dem Antworten"), text: optionalBinding(\.note), axis: .vertical)
                 } footer: {
-                    Text("Mit Beispielsatz gibt es Lückentexte. Die Erklärung erscheint nach jeder Antwort, dort passiert das eigentliche Lernen.")
+                    Text(tr("With an example sentence you get gap texts. The explanation shows after every answer, that is where the learning happens.", "Mit Beispielsatz gibt es Lückentexte. Die Erklärung erscheint nach jeder Antwort, dort passiert das eigentliche Lernen."))
                 }
             }
             .scrollContentBackground(.hidden)
             .background(WashiBackground())
-            .navigationTitle("Karte")
+            .navigationTitle(tr("Card", "Karte"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(tr("Cancel", "Abbrechen")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Fertig") {
+                    Button(tr("Done", "Fertig")) {
                         save(card)
                         dismiss()
                     }
@@ -341,10 +341,10 @@ struct BulkCardsView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 14) {
-                Text("Eine Karte pro Zeile: Frage und Antwort, getrennt durch ; oder | oder Tab. Optional danach ein Beispielsatz und eine Erklärung.")
+                Text(tr("One card per line: question and answer, separated by ; or | or tab. Optionally followed by an example sentence and an explanation.", "Eine Karte pro Zeile: Frage und Antwort, getrennt durch ; oder | oder Tab. Optional danach ein Beispielsatz und eine Erklärung."))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
-                Text("Hund ; 犬 (いぬ)\nHauptstadt von Peru ; Lima ; Lima liegt am Pazifik.")
+                Text(tr("dog ; 犬 (いぬ)\nCapital of Peru ; Lima ; Lima lies on the Pacific.", "Hund ; 犬 (いぬ)\nHauptstadt von Peru ; Lima ; Lima liegt am Pazifik."))
                     .font(.system(size: 13, design: .monospaced))
                     .foregroundStyle(Zen.inkFaint)
                 TextEditor(text: $text)
@@ -353,20 +353,20 @@ struct BulkCardsView: View {
                     .padding(10)
                     .background(Zen.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(Zen.line))
-                Text("\(parsed.count) Karten erkannt")
+                Text(tr("\(parsed.count) cards found", "\(parsed.count) Karten erkannt"))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(parsed.isEmpty ? Zen.inkFaint : Zen.matcha)
             }
             .padding(Zen.gutter)
             .background(WashiBackground())
-            .navigationTitle("Viele Karten")
+            .navigationTitle(tr("Many cards", "Viele Karten"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(tr("Cancel", "Abbrechen")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Hinzufügen") {
+                    Button(tr("Add", "Hinzufügen")) {
                         add(parsed)
                         dismiss()
                     }

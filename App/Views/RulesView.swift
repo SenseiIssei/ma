@@ -11,8 +11,8 @@ struct RulesView: View {
                 VStack(alignment: .leading, spacing: 22) {
                     PageTitle(
                         kanji: "結界",
-                        title: "Grenzen",
-                        subtitle: "Ein Kekkai ist im Tempel die Linie, die den stillen Bereich vom Alltag trennt. Hier ziehst du deine."
+                        title: tr("Boundaries", "Grenzen"),
+                        subtitle: tr("In a temple, the kekkai is the line between the quiet grounds and everyday life. Here you draw yours.", "Ein Kekkai ist im Tempel die Linie, die den stillen Bereich vom Alltag trennt. Hier ziehst du deine.")
                     )
 
                     if model.authorization != .approved {
@@ -29,17 +29,17 @@ struct RulesView: View {
                         }
                         Button {
                             var rule = BlockRule()
-                            rule.name = model.rules.isEmpty ? "Soziale Medien" : "Neue Grenze"
+                            rule.name = model.rules.isEmpty ? tr("Social media", "Soziale Medien") : tr("New boundary", "Neue Grenze")
                             editing = rule
                         } label: {
-                            Label("Neue Grenze ziehen", systemImage: "plus")
+                            Label(tr("Draw a new boundary", "Neue Grenze ziehen"), systemImage: "plus")
                         }
                         .buttonStyle(.quiet)
                     }
 
                     if !model.grants.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
-                            SectionHeader(kanji: "開", title: "Gerade offen")
+                            SectionHeader(kanji: "開", title: tr("Open right now", "Gerade offen"))
                             VStack(spacing: 10) {
                                 ForEach(model.grants) { grant in
                                     GrantRow(grant: grant) { model.revoke(grant) }
@@ -50,17 +50,17 @@ struct RulesView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 12) {
-                        SectionHeader(kanji: "濾", title: "Im Browser")
+                        SectionHeader(kanji: "濾", title: tr("In the browser", "Im Browser"))
                         NavigationLink {
                             FilterView()
                         } label: {
                             HStack(spacing: 14) {
                                 Hanko(text: "濾", size: 40, color: Zen.ai)
                                 VStack(alignment: .leading, spacing: 3) {
-                                    Text("Reels-Filter für Safari")
+                                    Text(tr("Reels filter for Safari", "Reels-Filter für Safari"))
                                         .font(.system(size: 17, weight: .semibold))
                                         .foregroundStyle(Zen.ink)
-                                    Text("Instagram ohne Reels, YouTube ohne Shorts, LinkedIn ohne Feed.")
+                                    Text(tr("Instagram without Reels, YouTube without Shorts, LinkedIn without the feed.", "Instagram ohne Reels, YouTube ohne Shorts, LinkedIn ohne Feed."))
                                         .font(.system(size: 14))
                                         .foregroundStyle(Zen.inkSoft)
                                         .multilineTextAlignment(.leading)
@@ -85,10 +85,10 @@ struct RulesView: View {
 
     private var permissionCard: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Ma braucht Zugriff auf Bildschirmzeit, sonst bleiben alle Grenzen nur auf dem Papier.")
+            Text(tr("Ma needs Screen Time access, otherwise every boundary stays on paper.", "Ma braucht Zugriff auf Bildschirmzeit, sonst bleiben alle Grenzen nur auf dem Papier."))
                 .font(.system(size: 15))
                 .foregroundStyle(Zen.ink)
-            Button("Zugriff erlauben") {
+            Button(tr("Allow access", "Zugriff erlauben")) {
                 Task { await model.requestScreenTime() }
             }
             .buttonStyle(.shu)
@@ -148,20 +148,22 @@ struct RuleCard: View {
         let apps = rule.selection.applicationTokens.count
         let cats = rule.selection.categoryTokens.count
         let webs = rule.selection.webDomainTokens.count
-        if apps > 0 { parts.append("\(apps) \(apps == 1 ? "App" : "Apps")") }
-        if cats > 0 { parts.append("\(cats) \(cats == 1 ? "Kategorie" : "Kategorien")") }
-        if webs > 0 { parts.append("\(webs) \(webs == 1 ? "Website" : "Websites")") }
-        if parts.isEmpty { parts.append("Noch nichts ausgewählt") }
-        parts.append(rule.schedule?.label ?? "immer")
+        if apps > 0 { parts.append(tr("\(apps) \(apps == 1 ? "app" : "apps")", "\(apps) \(apps == 1 ? "App" : "Apps")")) }
+        if cats > 0 { parts.append(tr("\(cats) \(cats == 1 ? "category" : "categories")", "\(cats) \(cats == 1 ? "Kategorie" : "Kategorien")")) }
+        if webs > 0 { parts.append(tr("\(webs) \(webs == 1 ? "website" : "websites")", "\(webs) \(webs == 1 ? "Website" : "Websites")")) }
+        if parts.isEmpty { parts.append(tr("Nothing chosen yet", "Noch nichts ausgewählt")) }
+        parts.append(rule.schedule?.label ?? tr("always", "immer"))
         return parts.joined(separator: " · ")
     }
 
     private var status: String {
-        if !rule.isEnabled { return "ausgeschaltet" }
-        if rule.isEmpty { return "leer" }
-        if !shielding { return "ruht bis zum nächsten Zeitfenster" }
-        if !rule.allowsUnlock { return "wacht, ohne Ausweg" }
-        let q = rule.questionsRequired == 1 ? "1 Frage" : "\(rule.questionsRequired) Fragen"
-        return "wacht · \(q) für \(rule.unlockMinutes) Min."
+        if !rule.isEnabled { return tr("switched off", "ausgeschaltet") }
+        if rule.isEmpty { return tr("empty", "leer") }
+        if !shielding { return tr("resting until the next window", "ruht bis zum nächsten Zeitfenster") }
+        if !rule.allowsUnlock { return tr("on watch, no way through", "wacht, ohne Ausweg") }
+        let q = rule.questionsRequired == 1
+            ? tr("1 question", "1 Frage")
+            : tr("\(rule.questionsRequired) questions", "\(rule.questionsRequired) Fragen")
+        return tr("on watch · \(q) for \(rule.unlockMinutes) min.", "wacht · \(q) für \(rule.unlockMinutes) Min.")
     }
 }

@@ -17,7 +17,7 @@ struct RuleEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Name", text: $rule.name)
+                    TextField(tr("Name", "Name"), text: $rule.name)
                         .font(.mincho(20, weight: .semibold))
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
@@ -34,7 +34,7 @@ struct RuleEditorView: View {
                         .padding(.vertical, 4)
                     }
                 } header: {
-                    Text("Grenze")
+                    Text(tr("Boundary", "Grenze"))
                 }
 
                 Section {
@@ -42,7 +42,7 @@ struct RuleEditorView: View {
                         showPicker = true
                     } label: {
                         HStack {
-                            Text(rule.isEmpty ? "Apps und Websites auswählen" : "Auswahl ändern")
+                            Text(rule.isEmpty ? tr("Choose apps and websites", "Apps und Websites auswählen") : tr("Change selection", "Auswahl ändern"))
                                 .foregroundStyle(Zen.ink)
                             Spacer()
                             Text("\(rule.itemCount)")
@@ -59,24 +59,24 @@ struct RuleEditorView: View {
                         }
                     }
                 } header: {
-                    Text("Was")
+                    Text(tr("What", "Was"))
                 } footer: {
-                    Text("Tipp: Nimm die Instagram-App in die Grenze, aber nicht instagram.com. Dann nutzt du Instagram im Browser, wo der Reels-Filter wirkt.")
+                    Text(tr("Tip: put the Instagram app inside the boundary, but not instagram.com. Then you use Instagram in the browser, where the Reels filter works.", "Tipp: Nimm die Instagram-App in die Grenze, aber nicht instagram.com. Dann nutzt du Instagram im Browser, wo der Reels-Filter wirkt."))
                 }
 
                 Section {
-                    Picker("Wann", selection: Binding(
+                    Picker(tr("When", "Wann"), selection: Binding(
                         get: { rule.schedule != nil },
                         set: { rule.schedule = $0 ? (rule.schedule ?? RuleSchedule()) : nil }
                     )) {
-                        Text("Immer").tag(false)
-                        Text("Zeitfenster").tag(true)
+                        Text(tr("Always", "Immer")).tag(false)
+                        Text(tr("Time window", "Zeitfenster")).tag(true)
                     }
                     .pickerStyle(.segmented)
 
                     if let schedule = rule.schedule {
-                        DatePicker("Von", selection: timeBinding(\.startMinute), displayedComponents: .hourAndMinute)
-                        DatePicker("Bis", selection: timeBinding(\.endMinute), displayedComponents: .hourAndMinute)
+                        DatePicker(tr("From", "Von"), selection: timeBinding(\.startMinute), displayedComponents: .hourAndMinute)
+                        DatePicker(tr("Until", "Bis"), selection: timeBinding(\.endMinute), displayedComponents: .hourAndMinute)
                         HStack(spacing: 6) {
                             ForEach([2, 3, 4, 5, 6, 7, 1], id: \.self) { day in
                                 let on = schedule.weekdays.contains(day)
@@ -95,48 +95,48 @@ struct RuleEditorView: View {
                         }
                     }
                 } header: {
-                    Text("Wann")
+                    Text(tr("When", "Wann"))
                 } footer: {
                     if let schedule = rule.schedule, schedule.wrapsMidnight {
-                        Text("Läuft über Mitternacht: von \(RuleSchedule.clock(schedule.startMinute)) am Abend bis \(RuleSchedule.clock(schedule.endMinute)) am nächsten Morgen.")
+                        Text(tr("Runs past midnight: from \(RuleSchedule.clock(schedule.startMinute)) in the evening to \(RuleSchedule.clock(schedule.endMinute)) the next morning.", "Läuft über Mitternacht: von \(RuleSchedule.clock(schedule.startMinute)) am Abend bis \(RuleSchedule.clock(schedule.endMinute)) am nächsten Morgen."))
                     }
                 }
 
                 Section {
-                    Toggle("Mit Fragen entsperrbar", isOn: $rule.allowsUnlock)
+                    Toggle(tr("Unlock with questions", "Mit Fragen entsperrbar"), isOn: $rule.allowsUnlock)
                         .tint(Zen.shu)
                     if rule.allowsUnlock {
                         Stepper(value: $rule.questionsRequired, in: 1...5) {
                             HStack {
-                                Text("Richtige Antworten")
+                                Text(tr("Right answers", "Richtige Antworten"))
                                 Spacer()
                                 Text("\(rule.questionsRequired)").foregroundStyle(Zen.inkSoft).monospacedDigit()
                             }
                         }
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Danach offen für")
+                            Text(tr("Then open for", "Danach offen für"))
                             HStack(spacing: 8) {
                                 ForEach(minuteChoices, id: \.self) { minutes in
                                     Chip(title: "\(minutes)", selected: rule.unlockMinutes == minutes) {
                                         rule.unlockMinutes = minutes
                                     }
                                 }
-                                Text("Min.").foregroundStyle(Zen.inkSoft)
+                                Text(tr("min.", "Min.")).foregroundStyle(Zen.inkSoft)
                             }
                         }
                         .padding(.vertical, 4)
                     }
                 } header: {
-                    Text("Ausweg")
+                    Text(tr("Way through", "Ausweg"))
                 } footer: {
                     Text(rule.allowsUnlock
-                         ? "Auf dem Sperrbildschirm gibt es \"Frage beantworten\". Wer richtig antwortet, darf für die gewählte Zeit hinein."
-                         : "Kein Ausweg: Der Sperrbildschirm bietet nur den Rückweg. Ausschalten kannst du die Grenze trotzdem jederzeit hier.")
+                         ? tr("The shield offers \"Answer a question\". Answer right and you may go in for the chosen time.", "Auf dem Sperrbildschirm gibt es \"Frage beantworten\". Wer richtig antwortet, darf für die gewählte Zeit hinein.")
+                         : tr("No way through: the shield only offers the way back. You can still switch the boundary off here at any time.", "Kein Ausweg: Der Sperrbildschirm bietet nur den Rückweg. Ausschalten kannst du die Grenze trotzdem jederzeit hier."))
                 }
 
                 if !isNew {
                     Section {
-                        Button("Grenze löschen", role: .destructive) {
+                        Button(tr("Delete boundary", "Grenze löschen"), role: .destructive) {
                             confirmDelete = true
                         }
                     }
@@ -144,14 +144,14 @@ struct RuleEditorView: View {
             }
             .scrollContentBackground(.hidden)
             .background(WashiBackground())
-            .navigationTitle(isNew ? "Neue Grenze" : rule.name)
+            .navigationTitle(isNew ? tr("New boundary", "Neue Grenze") : rule.name)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(tr("Cancel", "Abbrechen")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Sichern") {
+                    Button(tr("Save", "Sichern")) {
                         Haptics.success()
                         model.save(rule)
                         dismiss()
@@ -160,8 +160,8 @@ struct RuleEditorView: View {
                 }
             }
             .familyActivityPicker(isPresented: $showPicker, selection: $rule.selection)
-            .confirmationDialog("Diese Grenze löschen?", isPresented: $confirmDelete, titleVisibility: .visible) {
-                Button("Löschen", role: .destructive) {
+            .confirmationDialog(tr("Delete this boundary?", "Diese Grenze löschen?"), isPresented: $confirmDelete, titleVisibility: .visible) {
+                Button(tr("Delete", "Löschen"), role: .destructive) {
                     model.delete(rule)
                     dismiss()
                 }
@@ -183,6 +183,6 @@ struct RuleEditorView: View {
     }
 
     private func dayName(_ day: Int) -> String {
-        ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"][(day - 1) % 7]
+        RuleSchedule.dayName(day)
     }
 }

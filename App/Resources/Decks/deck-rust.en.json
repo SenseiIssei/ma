@@ -1,0 +1,370 @@
+{
+  "id": "rust",
+  "locale": "en",
+  "title": "Rust Basics",
+  "subtitle": "Ownership, borrowing and the most important tools",
+  "symbol": "錆",
+  "cards": [
+    {
+      "id": "rust-001",
+      "prompt": "How many owners does a value in Rust have at any given time?",
+      "answer": "Exactly one",
+      "accept": [
+        "One",
+        "1"
+      ],
+      "distractors": [
+        "Any number",
+        "At most two",
+        "At least two"
+      ],
+      "note": "This is the core rule of ownership. When the owner goes out of scope, the value is freed automatically (drop), without any garbage collector."
+    },
+    {
+      "id": "rust-002",
+      "prompt": "What happens to `a` after `let b = a;` if `a` is a `String`?",
+      "answer": "a is moved into b",
+      "accept": [
+        "Move",
+        "Moved",
+        "a is moved"
+      ],
+      "distractors": [
+        "a is copied",
+        "a is cloned",
+        "b borrows a"
+      ],
+      "note": "String does not implement Copy, so ownership moves. Afterwards a is no longer valid. If you need both, write a.clone()."
+    },
+    {
+      "id": "rust-003",
+      "prompt": "How many mutable references (`&mut`) to a value may exist at the same time?",
+      "answer": "At most one",
+      "accept": [
+        "One",
+        "1"
+      ],
+      "distractors": [
+        "Any number",
+        "Exactly two",
+        "One per thread"
+      ],
+      "note": "Either any number of &T or exactly one &mut T, never both at once. This is how the compiler rules out data races at compile time."
+    },
+    {
+      "id": "rust-004",
+      "prompt": "What does `'a` stand for in `fn f<'a>(x: &'a str) -> &'a str`?",
+      "answer": "A lifetime parameter",
+      "accept": [
+        "Lifetime",
+        "Lifetime parameter"
+      ],
+      "distractors": [
+        "A generic type",
+        "A loop label",
+        "A char literal"
+      ],
+      "note": "Lifetimes don't extend anything; they only describe relationships: the returned reference lives at most as long as x. Often you can leave them out (lifetime elision)."
+    },
+    {
+      "id": "rust-005",
+      "prompt": "Which type expresses that a value may be missing?",
+      "answer": "Option<T>",
+      "accept": [
+        "Option"
+      ],
+      "distractors": [
+        "Result<T, E>",
+        "Box<T>",
+        "Vec<T>"
+      ],
+      "note": "Option<T> is either Some(value) or None. Rust has no null: if you work with a value that might be missing, you have to handle the None case explicitly."
+    },
+    {
+      "id": "rust-006",
+      "prompt": "What are the two variants of `Result<T, E>`?",
+      "answer": "Ok and Err",
+      "accept": [
+        "Ok, Err",
+        "Ok/Err"
+      ],
+      "distractors": [
+        "Some and None",
+        "Ok and None",
+        "Success and Error"
+      ],
+      "note": "Ok(T) holds the success value, Err(E) the error. Result is marked #[must_use]: if you ignore it, the compiler warns you."
+    },
+    {
+      "id": "rust-007",
+      "prompt": "What does the `?` operator do when it hits an `Err`?",
+      "answer": "Returns the error",
+      "accept": [
+        "Early return",
+        "Return"
+      ],
+      "distractors": [
+        "Triggers a panic",
+        "Ignores the error",
+        "Uses a default value"
+      ],
+      "note": "? exits the function early and passes the error up, converting it through the From trait first. On Ok it simply unwraps the value. It works the same way with Option."
+    },
+    {
+      "id": "rust-008",
+      "prompt": "What happens when you call `.unwrap()` on a `None`?",
+      "answer": "A panic",
+      "accept": [
+        "Panic",
+        "Panics",
+        "It panics"
+      ],
+      "distractors": [
+        "It returns 0",
+        "A compile error",
+        "It returns None"
+      ],
+      "note": "unwrap is handy for prototypes and tests. In real code, ?, match, if let or unwrap_or are usually better. expect with a message at least gives you a clear error message."
+    },
+    {
+      "id": "rust-009",
+      "prompt": "How do you describe behavior shared by several types in Rust?",
+      "answer": "With a trait",
+      "accept": [
+        "Trait",
+        "A trait"
+      ],
+      "distractors": [
+        "With a class",
+        "With an interface",
+        "With inheritance"
+      ],
+      "note": "A trait defines methods that types implement: impl Trait for Type. There is no class inheritance; behavior is shared through traits and composition."
+    },
+    {
+      "id": "rust-010",
+      "prompt": "What does the compiler require of every `match`?",
+      "answer": "It must be exhaustive",
+      "accept": [
+        "exhaustive",
+        "Exhaustive"
+      ],
+      "distractors": [
+        "It needs an else",
+        "It only checks numbers",
+        "It needs three arms"
+      ],
+      "note": "Every possible value must be covered, if necessary with the wildcard _. If a new enum variant is added later, the compiler points you to every place you need to update."
+    },
+    {
+      "id": "rust-011",
+      "prompt": "Which smart pointer puts a value on the heap, with exactly one owner?",
+      "answer": "Box<T>",
+      "accept": [
+        "Box"
+      ],
+      "distractors": [
+        "Rc<T>",
+        "Arc<T>",
+        "Cell<T>"
+      ],
+      "note": "You need Box, for example, for recursive types like trees or for trait objects like Box<dyn Error>. The pointer itself has a fixed size; the contents live on the heap."
+    },
+    {
+      "id": "rust-012",
+      "prompt": "Which type allows multiple owners, but only within a single thread?",
+      "answer": "Rc<T>",
+      "accept": [
+        "Rc"
+      ],
+      "distractors": [
+        "Arc<T>",
+        "Box<T>",
+        "Mutex<T>"
+      ],
+      "note": "Rc counts references (reference counting). The counter is not atomic and therefore fast, but Rc is not Send. Rc::clone creates another owner, not a deep copy."
+    },
+    {
+      "id": "rust-013",
+      "prompt": "Which type shares ownership safely across multiple threads?",
+      "answer": "Arc<T>",
+      "accept": [
+        "Arc"
+      ],
+      "distractors": [
+        "Rc<T>",
+        "Box<T>",
+        "Cell<T>"
+      ],
+      "note": "Arc stands for Atomically Reference Counted. On its own it only allows shared reading. To modify the value, you usually combine it with Mutex or RwLock: Arc<Mutex<T>>."
+    },
+    {
+      "id": "rust-014",
+      "prompt": "Which command creates a new Rust project in a new folder?",
+      "answer": "cargo new",
+      "distractors": [
+        "cargo create",
+        "rustc new",
+        "cargo start"
+      ],
+      "example": "cargo new ma-cli",
+      "note": "cargo new creates the folder with Cargo.toml, src/main.rs and a Git repository. For a folder that already exists, there is cargo init."
+    },
+    {
+      "id": "rust-015",
+      "prompt": "Which command finds common mistakes and unidiomatic code?",
+      "answer": "cargo clippy",
+      "accept": [
+        "clippy",
+        "Clippy"
+      ],
+      "distractors": [
+        "cargo fmt",
+        "cargo check",
+        "cargo doc"
+      ],
+      "example": "cargo clippy -- -D warnings",
+      "note": "Clippy knows hundreds of lints. cargo fmt only formats, and cargo check only verifies that the code compiles, without building a binary."
+    },
+    {
+      "id": "rust-016",
+      "prompt": "What does it mean if a type is `Send`?",
+      "answer": "Can move to other threads",
+      "accept": [
+        "Can be sent between threads",
+        "Can be moved between threads"
+      ],
+      "distractors": [
+        "Can be copied",
+        "Is serializable",
+        "Lives on the heap"
+      ],
+      "note": "Send is a marker trait without methods that the compiler implements automatically. Rc<T>, for example, is not Send, because otherwise two threads could update its counter at the same time."
+    },
+    {
+      "id": "rust-017",
+      "prompt": "A type `T` is `Sync` if ...?",
+      "answer": "&T is Send",
+      "distractors": [
+        "T is Copy",
+        "T is Clone",
+        "&mut T is Copy"
+      ],
+      "note": "Sync means that several threads may access the value through &T at the same time. Cell and RefCell are not Sync, whereas Mutex<T> is, as long as T is Send."
+    },
+    {
+      "id": "rust-018",
+      "prompt": "Iterators are lazy. Which method collects the elements into a `Vec`, for example?",
+      "answer": ".collect()",
+      "accept": [
+        "collect",
+        "collect()"
+      ],
+      "distractors": [
+        ".map()",
+        ".iter()",
+        ".into()"
+      ],
+      "example": "let v: Vec<i32> = it.collect();",
+      "note": "map or filter do nothing on their own. Only a consuming call like collect, sum or a for loop drives the iterator. You specify the target type with an annotation or the turbofish: collect::<Vec<_>>()."
+    },
+    {
+      "id": "rust-019",
+      "prompt": "Which method consumes a `Vec` and yields the elements themselves instead of references?",
+      "answer": "into_iter()",
+      "accept": [
+        "into_iter",
+        ".into_iter()"
+      ],
+      "distractors": [
+        "iter()",
+        "iter_mut()",
+        "as_slice()"
+      ],
+      "example": "for x in v.into_iter() {}",
+      "note": "iter() yields &T, iter_mut() yields &mut T, and into_iter() yields T and takes ownership of the Vec. A for loop over v calls into_iter, while a loop over &v calls iter."
+    },
+    {
+      "id": "rust-020",
+      "prompt": "How do you recognize a macro call like `println!`?",
+      "answer": "By the exclamation mark",
+      "accept": [
+        "Exclamation mark",
+        "!"
+      ],
+      "distractors": [
+        "By the colon",
+        "By the @ sign",
+        "By the parentheses"
+      ],
+      "note": "Macros are expanded into code at compile time. That is why println! can take a variable number of arguments and check the format string while compiling."
+    },
+    {
+      "id": "rust-021",
+      "prompt": "What is the type of `&v[1..3]` if `v` is a `Vec<i32>`?",
+      "answer": "&[i32]",
+      "distractors": [
+        "Vec<i32>",
+        "&Vec<i32>",
+        "[i32; 2]"
+      ],
+      "example": "let part: &[i32] = &v[1..3];",
+      "note": "A slice is a view into a contiguous range, without copying. Internally, &[T] is a fat pointer made of an address and a length. The range 1..3 covers indices 1 and 2."
+    },
+    {
+      "id": "rust-022",
+      "prompt": "Which string type owns its data and can grow?",
+      "answer": "String",
+      "distractors": [
+        "&str",
+        "&String",
+        "char"
+      ],
+      "example": "let mut name = String::new();",
+      "note": "String lives on the heap and belongs to you; &str is just a borrowed view of UTF-8 text. As a function parameter, &str is usually more flexible, because &String converts to it automatically."
+    },
+    {
+      "id": "rust-023",
+      "prompt": "What is the type of the literal `\"hello\"`?",
+      "answer": "&'static str",
+      "accept": [
+        "&str"
+      ],
+      "distractors": [
+        "String",
+        "&String",
+        "str"
+      ],
+      "note": "String literals are baked into the binary and therefore live for the entire program. With .to_string() or String::from you turn one into an owned String."
+    },
+    {
+      "id": "rust-024",
+      "prompt": "What happens with `let x = 5; let x = x + 1;`?",
+      "answer": "A new x shadows the old one",
+      "accept": [
+        "Shadowing"
+      ],
+      "distractors": [
+        "A compile error",
+        "x is mutated",
+        "A runtime error"
+      ],
+      "note": "This is called shadowing. The second let creates a new variable, which may even have a different type, as in let input = input.trim(); Both x stay immutable."
+    },
+    {
+      "id": "rust-025",
+      "prompt": "What do you need to be able to reassign `x` later?",
+      "answer": "let mut x",
+      "accept": [
+        "mut"
+      ],
+      "distractors": [
+        "const x",
+        "static x",
+        "var x"
+      ],
+      "example": "let mut x = 5;",
+      "note": "Variables in Rust are immutable by default. mut is a deliberate choice that shows at a glance where something can change."
+    }
+  ]
+}

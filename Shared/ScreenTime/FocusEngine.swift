@@ -92,15 +92,15 @@ enum FocusEngine {
         case .focus:
             Notifier.schedule(
                 id: Notifier.focusID,
-                title: "集中 Runde \(session.round) geschafft",
-                body: "Steh kurz auf, schau in die Ferne. Die Pause beginnt.",
+                title: tr("集中 Round \(session.round) done", "集中 Runde \(session.round) geschafft"),
+                body: tr("Stand up, look into the distance. Your break starts now.", "Steh kurz auf, schau in die Ferne. Die Pause beginnt."),
                 at: session.endsAt
             )
         case .shortBreak, .longBreak:
             Notifier.schedule(
                 id: Notifier.focusID,
-                title: "休憩 Pause vorbei",
-                body: "Bereit für die nächste Runde? Tippe, um weiterzumachen.",
+                title: tr("休憩 Break is over", "休憩 Pause vorbei"),
+                body: tr("Ready for the next round? Tap to carry on.", "Bereit für die nächste Runde? Tippe, um weiterzumachen."),
                 at: session.endsAt
             )
         }

@@ -60,7 +60,7 @@ struct PromptText: View {
 }
 
 struct CheckButton: View {
-    var title = "Prüfen"
+    var title = tr("Check", "Prüfen")
     let enabled: Bool
     let action: () -> Void
 
@@ -204,8 +204,8 @@ struct TrueFalseExercise: View {
             .background(Zen.sand.opacity(0.6), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
 
             HStack(spacing: 12) {
-                answerButton(true, title: "Stimmt", symbol: "○")
-                answerButton(false, title: "Stimmt nicht", symbol: "×")
+                answerButton(true, title: tr("True", "Stimmt"), symbol: "○")
+                answerButton(false, title: tr("Not true", "Stimmt nicht"), symbol: "×")
             }
         }
     }
@@ -245,7 +245,7 @@ struct TypeExercise: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             PromptText(text: exercise.prompt)
-            TextField("Deine Antwort", text: $text)
+            TextField(tr("Your answer", "Deine Antwort"), text: $text)
                 .font(.system(size: 20, weight: .medium))
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
@@ -403,7 +403,7 @@ struct PairsExercise: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Tippe links und rechts, was zusammengehört.")
+            Text(tr("Tap what belongs together, left and right.", "Tippe links und rechts, was zusammengehört."))
                 .font(.system(size: 15))
                 .foregroundStyle(Zen.inkSoft)
             HStack(alignment: .top, spacing: 12) {
@@ -495,14 +495,14 @@ struct FlashExercise: View {
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 if !locked {
                     HStack(spacing: 12) {
-                        Button("Wusste ich nicht") { onCheck(Outcome(correct: false)) }
+                        Button(tr("Didn't know", "Wusste ich nicht")) { onCheck(Outcome(correct: false)) }
                             .buttonStyle(.quiet)
-                        Button("Gewusst") { onCheck(Outcome(correct: true)) }
+                        Button(tr("Knew it", "Gewusst")) { onCheck(Outcome(correct: true)) }
                             .buttonStyle(.matcha)
                     }
                 }
             } else {
-                Button("Aufdecken") {
+                Button(tr("Reveal", "Aufdecken")) {
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.85)) { revealed = true }
                 }
                 .buttonStyle(.ink)

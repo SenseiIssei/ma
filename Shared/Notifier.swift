@@ -10,11 +10,13 @@ enum Notifier {
     /// open the app itself; a notification is the one door it may open.
     static func askForQuestion(appName: String?, completion: @escaping () -> Void) {
         let content = UNMutableNotificationContent()
-        content.title = "間 Ein Moment für dich"
+        content.title = tr("間 A moment for you", "間 Ein Moment für dich")
         if let appName {
-            content.body = "Tippe hier, beantworte eine Frage und entscheide dann in Ruhe über \(appName)."
+            content.body = tr("Tap here, answer a question, then decide about \(appName) in peace.",
+                              "Tippe hier, beantworte eine Frage und entscheide dann in Ruhe über \(appName).")
         } else {
-            content.body = "Tippe hier, beantworte eine Frage und entscheide dann in Ruhe."
+            content.body = tr("Tap here, answer a question, then decide in peace.",
+                              "Tippe hier, beantworte eine Frage und entscheide dann in Ruhe.")
         }
         content.sound = .default
         content.interruptionLevel = .active

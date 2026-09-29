@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Ma Filter",
-  "description": "Blendet Reels, Shorts und endlose Feeds aus. Die Schalter stehen in der Ma-App.",
+  "description": "Hides Reels, Shorts and endless feeds. The switches live in the Ma app.",
   "version": "0.1.0",
   "icons": {
     "48": "icon-48.png",

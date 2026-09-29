@@ -31,6 +31,7 @@
   if (!site) return;
 
   let settings = { ...DEFAULTS };
+  const german = (navigator.language || "").toLowerCase().startsWith("de");
   const HIDE = "{display:none!important}";
 
   // ---------------------------------------------------------------- rules
@@ -154,8 +155,8 @@
     glyph.style.cssText = "font:600 44px/1 'Hiragino Mincho ProN',serif;color:#C8412C;margin-bottom:10px";
     const text = document.createElement("div");
     text.textContent = site === "tiktok"
-      ? "TikTok ist in Ma ausgeschaltet. Was wolltest du eigentlich finden?"
-      : "Hier war ein Feed. Suche gezielt, statt dich treiben zu lassen.";
+      ? (german ? "TikTok ist in Ma ausgeschaltet. Was wolltest du eigentlich finden?" : "TikTok is switched off in Ma. What were you actually looking for?")
+      : (german ? "Hier war ein Feed. Suche gezielt, statt dich treiben zu lassen." : "A feed used to be here. Search for something instead of drifting.");
     calm.append(glyph, text);
     if (site === "tiktok") {
       calm.style.position = "fixed";

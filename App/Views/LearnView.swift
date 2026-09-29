@@ -16,18 +16,18 @@ struct LearnView: View {
                 VStack(alignment: .leading, spacing: 22) {
                     PageTitle(
                         kanji: "学び",
-                        title: "Lernen",
-                        subtitle: "Jede Frage vor einer Freigabe kommt aus den Themen, die hier ein rotes Siegel tragen."
+                        title: tr("Learn", "Lernen"),
+                        subtitle: tr("Every question before an unlock comes from the topics that carry a red seal here.", "Jede Frage vor einer Freigabe kommt aus den Themen, die hier ein rotes Siegel tragen.")
                     )
                     progressCard
                     Button {
                         lesson = QuizSession(mode: .lesson(count: 8), store: store)
                     } label: {
-                        Label("Lektion starten", systemImage: "play.fill")
+                        Label(tr("Start a lesson", "Lektion starten"), systemImage: "play.fill")
                     }
                     .buttonStyle(.shu)
 
-                    SectionHeader(kanji: "題", title: "Themen") {
+                    SectionHeader(kanji: "題", title: tr("Topics", "Themen")) {
                         addMenu
                     }
                     VStack(spacing: 12) {
@@ -78,10 +78,10 @@ struct LearnView: View {
             }
             .frame(width: 76, height: 76)
             VStack(alignment: .leading, spacing: 4) {
-                Text(done >= goal ? "Tagesziel erreicht" : "\(goal - done) bis zum Tagesziel")
+                Text(done >= goal ? tr("Daily goal reached", "Tagesziel erreicht") : tr("\(goal - done) to your daily goal", "\(goal - done) bis zum Tagesziel"))
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundStyle(Zen.ink)
-                Text("\(store.profile.xp) Erfahrung · \(store.currentStreak) \(store.currentStreak == 1 ? "Tag" : "Tage") in Folge")
+                Text(tr("\(store.profile.xp) XP · \(store.currentStreak) \(store.currentStreak == 1 ? "day" : "days") in a row", "\(store.profile.xp) Erfahrung · \(store.currentStreak) \(store.currentStreak == 1 ? "Tag" : "Tage") in Folge"))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             }
@@ -95,35 +95,35 @@ struct LearnView: View {
             Button {
                 newDeck = Deck(title: "", symbol: "学")
             } label: {
-                Label("Neues Thema", systemImage: "square.and.pencil")
+                Label(tr("New topic", "Neues Thema"), systemImage: "square.and.pencil")
             }
             Button {
                 importing = true
             } label: {
-                Label("JSON-Datei importieren", systemImage: "doc.badge.plus")
+                Label(tr("Import JSON file", "JSON-Datei importieren"), systemImage: "doc.badge.plus")
             }
             Button {
                 importFromClipboard()
             } label: {
-                Label("JSON aus Zwischenablage", systemImage: "doc.on.clipboard")
+                Label(tr("JSON from clipboard", "JSON aus Zwischenablage"), systemImage: "doc.on.clipboard")
             }
             Button {
                 UIPasteboard.general.string = DeckPrompt.text
-                message = "Vorlage kopiert. Füg sie in einen Chat mit einer KI deiner Wahl ein, trag dein Thema ein und importier das Ergebnis über die Zwischenablage."
+                message = tr("Template copied. Paste it into a chat with any AI, fill in your topic and import the result from the clipboard.", "Vorlage kopiert. Füg sie in einen Chat mit einer KI deiner Wahl ein, trag dein Thema ein und importier das Ergebnis über die Zwischenablage.")
             } label: {
-                Label("KI-Vorlage kopieren", systemImage: "sparkles")
+                Label(tr("Copy AI template", "KI-Vorlage kopieren"), systemImage: "sparkles")
             }
         } label: {
             Image(systemName: "plus.circle.fill")
                 .font(.system(size: 22))
                 .foregroundStyle(Zen.shu)
         }
-        .accessibilityLabel("Thema hinzufügen")
+        .accessibilityLabel(tr("Add topic", "Thema hinzufügen"))
     }
 
     private func importFiles(_ result: Result<[URL], Error>) {
         guard case .success(let urls) = result else {
-            message = "Import abgebrochen."
+            message = tr("Import cancelled.", "Import abgebrochen.")
             return
         }
         var count = 0
@@ -134,12 +134,12 @@ struct LearnView: View {
                 count += decks.count
             }
         }
-        message = count == 0 ? "Keine gültigen Themen gefunden. Stimmt das Format?" : "\(count) \(count == 1 ? "Thema" : "Themen") importiert."
+        message = count == 0 ? tr("No valid topics found. Is the format right?", "Keine gültigen Themen gefunden. Stimmt das Format?") : tr("\(count) \(count == 1 ? "topic" : "topics") imported.", "\(count) \(count == 1 ? "Thema" : "Themen") importiert.")
     }
 
     private func importFromClipboard() {
         guard var text = UIPasteboard.general.string else {
-            message = "Die Zwischenablage ist leer."
+            message = tr("The clipboard is empty.", "Die Zwischenablage ist leer.")
             return
         }
         // Chat answers often wrap JSON in a code fence.
@@ -149,9 +149,9 @@ struct LearnView: View {
         }
         do {
             let decks = try store.importDecks(from: Data(text.utf8))
-            message = "\(decks.count) \(decks.count == 1 ? "Thema" : "Themen") importiert: \(decks.map(\.title).joined(separator: ", "))."
+            message = tr("\(decks.count) \(decks.count == 1 ? "topic" : "topics") imported: \(decks.map(\.title).joined(separator: ", ")).", "\(decks.count) \(decks.count == 1 ? "Thema" : "Themen") importiert: \(decks.map(\.title).joined(separator: ", ")).")
         } catch {
-            message = "Das sieht nicht nach einem Ma-Thema aus. Die KI-Vorlage zeigt das Format."
+            message = tr("That does not look like a Ma topic. The AI template shows the format.", "Das sieht nicht nach einem Ma-Thema aus. Die KI-Vorlage zeigt das Format.")
         }
     }
 }
@@ -172,7 +172,7 @@ struct DeckRow: View {
                 Hanko(text: deck.symbol, size: 48, color: active ? Zen.shu : Zen.inkFaint)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(active ? "Für Fragen aktiv" : "Für Fragen inaktiv")
+            .accessibilityLabel(active ? tr("Used for questions", "Für Fragen aktiv") : tr("Not used for questions", "Für Fragen inaktiv"))
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(deck.title)
@@ -192,7 +192,7 @@ struct DeckRow: View {
                         .foregroundStyle(Zen.inkSoft)
                         .frame(width: 42, alignment: .trailing)
                 }
-                Text(due > 0 ? "\(deck.cards.count) Karten · \(due) zum Wiederholen" : "\(deck.cards.count) Karten")
+                Text(due > 0 ? tr("\(deck.cards.count) cards · \(due) to review", "\(deck.cards.count) Karten · \(due) zum Wiederholen") : tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten"))
                     .font(.system(size: 12))
                     .foregroundStyle(due > 0 ? Zen.shu : Zen.inkFaint)
             }
@@ -242,16 +242,16 @@ struct LessonScreen: View {
             EnsoView(progress: 1, lineWidth: 16, color: Zen.ink)
                 .frame(width: 180, height: 180)
                 .overlay(Text("良").font(.kanji(56, bold: true)).foregroundStyle(Zen.shu))
-            Text(session.exercises.isEmpty ? "Noch keine Karten" : "Lektion geschafft")
+            Text(session.exercises.isEmpty ? tr("No cards yet", "Noch keine Karten") : tr("Lesson done", "Lektion geschafft"))
                 .font(.mincho(30, weight: .semibold))
                 .foregroundStyle(Zen.ink)
             if !session.exercises.isEmpty {
-                Text("\(session.correct) von \(session.correct + session.wrong) richtig · +\(session.correct * 10) Erfahrung")
+                Text(tr("\(session.correct) of \(session.correct + session.wrong) right · +\(session.correct * 10) XP", "\(session.correct) von \(session.correct + session.wrong) richtig · +\(session.correct * 10) Erfahrung"))
                     .font(.system(size: 16))
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer()
-            Button("Fertig", action: close)
+            Button(tr("Done", "Fertig"), action: close)
                 .buttonStyle(.ink)
                 .padding(.horizontal, 28)
                 .padding(.bottom, 20)
@@ -261,7 +261,32 @@ struct LessonScreen: View {
 
 /// A prompt for any chat assistant that returns a deck in Ma's format.
 enum DeckPrompt {
-    static let text = """
+    static var text: String { Loc.isGerman ? german : english }
+
+    static let english = """
+    Create a learning deck on the topic: <YOUR TOPIC HERE>
+
+    Reply with JSON only, in exactly this format, no explanation:
+    {
+      "title": "Short title",
+      "subtitle": "One line on what it covers",
+      "symbol": "a single kanji that fits the topic",
+      "cards": [
+        {
+          "prompt": "Question",
+          "answer": "short correct answer (30 characters at most)",
+          "accept": ["other accepted spellings"],
+          "distractors": ["wrong 1", "wrong 2", "wrong 3"],
+          "example": "A sentence that contains the answer word for word",
+          "note": "1 to 2 sentences of explanation that help learning"
+        }
+      ]
+    }
+
+    Rules: 25 cards. Short answers. Wrong answers plausible and in the same style as the right one. Only include "example" if the sentence contains the answer exactly. For sentence-building exercises the answer can be a sentence whose words are separated by single spaces. Facts must be correct.
+    """
+
+    static let german = """
     Erstelle ein Lern-Deck zum Thema: <DEIN THEMA HIER>
 
     Antworte nur mit JSON in genau diesem Format, ohne Erklärtext:

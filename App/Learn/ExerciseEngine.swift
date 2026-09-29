@@ -142,7 +142,7 @@ struct ExerciseEngine {
         switch kind {
         case .choice:
             let options = ([card.answer] + Array(wrongAnswers(for: card, in: deck).prefix(3))).shuffled()
-            return Exercise(kind: .choice, deck: deck, card: card, instruction: "Wähle die richtige Antwort", prompt: card.prompt, options: options, solution: card.answer)
+            return Exercise(kind: .choice, deck: deck, card: card, instruction: tr("Pick the right answer", "Wähle die richtige Antwort"), prompt: card.prompt, options: options, solution: card.answer)
 
         case .reverse:
             let wrong = deck.cards
@@ -152,20 +152,20 @@ struct ExerciseEngine {
                 .shuffled()
                 .prefix(3)
             let options = ([card.prompt] + wrong).shuffled()
-            return Exercise(kind: .reverse, deck: deck, card: card, instruction: "Was gehört zu dieser Antwort?", prompt: card.answer, options: options, solution: card.prompt)
+            return Exercise(kind: .reverse, deck: deck, card: card, instruction: tr("What goes with this answer?", "Was gehört zu dieser Antwort?"), prompt: card.answer, options: options, solution: card.prompt)
 
         case .trueFalse:
             let honest = Bool.random()
             let shown = honest ? card.answer : (wrongAnswers(for: card, in: deck).first ?? card.answer)
-            return Exercise(kind: .trueFalse, deck: deck, card: card, instruction: "Stimmt das?", prompt: card.prompt, solution: card.answer, statement: shown, statementIsTrue: shown == card.answer)
+            return Exercise(kind: .trueFalse, deck: deck, card: card, instruction: tr("True or not?", "Stimmt das?"), prompt: card.prompt, solution: card.answer, statement: shown, statementIsTrue: shown == card.answer)
 
         case .typeIn:
-            return Exercise(kind: .typeIn, deck: deck, card: card, instruction: "Schreib die Antwort", prompt: card.prompt, solution: card.answer)
+            return Exercise(kind: .typeIn, deck: deck, card: card, instruction: tr("Type the answer", "Schreib die Antwort"), prompt: card.prompt, solution: card.answer)
 
         case .cloze:
             let gap = (card.example ?? "").replacingOccurrences(of: card.answer, with: "＿＿＿")
             let options = ([card.answer] + Array(wrongAnswers(for: card, in: deck).prefix(3))).shuffled()
-            return Exercise(kind: .cloze, deck: deck, card: card, instruction: "Füll die Lücke", prompt: gap, options: options, solution: card.answer, statement: card.prompt)
+            return Exercise(kind: .cloze, deck: deck, card: card, instruction: tr("Fill the gap", "Füll die Lücke"), prompt: gap, options: options, solution: card.answer, statement: card.prompt)
 
         case .order:
             let own = card.tokens
@@ -176,7 +176,7 @@ struct ExerciseEngine {
                 .uniqued()
                 .shuffled()
                 .prefix(own.count >= 5 ? 3 : 2)
-            return Exercise(kind: .order, deck: deck, card: card, instruction: "Bau den Satz", prompt: card.prompt, solution: card.answer, tiles: (own + foreign).shuffled())
+            return Exercise(kind: .order, deck: deck, card: card, instruction: tr("Build the sentence", "Bau den Satz"), prompt: card.prompt, solution: card.answer, tiles: (own + foreign).shuffled())
 
         case .pairs:
             let partners = deck.cards
@@ -187,10 +187,10 @@ struct ExerciseEngine {
                         acc.append(next)
                     }
                 }
-            return Exercise(kind: .pairs, deck: deck, card: card, instruction: "Finde die Paare", prompt: "", solution: card.answer, pairCards: ([card] + partners).shuffled())
+            return Exercise(kind: .pairs, deck: deck, card: card, instruction: tr("Match the pairs", "Finde die Paare"), prompt: "", solution: card.answer, pairCards: ([card] + partners).shuffled())
 
         case .flash:
-            return Exercise(kind: .flash, deck: deck, card: card, instruction: "Weißt du es?", prompt: card.prompt, solution: card.answer)
+            return Exercise(kind: .flash, deck: deck, card: card, instruction: tr("Do you know it?", "Weißt du es?"), prompt: card.prompt, solution: card.answer)
         }
     }
 

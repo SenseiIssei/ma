@@ -12,6 +12,9 @@ struct Deck: Codable, Identifiable, Hashable {
     var language: String?
     var cards: [Card] = []
     var isBuiltIn = false
+    /// Language edition of a built-in deck. Editions share deck and card
+    /// ids, so progress carries over when the app language changes.
+    var locale: String?
 
     init(id: String = UUID().uuidString, title: String, subtitle: String = "", symbol: String = "学", language: String? = nil, cards: [Card] = [], isBuiltIn: Bool = false) {
         self.id = id
@@ -32,6 +35,7 @@ struct Deck: Codable, Identifiable, Hashable {
         language = try c.decodeIfPresent(String.self, forKey: .language)
         cards = try c.decodeIfPresent([Card].self, forKey: .cards) ?? []
         isBuiltIn = try c.decodeIfPresent(Bool.self, forKey: .isBuiltIn) ?? false
+        locale = try c.decodeIfPresent(String.self, forKey: .locale)
     }
 }
 

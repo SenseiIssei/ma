@@ -11,23 +11,23 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    statusRow("Bildschirmzeit", ok: model.authorization == .approved) {
+                    statusRow(tr("Screen Time", "Bildschirmzeit"), ok: model.authorization == .approved) {
                         Task { await model.requestScreenTime() }
                     }
-                    statusRow("Mitteilungen", ok: model.notificationsAllowed) {
+                    statusRow(tr("Notifications", "Mitteilungen"), ok: model.notificationsAllowed) {
                         Task { await model.requestNotifications() }
                     }
                 } header: {
-                    Text("Erlaubnisse")
+                    Text(tr("Permissions", "Erlaubnisse"))
                 } footer: {
-                    Text("Ohne Mitteilungen kann der Sperrbildschirm dich nicht zu deiner Frage schicken.")
+                    Text(tr("Without notifications the shield cannot send you to your question.", "Ohne Mitteilungen kann der Sperrbildschirm dich nicht zu deiner Frage schicken."))
                 }
 
                 Section {
-                    Toggle("Achtsames Aufheben", isOn: $model.mindfulRelease)
+                    Toggle(tr("Mindful release", "Achtsames Aufheben"), isOn: $model.mindfulRelease)
                         .tint(Zen.shu)
                 } footer: {
-                    Text("Aufheben geht immer. Mit diesem Schalter kostet das Ausschalten einer Grenze oder das Abbrechen einer Fokusrunde aber drei richtige Antworten. So bleibt es eine Entscheidung und wird kein Reflex.")
+                    Text(tr("Releasing always works. With this switch, turning a boundary off or ending a focus round early costs three right answers. That keeps it a decision instead of a reflex.", "Aufheben geht immer. Mit diesem Schalter kostet das Ausschalten einer Grenze oder das Abbrechen einer Fokusrunde aber drei richtige Antworten. So bleibt es eine Entscheidung und wird kein Reflex."))
                 }
 
                 Section {
@@ -36,50 +36,50 @@ struct SettingsView: View {
                         set: { model.decks.profile.dailyGoal = $0 }
                     ), in: 5...100, step: 5) {
                         HStack {
-                            Text("Tagesziel")
+                            Text(tr("Daily goal", "Tagesziel"))
                             Spacer()
-                            Text("\(model.decks.profile.dailyGoal) Antworten")
+                            Text(tr("\(model.decks.profile.dailyGoal) answers", "\(model.decks.profile.dailyGoal) Antworten"))
                                 .foregroundStyle(Zen.inkSoft)
                                 .monospacedDigit()
                         }
                     }
                 } header: {
-                    Text("Lernen")
+                    Text(tr("Learning", "Lernen"))
                 }
 
                 Section {
-                    NavigationLink("Reels-Filter für Safari") { FilterView() }
+                    NavigationLink(tr("Reels filter for Safari", "Reels-Filter für Safari")) { FilterView() }
                 }
 
                 Section {
                     LabeledContent("Version", value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0")
-                    Link("Quellcode auf GitHub", destination: URL(string: "https://github.com/SenseiIssei/ma")!)
-                    Text("Ma speichert nichts außerhalb deines iPhones. Keine Konten, keine Analyse, kein Server.")
+                    Link(tr("Source code on GitHub", "Quellcode auf GitHub"), destination: URL(string: "https://github.com/SenseiIssei/ma")!)
+                    Text(tr("Ma stores nothing outside your iPhone. No accounts, no analytics, no server.", "Ma speichert nichts außerhalb deines iPhones. Keine Konten, keine Analyse, kein Server."))
                         .font(.system(size: 14))
                         .foregroundStyle(Zen.inkSoft)
                 } header: {
-                    Text("Über Ma")
+                    Text(tr("About Ma", "Über Ma"))
                 }
 
                 Section {
-                    Button("Alle Sperren aufheben und zurücksetzen", role: .destructive) {
+                    Button(tr("Lift all blocks and reset", "Alle Sperren aufheben und zurücksetzen"), role: .destructive) {
                         confirmReset = true
                     }
                 } footer: {
-                    Text("Löscht Grenzen, Freigaben und den Fokus-Timer. Deine Lernfortschritte bleiben.")
+                    Text(tr("Deletes boundaries, unlocks and the focus timer. Your learning progress stays.", "Löscht Grenzen, Freigaben und den Fokus-Timer. Deine Lernfortschritte bleiben."))
                 }
             }
             .scrollContentBackground(.hidden)
             .background(WashiBackground())
-            .navigationTitle("Einstellungen")
+            .navigationTitle(tr("Settings", "Einstellungen"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Fertig") { dismiss() }
+                    Button(tr("Done", "Fertig")) { dismiss() }
                 }
             }
-            .confirmationDialog("Wirklich alles zurücksetzen?", isPresented: $confirmReset, titleVisibility: .visible) {
-                Button("Zurücksetzen", role: .destructive) {
+            .confirmationDialog(tr("Really reset everything?", "Wirklich alles zurücksetzen?"), isPresented: $confirmReset, titleVisibility: .visible) {
+                Button(tr("Reset", "Zurücksetzen"), role: .destructive) {
                     model.resetEverything()
                 }
             }
@@ -91,12 +91,12 @@ struct SettingsView: View {
             Text(title)
             Spacer()
             if ok {
-                Label("erlaubt", systemImage: "checkmark.seal.fill")
+                Label(tr("allowed", "erlaubt"), systemImage: "checkmark.seal.fill")
                     .labelStyle(.titleAndIcon)
                     .foregroundStyle(Zen.matcha)
                     .font(.system(size: 14, weight: .medium))
             } else {
-                Button("Erlauben", action: request)
+                Button(tr("Allow", "Erlauben"), action: request)
                     .foregroundStyle(Zen.shu)
             }
         }

@@ -32,7 +32,7 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         let pending = SharedStore.pending
         let waiting = pending?.isFresh == true && pending?.application != nil && pending?.application == application.token
         return make(
-            name: name ?? "Diese App",
+            name: name ?? tr("This app", "Diese App"),
             policy: UnlockPolicy.current(application: application.token),
             waiting: waiting
         )
@@ -46,7 +46,7 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         let pending = SharedStore.pending
         let waiting = pending?.isFresh == true && pending?.webDomain != nil && pending?.webDomain == webDomain.token
         return make(
-            name: name ?? "Diese Seite",
+            name: name ?? tr("This site", "Diese Seite"),
             policy: UnlockPolicy.current(webDomain: webDomain.token),
             waiting: waiting
         )
@@ -55,40 +55,56 @@ final class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     private func make(name: String, policy: UnlockPolicy, waiting: Bool) -> ShieldConfiguration {
         countSighting()
 
+        let backToCalm = tr("Back to calm", "Zurück zur Ruhe")
+
         if policy.focusLocked {
             let minutes = max(1, Int(((policy.focusEndsAt ?? Date()).timeIntervalSinceNow / 60).rounded(.up)))
             return config(
-                title: "集中  Fokus läuft",
-                subtitle: "Noch \(minutes) \(minutes == 1 ? "Minute" : "Minuten"). \(name) wartet, bis die Runde vorbei ist.",
-                primary: "Zurück zur Arbeit",
+                title: tr("集中  Focus is on", "集中  Fokus läuft"),
+                subtitle: tr(
+                    "\(minutes) \(minutes == 1 ? "minute" : "minutes") left. \(name) will wait until the round is over.",
+                    "Noch \(minutes) \(minutes == 1 ? "Minute" : "Minuten"). \(name) wartet, bis die Runde vorbei ist."
+                ),
+                primary: tr("Back to work", "Zurück zur Arbeit"),
                 secondary: nil
             )
         }
 
         if !policy.allowed {
             return config(
-                title: "結界  \(policy.ruleName ?? "Grenze")",
-                subtitle: "Diese Grenze hast du ohne Ausweg gesetzt. Dein früheres Ich wusste warum.",
-                primary: "Zurück zur Ruhe",
+                title: "結界  \(policy.ruleName ?? tr("Boundary", "Grenze"))",
+                subtitle: tr(
+                    "You drew this boundary with no way through. Your earlier self knew why.",
+                    "Diese Grenze hast du ohne Ausweg gesetzt. Dein früheres Ich wusste warum."
+                ),
+                primary: backToCalm,
                 secondary: nil
             )
         }
 
         if waiting {
             return config(
-                title: "間  Deine Frage wartet",
-                subtitle: "Schau in deine Mitteilungen. Ma hat dir gerade eine Frage geschickt.",
-                primary: "Nochmal senden",
-                secondary: "Zurück zur Ruhe"
+                title: tr("間  Your question is waiting", "間  Deine Frage wartet"),
+                subtitle: tr(
+                    "Check your notifications. Ma just sent you a question.",
+                    "Schau in deine Mitteilungen. Ma hat dir gerade eine Frage geschickt."
+                ),
+                primary: tr("Send again", "Nochmal senden"),
+                secondary: backToCalm
             )
         }
 
-        let questions = policy.questions == 1 ? "eine Frage" : "\(policy.questions) Fragen"
+        let questions = policy.questions == 1
+            ? tr("one question", "eine Frage")
+            : tr("\(policy.questions) questions", "\(policy.questions) Fragen")
         return config(
-            title: "間  \(name) kann warten",
-            subtitle: "\(ZenLines.random(ZenLines.shield))\n\nBeantworte \(questions), dann ist \(name) \(policy.minutes) Minuten offen.",
-            primary: "Frage beantworten",
-            secondary: "Zurück zur Ruhe"
+            title: tr("間  \(name) can wait", "間  \(name) kann warten"),
+            subtitle: "\(ZenLines.random(ZenLines.shield))\n\n" + tr(
+                "Answer \(questions) and \(name) opens for \(policy.minutes) minutes.",
+                "Beantworte \(questions), dann ist \(name) \(policy.minutes) Minuten offen."
+            ),
+            primary: tr("Answer a question", "Frage beantworten"),
+            secondary: backToCalm
         )
     }
 

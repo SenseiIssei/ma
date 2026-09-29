@@ -31,7 +31,7 @@ struct FocusView: View {
                     } label: {
                         Image(systemName: "slider.horizontal.3").foregroundStyle(Zen.ink)
                     }
-                    .accessibilityLabel("Fokus-Einstellungen")
+                    .accessibilityLabel(tr("Focus settings", "Fokus-Einstellungen"))
                 }
             }
             .sheet(isPresented: $showSettings) {
@@ -50,7 +50,7 @@ struct FocusView: View {
             Text(phase?.kanji ?? "静")
                 .font(.kanji(40, bold: true))
                 .foregroundStyle(phase == .focus ? Zen.shu : (phase == nil ? Zen.ink : Zen.matcha))
-            Text(phase?.title ?? "Bereit, wenn du es bist")
+            Text(phase?.title ?? tr("Ready when you are", "Bereit, wenn du es bist"))
                 .font(.mincho(26, weight: .semibold))
                 .foregroundStyle(Zen.ink)
             roundStones
@@ -71,7 +71,7 @@ struct FocusView: View {
                     .frame(width: 16, height: 12)
             }
         }
-        .accessibilityLabel("\(finished) von \(total) Runden")
+        .accessibilityLabel(tr("\(finished) of \(total) rounds", "\(finished) von \(total) Runden"))
     }
 
     private func ring(at date: Date) -> some View {
@@ -92,7 +92,7 @@ struct FocusView: View {
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.numericText(countsDown: true))
                 if let focus {
-                    Text("bis \(focus.endsAt.formatted(date: .omitted, time: .shortened))")
+                    Text(tr("until \(focus.endsAt.formatted(date: .omitted, time: .shortened))", "bis \(focus.endsAt.formatted(date: .omitted, time: .shortened))"))
                         .font(.system(size: 14))
                         .foregroundStyle(Zen.inkSoft)
                 } else {
@@ -108,27 +108,27 @@ struct FocusView: View {
         VStack(spacing: 12) {
             switch phase {
             case .none:
-                Button("Fokus beginnen") {
+                Button(tr("Start focus", "Fokus beginnen")) {
                     Haptics.success()
                     model.startFocus()
                 }
                 .buttonStyle(.shu)
-                Text("Runde \(FocusEngine.upcomingRound) von \(model.focusSettings.roundsUntilLongBreak)")
+                Text(tr("Round \(FocusEngine.upcomingRound) of \(model.focusSettings.roundsUntilLongBreak)", "Runde \(FocusEngine.upcomingRound) von \(model.focusSettings.roundsUntilLongBreak)"))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             case .focus:
-                Button("Runde beenden") { model.requestStopFocus() }
+                Button(tr("End round", "Runde beenden")) { model.requestStopFocus() }
                     .buttonStyle(.quiet)
-                Text("Leg das Handy weg. Ma passt auf.")
+                Text(tr("Put the phone down. Ma keeps watch.", "Leg das Handy weg. Ma passt auf."))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             case .shortBreak, .longBreak:
-                Button("Pause überspringen") {
+                Button(tr("Skip break", "Pause überspringen")) {
                     Haptics.tap()
                     model.skipBreak()
                 }
                 .buttonStyle(.ink)
-                Button("Für heute aufhören") { model.stopFocus() }
+                Button(tr("Stop for today", "Für heute aufhören")) { model.stopFocus() }
                     .buttonStyle(.quiet)
             }
         }
@@ -141,12 +141,14 @@ struct FocusView: View {
                 Image(systemName: model.focusSettings.strict ? "lock.fill" : "lock.open")
                     .foregroundStyle(model.focusSettings.strict ? Zen.shu : Zen.inkSoft)
                 Text(count == 0
-                     ? "Im Fokus ist noch nichts gesperrt. Leg eine Grenze an oder wähle eine eigene Fokus-Liste."
-                     : "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge")\(model.focusSettings.strict ? ", ohne Ausweg." : ", Fragen erlaubt.")")
+                     ? tr("Focus blocks nothing yet. Draw a boundary or pick your own focus list.", "Im Fokus ist noch nichts gesperrt. Leg eine Grenze an oder wähle eine eigene Fokus-Liste.")
+                     : model.focusSettings.strict
+                        ? tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), no way through.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), ohne Ausweg.")
+                        : tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), questions allowed.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), Fragen erlaubt."))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             }
-            Text("\(model.today.pomodoros) Runden und \(model.today.focusMinutes) Minuten heute.")
+            Text(tr("\(model.today.pomodoros) rounds and \(model.today.focusMinutes) minutes today.", "\(model.today.pomodoros) Runden und \(model.today.focusMinutes) Minuten heute."))
                 .font(.system(size: 13))
                 .foregroundStyle(Zen.inkFaint)
         }
@@ -169,58 +171,58 @@ struct FocusSettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    minuteStepper("Fokus", value: $settings.focusMinutes, range: 5...90, step: 5)
-                    minuteStepper("Kurze Pause", value: $settings.shortBreakMinutes, range: 1...30, step: 1)
-                    minuteStepper("Lange Pause", value: $settings.longBreakMinutes, range: 5...60, step: 5)
+                    minuteStepper(tr("Focus", "Fokus"), value: $settings.focusMinutes, range: 5...90, step: 5)
+                    minuteStepper(tr("Short break", "Kurze Pause"), value: $settings.shortBreakMinutes, range: 1...30, step: 1)
+                    minuteStepper(tr("Long break", "Lange Pause"), value: $settings.longBreakMinutes, range: 5...60, step: 5)
                     Stepper(value: $settings.roundsUntilLongBreak, in: 2...8) {
                         HStack {
-                            Text("Runden bis zur langen Pause")
+                            Text(tr("Rounds until the long break", "Runden bis zur langen Pause"))
                             Spacer()
                             Text("\(settings.roundsUntilLongBreak)").foregroundStyle(Zen.inkSoft).monospacedDigit()
                         }
                     }
-                    Toggle("Nach der Pause automatisch weiter", isOn: $settings.autoStartFocus)
+                    Toggle(tr("Carry on automatically after a break", "Nach der Pause automatisch weiter"), isOn: $settings.autoStartFocus)
                 } header: {
-                    Text("Rhythmus")
+                    Text(tr("Rhythm", "Rhythmus"))
                 } footer: {
-                    Text("Klassisch sind 25 Minuten Fokus, 5 Minuten Pause und nach vier Runden eine lange Pause.")
+                    Text(tr("The classic is 25 minutes of focus, 5 minutes of break and a long break after four rounds.", "Klassisch sind 25 Minuten Fokus, 5 Minuten Pause und nach vier Runden eine lange Pause."))
                 }
 
                 Section {
-                    Toggle("Streng: keine Fragen im Fokus", isOn: $settings.strict)
+                    Toggle(tr("Strict: no questions during focus", "Streng: keine Fragen im Fokus"), isOn: $settings.strict)
                     Button {
                         showPicker = true
                     } label: {
                         HStack {
-                            Text("Eigene Fokus-Liste")
+                            Text(tr("Own focus list", "Eigene Fokus-Liste"))
                                 .foregroundStyle(Zen.ink)
                             Spacer()
-                            Text(ownCount == 0 ? "alle Grenzen" : "\(ownCount)")
+                            Text(ownCount == 0 ? tr("all boundaries", "alle Grenzen") : "\(ownCount)")
                                 .foregroundStyle(Zen.inkSoft)
                         }
                     }
                     if ownCount > 0 {
-                        Button("Wieder alle Grenzen nehmen") {
+                        Button(tr("Use all boundaries again", "Wieder alle Grenzen nehmen")) {
                             settings.selection = FamilyActivitySelection()
                         }
                     }
                 } header: {
-                    Text("Was im Fokus schläft")
+                    Text(tr("What sleeps during focus", "Was im Fokus schläft"))
                 } footer: {
-                    Text("Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten.")
+                    Text(tr("Without an own list, a focus round blocks everything from every boundary, including switched-off ones.", "Ohne eigene Liste sperrt eine Fokusrunde alles aus allen Grenzen, auch aus ausgeschalteten."))
                 }
             }
             .tint(Zen.shu)
             .scrollContentBackground(.hidden)
             .background(WashiBackground())
-            .navigationTitle("Fokus")
+            .navigationTitle(tr("Focus", "Fokus"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(tr("Cancel", "Abbrechen")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Sichern") {
+                    Button(tr("Save", "Sichern")) {
                         model.focusSettings = settings
                         model.saveFocusSettings()
                         dismiss()
@@ -242,7 +244,7 @@ struct FocusSettingsView: View {
             HStack {
                 Text(title)
                 Spacer()
-                Text("\(value.wrappedValue) Min.").foregroundStyle(Zen.inkSoft).monospacedDigit()
+                Text(tr("\(value.wrappedValue) min.", "\(value.wrappedValue) Min.")).foregroundStyle(Zen.inkSoft).monospacedDigit()
             }
         }
     }

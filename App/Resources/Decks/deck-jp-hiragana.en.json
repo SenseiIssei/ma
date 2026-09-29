@@ -1,0 +1,338 @@
+{
+  "id": "jp-hiragana",
+  "locale": "en",
+  "title": "Hiragana",
+  "subtitle": "The 46 basic characters of the Japanese syllabary",
+  "symbol": "あ",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-hiragana-001",
+      "prompt": "あ",
+      "answer": "a",
+      "distractors": ["o", "me", "nu"],
+      "note": "Picture an apple with a cross stuck through it, and someone saying \"ah!\". Don't confuse it with お (o), which has a small extra stroke at the top right."
+    },
+    {
+      "id": "jp-hiragana-002",
+      "prompt": "い",
+      "answer": "i",
+      "distractors": ["ri", "ko", "u"],
+      "note": "Two strokes side by side, like two eels swimming: i sounds like the \"ee\" in \"eel\". In り (ri) the right stroke is much longer."
+    },
+    {
+      "id": "jp-hiragana-003",
+      "prompt": "う",
+      "answer": "u",
+      "distractors": ["ra", "tsu", "fu"],
+      "note": "Someone bent over, holding their stomach and groaning \"ooh\", with a small tuft of hair on top. Compare ら (ra), whose main stroke starts with a short vertical line."
+    },
+    {
+      "id": "jp-hiragana-004",
+      "prompt": "え",
+      "answer": "e",
+      "distractors": ["n", "ne", "ra"],
+      "note": "An energetic dancer with a feather on her head, kicking out a leg: e as in \"energetic\". The bottom of the stroke ends in a zigzag."
+    },
+    {
+      "id": "jp-hiragana-005",
+      "prompt": "お",
+      "answer": "o",
+      "distractors": ["a", "nu", "mu"],
+      "note": "Like あ, but with a small extra stroke at the top right, as if someone were shouting \"Oh!\"."
+    },
+    {
+      "id": "jp-hiragana-006",
+      "prompt": "か",
+      "answer": "ka",
+      "distractors": ["ki", "ke", "ya"],
+      "note": "A karate fighter with a staff shouting \"Ka!\"; the small stroke on the right is the shout. With two dots (が) it becomes ga."
+    },
+    {
+      "id": "jp-hiragana-007",
+      "prompt": "き",
+      "answer": "ki",
+      "distractors": ["sa", "chi", "ka"],
+      "note": "Looks like an old key with its bit at the bottom: ki sounds like \"key\". Two crossbars make ki, only one makes さ (sa)."
+    },
+    {
+      "id": "jp-hiragana-008",
+      "prompt": "く",
+      "answer": "ku",
+      "distractors": ["he", "tsu", "ko"],
+      "note": "The open beak of a cuckoo calling \"coo coo\". If the angle lies flat like a roof, it is へ (he)."
+    },
+    {
+      "id": "jp-hiragana-009",
+      "prompt": "け",
+      "answer": "ke",
+      "distractors": ["ha", "ho", "ki"],
+      "note": "A post on the left and a keg hanging from a pole on the right: ke as in \"keg\". If the right stroke ends in a loop, it is は (ha)."
+    },
+    {
+      "id": "jp-hiragana-010",
+      "prompt": "こ",
+      "answer": "ko",
+      "distractors": ["i", "ni", "ro"],
+      "note": "Two strokes stacked like two koi carp in a pond. Add a vertical stroke on the left and it becomes に (ni)."
+    },
+    {
+      "id": "jp-hiragana-011",
+      "prompt": "さ",
+      "answer": "sa",
+      "distractors": ["ki", "chi", "ra"],
+      "note": "Like き, but with only one crossbar: a samurai sword slicing across. The bottom curve bulges to the left, like a c."
+    },
+    {
+      "id": "jp-hiragana-012",
+      "prompt": "し",
+      "answer": "shi",
+      "accept": ["si"],
+      "distractors": ["tsu", "ri", "ku"],
+      "note": "A fishhook, and she (shi) is fishing with it. Hepburn romanization writes shi because it sounds like \"she\", not \"see\"."
+    },
+    {
+      "id": "jp-hiragana-013",
+      "prompt": "す",
+      "answer": "su",
+      "distractors": ["mu", "nu", "o"],
+      "note": "A swing with a loop in its rope: you swoop through the air on it. The final u is often barely audible, so desu sounds like \"dess\"."
+    },
+    {
+      "id": "jp-hiragana-014",
+      "prompt": "せ",
+      "answer": "se",
+      "distractors": ["sa", "ke", "yo"],
+      "note": "A sail on a mast with a long boom across it: se as in \"sail\"."
+    },
+    {
+      "id": "jp-hiragana-015",
+      "prompt": "そ",
+      "answer": "so",
+      "distractors": ["ro", "ra", "te"],
+      "note": "A zigzag like a stitched seam: sew (so) it up. Some people write the top part as a separate stroke; both are correct."
+    },
+    {
+      "id": "jp-hiragana-016",
+      "prompt": "た",
+      "answer": "ta",
+      "distractors": ["na", "ha", "ka"],
+      "note": "A lowercase t on the left and a lopsided a on the right: together, ta. Compare な (na), which has a loop at the bottom right."
+    },
+    {
+      "id": "jp-hiragana-017",
+      "prompt": "ち",
+      "answer": "chi",
+      "accept": ["ti"],
+      "distractors": ["sa", "ra", "tsu"],
+      "note": "Like さ, but the curve bulges to the right, like a round belly full of chips. Pronounced like the \"chee\" in \"cheese\"."
+    },
+    {
+      "id": "jp-hiragana-018",
+      "prompt": "つ",
+      "answer": "tsu",
+      "accept": ["tu"],
+      "distractors": ["shi", "u", "ku"],
+      "note": "One big wave, like a tsunami. Written small (っ), it doubles the following consonant, as in きって (kitte, postage stamp)."
+    },
+    {
+      "id": "jp-hiragana-019",
+      "prompt": "て",
+      "answer": "te",
+      "distractors": ["to", "so", "ke"],
+      "note": "A T with a curved stem, like an outstretched hand (te also means hand, 手)."
+    },
+    {
+      "id": "jp-hiragana-020",
+      "prompt": "と",
+      "answer": "to",
+      "distractors": ["te", "ko", "ri"],
+      "note": "A toe with a splinter stuck in it. As a particle, と links nouns like \"and\": 犬と猫, dog and cat."
+    },
+    {
+      "id": "jp-hiragana-021",
+      "prompt": "な",
+      "answer": "na",
+      "distractors": ["ta", "ha", "ho"],
+      "note": "A nun (na) kneeling next to a cross, her robe forming the loop at the bottom. Think of た with a loop."
+    },
+    {
+      "id": "jp-hiragana-022",
+      "prompt": "に",
+      "answer": "ni",
+      "distractors": ["ko", "ke", "ta"],
+      "note": "A vertical stroke next to こ, like a knee (ni) next to two bones. As a particle, に marks a destination or a point in time."
+    },
+    {
+      "id": "jp-hiragana-023",
+      "prompt": "ぬ",
+      "answer": "nu",
+      "distractors": ["me", "ne", "a"],
+      "note": "A bowl of noodles with a fork, the noodle curling into a loop at the bottom. Without the loop it is め (me)."
+    },
+    {
+      "id": "jp-hiragana-024",
+      "prompt": "ね",
+      "answer": "ne",
+      "distractors": ["re", "wa", "nu"],
+      "note": "A cat (neko) with a curled-up tail. ね, れ and わ begin the same way; only the ending tells them apart: loop, kick, curve."
+    },
+    {
+      "id": "jp-hiragana-025",
+      "prompt": "の",
+      "answer": "no",
+      "distractors": ["me", "a", "ru"],
+      "note": "Looks like a no-entry sign: No! As a particle, の shows possession: 私の本 means \"my book\"."
+    },
+    {
+      "id": "jp-hiragana-026",
+      "prompt": "は",
+      "answer": "ha",
+      "distractors": ["ho", "ke", "ma"],
+      "note": "Like け, but with a loop at the bottom right, as if someone were laughing \"ha ha\". As the topic particle, は is pronounced \"wa\"."
+    },
+    {
+      "id": "jp-hiragana-027",
+      "prompt": "ひ",
+      "answer": "hi",
+      "distractors": ["shi", "fu", "he"],
+      "note": "A wide, grinning mouth giggling \"hee hee\"."
+    },
+    {
+      "id": "jp-hiragana-028",
+      "prompt": "ふ",
+      "answer": "fu",
+      "accept": ["hu"],
+      "distractors": ["hi", "u", "mu"],
+      "note": "Mount Fuji with small clouds on the left and right. The sound lies between f and h: you blow air through your lips, and your teeth do not touch your lip as in an English f."
+    },
+    {
+      "id": "jp-hiragana-029",
+      "prompt": "へ",
+      "answer": "he",
+      "distractors": ["ku", "ha", "e"],
+      "note": "A flat mountain: \"Hey, let's climb that!\" へ looks almost the same in hiragana and katakana. As the direction particle, it is pronounced \"e\"."
+    },
+    {
+      "id": "jp-hiragana-030",
+      "prompt": "ほ",
+      "answer": "ho",
+      "distractors": ["ha", "ma", "ke"],
+      "note": "Like は, but with an extra crossbar on top, like a house with a roof: ho as in \"home\"."
+    },
+    {
+      "id": "jp-hiragana-031",
+      "prompt": "ま",
+      "answer": "ma",
+      "distractors": ["ho", "yo", "mo"],
+      "note": "A mast with two crossbars and a loop at the bottom. Ma is also the word 間, the deliberate pause this app is named after."
+    },
+    {
+      "id": "jp-hiragana-032",
+      "prompt": "み",
+      "answer": "mi",
+      "distractors": ["me", "ru", "nu"],
+      "note": "A loop with a long tail, like a musical note: do, re, mi."
+    },
+    {
+      "id": "jp-hiragana-033",
+      "prompt": "む",
+      "answer": "mu",
+      "distractors": ["su", "o", "nu"],
+      "note": "A cow with a loop for a belly and a dot for an ear, going \"moo\". Don't confuse it with す (su), which has no dot."
+    },
+    {
+      "id": "jp-hiragana-034",
+      "prompt": "め",
+      "answer": "me",
+      "distractors": ["nu", "a", "no"],
+      "note": "An eye with lashes, and me (目) really does mean eye. With a loop at the end it becomes ぬ (nu)."
+    },
+    {
+      "id": "jp-hiragana-035",
+      "prompt": "も",
+      "answer": "mo",
+      "distractors": ["shi", "ma", "ke"],
+      "note": "A fishhook with two crossbars: more (mo) bait. As a particle, も means \"also\"."
+    },
+    {
+      "id": "jp-hiragana-036",
+      "prompt": "や",
+      "answer": "ya",
+      "distractors": ["ka", "se", "yu"],
+      "note": "A yak with curved horns. Written small (ゃ), it combines with the syllable before it, as in きゃ (kya)."
+    },
+    {
+      "id": "jp-hiragana-037",
+      "prompt": "ゆ",
+      "answer": "yu",
+      "distractors": ["yo", "ya", "nu"],
+      "note": "Looks like a fish swimming in hot water. Yu (湯) means hot water, and the curtain at a hot spring bath often bears this character."
+    },
+    {
+      "id": "jp-hiragana-038",
+      "prompt": "よ",
+      "answer": "yo",
+      "distractors": ["ma", "ho", "yu"],
+      "note": "A yo-yo hanging from its string. At the end of a sentence, よ emphasizes new information: そうですよ, \"that's right, trust me\"."
+    },
+    {
+      "id": "jp-hiragana-039",
+      "prompt": "ら",
+      "answer": "ra",
+      "distractors": ["u", "chi", "ru"],
+      "note": "A crouching rabbit (ra) with one ear sticking up on top. The Japanese r lies somewhere between r, l and d."
+    },
+    {
+      "id": "jp-hiragana-040",
+      "prompt": "り",
+      "answer": "ri",
+      "distractors": ["i", "ru", "ko"],
+      "note": "Like い, but the right stroke is long, like a river (ri) flowing downward."
+    },
+    {
+      "id": "jp-hiragana-041",
+      "prompt": "る",
+      "answer": "ru",
+      "distractors": ["ro", "ra", "me"],
+      "note": "Ends in a loop at the bottom, like the curled tail of a kangaroo (roo). Without the loop it becomes ろ (ro)."
+    },
+    {
+      "id": "jp-hiragana-042",
+      "prompt": "れ",
+      "answer": "re",
+      "distractors": ["ne", "wa", "nu"],
+      "note": "Like ね, but the stroke ends in a kick to the right instead of a loop, like a leg stretched out to rest (re)."
+    },
+    {
+      "id": "jp-hiragana-043",
+      "prompt": "ろ",
+      "answer": "ro",
+      "distractors": ["ru", "ra", "so"],
+      "note": "Like る, but without the loop at the end: a road (ro) with no roundabout."
+    },
+    {
+      "id": "jp-hiragana-044",
+      "prompt": "わ",
+      "answer": "wa",
+      "distractors": ["ne", "re", "ha"],
+      "note": "Like ね and れ, but ending on the right in an open, soft curve like a wave (wa). 和 (wa), by the way, means harmony."
+    },
+    {
+      "id": "jp-hiragana-045",
+      "prompt": "を",
+      "answer": "wo",
+      "accept": ["o"],
+      "distractors": ["wa", "yo", "ho"],
+      "note": "Appears almost only as the object particle and is then pronounced \"o\": 水を飲む, to drink water."
+    },
+    {
+      "id": "jp-hiragana-046",
+      "prompt": "ん",
+      "answer": "n",
+      "accept": ["nn", "n'"],
+      "distractors": ["nu", "no", "mu"],
+      "note": "Looks like a lowercase n in cursive. It is the only character made of a consonant alone, and no standard word begins with it."
+    }
+  ]
+}

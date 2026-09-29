@@ -30,7 +30,7 @@ struct TodayView: View {
                         Image(systemName: "gearshape")
                             .foregroundStyle(Zen.ink)
                     }
-                    .accessibilityLabel("Einstellungen")
+                    .accessibilityLabel(tr("Settings", "Einstellungen"))
                 }
             }
             .sheet(isPresented: $showSettings) {
@@ -50,7 +50,7 @@ struct TodayView: View {
                 .font(.kanji(15, bold: true))
                 .foregroundStyle(Zen.shu)
                 .tracking(3)
-            Text(Date().formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Locale(identifier: "de_DE"))))
+            Text(Date().formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Loc.locale)))
                 .font(.mincho(32, weight: .semibold))
                 .foregroundStyle(Zen.ink)
             Text(ZenLines.today(ZenLines.home))
@@ -69,7 +69,7 @@ struct TodayView: View {
                     if model.decks.currentStreak > 0 {
                         HStack(spacing: 6) {
                             Hanko(text: "連", size: 28)
-                            Text("\(model.decks.currentStreak) \(model.decks.currentStreak == 1 ? "Tag" : "Tage")")
+                            Text(tr("\(model.decks.currentStreak) \(model.decks.currentStreak == 1 ? "day" : "days")", "\(model.decks.currentStreak) \(model.decks.currentStreak == 1 ? "Tag" : "Tage")"))
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundStyle(Zen.ink)
                         }
@@ -78,7 +78,7 @@ struct TodayView: View {
                         .padding(12)
                     }
                 }
-            Text("Jeder Stein eine Fokusrunde, jeder Kiesel ein Moment, in dem du widerstanden hast. Moos wächst mit deiner Lernserie.")
+            Text(tr("Every stone a focus round, every pebble a moment you resisted. Moss grows with your learning streak.", "Jeder Stein eine Fokusrunde, jeder Kiesel ein Moment, in dem du widerstanden hast. Moos wächst mit deiner Lernserie."))
                 .font(.system(size: 13))
                 .foregroundStyle(Zen.inkFaint)
                 .fixedSize(horizontal: false, vertical: true)
@@ -87,17 +87,17 @@ struct TodayView: View {
 
     private var stats: some View {
         HStack(spacing: 12) {
-            StatStone(kanji: "抗", value: "\(model.today.resisted)", label: "widerstanden")
-            StatStone(kanji: "学", value: "\(model.today.correct)", label: "Fragen richtig")
-            StatStone(kanji: "集", value: "\(model.today.focusMinutes)", label: "Min. Fokus")
-            StatStone(kanji: "守", value: "\(model.today.shieldsSeen)", label: "aufgehalten")
+            StatStone(kanji: "抗", value: "\(model.today.resisted)", label: tr("resisted", "widerstanden"))
+            StatStone(kanji: "学", value: "\(model.today.correct)", label: tr("answers right", "Fragen richtig"))
+            StatStone(kanji: "集", value: "\(model.today.focusMinutes)", label: tr("min. focus", "Min. Fokus"))
+            StatStone(kanji: "守", value: "\(model.today.shieldsSeen)", label: tr("stopped", "aufgehalten"))
         }
         .zenCard()
     }
 
     private var openNow: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(kanji: "開", title: "Gerade offen")
+            SectionHeader(kanji: "開", title: tr("Open right now", "Gerade offen"))
             VStack(spacing: 10) {
                 ForEach(model.grants) { grant in
                     GrantRow(grant: grant) { model.revoke(grant) }
@@ -110,8 +110,8 @@ struct TodayView: View {
     private var boundaries: some View {
         let active = model.rules.filter { model.isShielding($0) }
         return VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(kanji: "結", title: "Grenzen") {
-                Button("Alle") { model.tab = .rules }
+            SectionHeader(kanji: "結", title: tr("Boundaries", "Grenzen")) {
+                Button(tr("All", "Alle")) { model.tab = .rules }
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(Zen.shu)
             }
@@ -120,24 +120,24 @@ struct TodayView: View {
                     .frame(width: 54, height: 54)
                 VStack(alignment: .leading, spacing: 3) {
                     if model.authorization != .approved {
-                        Text("Bildschirmzeit nicht erlaubt")
+                        Text(tr("Screen Time not allowed", "Bildschirmzeit nicht erlaubt"))
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundStyle(Zen.shu)
-                        Text("Ohne diese Erlaubnis kann Ma nichts sperren.")
+                        Text(tr("Without this permission Ma cannot block anything.", "Ohne diese Erlaubnis kann Ma nichts sperren."))
                             .font(.system(size: 14))
                             .foregroundStyle(Zen.inkSoft)
                     } else if model.rules.isEmpty {
-                        Text("Noch keine Grenze")
+                        Text(tr("No boundary yet", "Noch keine Grenze"))
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundStyle(Zen.ink)
-                        Text("Leg unter Grenzen fest, was dich zu oft zieht.")
+                        Text(tr("Under Boundaries, choose what pulls at you too often.", "Leg unter Grenzen fest, was dich zu oft zieht."))
                             .font(.system(size: 14))
                             .foregroundStyle(Zen.inkSoft)
                     } else {
-                        Text("\(active.count) von \(model.rules.count) wachen gerade")
+                        Text(tr("\(active.count) of \(model.rules.count) on watch", "\(active.count) von \(model.rules.count) wachen gerade"))
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundStyle(Zen.ink)
-                        Text(active.map(\.name).joined(separator: ", ").isEmpty ? "Gerade ist alles offen." : active.map(\.name).joined(separator: ", "))
+                        Text(active.isEmpty ? tr("Everything is open right now.", "Gerade ist alles offen.") : active.map(\.name).joined(separator: ", "))
                             .font(.system(size: 14))
                             .foregroundStyle(Zen.inkSoft)
                             .lineLimit(2)
@@ -151,13 +151,13 @@ struct TodayView: View {
 
     private var actions: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(kanji: "道", title: "Jetzt")
+            SectionHeader(kanji: "道", title: tr("Now", "Jetzt"))
             HStack(spacing: 12) {
-                ActionTile(kanji: "集", title: "Fokus", subtitle: model.focus == nil ? "\(model.focusSettings.focusMinutes) Minuten" : "läuft") {
+                ActionTile(kanji: "集", title: tr("Focus", "Fokus"), subtitle: model.focus == nil ? tr("\(model.focusSettings.focusMinutes) minutes", "\(model.focusSettings.focusMinutes) Minuten") : tr("running", "läuft")) {
                     if model.focus == nil { model.startFocus() }
                     model.tab = .focus
                 }
-                ActionTile(kanji: "学", title: "Lektion", subtitle: "8 Übungen") {
+                ActionTile(kanji: "学", title: tr("Lesson", "Lektion"), subtitle: tr("8 exercises", "8 Übungen")) {
                     lesson = QuizSession(mode: .lesson(count: 8), store: model.decks)
                 }
             }
@@ -166,7 +166,7 @@ struct TodayView: View {
 
     private var weekStrip: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(kanji: "週", title: "Diese Woche")
+            SectionHeader(kanji: "週", title: tr("This week", "Diese Woche"))
             HStack(alignment: .bottom, spacing: 10) {
                 let peak = max(1, model.week.map { $0.resisted + $0.correct }.max() ?? 1)
                 ForEach(Array(model.week.enumerated()), id: \.offset) { index, day in
@@ -184,7 +184,7 @@ struct TodayView: View {
             }
             .frame(height: 96, alignment: .bottom)
             .zenCard()
-            Text("Balken: widerstandene Impulse plus richtige Antworten pro Tag.")
+            Text(tr("Bars: impulses resisted plus right answers per day.", "Balken: widerstandene Impulse plus richtige Antworten pro Tag."))
                 .font(.system(size: 12))
                 .foregroundStyle(Zen.inkFaint)
         }
@@ -192,8 +192,7 @@ struct TodayView: View {
 
     private func weekdayLetter(offset: Int) -> String {
         let date = Date().addingTimeInterval(Double(-offset) * 86_400)
-        let names = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
-        return names[(Calendar.current.component(.weekday, from: date) - 1) % 7]
+        return RuleSchedule.dayName(Calendar.current.component(.weekday, from: date))
     }
 }
 
@@ -238,14 +237,14 @@ struct GrantRow: View {
                 if let token = grant.applications.first {
                     Label(token).labelStyle(.titleOnly).font(.system(size: 16, weight: .semibold))
                 } else {
-                    Text("Freigabe").font(.system(size: 16, weight: .semibold))
+                    Text(tr("Unlock", "Freigabe")).font(.system(size: 16, weight: .semibold))
                 }
-                Text("offen bis \(grant.expiresAt.formatted(date: .omitted, time: .shortened))")
+                Text(tr("open until \(grant.expiresAt.formatted(date: .omitted, time: .shortened))", "offen bis \(grant.expiresAt.formatted(date: .omitted, time: .shortened))"))
                     .font(.system(size: 13))
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer()
-            Button("Sperren", action: revoke)
+            Button(tr("Lock", "Sperren"), action: revoke)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(Zen.shu)
         }

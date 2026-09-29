@@ -1,0 +1,313 @@
+{
+  "id": "hauptstaedte",
+  "locale": "en",
+  "title": "Capital Cities",
+  "subtitle": "40 countries, 40 capitals, a few traps",
+  "symbol": "都",
+  "cards": [
+    {
+      "id": "hauptstaedte-001",
+      "prompt": "Capital of Japan?",
+      "answer": "Tokyo",
+      "accept": ["Tokio", "Tōkyō"],
+      "distractors": ["Kyoto", "Osaka", "Yokohama"],
+      "note": "Until 1868 the city was called Edo. Tōkyō means \"eastern capital\", because before that the emperor resided in Kyōto."
+    },
+    {
+      "id": "hauptstaedte-002",
+      "prompt": "Capital of France?",
+      "answer": "Paris",
+      "distractors": ["Lyon", "Marseille", "Bordeaux"],
+      "note": "In front of Notre-Dame Cathedral, a bronze plaque marks point zero, from which road distances in France are measured."
+    },
+    {
+      "id": "hauptstaedte-003",
+      "prompt": "Capital of Italy?",
+      "answer": "Rome",
+      "accept": ["Rom", "Roma"],
+      "distractors": ["Milan", "Naples", "Florence"],
+      "note": "In the middle of Rome lies Vatican City, a separate state and the smallest in the world."
+    },
+    {
+      "id": "hauptstaedte-004",
+      "prompt": "Capital of Spain?",
+      "answer": "Madrid",
+      "distractors": ["Barcelona", "Seville", "Valencia"],
+      "note": "Madrid lies almost exactly in the geographic center of Spain, at about 650 meters above sea level, higher than any other EU capital."
+    },
+    {
+      "id": "hauptstaedte-005",
+      "prompt": "Capital of Portugal?",
+      "answer": "Lisbon",
+      "accept": ["Lissabon", "Lisboa"],
+      "distractors": ["Porto", "Coimbra", "Faro"],
+      "note": "In 1755 an earthquake, a tsunami and a great fire destroyed large parts of the city. The rebuilding of the Baixa district is considered an early example of earthquake-resistant construction."
+    },
+    {
+      "id": "hauptstaedte-006",
+      "prompt": "Capital of Austria?",
+      "answer": "Vienna",
+      "accept": ["Wien"],
+      "distractors": ["Graz", "Salzburg", "Linz"],
+      "note": "Vienna is one of the four main UN headquarters, alongside New York, Geneva and Nairobi."
+    },
+    {
+      "id": "hauptstaedte-007",
+      "prompt": "Capital of Switzerland?",
+      "answer": "Bern",
+      "accept": ["Berne"],
+      "distractors": ["Zurich", "Geneva", "Basel"],
+      "note": "The Federal Constitution names no capital at all. Officially, Bern is the \"federal city\", the seat of government and parliament."
+    },
+    {
+      "id": "hauptstaedte-008",
+      "prompt": "Capital of Poland?",
+      "answer": "Warsaw",
+      "accept": ["Warschau", "Warszawa"],
+      "distractors": ["Kraków", "Gdańsk", "Wrocław"],
+      "note": "Kraków was the capital until the end of the 16th century. Warsaw's Old Town, destroyed in the war, was rebuilt so faithfully that it became a UNESCO World Heritage Site."
+    },
+    {
+      "id": "hauptstaedte-009",
+      "prompt": "Capital of Hungary?",
+      "answer": "Budapest",
+      "distractors": ["Debrecen", "Szeged", "Pécs"],
+      "note": "In 1873 Buda, Óbuda and Pest were united into one city. The Danube still separates hilly Buda from flat Pest."
+    },
+    {
+      "id": "hauptstaedte-010",
+      "prompt": "Capital of Greece?",
+      "answer": "Athens",
+      "accept": ["Athen", "Athina"],
+      "distractors": ["Thessaloniki", "Patras", "Heraklion"],
+      "note": "Athens is named after the goddess Athena. Her temple, the Parthenon, stands on the Acropolis in the middle of the city."
+    },
+    {
+      "id": "hauptstaedte-011",
+      "prompt": "Capital of Turkey?",
+      "answer": "Ankara",
+      "distractors": ["Istanbul", "Izmir", "Antalya"],
+      "note": "Atatürk made Ankara the capital of the new republic in 1923. Istanbul is much larger, but it has never been the capital of the republic."
+    },
+    {
+      "id": "hauptstaedte-012",
+      "prompt": "Capital of Russia?",
+      "answer": "Moscow",
+      "accept": ["Moskau", "Moskva", "Moskwa"],
+      "distractors": ["Saint Petersburg", "Novosibirsk", "Kazan"],
+      "note": "For about two centuries, until 1918, Saint Petersburg was the capital of the Russian Empire. It was the Bolsheviks who moved the capital back to Moscow."
+    },
+    {
+      "id": "hauptstaedte-013",
+      "prompt": "Capital of Norway?",
+      "answer": "Oslo",
+      "distractors": ["Bergen", "Trondheim", "Stavanger"],
+      "note": "After a fire in 1624, the rebuilt city was named Christiania, later spelled Kristiania. It has been called Oslo again only since 1925."
+    },
+    {
+      "id": "hauptstaedte-014",
+      "prompt": "Capital of Sweden?",
+      "answer": "Stockholm",
+      "distractors": ["Gothenburg", "Malmö", "Uppsala"],
+      "note": "Stockholm is spread across 14 islands between Lake Mälaren and the Baltic Sea."
+    },
+    {
+      "id": "hauptstaedte-015",
+      "prompt": "Capital of Finland?",
+      "answer": "Helsinki",
+      "accept": ["Helsingfors"],
+      "distractors": ["Turku", "Tampere", "Oulu"],
+      "note": "Turku was the capital until 1812. In Swedish, Helsinki is called Helsingfors, since both languages are official in Finland."
+    },
+    {
+      "id": "hauptstaedte-016",
+      "prompt": "Capital of Denmark?",
+      "answer": "Copenhagen",
+      "accept": ["Kopenhagen", "København"],
+      "distractors": ["Aarhus", "Odense", "Aalborg"],
+      "note": "København means \"merchants' harbor\". The city does not lie on the Jutland peninsula but mainly on the island of Zealand."
+    },
+    {
+      "id": "hauptstaedte-017",
+      "prompt": "Capital of Iceland?",
+      "answer": "Reykjavík",
+      "accept": ["Reykjavik"],
+      "distractors": ["Akureyri", "Keflavík", "Húsavík"],
+      "note": "Reykjavík is the northernmost capital of a sovereign state. The name means \"smoky bay\", after the steam from the hot springs."
+    },
+    {
+      "id": "hauptstaedte-018",
+      "prompt": "Capital of Canada?",
+      "answer": "Ottawa",
+      "distractors": ["Toronto", "Montreal", "Vancouver"],
+      "note": "Queen Victoria chose Ottawa in 1857 as a compromise between rival cities such as Toronto, Montreal and Quebec City. It lies right on the border between Ontario and Quebec."
+    },
+    {
+      "id": "hauptstaedte-019",
+      "prompt": "Capital of the USA?",
+      "answer": "Washington, D.C.",
+      "accept": ["Washington", "Washington D.C.", "Washington DC"],
+      "distractors": ["New York", "Philadelphia", "Boston"],
+      "note": "D.C. stands for District of Columbia, a federal district that belongs to no state. New York was the seat of government only from 1789 to 1790."
+    },
+    {
+      "id": "hauptstaedte-020",
+      "prompt": "Capital of Mexico?",
+      "answer": "Mexico City",
+      "accept": ["Mexiko-Stadt", "Mexiko Stadt", "Ciudad de México"],
+      "distractors": ["Guadalajara", "Monterrey", "Cancún"],
+      "note": "The city stands on the ruins of Tenochtitlan, the Aztec capital, which lay on an island in a lake. That is why some districts are still sinking today."
+    },
+    {
+      "id": "hauptstaedte-021",
+      "prompt": "Capital of Brazil?",
+      "answer": "Brasília",
+      "accept": ["Brasilia"],
+      "distractors": ["Rio de Janeiro", "São Paulo", "Salvador"],
+      "note": "Brasília was built from scratch in about four years and inaugurated in 1960. From above, Lúcio Costa's city plan resembles an airplane or a bird."
+    },
+    {
+      "id": "hauptstaedte-022",
+      "prompt": "Capital of Argentina?",
+      "answer": "Buenos Aires",
+      "distractors": ["Córdoba", "Rosario", "Mendoza"],
+      "note": "Buenos Aires means \"good airs\". Its residents call themselves porteños, \"people of the port\"."
+    },
+    {
+      "id": "hauptstaedte-023",
+      "prompt": "Capital of Chile?",
+      "answer": "Santiago",
+      "accept": ["Santiago de Chile"],
+      "distractors": ["Valparaíso", "Concepción", "Antofagasta"],
+      "note": "Santiago is the capital and seat of government, but since 1990 the National Congress has met in the port city of Valparaíso."
+    },
+    {
+      "id": "hauptstaedte-024",
+      "prompt": "Capital of Colombia?",
+      "answer": "Bogotá",
+      "accept": ["Bogota"],
+      "distractors": ["Medellín", "Cali", "Cartagena"],
+      "note": "Bogotá lies at about 2,600 meters in the Andes. Despite being close to the equator, it is fairly cool all year round."
+    },
+    {
+      "id": "hauptstaedte-025",
+      "prompt": "Capital of Australia?",
+      "answer": "Canberra",
+      "distractors": ["Sydney", "Melbourne", "Brisbane"],
+      "note": "Sydney and Melbourne could not agree, so Canberra was purpose-built as a compromise. The design came from the architects Walter Burley Griffin and Marion Mahony Griffin."
+    },
+    {
+      "id": "hauptstaedte-026",
+      "prompt": "Capital of New Zealand?",
+      "answer": "Wellington",
+      "distractors": ["Auckland", "Christchurch", "Dunedin"],
+      "note": "Wellington is the southernmost capital of a sovereign state. The country's largest city, Auckland, was itself the capital until 1865."
+    },
+    {
+      "id": "hauptstaedte-027",
+      "prompt": "Capital of China?",
+      "answer": "Beijing",
+      "accept": ["Peking"],
+      "distractors": ["Shanghai", "Nanjing", "Hong Kong"],
+      "note": "Beijing means \"northern capital\", Nanjing \"southern capital\". Peking is the older spelling, still used in German and in names like Peking duck."
+    },
+    {
+      "id": "hauptstaedte-028",
+      "prompt": "Capital of South Korea?",
+      "answer": "Seoul",
+      "distractors": ["Busan", "Incheon", "Daegu"],
+      "note": "About half of all South Koreans live in the Seoul metropolitan area. The border with North Korea is only about 50 kilometers away."
+    },
+    {
+      "id": "hauptstaedte-029",
+      "prompt": "Capital of Vietnam?",
+      "answer": "Hanoi",
+      "accept": ["Hà Nội", "Ha Noi"],
+      "distractors": ["Ho Chi Minh City", "Huế", "Da Nang"],
+      "note": "Hà Nội means roughly \"inside the rivers\", because the city lies in a bend of the Red River. The largest city, however, is Ho Chi Minh City, formerly Saigon."
+    },
+    {
+      "id": "hauptstaedte-030",
+      "prompt": "Capital of Thailand?",
+      "answer": "Bangkok",
+      "accept": ["Krung Thep"],
+      "distractors": ["Chiang Mai", "Phuket", "Pattaya"],
+      "note": "Thais call their capital Krung Thep, \"City of Angels\". Its full ceremonial name is considered one of the longest place names in the world."
+    },
+    {
+      "id": "hauptstaedte-031",
+      "prompt": "Capital of India?",
+      "answer": "New Delhi",
+      "accept": ["Neu-Delhi", "Neu Delhi", "Delhi"],
+      "distractors": ["Mumbai", "Kolkata", "Chennai"],
+      "note": "Until 1911, Calcutta (today Kolkata) was the capital of British India. New Delhi was then planned as a government district and inaugurated in 1931."
+    },
+    {
+      "id": "hauptstaedte-032",
+      "prompt": "Capital of Myanmar?",
+      "answer": "Naypyidaw",
+      "accept": ["Naypyitaw", "Nay Pyi Taw"],
+      "distractors": ["Yangon", "Mandalay", "Bagan"],
+      "note": "In 2005 the military government unexpectedly moved the seat of government from Yangon to the purpose-built city of Naypyidaw. It is known for its huge, often nearly empty roads."
+    },
+    {
+      "id": "hauptstaedte-033",
+      "prompt": "Capital of Kazakhstan?",
+      "answer": "Astana",
+      "distractors": ["Almaty", "Shymkent", "Karaganda"],
+      "note": "Astana replaced Almaty as the capital in 1997. From 2019 to 2022 it was called Nur-Sultan, then it got its old name back."
+    },
+    {
+      "id": "hauptstaedte-034",
+      "prompt": "Capital of Egypt?",
+      "answer": "Cairo",
+      "accept": ["Kairo"],
+      "distractors": ["Alexandria", "Giza", "Luxor"],
+      "note": "Cairo lies on the Nile, just before it fans out into the delta. The pyramids of Giza stand on the edge of the metropolitan area."
+    },
+    {
+      "id": "hauptstaedte-035",
+      "prompt": "Capital of Morocco?",
+      "answer": "Rabat",
+      "distractors": ["Casablanca", "Marrakesh", "Fez"],
+      "note": "Many people guess Casablanca or Marrakesh, but the seat of government and the royal palace are in Rabat, on the Atlantic coast."
+    },
+    {
+      "id": "hauptstaedte-036",
+      "prompt": "Capital of Nigeria?",
+      "answer": "Abuja",
+      "distractors": ["Lagos", "Kano", "Ibadan"],
+      "note": "In 1991 Abuja replaced the coastal metropolis of Lagos. The new city was planned near the center of the country, on neutral ground between the major ethnic groups."
+    },
+    {
+      "id": "hauptstaedte-037",
+      "prompt": "Capital of Kenya?",
+      "answer": "Nairobi",
+      "distractors": ["Mombasa", "Kisumu", "Nakuru"],
+      "note": "Right on the edge of the city lies Nairobi National Park, with lions and giraffes in front of the skyline. The city is also one of the four main UN headquarters."
+    },
+    {
+      "id": "hauptstaedte-038",
+      "prompt": "Capital of South Africa (seat of government)?",
+      "answer": "Pretoria",
+      "accept": ["Tshwane"],
+      "distractors": ["Johannesburg", "Durban", "East London"],
+      "note": "South Africa has three capitals: Pretoria for the government, Cape Town for parliament and Bloemfontein for the judiciary. The largest city, Johannesburg, is none of them."
+    },
+    {
+      "id": "hauptstaedte-039",
+      "prompt": "Capital of Singapore?",
+      "answer": "Singapore",
+      "accept": ["Singapur"],
+      "distractors": ["Kuala Lumpur", "Johor Bahru", "Malacca"],
+      "note": "Singapore is a city-state: the country and its capital are one and the same. The name comes from Sanskrit and means \"lion city\"."
+    },
+    {
+      "id": "hauptstaedte-040",
+      "prompt": "Capital of the Philippines?",
+      "answer": "Manila",
+      "distractors": ["Quezon City", "Cebu", "Davao"],
+      "note": "Manila is considered the most densely populated city in the world. From 1948 to 1976, neighboring Quezon City was officially the capital."
+    }
+  ]
+}

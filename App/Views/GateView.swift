@@ -45,7 +45,7 @@ struct GateView: View {
                             .foregroundStyle(Zen.inkSoft)
                             .frame(width: 44, height: 44)
                     }
-                    .accessibilityLabel("Schließen")
+                    .accessibilityLabel(tr("Close", "Schließen"))
                     Spacer()
                 }
                 .padding(.horizontal, 8)
@@ -91,10 +91,12 @@ struct GateView: View {
 
     private var subjectText: String {
         switch reason {
-        case .unlock(let pending): return pending.displayName ?? "Eine Kategorie"
-        case .disableRule(let id): return "Grenze \(model.rules.first { $0.id == id }?.name ?? "") ausschalten"
-        case .stopFocus: return "Fokusrunde abbrechen"
-        case .practice: return "Übung"
+        case .unlock(let pending): return pending.displayName ?? tr("A category", "Eine Kategorie")
+        case .disableRule(let id):
+            let name = model.rules.first { $0.id == id }?.name ?? ""
+            return tr("Switch off \(name)", "Grenze \(name) ausschalten")
+        case .stopFocus: return tr("End focus round", "Fokusrunde abbrechen")
+        case .practice: return tr("Practice", "Übung")
         }
     }
 
@@ -110,24 +112,24 @@ struct GateView: View {
                         .foregroundStyle(Zen.shu)
                         .contentTransition(.opacity)
                 )
-            Text(breaths % 2 == 0 ? "Atme ein" : "Atme aus")
+            Text(breaths % 2 == 0 ? tr("Breathe in", "Atme ein") : tr("Breathe out", "Atme aus"))
                 .font(.mincho(26, weight: .medium))
                 .foregroundStyle(Zen.ink)
                 .contentTransition(.opacity)
                 .animation(.easeInOut(duration: 0.6), value: breaths)
-            Text("Einen Atemzug lang nichts wollen.")
+            Text(tr("For one breath, want nothing.", "Einen Atemzug lang nichts wollen."))
                 .font(.system(size: 15))
                 .foregroundStyle(Zen.inkSoft)
             Spacer()
             VStack(spacing: 12) {
-                Button(needed == 1 ? "Zur Frage" : "Zu den \(needed) Fragen") {
+                Button(needed == 1 ? tr("To the question", "Zur Frage") : tr("To the \(needed) questions", "Zu den \(needed) Fragen")) {
                     startQuiz()
                 }
                 .buttonStyle(.ink)
                 .opacity(breaths >= 2 ? 1 : 0.3)
                 .disabled(breaths < 2)
                 if pending != nil {
-                    Button("Ich lass es gut sein") { resist() }
+                    Button(tr("I'll let it be", "Ich lass es gut sein")) { resist() }
                         .buttonStyle(.quiet)
                 }
             }
@@ -158,26 +160,26 @@ struct GateView: View {
         VStack(spacing: 24) {
             Spacer()
             Hanko(text: "決", size: 64)
-            Text("Du hast es dir verdient.\nWillst du es noch?")
+            Text(tr("You have earned it.\nDo you still want it?", "Du hast es dir verdient.\nWillst du es noch?"))
                 .font(.mincho(28, weight: .semibold))
                 .foregroundStyle(Zen.ink)
                 .multilineTextAlignment(.center)
             subject
             if let session, !session.exercises.isEmpty {
-                Text("\(session.correct) richtig, \(session.wrong) daneben")
+                Text(tr("\(session.correct) right, \(session.wrong) missed", "\(session.correct) richtig, \(session.wrong) daneben"))
                     .font(.system(size: 14))
                     .foregroundStyle(Zen.inkSoft)
             }
             HStack(spacing: 8) {
                 ForEach(minuteOptions, id: \.self) { value in
-                    Chip(title: "\(value) Min.", selected: minutes == value) { minutes = value }
+                    Chip(title: tr("\(value) min.", "\(value) Min."), selected: minutes == value) { minutes = value }
                 }
             }
             Spacer()
             VStack(spacing: 12) {
-                Button("Für \(minutes) Minuten öffnen") { unlock() }
+                Button(tr("Open for \(minutes) minutes", "Für \(minutes) Minuten öffnen")) { unlock() }
                     .buttonStyle(.shu)
-                Button("Ich lass es doch") { resist() }
+                Button(tr("I'll leave it", "Ich lass es doch")) { resist() }
                     .buttonStyle(.matcha)
             }
             .padding(.horizontal, 28)
@@ -197,10 +199,10 @@ struct GateView: View {
             EnsoView(progress: 1, lineWidth: 14, color: Zen.matcha)
                 .frame(width: 160, height: 160)
                 .overlay(Text("開").font(.kanji(48, bold: true)).foregroundStyle(Zen.ink))
-            Text("Offen bis \(openUntil?.formatted(date: .omitted, time: .shortened) ?? "")")
+            Text(tr("Open until \(openUntil?.formatted(date: .omitted, time: .shortened) ?? "")", "Offen bis \(openUntil?.formatted(date: .omitted, time: .shortened) ?? "")"))
                 .font(.mincho(26, weight: .semibold))
                 .foregroundStyle(Zen.ink)
-            Text("Danach schließt sich die Grenze von selbst wieder. Wechsle jetzt einfach zur App.")
+            Text(tr("After that the boundary closes again by itself. Just switch to the app now.", "Danach schließt sich die Grenze von selbst wieder. Wechsle jetzt einfach zur App."))
                 .font(.system(size: 15))
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
@@ -208,13 +210,13 @@ struct GateView: View {
             Spacer()
             VStack(spacing: 12) {
                 if let name = pending?.displayName {
-                    Button("Zu \(name)") {
+                    Button(tr("Go to \(name)", "Zu \(name)")) {
                         model.open(appNamed: name)
                         close()
                     }
                     .buttonStyle(.ink)
                 }
-                Button("Schließen", action: close)
+                Button(tr("Close", "Schließen"), action: close)
                     .buttonStyle(.quiet)
             }
             .padding(.horizontal, 28)
@@ -226,18 +228,18 @@ struct GateView: View {
         VStack(spacing: 22) {
             Spacer()
             Hanko(text: "結", size: 72)
-            Text(policy.focusLocked ? "Fokus läuft" : "Kein Ausweg")
+            Text(policy.focusLocked ? tr("Focus is on", "Fokus läuft") : tr("No way through", "Kein Ausweg"))
                 .font(.mincho(30, weight: .semibold))
                 .foregroundStyle(Zen.ink)
             Text(policy.focusLocked
-                 ? "Während einer Fokusrunde öffnet Ma nichts. Die Runde endet von selbst, und dann ist alles wieder da."
-                 : "Diese Grenze hast du ohne Ausweg gesetzt. Wenn du das ändern willst, geht das unter Grenzen.")
+                 ? tr("During a focus round Ma opens nothing. The round ends by itself, and then everything is back.", "Während einer Fokusrunde öffnet Ma nichts. Die Runde endet von selbst, und dann ist alles wieder da.")
+                 : tr("You drew this boundary with no way through. If you want to change that, you can under Boundaries.", "Diese Grenze hast du ohne Ausweg gesetzt. Wenn du das ändern willst, geht das unter Grenzen."))
                 .font(.system(size: 16))
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
             Spacer()
-            Button("Zurück zur Ruhe") { resist() }
+            Button(tr("Back to calm", "Zurück zur Ruhe")) { resist() }
                 .buttonStyle(.ink)
                 .padding(.horizontal, 28)
                 .padding(.bottom, 20)

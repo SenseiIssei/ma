@@ -48,7 +48,7 @@ struct QuizView: View {
         VStack(alignment: .leading, spacing: 8) {
             InkProgress(value: session.progress, color: Zen.shu, height: 8)
             if case .gate = session.mode {
-                Text("\(session.correct) von \(session.needed) richtig")
+                Text(tr("\(session.correct) of \(session.needed) right", "\(session.correct) von \(session.needed) richtig"))
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(Zen.inkSoft)
                     .contentTransition(.numericText())
@@ -72,11 +72,11 @@ struct FeedbackBanner: View {
             }
             if !outcome.correct || outcome.typo {
                 if exercise.kind == .pairs {
-                    Text("Schau dir die Paare nochmal an, sie kommen bald wieder.")
+                    Text(tr("Have another look at the pairs, they will come back soon.", "Schau dir die Paare nochmal an, sie kommen bald wieder."))
                         .font(.system(size: 16))
                         .foregroundStyle(Zen.ink)
                 } else {
-                    Text("Richtig: \(Text(exercise.card.answer).bold().foregroundStyle(Zen.ink))")
+                    Text("\(tr("Correct:", "Richtig:")) \(Text(exercise.card.answer).bold().foregroundStyle(Zen.ink))")
                         .font(.system(size: 17))
                         .foregroundStyle(Zen.inkSoft)
                 }
@@ -87,7 +87,7 @@ struct FeedbackBanner: View {
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Button("Weiter", action: next)
+            Button(tr("Continue", "Weiter"), action: next)
                 .buttonStyle(outcome.correct ? InkButtonStyle(kind: .matcha) : InkButtonStyle(kind: .shu))
                 .padding(.top, 4)
         }
@@ -105,11 +105,11 @@ struct FeedbackBanner: View {
     private var tint: Color { outcome.correct ? Zen.matcha : Zen.shu }
 
     private var title: String {
-        if outcome.typo { return "Fast, kleiner Tippfehler" }
+        if outcome.typo { return tr("Almost, small typo", "Fast, kleiner Tippfehler") }
         if outcome.correct {
-            let words = ["Richtig", "Genau so", "Sehr gut", "Stimmt"]
+            let words = Loc.isGerman ? ["Richtig", "Genau so", "Sehr gut", "Stimmt"] : ["Correct", "Exactly", "Well done", "Right"]
             return words[abs(exercise.id.hashValue % words.count)]
         }
-        return "Noch nicht"
+        return tr("Not yet", "Noch nicht")
     }
 }

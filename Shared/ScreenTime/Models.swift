@@ -38,22 +38,30 @@ struct RuleSchedule: Codable, Hashable {
     var label: String {
         let days: String
         if weekdays == Set(1...7) || weekdays.isEmpty {
-            days = "täglich"
+            days = tr("daily", "täglich")
         } else if weekdays == Set([2, 3, 4, 5, 6]) {
-            days = "Mo bis Fr"
+            days = tr("Mon to Fri", "Mo bis Fr")
         } else if weekdays == Set([1, 7]) {
-            days = "am Wochenende"
+            days = tr("weekends", "am Wochenende")
         } else {
-            let names = [2: "Mo", 3: "Di", 4: "Mi", 5: "Do", 6: "Fr", 7: "Sa", 1: "So"]
-            days = [2, 3, 4, 5, 6, 7, 1].filter { weekdays.contains($0) }.compactMap { names[$0] }.joined(separator: ", ")
+            days = [2, 3, 4, 5, 6, 7, 1].filter { weekdays.contains($0) }.map { Self.dayName($0) }.joined(separator: ", ")
         }
-        return "\(Self.clock(startMinute)) bis \(Self.clock(endMinute)), \(days)"
+        return tr("\(Self.clock(startMinute)) to \(Self.clock(endMinute)), \(days)",
+                  "\(Self.clock(startMinute)) bis \(Self.clock(endMinute)), \(days)")
+    }
+
+    /// Two-letter weekday, 1 = Sunday.
+    static func dayName(_ weekday: Int) -> String {
+        let en = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+        let de = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+        let index = (weekday - 1 + 7) % 7
+        return Loc.isGerman ? de[index] : en[index]
     }
 }
 
 struct BlockRule: Codable, Identifiable {
     var id = UUID()
-    var name: String = "Soziale Medien"
+    var name: String = tr("Social media", "Soziale Medien")
     var kanji: String = "結"
     var selection = FamilyActivitySelection()
     var isEnabled = true
@@ -144,9 +152,9 @@ enum FocusPhase: String, Codable {
 
     var title: String {
         switch self {
-        case .focus: "Fokus"
-        case .shortBreak: "Kurze Pause"
-        case .longBreak: "Lange Pause"
+        case .focus: tr("Focus", "Fokus")
+        case .shortBreak: tr("Short break", "Kurze Pause")
+        case .longBreak: tr("Long break", "Lange Pause")
         }
     }
 }

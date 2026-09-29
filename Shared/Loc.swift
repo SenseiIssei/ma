@@ -31,7 +31,7 @@ enum BuildFlavor {
     #endif
 
     static var previewNote: String {
-        tr("This preview build cannot block apps yet. Apple still has to approve the Screen Time permission for Ma. Learning, focus and the Safari filter already work.",
-           "Diese Vorschau kann noch keine Apps sperren. Apple muss die Bildschirmzeit-Berechtigung für Ma erst freigeben. Lernen, Fokus und der Safari-Filter funktionieren schon.")
+        tr("This build cannot use Screen Time yet, Apple still has to approve it for Ma. Until then, the Shortcuts mode under Boundaries puts the pause in front of your apps.",
+           "Diese Version kann Bildschirmzeit noch nicht nutzen, Apple muss sie für Ma erst freigeben. Bis dahin legt der Kurzbefehle-Modus unter Grenzen die Pause vor deine Apps.")
     }
 }

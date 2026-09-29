@@ -94,3 +94,46 @@ enum SharedStore {
         stats = all
     }
 }
+
+// MARK: - Shortcuts mode
+
+/// Settings for the gate that a Shortcuts automation opens. Works without
+/// Screen Time, which is why it lives apart from the rules.
+struct ShortcutSettings: Codable {
+    var questions = 1
+    var minutes = 5
+}
+
+/// Left by the Pause intent for the app to pick up once it is in front.
+struct ShortcutRequest: Codable {
+    var app: String
+    var createdAt = Date()
+
+    var isFresh: Bool { Date().timeIntervalSince(createdAt) < 5 * 60 }
+}
+
+extension SharedStore {
+    static var shortcutSettings: ShortcutSettings {
+        get { MaShared.read(ShortcutSettings.self, from: "shortcut-settings.json") ?? ShortcutSettings() }
+        set { MaShared.write(newValue, to: "shortcut-settings.json") }
+    }
+
+    static var shortcutRequest: ShortcutRequest? {
+        get { MaShared.read(ShortcutRequest.self, from: "shortcut-request.json") }
+        set { MaShared.write(newValue, to: "shortcut-request.json") }
+    }
+
+    /// While this lies in the future, the automation lets every app through.
+    /// This is also what breaks the loop: opening the app after answering
+    /// fires the automation again, and it finds the pass.
+    static var shortcutPassUntil: Date? {
+        get { MaShared.read(Date.self, from: "shortcut-pass.json") }
+        set { MaShared.write(newValue, to: "shortcut-pass.json") }
+    }
+
+    /// Last time the automation ran, so the setup screen can show it works.
+    static var shortcutLastRun: Date? {
+        get { MaShared.read(Date.self, from: "shortcut-last-run.json") }
+        set { MaShared.write(newValue, to: "shortcut-last-run.json") }
+    }
+}

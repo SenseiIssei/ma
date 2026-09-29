@@ -15,6 +15,8 @@ enum GateReason: Identifiable {
     case disableRule(UUID)
     case stopFocus
     case practice
+    /// Opened by the Shortcuts automation; carries the GuardedApp raw value.
+    case shortcut(String)
 
     var id: String {
         switch self {
@@ -22,6 +24,7 @@ enum GateReason: Identifiable {
         case .disableRule(let id): "rule-\(id)"
         case .stopFocus: "focus"
         case .practice: "practice"
+        case .shortcut(let app): "shortcut-\(app)"
         }
     }
 }
@@ -40,6 +43,9 @@ final class AppModel {
     var notificationsAllowed = false
     var gate: GateReason?
     var tab: MaTab = .today
+    var shortcutSettings = ShortcutSettings()
+    var shortcutPassUntil: Date?
+    var shortcutLastRun: Date?
     let decks = DeckStore()
 
     var onboarded: Bool {
@@ -76,7 +82,12 @@ final class AppModel {
             stats[SharedStore.dayKey(Date().addingTimeInterval(Double(-offset) * 86_400))] ?? DayStats()
         }
         authorization = AuthorizationCenter.shared.authorizationStatus
-        if gate == nil, let pending = SharedStore.pending, pending.isFresh {
+        shortcutSettings = SharedStore.shortcutSettings
+        shortcutPassUntil = SharedStore.shortcutPassUntil.flatMap { $0 > Date() ? $0 : nil }
+        shortcutLastRun = SharedStore.shortcutLastRun
+        if gate == nil, let request = SharedStore.shortcutRequest, request.isFresh {
+            gate = .shortcut(request.app)
+        } else if gate == nil, let pending = SharedStore.pending, pending.isFresh {
             gate = .unlock(pending)
         }
         UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -266,8 +277,41 @@ final class AppModel {
         switch reason {
         case .disableRule(let id): applyEnabled(id, false)
         case .stopFocus: stopFocus()
-        case .unlock, .practice: break
+        case .unlock, .practice, .shortcut: break
         }
+    }
+
+    // MARK: Shortcuts mode
+
+    func saveShortcutSettings() {
+        SharedStore.shortcutSettings = shortcutSettings
+    }
+
+    /// Opens every guarded app for a while, then sends you to the one you
+    /// came from. The automation fires again on the way back, finds the pass
+    /// and stays out of the way.
+    func openShortcutPass(minutes: Int, app: GuardedApp) {
+        SharedStore.shortcutPassUntil = Date().addingTimeInterval(TimeInterval(minutes * 60))
+        SharedStore.shortcutRequest = nil
+        SharedStore.updateToday { $0.unlocks += 1 }
+        reload()
+        if let url = app.url { UIApplication.shared.open(url) }
+    }
+
+    func resistShortcut() {
+        SharedStore.shortcutRequest = nil
+        SharedStore.updateToday { $0.resisted += 1 }
+        reload()
+    }
+
+    func dismissShortcut() {
+        SharedStore.shortcutRequest = nil
+        reload()
+    }
+
+    func closeShortcutPass() {
+        SharedStore.shortcutPassUntil = nil
+        reload()
     }
 
     // MARK: Reset

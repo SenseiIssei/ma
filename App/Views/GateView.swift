@@ -23,13 +23,33 @@ struct GateView: View {
         return nil
     }
 
+    private var shortcutApp: GuardedApp? {
+        if case .shortcut(let raw) = reason { return GuardedApp(rawValue: raw) ?? .any }
+        return nil
+    }
+
+    /// Both ways in lead to the same decision: open for a while, or let it be.
+    private var isUnlock: Bool { pending != nil || shortcutApp != nil }
+
     private var policy: UnlockPolicy {
-        pending.map { model.policy(for: $0) } ?? UnlockPolicy()
+        if let pending { return model.policy(for: pending) }
+        if shortcutApp != nil {
+            var policy = UnlockPolicy()
+            policy.questions = model.shortcutSettings.questions
+            policy.minutes = model.shortcutSettings.minutes
+            if let session = SharedStore.focus, session.phase == .focus, Date() < session.endsAt, SharedStore.focusSettings.strict {
+                policy.focusLocked = true
+                policy.allowed = false
+                policy.focusEndsAt = session.endsAt
+            }
+            return policy
+        }
+        return UnlockPolicy()
     }
 
     private var needed: Int {
         switch reason {
-        case .unlock: return policy.questions
+        case .unlock, .shortcut: return policy.questions
         case .disableRule, .stopFocus, .practice: return 3
         }
     }
@@ -61,7 +81,7 @@ struct GateView: View {
         }
         .onAppear {
             minutes = policy.minutes
-            if pending != nil && !policy.allowed { stage = .blocked }
+            if isUnlock && !policy.allowed { stage = .blocked }
         }
     }
 
@@ -77,6 +97,10 @@ struct GateView: View {
                 Label(web)
                     .labelStyle(.titleAndIcon)
                     .font(.system(size: 17, weight: .semibold))
+            } else if let app = shortcutApp, app != .any {
+                Text(app.displayName)
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(Zen.ink)
             } else {
                 Text(subjectText)
                     .font(.system(size: 17, weight: .semibold))
@@ -97,6 +121,7 @@ struct GateView: View {
             return tr("Switch off \(name)", "Grenze \(name) ausschalten")
         case .stopFocus: return tr("End focus round", "Fokusrunde abbrechen")
         case .practice: return tr("Practice", "Übung")
+        case .shortcut: return tr("Your app", "Deine App")
         }
     }
 
@@ -128,7 +153,7 @@ struct GateView: View {
                 .buttonStyle(.ink)
                 .opacity(breaths >= 2 ? 1 : 0.3)
                 .disabled(breaths < 2)
-                if pending != nil {
+                if isUnlock {
                     Button(tr("I'll let it be", "Ich lass es gut sein")) { resist() }
                         .buttonStyle(.quiet)
                 }
@@ -209,7 +234,17 @@ struct GateView: View {
                 .padding(.horizontal, 30)
             Spacer()
             VStack(spacing: 12) {
-                if let name = pending?.displayName {
+                if let app = shortcutApp {
+                    if let url = app.url {
+                        Button(tr("Go to \(app.displayName)", "Zu \(app.displayName)")) {
+                            UIApplication.shared.open(url)
+                            close()
+                        }
+                        .buttonStyle(.ink)
+                    } else {
+                        appPicker
+                    }
+                } else if let name = pending?.displayName {
                     Button(tr("Go to \(name)", "Zu \(name)")) {
                         model.open(appNamed: name)
                         close()
@@ -221,6 +256,24 @@ struct GateView: View {
             }
             .padding(.horizontal, 28)
             .padding(.bottom, 20)
+        }
+    }
+
+    /// When one automation covers several apps, Ma does not know which one
+    /// was opened. Offer the usual suspects instead.
+    private var appPicker: some View {
+        VStack(spacing: 10) {
+            Text(tr("Back to", "Zurück zu"))
+                .font(.system(size: 14))
+                .foregroundStyle(Zen.inkSoft)
+            FlowLayout(spacing: 8) {
+                ForEach(GuardedApp.allCases.filter { $0 != .any }, id: \.self) { app in
+                    Chip(title: app.displayName, selected: false) {
+                        if let url = app.url { UIApplication.shared.open(url) }
+                        close()
+                    }
+                }
+            }
         }
     }
 
@@ -260,7 +313,7 @@ struct GateView: View {
     private func finishQuiz() {
         model.reload()
         switch reason {
-        case .unlock:
+        case .unlock, .shortcut:
             withAnimation(.easeInOut) { stage = .decide }
         case .disableRule, .stopFocus, .practice:
             Haptics.success()
@@ -270,17 +323,30 @@ struct GateView: View {
     }
 
     private func unlock() {
-        guard let pending else { return }
         Haptics.success()
-        model.grant(pending, minutes: minutes)
         openUntil = Date().addingTimeInterval(TimeInterval(minutes * 60))
-        withAnimation(.easeInOut) { stage = .open }
+        if let pending {
+            model.grant(pending, minutes: minutes)
+            withAnimation(.easeInOut) { stage = .open }
+        } else if let app = shortcutApp {
+            // With a known app, go straight back to it. Otherwise show the
+            // open screen with the app picker.
+            if app.url != nil {
+                model.openShortcutPass(minutes: minutes, app: app)
+                model.gate = nil
+            } else {
+                model.openShortcutPass(minutes: minutes, app: .any)
+                withAnimation(.easeInOut) { stage = .open }
+            }
+        }
     }
 
     private func resist() {
         Haptics.success()
         if let pending {
             model.resist(pending)
+        } else if shortcutApp != nil {
+            model.resistShortcut()
         }
         model.gate = nil
     }
@@ -288,6 +354,8 @@ struct GateView: View {
     private func close() {
         if pending != nil && stage != .open {
             model.dismissPending()
+        } else if shortcutApp != nil && stage != .open {
+            model.dismissShortcut()
         }
         model.gate = nil
     }

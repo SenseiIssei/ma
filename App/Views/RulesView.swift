@@ -19,6 +19,29 @@ struct RulesView: View {
                         permissionCard
                     }
 
+                    NavigationLink {
+                        ShortcutsModeView()
+                    } label: {
+                        HStack(spacing: 14) {
+                            Hanko(text: "門", size: 40, color: model.shortcutLastRun == nil ? Zen.inkFaint : Zen.shu)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(tr("Shortcuts mode", "Kurzbefehle-Modus"))
+                                    .font(.system(size: 17, weight: .semibold))
+                                    .foregroundStyle(Zen.ink)
+                                Text(model.shortcutLastRun == nil
+                                     ? tr("Pause before any app, without Screen Time. Set up once.", "Pause vor jeder App, ohne Bildschirmzeit. Einmal einrichten.")
+                                     : tr("Active. One automation guards your apps.", "Aktiv. Eine Automation bewacht deine Apps."))
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(Zen.inkSoft)
+                                    .multilineTextAlignment(.leading)
+                            }
+                            Spacer(minLength: 0)
+                            Image(systemName: "chevron.right").foregroundStyle(Zen.inkFaint)
+                        }
+                        .zenCard()
+                    }
+                    .buttonStyle(.plain)
+
                     VStack(spacing: 12) {
                         ForEach(model.rules) { rule in
                             RuleCard(rule: rule, shielding: model.isShielding(rule)) {

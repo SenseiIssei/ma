@@ -1,0 +1,111 @@
+name: iOS
+
+# Public repo, so GitHub's macOS runners cost nothing. Every push compiles
+# the app unsigned; signed builds only run when started by hand.
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md", "docs/**"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      lane:
+        description: "check = nur kompilieren, device = IPA fürs eigene iPhone, testflight = Upload"
+        type: choice
+        options: [check, device, testflight]
+        default: check
+
+concurrency:
+  group: ios-${{ github.ref }}-${{ inputs.lane || 'check' }}
+  cancel-in-progress: true
+
+jobs:
+  content:
+    name: Decks and web extension
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate decks
+        run: python3 scripts/validate_decks.py
+      - name: Parse extension scripts
+        run: |
+          for f in Extensions/Filter/Resources/*.js; do node --check "$f"; done
+          python3 -c "import json; json.load(open('Extensions/Filter/Resources/manifest.json'))"
+
+  check:
+    name: Compile (unsigned)
+    if: github.event_name != 'workflow_dispatch' || inputs.lane == 'check'
+    needs: content
+    runs-on: macos-26
+    # A hung xcodebuild once ate six hours of runner time elsewhere. Never again.
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use the newest Xcode on the runner
+        run: |
+          set -euo pipefail
+          NEWEST=$(ls -d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -s "$NEWEST"
+          xcodebuild -version
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild -project Ma.xcodeproj -scheme Ma \
+            -destination 'generic/platform=iOS' -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" PROVISIONING_PROFILE_SPECIFIER="" \
+            build | { command -v xcbeautify >/dev/null && xcbeautify --renderer github-actions || cat; }
+
+  signed:
+    name: Signed ${{ inputs.lane }}
+    if: github.event_name == 'workflow_dispatch' && inputs.lane != 'check'
+    needs: content
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use the newest Xcode on the runner
+        run: |
+          set -euo pipefail
+          NEWEST=$(ls -d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -s "$NEWEST"
+          xcodebuild -version
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Write App Store Connect key
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          mkdir -p fastlane/.keys
+          printf '%s' "$ASC_KEY_P8" > fastlane/.keys/AuthKey.p8
+      - name: fastlane ${{ inputs.lane == 'device' && 'device' || 'beta' }}
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_GIT_TOKEN: ${{ secrets.MATCH_GIT_TOKEN }}
+          DEVICE_UDID: ${{ secrets.DEVICE_UDID }}
+          DEVICE_NAME: ${{ secrets.DEVICE_NAME }}
+        run: bundle exec fastlane ${{ inputs.lane == 'device' && 'device' || 'beta' }}
+      - name: Keep the IPA
+        if: inputs.lane == 'device'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ma-device-${{ github.run_number }}
+          path: build/Ma.ipa
+          retention-days: 14
+      - name: Remove the key
+        if: always()
+        run: rm -rf fastlane/.keys

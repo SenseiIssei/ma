@@ -1,0 +1,66 @@
+:root {
+  --paper: #F4EFE6;
+  --ink: #1F1D1B;
+  --soft: #5E5850;
+  --shu: #C8412C;
+  --line: rgba(31, 29, 27, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151412;
+    --ink: #ECE6DA;
+    --soft: #A69E92;
+    --shu: #D9573F;
+    --line: rgba(236, 230, 218, 0.14);
+  }
+}
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.45 -apple-system, system-ui, sans-serif;
+}
+
+main {
+  padding: 20px 18px 24px;
+  min-width: 260px;
+}
+
+.glyph {
+  font: 600 40px/1 "Hiragino Mincho ProN", serif;
+  color: var(--shu);
+}
+
+h1 {
+  font: 600 20px/1.2 "New York", ui-serif, Georgia, serif;
+  margin: 10px 0 6px;
+}
+
+p {
+  color: var(--soft);
+  margin: 0 0 14px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+li span:last-child {
+  color: var(--soft);
+}
+
+li.on span:last-child {
+  color: var(--shu);
+}

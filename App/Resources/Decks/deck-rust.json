@@ -1,0 +1,211 @@
+{
+  "id": "rust",
+  "title": "Rust Grundlagen",
+  "subtitle": "Ownership, Borrowing und die wichtigsten Werkzeuge",
+  "symbol": "錆",
+  "cards": [
+    {
+      "id": "rust-001",
+      "prompt": "Wie viele Besitzer (Owner) hat ein Wert in Rust zu jedem Zeitpunkt?",
+      "answer": "Genau einen",
+      "accept": ["Einen", "1"],
+      "distractors": ["Beliebig viele", "Höchstens zwei", "Mindestens zwei"],
+      "note": "Das ist die Kernregel von Ownership. Verlässt der Besitzer seinen Scope, wird der Wert automatisch freigegeben (drop), ganz ohne Garbage Collector."
+    },
+    {
+      "id": "rust-002",
+      "prompt": "Was passiert mit `a` nach `let b = a;`, wenn `a` ein `String` ist?",
+      "answer": "a wird nach b verschoben",
+      "accept": ["Move", "a wird verschoben"],
+      "distractors": ["a wird kopiert", "a wird geklont", "b leiht sich a"],
+      "note": "String implementiert nicht Copy, darum wandert der Besitz (move). Danach ist a ungültig. Wer beide braucht, schreibt a.clone()."
+    },
+    {
+      "id": "rust-003",
+      "prompt": "Wie viele veränderliche Referenzen (`&mut`) auf einen Wert darf es gleichzeitig geben?",
+      "answer": "Höchstens eine",
+      "accept": ["Eine", "1"],
+      "distractors": ["Beliebig viele", "Genau zwei", "Eine pro Thread"],
+      "note": "Entweder beliebig viele &T oder genau eine &mut T, nie beides zugleich. So verhindert der Compiler Data Races schon beim Kompilieren."
+    },
+    {
+      "id": "rust-004",
+      "prompt": "Wofür steht `'a` in `fn f<'a>(x: &'a str) -> &'a str`?",
+      "answer": "Einen Lifetime-Parameter",
+      "accept": ["Lifetime", "Lebensdauer"],
+      "distractors": ["Einen generischen Typ", "Ein Schleifen-Label", "Ein char-Literal"],
+      "note": "Lifetimes verlängern nichts, sie beschreiben nur Beziehungen: Die zurückgegebene Referenz lebt höchstens so lange wie x. Oft darf man sie weglassen (Lifetime Elision)."
+    },
+    {
+      "id": "rust-005",
+      "prompt": "Welcher Typ drückt aus, dass ein Wert fehlen kann?",
+      "answer": "Option<T>",
+      "accept": ["Option"],
+      "distractors": ["Result<T, E>", "Box<T>", "Vec<T>"],
+      "note": "Option<T> ist entweder Some(wert) oder None. Rust kennt kein null: Wer mit einem möglicherweise fehlenden Wert arbeitet, muss den None-Fall ausdrücklich behandeln."
+    },
+    {
+      "id": "rust-006",
+      "prompt": "Welche beiden Varianten hat `Result<T, E>`?",
+      "answer": "Ok und Err",
+      "accept": ["Ok, Err", "Ok/Err"],
+      "distractors": ["Some und None", "Ok und None", "Success und Error"],
+      "note": "Ok(T) enthält den Erfolgswert, Err(E) den Fehler. Result ist mit #[must_use] markiert: Ignorierst du es, warnt der Compiler."
+    },
+    {
+      "id": "rust-007",
+      "prompt": "Was macht der `?`-Operator, wenn er auf ein `Err` trifft?",
+      "answer": "Gibt den Fehler zurück",
+      "accept": ["Early Return", "Return"],
+      "distractors": ["Löst eine Panic aus", "Ignoriert den Fehler", "Liefert einen Default"],
+      "note": "? beendet die Funktion vorzeitig und reicht den Fehler nach oben, vorher wandelt es ihn per From-Trait um. Bei Ok packt es den Wert einfach aus. Mit Option funktioniert es genauso."
+    },
+    {
+      "id": "rust-008",
+      "prompt": "Was passiert bei `.unwrap()` auf einem `None`?",
+      "answer": "Eine Panic",
+      "accept": ["Panic", "Panik"],
+      "distractors": ["Es liefert 0", "Ein Kompilierfehler", "Es liefert None"],
+      "note": "unwrap ist bequem für Prototypen und Tests. In echtem Code sind ?, match, if let oder unwrap_or meist besser. expect mit einer Nachricht liefert wenigstens eine klare Fehlermeldung."
+    },
+    {
+      "id": "rust-009",
+      "prompt": "Womit beschreibst du in Rust gemeinsames Verhalten mehrerer Typen?",
+      "answer": "Mit einem Trait",
+      "accept": ["Trait"],
+      "distractors": ["Mit einer Klasse", "Mit einem Interface", "Mit Vererbung"],
+      "note": "Ein Trait legt Methoden fest, die Typen implementieren: impl Trait for Typ. Klassenvererbung gibt es nicht, Verhalten wird über Traits und Komposition geteilt."
+    },
+    {
+      "id": "rust-010",
+      "prompt": "Was verlangt der Compiler von jedem `match`?",
+      "answer": "Er muss erschöpfend sein",
+      "accept": ["erschöpfend", "Erschöpfend", "exhaustive"],
+      "distractors": ["Er braucht ein else", "Er prüft nur Zahlen", "Er braucht drei Arme"],
+      "note": "Jeder mögliche Wert muss abgedeckt sein, notfalls mit dem Platzhalter _. Kommt später eine neue Enum-Variante dazu, zeigt dir der Compiler jede Stelle, die du anpassen musst."
+    },
+    {
+      "id": "rust-011",
+      "prompt": "Welcher Smart Pointer legt einen Wert auf den Heap, mit genau einem Besitzer?",
+      "answer": "Box<T>",
+      "accept": ["Box"],
+      "distractors": ["Rc<T>", "Arc<T>", "Cell<T>"],
+      "note": "Box braucht man etwa für rekursive Typen wie Bäume oder für Trait-Objekte wie Box<dyn Error>. Der Zeiger selbst hat eine feste Größe, der Inhalt liegt auf dem Heap."
+    },
+    {
+      "id": "rust-012",
+      "prompt": "Welcher Typ erlaubt mehrere Besitzer, aber nur innerhalb eines Threads?",
+      "answer": "Rc<T>",
+      "accept": ["Rc"],
+      "distractors": ["Arc<T>", "Box<T>", "Mutex<T>"],
+      "note": "Rc zählt Referenzen (reference counting). Der Zähler ist nicht atomar und daher schnell, aber Rc ist nicht Send. Rc::clone erzeugt einen weiteren Besitzer, keine tiefe Kopie."
+    },
+    {
+      "id": "rust-013",
+      "prompt": "Welcher Typ teilt Besitz sicher über mehrere Threads?",
+      "answer": "Arc<T>",
+      "accept": ["Arc"],
+      "distractors": ["Rc<T>", "Box<T>", "Cell<T>"],
+      "note": "Arc heißt Atomically Reference Counted. Allein erlaubt es nur gemeinsames Lesen. Zum Verändern kombinierst du es meist mit Mutex oder RwLock: Arc<Mutex<T>>."
+    },
+    {
+      "id": "rust-014",
+      "prompt": "Mit welchem Befehl legst du ein neues Rust-Projekt in einem neuen Ordner an?",
+      "answer": "cargo new",
+      "distractors": ["cargo create", "rustc new", "cargo start"],
+      "example": "cargo new ma-cli",
+      "note": "cargo new erzeugt den Ordner mit Cargo.toml, src/main.rs und einem Git-Repository. Für einen schon vorhandenen Ordner gibt es cargo init."
+    },
+    {
+      "id": "rust-015",
+      "prompt": "Welcher Befehl findet typische Fehler und unidiomatischen Code?",
+      "answer": "cargo clippy",
+      "accept": ["clippy", "Clippy"],
+      "distractors": ["cargo fmt", "cargo check", "cargo doc"],
+      "example": "cargo clippy -- -D warnings",
+      "note": "Clippy kennt Hunderte Lints. cargo fmt formatiert nur, cargo check prüft nur, ob der Code kompiliert, ohne ein Binary zu bauen."
+    },
+    {
+      "id": "rust-016",
+      "prompt": "Was bedeutet es, wenn ein Typ `Send` ist?",
+      "answer": "Darf in andere Threads",
+      "accept": ["Kann zwischen Threads verschoben werden"],
+      "distractors": ["Darf kopiert werden", "Ist serialisierbar", "Liegt auf dem Heap"],
+      "note": "Send ist ein Marker-Trait ohne Methoden, den der Compiler automatisch vergibt. Rc<T> ist zum Beispiel nicht Send, weil sonst zwei Threads gleichzeitig am Zähler drehen könnten."
+    },
+    {
+      "id": "rust-017",
+      "prompt": "Ein Typ `T` ist `Sync`, wenn ...?",
+      "answer": "&T Send ist",
+      "distractors": ["T Copy ist", "T Clone ist", "&mut T Copy ist"],
+      "note": "Sync heißt: Mehrere Threads dürfen gleichzeitig über &T auf den Wert zugreifen. Cell und RefCell sind nicht Sync, Mutex<T> dagegen schon, solange T Send ist."
+    },
+    {
+      "id": "rust-018",
+      "prompt": "Iteratoren sind lazy. Welche Methode sammelt die Elemente zum Beispiel in einen `Vec`?",
+      "answer": ".collect()",
+      "accept": ["collect", "collect()"],
+      "distractors": [".map()", ".iter()", ".into()"],
+      "example": "let v: Vec<i32> = it.collect();",
+      "note": "map oder filter tun allein nichts. Erst ein verbrauchender Aufruf wie collect, sum oder eine for-Schleife treibt den Iterator an. Den Zieltyp gibst du per Annotation oder Turbofish an: collect::<Vec<_>>()."
+    },
+    {
+      "id": "rust-019",
+      "prompt": "Welche Methode verbraucht einen `Vec` und liefert die Elemente selbst statt Referenzen?",
+      "answer": "into_iter()",
+      "accept": ["into_iter", ".into_iter()"],
+      "distractors": ["iter()", "iter_mut()", "as_slice()"],
+      "example": "for x in v.into_iter() {}",
+      "note": "iter() liefert &T, iter_mut() liefert &mut T, into_iter() liefert T und nimmt den Vec in Besitz. Eine for-Schleife über v ruft into_iter auf, über &v dagegen iter."
+    },
+    {
+      "id": "rust-020",
+      "prompt": "Woran erkennst du einen Makroaufruf wie `println!`?",
+      "answer": "Am Ausrufezeichen",
+      "accept": ["Ausrufezeichen", "!"],
+      "distractors": ["Am Doppelpunkt", "Am @-Zeichen", "An den Klammern"],
+      "note": "Makros werden beim Kompilieren zu Code expandiert. Deshalb kann println! eine variable Zahl von Argumenten nehmen und den Formatstring schon beim Kompilieren prüfen."
+    },
+    {
+      "id": "rust-021",
+      "prompt": "Welchen Typ hat `&v[1..3]`, wenn `v` ein `Vec<i32>` ist?",
+      "answer": "&[i32]",
+      "distractors": ["Vec<i32>", "&Vec<i32>", "[i32; 2]"],
+      "example": "let teil: &[i32] = &v[1..3];",
+      "note": "Ein Slice ist eine Sicht auf einen zusammenhängenden Bereich, ohne Kopie. Intern ist &[T] ein breiter Zeiger aus Adresse und Länge. Der Bereich 1..3 umfasst die Indizes 1 und 2."
+    },
+    {
+      "id": "rust-022",
+      "prompt": "Welcher String-Typ besitzt seine Daten und kann wachsen?",
+      "answer": "String",
+      "distractors": ["&str", "&String", "char"],
+      "example": "let mut name = String::new();",
+      "note": "String liegt auf dem Heap und gehört dir, &str ist nur eine geliehene Sicht auf UTF-8-Text. Als Funktionsparameter ist &str meist flexibler, weil sich &String automatisch dorthin umwandelt."
+    },
+    {
+      "id": "rust-023",
+      "prompt": "Welchen Typ hat das Literal `\"hallo\"`?",
+      "answer": "&'static str",
+      "accept": ["&str"],
+      "distractors": ["String", "&String", "str"],
+      "note": "String-Literale stecken fest im Binary und leben deshalb während des ganzen Programms. Mit .to_string() oder String::from wird daraus ein eigener String."
+    },
+    {
+      "id": "rust-024",
+      "prompt": "Was passiert bei `let x = 5; let x = x + 1;`?",
+      "answer": "Ein neues x überdeckt das alte",
+      "accept": ["Shadowing"],
+      "distractors": ["Ein Kompilierfehler", "x wird verändert", "Ein Laufzeitfehler"],
+      "note": "Das nennt man Shadowing. Das zweite let erzeugt eine neue Variable, die sogar einen anderen Typ haben darf, etwa let eingabe = eingabe.trim(); Beide x bleiben dabei unveränderlich."
+    },
+    {
+      "id": "rust-025",
+      "prompt": "Was brauchst du, um `x` später neu zuweisen zu können?",
+      "answer": "let mut x",
+      "accept": ["mut"],
+      "distractors": ["const x", "static x", "var x"],
+      "example": "let mut x = 5;",
+      "note": "Variablen sind in Rust standardmäßig unveränderlich. mut ist eine bewusste Entscheidung, die beim Lesen sofort zeigt, wo sich etwas ändern kann."
+    }
+  ]
+}

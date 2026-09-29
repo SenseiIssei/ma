@@ -1,0 +1,213 @@
+{
+  "id": "zen-stoa",
+  "title": "Zen & Stoa",
+  "subtitle": "Gelassenheit aus Japan und dem alten Rom",
+  "symbol": "禅",
+  "cards": [
+    {
+      "id": "zen-stoa-001",
+      "prompt": "Welcher Zen-Begriff meint einen Geist, der an keinem Gedanken festhält?",
+      "answer": "Mushin",
+      "distractors": ["Zanshin", "Shoshin", "Fudōshin"],
+      "example": "Der Bogenschütze ließ den Pfeil in völligem Mushin los.",
+      "note": "無心, wörtlich „Nicht-Geist“. Gemeint ist keine Leere im Kopf, sondern ein Geist, der frei fließt, statt an einem Gedanken hängen zu bleiben. In den Kampfkünsten gilt er als Ideal."
+    },
+    {
+      "id": "zen-stoa-002",
+      "prompt": "Welcher japanische Begriff beschreibt den bewussten Zwischenraum, die bedeutungsvolle Pause?",
+      "answer": "Ma",
+      "distractors": ["Mu", "Wa", "Kū"],
+      "example": "Zwischen zwei Tönen liegt das Ma, das die Musik atmen lässt.",
+      "note": "間. Das Zeichen zeigt Sonnenlicht, das durch ein Tor fällt. Ma ist die Pause in der Musik, der Raum zwischen den Dingen und der Moment, den dir diese App vor dem Öffnen schenkt."
+    },
+    {
+      "id": "zen-stoa-003",
+      "prompt": "Welche Ästhetik findet Schönheit im Unvollkommenen, Schlichten und Vergänglichen?",
+      "answer": "Wabi-Sabi",
+      "accept": ["Wabisabi", "Wabi Sabi"],
+      "distractors": ["Yūgen", "Iki", "Miyabi"],
+      "example": "Die rissige Teeschale ist ein schönes Beispiel für Wabi-Sabi.",
+      "note": "Wabi steht ursprünglich für die Schönheit schlichter Einsamkeit, Sabi für die Patina des Alters. Zusammen prägen sie Teezeremonie, Keramik und Gartenkunst."
+    },
+    {
+      "id": "zen-stoa-004",
+      "prompt": "Welcher Zen-Begriff bedeutet „Anfängergeist“?",
+      "answer": "Shoshin",
+      "distractors": ["Mushin", "Zanshin", "Kenshō"],
+      "example": "Mit Shoshin übst du, als wäre es das erste Mal.",
+      "note": "初心. Offen und ohne feste Erwartungen an etwas herangehen, auch wenn man es schon jahrelang übt. Im Westen bekannt wurde der Begriff durch Shunryū Suzukis Buch „Zen Mind, Beginner's Mind“ von 1970."
+    },
+    {
+      "id": "zen-stoa-005",
+      "prompt": "Welcher japanische Begriff steht für stetige Verbesserung in kleinen Schritten?",
+      "answer": "Kaizen",
+      "distractors": ["Kanban", "Muda", "Gemba"],
+      "example": "Kaizen heißt: jeden Tag ein kleines Stück besser.",
+      "note": "改善 heißt schlicht „Verbesserung“. Als Prinzip wurde es durch das Toyota-Produktionssystem weltbekannt: lieber täglich ein wenig besser als selten ein großer Wurf."
+    },
+    {
+      "id": "zen-stoa-006",
+      "prompt": "Welches japanische Wort wird im Westen oft als „Grund, morgens aufzustehen“ erklärt?",
+      "answer": "Ikigai",
+      "distractors": ["Omotenashi", "Ganbaru", "Kodawari"],
+      "example": "Für sie ist der kleine Garten ihr Ikigai.",
+      "note": "生き甲斐, etwa „das, wofür es sich zu leben lohnt“. Das bekannte Diagramm mit vier Kreisen ist eine westliche Popularisierung der 2010er-Jahre. In Japan meint Ikigai oft ganz alltägliche Freuden."
+    },
+    {
+      "id": "zen-stoa-007",
+      "prompt": "Wie heißt die Sitzmeditation im Zen?",
+      "answer": "Zazen",
+      "distractors": ["Kinhin", "Samu", "Sesshin"],
+      "example": "Jeden Morgen sitzt er zwanzig Minuten Zazen.",
+      "note": "坐禅, „sitzendes Zen“. Im Sōtō-Zen sitzt man oft zur Wand gewandt und lässt Gedanken kommen und gehen, ohne ihnen zu folgen."
+    },
+    {
+      "id": "zen-stoa-008",
+      "prompt": "Wie heißt eine paradoxe Frage, die im Zen den logischen Verstand an seine Grenze führt?",
+      "answer": "Koan",
+      "accept": ["Kōan"],
+      "distractors": ["Mantra", "Sutra", "Haiku"],
+      "example": "Der Schüler grübelte wochenlang über sein Koan.",
+      "note": "公案. Ein bekanntes Beispiel geht auf den Meister Hakuin zurück: Welchen Klang hat eine einzelne Hand? Eine logische Antwort gibt es nicht, und genau darum geht es."
+    },
+    {
+      "id": "zen-stoa-009",
+      "prompt": "Wie nennt man im Zen das Erwachen, die plötzliche Einsicht in die eigene Natur?",
+      "answer": "Satori",
+      "distractors": ["Samu", "Sesshin", "Kinhin"],
+      "example": "Nach Jahren der Übung erlebte sie Satori.",
+      "note": "悟り. Im Rinzai-Zen sucht man es oft über die Arbeit mit Koans. Der verwandte Begriff Kenshō bezeichnet einen ersten Blick auf die eigene wahre Natur."
+    },
+    {
+      "id": "zen-stoa-010",
+      "prompt": "Wie heißt der mit einem einzigen Pinselzug gemalte Kreis im Zen?",
+      "answer": "Ensō",
+      "accept": ["Enso"],
+      "distractors": ["Mandala", "Hanko", "Kakejiku"],
+      "example": "Mit einem Atemzug malte der Mönch ein Ensō.",
+      "note": "円相. Der Kreis entsteht in einem Zug und lässt sich nicht korrigieren. Manche Maler lassen ihn offen, als Zeichen dafür, dass Unvollkommenheit dazugehört."
+    },
+    {
+      "id": "zen-stoa-011",
+      "prompt": "Welche Technik repariert zerbrochene Keramik mit Gold und macht den Bruch sichtbar?",
+      "answer": "Kintsugi",
+      "distractors": ["Ikebana", "Origami", "Raku"],
+      "example": "Durch Kintsugi wurde die zerbrochene Schale noch wertvoller.",
+      "note": "金継ぎ, „Goldverbindung“. Die Scherben werden mit Urushi-Lack geklebt und die Naht mit Goldpulver bestäubt. Der Bruch wird Teil der Geschichte des Gefäßes, statt versteckt zu werden."
+    },
+    {
+      "id": "zen-stoa-012",
+      "prompt": "Welcher Ausdruck beschreibt die sanfte Wehmut über die Vergänglichkeit der Dinge?",
+      "answer": "Mono no aware",
+      "accept": ["Mono no Aware"],
+      "distractors": ["Yūgen", "Omotenashi", "Ichigo ichie"],
+      "example": "Die fallenden Kirschblüten wecken Mono no aware.",
+      "note": "物の哀れ. Klassisches Beispiel ist die Kirschblüte: Sie berührt gerade deshalb, weil sie nach wenigen Tagen fällt. Der Gelehrte Motoori Norinaga machte den Begriff im 18. Jahrhundert berühmt."
+    },
+    {
+      "id": "zen-stoa-013",
+      "prompt": "Welcher stoische Grundsatz trennt das, was in deiner Macht liegt, von dem, was es nicht tut?",
+      "answer": "Dichotomie der Kontrolle",
+      "distractors": ["Goldene Mitte", "Kategorischer Imperativ", "Ockhams Rasiermesser"],
+      "example": "Die Dichotomie der Kontrolle schenkt dir Ruhe im Stau.",
+      "note": "Epiktets Handbüchlein beginnt mit dieser Unterscheidung. In deiner Macht liegen Urteile, Absichten und Handlungen, nicht aber Ruf, Besitz oder das Verhalten anderer."
+    },
+    {
+      "id": "zen-stoa-014",
+      "prompt": "Welche lateinische Formel steht für die Liebe zum eigenen Schicksal?",
+      "answer": "Amor fati",
+      "distractors": ["Carpe diem", "Memento mori", "Tempus fugit"],
+      "example": "Amor fati heißt, auch den Umweg zu lieben.",
+      "note": "Die Formel selbst stammt von Friedrich Nietzsche, die Haltung dahinter ist aber stoisch: Was geschieht, nicht bloß ertragen, sondern annehmen und als Material nutzen."
+    },
+    {
+      "id": "zen-stoa-015",
+      "prompt": "Welche Mahnung erinnert dich daran, dass du sterblich bist?",
+      "answer": "Memento mori",
+      "distractors": ["Amor fati", "Carpe diem", "Ora et labora"],
+      "example": "Ein Totenkopf auf dem Schreibtisch diente als Memento mori.",
+      "note": "Lateinisch „Bedenke, dass du sterben wirst“. Für die Stoiker war das kein düsterer Gedanke, sondern eine Einladung, die begrenzte Zeit nicht zu verschwenden."
+    },
+    {
+      "id": "zen-stoa-016",
+      "prompt": "Wie heißt die stoische Übung, sich mögliche Rückschläge vorab auszumalen?",
+      "answer": "Praemeditatio malorum",
+      "accept": ["Premeditatio malorum"],
+      "distractors": ["Tabula rasa", "Via negativa", "Carpe diem"],
+      "note": "Wer Verlust, Krankheit oder Scheitern gedanklich vorwegnimmt, wird davon weniger überrumpelt. Seneca empfahl solche Vorbereitung in seinen Briefen, nicht als Grübeln, sondern als Training der Gelassenheit."
+    },
+    {
+      "id": "zen-stoa-017",
+      "prompt": "Welcher römische Kaiser schrieb die „Selbstbetrachtungen“?",
+      "answer": "Marc Aurel",
+      "accept": ["Marcus Aurelius", "Mark Aurel"],
+      "distractors": ["Hadrian", "Trajan", "Augustus"],
+      "example": "Die Selbstbetrachtungen von Marc Aurel liest man bis heute.",
+      "note": "Er schrieb sie auf Griechisch als private Notizen an sich selbst, zu einem guten Teil während der Feldzüge an der Donau. Veröffentlichen wollte er sie vermutlich nie."
+    },
+    {
+      "id": "zen-stoa-018",
+      "prompt": "Welcher Stoiker war Erzieher und Berater Kaiser Neros?",
+      "answer": "Seneca",
+      "distractors": ["Epiktet", "Cicero", "Musonius Rufus"],
+      "example": "Seneca schrieb viele Briefe an seinen Freund Lucilius.",
+      "note": "Lucius Annaeus Seneca verfasste unter anderem die „Briefe an Lucilius“. Sein Leben war voller Widersprüche: ein Lehrer der Bescheidenheit, der zugleich zu den reichsten Männern Roms gehörte."
+    },
+    {
+      "id": "zen-stoa-019",
+      "prompt": "Welcher Stoiker wurde als Sklave geboren und lehrte später als freier Mann?",
+      "answer": "Epiktet",
+      "accept": ["Epictetus", "Epiktetos"],
+      "distractors": ["Seneca", "Zenon", "Chrysipp"],
+      "example": "Epiktet lehrte später in Nikopolis.",
+      "note": "Epiktet selbst schrieb nichts auf. Sein Schüler Arrian hielt die Lehrgespräche fest und fasste sie im „Handbüchlein der Moral“ zusammen."
+    },
+    {
+      "id": "zen-stoa-020",
+      "prompt": "Wer gründete um 300 v. Chr. in Athen die Stoa?",
+      "answer": "Zenon von Kition",
+      "accept": ["Zenon", "Zeno"],
+      "distractors": ["Chrysipp", "Epikur", "Diogenes"],
+      "note": "Der Name der Schule kommt von der Stoa Poikile, einer bemalten Säulenhalle am Markt von Athen, in der Zenon lehrte."
+    },
+    {
+      "id": "zen-stoa-021",
+      "prompt": "Welches stoische Ideal meint Freiheit von zerstörerischen Leidenschaften, nicht Gleichgültigkeit?",
+      "answer": "Apatheia",
+      "distractors": ["Hedone", "Hybris", "Katharsis"],
+      "note": "Anders als das deutsche Wort „Apathie“ bedeutet Apatheia kein Abstumpfen. Gemeint ist ein Geist, den Angst, Gier oder Zorn nicht mehr beherrschen."
+    },
+    {
+      "id": "zen-stoa-022",
+      "prompt": "Was ist für die Stoiker das einzige wahre Gut?",
+      "answer": "Die Tugend",
+      "accept": ["Tugend"],
+      "distractors": ["Die Lust", "Der Reichtum", "Der Ruhm"],
+      "example": "Die Tugend allein genügt für ein gutes Leben.",
+      "note": "Die vier Kardinaltugenden sind Weisheit, Gerechtigkeit, Tapferkeit und Mäßigung. Gesundheit oder Geld galten als „gleichgültige Dinge“: angenehm, aber nicht entscheidend für ein gutes Leben."
+    },
+    {
+      "id": "zen-stoa-023",
+      "prompt": "Wie heißt die langsame Gehmeditation zwischen zwei Runden Zazen?",
+      "answer": "Kinhin",
+      "distractors": ["Samu", "Sesshin", "Dokusan"],
+      "example": "Nach dem Sitzen folgt eine Runde Kinhin.",
+      "note": "経行. Im Sōtō-Zen geht man sehr langsam, etwa einen halben Schritt pro Atemzug, und trägt die Achtsamkeit vom Sitzen in die Bewegung."
+    },
+    {
+      "id": "zen-stoa-024",
+      "prompt": "Welcher Ausdruck aus der Teezeremonie bedeutet „eine Zeit, eine Begegnung“?",
+      "answer": "Ichigo ichie",
+      "distractors": ["Mono no aware", "Omotenashi", "Wabi-Sabi"],
+      "example": "Jede Teestunde ist Ichigo ichie.",
+      "note": "一期一会. Jede Begegnung ist einmalig und kehrt so nie wieder. Darum verdient sie volle Aufmerksamkeit, auch wenn es nur eine Tasse Tee ist."
+    },
+    {
+      "id": "zen-stoa-025",
+      "prompt": "Welche Schrift Senecas handelt von der Kürze des Lebens?",
+      "answer": "De brevitate vitae",
+      "distractors": ["De ira", "De clementia", "De otio"],
+      "note": "Senecas Kernidee: Das Leben ist nicht zu kurz, wir verschwenden nur viel davon. Wer bewusst mit seiner Zeit umgeht, hat genug davon."
+    }
+  ]
+}

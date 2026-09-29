@@ -1,0 +1,165 @@
+# XcodeGen spec. The CI runner turns this into Ma.xcodeproj, so the project
+# file never lives in git and nobody needs a Mac to change it.
+name: Ma
+options:
+  bundleIdPrefix: com.sensei
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: L3XLH7XB8J
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    VERSIONING_SYSTEM: apple-generic
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    # Signing is manual and driven by fastlane match. The two MA_* macros let
+    # one spec serve both profile kinds: the device lane overrides them with
+    # Development, the TestFlight lane keeps the defaults.
+    CODE_SIGN_STYLE: Manual
+    MA_PROFILE_KIND: AppStore
+    MA_SIGN_IDENTITY: Apple Distribution
+    CODE_SIGN_IDENTITY: $(MA_SIGN_IDENTITY)
+    PROVISIONING_PROFILE_SPECIFIER: match $(MA_PROFILE_KIND) $(PRODUCT_BUNDLE_IDENTIFIER)
+
+targets:
+  Ma:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Shared
+    dependencies:
+      - target: MaShieldConfig
+      - target: MaShieldAction
+      - target: MaMonitor
+      - target: MaFilter
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Ma
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: LaunchPaper
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+        CFBundleURLTypes:
+          - CFBundleURLName: com.sensei.ma
+            CFBundleURLSchemes: [ma]
+        LSApplicationQueriesSchemes: [instagram, youtube, twitter, linkedin, fb, reddit, snapchat, pinterest, barcelona, tiktok]
+    entitlements:
+      path: App/Ma.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+  # The screen iOS shows in place of a blocked app.
+  MaShieldConfig:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/ShieldConfig
+      - path: Shared
+    info:
+      path: Extensions/ShieldConfig/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Shield
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettingsUI.shield-configuration-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShieldConfigurationExtension
+    entitlements:
+      path: Extensions/ShieldConfig/ShieldConfig.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.shieldconfig
+
+  # What happens when somebody taps a button on that screen.
+  MaShieldAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/ShieldAction
+      - path: Shared
+    info:
+      path: Extensions/ShieldAction/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Action
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettings.shield-action-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShieldActionExtension
+    entitlements:
+      path: Extensions/ShieldAction/ShieldAction.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.shieldaction
+
+  # Runs while the app is closed: schedules, expiring unlocks, focus end.
+  MaMonitor:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/Monitor
+      - path: Shared
+    info:
+      path: Extensions/Monitor/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Monitor
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.deviceactivity.monitor-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).MonitorExtension
+    entitlements:
+      path: Extensions/Monitor/Monitor.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.monitor
+
+  # Safari Web Extension that hides Reels, Shorts and endless feeds.
+  MaFilter:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/Filter/SafariWebExtensionHandler.swift
+      - path: Extensions/Filter/Resources
+        buildPhase: resources
+      - path: Shared/MaShared.swift
+      - path: Shared/FilterSettings.swift
+    info:
+      path: Extensions/Filter/Info.plist
+      properties:
+        CFBundleDisplayName: Ma Filter
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.Safari.web-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SafariWebExtensionHandler
+    entitlements:
+      path: Extensions/Filter/Filter.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.sensei.ma]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensei.ma.filter

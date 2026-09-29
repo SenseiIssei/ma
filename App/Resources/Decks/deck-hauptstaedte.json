@@ -1,0 +1,311 @@
+{
+  "id": "hauptstaedte",
+  "title": "Hauptstädte",
+  "subtitle": "40 Länder, 40 Hauptstädte, ein paar Fallen",
+  "symbol": "都",
+  "cards": [
+    {
+      "id": "hauptstaedte-001",
+      "prompt": "Hauptstadt von Japan?",
+      "answer": "Tokio",
+      "accept": ["Tokyo", "Tōkyō"],
+      "distractors": ["Kyōto", "Osaka", "Yokohama"],
+      "note": "Bis 1868 hieß die Stadt Edo. Tōkyō bedeutet „östliche Hauptstadt“, denn vorher residierte der Kaiser in Kyōto."
+    },
+    {
+      "id": "hauptstaedte-002",
+      "prompt": "Hauptstadt von Frankreich?",
+      "answer": "Paris",
+      "distractors": ["Lyon", "Marseille", "Bordeaux"],
+      "note": "Vor der Kathedrale Notre-Dame markiert eine Bronzeplakette den Punkt null, von dem aus Straßenentfernungen in Frankreich gemessen werden."
+    },
+    {
+      "id": "hauptstaedte-003",
+      "prompt": "Hauptstadt von Italien?",
+      "answer": "Rom",
+      "accept": ["Roma"],
+      "distractors": ["Mailand", "Neapel", "Florenz"],
+      "note": "Mitten in Rom liegt mit der Vatikanstadt ein eigener Staat, der kleinste der Welt."
+    },
+    {
+      "id": "hauptstaedte-004",
+      "prompt": "Hauptstadt von Spanien?",
+      "answer": "Madrid",
+      "distractors": ["Barcelona", "Sevilla", "Valencia"],
+      "note": "Madrid liegt fast genau in der geografischen Mitte Spaniens und auf rund 650 Metern Höhe, höher als jede andere Hauptstadt der EU."
+    },
+    {
+      "id": "hauptstaedte-005",
+      "prompt": "Hauptstadt von Portugal?",
+      "answer": "Lissabon",
+      "accept": ["Lisboa", "Lisbon"],
+      "distractors": ["Porto", "Coimbra", "Faro"],
+      "note": "1755 zerstörten ein Erdbeben, ein Tsunami und ein Großbrand weite Teile der Stadt. Der Wiederaufbau der Unterstadt Baixa gilt als frühes Beispiel für erdbebensicheres Bauen."
+    },
+    {
+      "id": "hauptstaedte-006",
+      "prompt": "Hauptstadt von Österreich?",
+      "answer": "Wien",
+      "accept": ["Vienna"],
+      "distractors": ["Graz", "Salzburg", "Linz"],
+      "note": "Wien ist einer der vier Hauptsitze der Vereinten Nationen, neben New York, Genf und Nairobi."
+    },
+    {
+      "id": "hauptstaedte-007",
+      "prompt": "Hauptstadt der Schweiz?",
+      "answer": "Bern",
+      "distractors": ["Zürich", "Genf", "Basel"],
+      "note": "Die Bundesverfassung nennt gar keine Hauptstadt. Bern ist offiziell „Bundesstadt“, also Sitz von Regierung und Parlament."
+    },
+    {
+      "id": "hauptstaedte-008",
+      "prompt": "Hauptstadt von Polen?",
+      "answer": "Warschau",
+      "accept": ["Warszawa"],
+      "distractors": ["Krakau", "Danzig", "Breslau"],
+      "note": "Bis Ende des 16. Jahrhunderts war Krakau Hauptstadt. Die im Krieg zerstörte Warschauer Altstadt wurde so genau rekonstruiert, dass sie UNESCO-Welterbe wurde."
+    },
+    {
+      "id": "hauptstaedte-009",
+      "prompt": "Hauptstadt von Ungarn?",
+      "answer": "Budapest",
+      "distractors": ["Debrecen", "Szeged", "Pécs"],
+      "note": "1873 wurden Buda, Óbuda und Pest zu einer Stadt vereinigt. Die Donau trennt bis heute das hügelige Buda vom flachen Pest."
+    },
+    {
+      "id": "hauptstaedte-010",
+      "prompt": "Hauptstadt von Griechenland?",
+      "answer": "Athen",
+      "accept": ["Athens", "Athina"],
+      "distractors": ["Thessaloniki", "Patras", "Heraklion"],
+      "note": "Athen ist nach der Göttin Athene benannt. Ihr Tempel, der Parthenon, steht auf der Akropolis mitten in der Stadt."
+    },
+    {
+      "id": "hauptstaedte-011",
+      "prompt": "Hauptstadt der Türkei?",
+      "answer": "Ankara",
+      "distractors": ["Istanbul", "Izmir", "Antalya"],
+      "note": "Atatürk machte Ankara 1923 zur Hauptstadt der neuen Republik. Istanbul ist viel größer, war aber nie Hauptstadt der Republik."
+    },
+    {
+      "id": "hauptstaedte-012",
+      "prompt": "Hauptstadt von Russland?",
+      "answer": "Moskau",
+      "accept": ["Moskwa", "Moscow"],
+      "distractors": ["Sankt Petersburg", "Nowosibirsk", "Kasan"],
+      "note": "Rund zwei Jahrhunderte lang, bis 1918, war Sankt Petersburg die Hauptstadt des Zarenreichs. Erst die Bolschewiki zogen zurück nach Moskau."
+    },
+    {
+      "id": "hauptstaedte-013",
+      "prompt": "Hauptstadt von Norwegen?",
+      "answer": "Oslo",
+      "distractors": ["Bergen", "Trondheim", "Stavanger"],
+      "note": "Nach einem Brand 1624 hieß die neu aufgebaute Stadt Christiania, später Kristiania. Erst seit 1925 heißt sie wieder Oslo."
+    },
+    {
+      "id": "hauptstaedte-014",
+      "prompt": "Hauptstadt von Schweden?",
+      "answer": "Stockholm",
+      "distractors": ["Göteborg", "Malmö", "Uppsala"],
+      "note": "Stockholm verteilt sich auf 14 Inseln zwischen dem Mälarsee und der Ostsee."
+    },
+    {
+      "id": "hauptstaedte-015",
+      "prompt": "Hauptstadt von Finnland?",
+      "answer": "Helsinki",
+      "accept": ["Helsingfors"],
+      "distractors": ["Turku", "Tampere", "Oulu"],
+      "note": "Bis 1812 war Turku die Hauptstadt. Auf Schwedisch heißt Helsinki Helsingfors, denn beide Sprachen sind in Finnland Amtssprachen."
+    },
+    {
+      "id": "hauptstaedte-016",
+      "prompt": "Hauptstadt von Dänemark?",
+      "answer": "Kopenhagen",
+      "accept": ["København", "Copenhagen"],
+      "distractors": ["Aarhus", "Odense", "Aalborg"],
+      "note": "København bedeutet „Kaufmannshafen“. Die Stadt liegt nicht auf dem Festland Jütland, sondern vor allem auf der Insel Seeland."
+    },
+    {
+      "id": "hauptstaedte-017",
+      "prompt": "Hauptstadt von Island?",
+      "answer": "Reykjavík",
+      "accept": ["Reykjavik"],
+      "distractors": ["Akureyri", "Keflavík", "Húsavík"],
+      "note": "Reykjavík ist die nördlichste Hauptstadt eines souveränen Staates. Der Name bedeutet „Rauchbucht“, nach dem Dampf der heißen Quellen."
+    },
+    {
+      "id": "hauptstaedte-018",
+      "prompt": "Hauptstadt von Kanada?",
+      "answer": "Ottawa",
+      "distractors": ["Toronto", "Montreal", "Vancouver"],
+      "note": "Königin Victoria wählte Ottawa 1857 als Kompromiss zwischen rivalisierenden Städten wie Toronto, Montreal und Québec. Die Stadt liegt direkt an der Grenze zwischen Ontario und Québec."
+    },
+    {
+      "id": "hauptstaedte-019",
+      "prompt": "Hauptstadt der USA?",
+      "answer": "Washington, D.C.",
+      "accept": ["Washington", "Washington D.C.", "Washington DC"],
+      "distractors": ["New York", "Philadelphia", "Boston"],
+      "note": "D.C. steht für District of Columbia, einen Bundesdistrikt, der zu keinem Bundesstaat gehört. New York war nur 1789 bis 1790 Regierungssitz."
+    },
+    {
+      "id": "hauptstaedte-020",
+      "prompt": "Hauptstadt von Mexiko?",
+      "answer": "Mexiko-Stadt",
+      "accept": ["Mexiko Stadt", "Mexico City", "Ciudad de México"],
+      "distractors": ["Guadalajara", "Monterrey", "Cancún"],
+      "note": "Die Stadt steht auf den Resten von Tenochtitlan, der Hauptstadt der Azteken, die auf einer Insel in einem See lag. Deshalb sinken manche Viertel bis heute ab."
+    },
+    {
+      "id": "hauptstaedte-021",
+      "prompt": "Hauptstadt von Brasilien?",
+      "answer": "Brasília",
+      "accept": ["Brasilia"],
+      "distractors": ["Rio de Janeiro", "São Paulo", "Salvador"],
+      "note": "Brasília wurde in rund vier Jahren aus dem Boden gestampft und 1960 eingeweiht. Von oben erinnert der Stadtplan von Lúcio Costa an ein Flugzeug oder einen Vogel."
+    },
+    {
+      "id": "hauptstaedte-022",
+      "prompt": "Hauptstadt von Argentinien?",
+      "answer": "Buenos Aires",
+      "distractors": ["Córdoba", "Rosario", "Mendoza"],
+      "note": "Buenos Aires bedeutet „gute Lüfte“. Die Einwohner nennen sich Porteños, „Hafenleute“."
+    },
+    {
+      "id": "hauptstaedte-023",
+      "prompt": "Hauptstadt von Chile?",
+      "answer": "Santiago",
+      "accept": ["Santiago de Chile"],
+      "distractors": ["Valparaíso", "Concepción", "Antofagasta"],
+      "note": "Santiago ist Hauptstadt und Regierungssitz, das Parlament tagt aber seit 1990 in der Hafenstadt Valparaíso."
+    },
+    {
+      "id": "hauptstaedte-024",
+      "prompt": "Hauptstadt von Kolumbien?",
+      "answer": "Bogotá",
+      "accept": ["Bogota"],
+      "distractors": ["Medellín", "Cali", "Cartagena"],
+      "note": "Bogotá liegt auf rund 2600 Metern Höhe in den Anden. Trotz der Nähe zum Äquator ist es dort ganzjährig eher kühl."
+    },
+    {
+      "id": "hauptstaedte-025",
+      "prompt": "Hauptstadt von Australien?",
+      "answer": "Canberra",
+      "distractors": ["Sydney", "Melbourne", "Brisbane"],
+      "note": "Sydney und Melbourne konnten sich nicht einigen, also wurde Canberra als Kompromiss eigens geplant. Den Entwurf lieferten die Architekten Walter Burley Griffin und Marion Mahony Griffin."
+    },
+    {
+      "id": "hauptstaedte-026",
+      "prompt": "Hauptstadt von Neuseeland?",
+      "answer": "Wellington",
+      "distractors": ["Auckland", "Christchurch", "Dunedin"],
+      "note": "Wellington ist die südlichste Hauptstadt eines souveränen Staates. Die größte Stadt des Landes, Auckland, war bis 1865 selbst Hauptstadt."
+    },
+    {
+      "id": "hauptstaedte-027",
+      "prompt": "Hauptstadt von China?",
+      "answer": "Peking",
+      "accept": ["Beijing"],
+      "distractors": ["Shanghai", "Nanjing", "Hongkong"],
+      "note": "Beijing bedeutet „nördliche Hauptstadt“, Nanjing „südliche Hauptstadt“. Peking ist die ältere, im Deutschen weiter übliche Schreibweise."
+    },
+    {
+      "id": "hauptstaedte-028",
+      "prompt": "Hauptstadt von Südkorea?",
+      "answer": "Seoul",
+      "distractors": ["Busan", "Incheon", "Daegu"],
+      "note": "Etwa die Hälfte aller Menschen in Südkorea lebt im Großraum Seoul. Die Grenze zu Nordkorea ist nur rund 50 Kilometer entfernt."
+    },
+    {
+      "id": "hauptstaedte-029",
+      "prompt": "Hauptstadt von Vietnam?",
+      "answer": "Hanoi",
+      "accept": ["Hà Nội", "Ha Noi"],
+      "distractors": ["Ho-Chi-Minh-Stadt", "Huế", "Da Nang"],
+      "note": "Hà Nội bedeutet etwa „innerhalb der Flüsse“, weil die Stadt in einer Schleife des Roten Flusses liegt. Die größte Stadt ist aber Ho-Chi-Minh-Stadt, das frühere Saigon."
+    },
+    {
+      "id": "hauptstaedte-030",
+      "prompt": "Hauptstadt von Thailand?",
+      "answer": "Bangkok",
+      "accept": ["Krung Thep"],
+      "distractors": ["Chiang Mai", "Phuket", "Pattaya"],
+      "note": "Die Thai nennen ihre Hauptstadt Krung Thep, „Stadt der Engel“. Der volle zeremonielle Name gilt als einer der längsten Ortsnamen der Welt."
+    },
+    {
+      "id": "hauptstaedte-031",
+      "prompt": "Hauptstadt von Indien?",
+      "answer": "Neu-Delhi",
+      "accept": ["Neu Delhi", "New Delhi", "Delhi"],
+      "distractors": ["Mumbai", "Kalkutta", "Chennai"],
+      "note": "Bis 1911 war Kalkutta die Hauptstadt Britisch-Indiens. Neu-Delhi wurde danach als Regierungsviertel geplant und 1931 eingeweiht."
+    },
+    {
+      "id": "hauptstaedte-032",
+      "prompt": "Hauptstadt von Myanmar?",
+      "answer": "Naypyidaw",
+      "accept": ["Naypyitaw", "Nay Pyi Taw"],
+      "distractors": ["Yangon", "Mandalay", "Bagan"],
+      "note": "Die Militärregierung verlegte den Regierungssitz 2005 überraschend von Yangon in die eigens gebaute Stadt Naypyidaw. Bekannt ist sie für riesige, oft fast leere Straßen."
+    },
+    {
+      "id": "hauptstaedte-033",
+      "prompt": "Hauptstadt von Kasachstan?",
+      "answer": "Astana",
+      "distractors": ["Almaty", "Schymkent", "Karaganda"],
+      "note": "Seit 1997 ist Astana Hauptstadt statt Almaty. Von 2019 bis 2022 hieß sie Nur-Sultan, dann bekam sie ihren alten Namen zurück."
+    },
+    {
+      "id": "hauptstaedte-034",
+      "prompt": "Hauptstadt von Ägypten?",
+      "answer": "Kairo",
+      "accept": ["Cairo"],
+      "distractors": ["Alexandria", "Gizeh", "Luxor"],
+      "note": "Kairo liegt am Nil, kurz bevor er sich zum Delta auffächert. Die Pyramiden von Gizeh stehen am Rand des Großraums."
+    },
+    {
+      "id": "hauptstaedte-035",
+      "prompt": "Hauptstadt von Marokko?",
+      "answer": "Rabat",
+      "distractors": ["Casablanca", "Marrakesch", "Fès"],
+      "note": "Viele tippen auf Casablanca oder Marrakesch, doch Regierungssitz und Königspalast liegen in Rabat an der Atlantikküste."
+    },
+    {
+      "id": "hauptstaedte-036",
+      "prompt": "Hauptstadt von Nigeria?",
+      "answer": "Abuja",
+      "distractors": ["Lagos", "Kano", "Ibadan"],
+      "note": "1991 löste Abuja die Küstenmetropole Lagos ab. Die neue Stadt wurde nahe der Landesmitte geplant, neutral zwischen den großen Volksgruppen."
+    },
+    {
+      "id": "hauptstaedte-037",
+      "prompt": "Hauptstadt von Kenia?",
+      "answer": "Nairobi",
+      "distractors": ["Mombasa", "Kisumu", "Nakuru"],
+      "note": "Direkt am Stadtrand liegt der Nairobi-Nationalpark mit Löwen und Giraffen vor der Skyline. Außerdem ist die Stadt einer der vier Hauptsitze der UN."
+    },
+    {
+      "id": "hauptstaedte-038",
+      "prompt": "Hauptstadt von Südafrika (Regierungssitz)?",
+      "answer": "Pretoria",
+      "accept": ["Tshwane"],
+      "distractors": ["Johannesburg", "Durban", "East London"],
+      "note": "Südafrika hat drei Hauptstädte: Pretoria für die Regierung, Kapstadt für das Parlament und Bloemfontein für die Justiz. Die größte Stadt, Johannesburg, ist keine davon."
+    },
+    {
+      "id": "hauptstaedte-039",
+      "prompt": "Hauptstadt von Singapur?",
+      "answer": "Singapur",
+      "accept": ["Singapore"],
+      "distractors": ["Kuala Lumpur", "Johor Bahru", "Malakka"],
+      "note": "Singapur ist ein Stadtstaat: Land und Hauptstadt sind dasselbe. Der Name kommt aus dem Sanskrit und bedeutet „Löwenstadt“."
+    },
+    {
+      "id": "hauptstaedte-040",
+      "prompt": "Hauptstadt der Philippinen?",
+      "answer": "Manila",
+      "distractors": ["Quezon City", "Cebu", "Davao"],
+      "note": "Manila gilt als die am dichtesten besiedelte Stadt der Welt. Von 1948 bis 1976 war das benachbarte Quezon City offiziell Hauptstadt."
+    }
+  ]
+}

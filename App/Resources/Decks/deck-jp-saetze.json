@@ -1,0 +1,184 @@
+{
+  "id": "jp-saetze",
+  "title": "Japanisch: Sätze bauen",
+  "subtitle": "Einfache Sätze Baustein für Baustein zusammensetzen",
+  "symbol": "文",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-saetze-001",
+      "prompt": "Ich bin Student.",
+      "answer": "私 は 学生 です",
+      "accept": ["私は学生です"],
+      "note": "Watashi wa gakusei desu. は ist die Themenpartikel und wird dann „wa“ gesprochen, nicht „ha“."
+    },
+    {
+      "id": "jp-saetze-002",
+      "prompt": "Das ist ein Buch.",
+      "answer": "これ は 本 です",
+      "accept": ["これは本です"],
+      "note": "Kore wa hon desu. これ zeigt auf etwas bei dir, それ auf etwas beim Gegenüber, あれ auf etwas weiter weg."
+    },
+    {
+      "id": "jp-saetze-003",
+      "prompt": "Ich trinke Wasser.",
+      "answer": "私 は 水 を 飲みます",
+      "accept": ["私は水を飲みます"],
+      "note": "Watashi wa mizu o nomimasu. を markiert das direkte Objekt und wird „o“ gesprochen. Das Verb steht im Japanischen immer am Ende."
+    },
+    {
+      "id": "jp-saetze-004",
+      "prompt": "Ich esse Brot.",
+      "answer": "パン を 食べます",
+      "accept": ["パンを食べます"],
+      "note": "Pan o tabemasu. Das „ich“ lässt man meist weg, wenn es aus dem Zusammenhang klar ist. パン stammt übrigens aus dem Portugiesischen."
+    },
+    {
+      "id": "jp-saetze-005",
+      "prompt": "Ich gehe zum Bahnhof.",
+      "answer": "駅 に 行きます",
+      "accept": ["駅に行きます"],
+      "note": "Eki ni ikimasu. に markiert das Ziel einer Bewegung, so bei 行きます (gehen), 来ます (kommen) und 帰ります (heimkehren)."
+    },
+    {
+      "id": "jp-saetze-006",
+      "prompt": "Ist das Tee?",
+      "answer": "これ は お茶 です か",
+      "accept": ["これはお茶ですか"],
+      "note": "Kore wa ocha desu ka. Ein か am Satzende macht aus einer Aussage eine Frage. Die Wortstellung bleibt dabei gleich."
+    },
+    {
+      "id": "jp-saetze-007",
+      "prompt": "Schönes Wetter, nicht wahr?",
+      "answer": "いい 天気 です ね",
+      "accept": ["いい天気ですね"],
+      "note": "Ii tenki desu ne. ね am Satzende sucht Zustimmung, ähnlich wie „oder?“ oder „nicht wahr?“."
+    },
+    {
+      "id": "jp-saetze-008",
+      "prompt": "Der Berg ist hoch.",
+      "answer": "山 は 高い です",
+      "accept": ["山は高いです"],
+      "note": "Yama wa takai desu. い-Adjektive wie 高い stehen direkt vor です. Das です macht den Satz hier nur höflich."
+    },
+    {
+      "id": "jp-saetze-009",
+      "prompt": "Ich mag Katzen.",
+      "answer": "猫 が 好き です",
+      "accept": ["猫が好きです"],
+      "note": "Neko ga suki desu. Bei 好き steht das, was man mag, mit が und nicht mit を. 好き ist nämlich kein Verb, sondern ein Adjektiv."
+    },
+    {
+      "id": "jp-saetze-010",
+      "prompt": "Wo ist der Bahnhof?",
+      "answer": "駅 は どこ です か",
+      "accept": ["駅はどこですか"],
+      "note": "Eki wa doko desu ka. Das Fragewort どこ (wo) steht genau dort, wo später die Antwort steht: 駅はあそこです, der Bahnhof ist dort drüben."
+    },
+    {
+      "id": "jp-saetze-011",
+      "prompt": "Ich lese ein Buch.",
+      "answer": "本 を 読みます",
+      "accept": ["本を読みます"],
+      "note": "Hon o yomimasu. 読みます ist die höfliche ます-Form von 読む (yomu, lesen). Artikel wie „ein“ oder „das“ gibt es im Japanischen nicht."
+    },
+    {
+      "id": "jp-saetze-012",
+      "prompt": "Morgen fahre ich nach Tokio.",
+      "answer": "明日 東京 に 行きます",
+      "accept": ["明日東京に行きます", "明日 は 東京 に 行きます", "明日は東京に行きます"],
+      "note": "Ashita Tōkyō ni ikimasu. Relative Zeitangaben wie 明日 oder 今日 brauchen keine Partikel, feste Uhrzeiten wie 七時 dagegen schon: 七時に."
+    },
+    {
+      "id": "jp-saetze-013",
+      "prompt": "Dort drüben ist ein Hund.",
+      "answer": "あそこ に 犬 が います",
+      "accept": ["あそこに犬がいます"],
+      "note": "Asoko ni inu ga imasu. います benutzt man für Lebewesen, あります für Dinge. に markiert hier den Ort, an dem sich etwas befindet."
+    },
+    {
+      "id": "jp-saetze-014",
+      "prompt": "Heute ist es ruhig.",
+      "answer": "今日 は 静か です",
+      "accept": ["今日は静かです"],
+      "note": "Kyō wa shizuka desu. 静か ist ein な-Adjektiv: Vor です fällt das な weg, vor einem Nomen steht es, wie in 静かな部屋."
+    },
+    {
+      "id": "jp-saetze-015",
+      "prompt": "Herr Tanaka ist Lehrer.",
+      "answer": "田中さん は 先生 です",
+      "accept": ["田中さんは先生です"],
+      "note": "Tanaka-san wa sensei desu. さん hängst du an die Namen anderer an, egal ob Mann oder Frau, aber niemals an deinen eigenen."
+    },
+    {
+      "id": "jp-saetze-016",
+      "prompt": "Ich schaue einen Film.",
+      "answer": "映画 を 見ます",
+      "accept": ["映画を見ます"],
+      "note": "Eiga o mimasu. 見ます heißt sehen und anschauen. Der Film ist das Objekt, darum steht er mit を."
+    },
+    {
+      "id": "jp-saetze-017",
+      "prompt": "Ich trinke keinen Kaffee.",
+      "answer": "コーヒー を 飲みません",
+      "accept": ["コーヒーを飲みません"],
+      "note": "Kōhī o nomimasen. Die höfliche Verneinung bildest du, indem du ます durch ません ersetzt: 飲みます wird 飲みません."
+    },
+    {
+      "id": "jp-saetze-018",
+      "prompt": "Isst du Sushi?",
+      "answer": "すし を 食べます か",
+      "accept": ["すしを食べますか"],
+      "note": "Sushi o tabemasu ka. Das „du“ fällt weg. Dass es eine Frage ist, zeigt allein das か am Ende, im Gespräch auch eine steigende Stimme."
+    },
+    {
+      "id": "jp-saetze-019",
+      "prompt": "Ich stehe um sieben Uhr auf.",
+      "answer": "七時 に 起きます",
+      "accept": ["七時に起きます"],
+      "note": "Shichiji ni okimasu. Bei Uhrzeiten steht に: 七時に heißt „um sieben Uhr“. 時 (ji) ist das Zählwort für Stunden."
+    },
+    {
+      "id": "jp-saetze-020",
+      "prompt": "Die Blume ist schön.",
+      "answer": "花 は きれい です",
+      "accept": ["花はきれいです"],
+      "note": "Hana wa kirei desu. きれい endet auf い, ist aber ein な-Adjektiv. Eine beliebte Falle: Die Verneinung lautet きれいじゃないです, nicht きれくない."
+    },
+    {
+      "id": "jp-saetze-021",
+      "prompt": "Wer ist diese Person dort?",
+      "answer": "あの 人 は 誰 です か",
+      "accept": ["あの人は誰ですか"],
+      "note": "Ano hito wa dare desu ka. あの heißt „jene dort“ und steht immer direkt vor einem Nomen, hier 人 (hito, Mensch)."
+    },
+    {
+      "id": "jp-saetze-022",
+      "prompt": "Ich warte auf den Bus.",
+      "answer": "バス を 待ちます",
+      "accept": ["バスを待ちます"],
+      "note": "Basu o machimasu. Im Deutschen wartest du „auf“ etwas, im Japanischen ist das Erwartete ein direktes Objekt mit を."
+    },
+    {
+      "id": "jp-saetze-023",
+      "prompt": "Heute ruhe ich mich aus.",
+      "answer": "今日 は 休みます",
+      "accept": ["今日は休みます"],
+      "note": "Kyō wa yasumimasu. は macht „heute“ zum Thema und klingt oft nach leichtem Kontrast: heute, anders als sonst."
+    },
+    {
+      "id": "jp-saetze-024",
+      "prompt": "Ich schreibe einen Brief.",
+      "answer": "手紙 を 書きます",
+      "accept": ["手紙を書きます"],
+      "note": "Tegami o kakimasu. Vorsicht: 手紙 heißt Brief, nicht Toilettenpapier wie das chinesische Wort mit denselben Zeichen."
+    },
+    {
+      "id": "jp-saetze-025",
+      "prompt": "Ich habe keine Zeit.",
+      "answer": "時間 が ありません",
+      "accept": ["時間がありません"],
+      "note": "Jikan ga arimasen. ありません ist die Verneinung von あります, wörtlich also: „Zeit gibt es nicht.“ Das Vorhandene steht mit が."
+    }
+  ]
+}

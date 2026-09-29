@@ -1,0 +1,352 @@
+{
+  "id": "jp-alltag",
+  "title": "Japanisch: Alltag",
+  "subtitle": "40 Wörter und Wendungen für jeden Tag",
+  "symbol": "日",
+  "language": "ja",
+  "cards": [
+    {
+      "id": "jp-alltag-001",
+      "prompt": "水 (みず)",
+      "answer": "Wasser",
+      "distractors": ["Feuer", "Eis", "Regen"],
+      "example": "Ich trinke ein Glas Wasser.",
+      "note": "mizu. Das Kanji zeigt einen Wasserlauf mit Spritzern. 水曜日 (suiyōbi), der Mittwoch, ist wörtlich der „Wassertag“."
+    },
+    {
+      "id": "jp-alltag-002",
+      "prompt": "火 (ひ)",
+      "answer": "Feuer",
+      "accept": ["Flamme"],
+      "distractors": ["Wasser", "Licht", "Sonne"],
+      "example": "Das Feuer wärmt uns am Abend.",
+      "note": "hi. Das Kanji zeigt ein Lagerfeuer mit Funken. 火曜日 (kayōbi), der Dienstag, ist der „Feuertag“."
+    },
+    {
+      "id": "jp-alltag-003",
+      "prompt": "山 (やま)",
+      "answer": "Berg",
+      "distractors": ["Fluss", "Wald", "Insel"],
+      "example": "Der Berg ist mit Schnee bedeckt.",
+      "note": "yama. Drei Gipfel, leicht zu erkennen. In Bergnamen liest man das Zeichen oft „san“, etwa in 富士山 (Fujisan)."
+    },
+    {
+      "id": "jp-alltag-004",
+      "prompt": "川 (かわ)",
+      "answer": "Fluss",
+      "accept": ["Bach"],
+      "distractors": ["Berg", "Meer", "See"],
+      "example": "Der Fluss fließt durch die Stadt.",
+      "note": "kawa. Drei fließende Linien wie strömendes Wasser. In Namen wird es oft „gawa“ gesprochen, etwa in 品川 (Shinagawa)."
+    },
+    {
+      "id": "jp-alltag-005",
+      "prompt": "木 (き)",
+      "answer": "Baum",
+      "accept": ["Holz"],
+      "distractors": ["Wald", "Blume", "Gras"],
+      "example": "Unter dem Baum ist es schattig.",
+      "note": "ki. Ein Baum mit Stamm, Ästen und Wurzeln. Zwei Bäume 林 (hayashi) sind ein Hain, drei Bäume 森 (mori) ein Wald."
+    },
+    {
+      "id": "jp-alltag-006",
+      "prompt": "花 (はな)",
+      "answer": "Blume",
+      "accept": ["Blüte"],
+      "distractors": ["Baum", "Blatt", "Gras"],
+      "example": "Die Blume blüht im Frühling.",
+      "note": "hana. Oben sitzt das Gras-Radikal 艹. 花見 (hanami) ist das Picknick unter blühenden Kirschbäumen."
+    },
+    {
+      "id": "jp-alltag-007",
+      "prompt": "犬 (いぬ)",
+      "answer": "Hund",
+      "distractors": ["Katze", "Vogel", "Pferd"],
+      "example": "Der Hund schläft auf dem Sofa.",
+      "note": "inu. Das Kanji ist 大 (groß) mit einem zusätzlichen Punkt, wie ein großer Hund mit gespitztem Ohr."
+    },
+    {
+      "id": "jp-alltag-008",
+      "prompt": "猫 (ねこ)",
+      "answer": "Katze",
+      "accept": ["Kater"],
+      "distractors": ["Hund", "Maus", "Fuchs"],
+      "example": "Die Katze sitzt am Fenster.",
+      "note": "neko. Links steht das Tier-Radikal 犭. Japanische Katzen machen übrigens „nyā“ statt „miau“."
+    },
+    {
+      "id": "jp-alltag-009",
+      "prompt": "本 (ほん)",
+      "answer": "Buch",
+      "distractors": ["Heft", "Brief", "Zeitung"],
+      "example": "Ich lese abends ein Buch.",
+      "note": "hon. Ein Baum 木 mit Strich an der Wurzel bedeutet „Ursprung“. Darum steckt es auch in 日本 (Nihon), „Ursprung der Sonne“."
+    },
+    {
+      "id": "jp-alltag-010",
+      "prompt": "車 (くるま)",
+      "answer": "Auto",
+      "accept": ["Wagen", "Fahrzeug"],
+      "distractors": ["Fahrrad", "Zug", "Bus"],
+      "example": "Das Auto steht vor der Tür.",
+      "note": "kuruma. Das Kanji zeigt einen Wagen von oben, mit Achse und Rädern. In 電車 (densha, Zug) liest man es „sha“."
+    },
+    {
+      "id": "jp-alltag-011",
+      "prompt": "駅 (えき)",
+      "answer": "Bahnhof",
+      "accept": ["Station"],
+      "distractors": ["Flughafen", "Hafen", "Haltestelle"],
+      "example": "Der Bahnhof ist nicht weit.",
+      "note": "eki. Links steht das Pferd 馬: Früher waren Stationen Poststellen, an denen Reisende die Pferde wechselten."
+    },
+    {
+      "id": "jp-alltag-012",
+      "prompt": "家 (いえ)",
+      "answer": "Haus",
+      "accept": ["Zuhause", "Heim"],
+      "distractors": ["Zimmer", "Garten", "Schule"],
+      "example": "Unser Haus hat einen kleinen Garten.",
+      "note": "ie. Ein Schwein 豕 unter einem Dach 宀, denn früher lebte das Vieh mit im Haus. Für das eigene Zuhause liest man es oft „uchi“."
+    },
+    {
+      "id": "jp-alltag-013",
+      "prompt": "友達 (ともだち)",
+      "answer": "Freund",
+      "accept": ["Freundin", "Freunde"],
+      "distractors": ["Lehrer", "Bruder", "Nachbar"],
+      "example": "Mein Freund kommt heute zu Besuch.",
+      "note": "tomodachi. 達 war ursprünglich ein Pluralzeichen, heute meint 友達 auch einen einzelnen Freund oder eine Freundin, aber keinen Partner."
+    },
+    {
+      "id": "jp-alltag-014",
+      "prompt": "先生 (せんせい)",
+      "answer": "Lehrer",
+      "accept": ["Lehrerin", "Meister"],
+      "distractors": ["Schüler", "Arzt", "Freund"],
+      "example": "Der Lehrer erklärt die Aufgabe.",
+      "note": "sensei. Wörtlich „früher geboren“. So nennt man nicht nur Lehrkräfte, sondern auch Ärzte, Anwälte und Meister ihres Fachs. Über sich selbst sagt man es nie."
+    },
+    {
+      "id": "jp-alltag-015",
+      "prompt": "学生 (がくせい)",
+      "answer": "Student",
+      "accept": ["Studentin", "Schüler"],
+      "distractors": ["Lehrer", "Kind", "Kollege"],
+      "example": "Er ist Student in Kyoto.",
+      "note": "gakusei. 学 heißt lernen, 生 Leben oder Mensch. Für Schulkinder sagt man eher 生徒 (seito)."
+    },
+    {
+      "id": "jp-alltag-016",
+      "prompt": "今日 (きょう)",
+      "answer": "heute",
+      "distractors": ["morgen", "gestern", "jetzt"],
+      "example": "Ich habe heute frei.",
+      "note": "kyō. Eine unregelmäßige Lesung, die man einfach lernt: Die Zeichen bedeuten einzeln „jetzt“ und „Tag“."
+    },
+    {
+      "id": "jp-alltag-017",
+      "prompt": "明日 (あした)",
+      "answer": "morgen",
+      "distractors": ["heute", "gestern", "übermorgen"],
+      "example": "Wir sehen uns morgen.",
+      "note": "ashita. 明 (hell) plus 日 (Tag): der Tag, der als nächstes hell wird. Förmlicher liest man es „asu“ oder „myōnichi“."
+    },
+    {
+      "id": "jp-alltag-018",
+      "prompt": "昨日 (きのう)",
+      "answer": "gestern",
+      "distractors": ["heute", "morgen", "vorgestern"],
+      "example": "Ich war gestern im Kino.",
+      "note": "kinō. 昨 bedeutet „vorig“. In förmlichen Texten liest man dieselben Zeichen „sakujitsu“."
+    },
+    {
+      "id": "jp-alltag-019",
+      "prompt": "時間 (じかん)",
+      "answer": "Zeit",
+      "accept": ["Stunde"],
+      "distractors": ["Uhr", "Tag", "Geld"],
+      "example": "Hast du morgen Zeit?",
+      "note": "jikan. 時 ist die Uhrzeit, 間 der Zwischenraum, dasselbe Zeichen wie in „Ma“. Zeit ist also der Raum zwischen den Stunden."
+    },
+    {
+      "id": "jp-alltag-020",
+      "prompt": "天気 (てんき)",
+      "answer": "Wetter",
+      "distractors": ["Himmel", "Wind", "Regen"],
+      "example": "Das Wetter ist heute schön.",
+      "note": "tenki. Wörtlich etwa „Himmelsenergie“. Small Talk beginnt oft mit いい天気ですね (ii tenki desu ne), „schönes Wetter, oder?“."
+    },
+    {
+      "id": "jp-alltag-021",
+      "prompt": "雨 (あめ)",
+      "answer": "Regen",
+      "distractors": ["Schnee", "Wind", "Wolke"],
+      "example": "Der Regen hört gleich auf.",
+      "note": "ame. Das Kanji zeigt Tropfen, die aus einer Wolke fallen. Vorsicht: 飴 (ame) heißt Bonbon und unterscheidet sich nur in der Tonhöhe."
+    },
+    {
+      "id": "jp-alltag-022",
+      "prompt": "空 (そら)",
+      "answer": "Himmel",
+      "distractors": ["Wolke", "Meer", "Luft"],
+      "example": "Der Himmel ist heute klar.",
+      "note": "sora. Dasselbe Zeichen liest man auch „kara“ und dann heißt es leer: 空手 (karate) ist die „leere Hand“."
+    },
+    {
+      "id": "jp-alltag-023",
+      "prompt": "朝ご飯 (あさごはん)",
+      "answer": "Frühstück",
+      "distractors": ["Mittagessen", "Abendessen", "Nachtisch"],
+      "example": "Das Frühstück steht auf dem Tisch.",
+      "note": "asagohan. 朝 heißt Morgen, ご飯 gekochter Reis oder Mahlzeit. Mittagessen ist 昼ご飯 (hirugohan), Abendessen 晩ご飯 (bangohan)."
+    },
+    {
+      "id": "jp-alltag-024",
+      "prompt": "お茶 (おちゃ)",
+      "answer": "Tee",
+      "accept": ["grüner Tee", "Grüntee"],
+      "distractors": ["Kaffee", "Wasser", "Saft"],
+      "example": "Möchtest du einen Tee?",
+      "note": "ocha. Das お ist eine höfliche Vorsilbe. Ohne weiteren Zusatz meint お茶 in Japan meist grünen Tee."
+    },
+    {
+      "id": "jp-alltag-025",
+      "prompt": "電話 (でんわ)",
+      "answer": "Telefon",
+      "accept": ["Anruf"],
+      "distractors": ["Computer", "Brief", "Fernseher"],
+      "example": "Das Telefon klingelt schon wieder.",
+      "note": "denwa. 電 heißt Elektrizität, 話 sprechen: „elektrisches Sprechen“. Am Telefon meldet man sich mit もしもし (moshi moshi)."
+    },
+    {
+      "id": "jp-alltag-026",
+      "prompt": "静か (しずか)",
+      "answer": "ruhig",
+      "accept": ["still", "leise"],
+      "distractors": ["laut", "schön", "schnell"],
+      "example": "Hier ist es schön ruhig.",
+      "note": "shizuka. Ein な-Adjektiv: 静かな部屋 (shizuka na heya) ist ein ruhiges Zimmer. Genau diesen Moment will dir diese App schenken."
+    },
+    {
+      "id": "jp-alltag-027",
+      "prompt": "大きい (おおきい)",
+      "answer": "groß",
+      "distractors": ["klein", "lang", "schwer"],
+      "example": "Der Park ist sehr groß.",
+      "note": "ōkii. Das Kanji 大 zeigt einen Menschen mit weit ausgebreiteten Armen."
+    },
+    {
+      "id": "jp-alltag-028",
+      "prompt": "小さい (ちいさい)",
+      "answer": "klein",
+      "distractors": ["groß", "kurz", "leicht"],
+      "example": "Die Wohnung ist klein, aber gemütlich.",
+      "note": "chiisai. Das Kanji 小 zeigt etwas Kleines, das in drei Teile zerfällt. Das Gegenteil ist 大きい (ōkii)."
+    },
+    {
+      "id": "jp-alltag-029",
+      "prompt": "高い (たかい)",
+      "answer": "teuer",
+      "accept": ["hoch"],
+      "distractors": ["billig", "neu", "schön"],
+      "example": "Das Hotel ist ziemlich teuer.",
+      "note": "takai. Heißt hoch und teuer zugleich. Das Gegenteil hängt von der Bedeutung ab: 安い (yasui) ist billig, 低い (hikui) niedrig."
+    },
+    {
+      "id": "jp-alltag-030",
+      "prompt": "食べる (たべる)",
+      "answer": "essen",
+      "distractors": ["trinken", "kochen", "schlafen"],
+      "example": "Wir essen um sieben Uhr.",
+      "note": "taberu. Ein ru-Verb: Die höfliche Form bildest du, indem du る durch ます ersetzt, also 食べます (tabemasu)."
+    },
+    {
+      "id": "jp-alltag-031",
+      "prompt": "飲む (のむ)",
+      "answer": "trinken",
+      "distractors": ["essen", "kochen", "waschen"],
+      "example": "Ich möchte etwas trinken.",
+      "note": "nomu. Auf Japanisch „trinkt“ man auch Medizin, sogar Tabletten: 薬を飲む (kusuri o nomu)."
+    },
+    {
+      "id": "jp-alltag-032",
+      "prompt": "行く (いく)",
+      "answer": "gehen",
+      "accept": ["fahren", "hingehen"],
+      "distractors": ["kommen", "bleiben", "zurückkehren"],
+      "example": "Wollen wir spazieren gehen?",
+      "note": "iku. Das Ziel bekommt die Partikel に oder へ: 駅に行く (eki ni iku), zum Bahnhof gehen. Ob zu Fuß oder mit dem Zug, ist egal."
+    },
+    {
+      "id": "jp-alltag-033",
+      "prompt": "見る (みる)",
+      "answer": "sehen",
+      "accept": ["schauen", "ansehen", "anschauen"],
+      "distractors": ["hören", "lesen", "sagen"],
+      "example": "Kannst du den Mond sehen?",
+      "note": "miru. Das Kanji zeigt ein Auge 目 auf zwei Beinen. Die höfliche Form ist 見ます (mimasu)."
+    },
+    {
+      "id": "jp-alltag-034",
+      "prompt": "休む (やすむ)",
+      "answer": "ausruhen",
+      "accept": ["sich ausruhen", "Pause machen"],
+      "distractors": ["arbeiten", "lernen", "warten"],
+      "example": "Am Sonntag will ich mich ausruhen.",
+      "note": "yasumu. Das Kanji zeigt einen Menschen 亻, der sich an einen Baum 木 lehnt. Davon kommt auch おやすみ, gute Nacht."
+    },
+    {
+      "id": "jp-alltag-035",
+      "prompt": "ありがとう",
+      "answer": "Danke",
+      "accept": ["Dankeschön", "Vielen Dank"],
+      "distractors": ["Bitte", "Hallo", "Tschüss"],
+      "example": "Danke für deine Hilfe.",
+      "note": "arigatō. Höflicher ist ありがとうございます. Das Wort kommt von 有り難い, „schwer zu haben“, also etwas Seltenes und Kostbares."
+    },
+    {
+      "id": "jp-alltag-036",
+      "prompt": "すみません",
+      "answer": "Entschuldigung",
+      "accept": ["Verzeihung", "Entschuldigen Sie"],
+      "distractors": ["Bitte", "Danke", "Willkommen"],
+      "example": "Entschuldigung, wo ist der Bahnhof?",
+      "note": "sumimasen. Damit entschuldigst du dich, sprichst Fremde an oder rufst die Bedienung. Oft ist es auch ein Dank, wenn sich jemand für dich Mühe macht."
+    },
+    {
+      "id": "jp-alltag-037",
+      "prompt": "おはよう",
+      "answer": "Guten Morgen",
+      "accept": ["Morgen"],
+      "distractors": ["Guten Tag", "Guten Abend", "Gute Nacht"],
+      "example": "Guten Morgen, hast du gut geschlafen?",
+      "note": "ohayō. Unter Freunden reicht おはよう, höflich sagst du おはようございます. Das Wort hängt mit 早い (hayai, früh) zusammen."
+    },
+    {
+      "id": "jp-alltag-038",
+      "prompt": "こんばんは",
+      "answer": "Guten Abend",
+      "distractors": ["Guten Morgen", "Guten Tag", "Gute Nacht"],
+      "example": "Guten Abend, schön dich zu sehen.",
+      "note": "konbanwa. Das letzte は wird „wa“ gesprochen, weil es ursprünglich die Themenpartikel ist: „Was diesen Abend betrifft“."
+    },
+    {
+      "id": "jp-alltag-039",
+      "prompt": "おやすみ",
+      "answer": "Gute Nacht",
+      "accept": ["Schlaf gut"],
+      "distractors": ["Guten Abend", "Bis morgen", "Guten Morgen"],
+      "example": "Gute Nacht und träum was Schönes.",
+      "note": "oyasumi. Kommt von 休む (yasumu, ausruhen). Höflich sagst du おやすみなさい."
+    },
+    {
+      "id": "jp-alltag-040",
+      "prompt": "いただきます",
+      "answer": "Guten Appetit",
+      "distractors": ["Prost", "Danke", "Willkommen"],
+      "example": "Guten Appetit, lass es dir schmecken.",
+      "note": "itadakimasu. Man sagt es vor dem Essen, wörtlich etwa „ich empfange demütig“. Nach dem Essen folgt ごちそうさまでした."
+    }
+  ]
+}

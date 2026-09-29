@@ -10,10 +10,14 @@ on:
   workflow_dispatch:
     inputs:
       lane:
-        description: "check = nur kompilieren, testflight = signieren und hochladen"
+        description: "check = compile only, testflight = sign and upload"
         type: choice
         options: [check, testflight]
         default: check
+      screen_time:
+        description: "With Screen Time (needs Apple's Family Controls approval). Off = preview build without app blocking."
+        type: boolean
+        default: true
 
 concurrency:
   group: ios-${{ github.ref }}-${{ inputs.lane || 'check' }}
@@ -100,6 +104,14 @@ jobs:
           mkdir -p ~/.appstoreconnect/private_keys
           printf '%s\n' "$ASC_KEY_P8" > ~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
           echo "ASC_KEY_PATH=$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" >> "$GITHUB_ENV"
+      # Preview builds drop the Family Controls entitlement, which Apple only
+      # signs for App Store builds once it has approved it for the app.
+      - name: Preview without Screen Time
+        if: ${{ !inputs.screen_time }}
+        run: |
+          sed -i '' '/com.apple.developer.family-controls: true/d' project.yml
+          if grep -q family-controls project.yml; then echo "::error::entitlement still in project.yml"; exit 1; fi
+          echo "EXTRA_SETTINGS=SWIFT_ACTIVE_COMPILATION_CONDITIONS=\$(inherited) MA_PREVIEW" >> "$GITHUB_ENV"
       - name: Generate the Xcode project
         run: |
           brew install xcodegen
@@ -117,6 +129,7 @@ jobs:
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
             CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            ${EXTRA_SETTINGS:+"$EXTRA_SETTINGS"} \
             archive | { command -v xcbeautify >/dev/null && xcbeautify --renderer github-actions || cat; }
       - name: Export IPA
         run: |

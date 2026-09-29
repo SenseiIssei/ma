@@ -123,7 +123,9 @@ struct TodayView: View {
                         Text(tr("Screen Time not allowed", "Bildschirmzeit nicht erlaubt"))
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundStyle(Zen.shu)
-                        Text(tr("Without this permission Ma cannot block anything.", "Ohne diese Erlaubnis kann Ma nichts sperren."))
+                        Text(BuildFlavor.screenTimeAvailable
+                             ? tr("Without this permission Ma cannot block anything.", "Ohne diese Erlaubnis kann Ma nichts sperren.")
+                             : BuildFlavor.previewNote)
                             .font(.system(size: 14))
                             .foregroundStyle(Zen.inkSoft)
                     } else if model.rules.isEmpty {

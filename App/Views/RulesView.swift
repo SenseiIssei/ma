@@ -85,13 +85,19 @@ struct RulesView: View {
 
     private var permissionCard: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(tr("Ma needs Screen Time access, otherwise every boundary stays on paper.", "Ma braucht Zugriff auf Bildschirmzeit, sonst bleiben alle Grenzen nur auf dem Papier."))
-                .font(.system(size: 15))
-                .foregroundStyle(Zen.ink)
-            Button(tr("Allow access", "Zugriff erlauben")) {
-                Task { await model.requestScreenTime() }
+            if !BuildFlavor.screenTimeAvailable {
+                Text(BuildFlavor.previewNote)
+                    .font(.system(size: 15))
+                    .foregroundStyle(Zen.ink)
+            } else {
+                Text(tr("Ma needs Screen Time access, otherwise every boundary stays on paper.", "Ma braucht Zugriff auf Bildschirmzeit, sonst bleiben alle Grenzen nur auf dem Papier."))
+                    .font(.system(size: 15))
+                    .foregroundStyle(Zen.ink)
+                Button(tr("Allow access", "Zugriff erlauben")) {
+                    Task { await model.requestScreenTime() }
+                }
+                .buttonStyle(.shu)
             }
-            .buttonStyle(.shu)
         }
         .zenCard()
     }

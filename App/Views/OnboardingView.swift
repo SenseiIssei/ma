@@ -69,7 +69,13 @@ struct OnboardingView: View {
         ) {
             statusBadge(done: model.authorization == .approved, doneText: tr("Allowed", "Erlaubt"), openText: tr("Not allowed yet", "Noch nicht erlaubt"))
         } footer: {
-            if model.authorization == .approved {
+            if !BuildFlavor.screenTimeAvailable {
+                Text(BuildFlavor.previewNote)
+                    .font(.system(size: 14))
+                    .foregroundStyle(Zen.shu)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.ink)
+            } else if model.authorization == .approved {
                 Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.ink)
             } else {
                 Button(tr("Allow access", "Zugriff erlauben")) {

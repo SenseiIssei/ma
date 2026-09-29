@@ -32,6 +32,7 @@ struct BalanceView: View {
                 MoveSection { routine = $0 }
                 FoodSection(now: now)
                 SleepSection(now: now)
+                FriendsEntry()
             }
             .padding(.horizontal, Zen.gutter)
             .padding(.bottom, 40)
@@ -168,5 +169,34 @@ struct BalanceNote: View {
         }
         .font(.system(size: 13, weight: .medium))
         .foregroundStyle(Zen.inkSoft)
+    }
+}
+
+// MARK: - Friends
+
+/// Doorway to friends circles: numbers only, never a feed.
+struct FriendsEntry: View {
+    var body: some View {
+        NavigationLink {
+            FriendsView()
+        } label: {
+            HStack(spacing: 14) {
+                IconBadge(systemName: "person.2.fill", tint: Zen.ai)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(tr("Friends without a feed", "Freunde ohne Feed"))
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundStyle(Zen.ink)
+                    Text(tr("Keep each other going with streaks and weekly challenges. Only numbers are shared.",
+                            "Motiviert euch mit Serien und Wochen-Challenges. Geteilt werden nur Zahlen."))
+                        .font(.system(size: 14))
+                        .foregroundStyle(Zen.inkSoft)
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right").foregroundStyle(Zen.inkFaint)
+            }
+            .zenCard()
+        }
+        .buttonStyle(.plain)
     }
 }

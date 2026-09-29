@@ -4,7 +4,7 @@ In Japanese, ma is the space between two things. The pause between two notes, th
 
 This app puts that kind of space between your thumb and the next feed. Open Instagram, YouTube, X, LinkedIn or TikTok and you land on a calm screen first, take one breath and answer a question from a topic you actually want to learn. Then the app opens for a few minutes. Or you let it be, and that counts too.
 
-Ma runs entirely on the iPhone. No account, no server, no analytics. It speaks English and German and follows the language of your phone.
+Ma runs on the iPhone. No account, no ads, no analytics. The only thing that ever leaves the phone is optional: in a friends circle, a random id, a nickname and daily numbers go to a small server (`server/`, open source like the rest). It speaks English and German and follows the language of your phone.
 
 ## What's inside
 

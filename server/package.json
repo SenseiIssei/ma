@@ -1,0 +1,15 @@
+{
+  "name": "ma-friends",
+  "version": "1.0.0",
+  "description": "Friends without a feed: the small, privacy-first backend for the Ma app",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  }
+}

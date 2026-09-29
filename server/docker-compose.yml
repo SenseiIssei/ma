@@ -1,0 +1,31 @@
+# Example for the VPS. Only nginx on the same host can reach the port,
+# because it is bound to 127.0.0.1.
+services:
+  ma-friends:
+    build: .
+    image: ma-friends:latest
+    container_name: ma-friends
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8095:8095"
+    environment:
+      BASE_PATH: /ma/api
+      DATA_DIR: /data
+      # Put ADMIN_TOKEN in a .env file next to this one (never in git).
+      # Leave it empty to switch the gallery review endpoints off.
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      TRUST_PROXY: "1"
+    volumes:
+      - ma-friends-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 15s
+    mem_limit: 256m
+
+volumes:
+  ma-friends-data:

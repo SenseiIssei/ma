@@ -10,6 +10,8 @@ struct MaApp: App {
     @State private var day = DayStore()
     /// Movement, water, meals and sleep for the Balance tab. Also app-only.
     @State private var balance = BalanceStore()
+    /// Optional friends circles; talks to Ma's server only when switched on.
+    @State private var friends = FriendsStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -18,6 +20,7 @@ struct MaApp: App {
                 .environment(model)
                 .environment(day)
                 .environment(balance)
+                .environment(friends)
                 .onOpenURL { model.handle(url: $0) }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()
@@ -27,7 +30,12 @@ struct MaApp: App {
                 }
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { model.reload() }
+            if phase == .active {
+                model.reload()
+                let streak = model.decks.currentStreak
+                let habits = day.habitsDoneToday
+                Task { await friends.syncToday(streak: streak, habitsDone: habits) }
+            }
         }
     }
 }

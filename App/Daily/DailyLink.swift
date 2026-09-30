@@ -34,7 +34,7 @@ struct DailyProgressDTO: Decodable {
 }
 
 /// Summary for the card and the companion, derived from the lessons.
-struct LessonSummary: Equatable {
+struct CodeLessonSummary: Equatable {
     var doneCount = 0
     var totalXp = 0
     var streak = 0
@@ -61,7 +61,7 @@ struct DailyLessonsCard: View {
     @State private var linking = false
 
     var body: some View {
-        let summary = LessonSummary(fitness.lessons)
+        let summary = CodeLessonSummary(fitness.lessons)
         return VStack(alignment: .leading, spacing: 12) {
             SectionHeader(icon: "chevron.left.forwardslash.chevron.right", title: tr("Programming lessons", "Programmier-Lektionen"))
             Text(tr("Type daily in the terminal on senseiissei.dev: one C++ lesson a day, solved by hand. Every finished lesson counts as XP here.",

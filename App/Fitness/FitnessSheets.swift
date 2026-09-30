@@ -577,6 +577,9 @@ struct LevelUpView: View {
         }
         .onAppear {
             Haptics.success()
+            if CompanionID.hasChosen {
+                CompanionVoice.shared.play(VoiceLibrary.line(CompanionID.current, .levelup, seed: celebration.level))
+            }
             if reduceMotion {
                 shown = true
             } else {
@@ -587,9 +590,9 @@ struct LevelUpView: View {
 
     private var companionLine: some View {
         let who: CompanionID = CompanionID.current
-        let text: String = who == .nyx
-            ? tr("Told you. Level \(celebration.level) suits you.", "Hab ich doch gesagt. Level \(celebration.level) steht dir.")
-            : tr("[Level Up] Level \(celebration.level). Keep hunting.", "[Level Up] Level \(celebration.level). Weiter jagen.")
+        // The companion's own recorded level-up line, in subtitles.
+        let text: String = VoiceLibrary.line(who, .levelup, seed: celebration.level)?.subtitle
+            ?? tr("Level \(celebration.level). Well earned.", "Level \(celebration.level). Verdient.")
         return HStack(alignment: .center, spacing: 12) {
             CompanionAvatar(companion: who, mood: .proud, size: 48)
             VStack(alignment: .leading, spacing: 2) {

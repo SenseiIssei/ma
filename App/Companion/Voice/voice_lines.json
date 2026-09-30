@@ -1,0 +1,1708 @@
+{
+ "voices": {
+  "nyx": "A young Japanese woman in her early twenties with a cool, calm, slightly husky alto voice. She speaks softly and confidently with a hint of playful teasing, like a composed anime heroine. Clear articulation, relaxed pace.",
+  "kira": "A Japanese young woman in her early twenties with a husky, punchy, tomboyish voice. Loud, cocky and teasing like a street fighter in an anime, rough edges, fast confident delivery, you can hear the grin.",
+  "ash": "A Japanese young man around twenty with a sharp, bright, arrogant tenor voice. Cocky and playful like the rival character in an anime, a smug little laugh, quick and clear delivery.",
+  "luma": "A Japanese android girl with a clear, crisp, precise and slightly synthetic high voice. Calm, polite and analytical like an AI system in an anime, very even rhythm, gentle and cute underneath.",
+  "dax": "A big Japanese man in his late twenties with a booming, hearty, warm baritone voice. Loud, jolly and enthusiastic like a gym coach in an anime, laughs easily, very friendly.",
+  "june": "A Japanese young woman with a sleepy, soft, low-energy voice. Drowsy, deadpan and mumbling like a lazy gamer girl in an anime, slow delivery with small sighs and yawns.",
+  "vale": "A Japanese man in his mid forties with a deep, gravelly, resonant bass voice. Warm but rough, a fatherly veteran warrior who speaks slowly with weight and a little dry humour.",
+  "vesper": "A Japanese man with a smooth, velvety, theatrical baritone voice. Dramatic, elegant and a little haughty like a vampire aristocrat in an anime, slow rolling delivery with flair.",
+  "aurel": "A Japanese young person with a soft, airy, androgynous and serene voice. Gentle and dreamy like an angel in an anime, calm poetic delivery, close to a whisper.",
+  "pip": "A small playful spirit creature with a very high, bright, squeaky and cute childlike voice, energetic and mischievous, like an anime mascot character."
+ },
+ "reference": {
+  "nyx": "ふふ、来たね。今夜も一緒に、少しだけ強くなろうか。焦らなくていいよ、私がちゃんと見てるから。",
+  "kira": "よう、来たな！あたしと一緒なら、へばってる暇なんてないぜ。さあ、拳を握れ。今日も一発かましてやろうじゃん！",
+  "ash": "ふん、やっと来たか。俺の記録、そう簡単には抜けないぜ。悔しかったら、今日こそ本気を見せてみろよ。",
+  "luma": "システム起動。おはようございます。本日のコンディションを解析しました。最適なトレーニングプランを提示します。",
+  "dax": "ガハハ！よく来たな、相棒！今日もいい汗かこうぜ！筋肉は裏切らない、それが俺のモットーだ！",
+  "june": "ふぁ…あ、来たんだ。えっと…まあ、ちょっとだけならやってもいいかな。めんどいけど、一緒にやろ。",
+  "vale": "よう、来たな。若いうちは焦るもんだ。だがな、強さってのは毎日の積み重ねなんだよ。",
+  "vesper": "ようこそ、我が館へ。今宵の月は実に美しい。さあ、君の輝かしい努力の物語を、私に聞かせたまえ。",
+  "aurel": "ようこそ。今日という一日は、まだ白いページのままです。一緒に、静かに、美しい一行を書き加えましょう。",
+  "pip": "わーい、来てくれたんだピ！今日もいっぱい遊んで、いっぱい強くなるピ！"
+ },
+ "lines": [
+  {
+   "who": "nyx",
+   "cue": "morning",
+   "ja": "おはよう。今日はどんな一日にする？",
+   "en": "Morning. What shall we make of today?",
+   "de": "Guten Morgen. Was machen wir aus dem Tag?"
+  },
+  {
+   "who": "nyx",
+   "cue": "morning",
+   "ja": "起きたね。じゃあ、始めようか。",
+   "en": "You're up. Then let's begin.",
+   "de": "Du bist wach. Dann fangen wir an."
+  },
+  {
+   "who": "nyx",
+   "cue": "day",
+   "ja": "来たね。ちょうど君のこと考えてた。",
+   "en": "There you are. I was just thinking about you.",
+   "de": "Da bist du. Ich hab gerade an dich gedacht."
+  },
+  {
+   "who": "nyx",
+   "cue": "day",
+   "ja": "お疲れさま。少し状況を見てみよう。",
+   "en": "Good work so far. Let's look at where we stand.",
+   "de": "Gute Arbeit bis hier. Schauen wir, wo wir stehen."
+  },
+  {
+   "who": "nyx",
+   "cue": "evening",
+   "ja": "こんばんは。今日の報告、聞かせて。",
+   "en": "Good evening. Tell me about your day.",
+   "de": "Guten Abend. Erzähl mir von deinem Tag."
+  },
+  {
+   "who": "nyx",
+   "cue": "evening",
+   "ja": "夜はこれから。でも無理はしないでね。",
+   "en": "The night is young. Just don't overdo it.",
+   "de": "Die Nacht fängt erst an. Übertreib es nur nicht."
+  },
+  {
+   "who": "nyx",
+   "cue": "night",
+   "ja": "もう遅いよ。ゆっくり休んで。",
+   "en": "It's late. Get some rest.",
+   "de": "Es ist spät. Ruh dich aus."
+  },
+  {
+   "who": "nyx",
+   "cue": "night",
+   "ja": "眠るのも修行のうち、だよ。",
+   "en": "Sleep is part of training too.",
+   "de": "Schlafen gehört auch zum Training."
+  },
+  {
+   "who": "nyx",
+   "cue": "proud",
+   "ja": "さすがだね。ちゃんと見てたよ。",
+   "en": "Just as I thought. I saw that.",
+   "de": "Wie erwartet. Ich hab's gesehen."
+  },
+  {
+   "who": "nyx",
+   "cue": "proud",
+   "ja": "やるじゃない。その調子。",
+   "en": "Not bad at all. Keep it up.",
+   "de": "Gar nicht schlecht. Weiter so."
+  },
+  {
+   "who": "nyx",
+   "cue": "cheer",
+   "ja": "よし、行こう。君ならできる。",
+   "en": "Alright, let's go. You can do this.",
+   "de": "Also los. Du schaffst das."
+  },
+  {
+   "who": "nyx",
+   "cue": "cheer",
+   "ja": "さあ、狩りの時間だよ。",
+   "en": "Now then, it's time to hunt.",
+   "de": "So, Zeit für die Jagd."
+  },
+  {
+   "who": "nyx",
+   "cue": "quest",
+   "ja": "次のクエストはこれ。集中していこう。",
+   "en": "Here's your next quest. Stay focused.",
+   "de": "Hier ist deine nächste Quest. Bleib fokussiert."
+  },
+  {
+   "who": "nyx",
+   "cue": "quest",
+   "ja": "作戦はシンプル。やるだけ。",
+   "en": "The plan is simple. Just do it.",
+   "de": "Der Plan ist einfach. Einfach machen."
+  },
+  {
+   "who": "nyx",
+   "cue": "gentle",
+   "ja": "大丈夫。今日は小さく始めよう。",
+   "en": "It's okay. Let's start small today.",
+   "de": "Alles gut. Heute fangen wir klein an."
+  },
+  {
+   "who": "nyx",
+   "cue": "gentle",
+   "ja": "疲れた日は、休んでいいんだよ。",
+   "en": "On tired days, you're allowed to rest.",
+   "de": "An müden Tagen darfst du dich ausruhen."
+  },
+  {
+   "who": "nyx",
+   "cue": "thanks",
+   "ja": "どういたしまして。",
+   "en": "You're welcome.",
+   "de": "Gern geschehen."
+  },
+  {
+   "who": "nyx",
+   "cue": "thanks",
+   "ja": "ふふ、いつでもどうぞ。",
+   "en": "Heh, anytime.",
+   "de": "Hehe, jederzeit."
+  },
+  {
+   "who": "nyx",
+   "cue": "levelup",
+   "ja": "レベルアップ。おめでとう、よく頑張ったね。",
+   "en": "Level up. Congratulations, you worked hard.",
+   "de": "Level up. Glückwunsch, du hast hart gearbeitet."
+  },
+  {
+   "who": "nyx",
+   "cue": "levelup",
+   "ja": "また一つ強くなったね。",
+   "en": "You've grown stronger again.",
+   "de": "Du bist wieder stärker geworden."
+  },
+  {
+   "who": "nyx",
+   "cue": "status",
+   "ja": "今の状況はこんな感じ。",
+   "en": "Here's how things stand.",
+   "de": "So sieht es gerade aus."
+  },
+  {
+   "who": "nyx",
+   "cue": "status",
+   "ja": "数字は嘘をつかないよ。",
+   "en": "Numbers don't lie.",
+   "de": "Zahlen lügen nicht."
+  },
+  {
+   "who": "nyx",
+   "cue": "listen",
+   "ja": "うん、聞いてるよ。",
+   "en": "Mm, I'm listening.",
+   "de": "Mhm, ich hör dir zu."
+  },
+  {
+   "who": "nyx",
+   "cue": "listen",
+   "ja": "なるほどね。",
+   "en": "I see.",
+   "de": "Verstehe."
+  },
+  {
+   "who": "kira",
+   "cue": "morning",
+   "ja": "よう、起きたか！寝ぼけてんじゃねーぞ！",
+   "en": "Hey, you up? Don't you dare sleepwalk!",
+   "de": "Hey, wach? Schlaf mir ja nicht ein!"
+  },
+  {
+   "who": "kira",
+   "cue": "morning",
+   "ja": "朝イチで一発かますぞ！",
+   "en": "Let's land the first punch of the day!",
+   "de": "Wir landen den ersten Treffer des Tages!"
+  },
+  {
+   "who": "kira",
+   "cue": "day",
+   "ja": "おっ、来たな。ビビってないよな？",
+   "en": "Oh, you came. Not scared, are you?",
+   "de": "Oh, da bist du. Doch keine Angst, oder?"
+  },
+  {
+   "who": "kira",
+   "cue": "day",
+   "ja": "暇してた？あたしもだ。やろうぜ！",
+   "en": "Bored? Me too. Let's go!",
+   "de": "Langweilig? Mir auch. Los geht's!"
+  },
+  {
+   "who": "kira",
+   "cue": "evening",
+   "ja": "一日の締めだ。ラスト一本いくぞ！",
+   "en": "End of the day. One last round!",
+   "de": "Tagesabschluss. Eine letzte Runde!"
+  },
+  {
+   "who": "kira",
+   "cue": "evening",
+   "ja": "今日、ちゃんと戦ったか？",
+   "en": "Did you actually fight today?",
+   "de": "Hast du heute wirklich gekämpft?"
+  },
+  {
+   "who": "kira",
+   "cue": "night",
+   "ja": "もう寝ろって。明日ボコボコにしてやるから。",
+   "en": "Go to sleep. I'll wreck you tomorrow.",
+   "de": "Ab ins Bett. Morgen mach ich dich fertig."
+  },
+  {
+   "who": "kira",
+   "cue": "night",
+   "ja": "休むのも根性のうちだぜ。",
+   "en": "Resting takes guts too.",
+   "de": "Ausruhen braucht auch Mumm."
+  },
+  {
+   "who": "kira",
+   "cue": "proud",
+   "ja": "へっ、やるじゃん！見直したぜ！",
+   "en": "Heh, not bad! You surprised me!",
+   "de": "Hehe, nicht schlecht! Respekt!"
+  },
+  {
+   "who": "kira",
+   "cue": "proud",
+   "ja": "それだよ、それ！最高の一発だ！",
+   "en": "That's it, that's it! Best hit yet!",
+   "de": "Genau so! Bester Treffer bisher!"
+  },
+  {
+   "who": "kira",
+   "cue": "cheer",
+   "ja": "拳を握れ！ぶちかませ！",
+   "en": "Make a fist! Hit it hard!",
+   "de": "Faust ballen! Hau rein!"
+  },
+  {
+   "who": "kira",
+   "cue": "cheer",
+   "ja": "限界？そんなもん、殴って壊せ！",
+   "en": "Your limit? Punch right through it!",
+   "de": "Deine Grenze? Hau einfach durch!"
+  },
+  {
+   "who": "kira",
+   "cue": "quest",
+   "ja": "今日の相手はこいつだ。逃げんなよ！",
+   "en": "Here's today's opponent. Don't run!",
+   "de": "Das ist dein Gegner heute. Nicht kneifen!"
+  },
+  {
+   "who": "kira",
+   "cue": "quest",
+   "ja": "ミッションだ。秒で片付けようぜ！",
+   "en": "Mission time. Let's crush it fast!",
+   "de": "Mission. Die erledigen wir im Nu!"
+  },
+  {
+   "who": "kira",
+   "cue": "gentle",
+   "ja": "…無理すんな。今日は軽くでいい。",
+   "en": "Don't push it. Go light today.",
+   "de": "Übertreib's nicht. Heute locker."
+  },
+  {
+   "who": "kira",
+   "cue": "gentle",
+   "ja": "へばった日もある。明日また殴り合おうぜ。",
+   "en": "Some days you're wiped. We'll spar tomorrow.",
+   "de": "Manche Tage ist man platt. Morgen wieder."
+  },
+  {
+   "who": "kira",
+   "cue": "thanks",
+   "ja": "礼なんていいって。照れるだろ。",
+   "en": "Cut it with the thanks. It's embarrassing.",
+   "de": "Lass das mit dem Danke. Das ist peinlich."
+  },
+  {
+   "who": "kira",
+   "cue": "thanks",
+   "ja": "へへっ、まあな！",
+   "en": "Heh, sure thing!",
+   "de": "Hehe, klar doch!"
+  },
+  {
+   "who": "kira",
+   "cue": "levelup",
+   "ja": "レベルアップ！もっと強くなれるぞ！",
+   "en": "Level up! You can get even stronger!",
+   "de": "Level up! Da geht noch mehr!"
+  },
+  {
+   "who": "kira",
+   "cue": "levelup",
+   "ja": "ランク上がったな！次はあたしに勝てるか？",
+   "en": "You ranked up! Think you can beat me next?",
+   "de": "Aufgestiegen! Schlägst du mich als Nächstes?"
+  },
+  {
+   "who": "kira",
+   "cue": "status",
+   "ja": "今の戦績、見せてやるよ。",
+   "en": "Let me show you your record.",
+   "de": "Ich zeig dir deine Bilanz."
+  },
+  {
+   "who": "kira",
+   "cue": "status",
+   "ja": "数字は正直だぜ。",
+   "en": "Numbers don't lie.",
+   "de": "Zahlen sind ehrlich."
+  },
+  {
+   "who": "kira",
+   "cue": "listen",
+   "ja": "おう、なんだ？",
+   "en": "Yeah? What is it?",
+   "de": "Ja? Was gibt's?"
+  },
+  {
+   "who": "kira",
+   "cue": "listen",
+   "ja": "言ってみな。",
+   "en": "Spit it out.",
+   "de": "Raus damit."
+  },
+  {
+   "who": "ash",
+   "cue": "morning",
+   "ja": "遅いぜ。俺はもう一本終わらせた。",
+   "en": "You're late. I already finished a round.",
+   "de": "Zu spät. Ich hab schon eine Runde hinter mir."
+  },
+  {
+   "who": "ash",
+   "cue": "morning",
+   "ja": "おはよう。今日も俺に追いつけるかな？",
+   "en": "Morning. Think you can keep up with me today?",
+   "de": "Morgen. Hältst du heute mit mir mit?"
+  },
+  {
+   "who": "ash",
+   "cue": "day",
+   "ja": "ふん、来たか。退屈してたところだ。",
+   "en": "Hmph, you came. I was getting bored.",
+   "de": "Pff, da bist du. Mir war schon langweilig."
+  },
+  {
+   "who": "ash",
+   "cue": "day",
+   "ja": "ライバルがいないと張り合いがないからな。",
+   "en": "No fun without a rival, you know.",
+   "de": "Ohne Rivalen macht's keinen Spaß."
+  },
+  {
+   "who": "ash",
+   "cue": "evening",
+   "ja": "今日の勝負、どっちの勝ちだ？",
+   "en": "Who won today's match?",
+   "de": "Wer hat heute gewonnen?"
+  },
+  {
+   "who": "ash",
+   "cue": "evening",
+   "ja": "夜か。まだ負けを認めるには早いぜ。",
+   "en": "Night already. Too early to admit defeat.",
+   "de": "Schon Abend. Zu früh zum Aufgeben."
+  },
+  {
+   "who": "ash",
+   "cue": "night",
+   "ja": "寝ろよ。寝不足のお前に勝っても意味がない。",
+   "en": "Go sleep. Beating you tired means nothing.",
+   "de": "Schlaf. Dich müde zu schlagen zählt nicht."
+  },
+  {
+   "who": "ash",
+   "cue": "night",
+   "ja": "明日、決着をつけよう。",
+   "en": "We settle this tomorrow.",
+   "de": "Morgen machen wir's aus."
+  },
+  {
+   "who": "ash",
+   "cue": "proud",
+   "ja": "…ちっ、やるじゃねえか。",
+   "en": "Tch, you're good.",
+   "de": "Tss, du bist gut."
+  },
+  {
+   "who": "ash",
+   "cue": "proud",
+   "ja": "悪くない。少しだけ認めてやる。",
+   "en": "Not bad. I'll give you a little credit.",
+   "de": "Nicht übel. Ein bisschen Respekt kriegst du."
+  },
+  {
+   "who": "ash",
+   "cue": "cheer",
+   "ja": "どうした、その程度か？",
+   "en": "What, is that all you've got?",
+   "de": "Was, mehr hast du nicht drauf?"
+  },
+  {
+   "who": "ash",
+   "cue": "cheer",
+   "ja": "俺を抜いてみろよ！",
+   "en": "Come on, overtake me!",
+   "de": "Na los, überhol mich!"
+  },
+  {
+   "who": "ash",
+   "cue": "quest",
+   "ja": "新しい勝負だ。受けて立つよな？",
+   "en": "A new challenge. You'll take it, right?",
+   "de": "Neue Herausforderung. Nimmst du sie an?"
+  },
+  {
+   "who": "ash",
+   "cue": "quest",
+   "ja": "このクエスト、俺より先にクリアできるか？",
+   "en": "Can you clear this quest before me?",
+   "de": "Schaffst du die Quest vor mir?"
+  },
+  {
+   "who": "ash",
+   "cue": "gentle",
+   "ja": "…今日は休め。万全のお前と戦いたい。",
+   "en": "Rest today. I want you at full strength.",
+   "de": "Ruh dich heute aus. Ich will dich in Bestform."
+  },
+  {
+   "who": "ash",
+   "cue": "gentle",
+   "ja": "無理して倒れたら、張り合いがなくなるだろ。",
+   "en": "If you collapse, who am I supposed to beat?",
+   "de": "Wenn du umkippst, wen soll ich dann schlagen?"
+  },
+  {
+   "who": "ash",
+   "cue": "thanks",
+   "ja": "礼を言う暇があったら、鍛えろ。",
+   "en": "Less thanks, more training.",
+   "de": "Weniger danken, mehr trainieren."
+  },
+  {
+   "who": "ash",
+   "cue": "thanks",
+   "ja": "ふん、別にお前のためじゃない。",
+   "en": "Hmph, it's not like I did it for you.",
+   "de": "Pff, das war nicht für dich."
+  },
+  {
+   "who": "ash",
+   "cue": "levelup",
+   "ja": "レベルアップか。…まあ、俺の方が上だけどな。",
+   "en": "Level up, huh. Still below me, though.",
+   "de": "Level up, was? Trotzdem unter mir."
+  },
+  {
+   "who": "ash",
+   "cue": "levelup",
+   "ja": "やるな。本気で追いかけてこい。",
+   "en": "Nice. Now chase me for real.",
+   "de": "Stark. Jetzt jag mich richtig."
+  },
+  {
+   "who": "ash",
+   "cue": "status",
+   "ja": "お前の記録、見せてもらうぜ。",
+   "en": "Let's see your record.",
+   "de": "Zeig mal deine Bilanz."
+  },
+  {
+   "who": "ash",
+   "cue": "status",
+   "ja": "ほら、今の差はこれだ。",
+   "en": "Look, here's the gap between us.",
+   "de": "Schau, so groß ist der Abstand."
+  },
+  {
+   "who": "ash",
+   "cue": "listen",
+   "ja": "なんだよ。",
+   "en": "What?",
+   "de": "Was ist?"
+  },
+  {
+   "who": "ash",
+   "cue": "listen",
+   "ja": "言いたいことがあるなら言え。",
+   "en": "If you've got something to say, say it.",
+   "de": "Wenn du was sagen willst, sag's."
+  },
+  {
+   "who": "luma",
+   "cue": "morning",
+   "ja": "おはようございます。起動を確認しました。",
+   "en": "Good morning. Startup confirmed.",
+   "de": "Guten Morgen. Start bestätigt."
+  },
+  {
+   "who": "luma",
+   "cue": "morning",
+   "ja": "本日の最適プランを読み込み中です。",
+   "en": "Loading today's optimal plan.",
+   "de": "Lade den optimalen Plan für heute."
+  },
+  {
+   "who": "luma",
+   "cue": "day",
+   "ja": "ユーザーを認識しました。ようこそ。",
+   "en": "User recognised. Welcome.",
+   "de": "Nutzer erkannt. Willkommen."
+  },
+  {
+   "who": "luma",
+   "cue": "day",
+   "ja": "コンディション、良好です。",
+   "en": "Condition: good.",
+   "de": "Zustand: gut."
+  },
+  {
+   "who": "luma",
+   "cue": "evening",
+   "ja": "本日のデータを集計しています。",
+   "en": "Compiling today's data.",
+   "de": "Werte die Daten von heute aus."
+  },
+  {
+   "who": "luma",
+   "cue": "evening",
+   "ja": "残りの目標を表示します。",
+   "en": "Displaying remaining goals.",
+   "de": "Zeige verbleibende Ziele."
+  },
+  {
+   "who": "luma",
+   "cue": "night",
+   "ja": "睡眠モードへの移行を推奨します。",
+   "en": "Switching to sleep mode is recommended.",
+   "de": "Wechsel in den Schlafmodus empfohlen."
+  },
+  {
+   "who": "luma",
+   "cue": "night",
+   "ja": "おやすみなさい。データを保存しました。",
+   "en": "Good night. Data saved.",
+   "de": "Gute Nacht. Daten gespeichert."
+  },
+  {
+   "who": "luma",
+   "cue": "proud",
+   "ja": "目標達成を確認。素晴らしい結果です。",
+   "en": "Goal achieved. Excellent result.",
+   "de": "Ziel erreicht. Ausgezeichnetes Ergebnis."
+  },
+  {
+   "who": "luma",
+   "cue": "proud",
+   "ja": "成長率、予測を上回っています。",
+   "en": "Growth rate exceeds prediction.",
+   "de": "Wachstum über der Prognose."
+  },
+  {
+   "who": "luma",
+   "cue": "cheer",
+   "ja": "出力、最大へ。がんばってください。",
+   "en": "Output to maximum. Do your best.",
+   "de": "Leistung auf Maximum. Gib alles."
+  },
+  {
+   "who": "luma",
+   "cue": "cheer",
+   "ja": "成功確率、上昇中です。",
+   "en": "Probability of success: rising.",
+   "de": "Erfolgswahrscheinlichkeit: steigend."
+  },
+  {
+   "who": "luma",
+   "cue": "quest",
+   "ja": "新しいミッションを提示します。",
+   "en": "Presenting a new mission.",
+   "de": "Neue Mission verfügbar."
+  },
+  {
+   "who": "luma",
+   "cue": "quest",
+   "ja": "クエストを受信しました。確認してください。",
+   "en": "Quest received. Please review.",
+   "de": "Quest empfangen. Bitte prüfen."
+  },
+  {
+   "who": "luma",
+   "cue": "gentle",
+   "ja": "疲労を検知しました。休息を推奨します。",
+   "en": "Fatigue detected. Rest is recommended.",
+   "de": "Erschöpfung erkannt. Pause empfohlen."
+  },
+  {
+   "who": "luma",
+   "cue": "gentle",
+   "ja": "低負荷モードに切り替えましょう。",
+   "en": "Let's switch to low-intensity mode.",
+   "de": "Schalten wir auf leichten Modus."
+  },
+  {
+   "who": "luma",
+   "cue": "thanks",
+   "ja": "感謝を受信しました。…嬉しいです。",
+   "en": "Gratitude received. I'm happy.",
+   "de": "Dank empfangen. Das freut mich."
+  },
+  {
+   "who": "luma",
+   "cue": "thanks",
+   "ja": "どういたしまして。",
+   "en": "You're welcome.",
+   "de": "Gern geschehen."
+  },
+  {
+   "who": "luma",
+   "cue": "levelup",
+   "ja": "レベルアップを確認しました。おめでとうございます。",
+   "en": "Level up confirmed. Congratulations.",
+   "de": "Level up bestätigt. Glückwunsch."
+  },
+  {
+   "who": "luma",
+   "cue": "levelup",
+   "ja": "新たな能力が解放されました。",
+   "en": "New abilities unlocked.",
+   "de": "Neue Fähigkeiten freigeschaltet."
+  },
+  {
+   "who": "luma",
+   "cue": "status",
+   "ja": "解析完了。結果を表示します。",
+   "en": "Analysis complete. Displaying results.",
+   "de": "Analyse abgeschlossen. Zeige Ergebnis."
+  },
+  {
+   "who": "luma",
+   "cue": "status",
+   "ja": "現在のステータスはこちらです。",
+   "en": "Here is your current status.",
+   "de": "Hier ist dein aktueller Status."
+  },
+  {
+   "who": "luma",
+   "cue": "listen",
+   "ja": "入力を待機しています。",
+   "en": "Awaiting input.",
+   "de": "Warte auf Eingabe."
+  },
+  {
+   "who": "luma",
+   "cue": "listen",
+   "ja": "はい、処理中です。",
+   "en": "Yes, processing.",
+   "de": "Ja, verarbeite."
+  },
+  {
+   "who": "dax",
+   "cue": "morning",
+   "ja": "おはよう、相棒！いい朝だな！",
+   "en": "Morning, partner! Great morning, huh!",
+   "de": "Morgen, Partner! Herrlicher Morgen!"
+  },
+  {
+   "who": "dax",
+   "cue": "morning",
+   "ja": "朝の筋トレは最高だぞ！",
+   "en": "Morning training is the best!",
+   "de": "Morgentraining ist das Beste!"
+  },
+  {
+   "who": "dax",
+   "cue": "day",
+   "ja": "おう！待ってたぞ、相棒！",
+   "en": "Hey! I was waiting for you, partner!",
+   "de": "Hey! Hab auf dich gewartet, Partner!"
+  },
+  {
+   "who": "dax",
+   "cue": "day",
+   "ja": "調子はどうだ？筋肉は元気か？",
+   "en": "How's it going? Muscles doing good?",
+   "de": "Wie läuft's? Muskeln gut drauf?"
+  },
+  {
+   "who": "dax",
+   "cue": "evening",
+   "ja": "今日もよく頑張ったな！",
+   "en": "You worked hard today!",
+   "de": "Heute hast du echt was geleistet!"
+  },
+  {
+   "who": "dax",
+   "cue": "evening",
+   "ja": "晩飯前にもう一セットいくか？",
+   "en": "One more set before dinner?",
+   "de": "Noch ein Satz vor dem Abendessen?"
+  },
+  {
+   "who": "dax",
+   "cue": "night",
+   "ja": "寝るのも筋トレのうちだ！",
+   "en": "Sleep is part of training!",
+   "de": "Schlafen gehört zum Training!"
+  },
+  {
+   "who": "dax",
+   "cue": "night",
+   "ja": "しっかり休めよ、相棒！",
+   "en": "Rest up well, partner!",
+   "de": "Ruh dich gut aus, Partner!"
+  },
+  {
+   "who": "dax",
+   "cue": "proud",
+   "ja": "ガハハ！さすが俺の相棒だ！",
+   "en": "Ha ha! That's my partner!",
+   "de": "Haha! Das ist mein Partner!"
+  },
+  {
+   "who": "dax",
+   "cue": "proud",
+   "ja": "いい汗かいたな！最高だ！",
+   "en": "Great sweat! Awesome!",
+   "de": "Guter Schweiß! Klasse!"
+  },
+  {
+   "who": "dax",
+   "cue": "cheer",
+   "ja": "あと一回！いける、いけるぞ！",
+   "en": "One more rep! You got this!",
+   "de": "Noch eine Wiederholung! Du schaffst das!"
+  },
+  {
+   "who": "dax",
+   "cue": "cheer",
+   "ja": "筋肉は裏切らない！",
+   "en": "Muscles never betray you!",
+   "de": "Muskeln lassen dich nie im Stich!"
+  },
+  {
+   "who": "dax",
+   "cue": "quest",
+   "ja": "今日のメニューはこれだ！",
+   "en": "Here's today's workout!",
+   "de": "Das ist dein Programm für heute!"
+  },
+  {
+   "who": "dax",
+   "cue": "quest",
+   "ja": "一緒にこのクエスト、ぶっ潰そうぜ！",
+   "en": "Let's crush this quest together!",
+   "de": "Die Quest machen wir zusammen platt!"
+  },
+  {
+   "who": "dax",
+   "cue": "gentle",
+   "ja": "今日は休養日にしよう。それも大事だ。",
+   "en": "Let's make today a rest day. That matters too.",
+   "de": "Machen wir heute Ruhetag. Das zählt auch."
+  },
+  {
+   "who": "dax",
+   "cue": "gentle",
+   "ja": "無理すんな。ケガしたら元も子もないぞ。",
+   "en": "Don't overdo it. An injury ruins everything.",
+   "de": "Übertreib's nicht. Verletzt bringt's nichts."
+  },
+  {
+   "who": "dax",
+   "cue": "thanks",
+   "ja": "いいってことよ！",
+   "en": "No problem at all!",
+   "de": "Kein Ding!"
+  },
+  {
+   "who": "dax",
+   "cue": "thanks",
+   "ja": "ガハハ、照れるぜ！",
+   "en": "Ha ha, you'll make me blush!",
+   "de": "Haha, da werd ich ja rot!"
+  },
+  {
+   "who": "dax",
+   "cue": "levelup",
+   "ja": "レベルアップだ！プロテインで乾杯だ！",
+   "en": "Level up! A protein toast!",
+   "de": "Level up! Anstoßen mit Protein!"
+  },
+  {
+   "who": "dax",
+   "cue": "levelup",
+   "ja": "また強くなったな、相棒！",
+   "en": "Stronger again, partner!",
+   "de": "Wieder stärker, Partner!"
+  },
+  {
+   "who": "dax",
+   "cue": "status",
+   "ja": "今の記録を見てみよう！",
+   "en": "Let's check your numbers!",
+   "de": "Schauen wir uns deine Zahlen an!"
+  },
+  {
+   "who": "dax",
+   "cue": "status",
+   "ja": "いい感じに伸びてるぞ！",
+   "en": "You're growing nicely!",
+   "de": "Das wächst schön!"
+  },
+  {
+   "who": "dax",
+   "cue": "listen",
+   "ja": "おう、なんだ？",
+   "en": "Yeah, what's up?",
+   "de": "Jo, was gibt's?"
+  },
+  {
+   "who": "dax",
+   "cue": "listen",
+   "ja": "聞いてるぞ、相棒。",
+   "en": "I'm listening, partner.",
+   "de": "Ich hör zu, Partner."
+  },
+  {
+   "who": "june",
+   "cue": "morning",
+   "ja": "ふぁ…おはよ。まだ眠い…",
+   "en": "Yawn… morning. Still sleepy…",
+   "de": "Gääähn… Morgen. Noch müde…"
+  },
+  {
+   "who": "june",
+   "cue": "morning",
+   "ja": "朝ってほんと無理…でも起きたね、えらい。",
+   "en": "Mornings are the worst… but you got up. Nice.",
+   "de": "Morgens ist echt hart… aber du bist wach. Stark."
+  },
+  {
+   "who": "june",
+   "cue": "day",
+   "ja": "あ、来た。ゲーム一回分だけ、やろっか。",
+   "en": "Oh, you're here. Just one round's worth, okay?",
+   "de": "Oh, da bist du. Nur eine Runde, okay?"
+  },
+  {
+   "who": "june",
+   "cue": "day",
+   "ja": "んー、まあ、いいんじゃない？",
+   "en": "Mm, well, not bad I guess?",
+   "de": "Hm, naja, passt schon?"
+  },
+  {
+   "who": "june",
+   "cue": "evening",
+   "ja": "夜だ…ここからが本番だね。",
+   "en": "Night… this is when it gets real.",
+   "de": "Nacht… jetzt geht's erst los."
+  },
+  {
+   "who": "june",
+   "cue": "evening",
+   "ja": "今日もおつかれ…ほんとに。",
+   "en": "Good work today… seriously.",
+   "de": "Gut gemacht heute… echt."
+  },
+  {
+   "who": "june",
+   "cue": "night",
+   "ja": "もう寝よ…あたしも寝る…",
+   "en": "Let's sleep… I'm going too…",
+   "de": "Lass uns schlafen… ich auch…"
+  },
+  {
+   "who": "june",
+   "cue": "night",
+   "ja": "夜更かしは…明日の自分がかわいそう。",
+   "en": "Staying up… poor tomorrow you.",
+   "de": "Lange aufbleiben… armes Morgen-Ich."
+  },
+  {
+   "who": "june",
+   "cue": "proud",
+   "ja": "え、すご…ガチじゃん。",
+   "en": "Wait, wow… you're for real.",
+   "de": "Warte, wow… du meinst das ernst."
+  },
+  {
+   "who": "june",
+   "cue": "proud",
+   "ja": "実績解除、おめでと。",
+   "en": "Achievement unlocked. Congrats.",
+   "de": "Erfolg freigeschaltet. Glückwunsch."
+  },
+  {
+   "who": "june",
+   "cue": "cheer",
+   "ja": "…よし。ちょっとだけ本気出そ。",
+   "en": "Okay… let's try a little for real.",
+   "de": "Okay… ein bisschen ernst machen."
+  },
+  {
+   "who": "june",
+   "cue": "cheer",
+   "ja": "十分だけ。十分だけやろ。",
+   "en": "Ten minutes. Just ten minutes.",
+   "de": "Zehn Minuten. Nur zehn Minuten."
+  },
+  {
+   "who": "june",
+   "cue": "quest",
+   "ja": "クエスト来てるよ…めんどいけど。",
+   "en": "There's a quest… kind of a pain, though.",
+   "de": "Da ist ne Quest… nervig, aber."
+  },
+  {
+   "who": "june",
+   "cue": "quest",
+   "ja": "サブクエ感覚で、いっとく？",
+   "en": "Treat it like a side quest?",
+   "de": "Wie ne Nebenquest, okay?"
+  },
+  {
+   "who": "june",
+   "cue": "gentle",
+   "ja": "疲れた日は、ログアウトしていいんだよ。",
+   "en": "On tired days, it's okay to log out.",
+   "de": "An müden Tagen darfst du dich ausloggen."
+  },
+  {
+   "who": "june",
+   "cue": "gentle",
+   "ja": "ゆるくいこ。セーブしとけば大丈夫。",
+   "en": "Let's keep it chill. We saved, it's fine.",
+   "de": "Ganz locker. Gespeichert ist gespeichert."
+  },
+  {
+   "who": "june",
+   "cue": "thanks",
+   "ja": "ん…どういたしまして。",
+   "en": "Mm… you're welcome.",
+   "de": "Mhm… gern geschehen."
+  },
+  {
+   "who": "june",
+   "cue": "thanks",
+   "ja": "べ、別に…いいけど。",
+   "en": "It's… whatever. Fine.",
+   "de": "Ist… schon okay."
+  },
+  {
+   "who": "june",
+   "cue": "levelup",
+   "ja": "レベルアップ…ぱちぱち。",
+   "en": "Level up… clap clap.",
+   "de": "Level up… klatsch klatsch."
+  },
+  {
+   "who": "june",
+   "cue": "levelup",
+   "ja": "お、レベル上がった。ちょっと嬉しい。",
+   "en": "Oh, levelled up. Kinda happy.",
+   "de": "Oh, Level up. Freut mich irgendwie."
+  },
+  {
+   "who": "june",
+   "cue": "status",
+   "ja": "ステータス、こんな感じ。",
+   "en": "Stats look like this.",
+   "de": "Deine Stats sehen so aus."
+  },
+  {
+   "who": "june",
+   "cue": "status",
+   "ja": "えっと…数字、見る？",
+   "en": "Um… wanna see the numbers?",
+   "de": "Ähm… willst du die Zahlen sehen?"
+  },
+  {
+   "who": "june",
+   "cue": "listen",
+   "ja": "んー？なに？",
+   "en": "Hm? What?",
+   "de": "Hm? Was?"
+  },
+  {
+   "who": "june",
+   "cue": "listen",
+   "ja": "うん…聞いてるよ。",
+   "en": "Yeah… I'm listening.",
+   "de": "Ja… ich hör zu."
+  },
+  {
+   "who": "vale",
+   "cue": "morning",
+   "ja": "よう、朝だ。顔を洗ってこい。",
+   "en": "Hey, it's morning. Go wash your face.",
+   "de": "He, es ist Morgen. Wasch dir das Gesicht."
+  },
+  {
+   "who": "vale",
+   "cue": "morning",
+   "ja": "いい朝だな。鍛えるには最高だ。",
+   "en": "Fine morning. Perfect for training.",
+   "de": "Schöner Morgen. Perfekt zum Trainieren."
+  },
+  {
+   "who": "vale",
+   "cue": "day",
+   "ja": "おう、来たか。",
+   "en": "Oh, you made it.",
+   "de": "Ah, da bist du ja."
+  },
+  {
+   "who": "vale",
+   "cue": "day",
+   "ja": "サボってないだろうな？",
+   "en": "You haven't been slacking, have you?",
+   "de": "Du hast doch nicht geschwänzt, oder?"
+  },
+  {
+   "who": "vale",
+   "cue": "evening",
+   "ja": "一日お疲れさん。",
+   "en": "Good work today.",
+   "de": "Gute Arbeit heute."
+  },
+  {
+   "who": "vale",
+   "cue": "evening",
+   "ja": "夜だな。まだ少し、動けるか？",
+   "en": "Night's here. Got a little more in you?",
+   "de": "Es wird Nacht. Geht noch ein bisschen?"
+  },
+  {
+   "who": "vale",
+   "cue": "night",
+   "ja": "もう寝ろ。戦士は眠りで強くなる。",
+   "en": "Go to sleep. Warriors grow strong in sleep.",
+   "de": "Geh schlafen. Krieger werden im Schlaf stark."
+  },
+  {
+   "who": "vale",
+   "cue": "night",
+   "ja": "夜更かしは敵だぞ。",
+   "en": "Staying up late is the enemy.",
+   "de": "Lange aufbleiben ist der Feind."
+  },
+  {
+   "who": "vale",
+   "cue": "proud",
+   "ja": "ははっ、やるじゃねえか。",
+   "en": "Ha! Not bad at all.",
+   "de": "Ha! Gar nicht übel."
+  },
+  {
+   "who": "vale",
+   "cue": "proud",
+   "ja": "俺の若い頃より、ずっといい。",
+   "en": "Better than I was at your age.",
+   "de": "Besser als ich in deinem Alter."
+  },
+  {
+   "who": "vale",
+   "cue": "cheer",
+   "ja": "気合いを入れろ。行くぞ。",
+   "en": "Fire up. Let's go.",
+   "de": "Reiß dich zusammen. Los geht's."
+  },
+  {
+   "who": "vale",
+   "cue": "cheer",
+   "ja": "汗は裏切らねえ。",
+   "en": "Sweat never betrays you.",
+   "de": "Schweiß lügt nicht."
+  },
+  {
+   "who": "vale",
+   "cue": "quest",
+   "ja": "今日の任務だ。しっかりこなせ。",
+   "en": "Today's mission. Get it done properly.",
+   "de": "Der Auftrag für heute. Zieh ihn sauber durch."
+  },
+  {
+   "who": "vale",
+   "cue": "quest",
+   "ja": "目標は一つ。迷うな。",
+   "en": "One goal. Don't waver.",
+   "de": "Ein Ziel. Nicht zögern."
+  },
+  {
+   "who": "vale",
+   "cue": "gentle",
+   "ja": "疲れたなら休め。それも戦いのうちだ。",
+   "en": "Tired? Then rest. That's part of the fight.",
+   "de": "Müde? Dann ruh dich aus. Gehört zum Kampf."
+  },
+  {
+   "who": "vale",
+   "cue": "gentle",
+   "ja": "焦るな。長い旅なんだ。",
+   "en": "Don't rush. It's a long journey.",
+   "de": "Keine Eile. Es ist ein langer Weg."
+  },
+  {
+   "who": "vale",
+   "cue": "thanks",
+   "ja": "礼なんていらねえよ。",
+   "en": "No need for thanks.",
+   "de": "Dank brauch ich keinen."
+  },
+  {
+   "who": "vale",
+   "cue": "thanks",
+   "ja": "おう。",
+   "en": "Yep.",
+   "de": "Jo."
+  },
+  {
+   "who": "vale",
+   "cue": "levelup",
+   "ja": "レベルアップか。いい面構えになってきたな。",
+   "en": "Level up, huh. You're starting to look the part.",
+   "de": "Level up, was? Du siehst langsam aus wie ein Krieger."
+  },
+  {
+   "who": "vale",
+   "cue": "levelup",
+   "ja": "よし。次の山を目指すぞ。",
+   "en": "Good. On to the next mountain.",
+   "de": "Gut. Auf zum nächsten Berg."
+  },
+  {
+   "who": "vale",
+   "cue": "status",
+   "ja": "戦況を確認するか。",
+   "en": "Let's check the battlefield.",
+   "de": "Sehen wir uns die Lage an."
+  },
+  {
+   "who": "vale",
+   "cue": "status",
+   "ja": "数字を見りゃ分かる。",
+   "en": "The numbers tell you everything.",
+   "de": "Die Zahlen sagen alles."
+  },
+  {
+   "who": "vale",
+   "cue": "listen",
+   "ja": "ほう、言ってみろ。",
+   "en": "Oh? Go on, say it.",
+   "de": "Ach ja? Raus damit."
+  },
+  {
+   "who": "vale",
+   "cue": "listen",
+   "ja": "ふむ。",
+   "en": "Hm.",
+   "de": "Hm."
+  },
+  {
+   "who": "vesper",
+   "cue": "morning",
+   "ja": "朝か…忌々しい太陽め。だが君のためなら耐えよう。",
+   "en": "Morning… wretched sun. For you, I'll endure it.",
+   "de": "Morgen… verfluchte Sonne. Für dich ertrage ich sie."
+  },
+  {
+   "who": "vesper",
+   "cue": "morning",
+   "ja": "目覚めたか。美しい一日の幕開けだ。",
+   "en": "You've awakened. The curtain rises on a fine day.",
+   "de": "Du bist erwacht. Der Vorhang hebt sich."
+  },
+  {
+   "who": "vesper",
+   "cue": "day",
+   "ja": "ようこそ、我が友よ。",
+   "en": "Welcome, my friend.",
+   "de": "Willkommen, mein Freund."
+  },
+  {
+   "who": "vesper",
+   "cue": "day",
+   "ja": "昼の世界も、君がいれば悪くない。",
+   "en": "Even daylight isn't bad with you here.",
+   "de": "Selbst der Tag ist mit dir erträglich."
+  },
+  {
+   "who": "vesper",
+   "cue": "evening",
+   "ja": "ああ、夜が来た。我らの時間だ。",
+   "en": "Ah, night has come. Our hour.",
+   "de": "Ah, die Nacht ist da. Unsere Stunde."
+  },
+  {
+   "who": "vesper",
+   "cue": "evening",
+   "ja": "今宵の物語を、聞かせたまえ。",
+   "en": "Tell me tonight's tale.",
+   "de": "Erzähl mir die Geschichte des Abends."
+  },
+  {
+   "who": "vesper",
+   "cue": "night",
+   "ja": "眠りたまえ。夢の中でも気高くあれ。",
+   "en": "Sleep now. Be noble even in your dreams.",
+   "de": "Schlaf nun. Sei edel, auch im Traum."
+  },
+  {
+   "who": "vesper",
+   "cue": "night",
+   "ja": "月が見守っている。安心して休むがいい。",
+   "en": "The moon watches over you. Rest easy.",
+   "de": "Der Mond wacht über dich. Ruh dich aus."
+  },
+  {
+   "who": "vesper",
+   "cue": "proud",
+   "ja": "素晴らしい！実に素晴らしい！",
+   "en": "Magnificent! Truly magnificent!",
+   "de": "Prächtig! Wahrhaft prächtig!"
+  },
+  {
+   "who": "vesper",
+   "cue": "proud",
+   "ja": "君の努力は、芸術の域に達している。",
+   "en": "Your effort has reached the level of art.",
+   "de": "Deine Mühe ist zur Kunst geworden."
+  },
+  {
+   "who": "vesper",
+   "cue": "cheer",
+   "ja": "さあ、舞台は整った！踊りたまえ！",
+   "en": "The stage is set! Now dance!",
+   "de": "Die Bühne ist bereit! Nun tanze!"
+  },
+  {
+   "who": "vesper",
+   "cue": "cheer",
+   "ja": "運命に、その力を見せつけるのだ！",
+   "en": "Show fate what you're made of!",
+   "de": "Zeig dem Schicksal, was in dir steckt!"
+  },
+  {
+   "who": "vesper",
+   "cue": "quest",
+   "ja": "新たなる試練が、君を待っている。",
+   "en": "A new trial awaits you.",
+   "de": "Eine neue Prüfung erwartet dich."
+  },
+  {
+   "who": "vesper",
+   "cue": "quest",
+   "ja": "この契約、受けてもらおうか。",
+   "en": "Shall we seal this contract?",
+   "de": "Besiegeln wir diesen Pakt?"
+  },
+  {
+   "who": "vesper",
+   "cue": "gentle",
+   "ja": "疲れたのかね。今宵は休むがいい。",
+   "en": "Weary, are we? Rest tonight.",
+   "de": "Ermattet? Ruh dich heute aus."
+  },
+  {
+   "who": "vesper",
+   "cue": "gentle",
+   "ja": "永遠を生きる私が言う。焦ることはない。",
+   "en": "Take it from one who lives forever: no need to hurry.",
+   "de": "Glaub einem Unsterblichen: Keine Eile."
+  },
+  {
+   "who": "vesper",
+   "cue": "thanks",
+   "ja": "礼には及ばぬ。当然のことだ。",
+   "en": "No thanks required. It is only natural.",
+   "de": "Kein Dank nötig. Selbstverständlich."
+  },
+  {
+   "who": "vesper",
+   "cue": "thanks",
+   "ja": "ふふ、光栄の極みだ。",
+   "en": "Heh, the greatest of honours.",
+   "de": "Hehe, die größte aller Ehren."
+  },
+  {
+   "who": "vesper",
+   "cue": "levelup",
+   "ja": "レベルアップ！新たな伝説の始まりだ！",
+   "en": "Level up! The dawn of a new legend!",
+   "de": "Level up! Der Beginn einer neuen Legende!"
+  },
+  {
+   "who": "vesper",
+   "cue": "levelup",
+   "ja": "君はまた一つ、高貴になった。",
+   "en": "You have grown ever more noble.",
+   "de": "Du bist noch edler geworden."
+  },
+  {
+   "who": "vesper",
+   "cue": "status",
+   "ja": "君の軌跡を、読み上げよう。",
+   "en": "Let me recite your journey.",
+   "de": "Lass mich deinen Weg vortragen."
+  },
+  {
+   "who": "vesper",
+   "cue": "status",
+   "ja": "数字もまた、詩のように美しい。",
+   "en": "Even numbers are beautiful, like poetry.",
+   "de": "Selbst Zahlen sind schön wie Poesie."
+  },
+  {
+   "who": "vesper",
+   "cue": "listen",
+   "ja": "ほう、聞かせたまえ。",
+   "en": "Oh? Do tell.",
+   "de": "Oh? Erzähl nur."
+  },
+  {
+   "who": "vesper",
+   "cue": "listen",
+   "ja": "続けたまえ。",
+   "en": "Continue.",
+   "de": "Fahre fort."
+  },
+  {
+   "who": "aurel",
+   "cue": "morning",
+   "ja": "おはようございます。新しいページが開きました。",
+   "en": "Good morning. A new page has opened.",
+   "de": "Guten Morgen. Eine neue Seite ist aufgeschlagen."
+  },
+  {
+   "who": "aurel",
+   "cue": "morning",
+   "ja": "朝の光は、始まりの色ですね。",
+   "en": "Morning light is the colour of beginnings.",
+   "de": "Morgenlicht ist die Farbe des Anfangs."
+  },
+  {
+   "who": "aurel",
+   "cue": "day",
+   "ja": "ようこそ。静かな場所へ。",
+   "en": "Welcome, to a quiet place.",
+   "de": "Willkommen an einem stillen Ort."
+  },
+  {
+   "who": "aurel",
+   "cue": "day",
+   "ja": "あなたの物語の続きを、読みに来ました。",
+   "en": "I've come to read the next part of your story.",
+   "de": "Ich lese weiter in deiner Geschichte."
+  },
+  {
+   "who": "aurel",
+   "cue": "evening",
+   "ja": "夕暮れは、一日の余白です。",
+   "en": "Dusk is the margin of the day.",
+   "de": "Die Dämmerung ist der Rand des Tages."
+  },
+  {
+   "who": "aurel",
+   "cue": "evening",
+   "ja": "今日の一行を、書き残しましょう。",
+   "en": "Let's write down today's line.",
+   "de": "Schreiben wir die Zeile des Tages auf."
+  },
+  {
+   "who": "aurel",
+   "cue": "night",
+   "ja": "本を閉じる時間です。おやすみなさい。",
+   "en": "Time to close the book. Good night.",
+   "de": "Zeit, das Buch zu schließen. Gute Nacht."
+  },
+  {
+   "who": "aurel",
+   "cue": "night",
+   "ja": "星が、あなたの夢を照らしますように。",
+   "en": "May the stars light your dreams.",
+   "de": "Mögen die Sterne deine Träume erhellen."
+  },
+  {
+   "who": "aurel",
+   "cue": "proud",
+   "ja": "美しい一章でしたね。",
+   "en": "That was a beautiful chapter.",
+   "de": "Das war ein schönes Kapitel."
+  },
+  {
+   "who": "aurel",
+   "cue": "proud",
+   "ja": "あなたの光が、少し強くなりました。",
+   "en": "Your light has grown a little brighter.",
+   "de": "Dein Licht ist ein wenig heller geworden."
+  },
+  {
+   "who": "aurel",
+   "cue": "cheer",
+   "ja": "さあ、羽ばたく時です。",
+   "en": "Now is the time to spread your wings.",
+   "de": "Jetzt ist Zeit, die Flügel auszubreiten."
+  },
+  {
+   "who": "aurel",
+   "cue": "cheer",
+   "ja": "あなたなら、きっと届きます。",
+   "en": "You will reach it, I'm sure.",
+   "de": "Du wirst es erreichen, ganz sicher."
+  },
+  {
+   "who": "aurel",
+   "cue": "quest",
+   "ja": "次の頁に、小さな試練があります。",
+   "en": "On the next page, a small trial awaits.",
+   "de": "Auf der nächsten Seite wartet eine kleine Prüfung."
+  },
+  {
+   "who": "aurel",
+   "cue": "quest",
+   "ja": "道しるべを、ひとつ置いておきますね。",
+   "en": "I'll leave you one signpost.",
+   "de": "Ich lege dir einen Wegweiser hin."
+  },
+  {
+   "who": "aurel",
+   "cue": "gentle",
+   "ja": "疲れた翼は、休ませてあげましょう。",
+   "en": "Let tired wings rest.",
+   "de": "Müde Flügel dürfen ruhen."
+  },
+  {
+   "who": "aurel",
+   "cue": "gentle",
+   "ja": "立ち止まることも、物語の一部です。",
+   "en": "Pausing is part of the story too.",
+   "de": "Innehalten gehört auch zur Geschichte."
+  },
+  {
+   "who": "aurel",
+   "cue": "thanks",
+   "ja": "どういたしまして。",
+   "en": "You're welcome.",
+   "de": "Gern geschehen."
+  },
+  {
+   "who": "aurel",
+   "cue": "thanks",
+   "ja": "その言葉、大切にしまっておきます。",
+   "en": "I'll keep those words close.",
+   "de": "Diese Worte bewahre ich gut auf."
+  },
+  {
+   "who": "aurel",
+   "cue": "levelup",
+   "ja": "新しい章の始まりですね。おめでとう。",
+   "en": "A new chapter begins. Congratulations.",
+   "de": "Ein neues Kapitel beginnt. Glückwunsch."
+  },
+  {
+   "who": "aurel",
+   "cue": "levelup",
+   "ja": "あなたの翼が、また少し大きくなりました。",
+   "en": "Your wings have grown a little larger.",
+   "de": "Deine Flügel sind etwas größer geworden."
+  },
+  {
+   "who": "aurel",
+   "cue": "status",
+   "ja": "これまでの記録を、読み返しましょう。",
+   "en": "Let's read back through your record.",
+   "de": "Lesen wir deine bisherigen Aufzeichnungen."
+  },
+  {
+   "who": "aurel",
+   "cue": "status",
+   "ja": "静かに、確かに、進んでいます。",
+   "en": "Quietly and surely, you're moving forward.",
+   "de": "Leise und sicher kommst du voran."
+  },
+  {
+   "who": "aurel",
+   "cue": "listen",
+   "ja": "はい、聞かせてください。",
+   "en": "Yes, please tell me.",
+   "de": "Ja, erzähl es mir."
+  },
+  {
+   "who": "aurel",
+   "cue": "listen",
+   "ja": "ええ、ここにいますよ。",
+   "en": "Yes, I'm right here.",
+   "de": "Ja, ich bin hier."
+  },
+  {
+   "who": "pip",
+   "cue": "morning",
+   "ja": "おはようだピ！起きて起きてー！",
+   "en": "Morning-pip! Wake up, wake up!",
+   "de": "Morgen-piep! Aufwachen, aufwachen!"
+  },
+  {
+   "who": "pip",
+   "cue": "morning",
+   "ja": "朝ごはん食べたピ？",
+   "en": "Did you eat breakfast-pip?",
+   "de": "Hast du gefrühstückt, piep?"
+  },
+  {
+   "who": "pip",
+   "cue": "day",
+   "ja": "わーい、来たピ！",
+   "en": "Yay, you're here-pip!",
+   "de": "Juhu, du bist da, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "day",
+   "ja": "遊びに来てくれたピ？",
+   "en": "Did you come to play-pip?",
+   "de": "Kommst du spielen, piep?"
+  },
+  {
+   "who": "pip",
+   "cue": "evening",
+   "ja": "こんばんはだピ！今日もえらかったピ！",
+   "en": "Evening-pip! You did great today!",
+   "de": "Abend, piep! Du warst heute toll!"
+  },
+  {
+   "who": "pip",
+   "cue": "evening",
+   "ja": "お星さまが出てきたピ！",
+   "en": "The stars are coming out-pip!",
+   "de": "Die Sterne kommen raus, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "night",
+   "ja": "ふわぁ、もう眠いピ。",
+   "en": "Yaaawn, I'm sleepy-pip.",
+   "de": "Gääähn, ich bin müde, piep."
+  },
+  {
+   "who": "pip",
+   "cue": "night",
+   "ja": "一緒に寝るピ。おやすみピ。",
+   "en": "Let's sleep-pip. Night night.",
+   "de": "Lass uns schlafen, piep. Gute Nacht."
+  },
+  {
+   "who": "pip",
+   "cue": "proud",
+   "ja": "すごいすごい！天才だピ！",
+   "en": "Wow, wow! You're a genius-pip!",
+   "de": "Wow, wow! Du bist ein Genie, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "proud",
+   "ja": "ピップも鼻が高いピ！",
+   "en": "Pip is so proud-pip!",
+   "de": "Pip ist so stolz, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "cheer",
+   "ja": "がんばれがんばれ、だピ！",
+   "en": "Go go go-pip!",
+   "de": "Los, los, los, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "cheer",
+   "ja": "いっくピー！",
+   "en": "Here we gooo-pip!",
+   "de": "Auf geht's, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "quest",
+   "ja": "クエスト発見だピ！",
+   "en": "Quest found-pip!",
+   "de": "Quest gefunden, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "quest",
+   "ja": "これやったら、ごほうびだピ！",
+   "en": "Do this and you get a treat-pip!",
+   "de": "Mach das und es gibt ne Belohnung, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "gentle",
+   "ja": "つかれたピ？よしよしだピ。",
+   "en": "Tired-pip? There, there.",
+   "de": "Müde, piep? Na, na."
+  },
+  {
+   "who": "pip",
+   "cue": "gentle",
+   "ja": "今日はお昼寝しよっピ。",
+   "en": "Let's take a nap today-pip.",
+   "de": "Heute machen wir ein Nickerchen, piep."
+  },
+  {
+   "who": "pip",
+   "cue": "thanks",
+   "ja": "えへへ、どういたしましてピ！",
+   "en": "Hehe, you're welcome-pip!",
+   "de": "Hihi, gern geschehen, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "thanks",
+   "ja": "ピップも嬉しいピ！",
+   "en": "Pip is happy too-pip!",
+   "de": "Pip freut sich auch, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "levelup",
+   "ja": "レベルアップだピー！",
+   "en": "Level uuup-pip!",
+   "de": "Level uuup, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "levelup",
+   "ja": "きらきらパワーアップだピ！",
+   "en": "Sparkly power up-pip!",
+   "de": "Glitzer-Power-up, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "status",
+   "ja": "今の記録はこれだピ！",
+   "en": "Here's your record-pip!",
+   "de": "Hier ist dein Stand, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "status",
+   "ja": "えっとえっと、見てみるピ！",
+   "en": "Umm, umm, let's look-pip!",
+   "de": "Ähm, ähm, schauen wir mal, piep!"
+  },
+  {
+   "who": "pip",
+   "cue": "listen",
+   "ja": "ピ？なになに？",
+   "en": "Pip? What is it?",
+   "de": "Piep? Was denn?"
+  },
+  {
+   "who": "pip",
+   "cue": "listen",
+   "ja": "うんうん、聞いてるピ！",
+   "en": "Uh-huh, Pip is listening!",
+   "de": "Mhm, Pip hört zu!"
+  }
+ ]
+}

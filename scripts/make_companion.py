@@ -33,30 +33,73 @@ CHECKPOINT = "NoobAI-XL-v1.1.safetensors"
 QUALITY = "masterpiece, best quality, amazing quality, very aesthetic, absurdres, newest"
 STYLE = (
     "korean webtoon style, manhwa, sharp clean lineart, dramatic cel shading, "
-    "dark fantasy hunter, glowing blue and violet magic particles, rim lighting, "
-    "deep midnight blue background, night sky, subtle stars"
+    "dark fantasy, glowing magic particles, rim lighting, night"
 )
 FACE = (
     "detailed face, beautiful detailed eyes, visible pupils, glowing irises, "
     "softly lit face, clear facial features"
 )
-# Two companions to choose from; both original designs.
+# Ten companions, all original designs, each with its own palette and
+# silhouette so they stay apart at a glance: character tags, then scene.
 CHARACTERS = {
     "Nyx": (
-        "1girl, solo, young woman, (short black hair:1.3), bob cut, side bangs, violet eyes, "
-        "black high-collar long coat with glowing lavender trim, dark fitted armor underneath, "
-        "silver shoulder guard, black fingerless gloves"
+        "1girl, solo, young woman, long silver hair, single braid over shoulder, violet eyes, "
+        "crescent moon earring, black high-collar coat with silver star embroidery, glowing lavender runes, "
+        "fingerless gloves",
+        "night sky with a large crescent moon, violet and deep blue palette",
     ),
-    "Kael": (
-        "1boy, solo, young man, short messy black hair, dark blue eyes, "
-        "black hooded long coat with glowing blue trim, dark leather armor underneath, "
-        "black fingerless gloves, calm confident look"
+    "Vale": (
+        "1boy, solo, mature man, 40s, short dark hair with grey streaks, stubble, eyepatch over right eye, "
+        "amber eye, dark plate armor with gold trim, fur-lined cloak, veteran warrior",
+        "warm amber embers, dark bronze palette",
+    ),
+    "Pip": (
+        "no humans, solo, animal focus, small cute fox spirit, fluffy white fur with glowing cyan tail tips, "
+        "three tails, big sparkling cyan eyes, tiny blue scarf, floating in the air",
+        "magical cyan wisps, starry night sky, cyan and indigo palette",
+    ),
+    "Kira": (
+        "1girl, solo, young woman, short spiky two-tone hair black and electric yellow, sharp yellow eyes, "
+        "confident smirk, small lightning bolt face paint under one eye, black bomber jacket with yellow lining, "
+        "boxing hand wraps, silver ear piercings, punk",
+        "electric yellow lightning sparks, dark city rooftop at night, black and neon yellow palette",
+    ),
+    "Ash": (
+        "1boy, solo, young man, messy white hair, heterochromia, one red eye one blue eye, cocky grin, "
+        "sleek black armored coat with purple glowing seams, shadow soldiers silhouettes behind him",
+        "purple shadow smoke, black and violet palette",
+    ),
+    "Luma": (
+        "1girl, solo, android girl, short bob hair pastel cyan with glowing fiber optic tips, "
+        "holographic visor over one eye, white and silver mechanical armor, visible robot joints on the neck, "
+        "floating holographic screens with charts, calm analytical expression",
+        "clean futuristic holographic interface, white and cyan palette",
+    ),
+    "Dax": (
+        "1boy, solo, tall muscular young man, tan skin, short white buzz cut, green eyes, wide friendly grin, "
+        "glowing green line tattoos on forearms, black compression shirt, towel around neck, dumbbell on shoulder",
+        "gym at night with green neon lights, green and charcoal palette",
+    ),
+    "June": (
+        "1girl, solo, young woman, messy lavender hair, sleepy half-closed eyes, small yawn, "
+        "oversized hoodie with cat ear hood, big headphones around neck, holding a game controller, cozy",
+        "cozy dark bedroom lit by monitor glow and fairy lights, soft pink and purple palette",
+    ),
+    "Vesper": (
+        "1boy, solo, handsome young man, long straight black hair, crimson eyes, pale skin, elegant smirk, "
+        "victorian aristocrat coat black and deep red with gold buttons, lace cravat, vampire, one gloved hand raised dramatically",
+        "gothic cathedral window with a blood red moon, crimson and black palette",
+    ),
+    "Aurel": (
+        "1boy, solo, androgynous young man, long flowing pale gold hair, soft gold eyes, serene smile, "
+        "white and gold librarian robes, floating glowing book, halo ring of golden runes behind the head, small white wings",
+        "floating books and warm golden light, ivory and gold palette",
     ),
 }
 NEGATIVE = (
     "worst quality, low quality, lowres, normal quality, bad anatomy, bad hands, extra fingers, "
     "missing fingers, deformed, blurry, jpeg artifacts, text, watermark, signature, logo, username, "
-    "nsfw, cleavage, revealing clothes, chibi, 3d, realistic, photo, multiple people, "
+    "nsfw, cleavage, revealing clothes, midriff, chibi, 3d, realistic, photo, multiple people, "
     "empty eyes, blank eyes, no pupils, shadowed face, dark face, creepy"
 )
 
@@ -100,8 +143,22 @@ def img2img(image: str, prompt: str, denoise: float, seed: int, prefix: str) -> 
     }
 
 
-def prompt(who: str, extra: str) -> str:
-    return f"{QUALITY}, {CHARACTERS[who]}, {extra}, {FACE}, upper body, {STYLE}"
+# Pip is an animal; faces and poses from the human list would break it.
+PIP_EXPRESSIONS = {
+    "Neutral": "calm, happy, looking at viewer",
+    "Proud": "proud, chest puffed out, confident smug face, sparkling eyes",
+    "Cheer": "excited, jumping, open mouth, very happy, sparkles",
+    "Serious": "serious, focused eyes, determined",
+    "Gentle": "gentle smile, soft eyes, head tilt, cute",
+    "Rest": "sleeping, eyes closed, curled up, peaceful",
+}
+
+
+def prompt(who: str, extra: str, expression: str = "Neutral") -> str:
+    looks, scene = CHARACTERS[who]
+    if who == "Pip":
+        return f"{QUALITY}, {looks}, {PIP_EXPRESSIONS[expression]}, cute, full body, {scene}, {STYLE}"
+    return f"{QUALITY}, {looks}, {extra}, {FACE}, upper body, {scene}, {STYLE}"
 
 
 def explore(who: str, count: int = 6) -> None:
@@ -126,7 +183,11 @@ def save(name: str, source: Path) -> None:
 
 
 # The portraits picked from `explore`.
-SEEDS = {"Nyx": 1936032050, "Kael": 1763398590}
+SEEDS = {
+    "Nyx": 51156248, "Vale": 776372639, "Pip": 294980275,
+    "Kira": 262924397, "Ash": 382233022, "Luma": 494094586, "Dax": 1913769077,
+    "June": 456848475, "Vesper": 155380552, "Aurel": 1160940172,
+}
 
 
 def build(who: str) -> None:
@@ -148,7 +209,7 @@ def build(who: str) -> None:
     for name, (extra, denoise, offset) in EXPRESSIONS.items():
         if name == "Neutral":
             continue
-        files, seconds = comfy.run(img2img(f"ma_{who.lower()}_base.png", prompt(who, extra), denoise,
+        files, seconds = comfy.run(img2img(f"ma_{who.lower()}_base.png", prompt(who, extra, name), denoise,
                                            seed + offset, f"ma_{who.lower()}_{name.lower()}"))
         shutil.copy(files[0], WORK / f"{who.lower()}_{name.lower()}.png")
         save(f"{who}{name}", Path(files[0]))
@@ -163,7 +224,7 @@ LOOP_PROMPT = ("anime character idle animation, gentle breathing, hair moving so
                "static camera, consistent colors")
 LOOP_NEGATIVE = ("camera movement, zoom, fast motion, morphing, distorted face, color shift, brown, faded colors, "
                  "extra limbs, text, watermark")
-LOOP_SEEDS = {"Nyx": 7, "Kael": 23}
+LOOP_SEEDS = {name: 7 for name in SEEDS}
 MEDIA = ROOT / "App" / "Companion" / "Media"
 
 

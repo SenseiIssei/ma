@@ -1,4 +1,3 @@
-import AVFoundation
 import Foundation
 import Observation
 
@@ -12,12 +11,16 @@ struct CompanionMessage: Codable, Identifiable, Equatable {
     /// Only for quest windows: the heading and the reward.
     var title: String?
     var reward: Int?
+    /// The recorded line that played with this answer and its subtitle.
+    var voice: String?
+    var subtitle: String?
     var date = Date()
 }
 
 /// The chat with the chosen companion. Answers come from the on-device
 /// model when the iPhone has one and from the scripted lines otherwise;
-/// either way they are built on the same snapshot of real numbers.
+/// either way they are built on the same snapshot of real numbers, and a
+/// recorded Japanese line in the companion's own voice plays with them.
 @MainActor
 @Observable
 final class CompanionStore {
@@ -26,15 +29,11 @@ final class CompanionStore {
     private(set) var thinking = false
     /// The portrait on top follows the last answer for a while.
     var mood: CompanionMood = .neutral
-    var voiceOn: Bool = UserDefaults.standard.bool(forKey: "ma.companion.voice") {
-        didSet {
-            UserDefaults.standard.set(voiceOn, forKey: "ma.companion.voice")
-            if !voiceOn { voice.stop() }
-        }
+    var voiceOn: Bool = CompanionVoice.shared.enabled {
+        didSet { CompanionVoice.shared.enabled = voiceOn }
     }
 
     private let brain = CompanionBrain()
-    private let voice = RoutineVoice()
     private var moodReset: Task<Void, Never>?
     private var seed: Int = Int.random(in: 0..<1000)
 
@@ -53,7 +52,7 @@ final class CompanionStore {
         CompanionID.current = id
         companion = id
         brain.reset()
-        voice.stop()
+        CompanionVoice.shared.stop()
         messages.removeAll()
         persist()
     }
@@ -71,13 +70,11 @@ final class CompanionStore {
         if let last = messages.last(where: { $0.role != .user }), Date().timeIntervalSince(last.date) < 3 * 3600 {
             return
         }
-        let line: CompanionLine = CompanionScript.greeting(companion, snapshot, seed: seed)
-        append(CompanionMessage(role: .companion, text: line.text, mood: line.mood))
+        let line: CompanionLine = CompanionScript.greeting(snapshot)
+        say(line.text, cue: line.cue)
         if let quest = CompanionScript.dailyQuest(snapshot) {
             append(CompanionMessage(role: .quest, text: quest.detail, title: quest.title, reward: quest.reward))
         }
-        show(line.mood)
-        speak(line.text)
     }
 
     func send(_ raw: String, snapshot: CompanionSnapshot) async {
@@ -86,12 +83,18 @@ final class CompanionStore {
         seed += 1
         let recent: [CompanionMessage] = messages
         append(CompanionMessage(role: .user, text: text))
-        let mood: CompanionMood = CompanionIntent.of(text).mood(for: snapshot)
+        let cue: VoiceCue = CompanionIntent.of(text).cue(for: snapshot)
         thinking = true
         defer { thinking = false }
 
         if brain.isReady {
-            var reply = CompanionMessage(role: .companion, text: "", mood: mood)
+            let voice: VoiceLine? = VoiceLibrary.line(companion, cue, seed: seed)
+            // The line plays while the model writes; it is the character's
+            // first reaction, the text follows.
+            CompanionVoice.shared.play(voice)
+            show(cue.mood)
+            let reply = CompanionMessage(role: .companion, text: "", mood: cue.mood,
+                                         voice: voice?.file, subtitle: voice?.subtitle)
             messages.append(reply)
             let index: Int = messages.count - 1
             do {
@@ -100,14 +103,11 @@ final class CompanionStore {
                     self.messages[index].text = partial
                 }
                 if answer.isEmpty { throw CancellationError() }
-                reply.text = answer
-                messages[index] = reply
+                messages[index].text = answer
                 persist()
-                show(mood)
-                speak(answer)
                 return
             } catch {
-                // The scripted voice takes over; the half answer goes.
+                // The scripted answer takes over; the half one goes.
                 if index < messages.count, messages[index].id == reply.id {
                     messages.remove(at: index)
                 }
@@ -115,17 +115,29 @@ final class CompanionStore {
         }
         // A short pause so the answer does not land before the question.
         try? await Task.sleep(for: .milliseconds(450))
-        let line: CompanionLine = CompanionScript.reply(companion, to: text, snapshot, seed: seed)
-        append(CompanionMessage(role: .companion, text: line.text, mood: line.mood))
-        show(line.mood)
-        speak(line.text)
+        let line: CompanionLine = CompanionScript.reply(to: text, snapshot, seed: seed)
+        say(line.text, cue: line.cue)
+    }
+
+    /// Plays the line of an earlier answer again.
+    func replay(_ message: CompanionMessage) {
+        guard let file = message.voice else { return }
+        CompanionVoice.shared.play(VoiceLibrary.line(file: file))
+        show(message.mood)
     }
 
     func stopVoice() {
-        voice.stop()
+        CompanionVoice.shared.stop()
     }
 
     // MARK: Private
+
+    private func say(_ text: String, cue: VoiceCue) {
+        let voice: VoiceLine? = VoiceLibrary.line(companion, cue, seed: seed)
+        append(CompanionMessage(role: .companion, text: text, mood: cue.mood, voice: voice?.file, subtitle: voice?.subtitle))
+        show(cue.mood)
+        CompanionVoice.shared.play(voice)
+    }
 
     private func append(_ message: CompanionMessage) {
         messages.append(message)
@@ -146,29 +158,5 @@ final class CompanionStore {
             guard !Task.isCancelled else { return }
             self?.mood = .neutral
         }
-    }
-
-    private func speak(_ text: String) {
-        guard voiceOn else { return }
-        voice.say(Self.speakable(text), voice: Self.voice(for: companion), pitch: companion.pitch)
-    }
-
-    /// "[Quest]" reads badly aloud.
-    private static func speakable(_ text: String) -> String {
-        text.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: ":")
-    }
-
-    /// The best installed voice of the app language, female for Nyx and
-    /// male for Kael when the iPhone has one.
-    private static func voice(for who: CompanionID) -> AVSpeechSynthesisVoice? {
-        let language: String = Loc.isGerman ? "de" : "en"
-        let voices: [AVSpeechSynthesisVoice] = AVSpeechSynthesisVoice.speechVoices().filter { $0.language.hasPrefix(language) }
-        let gender: AVSpeechSynthesisVoiceGender = who.prefersFemaleVoice ? .female : .male
-        let ranked: [AVSpeechSynthesisVoice] = voices.sorted { a, b in
-            let aScore: Int = (a.gender == gender ? 10 : 0) + a.quality.rawValue
-            let bScore: Int = (b.gender == gender ? 10 : 0) + b.quality.rawValue
-            return aScore > bScore
-        }
-        return ranked.first ?? AVSpeechSynthesisVoice(language: Loc.isGerman ? "de-DE" : "en-US")
     }
 }

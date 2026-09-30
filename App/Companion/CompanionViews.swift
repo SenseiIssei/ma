@@ -58,13 +58,14 @@ extension CompanionSnapshot {
 
 // MARK: - Portrait
 
-/// The companion, still or breathing. The idle loop plays only in the
-/// neutral mood and never with Reduce Motion; every other mood is a still
-/// that fades in and back out.
+/// The companion, still or breathing. The idle loop, where the mouth moves,
+/// plays in the neutral mood and while a line is spoken, never with Reduce
+/// Motion; every other mood is a still that fades in and back out.
 struct CompanionPortrait: View {
     let companion: CompanionID
     var mood: CompanionMood = .neutral
     var animated = true
+    var speaking = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -74,7 +75,8 @@ struct CompanionPortrait: View {
                 .scaledToFill()
                 .id("\(companion.rawValue)-\(mood.rawValue)")
                 .transition(.opacity)
-            if animated && !reduceMotion && mood == .neutral, let url = Bundle.main.url(forResource: companion.loopName, withExtension: "mp4") {
+            if animated && !reduceMotion && (mood == .neutral || speaking),
+               let url = Bundle.main.url(forResource: companion.loopName, withExtension: "mp4") {
                 LoopingVideo(url: url)
                     .transition(.opacity)
             }
@@ -273,68 +275,95 @@ struct CompanionView: View {
     }
 
     private var chat: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    header
-                    ForEach(companions.messages) { message in
-                        MessageView(message: message, companion: companions.companion)
+        VStack(spacing: 0) {
+            stage
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 14) {
+                        modelNote
+                        ForEach(companions.messages) { message in
+                            MessageView(message: message, companion: companions.companion) {
+                                companions.replay(message)
+                            }
                             .id(message.id)
+                        }
+                        if companions.thinking && companions.messages.last?.role == .user {
+                            TypingDots()
+                                .id("typing")
+                        }
+                        Color.clear.frame(height: 4).id("bottom")
                     }
-                    if companions.thinking && companions.messages.last?.role == .user {
-                        TypingDots()
-                            .id("typing")
-                    }
-                    Color.clear.frame(height: 4).id("bottom")
+                    .padding(.horizontal, Zen.gutter)
+                    .padding(.vertical, 12)
                 }
-                .padding(.horizontal, Zen.gutter)
-                .padding(.bottom, 12)
+                .scrollDismissesKeyboard(.interactively)
+                .onChange(of: companions.messages) { _, _ in
+                    withAnimation(.easeOut(duration: 0.25)) { proxy.scrollTo("bottom", anchor: .bottom) }
+                }
+                .onAppear { proxy.scrollTo("bottom", anchor: .bottom) }
             }
-            .scrollDismissesKeyboard(.interactively)
-            .onChange(of: companions.messages) { _, _ in
-                withAnimation(.easeOut(duration: 0.25)) { proxy.scrollTo("bottom", anchor: .bottom) }
-            }
-            .onAppear { proxy.scrollTo("bottom", anchor: .bottom) }
             .safeAreaInset(edge: .bottom) { inputBar }
         }
     }
 
-    private var header: some View {
+    /// The companion stays on stage above the chat, like in a visual novel.
+    /// Spoken lines appear as subtitles over the picture while they play.
+    private var stage: some View {
         let who: CompanionID = companions.companion
-        return VStack(spacing: 10) {
-            ZStack(alignment: .bottom) {
-                CompanionPortrait(companion: who, mood: companions.mood)
-                    .frame(height: 340)
-                    .frame(maxWidth: .infinity)
-                    .clipped()
-                    .mask(LinearGradient(stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.72),
-                                                 .init(color: .clear, location: 1)],
-                                         startPoint: .top, endPoint: .bottom))
-                VStack(spacing: 2) {
-                    Text(who.name.uppercased())
-                        .font(.system(size: 26, weight: .heavy, design: .rounded))
-                        .tracking(4)
-                        .foregroundStyle(Zen.ink)
-                        .shadow(color: CompanionStyle.glowColor.opacity(0.8), radius: 10)
-                    Text(tr("Level \(fitness.report.progress.level) · \(FitnessXP.title(fitness.report.progress.level))",
-                            "Level \(fitness.report.progress.level) · \(FitnessXP.title(fitness.report.progress.level))"))
-                        .scaledFont(size: 13, weight: .semibold, design: .rounded)
-                        .foregroundStyle(Zen.ai)
+        let voice: CompanionVoice = CompanionVoice.shared
+        let line: VoiceLine? = voice.current?.who == who ? voice.current : nil
+        return ZStack(alignment: .bottom) {
+            CompanionPortrait(companion: who, mood: companions.mood, speaking: line != nil)
+                .frame(maxWidth: .infinity)
+                .frame(height: typing ? 170 : 330, alignment: .top)
+                .clipped()
+            LinearGradient(colors: [.clear, Zen.paper.opacity(0.85), Zen.paper], startPoint: .top, endPoint: .bottom)
+                .frame(height: 120)
+                .allowsHitTesting(false)
+            VStack(spacing: 6) {
+                if let line {
+                    SubtitleText(text: line.subtitle)
+                        .transition(.opacity.combined(with: .move(edge: .bottom)))
+                        .id(line.id)
                 }
-                .padding(.bottom, 6)
+                HStack(spacing: 8) {
+                    Text(who.name.uppercased())
+                        .font(.system(size: 20, weight: .heavy, design: .rounded))
+                        .tracking(3)
+                        .foregroundStyle(Zen.ink)
+                        .shadow(color: CompanionStyle.glowColor.opacity(0.8), radius: 8)
+                    Text(who.role)
+                        .scaledFont(size: 12, weight: .semibold, design: .rounded)
+                        .foregroundStyle(Zen.inkSoft)
+                    Spacer(minLength: 0)
+                    Text(tr("Lv \(fitness.report.progress.level)", "Lv \(fitness.report.progress.level)"))
+                        .scaledFont(size: 12, weight: .bold, design: .rounded)
+                        .foregroundStyle(Zen.kin)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 9)
+                        .background(Zen.kin.opacity(0.15), in: Capsule())
+                }
+                .padding(.horizontal, Zen.gutter)
             }
-            .clipShape(RoundedRectangle(cornerRadius: Zen.radius, style: .continuous))
-            if companions.usesModel {
-                AIPrivacyLabel()
-            } else {
-                Text(tr("Without Apple Intelligence \(who.name) answers from a set of lines built on your numbers.",
-                        "Ohne Apple Intelligence antwortet \(who.name) mit festen Sätzen, gebaut aus deinen Zahlen."))
-                    .scaledFont(size: 12)
-                    .foregroundStyle(Zen.inkFaint)
-                    .multilineTextAlignment(.center)
-            }
+            .padding(.bottom, 8)
         }
-        .padding(.top, 4)
+        .animation(.easeInOut(duration: 0.3), value: line?.id)
+        .animation(.spring(response: 0.4, dampingFraction: 0.9), value: typing)
+    }
+
+    @ViewBuilder
+    private var modelNote: some View {
+        if companions.usesModel {
+            AIPrivacyLabel()
+                .frame(maxWidth: .infinity)
+        } else {
+            Text(tr("Without Apple Intelligence \(companions.companion.name) answers from a set of lines built on your numbers.",
+                    "Ohne Apple Intelligence antwortet \(companions.companion.name) mit festen Sätzen, gebaut aus deinen Zahlen."))
+                .scaledFont(size: 12)
+                .foregroundStyle(Zen.inkFaint)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+        }
     }
 
     private var suggestions: [String] {
@@ -412,6 +441,7 @@ struct CompanionView: View {
 struct MessageView: View {
     let message: CompanionMessage
     let companion: CompanionID
+    var replay: () -> Void = {}
 
     var body: some View {
         switch message.role {
@@ -433,6 +463,18 @@ struct MessageView: View {
                         .scaledFont(size: 11, weight: .heavy, design: .rounded)
                         .tracking(1.5)
                         .foregroundStyle(Zen.ai)
+                    if let subtitle = message.subtitle {
+                        // What the recorded line says; tap to hear it again.
+                        Button(action: replay) {
+                            Label(subtitle, systemImage: "waveform")
+                                .scaledFont(size: 14, weight: .semibold)
+                                .italic()
+                                .foregroundStyle(Zen.shu)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint(tr("Plays the line again", "Spielt den Satz noch einmal ab"))
+                    }
                     Text(message.text.isEmpty ? " " : message.text)
                         .scaledFont(size: 16)
                         .foregroundStyle(Zen.ink)
@@ -450,6 +492,25 @@ struct MessageView: View {
         case .quest:
             QuestWindow(title: message.title ?? tr("Quest", "Quest"), text: message.text, reward: message.reward)
         }
+    }
+}
+
+/// Anime-style subtitle: bold white text with a dark outline glow, so it
+/// reads on any part of the picture.
+struct SubtitleText: View {
+    let text: String
+
+    var body: some View {
+        Text(text)
+            .scaledFont(size: 17, weight: .bold, design: .rounded)
+            .foregroundStyle(Color.white)
+            .multilineTextAlignment(.center)
+            .shadow(color: .black.opacity(0.9), radius: 0, x: 1, y: 1)
+            .shadow(color: .black.opacity(0.9), radius: 0, x: -1, y: -1)
+            .shadow(color: .black.opacity(0.7), radius: 6)
+            .padding(.horizontal, 28)
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityAddTraits(.updatesFrequently)
     }
 }
 
@@ -529,52 +590,94 @@ struct CompanionPicker: View {
     let choose: (CompanionID) -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                Text(tr("Who walks with you? Your companion knows your level, your quests and your week, and keeps you going. You can switch any time.",
-                        "Wer begleitet dich? Dein Begleiter kennt dein Level, deine Quests und deine Woche und hält dich auf Kurs. Wechseln geht jederzeit."))
+        let columns: [GridItem] = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+        return ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(tr("Who walks with you? Every companion has their own look, voice and way of talking. They know your level, your quests and your week. Tap the speaker to hear them; you can switch any time.",
+                        "Wer begleitet dich? Jede Figur hat ihren eigenen Look, ihre Stimme und ihre Art zu reden. Sie kennen dein Level, deine Quests und deine Woche. Tipp auf den Lautsprecher für eine Hörprobe; wechseln geht jederzeit."))
                     .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
-                HStack(spacing: 14) {
+                LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(CompanionID.allCases) { who in
-                        Button {
-                            Haptics.success()
-                            choose(who)
-                        } label: {
-                            VStack(spacing: 0) {
-                                Image(who.image(.neutral))
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(height: 250)
-                                    .frame(maxWidth: .infinity)
-                                    .clipped()
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(who.name)
-                                        .displayFont(20)
-                                        .foregroundStyle(Zen.ink)
-                                    Text(who.tagline)
-                                        .scaledFont(size: 13)
-                                        .foregroundStyle(Zen.inkSoft)
-                                        .multilineTextAlignment(.leading)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                }
-                                .padding(12)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .background(CompanionStyle.window, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).strokeBorder(CompanionStyle.glow(0.7), lineWidth: 1))
-                            .shadow(color: CompanionStyle.glowColor.opacity(0.25), radius: 14)
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("\(who.name). \(who.tagline)")
+                        card(who)
                     }
                 }
-                AIPrivacyLabel()
+                Text(tr("Voices speak Japanese with subtitles. They were designed from a written description, nobody real was cloned.",
+                        "Die Stimmen sprechen Japanisch mit Untertiteln. Sie wurden aus einer Beschreibung entworfen, niemand Echtes wurde geklont."))
+                    .scaledFont(size: 12)
+                    .foregroundStyle(Zen.inkFaint)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, Zen.gutter)
             .padding(.vertical, 12)
         }
+        .onDisappear { CompanionVoice.shared.stop() }
+    }
+
+    private func card(_ who: CompanionID) -> some View {
+        let playing: Bool = CompanionVoice.shared.current?.who == who
+        return VStack(spacing: 0) {
+            ZStack(alignment: .bottomLeading) {
+                Image(who.image(playing ? .cheer : .neutral))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 210)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                LinearGradient(colors: [.clear, CompanionStyle.window], startPoint: .center, endPoint: .bottom)
+                if playing, let line = CompanionVoice.shared.current {
+                    Text(line.subtitle)
+                        .scaledFont(size: 12, weight: .bold, design: .rounded)
+                        .foregroundStyle(Color.white)
+                        .shadow(color: .black, radius: 3)
+                        .padding(10)
+                        .transition(.opacity)
+                }
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(who.name)
+                        .displayFont(19)
+                        .foregroundStyle(Zen.ink)
+                    Spacer()
+                    Button {
+                        Haptics.tap()
+                        CompanionVoice.shared.play(VoiceLibrary.line(who, .day, seed: Int.random(in: 0..<2)))
+                    } label: {
+                        Image(systemName: playing ? "waveform" : "speaker.wave.2.fill")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(Zen.shu)
+                            .frame(width: 32, height: 32)
+                            .background(Zen.shu.opacity(0.14), in: Circle())
+                            .symbolEffect(.variableColor.iterative, isActive: playing)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(tr("Hear \(who.name)", "\(who.name) anhören"))
+                }
+                Text(who.role.uppercased(with: Loc.locale))
+                    .scaledFont(size: 10, weight: .heavy, design: .rounded)
+                    .tracking(1.2)
+                    .foregroundStyle(Zen.ai)
+                Text(who.tagline)
+                    .scaledFont(size: 12)
+                    .foregroundStyle(Zen.inkSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button(tr("Choose", "Wählen")) {
+                    Haptics.success()
+                    choose(who)
+                }
+                .buttonStyle(InkButtonStyle(kind: .shu, fullWidth: true))
+                .padding(.top, 6)
+            }
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .background(CompanionStyle.window, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous)
+            .strokeBorder(playing ? CompanionStyle.glow(1) : CompanionStyle.glow(0.5), lineWidth: playing ? 2 : 1))
+        .shadow(color: CompanionStyle.glowColor.opacity(playing ? 0.45 : 0.2), radius: 14)
+        .animation(.easeInOut(duration: 0.3), value: playing)
     }
 }

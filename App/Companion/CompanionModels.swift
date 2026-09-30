@@ -6,24 +6,81 @@ import Foundation
 
 // MARK: - Who
 
+/// Ten original characters, so there is someone for every taste. Each has
+/// a look, a Japanese voice (App/Companion/Voice) and a way of talking that
+/// the on-device model is asked to keep.
 enum CompanionID: String, Codable, CaseIterable, Identifiable {
-    case nyx, kael
+    case nyx, kira, ash, luma, dax, june, vale, vesper, aurel, pip
 
     var id: String { rawValue }
 
-    var name: String {
+    var name: String { rawValue.prefix(1).uppercased() + rawValue.dropFirst() }
+
+    /// Two or three words on the picker card.
+    var role: String {
         switch self {
-        case .nyx: "Nyx"
-        case .kael: "Kael"
+        case .nyx: tr("Night strategist", "Nachtstrategin")
+        case .kira: tr("Street brawler", "Straßenkämpferin")
+        case .ash: tr("Your rival", "Dein Rivale")
+        case .luma: tr("Android system", "Android-System")
+        case .dax: tr("Gym partner", "Gym-Partner")
+        case .june: tr("Sleepy gamer", "Verschlafene Gamerin")
+        case .vale: tr("Old veteran", "Alter Veteran")
+        case .vesper: tr("Vampire noble", "Vampir-Aristokrat")
+        case .aurel: tr("Angel librarian", "Engels-Bibliothekar")
+        case .pip: tr("Fox spirit", "Fuchsgeist")
         }
     }
 
     var tagline: String {
         switch self {
-        case .nyx: tr("Strategist of the night. Sharp, warm, a little cheeky.",
-                      "Strategin der Nacht. Scharf, herzlich, ein bisschen frech.")
-        case .kael: tr("A quiet hunter. Few words, steady as stone.",
-                       "Ein stiller Jäger. Wenig Worte, fest wie Stein.")
+        case .nyx: tr("Calm, sharp and a little teasing. Plans your week like a heist.",
+                      "Ruhig, scharf und ein bisschen frech. Plant deine Woche wie einen Coup.")
+        case .kira: tr("Loud, cocky, tough love. Will not let you quit.",
+                       "Laut, frech, harte Liebe. Lässt dich nicht aufgeben.")
+        case .ash: tr("Always one record ahead of you and loves to rub it in.",
+                      "Immer einen Rekord vor dir und reibt es dir gern unter die Nase.")
+        case .luma: tr("Speaks like a game system. Analysis, missions, zero drama.",
+                       "Spricht wie ein Spielsystem. Analysen, Missionen, null Drama.")
+        case .dax: tr("Huge heart, huger arms. Every set is a party.",
+                      "Riesiges Herz, noch größere Arme. Jeder Satz ist eine Party.")
+        case .june: tr("Would rather be in bed. Ten minutes still count, right?",
+                       "Wäre lieber im Bett. Zehn Minuten zählen doch auch, oder?")
+        case .vale: tr("Seen it all, says it straight, secretly proud of you.",
+                       "Hat alles gesehen, sagt es direkt und ist heimlich stolz auf dich.")
+        case .vesper: tr("Theatrical, elegant, over the top. Your workout is an opera.",
+                         "Theatralisch, elegant, völlig drüber. Dein Training ist eine Oper.")
+        case .aurel: tr("Soft, poetic and patient. Your progress as a book.",
+                        "Sanft, poetisch und geduldig. Dein Fortschritt als Buch.")
+        case .pip: tr("A tiny fox spirit that cheers for everything.",
+                      "Ein kleiner Fuchsgeist, der alles bejubelt.")
+        }
+    }
+
+    /// How the model should sound as this character. Kept short: the
+    /// on-device context is small.
+    var persona: String {
+        switch self {
+        case .nyx: tr("You are Nyx, a calm night strategist with silver hair. You speak briefly and vividly, with dry humour, warmth and a little teasing, and you plan like a strategist.",
+                      "Du bist Nyx, eine ruhige Nachtstrategin mit silbernem Haar. Du sprichst kurz und bildhaft, mit trockenem Humor, Wärme und ein bisschen Neckerei, und du planst wie eine Strategin.")
+        case .kira: tr("You are Kira, a loud, cocky street brawler. You talk rough and fast, tease, use fighting words and give tough love, but you are never mean.",
+                       "Du bist Kira, eine laute, freche Straßenkämpferin. Du redest rau und schnell, ziehst auf, benutzt Kampfsprache und gibst harte Liebe, aber du bist nie gemein.")
+        case .ash: tr("You are Ash, the person's cocky rival. You challenge them, act unimpressed and hide that you care, but you always push them forward.",
+                      "Du bist Ash, der freche Rivale der Person. Du forderst sie heraus, tust unbeeindruckt und versteckst, dass sie dir wichtig ist, aber du bringst sie immer voran.")
+        case .luma: tr("You are Luma, an android assistant. You speak like a friendly game system: short, precise sentences, words like analysis, mission and status, and a hint of warmth.",
+                       "Du bist Luma, eine Android-Assistentin. Du sprichst wie ein freundliches Spielsystem: kurze, präzise Sätze, Wörter wie Analyse, Mission und Status und ein Hauch Wärme.")
+        case .dax: tr("You are Dax, a huge, cheerful gym partner. You are loud, warm and enthusiastic, call the person partner and celebrate every rep.",
+                      "Du bist Dax, ein riesiger, fröhlicher Gym-Partner. Du bist laut, herzlich und begeistert, nennst die Person Partner und feierst jede Wiederholung.")
+        case .june: tr("You are June, a sleepy gamer. You are low-energy, deadpan and relatable, use gaming words, and talk the person into small, doable steps.",
+                       "Du bist June, eine verschlafene Gamerin. Du bist energiearm, trocken und nahbar, benutzt Gaming-Wörter und redest der Person kleine, machbare Schritte schmackhaft.")
+        case .vale: tr("You are Vale, a gruff veteran warrior in his forties. You speak plainly, with dry humour and fatherly pride, like someone who has seen every battle.",
+                       "Du bist Vale, ein rauer Kriegsveteran Mitte vierzig. Du sprichst direkt, mit trockenem Humor und väterlichem Stolz, wie jemand, der jede Schlacht gesehen hat.")
+        case .vesper: tr("You are Vesper, a theatrical vampire aristocrat. You speak elegantly and dramatically, as if every workout were an opera, with a wink at your dislike of sunlight.",
+                         "Du bist Vesper, ein theatralischer Vampir-Aristokrat. Du sprichst elegant und dramatisch, als wäre jedes Training eine Oper, mit einem Augenzwinkern über deine Abneigung gegen Sonnenlicht.")
+        case .aurel: tr("You are Aurel, a serene angel who keeps a library. You speak softly and poetically, about pages, chapters and light, and you are endlessly patient.",
+                        "Du bist Aurel, ein ruhiger Engel, der eine Bibliothek hütet. Du sprichst sanft und poetisch, von Seiten, Kapiteln und Licht, und bist unendlich geduldig.")
+        case .pip: tr("You are Pip, a tiny fox spirit. You are cute, excited and simple, cheer for everything and talk about yourself as Pip.",
+                      "Du bist Pip, ein kleiner Fuchsgeist. Du bist niedlich, aufgeregt und einfach, bejubelst alles und sprichst von dir selbst als Pip.")
         }
     }
 
@@ -35,16 +92,6 @@ enum CompanionID: String, Codable, CaseIterable, Identifiable {
     /// File name of the idle loop in the bundle, without extension.
     var loopName: String { "\(rawValue)_loop" }
 
-    /// Speech: Nyx a touch higher, Kael a touch lower than the default.
-    var pitch: Float {
-        switch self {
-        case .nyx: 1.08
-        case .kael: 0.88
-        }
-    }
-
-    var prefersFemaleVoice: Bool { self == .nyx }
-
     private static let key = "ma.companion"
 
     static var current: CompanionID {
@@ -52,8 +99,9 @@ enum CompanionID: String, Codable, CaseIterable, Identifiable {
         set { UserDefaults.standard.set(newValue.rawValue, forKey: key) }
     }
 
+    /// Someone who picked a companion that no longer exists chooses again.
     static var hasChosen: Bool {
-        UserDefaults.standard.string(forKey: key) != nil
+        CompanionID(rawValue: UserDefaults.standard.string(forKey: key) ?? "") != nil
     }
 }
 
@@ -61,6 +109,22 @@ enum CompanionMood: String, Codable, CaseIterable {
     case neutral, proud, cheer, serious, gentle, rest
 
     var assetName: String { rawValue.prefix(1).uppercased() + rawValue.dropFirst() }
+}
+
+/// The situations every companion has recorded Japanese lines for.
+enum VoiceCue: String, Codable, CaseIterable {
+    case morning, day, evening, night, proud, cheer, quest, gentle, thanks, levelup, status, listen
+
+    var mood: CompanionMood {
+        switch self {
+        case .morning, .day, .evening, .status, .listen: .neutral
+        case .night: .rest
+        case .proud, .levelup: .proud
+        case .cheer: .cheer
+        case .quest: .serious
+        case .gentle, .thanks: .gentle
+        }
+    }
 }
 
 // MARK: - What they know
@@ -206,66 +270,61 @@ enum CompanionIntent: Equatable {
         return .other
     }
 
-    func mood(for snapshot: CompanionSnapshot) -> CompanionMood {
+    /// The recorded line that fits an answer to this kind of message.
+    func cue(for snapshot: CompanionSnapshot) -> VoiceCue {
         switch self {
         case .tired: return .gentle
         case .motivate: return .cheer
-        case .plan, .quests: return .serious
-        case .thanks: return .gentle
-        case .status, .weight:
-            return snapshot.weekDone || snapshot.lostKg >= 1 ? .proud : .neutral
-        case .greet, .learn, .other:
-            return snapshot.partOfDay == .night ? .rest : .neutral
+        case .plan, .quests: return .quest
+        case .thanks: return .thanks
+        case .status, .weight, .learn:
+            return snapshot.weekDone || snapshot.lostKg >= 1 ? .proud : .status
+        case .greet:
+            return CompanionScript.greetingCue(snapshot)
+        case .other:
+            return snapshot.partOfDay == .night ? .night : .listen
         }
     }
 }
 
 struct CompanionLine: Equatable {
     var text: String
-    var mood: CompanionMood
+    var cue: VoiceCue
+
+    var mood: CompanionMood { cue.mood }
 }
 
-// MARK: - Scripted voice
+// MARK: - Scripted answers
 
-/// Everything a companion can say without a language model: a greeting,
-/// the daily quest and answers to the common questions, all built from
-/// real numbers. `seed` picks among phrasings so it does not repeat itself.
+/// What a companion says without a language model: plain, useful answers
+/// built from real numbers. The personality comes from the recorded voice
+/// line that plays with it (its subtitle opens the bubble), so these stay
+/// neutral and work for every character. `seed` picks among phrasings.
 enum CompanionScript {
     static func pick(_ options: [String], seed: Int) -> String {
         guard !options.isEmpty else { return "" }
         return options[((seed % options.count) + options.count) % options.count]
     }
 
-    static func greeting(_ who: CompanionID, _ s: CompanionSnapshot, seed: Int) -> CompanionLine {
-        let open: String
+    static func greetingCue(_ s: CompanionSnapshot) -> VoiceCue {
         switch s.partOfDay {
-        case .morning:
-            open = who == .nyx
-                ? pick([tr("Morning, hunter. The day has not decided anything yet, so you get to.", "Guten Morgen. Der Tag hat noch nichts entschieden, also entscheidest du."),
-                        tr("You are up. Good. Let us make this one count.", "Du bist wach. Gut. Machen wir den hier zu einem, der zählt.")], seed: seed)
-                : pick([tr("Morning. New day, new dungeon.", "Morgen. Neuer Tag, neuer Dungeon."),
-                        tr("You are awake. That is the first quest done.", "Du bist wach. Die erste Quest ist erledigt.")], seed: seed)
-        case .day:
-            open = who == .nyx
-                ? pick([tr("There you are. I was just looking at your numbers.", "Da bist du. Ich hab mir gerade deine Zahlen angesehen."),
-                        tr("Midday check-in. Let us see where we stand.", "Mittags-Check. Schauen wir, wo wir stehen.")], seed: seed)
-                : pick([tr("Status check.", "Statusprüfung."),
-                        tr("Good timing. Here is where you stand.", "Gutes Timing. Hier ist dein Stand.")], seed: seed)
-        case .evening:
-            open = who == .nyx
-                ? pick([tr("Evening. The light is gone, the work does not have to be.", "Abend. Das Licht ist weg, die Arbeit muss es nicht sein."),
-                        tr("Evening report, as promised.", "Abendbericht, wie versprochen.")], seed: seed)
-                : pick([tr("Evening. Let us close the day properly.", "Abend. Schließen wir den Tag ordentlich ab."),
-                        tr("The day is almost over. Here is the tally.", "Der Tag ist fast vorbei. Hier die Bilanz.")], seed: seed)
-        case .night:
-            open = who == .nyx
-                ? tr("It is late. Whatever is left can wait for tomorrow. Sleep is training too.", "Es ist spät. Was übrig ist, darf bis morgen warten. Schlaf ist auch Training.")
-                : tr("Late hour. Rest now. Hunters who sleep win the next day.", "Späte Stunde. Ruh dich aus. Wer schläft, gewinnt den nächsten Tag.")
+        case .morning: .morning
+        case .day: .day
+        case .evening: .evening
+        case .night: .night
         }
-        return CompanionLine(text: open + " " + statusSentence(who, s), mood: s.partOfDay == .night ? .rest : (s.weekDone ? .proud : .neutral))
     }
 
-    static func statusSentence(_ who: CompanionID, _ s: CompanionSnapshot) -> String {
+    static func greeting(_ s: CompanionSnapshot) -> CompanionLine {
+        var text: String = statusSentence(s)
+        if s.partOfDay == .night {
+            text = tr("Whatever is left can wait for tomorrow. Sleep is training too.",
+                      "Was übrig ist, darf bis morgen warten. Schlaf ist auch Training.") + " " + text
+        }
+        return CompanionLine(text: text, cue: greetingCue(s))
+    }
+
+    static func statusSentence(_ s: CompanionSnapshot) -> String {
         if !s.hasGoal {
             return tr("You are level \(s.level). Set a weight goal in Balance and I will turn it into quests.",
                       "Du bist Level \(s.level). Setz im Balance-Tab ein Gewichtsziel, dann mache ich Quests daraus.")
@@ -296,15 +355,15 @@ enum CompanionScript {
         return nil
     }
 
-    static func reply(_ who: CompanionID, to text: String, _ s: CompanionSnapshot, seed: Int) -> CompanionLine {
+    static func reply(to text: String, _ s: CompanionSnapshot, seed: Int) -> CompanionLine {
         let intent: CompanionIntent = CompanionIntent.of(text)
-        let mood: CompanionMood = intent.mood(for: s)
+        let cue: VoiceCue = intent.cue(for: s)
         let body: String
         switch intent {
         case .greet:
-            return greeting(who, s, seed: seed)
+            return greeting(s)
         case .status:
-            body = statusSentence(who, s) + (s.weeksInARow > 1
+            body = statusSentence(s) + (s.weeksInARow > 1
                 ? " " + tr("\(s.weeksInARow) weeks in a row on target. That is not luck.", "\(s.weeksInARow) Wochen am Stück im Ziel. Das ist kein Glück.")
                 : "")
         case .plan:
@@ -315,45 +374,31 @@ enum CompanionScript {
                 body = tr("The week is cleared. Today, move for fun or rest. Both count.",
                           "Die Woche ist geschafft. Heute: Bewegung zum Spaß oder Pause. Beides zählt.")
             } else if let next = s.nextSession {
-                body = who == .nyx
-                    ? tr("Here is the move: \(next). \(CompanionSnapshot.num(s.remainingKcal)) kcal left this week. Go in, get out, feel good.",
-                         "Der Plan: \(next). Noch \(CompanionSnapshot.num(s.remainingKcal)) kcal diese Woche. Rein, durchziehen, gut fühlen.")
-                    : tr("[Quest] \(next). \(CompanionSnapshot.num(s.remainingKcal)) kcal remain this week.",
-                         "[Quest] \(next). Noch \(CompanionSnapshot.num(s.remainingKcal)) kcal diese Woche.")
+                body = tr("\(next). \(CompanionSnapshot.num(s.remainingKcal)) kcal left this week.",
+                          "\(next). Noch \(CompanionSnapshot.num(s.remainingKcal)) kcal diese Woche.")
             } else {
                 body = tr("Sync your watch and I will know more.", "Synchronisier deine Uhr, dann weiß ich mehr.")
             }
         case .tired:
-            body = who == .nyx
-                ? pick([tr("Then we make it small. Ten minutes, easy pace, and you are allowed to stop after. Most days the ten turn into thirty.",
-                            "Dann machen wir es klein. Zehn Minuten, lockeres Tempo, danach darfst du aufhören. Meistens werden aus zehn dreißig."),
-                        tr("Tired is information, not failure. If you are ill or slept badly, rest today and we win tomorrow.",
-                           "Müde ist eine Info, kein Versagen. Bist du krank oder hast schlecht geschlafen, ruh dich heute aus und wir gewinnen morgen.")], seed: seed)
-                : pick([tr("Even the strongest hunters have low days. A short walk still counts. Or rest, and come back sharp.",
-                            "Auch die Stärksten haben schwache Tage. Ein kurzer Spaziergang zählt trotzdem. Oder Pause, und morgen scharf zurück."),
-                        tr("Do the smallest version. Shoes on, five minutes. Decide after that.",
-                           "Mach die kleinste Version. Schuhe an, fünf Minuten. Danach entscheidest du.")], seed: seed)
+            body = pick([tr("Then we make it small: ten minutes, easy pace, and you may stop after. Most days the ten turn into thirty.",
+                            "Dann machen wir es klein: zehn Minuten, lockeres Tempo, danach darfst du aufhören. Meistens werden aus zehn dreißig."),
+                         tr("Tired is information, not failure. If you are ill or slept badly, rest today and win tomorrow.",
+                            "Müde ist eine Info, kein Versagen. Bist du krank oder hast schlecht geschlafen, ruh dich heute aus und gewinn morgen.")], seed: seed)
         case .motivate:
             let progress: String = s.hasGoal
                 ? tr("\(CompanionSnapshot.num(s.weekKcal)) kcal already in the bank this week.", "\(CompanionSnapshot.num(s.weekKcal)) kcal diese Woche schon auf dem Konto.")
                 : tr("Level \(s.level) did not happen by accident.", "Level \(s.level) ist kein Zufall.")
-            body = who == .nyx
-                ? pick([tr("Listen. \(progress) Every session is XP you keep forever. Nobody can take a finished workout away from you.",
-                            "Hör zu. \(progress) Jede Einheit ist XP, die dir bleibt. Ein fertiges Training kann dir niemand mehr nehmen."),
-                        tr("\(progress) The version of you at the goal is built one boring Tuesday at a time. Today is one of those.",
-                           "\(progress) Die Version von dir am Ziel entsteht an langweiligen Dienstagen. Heute ist so einer.")], seed: seed)
-                : pick([tr("\(progress) Rise. The next level is closer than it looks.",
-                            "\(progress) Steh auf. Das nächste Level ist näher, als es aussieht."),
-                        tr("\(progress) Hunters do not wait for motivation. They start, and it follows.",
-                           "\(progress) Jäger warten nicht auf Motivation. Sie fangen an, und sie kommt hinterher.")], seed: seed)
+            body = pick([tr("\(progress) Every session is XP you keep forever. Nobody can take a finished workout away from you.",
+                            "\(progress) Jede Einheit ist XP, die dir bleibt. Ein fertiges Training kann dir niemand mehr nehmen."),
+                         tr("\(progress) The version of you at the goal is built one ordinary day at a time. Today is one of those.",
+                            "\(progress) Die Version von dir am Ziel entsteht an ganz normalen Tagen. Heute ist so einer.")], seed: seed)
         case .weight:
             if let current = s.currentKg, let goal = s.goalKg {
                 var line: String = tr("Trend \(CompanionSnapshot.kg(current)), goal \(CompanionSnapshot.kg(goal)).",
                                       "Trend \(CompanionSnapshot.kg(current)), Ziel \(CompanionSnapshot.kg(goal)).")
                 if s.lostKg >= 0.1 { line += " " + tr("\(CompanionSnapshot.kg(s.lostKg)) down already.", "Schon \(CompanionSnapshot.kg(s.lostKg)) weniger.") }
                 if let eta = s.eta { line += " " + tr("At this pace you arrive around \(eta).", "In diesem Tempo bist du etwa \(eta) da.") }
-                line += " " + tr("Watch the trend, not single days. Water and salt lie, the line does not.",
-                                 "Schau auf den Trend, nicht auf einzelne Tage. Wasser und Salz lügen, die Linie nicht.")
+                line += " " + tr("Watch the trend, not single days.", "Schau auf den Trend, nicht auf einzelne Tage.")
                 body = line
             } else {
                 body = tr("Log a weigh-in in the fitness goal and I will keep an eye on the trend.",
@@ -371,19 +416,17 @@ enum CompanionScript {
             }
         case .learn:
             body = s.learnedToday
-                ? tr("You already learned today. Streak: \(s.learningStreak) days. Your mind is levelling too.",
-                     "Du hast heute schon gelernt. Serie: \(s.learningStreak) Tage. Dein Kopf levelt auch.")
+                ? tr("You already learned today. Streak: \(s.learningStreak) days.",
+                     "Du hast heute schon gelernt. Serie: \(s.learningStreak) Tage.")
                 : tr("Learning streak \(s.learningStreak) days, today still open. One short lesson keeps it alive.",
                      "Lernserie \(s.learningStreak) Tage, heute noch offen. Eine kurze Lektion hält sie am Leben.")
         case .thanks:
-            body = who == .nyx
-                ? tr("Anytime. Now go earn some XP.", "Immer. Und jetzt hol dir XP.")
-                : tr("No need. Just keep going.", "Nicht nötig. Bleib einfach dran.")
+            body = tr("Now go earn some XP.", "Und jetzt hol dir XP.")
         case .other:
-            body = statusSentence(who, s) + " " + tr("Ask me about today's plan, your quests or your weight.",
-                                                      "Frag mich nach dem Plan für heute, deinen Quests oder deinem Gewicht.")
+            body = statusSentence(s) + " " + tr("Ask me about today's plan, your quests or your weight.",
+                                                 "Frag mich nach dem Plan für heute, deinen Quests oder deinem Gewicht.")
         }
-        return CompanionLine(text: body, mood: mood)
+        return CompanionLine(text: body, cue: cue)
     }
 }
 
@@ -392,13 +435,10 @@ enum CompanionScript {
 enum CompanionPrompt {
     static func instructions(_ who: CompanionID, _ s: CompanionSnapshot) -> String {
         if Loc.isGerman {
-            let persona: String = who == .nyx
-                ? "Du bist Nyx, eine Strategin aus einer dunklen Fantasy-Welt voller Jäger, Dungeons und Quests. Du sprichst kurz, bildhaft, mit trockenem Humor und viel Wärme. Du glaubst an die Person und nörgelst nie."
-                : "Du bist Kael, ein stiller, erfahrener Jäger aus einer dunklen Fantasy-Welt voller Dungeons und Quests. Du sprichst knapp, ruhig und direkt, wie ein Trainingspartner, der schon tausend Dungeons gesehen hat. Manchmal kündigst du Dinge wie ein Spielsystem an, etwa [Quest] oder [Level Up]."
             return """
-            \(persona) \
+            \(who.persona) \
             Du begleitest die Person in der App Ma beim Sport, beim Abnehmen durch Bewegung, beim Lernen und beim bewussten Umgang mit dem Handy. \
-            Trainings sind für dich Quests, Fortschritt ist XP. Bleib in deiner Rolle, aber übertreib es nicht. \
+            Trainings sind Quests, Fortschritt ist XP. Bleib in deiner Rolle. \
             Schreib immer auf Deutsch, sprich die Person mit du an, höchstens drei kurze Sätze. \
             Kein Markdown, keine Listen, keine Emojis, keine langen Gedankenstriche. \
             Nutze nur die Zahlen unten und erfinde keine. \
@@ -410,13 +450,10 @@ enum CompanionPrompt {
             \(s.facts)
             """
         }
-        let persona: String = who == .nyx
-            ? "You are Nyx, a strategist from a dark fantasy world of hunters, dungeons and quests. You speak briefly and vividly, with dry humour and a lot of warmth. You believe in the person and never nag."
-            : "You are Kael, a quiet, seasoned hunter from a dark fantasy world of dungeons and quests. You speak briefly, calmly and directly, like a training partner who has seen a thousand dungeons. Sometimes you announce things like a game system, for example [Quest] or [Level Up]."
         return """
-        \(persona) \
+        \(who.persona) \
         You accompany the person in the app Ma with sport, losing weight through movement, learning and a mindful use of their phone. \
-        To you workouts are quests and progress is XP. Stay in character, but do not overdo it. \
+        Workouts are quests and progress is XP. Stay in character. \
         Always write in English, speak to the person directly, at most three short sentences. \
         No Markdown, no lists, no emojis, no long dashes. \
         Only use the numbers below and never invent any. \

@@ -15,6 +15,14 @@ services:
       # Leave it empty to switch the gallery review endpoints off.
       ADMIN_TOKEN: ${ADMIN_TOKEN:-}
       TRUST_PROXY: "1"
+      # Daily lesson reminder (senseiissei.dev `daily`). Each channel stays
+      # off until its token is set in .env.
+      DAILY_REMINDER_TIME: ${DAILY_REMINDER_TIME:-09:00}
+      DAILY_SITE_ORIGIN: ${DAILY_SITE_ORIGIN:-https://senseiissei.dev}
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      DISCORD_USER_ID: ${DISCORD_USER_ID:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
     volumes:
       - ma-friends-data:/data
     read_only: true

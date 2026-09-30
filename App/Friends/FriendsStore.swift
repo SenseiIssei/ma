@@ -252,6 +252,36 @@ final class FriendsStore {
 
     // MARK: Helpers
 
+    // MARK: Daily lessons
+
+    /// An identity on Ma's server without switching sharing on. The website
+    /// link needs one; circles and numbers stay off until Friends is enabled.
+    private func ensureIdentity() async throws {
+        guard !hasIdentity else { return }
+        let creds = try credentialsForSignup()
+        do {
+            profile = try await api.register(creds, nickname: "Ma", avatar: "book")
+        } catch FriendsError.conflict {
+            profile = try await api.me()
+        }
+        persist()
+    }
+
+    func dailyLinkCode() async -> DailyLinkCode? {
+        var code: DailyLinkCode?
+        await run {
+            try await self.ensureIdentity()
+            code = try await self.api.dailyLinkCode()
+        }
+        return code
+    }
+
+    /// The lessons recorded for this identity; nil without one or offline.
+    func dailyProgress() async -> DailyProgressDTO? {
+        guard hasIdentity else { return nil }
+        return try? await api.dailyProgress()
+    }
+
     nonisolated static func cleanNickname(_ raw: String) -> String {
         let collapsed = raw.split(whereSeparator: \.isWhitespace).joined(separator: " ")
         return String(collapsed.prefix(FriendLimits.nickname))

@@ -107,6 +107,20 @@ struct FitnessDay: Codable, Equatable {
     var stepGoalMet: Bool { stepGoal > 0 && steps >= stepGoal }
 }
 
+/// A programming lesson from `daily` on senseiissei.dev, as the Ma server
+/// recorded it. The server applies the streak rules, so the XP here is final.
+struct LessonRecord: Codable, Equatable, Identifiable {
+    var dayKey: String
+    var unitId: String
+    /// "done" or "skipped".
+    var status: String
+    var xpAwarded: Int
+    var streakAfter: Int
+
+    var id: String { dayKey }
+    var isDone: Bool { status == "done" }
+}
+
 struct WeightEntry: Codable, Equatable, Identifiable {
     /// Day key; one weigh-in per day, a second one replaces the first.
     var date: String
@@ -528,6 +542,7 @@ enum FitnessBadges {
         var targetWeeksInARow: Int
         var lostKg: Double
         var goal: FitnessGoal?
+        var lessons: [LessonRecord] = []
     }
 
     static func all(_ input: Input) -> [FitnessBadge] {
@@ -536,6 +551,8 @@ enum FitnessBadges {
         let biggest: Int = input.workouts.map(\.calories).max() ?? 0
         let bestSteps: Int = input.days.map(\.steps).max() ?? 0
         let toLose: Double = input.goal?.toLose ?? 0
+        let lessonsDone: Int = input.lessons.filter(\.isDone).count
+        let bestLessonStreak: Int = input.lessons.map(\.streakAfter).max() ?? 0
         return [
             FitnessBadge(id: "first", title: tr("First step", "Erster Schritt"),
                          detail: tr("Log your first workout", "Dein erstes Training"),
@@ -576,6 +593,15 @@ enum FitnessBadges {
             FitnessBadge(id: "goal", title: tr("Made it", "Geschafft"),
                          detail: tr("Reach your goal weight", "Zielgewicht erreicht"),
                          symbol: "trophy.fill", earned: toLose > 0 && input.lostKg >= toLose),
+            FitnessBadge(id: "lesson1", title: tr("Hello, compiler", "Hallo, Compiler"),
+                         detail: tr("Finish a daily programming lesson", "Eine Programmier-Lektion erledigt"),
+                         symbol: "chevron.left.forwardslash.chevron.right", earned: lessonsDone >= 1),
+            FitnessBadge(id: "lesson10", title: tr("Ten lessons", "Zehn Lektionen"),
+                         detail: tr("10 programming lessons done", "10 Programmier-Lektionen erledigt"),
+                         symbol: "books.vertical.fill", earned: lessonsDone >= 10),
+            FitnessBadge(id: "codeweek", title: tr("Code week", "Code-Woche"),
+                         detail: tr("A lesson 7 days in a row", "7 Tage am Stück eine Lektion"),
+                         symbol: "terminal.fill", earned: bestLessonStreak >= 7),
         ]
     }
 }
@@ -682,7 +708,8 @@ struct FitnessReport {
     }
 
     static func make(goal: FitnessGoal?, workouts: [FitnessWorkout], days: [String: FitnessDay],
-                     weights: [WeightEntry], now: Date = Date(), calendar: Calendar = .current) -> FitnessReport {
+                     weights: [WeightEntry], lessons: [LessonRecord] = [],
+                     now: Date = Date(), calendar: Calendar = .current) -> FitnessReport {
         var report = FitnessReport()
         report.trend = FitnessMath.trend(weights)
         report.currentKg = report.trend.last?.kg ?? goal?.startKg
@@ -759,11 +786,12 @@ struct FitnessReport {
             + days.values.reduce(0) { $0 + FitnessXP.day($1) }
             + weights.count * FitnessXP.weighIn
             + questXP
+            + lessons.reduce(0) { $0 + max(0, $1.xpAwarded) }
         report.progress = FitnessXP.progress(report.xp)
         report.badges = FitnessBadges.all(FitnessBadges.Input(
             workouts: workouts, days: Array(days.values),
             bestWeekKcal: weeks.values.map(\.kcal).max() ?? 0,
-            targetWeeksInARow: bestRun, lostKg: report.lostKg, goal: goal))
+            targetWeeksInARow: bestRun, lostKg: report.lostKg, goal: goal, lessons: lessons))
         return report
     }
 }

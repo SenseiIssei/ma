@@ -62,6 +62,11 @@ struct SettingsView: View {
                                 .monospacedDigit()
                         }
                     }
+                    NavigationLink {
+                        DailyLinkView()
+                    } label: {
+                        Label(tr("Link senseiissei.dev", "Mit senseiissei.dev verbinden"), systemImage: "chevron.left.forwardslash.chevron.right")
+                    }
                 } header: {
                     FormHeader(icon: "book.fill", title: tr("Learning", "Lernen"))
                 }

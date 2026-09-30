@@ -42,6 +42,11 @@ struct MaApp: App {
                 let habits = day.habitsDoneToday
                 Task { await friends.syncToday(streak: streak, habitsDone: habits) }
                 CompanionReminder.refresh(CompanionSnapshot.make(fitness: fitness, day: day, model: model))
+                Task {
+                    if let progress = await friends.dailyProgress() {
+                        fitness.applyLessons(progress.records)
+                    }
+                }
                 Task { await fitness.refresh() }
             }
         }

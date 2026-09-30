@@ -249,6 +249,7 @@ struct FitnessView: View {
                 FitnessWeightCard { logWeight = true }
                 FitnessHistoryCard()
                 FitnessBadgesCard()
+                DailyLessonsCard()
                 FitnessWorkoutsCard { addWorkout = true }
                 FitnessFeedCard()
                 FitnessHowCard()

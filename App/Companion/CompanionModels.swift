@@ -163,6 +163,9 @@ struct CompanionSnapshot: Equatable {
     var habitsTotal = 0
     var resistedToday = 0
     var focusMinutesToday = 0
+    var lessonsDone = 0
+    var lessonStreak = 0
+    var lessonDoneToday = false
 
     struct Quest: Equatable {
         var title: String
@@ -232,6 +235,10 @@ struct CompanionSnapshot: Equatable {
         }
         if resistedToday > 0 {
             lines.append(g ? "Heute \(resistedToday)-mal einer gesperrten App widerstanden." : "Resisted a blocked app \(resistedToday) times today.")
+        }
+        if lessonsDone > 0 {
+            lines.append(g ? "Programmier-Lektionen auf senseiissei.dev: \(lessonsDone) erledigt, Serie \(lessonStreak) Tage, heute \(lessonDoneToday ? "schon erledigt" : "noch offen")."
+                           : "Programming lessons on senseiissei.dev: \(lessonsDone) done, streak \(lessonStreak) days, today \(lessonDoneToday ? "already done" : "still open").")
         }
         if focusMinutesToday > 0 {
             lines.append(g ? "Heute \(focusMinutesToday) Minuten Fokus." : "\(focusMinutesToday) minutes of focus today.")

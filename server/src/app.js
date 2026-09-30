@@ -1,6 +1,8 @@
 import { createServer } from 'node:http';
 import { makeAuthenticator } from './auth.js';
 import { circleRoutes } from './circles.js';
+import { DAILY_SCHEMA, dailyRoutes } from './daily.js';
+import { startDailyReminders } from './dailyReminders.js';
 import { openDatabase } from './db.js';
 import { galleryRoutes } from './gallery.js';
 import { clientIp, HttpError, notFound, readJson, send, sendError } from './http.js';
@@ -31,8 +33,11 @@ function healthRoute() {
  */
 export function createApp({ config, now = Date.now, log = console }) {
   const db = openDatabase(config.dataDir);
-  const ctx = { db, config, now };
+  db.exec(DAILY_SCHEMA);
   const authenticate = makeAuthenticator(db);
+  // Routes that accept either a member or a website token check the member
+  // themselves, so the authenticator travels in the context.
+  const ctx = { db, config, now, authenticate };
   const r = config.rate;
   const limiters = {
     ip: RateLimiter.perMinute(r.ipCapacity, r.ipPerMinute, now),
@@ -47,6 +52,7 @@ export function createApp({ config, now = Date.now, log = console }) {
     ...circleRoutes(),
     ...statsRoutes(),
     ...galleryRoutes(),
+    ...dailyRoutes(),
   ]);
 
   function limit(limiter, key) {
@@ -127,12 +133,14 @@ export function createApp({ config, now = Date.now, log = console }) {
   prune();
   const timers = [setInterval(sweep, 5 * 60_000), setInterval(prune, 6 * 3_600_000)];
   for (const t of timers) t.unref();
+  const reminders = startDailyReminders({ ctx, env: config.reminderEnv ?? process.env, log });
 
   let closed = false;
   async function close() {
     if (closed) return;
     closed = true;
     for (const t of timers) clearInterval(t);
+    reminders.stop();
     await new Promise((resolve) => {
       if (!server.listening) return resolve();
       server.close(() => resolve());

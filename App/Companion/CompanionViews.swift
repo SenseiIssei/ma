@@ -52,6 +52,10 @@ extension CompanionSnapshot {
         let stats: DayStats = SharedStore.today()
         s.resistedToday = stats.resisted
         s.focusMinutesToday = stats.focusMinutes
+        let lessons = LessonSummary(fitness.lessons)
+        s.lessonsDone = lessons.doneCount
+        s.lessonStreak = lessons.streak
+        s.lessonDoneToday = lessons.doneToday
         return s
     }
 }

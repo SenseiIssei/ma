@@ -13,6 +13,8 @@ final class FitnessStore {
     /// Newest first.
     private(set) var workouts: [FitnessWorkout] = []
     private(set) var days: [String: FitnessDay] = [:]
+    /// Programming lessons from senseiissei.dev, newest last.
+    private(set) var lessons: [LessonRecord] = []
     private(set) var settings = FitnessSettings()
     private(set) var report = FitnessReport()
 
@@ -27,6 +29,7 @@ final class FitnessStore {
         static let workouts = "fitness-workouts.json"
         static let days = "fitness-days.json"
         static let settings = "fitness-settings.json"
+        static let lessons = "fitness-lessons.json"
     }
 
     /// The Garmin sync behind the feed runs every five minutes; asking more
@@ -39,6 +42,7 @@ final class FitnessStore {
         workouts = MaShared.read([FitnessWorkout].self, from: File.workouts) ?? []
         days = MaShared.read([String: FitnessDay].self, from: File.days) ?? [:]
         settings = MaShared.read(FitnessSettings.self, from: File.settings) ?? FitnessSettings()
+        lessons = MaShared.read([LessonRecord].self, from: File.lessons) ?? []
         rebuild()
     }
 
@@ -74,7 +78,7 @@ final class FitnessStore {
     }
 
     private func rebuild() {
-        report = FitnessReport.make(goal: goal, workouts: workouts, days: days, weights: weights)
+        report = FitnessReport.make(goal: goal, workouts: workouts, days: days, weights: weights, lessons: lessons)
     }
 
     // MARK: Goal
@@ -272,6 +276,18 @@ final class FitnessStore {
 
     private func persistSettings() {
         MaShared.write(settings, to: File.settings)
+    }
+
+    // MARK: Programming lessons
+
+    /// Replaces the lessons with the server's list; new XP can level you up.
+    func applyLessons(_ incoming: [LessonRecord]) {
+        let sorted: [LessonRecord] = incoming.sorted { $0.dayKey < $1.dayKey }
+        guard sorted != lessons else { return }
+        lessons = sorted
+        MaShared.write(lessons, to: File.lessons)
+        rebuild()
+        checkCelebration()
     }
 
     // MARK: Celebrations

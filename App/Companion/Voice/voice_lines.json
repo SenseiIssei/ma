@@ -1,15 +1,15 @@
 {
  "voices": {
   "nyx": "A young Japanese woman in her early twenties with a cool, calm, slightly husky alto voice. She speaks softly and confidently with a hint of playful teasing, like a composed anime heroine. Clear articulation, relaxed pace.",
-  "kira": "A Japanese young woman in her early twenties with a husky, punchy, tomboyish voice. Loud, cocky and teasing like a street fighter in an anime, rough edges, fast confident delivery, you can hear the grin.",
+  "kira": "二十出头的年轻女性，假小子，声音偏低、沙哑有力，语速快，自信张扬、爱挑衅，像动漫里的街头格斗少女，说话带着笑意。",
   "ash": "A Japanese young man around twenty with a sharp, bright, arrogant tenor voice. Cocky and playful like the rival character in an anime, a smug little laugh, quick and clear delivery.",
   "luma": "A Japanese android girl with a clear, crisp, precise and slightly synthetic high voice. Calm, polite and analytical like an AI system in an anime, very even rhythm, gentle and cute underneath.",
   "dax": "A big Japanese man in his late twenties with a booming, hearty, warm baritone voice. Loud, jolly and enthusiastic like a gym coach in an anime, laughs easily, very friendly.",
-  "june": "A Japanese young woman with a sleepy, soft, low-energy voice. Drowsy, deadpan and mumbling like a lazy gamer girl in an anime, slow delivery with small sighs and yawns.",
+  "june": "二十岁左右的年轻女性，声音慵懒、软糯、带一点鼻音，语速很慢，像没睡醒一样，常打哈欠和叹气，像动漫里宅在家打游戏的懒散少女。",
   "vale": "A Japanese man in his mid forties with a deep, gravelly, resonant bass voice. Warm but rough, a fatherly veteran warrior who speaks slowly with weight and a little dry humour.",
   "vesper": "A Japanese man with a smooth, velvety, theatrical baritone voice. Dramatic, elegant and a little haughty like a vampire aristocrat in an anime, slow rolling delivery with flair.",
   "aurel": "A Japanese young person with a soft, airy, androgynous and serene voice. Gentle and dreamy like an angel in an anime, calm poetic delivery, close to a whisper.",
-  "pip": "A small playful spirit creature with a very high, bright, squeaky and cute childlike voice, energetic and mischievous, like an anime mascot character."
+  "pip": "非常小的可爱精灵小动物，声音很高、尖细、奶声奶气，活泼调皮，像动漫里的吉祥物角色。"
  },
  "reference": {
   "nyx": "ふふ、来たね。今夜も一緒に、少しだけ強くなろうか。焦らなくていいよ、私がちゃんと見てるから。",
@@ -1704,5 +1704,19 @@
    "en": "Uh-huh, Pip is listening!",
    "de": "Mhm, Pip hört zu!"
   }
- ]
+ ],
+ "presets": {
+  "ash": "Dylan",
+  "dax": "Ryan",
+  "vale": "Uncle_Fu",
+  "vesper": "Aiden",
+  "aurel": "Eric"
+ },
+ "styles": {
+  "ash": "用自信、傲慢又带点调侃的少年语气说，像动漫里的宿敌角色，偶尔轻笑",
+  "dax": "用洪亮、豪爽、热情的大嗓门说，像动漫里的健身教练，充满活力，带着笑意",
+  "vale": "用低沉、沙哑、沉稳的中年男人语气说，像久经沙场的老兵，缓慢而有分量，带点幽默",
+  "vesper": "用低沉、优雅、戏剧化的语气缓慢地说，像动漫里的吸血鬼贵族，华丽而略带傲慢",
+  "aurel": "用轻柔、空灵、平静的语气低声说，像动漫里的天使，温柔而有诗意"
+ }
 }

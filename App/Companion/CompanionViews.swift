@@ -628,8 +628,8 @@ struct CompanionPicker: View {
                         card(who)
                     }
                 }
-                Text(tr("Voices speak Japanese with subtitles. They were designed from a written description, nobody real was cloned.",
-                        "Die Stimmen sprechen Japanisch mit Untertiteln. Sie wurden aus einer Beschreibung entworfen, niemand Echtes wurde geklont."))
+                Text(tr("Voices speak Japanese with subtitles. They come from Qwen3-TTS, designed from a written description or taken from its built-in voices. Nobody real was cloned.",
+                        "Die Stimmen sprechen Japanisch mit Untertiteln. Sie stammen aus Qwen3-TTS, aus einer Beschreibung entworfen oder aus seinen mitgelieferten Stimmen. Niemand Echtes wurde geklont."))
                     .scaledFont(size: 12)
                     .foregroundStyle(Zen.inkFaint)
                     .fixedSize(horizontal: false, vertical: true)

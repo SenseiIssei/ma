@@ -21,3 +21,6 @@ __pycache__/
 
 # Encrypted CI signing cache
 ci/.signing/
+
+# Local App Store screenshots
+screenshots/

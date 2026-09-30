@@ -113,4 +113,4 @@ Ma uses the Family Controls framework with individual authorization so a person 
 5. Focus timer with sounds
 6. Balance: workout player
 
-Take them on the iPhone (side button + volume up) in Night appearance, then frame them with the headline set in `docs/LAUNCH.md`.
+Take them on the iPhone (side button + volume up) in Night appearance, put them into `screenshots/raw/en/` and `screenshots/raw/de/` in this order, and run `python scripts/frame_screenshots.py`. The framed images land in `screenshots/out/` at 1320 x 2868 with the headlines from `docs/LAUNCH.md`.

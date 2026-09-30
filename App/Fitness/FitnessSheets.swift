@@ -541,6 +541,10 @@ struct LevelUpView: View {
                 }
                 .padding(.horizontal, 24)
 
+                if CompanionID.hasChosen {
+                    companionLine
+                }
+
                 if !celebration.badges.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
                         Text(celebration.badges.count == 1 ? tr("New badge", "Neues Abzeichen") : tr("New badges", "Neue Abzeichen"))
@@ -579,6 +583,31 @@ struct LevelUpView: View {
                 withAnimation(.spring(response: 0.6, dampingFraction: 0.6)) { shown = true }
             }
         }
+    }
+
+    private var companionLine: some View {
+        let who: CompanionID = CompanionID.current
+        let text: String = who == .nyx
+            ? tr("Told you. Level \(celebration.level) suits you.", "Hab ich doch gesagt. Level \(celebration.level) steht dir.")
+            : tr("[Level Up] Level \(celebration.level). Keep hunting.", "[Level Up] Level \(celebration.level). Weiter jagen.")
+        return HStack(alignment: .center, spacing: 12) {
+            CompanionAvatar(companion: who, mood: .proud, size: 48)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(who.name.uppercased())
+                    .scaledFont(size: 11, weight: .heavy, design: .rounded)
+                    .tracking(1.5)
+                    .foregroundStyle(Zen.ai)
+                Text(text)
+                    .scaledFont(size: 15, weight: .medium)
+                    .foregroundStyle(Zen.ink)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(14)
+        .background(CompanionStyle.window.opacity(0.92), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(CompanionStyle.glow(0.6), lineWidth: 1))
+        .padding(.horizontal, Zen.gutter)
     }
 
     private var headline: String {

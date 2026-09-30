@@ -512,12 +512,15 @@ final class RoutineVoice: NSObject, AVSpeechSynthesizerDelegate {
         synthesizer.delegate = self
     }
 
-    func say(_ text: String) {
+    /// `voice` and `pitch` let the companions sound like themselves; the
+    /// routines use the plain voice of the app language.
+    func say(_ text: String, voice: AVSpeechSynthesisVoice? = nil, pitch: Float = 1) {
         claimSession()
         if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .word) }
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: Loc.isGerman ? "de-DE" : "en-US")
+        utterance.voice = voice ?? AVSpeechSynthesisVoice(language: Loc.isGerman ? "de-DE" : "en-US")
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.95
+        utterance.pitchMultiplier = pitch
         synthesizer.speak(utterance)
     }
 

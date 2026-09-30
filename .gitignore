@@ -25,3 +25,4 @@ ci/.signing/
 # Local App Store screenshots
 screenshots/
 Watch/Info.plist
+scripts/.companion/

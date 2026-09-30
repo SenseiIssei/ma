@@ -14,6 +14,8 @@ struct MaApp: App {
     @State private var friends = FriendsStore()
     /// Weight goal, workouts from the Garmin feed, levels and quests.
     @State private var fitness = FitnessStore()
+    /// Nyx or Kael and the chat with them.
+    @State private var companions = CompanionStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -24,6 +26,7 @@ struct MaApp: App {
                 .environment(balance)
                 .environment(friends)
                 .environment(fitness)
+                .environment(companions)
                 .onOpenURL { model.handle(url: $0) }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()

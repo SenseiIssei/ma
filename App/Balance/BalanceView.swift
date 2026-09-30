@@ -28,6 +28,7 @@ struct BalanceView: View {
                           subtitle: tr("Move a little, drink some water, sleep well. Small things that carry the day.",
                                        "Ein bisschen Bewegung, genug Wasser, guter Schlaf. Kleine Dinge, die den Tag tragen."),
                           icon: "leaf.fill")
+                CompanionCard()
                 BalanceSummaryCard(now: now)
                 FitnessSection()
                 MoveSection { routine = $0 }

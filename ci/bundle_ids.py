@@ -23,6 +23,7 @@ WANTED = {
     "com.sensei.ma.filter": ["APP_GROUPS"],
     "com.sensei.ma.widgets": ["APP_GROUPS"],
     "com.sensei.ma.report": ["APP_GROUPS", "FAMILY_CONTROLS"],
+    "com.sensei.ma.watchkitapp": [],
 }
 
 

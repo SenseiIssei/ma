@@ -81,6 +81,12 @@ final class AppModel {
         onboarded = UserDefaults.standard.bool(forKey: "ma.onboarded")
         mindfulRelease = UserDefaults.standard.bool(forKey: "ma.mindfulRelease")
         reload()
+        // The watch asks for focus to start or stop; the phone owns the
+        // shields, so its requests land here. Activated once, the first
+        // reload() snapshot waits in PhoneSession until the session is up.
+        PhoneSession.shared.activate { [weak self] command in
+            self?.handleWatch(command)
+        }
     }
 
     // MARK: Sync
@@ -121,6 +127,8 @@ final class AppModel {
         // the app was closed. Syncing here covers all of them in one place.
         syncFocusActivity()
         reloadWidgetsIfChanged()
+        // Same single place for the watch; PhoneSession drops unchanged ones.
+        PhoneSession.shared.push(watchSnapshot())
     }
 
     func tick() {

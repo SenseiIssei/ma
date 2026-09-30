@@ -10,7 +10,7 @@ Certificates, Identifiers & Profiles > Identifiers.
 
 **App Group:** switch the filter in the top right to "App Groups", `+`, description `Ma`, identifier `group.com.sensei.ma`.
 
-**Seven App IDs** (filter on "App IDs", `+`, App, bundle ID "Explicit"):
+**Eight App IDs** (filter on "App IDs", `+`, App, bundle ID "Explicit"):
 
 | Description | Bundle ID | App Groups | Family Controls |
 |---|---|---|---|
@@ -21,8 +21,9 @@ Certificates, Identifiers & Profiles > Identifiers.
 | Ma Filter | `com.sensei.ma.filter` | yes | no |
 | Ma Widgets | `com.sensei.ma.widgets` | yes | no |
 | Ma Report | `com.sensei.ma.report` | yes | yes |
+| Ma Watch | `com.sensei.ma.watchkitapp` | no | no |
 
-Then open each ID, click **Configure** next to App Groups, assign `group.com.sensei.ma` and save.
+Then open each ID that has App Groups, click **Configure** next to it, assign `group.com.sensei.ma` and save.
 
 You do not create certificates or provisioning profiles. The build makes them itself.
 

@@ -232,13 +232,16 @@ struct RuleCard: View {
             .background(tint.opacity(0.12), in: Capsule())
     }
 
-    private var budgetPill: Text? {
+    /// Type-erased because `.scaledFont` turns the Text into a plain View.
+    private var budgetPill: AnyView? {
         guard rule.allowsUnlock, let limit = rule.dailyUnlockLimit else { return nil }
         let left = rule.unlocksLeft(usedToday: unlocksToday) ?? 0
         let tint: Color = left == 0 ? Zen.negative : Zen.inkSoft
-        return Text(tr("\(unlocksToday) of \(limit) today", "\(unlocksToday) von \(limit) heute"))
-            .scaledFont(size: 12, weight: .semibold)
-            .foregroundStyle(tint)
+        return AnyView(
+            Text(tr("\(unlocksToday) of \(limit) today", "\(unlocksToday) von \(limit) heute"))
+                .scaledFont(size: 12, weight: .semibold)
+                .foregroundStyle(tint)
+        )
     }
 
     private var summary: String {

@@ -29,6 +29,7 @@ struct BalanceView: View {
                                        "Ein bisschen Bewegung, genug Wasser, guter Schlaf. Kleine Dinge, die den Tag tragen."),
                           icon: "leaf.fill")
                 BalanceSummaryCard(now: now)
+                FitnessSection()
                 MoveSection { routine = $0 }
                 FoodSection(now: now)
                 SleepSection(now: now)

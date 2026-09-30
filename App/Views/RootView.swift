@@ -83,6 +83,7 @@ extension EnvironmentValues {
 
 struct MainTabs: View {
     @Environment(AppModel.self) private var model
+    @Environment(FitnessStore.self) private var fitness
     @State private var selection: RootTab = .today
 
     var body: some View {
@@ -104,6 +105,9 @@ struct MainTabs: View {
             }
         }
         .environment(\.selectRootTab, { tab in selection = tab })
+        .sheet(item: Binding(get: { fitness.celebration }, set: { fitness.celebration = $0 })) { celebration in
+            LevelUpView(celebration: celebration) { fitness.celebration = nil }
+        }
         .onChange(of: model.tab, initial: true) { _, tab in
             // While Balance is open, `model.tab` is parked on .today (see
             // below). That parking move must not pull the bar back to Today.

@@ -28,6 +28,8 @@ Website: https://senseiissei.github.io/ma/
 
 **Balance.** Short guided workouts with voice, water and a simple meal check, and a wind-down before bed with a reminder.
 
+**Fitness goal.** Enter your weight and a goal. Ma works out the weekly sport that gets you there without changing food, plans the rest of the week from your own Garmin sessions, and turns every workout into XP, levels, weekly quests and badges. Workouts, steps and active calories come from any Garmin snapshot feed ([docs/FITNESS.md](docs/FITNESS.md)) or are typed in by hand.
+
 **Friends without a feed.** Optional circles by invite code. Members see each other's streaks and daily numbers and share a weekly challenge. No timeline, no content.
 
 **Widgets and accessibility.** Home and Lock Screen widgets, Dynamic Type everywhere, VoiceOver labels for rings, timers and quiz answers, and Reduce Motion respected.

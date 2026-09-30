@@ -12,6 +12,8 @@ struct MaApp: App {
     @State private var balance = BalanceStore()
     /// Optional friends circles; talks to Ma's server only when switched on.
     @State private var friends = FriendsStore()
+    /// Weight goal, workouts from the Garmin feed, levels and quests.
+    @State private var fitness = FitnessStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -21,6 +23,7 @@ struct MaApp: App {
                 .environment(day)
                 .environment(balance)
                 .environment(friends)
+                .environment(fitness)
                 .onOpenURL { model.handle(url: $0) }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()
@@ -35,6 +38,7 @@ struct MaApp: App {
                 let streak = model.decks.currentStreak
                 let habits = day.habitsDoneToday
                 Task { await friends.syncToday(streak: streak, habitsDone: habits) }
+                Task { await fitness.refresh() }
             }
         }
     }

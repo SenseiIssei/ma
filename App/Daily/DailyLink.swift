@@ -3,8 +3,8 @@ import SwiftUI
 // The link between Ma and the `daily` command on senseiissei.dev. Ma shows a
 // short one-time code; typed into the website terminal as `daily link CODE`
 // it lets that browser record finished lessons, which come back here as
-// experience. The Friends identity carries the connection; creating it does
-// not switch sharing on.
+// experience. Only an account with the "daily" feature (the owner) sees any
+// of this; the server decides.
 
 struct DailyLinkCode: Decodable, Equatable {
     var code: String
@@ -113,7 +113,7 @@ struct DailyLinkSheet: View {
 
 /// Shows the one-time code, big enough to type from across the desk.
 struct DailyLinkView: View {
-    @Environment(FriendsStore.self) private var friends
+    @Environment(AccountStore.self) private var accounts
     @State private var code: DailyLinkCode?
     @State private var failed: String?
     @State private var loading = false
@@ -149,8 +149,8 @@ struct DailyLinkView: View {
                 }
                 .buttonStyle(.primary)
                 .disabled(loading)
-                Text(tr("Ma creates an anonymous id on its server for this. Sharing with friends stays off.",
-                        "Ma legt dafür eine anonyme ID auf seinem Server an. Das Teilen mit Freunden bleibt aus."))
+                Text(tr("Only your account can do this. The website forgets the command in every browser that is not linked.",
+                        "Das kann nur dein Konto. Die Website kennt den Befehl in keinem Browser, der nicht verbunden ist."))
                     .scaledFont(size: 12)
                     .foregroundStyle(Zen.inkFaint)
                     .multilineTextAlignment(.center)
@@ -167,11 +167,11 @@ struct DailyLinkView: View {
         loading = true
         failed = nil
         defer { loading = false }
-        if let fresh = await friends.dailyLinkCode() {
+        if let fresh = await accounts.dailyLinkCode() {
             code = fresh
             Haptics.success()
         } else {
-            failed = friends.errorMessage ?? tr("Ma's server is not reachable right now.", "Mas Server ist gerade nicht erreichbar.")
+            failed = accounts.errorMessage ?? tr("Ma's server is not reachable right now.", "Mas Server ist gerade nicht erreichbar.")
         }
     }
 }

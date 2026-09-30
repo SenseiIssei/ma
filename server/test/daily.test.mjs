@@ -85,13 +85,15 @@ describe('daily streak rules', () => {
 
 describe('daily routes', () => {
   let api;
+  let owners = 0;
   before(async () => {
-    api = await startServer();
+    api = await startServer({ OWNER_EMAILS: Array.from({ length: 20 }, (_, index) => `owner${index}@example.com`).join(',') });
   });
   after(() => api.close());
 
   async function linkedBrowser() {
-    const member = await api.newMember('Jakob');
+    const member = await api.newAccount(`owner${owners++}@example.com`);
+    member.token = member.session;
     const code = await api.request('POST', '/daily/link-code', { token: member.token });
     assert.equal(code.status, 201);
     assert.match(code.body.code, /^[A-HJ-NP-Z2-9]{6}$/);
@@ -107,9 +109,20 @@ describe('daily routes', () => {
     assert.equal(again.status, 404);
   });
 
+  test('only owner accounts get a code', async () => {
+    const stranger = await api.newAccount('someone@example.com');
+    const refused = await api.request('POST', '/daily/link-code', { token: stranger.session });
+    assert.equal(refused.status, 403);
+    const unconfirmed = await api.newAccount(`owner${owners++}@example.com`, { verified: false });
+    const notYet = await api.request('POST', '/daily/link-code', { token: unconfirmed.session });
+    assert.equal(notYet.status, 403, 'the owner address must be confirmed first');
+    const anonymous = await api.request('POST', '/daily/link-code');
+    assert.equal(anonymous.status, 401);
+  });
+
   test('codes expire after ten minutes', async () => {
-    const member = await api.newMember('Late');
-    const code = await api.request('POST', '/daily/link-code', { token: member.token });
+    const member = await api.newAccount(`owner${owners++}@example.com`);
+    const code = await api.request('POST', '/daily/link-code', { token: member.session });
     api.clock.t += 11 * 60_000;
     const late = await api.request('POST', '/daily/link', { body: { code: code.body.code } });
     assert.equal(late.status, 404);
@@ -163,16 +176,16 @@ describe('daily routes', () => {
     assert.equal(extra.status, 400);
   });
 
-  test('unlinking revokes the token, deleting the member removes everything', async () => {
+  test('unlinking revokes the token, deleting the account removes everything', async () => {
     const { member, token } = await linkedBrowser();
     await api.request('POST', '/daily/done', { token, body: { unitId: 'cpp-raii', xpReward: 20 } });
     const unlink = await api.request('DELETE', '/daily/link', { token });
     assert.equal(unlink.status, 204);
     const after = await api.request('GET', '/daily/progress', { token });
     assert.equal(after.status, 401);
-    const gone = await api.request('DELETE', '/me', { token: member.token });
+    const gone = await api.request('DELETE', '/auth/me', { token: member.token });
     assert.equal(gone.status, 204);
-    const rows = api.app.db.prepare('SELECT COUNT(*) AS n FROM daily_entries WHERE member_id = ?').get(member.id);
+    const rows = api.app.db.prepare('SELECT COUNT(*) AS n FROM daily_entries WHERE account_id = ?').get(member.id);
     assert.equal(rows.n, 0);
   });
 });

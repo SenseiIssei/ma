@@ -236,6 +236,7 @@ struct LevelRing: View {
 
 struct FitnessView: View {
     @Environment(FitnessStore.self) private var fitness
+    @Environment(AccountStore.self) private var accounts
     @State private var editGoal = false
     @State private var logWeight = false
     @State private var addWorkout = false
@@ -249,7 +250,9 @@ struct FitnessView: View {
                 FitnessWeightCard { logWeight = true }
                 FitnessHistoryCard()
                 FitnessBadgesCard()
-                DailyLessonsCard()
+                if accounts.has("daily") {
+                    DailyLessonsCard()
+                }
                 FitnessWorkoutsCard { addWorkout = true }
                 FitnessFeedCard()
                 FitnessHowCard()

@@ -38,6 +38,20 @@ export function send(res, status, body, headers = {}) {
   res.end(payload);
 }
 
+/** A small page for links opened in a browser (mail confirmation, OAuth). */
+export function sendHtml(res, status, html) {
+  if (res.headersSent) return;
+  res.writeHead(status, {
+    ...BASE_HEADERS,
+    'Content-Type': 'text/html; charset=utf-8',
+    'Content-Length': Buffer.byteLength(html),
+    // Inline style and one inline script for the reset form, nothing else.
+    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; form-action 'self'",
+    'X-Frame-Options': 'DENY',
+  });
+  res.end(html);
+}
+
 export function sendError(res, err) {
   if (err instanceof HttpError) {
     send(res, err.status, { error: err.code, message: err.message }, err.headers);

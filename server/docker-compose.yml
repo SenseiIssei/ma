@@ -15,14 +15,24 @@ services:
       # Leave it empty to switch the gallery review endpoints off.
       ADMIN_TOKEN: ${ADMIN_TOKEN:-}
       TRUST_PROXY: "1"
-      # Daily lesson reminder (senseiissei.dev `daily`). Each channel stays
-      # off until its token is set in .env.
-      DAILY_REMINDER_TIME: ${DAILY_REMINDER_TIME:-09:00}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-https://senseiissei.dev}
+      # Accounts: owners get the daily lessons and personal reminders.
+      OWNER_EMAILS: ${OWNER_EMAILS:-}
+      GOOGLE_CLIENT_IDS: ${GOOGLE_CLIENT_IDS:-}
+      # Confirmation and reset mails (the same SMTP as the DevPanel).
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      # Reminder channels; linked per account from inside Ma.
       DAILY_SITE_ORIGIN: ${DAILY_SITE_ORIGIN:-https://senseiissei.dev}
-      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
-      DISCORD_USER_ID: ${DISCORD_USER_ID:-}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
-      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      TELEGRAM_BOT_NAME: ${TELEGRAM_BOT_NAME:-}
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID:-}
+      DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET:-}
     volumes:
       - ma-friends-data:/data
     read_only: true

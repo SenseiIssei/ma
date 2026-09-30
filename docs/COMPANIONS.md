@@ -1,6 +1,6 @@
 # Companions
 
-Ten original characters keep the person company in the Balance tab: Nyx, Kira, Ash, Luma, Dax, June, Vale, Vesper, Aurel and Pip. Each one has a portrait in six moods, a short idle animation, a Japanese voice with German and English subtitles, and a personality the on-device model is asked to keep.
+Ten original characters keep the person company in the Balance tab: Nyx, Kira, Ash, Luma, Dax, Nemu, Vale, Vesper, Aurel and Pip. Each one has a portrait in six moods, a short idle animation, a Japanese voice with German and English subtitles, and a personality the on-device model is asked to keep.
 
 None of them is a character from an existing series. The look is inspired by dark fantasy manhwa in general.
 
@@ -22,7 +22,7 @@ All assets are made on a local PC with an RTX-class GPU. Nothing is sent to a cl
 | Portraits, 6 moods each | ComfyUI with NoobAI-XL (SDXL anime checkpoint), txt2img for the base, img2img at about 0.5 denoise for the moods | `python scripts/make_companion.py [Name ...]` |
 | Candidates for a new character | same | `python scripts/make_companion.py explore Name 4` |
 | Idle loops (81 frames, 16 fps) | ComfyUI with Wan 2.2 I2V 14B and the Lightning LoRA, first frame = last frame, colours pulled back to frame one | `F:/Tools/ComfyUI/.venv/Scripts/python.exe scripts/make_companion.py loops` |
-| Voices and lines | Nyx, Kira, Luma, June and Pip: Qwen3-TTS VoiceDesign creates the voice from the written description in `voice_lines.json`, Qwen3-TTS Base speaks every line in it. Ash, Dax, Vale, Vesper and Aurel: Qwen3-TTS CustomVoice with a built-in voice (Dylan, Ryan, Uncle_Fu, Aiden, Eric), a speaking style per character and an emotion per situation. Whisper small reads every take back; bad takes are recorded again | `F:/Tools/qwen-tts/.venv/Scripts/python.exe scripts/make_voices.py [name ...]` |
+| Voices and lines | Nyx, Kira, Luma, Nemu and Pip: Qwen3-TTS VoiceDesign creates the voice from the written description in `voice_lines.json`, Qwen3-TTS Base speaks every line in it. Ash, Dax, Vale, Vesper and Aurel: Qwen3-TTS CustomVoice with a built-in voice (Dylan, Ryan, Uncle_Fu, Aiden, Eric), a speaking style per character and an emotion per situation. Whisper small reads every take back; bad takes are recorded again | `F:/Tools/qwen-tts/.venv/Scripts/python.exe scripts/make_voices.py [name ...]` |
 
 Designed voices tend to come out high, male descriptions included, so the men use the built-in voices, which stay in a real male range (about 120 to 160 Hz). No real person's voice was cloned.
 

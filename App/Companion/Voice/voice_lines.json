@@ -5,7 +5,7 @@
   "ash": "A Japanese young man around twenty with a sharp, bright, arrogant tenor voice. Cocky and playful like the rival character in an anime, a smug little laugh, quick and clear delivery.",
   "luma": "A Japanese android girl with a clear, crisp, precise and slightly synthetic high voice. Calm, polite and analytical like an AI system in an anime, very even rhythm, gentle and cute underneath.",
   "dax": "A big Japanese man in his late twenties with a booming, hearty, warm baritone voice. Loud, jolly and enthusiastic like a gym coach in an anime, laughs easily, very friendly.",
-  "june": "二十岁左右的年轻女性，声音慵懒、软糯、带一点鼻音，语速很慢，像没睡醒一样，常打哈欠和叹气，像动漫里宅在家打游戏的懒散少女。",
+  "nemu": "二十岁左右的年轻女性，声音慵懒、软糯、带一点鼻音，语速很慢，像没睡醒一样，常打哈欠和叹气，像动漫里宅在家打游戏的懒散少女。",
   "vale": "A Japanese man in his mid forties with a deep, gravelly, resonant bass voice. Warm but rough, a fatherly veteran warrior who speaks slowly with weight and a little dry humour.",
   "vesper": "A Japanese man with a smooth, velvety, theatrical baritone voice. Dramatic, elegant and a little haughty like a vampire aristocrat in an anime, slow rolling delivery with flair.",
   "aurel": "A Japanese young person with a soft, airy, androgynous and serene voice. Gentle and dreamy like an angel in an anime, calm poetic delivery, close to a whisper.",
@@ -17,7 +17,7 @@
   "ash": "ふん、やっと来たか。俺の記録、そう簡単には抜けないぜ。悔しかったら、今日こそ本気を見せてみろよ。",
   "luma": "システム起動。おはようございます。本日のコンディションを解析しました。最適なトレーニングプランを提示します。",
   "dax": "ガハハ！よく来たな、相棒！今日もいい汗かこうぜ！筋肉は裏切らない、それが俺のモットーだ！",
-  "june": "ふぁ…あ、来たんだ。えっと…まあ、ちょっとだけならやってもいいかな。めんどいけど、一緒にやろ。",
+  "nemu": "ふぁ…あ、来たんだ。えっと…まあ、ちょっとだけならやってもいいかな。めんどいけど、一緒にやろ。",
   "vale": "よう、来たな。若いうちは焦るもんだ。だがな、強さってのは毎日の積み重ねなんだよ。",
   "vesper": "ようこそ、我が館へ。今宵の月は実に美しい。さあ、君の輝かしい努力の物語を、私に聞かせたまえ。",
   "aurel": "ようこそ。今日という一日は、まだ白いページのままです。一緒に、静かに、美しい一行を書き加えましょう。",
@@ -865,168 +865,168 @@
    "de": "Ich hör zu, Partner."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "morning",
    "ja": "ふぁ…おはよ。まだ眠い…",
    "en": "Yawn… morning. Still sleepy…",
    "de": "Gääähn… Morgen. Noch müde…"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "morning",
    "ja": "朝ってほんと無理…でも起きたね、えらい。",
    "en": "Mornings are the worst… but you got up. Nice.",
    "de": "Morgens ist echt hart… aber du bist wach. Stark."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "day",
    "ja": "あ、来た。ゲーム一回分だけ、やろっか。",
    "en": "Oh, you're here. Just one round's worth, okay?",
    "de": "Oh, da bist du. Nur eine Runde, okay?"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "day",
    "ja": "んー、まあ、いいんじゃない？",
    "en": "Mm, well, not bad I guess?",
    "de": "Hm, naja, passt schon?"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "evening",
    "ja": "夜だ…ここからが本番だね。",
    "en": "Night… this is when it gets real.",
    "de": "Nacht… jetzt geht's erst los."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "evening",
    "ja": "今日もおつかれ…ほんとに。",
    "en": "Good work today… seriously.",
    "de": "Gut gemacht heute… echt."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "night",
    "ja": "もう寝よ…あたしも寝る…",
    "en": "Let's sleep… I'm going too…",
    "de": "Lass uns schlafen… ich auch…"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "night",
    "ja": "夜更かしは…明日の自分がかわいそう。",
    "en": "Staying up… poor tomorrow you.",
    "de": "Lange aufbleiben… armes Morgen-Ich."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "proud",
    "ja": "え、すご…ガチじゃん。",
    "en": "Wait, wow… you're for real.",
    "de": "Warte, wow… du meinst das ernst."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "proud",
    "ja": "実績解除、おめでと。",
    "en": "Achievement unlocked. Congrats.",
    "de": "Erfolg freigeschaltet. Glückwunsch."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "cheer",
    "ja": "…よし。ちょっとだけ本気出そ。",
    "en": "Okay… let's try a little for real.",
    "de": "Okay… ein bisschen ernst machen."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "cheer",
    "ja": "十分だけ。十分だけやろ。",
    "en": "Ten minutes. Just ten minutes.",
    "de": "Zehn Minuten. Nur zehn Minuten."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "quest",
    "ja": "クエスト来てるよ…めんどいけど。",
    "en": "There's a quest… kind of a pain, though.",
    "de": "Da ist ne Quest… nervig, aber."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "quest",
    "ja": "サブクエ感覚で、いっとく？",
    "en": "Treat it like a side quest?",
    "de": "Wie ne Nebenquest, okay?"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "gentle",
    "ja": "疲れた日は、ログアウトしていいんだよ。",
    "en": "On tired days, it's okay to log out.",
    "de": "An müden Tagen darfst du dich ausloggen."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "gentle",
    "ja": "ゆるくいこ。セーブしとけば大丈夫。",
    "en": "Let's keep it chill. We saved, it's fine.",
    "de": "Ganz locker. Gespeichert ist gespeichert."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "thanks",
    "ja": "ん…どういたしまして。",
    "en": "Mm… you're welcome.",
    "de": "Mhm… gern geschehen."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "thanks",
    "ja": "べ、別に…いいけど。",
    "en": "It's… whatever. Fine.",
    "de": "Ist… schon okay."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "levelup",
    "ja": "レベルアップ…ぱちぱち。",
    "en": "Level up… clap clap.",
    "de": "Level up… klatsch klatsch."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "levelup",
    "ja": "お、レベル上がった。ちょっと嬉しい。",
    "en": "Oh, levelled up. Kinda happy.",
    "de": "Oh, Level up. Freut mich irgendwie."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "status",
    "ja": "ステータス、こんな感じ。",
    "en": "Stats look like this.",
    "de": "Deine Stats sehen so aus."
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "status",
    "ja": "えっと…数字、見る？",
    "en": "Um… wanna see the numbers?",
    "de": "Ähm… willst du die Zahlen sehen?"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "listen",
    "ja": "んー？なに？",
    "en": "Hm? What?",
    "de": "Hm? Was?"
   },
   {
-   "who": "june",
+   "who": "nemu",
    "cue": "listen",
    "ja": "うん…聞いてるよ。",
    "en": "Yeah… I'm listening.",

@@ -16,6 +16,8 @@ struct MaApp: App {
     @State private var fitness = FitnessStore()
     /// Nyx or Kael and the chat with them.
     @State private var companions = CompanionStore()
+    /// The optional account; the server decides what it unlocks.
+    @State private var accounts = AccountStore()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -27,7 +29,16 @@ struct MaApp: App {
                 .environment(friends)
                 .environment(fitness)
                 .environment(companions)
-                .onOpenURL { model.handle(url: $0) }
+                .environment(accounts)
+                .onOpenURL { url in
+                    switch url.host {
+                    // Back from the confirmation mail or the Discord page.
+                    case "account": Task { await accounts.refresh() }
+                    case "notify":
+                        NotificationCenter.default.post(name: .maNotifyLinked, object: nil)
+                    default: model.handle(url: url)
+                    }
+                }
                 .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
                     model.reload()
                     if (note.userInfo?[Notifier.routeKey] as? String) == "focus" {
@@ -43,7 +54,8 @@ struct MaApp: App {
                 Task { await friends.syncToday(streak: streak, habitsDone: habits) }
                 CompanionReminder.refresh(CompanionSnapshot.make(fitness: fitness, day: day, model: model))
                 Task {
-                    if let progress = await friends.dailyProgress() {
+                    await accounts.refresh()
+                    if let progress = await accounts.dailyProgress() {
                         fitness.applyLessons(progress.records)
                     }
                 }

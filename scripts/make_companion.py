@@ -80,7 +80,7 @@ CHARACTERS = {
         "glowing green line tattoos on forearms, black compression shirt, towel around neck, dumbbell on shoulder",
         "gym at night with green neon lights, green and charcoal palette",
     ),
-    "June": (
+    "Nemu": (
         "1girl, solo, young woman, messy lavender hair, sleepy half-closed eyes, small yawn, "
         "oversized hoodie with cat ear hood, big headphones around neck, holding a game controller, cozy",
         "cozy dark bedroom lit by monitor glow and fairy lights, soft pink and purple palette",
@@ -186,7 +186,7 @@ def save(name: str, source: Path) -> None:
 SEEDS = {
     "Nyx": 51156248, "Vale": 776372639, "Pip": 294980275,
     "Kira": 262924397, "Ash": 382233022, "Luma": 494094586, "Dax": 1913769077,
-    "June": 456848475, "Vesper": 155380552, "Aurel": 1160940172,
+    "Nemu": 456848475, "Vesper": 155380552, "Aurel": 1160940172,
 }
 
 

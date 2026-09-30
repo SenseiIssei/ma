@@ -1,6 +1,7 @@
 import { createHash, randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
 import { transaction } from './db.js';
 import { badRequest, HttpError, isoTime } from './http.js';
+import { featuresOf } from './accounts.js';
 import { object } from './validate.js';
 import {
   addDays,
@@ -13,38 +14,59 @@ import {
 
 // The daily programming lesson from senseiissei.dev. The website shows the
 // lesson; this service keeps the record, so the Ma app can count the lessons
-// as experience next to workouts. The public console is open to everyone, so
-// only a browser linked to a Ma member may write: the app asks for a short
-// one-time code, the console trades it for a token that can do nothing but
-// record lessons.
+// as experience next to workouts. It belongs to the owner's account only:
+// an account with the "daily" feature asks for a short one-time code, the
+// website console trades it for a token that can do nothing but record
+// lessons, and without such a token the console does not know the command.
 
 export const DAILY_SCHEMA = `
 CREATE TABLE IF NOT EXISTS daily_link_codes (
   code       TEXT PRIMARY KEY,
-  member_id  TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+  account_id TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
   expires_at INTEGER NOT NULL
 );
 CREATE TABLE IF NOT EXISTS daily_links (
   token_hash   TEXT PRIMARY KEY,
-  member_id    TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+  account_id   TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
   created_at   INTEGER NOT NULL,
   last_used_at INTEGER NOT NULL
 );
-CREATE INDEX IF NOT EXISTS daily_links_by_member ON daily_links(member_id);
+CREATE INDEX IF NOT EXISTS daily_links_by_account ON daily_links(account_id);
 CREATE TABLE IF NOT EXISTS daily_entries (
-  member_id    TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+  account_id   TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
   day_key      TEXT NOT NULL,
   unit_id      TEXT NOT NULL,
   status       TEXT NOT NULL CHECK (status IN ('done', 'skipped')),
   base_xp      INTEGER NOT NULL,
   recorded_at  INTEGER NOT NULL,
-  PRIMARY KEY (member_id, day_key)
+  PRIMARY KEY (account_id, day_key)
 );
 CREATE TABLE IF NOT EXISTS daily_reminders_sent (
-  day_key TEXT PRIMARY KEY,
-  sent_at INTEGER NOT NULL
+  account_id TEXT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  day_key    TEXT NOT NULL,
+  sent_at    INTEGER NOT NULL,
+  PRIMARY KEY (account_id, day_key)
 );
 `;
+
+/**
+ * The first version keyed everything to Friends members and never held any
+ * rows. Those tables are dropped once, so the account version can take
+ * their names. Refuses to drop anything that holds data.
+ */
+export function ensureDailySchema(db) {
+  const columns = (table) => db.prepare(`PRAGMA table_info(${table})`).all().map((column) => column.name);
+  const legacy = ['daily_link_codes', 'daily_links', 'daily_entries', 'daily_reminders_sent'].filter((table) => {
+    const names = columns(table);
+    return names.length > 0 && (names.includes('member_id') || (table === 'daily_reminders_sent' && !names.includes('account_id')));
+  });
+  for (const table of legacy) {
+    const rows = db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get().n;
+    if (rows > 0 && table !== 'daily_reminders_sent') throw new Error(`${table} still holds member data; migrate it by hand`);
+    db.exec(`DROP TABLE ${table}`);
+  }
+  db.exec(DAILY_SCHEMA);
+}
 
 export const LINK_CODE_LIFETIME_MS = 10 * 60_000;
 /** How far back a buffered completion may still be recorded. */
@@ -69,29 +91,47 @@ function newLinkCode() {
 const unauthorized = () =>
   new HttpError(401, 'unauthorized', 'Link this browser first: daily link <code>', { 'WWW-Authenticate': 'Bearer' });
 
-/** Resolves the daily token in the Authorization header to a member id. */
-function linkedMember(ctx, req) {
+/** The website can check its token without recording anything. */
+export function dailyTokenValid(ctx, req) {
+  try {
+    linkedAccount(ctx, req);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Resolves the daily token in the Authorization header to an account id. */
+function linkedAccount(ctx, req) {
   const header = req.headers.authorization;
   const token = typeof header === 'string' && header.startsWith('Bearer ') ? header.slice(7).trim() : '';
   if (!TOKEN_PATTERN.test(token)) throw unauthorized();
   const hash = sha256(token);
-  const row = ctx.db.prepare('SELECT token_hash, member_id FROM daily_links WHERE token_hash = ?').get(hash);
+  const row = ctx.db.prepare('SELECT token_hash, account_id FROM daily_links WHERE token_hash = ?').get(hash);
   if (!row || !timingSafeEqual(Buffer.from(row.token_hash, 'hex'), Buffer.from(hash, 'hex'))) throw unauthorized();
   ctx.db.prepare('UPDATE daily_links SET last_used_at = ? WHERE token_hash = ?').run(ctx.now(), hash);
-  return row.member_id;
+  return row.account_id;
 }
 
-/** Either the website token or the app's own member credentials. */
-function readerMember(ctx, req) {
+/** Either the website token or the app's account session with the feature. */
+function readerAccount(ctx, req) {
   const header = req.headers.authorization ?? '';
-  if (typeof header === 'string' && header.startsWith('Bearer daily_')) return linkedMember(ctx, req);
-  return ctx.authenticate(req).id;
+  if (typeof header === 'string' && header.startsWith('Bearer daily_')) return linkedAccount(ctx, req);
+  const account = ctx.authenticateAccount(req);
+  requireDaily(ctx, account);
+  return account.id;
 }
 
-function entriesOf(db, memberId) {
+function requireDaily(ctx, account) {
+  if (!featuresOf(account, ctx.config).includes('daily')) {
+    throw new HttpError(403, 'forbidden', 'This account has no access to the daily lessons');
+  }
+}
+
+function entriesOf(db, accountId) {
   return db
-    .prepare('SELECT day_key, unit_id, status, base_xp, recorded_at FROM daily_entries WHERE member_id = ? ORDER BY day_key')
-    .all(memberId)
+    .prepare('SELECT day_key, unit_id, status, base_xp, recorded_at FROM daily_entries WHERE account_id = ? ORDER BY day_key')
+    .all(accountId)
     .map((row) => ({
       dayKey: row.day_key,
       unitId: row.unit_id,
@@ -101,13 +141,13 @@ function entriesOf(db, memberId) {
     }));
 }
 
-export function dailyProgress(db, memberId, now) {
-  const summary = summarize(entriesOf(db, memberId), berlinDayKey(now));
+export function dailyProgress(db, accountId, now) {
+  const summary = summarize(entriesOf(db, accountId), berlinDayKey(now));
   return { ...summary, entries: summary.entries.slice(-120) };
 }
 
 function record(ctx, req, body, status) {
-  const memberId = linkedMember(ctx, req);
+  const accountId = linkedAccount(ctx, req);
   object(body, ['dayKey', 'unitId', 'xpReward']);
   const today = berlinDayKey(ctx.now());
   const dayKey = body.dayKey ?? today;
@@ -119,18 +159,18 @@ function record(ctx, req, body, status) {
 
   const { db } = ctx;
   transaction(db, () => {
-    const existing = db.prepare('SELECT status FROM daily_entries WHERE member_id = ? AND day_key = ?').get(memberId, dayKey);
+    const existing = db.prepare('SELECT status FROM daily_entries WHERE account_id = ? AND day_key = ?').get(accountId, dayKey);
     // A finished lesson stays finished; skipping afterwards changes nothing.
     // Skipping first and finishing later the same day is fine.
     if (existing?.status === 'done') return;
     db.prepare(
-      `INSERT INTO daily_entries (member_id, day_key, unit_id, status, base_xp, recorded_at)
+      `INSERT INTO daily_entries (account_id, day_key, unit_id, status, base_xp, recorded_at)
        VALUES (?, ?, ?, ?, ?, ?)
-       ON CONFLICT (member_id, day_key) DO UPDATE SET unit_id = excluded.unit_id, status = excluded.status,
+       ON CONFLICT (account_id, day_key) DO UPDATE SET unit_id = excluded.unit_id, status = excluded.status,
          base_xp = excluded.base_xp, recorded_at = excluded.recorded_at`,
-    ).run(memberId, dayKey, body.unitId, status, baseXp, ctx.now());
+    ).run(accountId, dayKey, body.unitId, status, baseXp, ctx.now());
   });
-  const progress = dailyProgress(db, memberId, ctx.now());
+  const progress = dailyProgress(db, accountId, ctx.now());
   const entry = progress.entries.find((item) => item.dayKey === dayKey) ?? null;
   return { status: 200, body: { entry, progress } };
 }
@@ -140,15 +180,16 @@ export function dailyRoutes() {
     {
       method: 'POST',
       path: '/daily/link-code',
-      auth: 'member',
-      async handler({ ctx, member }) {
+      auth: 'account',
+      async handler({ ctx, account }) {
+        requireDaily(ctx, account);
         const { db } = ctx;
         const now = ctx.now();
-        db.prepare('DELETE FROM daily_link_codes WHERE expires_at <= ? OR member_id = ?').run(now, member.id);
+        db.prepare('DELETE FROM daily_link_codes WHERE expires_at <= ? OR account_id = ?').run(now, account.id);
         let code = newLinkCode();
         while (db.prepare('SELECT 1 FROM daily_link_codes WHERE code = ?').get(code)) code = newLinkCode();
         const expiresAt = now + LINK_CODE_LIFETIME_MS;
-        db.prepare('INSERT INTO daily_link_codes (code, member_id, expires_at) VALUES (?, ?, ?)').run(code, member.id, expiresAt);
+        db.prepare('INSERT INTO daily_link_codes (code, account_id, expires_at) VALUES (?, ?, ?)').run(code, account.id, expiresAt);
         return { status: 201, body: { code, expiresAt: isoTime(expiresAt) } };
       },
     },
@@ -166,16 +207,16 @@ export function dailyRoutes() {
         const now = ctx.now();
         const token = `daily_${randomBytes(32).toString('hex')}`;
         const linked = transaction(db, () => {
-          const row = db.prepare('SELECT member_id, expires_at FROM daily_link_codes WHERE code = ?').get(code);
+          const row = db.prepare('SELECT account_id, expires_at FROM daily_link_codes WHERE code = ?').get(code);
           if (!row || row.expires_at <= now) return null;
           db.prepare('DELETE FROM daily_link_codes WHERE code = ?').run(code);
-          db.prepare('INSERT INTO daily_links (token_hash, member_id, created_at, last_used_at) VALUES (?, ?, ?, ?)').run(
+          db.prepare('INSERT INTO daily_links (token_hash, account_id, created_at, last_used_at) VALUES (?, ?, ?, ?)').run(
             sha256(token),
-            row.member_id,
+            row.account_id,
             now,
             now,
           );
-          return row.member_id;
+          return row.account_id;
         });
         if (!linked) throw new HttpError(404, 'not_found', 'This code is unknown or expired. Ask Ma for a new one.');
         return { status: 201, body: { token, progress: dailyProgress(db, linked, now) } };
@@ -202,7 +243,7 @@ export function dailyRoutes() {
       path: '/daily/progress',
       auth: 'none',
       async handler({ ctx, req }) {
-        return { status: 200, body: dailyProgress(ctx.db, readerMember(ctx, req), ctx.now()) };
+        return { status: 200, body: dailyProgress(ctx.db, readerAccount(ctx, req), ctx.now()) };
       },
     },
     {
@@ -212,7 +253,7 @@ export function dailyRoutes() {
       async handler({ ctx, req }) {
         const header = req.headers.authorization ?? '';
         const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
-        linkedMember(ctx, req);
+        linkedAccount(ctx, req);
         ctx.db.prepare('DELETE FROM daily_links WHERE token_hash = ?').run(sha256(token));
         return { status: 204 };
       },

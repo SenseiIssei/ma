@@ -117,16 +117,6 @@ struct FriendsAPI: Sendable {
         let _: FriendDay = try await send("PUT", "stats/\(date)", body: body)
     }
 
-    // MARK: Daily lessons (senseiissei.dev)
-
-    func dailyLinkCode() async throws -> DailyLinkCode {
-        try await send("POST", "daily/link-code")
-    }
-
-    func dailyProgress() async throws -> DailyProgressDTO {
-        try await send("GET", "daily/progress")
-    }
-
     // MARK: Plumbing
 
     private func request(_ method: String, _ path: String, body: Data?, authorized: Bool) throws -> URLRequest {

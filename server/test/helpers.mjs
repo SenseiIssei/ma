@@ -25,9 +25,19 @@ export async function startServer(env = {}) {
     RATE_JOIN_PER_HOUR: '10000',
     RATE_GALLERY_CAPACITY: '10000',
     RATE_GALLERY_PER_HOUR: '10000',
+    RATE_AUTH_CAPACITY: '10000',
+    RATE_AUTH_PER_HOUR: '10000',
     ...env,
   });
-  const app = createApp({ config, now: () => clock.t, log: { error() {} } });
+  // No bot polling in tests; network calls go through the stub below.
+  config.startBots = false;
+  const fetchStub = { handler: null, calls: [] };
+  const fetchImpl = async (url, options = {}) => {
+    fetchStub.calls.push({ url: String(url), options });
+    if (!fetchStub.handler) throw new Error(`unexpected fetch ${url}`);
+    return fetchStub.handler(String(url), options);
+  };
+  const app = createApp({ config, now: () => clock.t, log: { error() {} }, fetchImpl });
   await new Promise((resolve) => app.server.listen(0, '127.0.0.1', resolve));
   const origin = `http://127.0.0.1:${app.server.address().port}`;
   const prefix = config.basePath;
@@ -59,6 +69,14 @@ export async function startServer(env = {}) {
     return { id, secret, token: `${id}.${secret}`, nickname };
   }
 
+  /** An account, confirmed unless told otherwise; returns email and session. */
+  async function newAccount(email, { verified = true, password = 'correct horse battery' } = {}) {
+    const res = await request('POST', '/auth/register', { body: { email, password } });
+    if (res.status !== 201) throw new Error(`register failed: ${res.status} ${JSON.stringify(res.body)}`);
+    if (verified) app.db.prepare('UPDATE accounts SET email_verified_at = ? WHERE email = ?').run(clock.t, email.toLowerCase());
+    return { email, password, session: res.body.session, id: res.body.account.id };
+  }
+
   async function newCircle(owner, name = 'Morning crew') {
     const res = await request('POST', '/circles', { token: owner.token, body: { name } });
     if (res.status !== 201) throw new Error(`circle create failed: ${res.status} ${JSON.stringify(res.body)}`);
@@ -67,11 +85,13 @@ export async function startServer(env = {}) {
 
   return {
     app,
+    fetchStub,
     clock,
     origin,
     prefix,
     request,
     newMember,
+    newAccount,
     newCircle,
     close: () => app.close(),
   };

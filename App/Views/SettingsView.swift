@@ -12,6 +12,12 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
+                    AccountSettingsRow()
+                } header: {
+                    FormHeader(icon: "person.crop.circle.fill", title: tr("Account", "Konto"))
+                }
+
+                Section {
                     Picker(tr("Look", "Aussehen"), selection: $appearance) {
                         Text(tr("Night", "Nacht")).tag(Appearance.night.rawValue)
                         Text(tr("System", "System")).tag(Appearance.system.rawValue)
@@ -62,11 +68,6 @@ struct SettingsView: View {
                                 .monospacedDigit()
                         }
                     }
-                    NavigationLink {
-                        DailyLinkView()
-                    } label: {
-                        Label(tr("Link senseiissei.dev", "Mit senseiissei.dev verbinden"), systemImage: "chevron.left.forwardslash.chevron.right")
-                    }
                 } header: {
                     FormHeader(icon: "book.fill", title: tr("Learning", "Lernen"))
                 }
@@ -94,7 +95,7 @@ struct SettingsView: View {
                     Link(destination: URL(string: "https://senseiissei.github.io/ma/support.html")!) {
                         Label(tr("Help and support", "Hilfe und Support"), systemImage: "questionmark.circle.fill")
                     }
-                    Text(tr("Ma stores everything on your iPhone. No accounts, no ads, no analytics. Only if you join a friends circle, a random id, your nickname and daily numbers go to Ma's server.", "Ma speichert alles auf deinem iPhone. Keine Konten, keine Werbung, keine Analyse. Nur wenn du einem Freundeskreis beitrittst, gehen eine zufällige ID, dein Spitzname und Tageszahlen an Mas Server."))
+                    Text(tr("Ma stores everything on your iPhone. No ads, no analytics, and an account only if you want one. Only if you join a friends circle, a random id, your nickname and daily numbers go to Ma's server.", "Ma speichert alles auf deinem iPhone. Keine Werbung, keine Analyse, ein Konto nur, wenn du eins willst. Nur wenn du einem Freundeskreis beitrittst, gehen eine zufällige ID, dein Spitzname und Tageszahlen an Mas Server."))
                         .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                 } header: {

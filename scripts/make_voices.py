@@ -37,7 +37,7 @@ DATA = json.loads((VOICE / "voice_lines.json").read_text(encoding="utf-8"))
 # Median pitch each voice should land in, in Hz.
 PITCH = {
     "nyx": (200, 260), "kira": (170, 260), "ash": (120, 190), "luma": (250, 350), "dax": (80, 135),
-    "june": (170, 260), "vale": (70, 125), "vesper": (85, 140), "aurel": (150, 230), "pip": (320, 600),
+    "nemu": (170, 260), "vale": (70, 125), "vesper": (85, 140), "aurel": (150, 230), "pip": (320, 600),
 }
 TAKES = 4
 RETRIES = 3

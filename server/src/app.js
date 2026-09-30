@@ -1,11 +1,13 @@
 import { createServer } from 'node:http';
 import { makeAuthenticator } from './auth.js';
 import { circleRoutes } from './circles.js';
-import { DAILY_SCHEMA, dailyRoutes } from './daily.js';
+import { ACCOUNT_SCHEMA, accountRoutes, makeAccountAuthenticator } from './accounts.js';
+import { dailyRoutes, ensureDailySchema } from './daily.js';
+import { makeSender, NOTIFY_SCHEMA, notifyRoutes, startTelegramLinker } from './notify.js';
 import { startDailyReminders } from './dailyReminders.js';
 import { openDatabase } from './db.js';
 import { galleryRoutes } from './gallery.js';
-import { clientIp, HttpError, notFound, readJson, send, sendError } from './http.js';
+import { clientIp, HttpError, notFound, readJson, send, sendError, sendHtml } from './http.js';
 import { memberRoutes } from './members.js';
 import { RateLimiter } from './ratelimit.js';
 import { compileRoutes, matchRoute } from './router.js';
@@ -31,13 +33,16 @@ function healthRoute() {
  * Builds the service without listening, so tests can start it on a random
  * port with their own clock and data directory.
  */
-export function createApp({ config, now = Date.now, log = console }) {
+export function createApp({ config, now = Date.now, log = console, fetchImpl = fetch }) {
   const db = openDatabase(config.dataDir);
-  db.exec(DAILY_SCHEMA);
+  db.exec(ACCOUNT_SCHEMA);
+  ensureDailySchema(db);
+  db.exec(NOTIFY_SCHEMA);
   const authenticate = makeAuthenticator(db);
-  // Routes that accept either a member or a website token check the member
-  // themselves, so the authenticator travels in the context.
-  const ctx = { db, config, now, authenticate };
+  const authenticateAccount = makeAccountAuthenticator(db, now);
+  // Routes that accept either an account or a website token check it
+  // themselves, so the authenticators travel in the context.
+  const ctx = { db, config, now, log, authenticate, authenticateAccount, sendNotification: makeSender(config, fetchImpl) };
   const r = config.rate;
   const limiters = {
     ip: RateLimiter.perMinute(r.ipCapacity, r.ipPerMinute, now),
@@ -45,6 +50,7 @@ export function createApp({ config, now = Date.now, log = console }) {
     signup: RateLimiter.perHour(r.signupCapacity, r.signupPerHour, now),
     join: RateLimiter.perHour(r.joinCapacity, r.joinPerHour, now),
     gallery: RateLimiter.perHour(r.galleryCapacity, r.galleryPerHour, now),
+    auth: RateLimiter.perHour(r.authCapacity, r.authPerHour, now),
   };
   const routes = compileRoutes([
     healthRoute(),
@@ -53,6 +59,8 @@ export function createApp({ config, now = Date.now, log = console }) {
     ...statsRoutes(),
     ...galleryRoutes(),
     ...dailyRoutes(),
+    ...accountRoutes({ config, fetchImpl }),
+    ...notifyRoutes({ fetchImpl }),
   ]);
 
   function limit(limiter, key) {
@@ -83,10 +91,16 @@ export function createApp({ config, now = Date.now, log = console }) {
 
       if (!route.exempt) limit(limiters.ip, ip);
       let member = null;
+      let account = null;
       if (route.auth === 'member') {
         member = authenticate(req);
         limit(limiters.member, member.id);
       }
+      if (route.auth === 'account') {
+        account = authenticateAccount(req);
+        limit(limiters.member, `a:${account.id}`);
+      }
+      if (route.bucket === 'auth') limit(limiters.auth, ip);
       if (route.bucket === 'signup') limit(limiters.signup, ip);
       if (route.bucket === 'gallery') limit(limiters.gallery, ip);
       if (route.bucket === 'join') {
@@ -103,8 +117,9 @@ export function createApp({ config, now = Date.now, log = console }) {
         req.resume();
       }
 
-      const result = await route.handler({ ctx, req, params, body, member, query: url.searchParams });
-      send(res, result.status, result.body);
+      const result = await route.handler({ ctx, req, params, body, member, account, query: url.searchParams });
+      if (result.html !== undefined) sendHtml(res, result.status, result.html);
+      else send(res, result.status, result.body);
     } catch (err) {
       if (!(err instanceof HttpError)) log.error?.('[friends] unhandled error:', err);
       sendError(res, err);
@@ -133,7 +148,8 @@ export function createApp({ config, now = Date.now, log = console }) {
   prune();
   const timers = [setInterval(sweep, 5 * 60_000), setInterval(prune, 6 * 3_600_000)];
   for (const t of timers) t.unref();
-  const reminders = startDailyReminders({ ctx, env: config.reminderEnv ?? process.env, log });
+  const reminders = startDailyReminders({ ctx, env: config.reminderEnv ?? process.env, log, fetchImpl });
+  const telegram = config.startBots === false ? { stop() {} } : startTelegramLinker({ ctx, log, fetchImpl });
 
   let closed = false;
   async function close() {
@@ -141,6 +157,7 @@ export function createApp({ config, now = Date.now, log = console }) {
     closed = true;
     for (const t of timers) clearInterval(t);
     reminders.stop();
+    telegram.stop();
     await new Promise((resolve) => {
       if (!server.listening) return resolve();
       server.close(() => resolve());

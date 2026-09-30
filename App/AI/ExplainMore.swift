@@ -184,13 +184,15 @@ struct ExplainMorePanel: View {
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "sparkles")
-                    .font(.system(size: 14, weight: .semibold))
+                    .scaledFont(size: 14, weight: .semibold)
+                    .accessibilityHidden(true)
                 Text(tr("Explain more", "Mehr erklären"))
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.down")
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .rotationEffect(.degrees(open ? 180 : 0))
+                    .accessibilityHidden(true)
             }
             .foregroundStyle(Zen.ai)
             .padding(.vertical, 12)
@@ -199,6 +201,7 @@ struct ExplainMorePanel: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityValue(open ? tr("Expanded", "Ausgeklappt") : tr("Collapsed", "Eingeklappt"))
         .accessibilityHint(MaAI.privacyLine)
     }
 
@@ -223,14 +226,14 @@ struct ExplainMorePanel: View {
         if let entry, case .failed(let message) = entry.phase {
             VStack(alignment: .leading, spacing: 10) {
                 Text(message)
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 Button(tr("Try again", "Nochmal versuchen")) {
                     status = MaAI.status
                     if status.isReady { store.explain(card, in: deck, afterMistake: afterMistake) }
                 }
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .scaledFont(size: 14, weight: .semibold, design: .rounded)
                 .foregroundStyle(Zen.ai)
             }
         } else if let entry, !entry.text.isEmpty {
@@ -240,7 +243,7 @@ struct ExplainMorePanel: View {
                 ProgressView()
                     .tint(Zen.ai)
                 Text(tr("Thinking it through…", "Wird durchdacht…"))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -249,7 +252,7 @@ struct ExplainMorePanel: View {
     @ViewBuilder
     private func textBlock(_ text: String, streaming: Bool) -> some View {
         let content = Text(text)
-            .font(.system(size: 16))
+            .scaledFont(size: 16)
             .foregroundStyle(Zen.ink)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)

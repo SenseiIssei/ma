@@ -53,31 +53,41 @@ struct BalanceSummaryCard: View {
         let today: BalanceDay = balance.today
         let tonight: BalanceDay = balance.tonight
         let total: Int = WindDownItem.allCases.count
+        let waterSpoken: String = tr("\(today.water) of \(settings.waterTarget) glasses", "\(today.water) von \(settings.waterTarget) Gläsern")
+        let moveSpoken: String = tr("\(today.moveMinutes) of \(settings.moveGoalMinutes) minutes", "\(today.moveMinutes) von \(settings.moveGoalMinutes) Minuten")
+        let windSpoken: String = tr("\(tonight.windDown.count) of \(total) steps", "\(tonight.windDown.count) von \(total) Schritten")
         return VStack(alignment: .leading, spacing: 18) {
             HStack(alignment: .firstTextBaseline) {
                 Text(tr("Today in balance", "Heute im Gleichgewicht"))
-                    .font(.display(20))
+                    .displayFont(20)
                     .foregroundStyle(Zen.ink)
                 Spacer()
                 if balance.dayInBalance {
                     Label(tr("All three", "Alle drei"), systemImage: "checkmark.seal.fill")
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.matcha)
                 }
             }
             HStack(spacing: 12) {
                 BalanceRing(progress: balance.waterProgress, tint: Zen.ai, icon: "drop.fill",
                             value: "\(today.water)/\(settings.waterTarget)",
-                            label: tr("Glasses", "Gläser"))
+                            label: tr("Glasses", "Gläser"),
+                            spokenLabel: tr("Water", "Wasser"),
+                            spokenValue: waterSpoken)
                 BalanceRing(progress: balance.moveProgress, tint: Zen.matcha, icon: "figure.walk",
                             value: "\(today.moveMinutes)/\(settings.moveGoalMinutes)",
-                            label: tr("Minutes moved", "Min. Bewegung"))
+                            label: tr("Minutes moved", "Min. Bewegung"),
+                            spokenLabel: tr("Movement", "Bewegung"),
+                            spokenValue: moveSpoken)
                 BalanceRing(progress: balance.windDownProgress, tint: Zen.shu, icon: "moon.stars.fill",
                             value: "\(tonight.windDown.count)/\(total)",
-                            label: tr("Wind-down", "Runterfahren"))
+                            label: tr("Wind-down", "Runterfahren"),
+                            spokenLabel: tr("Wind-down", "Runterfahren"),
+                            spokenValue: windSpoken)
             }
+            .dynamicTypeSize(...denseTypeLimit)
             Text(summaryLine)
-                .font(.system(size: 14))
+                .scaledFont(size: 14)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -111,6 +121,9 @@ struct BalanceRing: View {
     let icon: String
     let value: String
     let label: String
+    /// What VoiceOver says instead of the short "5/8" on screen.
+    var spokenLabel: String? = nil
+    var spokenValue: String? = nil
 
     var body: some View {
         VStack(spacing: 10) {
@@ -124,21 +137,22 @@ struct BalanceRing: View {
             .frame(width: 82, height: 82)
             VStack(spacing: 2) {
                 Text(value)
-                    .font(.display(17))
+                    .displayFont(17)
                     .monospacedDigit()
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.numericText())
-                Text(label)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(Zen.inkSoft)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                Text(label)
+                    .scaledFont(size: 12, weight: .medium)
+                    .foregroundStyle(Zen.inkSoft)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.75)
             }
         }
         .frame(maxWidth: .infinity)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(label)
-        .accessibilityValue(value)
+        .accessibilityMeter(spokenLabel ?? label, value: spokenValue ?? value)
     }
 }
 
@@ -167,7 +181,7 @@ struct BalanceNote: View {
         } icon: {
             Image(systemName: icon)
         }
-        .font(.system(size: 13, weight: .medium))
+        .scaledFont(size: 13, weight: .medium)
         .foregroundStyle(Zen.inkSoft)
     }
 }
@@ -184,16 +198,17 @@ struct FriendsEntry: View {
                 IconBadge(systemName: "person.2.fill", tint: Zen.ai)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(tr("Friends without a feed", "Freunde ohne Feed"))
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(tr("Keep each other going with streaks and weekly challenges. Only numbers are shared.",
                             "Motiviert euch mit Serien und Wochen-Challenges. Geteilt werden nur Zahlen."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .multilineTextAlignment(.leading)
                 }
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right").foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
             }
             .zenCard()
         }

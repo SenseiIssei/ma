@@ -50,14 +50,14 @@ struct MoveSection: View {
                 IconBadge(systemName: routine.symbol, tint: routine.tint, size: 48)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(routine.title)
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .scaledFont(size: 17, weight: .semibold, design: .rounded)
                         .foregroundStyle(Zen.ink)
                     Text(routine.blurb)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(detail)
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .scaledFont(size: 12, weight: .semibold, design: .rounded)
                         .foregroundStyle(routine.tint)
                         .padding(.top, 2)
                 }
@@ -82,7 +82,7 @@ struct MoveSection: View {
         )
         return VStack(alignment: .leading, spacing: 14) {
             Text(tr("Daily movement goal", "Tagesziel Bewegung"))
-                .font(.system(size: 15, weight: .semibold))
+                .scaledFont(size: 15, weight: .semibold)
                 .foregroundStyle(Zen.ink)
             HStack(spacing: 8) {
                 ForEach(BalanceSettings.moveGoalChoices, id: \.self) { minutes in
@@ -96,11 +96,11 @@ struct MoveSection: View {
             Toggle(isOn: voice) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(tr("Voice announcements", "Sprachansagen"))
-                        .font(.system(size: 15, weight: .semibold))
+                        .scaledFont(size: 15, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(tr("Says each exercise out loud, so you can keep your eyes off the screen.",
                             "Sagt jede Übung an, damit dein Blick nicht am Bildschirm hängt."))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -164,11 +164,12 @@ struct MovePlayerView: View {
             topBar
             InkProgress(value: clock.totalProgress(at: now), color: routine.tint)
                 .padding(.horizontal, Zen.gutter)
+                .accessibilityMeter(tr("Routine", "Einheit"), value: clock.totalProgress(at: now).formatted(.percent.precision(.fractionLength(0))))
 
             Spacer(minLength: 0)
 
             Text(caption(for: current).uppercased(with: Loc.locale))
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .tracking(0.8)
                 .foregroundStyle(Zen.inkSoft)
 
@@ -180,25 +181,30 @@ struct MovePlayerView: View {
                         .font(.system(size: 40, weight: .semibold))
                         .foregroundStyle(ringTint)
                     Text("\(secondsLeft)")
-                        .font(.display(64))
+                        .displayFont(64)
                         .monospacedDigit()
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.numericText(countsDown: true))
                         .animation(.snappy, value: secondsLeft)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
+                .padding(.horizontal, 30)
             }
             .frame(width: 260, height: 260)
+            .dynamicTypeSize(...denseTypeLimit)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(current.title)
             .accessibilityValue(tr("\(secondsLeft) seconds left", "noch \(secondsLeft) Sekunden"))
+            .accessibilityAddTraits(.updatesFrequently)
 
             VStack(spacing: 8) {
                 Text(current.title)
-                    .font(.display(30))
+                    .displayFont(30)
                     .foregroundStyle(Zen.ink)
                     .multilineTextAlignment(.center)
                 Text(subtitle(for: current))
-                    .font(.system(size: 16))
+                    .scaledFont(size: 16)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -216,8 +222,8 @@ struct MovePlayerView: View {
                 .padding(.horizontal, Zen.gutter)
 
             Text(tr("Stop if anything hurts.", "Hör auf, wenn etwas wehtut."))
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(Zen.inkFaint)
+                .scaledFont(size: 12, weight: .medium)
+                .foregroundStyle(Zen.inkSoft)
                 .padding(.bottom, 12)
         }
         .animation(.easeInOut(duration: 0.3), value: clock.index)
@@ -238,10 +244,10 @@ struct MovePlayerView: View {
             Spacer()
             VStack(spacing: 2) {
                 Text(routine.title)
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.ink)
                 Text(counter)
-                    .font(.system(size: 12, weight: .medium))
+                    .scaledFont(size: 12, weight: .medium)
                     .monospacedDigit()
                     .foregroundStyle(Zen.inkSoft)
             }
@@ -267,15 +273,15 @@ struct MovePlayerView: View {
                 IconBadge(systemName: next.exercise.symbol, tint: routine.tint, size: 40)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(tr("Next up", "Als Nächstes"))
-                        .font(.system(size: 12, weight: .semibold))
+                        .scaledFont(size: 12, weight: .semibold)
                         .foregroundStyle(Zen.inkSoft)
                     Text(next.exercise.name)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .scaledFont(size: 16, weight: .semibold, design: .rounded)
                         .foregroundStyle(Zen.ink)
                 }
                 Spacer(minLength: 0)
                 Text(tr("\(Int(next.seconds)) sec", "\(Int(next.seconds)) Sek."))
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 14, weight: .semibold, design: .rounded)
                     .monospacedDigit()
                     .foregroundStyle(Zen.inkSoft)
             }
@@ -344,13 +350,14 @@ struct MovePlayerView: View {
                     .font(.system(size: 48, weight: .bold))
                     .foregroundStyle(Zen.matcha)
             }
+            .accessibilityHidden(true)
             VStack(spacing: 8) {
                 Text(tr("Well moved", "Gut bewegt"))
-                    .font(.display(30))
+                    .displayFont(30)
                     .foregroundStyle(Zen.ink)
                 Text(tr("\(minutes) active \(minutes == 1 ? "minute" : "minutes"). Session \(sessions) today.",
                         "\(minutes) aktive \(minutes == 1 ? "Minute" : "Minuten"). Heute Einheit Nummer \(sessions)."))
-                    .font(.system(size: 16))
+                    .scaledFont(size: 16)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
             }
@@ -462,7 +469,11 @@ struct MovePlayerView: View {
     }
 
     private func speak(_ text: String) {
-        guard balance.settings.voice else { return }
+        guard balance.settings.voice else {
+            // With the voice off, VoiceOver still hears each step.
+            AccessibilityNotification.Announcement(text).post()
+            return
+        }
         voice.say(text)
     }
 

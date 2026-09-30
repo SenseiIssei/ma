@@ -65,12 +65,12 @@ struct MoreCardsView: View {
             IconBadge(systemName: "sparkles", tint: Zen.ai, size: 46)
             VStack(alignment: .leading, spacing: 4) {
                 Text(tr("Ten more for \(title)", "Zehn weitere für \(title)"))
-                    .font(.display(19, weight: .semibold))
+                    .displayFont(19, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(tr("Apple Intelligence looks at your cards and writes new ones in the same style, without repeating a question.",
                         "Apple Intelligence schaut sich deine Karten an und schreibt neue im selben Stil, ohne eine Frage zu wiederholen."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 AIPrivacyLabel()
@@ -86,7 +86,7 @@ struct MoreCardsView: View {
         case .idle, .failed:
             if case .failed(let message) = phase {
                 Label(message, systemImage: "exclamationmark.circle")
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(14)
@@ -105,7 +105,7 @@ struct MoreCardsView: View {
                     ProgressView()
                         .tint(Zen.ai)
                     Text(tr("Writing ten new cards…", "Zehn neue Karten entstehen…"))
-                        .font(.system(size: 15, weight: .medium))
+                        .scaledFont(size: 15, weight: .medium)
                         .foregroundStyle(Zen.ink)
                 }
                 Button(tr("Stop", "Anhalten")) {

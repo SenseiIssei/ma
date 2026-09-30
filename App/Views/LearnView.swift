@@ -38,7 +38,7 @@ struct LearnView: View {
                     }
                     .padding(.top, 6)
                     Text(tr("Questions before an unlock come from the topics with a check mark.", "Die Fragen vor einer Freigabe kommen aus den Themen mit Haken."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, -12)
@@ -66,7 +66,7 @@ struct LearnView: View {
                     }
                     if let message {
                         Label(message, systemImage: "info.circle")
-                            .font(.system(size: 14))
+                            .scaledFont(size: 14)
                             .foregroundStyle(Zen.inkSoft)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -102,10 +102,10 @@ struct LearnView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(tr("Learn", "Lernen"))
-                .font(.display(34))
+                .displayFont(34)
                 .foregroundStyle(Zen.ink)
             Text(tr("New cards are explained first, then practised. Just like a real lesson.", "Neue Karten werden erst erklärt, dann geübt. Wie in einer richtigen Lektion."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -127,21 +127,27 @@ struct LearnView: View {
                     ProgressRing(progress: ratio, lineWidth: 10, tint: reached ? Zen.matcha : Zen.shu)
                     VStack(spacing: 0) {
                         Text("\(min(done, goal))")
-                            .font(.display(22))
+                            .displayFont(22)
                             .monospacedDigit()
                             .foregroundStyle(Zen.ink)
                         Text("/ \(goal)")
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundStyle(Zen.inkFaint)
+                            .scaledFont(size: 11, weight: .semibold)
+                            .foregroundStyle(Zen.inkSoft)
                     }
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .padding(.horizontal, 12)
                 }
                 .frame(width: 84, height: 84)
+                .dynamicTypeSize(...denseTypeLimit)
+                .accessibilityMeter(tr("Daily goal", "Tagesziel"),
+                                    value: tr("\(min(done, goal)) of \(goal) right answers", "\(min(done, goal)) von \(goal) richtigen Antworten"))
                 VStack(alignment: .leading, spacing: 4) {
                     Text(reached ? tr("Daily goal reached", "Tagesziel erreicht") : tr("Daily goal", "Tagesziel"))
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(reached ? tr("Anything more today is a bonus.", "Alles Weitere heute ist Bonus.") : tr("\(goal - done) right answers to go.", "Noch \(goal - done) richtige Antworten."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                 }
                 Spacer(minLength: 0)
@@ -171,10 +177,10 @@ struct LearnView: View {
                 IconBadge(systemName: hasNew ? "sparkles" : "arrow.triangle.2.circlepath", tint: hasNew ? Zen.shu : Zen.ai, size: 46)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(subtitle)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -199,10 +205,10 @@ struct LearnView: View {
         VStack(spacing: 14) {
             Illustration(name: "IllustrationEmpty", height: 160)
             Text(tr("No topics yet", "Noch keine Themen"))
-                .font(.display(20, weight: .semibold))
+                .displayFont(20, weight: .semibold)
                 .foregroundStyle(Zen.ink)
             Text(tr("Create one with the plus button, or import a deck.", "Leg eins über das Plus an oder importier ein Deck."))
-                .font(.system(size: 14))
+                .scaledFont(size: 14)
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
         }
@@ -221,13 +227,14 @@ struct LearnView: View {
                         shelf = shelf == category ? nil : category
                     } label: {
                         Label(category.title, systemImage: category.icon)
-                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .scaledFont(size: 15, weight: .semibold, design: .rounded)
                             .foregroundStyle(shelf == category ? Color.white : Zen.ink)
                             .padding(.vertical, 9)
                             .padding(.horizontal, 14)
                             .background(shelf == category ? AnyShapeStyle(Zen.shu) : AnyShapeStyle(Zen.sand), in: Capsule())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityAddTraits(shelf == category ? .isSelected : [])
                 }
             }
             .padding(.vertical, 2)
@@ -269,7 +276,7 @@ struct LearnView: View {
             }
         } label: {
             Image(systemName: "plus.circle.fill")
-                .font(.system(size: 24))
+                .scaledFont(size: 24)
                 .foregroundStyle(Zen.shu)
         }
         .accessibilityLabel(tr("Add topic", "Thema hinzufügen"))
@@ -320,7 +327,7 @@ struct CountPill: View {
 
     var body: some View {
         Label(text, systemImage: icon)
-            .font(.system(size: 13, weight: .semibold, design: .rounded))
+            .scaledFont(size: 13, weight: .semibold, design: .rounded)
             .foregroundStyle(tint)
             .padding(.vertical, 6)
             .padding(.horizontal, 10)
@@ -343,27 +350,29 @@ struct DeckRow: View {
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(deck.title)
-                    .font(.display(18, weight: .semibold))
+                    .displayFont(18, weight: .semibold)
                     .foregroundStyle(Zen.ink)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 if !deck.subtitle.isEmpty {
                     Text(deck.subtitle)
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
-                        .lineLimit(1)
+                        .lineLimit(2)
                 }
                 HStack(spacing: 8) {
                     InkProgress(value: mastery, color: Zen.matcha, height: 6)
                     Text("\(Int(mastery * 100)) %")
-                        .font(.system(size: 12, weight: .semibold))
+                        .scaledFont(size: 12, weight: .semibold)
                         .monospacedDigit()
                         .foregroundStyle(Zen.inkSoft)
-                        .frame(width: 42, alignment: .trailing)
+                        .frame(minWidth: 42, alignment: .trailing)
+                        .fixedSize()
                 }
+                .accessibilityMeter(tr("Mastered", "Gemeistert"), value: "\(Int(mastery * 100)) %")
                 Text(detail)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(due > 0 ? Zen.kin : Zen.inkFaint)
-                    .lineLimit(1)
+                    .scaledFont(size: 12, weight: .medium)
+                    .foregroundStyle(due > 0 ? Zen.kin : Zen.inkSoft)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.85)
             }
 
@@ -378,7 +387,9 @@ struct DeckRow: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(active ? tr("Used for questions", "Für Fragen aktiv") : tr("Not used for questions", "Für Fragen inaktiv"))
+            .accessibilityLabel(tr("Use for questions", "Für Fragen nutzen"))
+            .accessibilityValue(active ? tr("On", "An") : tr("Off", "Aus"))
+            .accessibilityAddTraits(.isToggle)
         }
         .zenCard()
     }
@@ -440,6 +451,7 @@ struct LessonSummary: View {
     let streak: Int
     let close: () -> Void
     @State private var shown = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var empty: Bool { session.exercises.isEmpty }
 
@@ -464,7 +476,12 @@ struct LessonSummary: View {
         }
         .onAppear {
             if !empty { Haptics.success() }
-            withAnimation(.easeOut(duration: 1.0).delay(0.2)) { shown = true }
+            // The ring fills with a flourish, or simply appears full with Reduce Motion.
+            if reduceMotion {
+                shown = true
+            } else {
+                withAnimation(.easeOut(duration: 1.0).delay(0.2)) { shown = true }
+            }
         }
     }
 
@@ -480,22 +497,27 @@ struct LessonSummary: View {
                 ProgressRing(progress: shown ? accuracy : 0, lineWidth: 14, tint: Zen.matcha)
                 VStack(spacing: 0) {
                     Text("\(percent) %")
-                        .font(.display(32))
+                        .displayFont(32)
                         .monospacedDigit()
                         .foregroundStyle(Zen.ink)
                     Text(tr("right", "richtig"))
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.inkSoft)
                 }
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .padding(.horizontal, 18)
             }
             .frame(width: 150, height: 150)
+            .dynamicTypeSize(...denseTypeLimit)
+            .accessibilityMeter(tr("Answers right", "Richtige Antworten"), value: "\(percent) %")
 
             VStack(spacing: 6) {
                 Text(tr("Lesson complete", "Lektion geschafft"))
-                    .font(.display(30))
+                    .displayFont(30)
                     .foregroundStyle(Zen.ink)
                 Text(tr("\(session.correct) of \(answered) answers right", "\(session.correct) von \(answered) Antworten richtig"))
-                    .font(.system(size: 16))
+                    .scaledFont(size: 16)
                     .foregroundStyle(Zen.inkSoft)
             }
             .multilineTextAlignment(.center)
@@ -513,11 +535,11 @@ struct LessonSummary: View {
         VStack(spacing: 16) {
             Illustration(name: "IllustrationEmpty", height: 200)
             Text(tr("Nothing to learn here yet", "Hier gibt es noch nichts zu lernen"))
-                .font(.display(24))
+                .displayFont(24)
                 .foregroundStyle(Zen.ink)
                 .multilineTextAlignment(.center)
             Text(tr("Add a few cards to this topic, then come back.", "Leg ein paar Karten in diesem Thema an und komm dann wieder."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
         }

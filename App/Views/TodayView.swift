@@ -111,11 +111,11 @@ struct TodayView: View {
         let date = now.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Loc.locale))
         return VStack(alignment: .leading, spacing: 4) {
             Text(date.uppercased(with: Loc.locale))
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .tracking(0.6)
                 .foregroundStyle(Zen.inkSoft)
             Text(phase.greeting)
-                .font(.display(34))
+                .displayFont(34)
                 .foregroundStyle(Zen.ink)
         }
         .padding(.top, 4)
@@ -127,7 +127,7 @@ struct TodayView: View {
             .overlay(alignment: .bottomLeading) {
                 if streak > 0 {
                     Label(tr("\(streak) \(streak == 1 ? "day" : "days") learning", "\(streak) \(streak == 1 ? "Tag" : "Tage") am Lernen"), systemImage: "flame.fill")
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 12)
@@ -160,10 +160,10 @@ struct TodayView: View {
                 IconBadge(systemName: icon, tint: tint, size: 46)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.display(20))
+                        .displayFont(20)
                         .foregroundStyle(Zen.ink)
                     Text(text)
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -188,18 +188,19 @@ struct TodayView: View {
                     MoodFace(mood: morning.mood, size: 46)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(tr("Today's intention", "Vorsatz für heute"))
-                            .font(.system(size: 13, weight: .semibold))
+                            .scaledFont(size: 13, weight: .semibold)
                             .foregroundStyle(Zen.inkSoft)
                         Text(day.intention ?? tr("No intention, just being here.", "Kein Vorsatz, einfach da sein."))
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            .scaledFont(size: 18, weight: .semibold, design: .rounded)
                             .foregroundStyle(day.intention == nil ? Zen.inkSoft : Zen.ink)
                             .multilineTextAlignment(.leading)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 0)
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.inkFaint)
+                        .accessibilityHidden(true)
                 }
                 .zenCard()
             }
@@ -221,12 +222,13 @@ struct TodayView: View {
             HStack(spacing: 12) {
                 IconBadge(systemName: icon, tint: tint, size: 34)
                 Text(title)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
             }
             .zenCard(padding: 14)
         }
@@ -254,7 +256,7 @@ struct TodayView: View {
         return VStack(alignment: .leading, spacing: 14) {
             SectionHeader(icon: "circle.circle", title: tr("Your day", "Dein Tag")) {
                 Text(tr("\(percent)%", "\(percent) %"))
-                    .font(.display(17, weight: .semibold))
+                    .displayFont(17, weight: .semibold)
                     .monospacedDigit()
                     .foregroundStyle(Zen.shu)
                     .contentTransition(.numericText())
@@ -288,13 +290,13 @@ struct TodayView: View {
             Circle().fill(tint).frame(width: 10, height: 10).padding(.top, 4)
             VStack(alignment: .leading, spacing: 1) {
                 Text(title)
-                    .font(.system(size: 13, weight: .medium))
+                    .scaledFont(size: 13, weight: .medium)
                     .foregroundStyle(Zen.inkSoft)
                 Text(value)
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                     .monospacedDigit()
                     .foregroundStyle(Zen.ink)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
             }
         }
@@ -325,7 +327,7 @@ struct TodayView: View {
                         HabitsView()
                     } label: {
                         Text(tr("Edit", "Bearbeiten"))
-                            .font(.system(size: 14, weight: .medium))
+                            .scaledFont(size: 14, weight: .medium)
                             .foregroundStyle(Zen.shu)
                     }
                 }
@@ -444,18 +446,19 @@ struct TodayView: View {
                 IconBadge(systemName: approved ? "shield.lefthalf.filled" : "exclamationmark.shield.fill", tint: tint, size: 44)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(title)
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(approved ? Zen.ink : Zen.negative)
                     Text(detail)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .lineLimit(3)
                         .multilineTextAlignment(.leading)
                 }
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
             }
             .zenCard()
         }
@@ -484,6 +487,8 @@ struct TodayView: View {
                     }
                 }
                 .frame(height: 84, alignment: .bottom)
+                .accessibilityMeter(tr("Impulses resisted plus right answers", "Widerstandene Impulse plus richtige Antworten"),
+                                    value: weekSpoken(values: values, now: now))
                 HStack(spacing: 10) {
                     ForEach(0..<count, id: \.self) { index in
                         let slot = moods.count - count + index
@@ -491,7 +496,7 @@ struct TodayView: View {
                         VStack(spacing: 6) {
                             moodDot(mood)
                             Text(weekdayLetter(daysBefore: count - 1 - index, now: now))
-                                .font(.system(size: 11, weight: index == count - 1 ? .bold : .medium))
+                                .scaledFont(size: 11, weight: index == count - 1 ? .bold : .medium)
                                 .foregroundStyle(index == count - 1 ? Zen.ink : Zen.inkSoft)
                         }
                         .frame(maxWidth: .infinity)
@@ -501,10 +506,20 @@ struct TodayView: View {
             .zenCard(padding: 20)
             .animation(.spring(response: 0.6, dampingFraction: 0.85), value: values)
             Text(tr("Bars: impulses resisted plus right answers. Dots: your morning mood.", "Balken: widerstandene Impulse plus richtige Antworten. Punkte: deine Stimmung am Morgen."))
-                .font(.system(size: 12))
-                .foregroundStyle(Zen.inkFaint)
+                .scaledFont(size: 12)
+                .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
+    }
+
+    /// "Mo 3, Tu 5, ..." so the bars can be heard, oldest day first.
+    private func weekSpoken(values: [Int], now: Date) -> String {
+        let count: Int = values.count
+        let parts: [String] = values.indices.map { index in
+            let name: String = weekdayLetter(daysBefore: count - 1 - index, now: now)
+            return "\(name) \(values[index])"
+        }
+        return parts.joined(separator: ", ")
     }
 
     /// Door to the weekly review. The teaser number is this week's resisted
@@ -526,18 +541,19 @@ struct TodayView: View {
                 IconBadge(systemName: "calendar.badge.clock", tint: Zen.shu, size: 46)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(tr("Your week", "Deine Woche"))
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(detail)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
             }
             .zenCard(padding: 18)
         }
@@ -597,10 +613,10 @@ struct ActionTile: View {
                 IconBadge(systemName: icon, tint: tint, size: 42)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .font(.display(18, weight: .semibold))
+                        .displayFont(18, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(subtitle)
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .lineLimit(2)
                         .minimumScaleFactor(0.85)
@@ -640,19 +656,20 @@ struct GrantRow: View {
             }
             .frame(width: 36, height: 36)
             .background(Zen.sand, in: RoundedRectangle(cornerRadius: 11, style: .continuous))
+            .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 if let token = grant.applications.first {
                     Label(token).labelStyle(.titleOnly)
-                        .font(.system(size: 16, weight: .semibold))
+                        .scaledFont(size: 16, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                 } else {
                     Text(tr("Unlock", "Freigabe"))
-                        .font(.system(size: 16, weight: .semibold))
+                        .scaledFont(size: 16, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                 }
                 Text(tr("open until \(grant.expiresAt.formatted(date: .omitted, time: .shortened))", "offen bis \(grant.expiresAt.formatted(date: .omitted, time: .shortened))"))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer()
@@ -661,7 +678,7 @@ struct GrantRow: View {
                 revoke()
             } label: {
                 Label(tr("Lock", "Sperren"), systemImage: "lock.fill")
-                    .font(.system(size: 14, weight: .semibold))
+                    .scaledFont(size: 14, weight: .semibold)
                     .foregroundStyle(Zen.shu)
                     .padding(.vertical, 7)
                     .padding(.horizontal, 12)

@@ -79,11 +79,12 @@ struct FriendsFactRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
             Image(systemName: icon)
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(tint)
-                .frame(width: 20)
+                .frame(minWidth: 20)
+                .accessibilityHidden(true)
             Text(text)
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
@@ -101,14 +102,15 @@ struct FriendsErrorBanner: View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundStyle(Zen.negative)
+                .accessibilityHidden(true)
             Text(message)
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
             Button(action: dismiss) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 13, weight: .bold))
+                    .scaledFont(size: 13, weight: .bold)
                     .foregroundStyle(Zen.inkSoft)
             }
             .buttonStyle(.plain)

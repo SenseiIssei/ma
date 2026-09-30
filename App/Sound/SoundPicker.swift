@@ -68,14 +68,16 @@ struct SoundPicker: View {
         )
         return HStack(spacing: 12) {
             Image(systemName: "speaker.fill")
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .foregroundStyle(Zen.inkFaint)
+                .accessibilityHidden(true)
             Slider(value: volume, in: 0...1)
                 .tint(Zen.shu)
                 .accessibilityLabel(tr("Volume", "Lautstärke"))
             Image(systemName: "speaker.wave.3.fill")
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .foregroundStyle(Zen.inkFaint)
+                .accessibilityHidden(true)
         }
     }
 
@@ -95,7 +97,7 @@ struct SoundPicker: View {
                 }
             } label: {
                 Label(sleepLabel(now: context.date), systemImage: "moon.zzz.fill")
-                    .font(.system(size: 14, weight: .semibold))
+                    .scaledFont(size: 14, weight: .semibold)
                     .foregroundStyle(engine.sleepEndsAt == nil ? Zen.inkSoft : Zen.shu)
             }
         }
@@ -116,19 +118,23 @@ private struct SoundChip: View {
     let selected: Bool
     let playing: Bool
     let action: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         let fill: AnyShapeStyle = selected ? AnyShapeStyle(Zen.accentGradient) : AnyShapeStyle(Zen.sand)
+        // The endless pulse stops with Reduce Motion; "Playing" is still said.
+        let pulsing: Bool = playing && !reduceMotion
         return Button {
             Haptics.tap()
             action()
         } label: {
             HStack(spacing: 7) {
                 Image(systemName: sound.symbol)
-                    .font(.system(size: 14, weight: .semibold))
-                    .symbolEffect(.pulse, options: .repeating, isActive: playing)
+                    .scaledFont(size: 14, weight: .semibold)
+                    .symbolEffect(.pulse, options: .repeating, isActive: pulsing)
+                    .accessibilityHidden(true)
                 Text(sound.title)
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                     .lineLimit(1)
             }
             .foregroundStyle(selected ? Color.white : Zen.ink)

@@ -96,11 +96,11 @@ struct FriendsCircleView: View {
     private func header(_ detail: CircleDetail) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(detail.name)
-                .font(.display(30))
+                .displayFont(30)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
             Text(tr("\(detail.memberCount) of \(detail.maxMembers) members", "\(detail.memberCount) von \(detail.maxMembers) Mitgliedern"))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .monospacedDigit()
         }
@@ -117,7 +117,7 @@ struct FriendsCircleView: View {
                     Button(detail.challenge == nil ? tr("Choose", "Wählen") : tr("Change", "Ändern")) {
                         showChallenges = true
                     }
-                    .font(.system(size: 15, weight: .semibold))
+                    .scaledFont(size: 15, weight: .semibold)
                     .foregroundStyle(Zen.shu)
                 }
             }
@@ -130,7 +130,7 @@ struct FriendsCircleView: View {
                               "Noch keine Challenge. Such eine aus, an der der ganze Kreis diese Woche arbeiten kann.")
                          : tr("No challenge this week. The creator of the circle can pick one.",
                               "Diese Woche keine Challenge. Wer den Kreis gegründet hat, kann eine aussuchen."))
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -149,11 +149,11 @@ struct FriendsCircleView: View {
                 IconBadge(systemName: challenge.completed ? "checkmark" : (kind?.icon ?? "flag"), tint: tint, size: 44, filled: challenge.completed)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(kind?.title ?? challenge.title)
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     if let detail = kind?.detail {
                         Text(detail)
-                            .font(.system(size: 13))
+                            .scaledFont(size: 13)
                             .foregroundStyle(Zen.inkSoft)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -161,6 +161,8 @@ struct FriendsCircleView: View {
                 Spacer(minLength: 0)
             }
             InkProgress(value: challenge.progress, color: tint, height: 10)
+                // The line below says the same in words.
+                .accessibilityHidden(true)
             HStack {
                 if challenge.mode == "each" {
                     Text(tr("\(doneCount) of \(memberCount) there", "\(doneCount) von \(memberCount) geschafft"))
@@ -171,7 +173,7 @@ struct FriendsCircleView: View {
                 Text(challenge.completed ? tr("Done this week", "Diese Woche geschafft") : tr("\(percent)%", "\(percent) %"))
                     .foregroundStyle(tint)
             }
-            .font(.system(size: 14, weight: .semibold, design: .rounded))
+            .scaledFont(size: 14, weight: .semibold, design: .rounded)
             .monospacedDigit()
             .foregroundStyle(Zen.inkSoft)
             .accessibilityElement(children: .combine)
@@ -206,39 +208,50 @@ struct FriendsCircleView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 6) {
                         Text(member.nickname)
-                            .font(.system(size: 16, weight: .semibold))
+                            .scaledFont(size: 16, weight: .semibold)
                             .foregroundStyle(Zen.ink)
-                            .lineLimit(1)
+                            .lineLimit(2)
                         if member.isMe {
                             Text(tr("you", "du"))
-                                .font(.system(size: 12, weight: .semibold))
+                                .scaledFont(size: 12, weight: .semibold)
                                 .foregroundStyle(Zen.shu)
                         }
                         if member.isCreator {
                             Image(systemName: "crown.fill")
-                                .font(.system(size: 11))
+                                .scaledFont(size: 11)
                                 .foregroundStyle(Zen.kin)
                                 .accessibilityLabel(tr("creator", "gegründet"))
                         }
                     }
                     if member.streak > 0 {
                         Label(tr("\(member.streak) day streak", "\(member.streak) Tage Serie"), systemImage: "flame.fill")
-                            .font(.system(size: 12, weight: .medium))
+                            .scaledFont(size: 12, weight: .medium)
                             .foregroundStyle(Zen.kin)
                     }
                 }
                 Spacer(minLength: 4)
                 Image(systemName: isOpen ? "chevron.up" : "chevron.down")
-                    .font(.system(size: 12, weight: .semibold))
+                    .scaledFont(size: 12, weight: .semibold)
                     .foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
+            }
+            // The tap gesture below is invisible to VoiceOver, so the name
+            // row acts as the button that shows today's numbers.
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityValue(isOpen ? tr("Expanded", "Ausgeklappt") : tr("Collapsed", "Eingeklappt"))
+            .accessibilityAction {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
+                    if isOpen { expanded.remove(member.id) } else { expanded.insert(member.id) }
+                }
             }
             HStack(spacing: 0) {
                 ForEach(0..<keys.count, id: \.self) { i in
                     VStack(spacing: 4) {
                         FriendDayRings(day: member.day(keys[i]), size: 34)
                         Text(letters[i])
-                            .font(.system(size: 11, weight: i == keys.count - 1 ? .bold : .medium))
-                            .foregroundStyle(i == keys.count - 1 ? Zen.ink : Zen.inkFaint)
+                            .scaledFont(size: 11, weight: i == keys.count - 1 ? .bold : .medium)
+                            .foregroundStyle(i == keys.count - 1 ? Zen.ink : Zen.inkSoft)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -272,7 +285,7 @@ struct FriendsCircleView: View {
         if let day {
             VStack(alignment: .leading, spacing: 10) {
                 Text(day.date == FriendWeek.keys().last ? tr("Today", "Heute") : day.date)
-                    .font(.system(size: 12, weight: .semibold))
+                    .scaledFont(size: 12, weight: .semibold)
                     .foregroundStyle(Zen.inkSoft)
                     .monospacedDigit()
                 HStack(alignment: .top, spacing: 8) {
@@ -290,7 +303,7 @@ struct FriendsCircleView: View {
             .background(Zen.sand.opacity(0.6), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
         } else {
             Text(tr("Nothing shared yet this week.", "Diese Woche noch nichts geteilt."))
-                .font(.system(size: 13))
+                .scaledFont(size: 13)
                 .foregroundStyle(Zen.inkSoft)
         }
     }
@@ -311,7 +324,7 @@ struct FriendsCircleView: View {
             legendItem(Zen.ai, tr("\(FriendDayGoal.correctAnswers) right", "\(FriendDayGoal.correctAnswers) richtig"))
             legendItem(Zen.matcha, tr("\(FriendDayGoal.habits) habits", "\(FriendDayGoal.habits) Gewohnh."))
         }
-        .font(.system(size: 12, weight: .medium))
+        .scaledFont(size: 12, weight: .medium)
         .foregroundStyle(Zen.inkSoft)
         .padding(.horizontal, 4)
     }
@@ -319,7 +332,7 @@ struct FriendsCircleView: View {
     private func legendItem(_ tint: Color, _ text: String) -> some View {
         HStack(spacing: 5) {
             Circle().fill(tint).frame(width: 8, height: 8)
-            Text(text).lineLimit(1).minimumScaleFactor(0.8)
+            Text(text).lineLimit(2).minimumScaleFactor(0.8)
         }
     }
 
@@ -334,8 +347,10 @@ struct FriendsCircleView: View {
             SectionHeader(icon: "envelope.open", title: tr("Invite", "Einladen"))
             VStack(spacing: 16) {
                 Text(spaced)
-                    .font(.system(size: 34, weight: .bold, design: .monospaced))
+                    .scaledFont(size: 34, weight: .bold, design: .monospaced)
                     .foregroundStyle(Zen.ink)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                     .textSelection(.enabled)
                     .frame(maxWidth: .infinity)
                     .accessibilityLabel(tr("Invite code \(code.map(String.init).joined(separator: " "))",
@@ -364,7 +379,7 @@ struct FriendsCircleView: View {
                         confirmRotate = true
                     } label: {
                         Label(tr("Make a new code", "Neuen Code erzeugen"), systemImage: "arrow.triangle.2.circlepath")
-                            .font(.system(size: 15, weight: .semibold))
+                            .scaledFont(size: 15, weight: .semibold)
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(Zen.shu)
@@ -372,7 +387,7 @@ struct FriendsCircleView: View {
                 }
                 Text(tr("Anyone with this code can join until the circle has \(detail.maxMembers) members.",
                         "Wer diesen Code hat, kann beitreten, bis der Kreis \(detail.maxMembers) Mitglieder hat."))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -409,7 +424,7 @@ private struct ChallengePickerSheet: View {
                 VStack(spacing: 12) {
                     Text(tr("Everyone sees the same goal. Progress counts from Monday to Sunday and starts fresh each week.",
                             "Alle sehen dasselbe Ziel. Gezählt wird von Montag bis Sonntag, jede Woche beginnt neu."))
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -447,10 +462,10 @@ private struct ChallengePickerSheet: View {
                 IconBadge(systemName: icon, tint: Zen.shu, size: 44, filled: selected)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(title)
-                        .font(.system(size: 16, weight: .semibold))
+                        .scaledFont(size: 16, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(detail)
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -458,6 +473,7 @@ private struct ChallengePickerSheet: View {
                 if selected {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(Zen.shu)
+                        .accessibilityHidden(true)
                 }
             }
             .zenCard(padding: 14)
@@ -465,6 +481,7 @@ private struct ChallengePickerSheet: View {
         }
         .buttonStyle(.plain)
         .disabled(store.isLoading)
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     private func pick(_ kind: String?) {

@@ -68,11 +68,11 @@ struct FriendsProfileSheet: View {
         VStack(spacing: 10) {
             FriendAvatarBadge(avatar: avatar, size: 76, highlighted: true)
             Text(cleaned.isEmpty ? tr("Nickname", "Spitzname") : cleaned)
-                .font(.display(22))
-                .foregroundStyle(cleaned.isEmpty ? Zen.inkFaint : Zen.ink)
+                .displayFont(22)
+                .foregroundStyle(cleaned.isEmpty ? Zen.inkSoft : Zen.ink)
             Text(tr("Only people in your circles see this. Pick anything, it does not have to be your name.",
                     "Nur Leute in deinen Kreisen sehen das. Nimm irgendwas, es muss nicht dein Name sein."))
-                .font(.system(size: 14))
+                .scaledFont(size: 14)
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -84,12 +84,13 @@ struct FriendsProfileSheet: View {
         VStack(alignment: .leading, spacing: 8) {
             SectionHeader(icon: "person.text.rectangle", title: tr("Nickname", "Spitzname")) {
                 Text("\(cleaned.count)/\(FriendLimits.nickname)")
-                    .font(.system(size: 13, weight: .medium))
+                    .scaledFont(size: 13, weight: .medium)
                     .monospacedDigit()
-                    .foregroundStyle(Zen.inkFaint)
+                    .foregroundStyle(Zen.inkSoft)
+                    .accessibilityLabel(tr("\(cleaned.count) of \(FriendLimits.nickname) characters", "\(cleaned.count) von \(FriendLimits.nickname) Zeichen"))
             }
             TextField(tr("e.g. Night Owl", "z. B. Nachteule"), text: $nickname)
-                .font(.system(size: 17, weight: .medium))
+                .scaledFont(size: 17, weight: .medium)
                 .textInputAutocapitalization(.words)
                 .autocorrectionDisabled()
                 .submitLabel(.done)
@@ -114,7 +115,7 @@ struct FriendsProfileSheet: View {
                         avatar = symbol
                     } label: {
                         Image(systemName: symbol)
-                            .font(.system(size: 20, weight: .semibold))
+                            .scaledFont(size: 20, weight: .semibold)
                             .foregroundStyle(avatar == symbol ? Color.white : Zen.ink)
                             .frame(maxWidth: .infinity)
                             .aspectRatio(1, contentMode: .fit)
@@ -124,7 +125,7 @@ struct FriendsProfileSheet: View {
                             )
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel(symbol.replacingOccurrences(of: ".", with: " "))
+                    .accessibilityLabel(spokenSymbolName(symbol))
                     .accessibilityAddTraits(avatar == symbol ? .isSelected : [])
                 }
             }

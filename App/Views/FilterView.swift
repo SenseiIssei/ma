@@ -11,7 +11,7 @@ struct FilterView: View {
                     HStack(spacing: 12) {
                         IconBadge(systemName: "safari.fill", tint: Zen.ai)
                         Text(tr("Reels filter", "Reels-Filter"))
-                            .font(.display(20))
+                            .displayFont(20)
                             .foregroundStyle(Zen.ink)
                     }
                     Text(tr("Reels cannot be switched off inside the Instagram app, iOS does not let any app do that. In the browser it works.", "Reels lassen sich in der Instagram-App selbst nicht abschalten, das erlaubt iOS keiner App. Im Browser geht es."))
@@ -19,7 +19,7 @@ struct FilterView: View {
                     Text(tr("The trick: block the Instagram app in a boundary and open instagram.com in Safari. There Ma Filter takes the Reels out, messages and profiles stay.", "Der Trick: Sperr die Instagram-App in einer Grenze und öffne instagram.com in Safari. Dort nimmt Ma Filter die Reels heraus, Nachrichten und Profile bleiben."))
                         .foregroundStyle(Zen.inkSoft)
                 }
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .padding(.vertical, 4)
             } header: {
                 FormHeader(icon: "questionmark.circle.fill", title: tr("How it works", "So funktioniert es"))

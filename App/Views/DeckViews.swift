@@ -48,11 +48,11 @@ struct DeckDetailView: View {
                     Hanko(text: deck.symbol, size: 64, color: active ? Zen.shu : Zen.inkFaint)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(deck.title)
-                            .font(.display(28))
+                            .displayFont(28)
                             .foregroundStyle(Zen.ink)
                         if !deck.subtitle.isEmpty {
                             Text(deck.subtitle)
-                                .font(.system(size: 15))
+                                .scaledFont(size: 15)
                                 .foregroundStyle(Zen.inkSoft)
                         }
                     }
@@ -93,7 +93,7 @@ struct DeckDetailView: View {
                     VStack(spacing: 12) {
                         Illustration(name: "IllustrationEmpty", height: 150)
                         Text(tr("No cards yet. Add some with the pencil.", "Noch keine Karten. Leg welche über den Stift an."))
-                            .font(.system(size: 14))
+                            .scaledFont(size: 14)
                             .foregroundStyle(Zen.inkSoft)
                             .multilineTextAlignment(.center)
                     }
@@ -153,6 +153,7 @@ struct DeckDetailView: View {
                 StatTile(icon: "checkmark.seal.fill", value: "\(counts.known)", label: tr("known", "sicher"), tint: Zen.matcha)
             }
             InkProgress(value: known, color: Zen.matcha, height: 8)
+                .accessibilityMeter(tr("Known", "Sicher"), value: known.formatted(.percent.precision(.fractionLength(0))))
         }
         .zenCard()
     }
@@ -174,10 +175,10 @@ struct DeckDetailView: View {
                 IconBadge(systemName: "graduationcap.fill", tint: Zen.shu, size: 46)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(tr("Learn", "Lernen"))
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(subtitle)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -212,10 +213,10 @@ struct CardLine: View {
         HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
                 Text(card.prompt)
-                    .font(ExerciseEngine.containsCJK(card.prompt) ? .kanji(18, bold: true) : .system(size: 16, weight: .medium))
+                    .cardFont(for: card.prompt, kanji: 18, bold: true, size: 16, weight: .medium)
                     .foregroundStyle(Zen.ink)
                 Text(card.answer)
-                    .font(ExerciseEngine.containsCJK(card.answer) ? .kanji(15) : .system(size: 14))
+                    .cardFont(for: card.answer, kanji: 15, size: 14)
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer(minLength: 8)
@@ -227,10 +228,11 @@ struct CardLine: View {
                             .frame(width: 6, height: 6)
                     }
                 }
+                .accessibilityElement(children: .ignore)
                 .accessibilityLabel(tr("Level \(box) of 5", "Stufe \(box) von 5"))
             } else {
                 Text(tr("New", "Neu"))
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 12, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.shu)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
@@ -239,6 +241,8 @@ struct CardLine: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
+        // One stop per card: prompt, answer and level together.
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -268,7 +272,7 @@ struct DeckEditorView: View {
             Form {
                 Section {
                     TextField(tr("Title, e.g. Korean or Anatomy", "Titel, z. B. Koreanisch oder Anatomie"), text: $deck.title)
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                     TextField(tr("What is it about?", "Worum geht es?"), text: $deck.subtitle)
                     HStack {
                         Text(tr("Symbol", "Symbol"))
@@ -278,7 +282,7 @@ struct DeckEditorView: View {
                             set: { deck.symbol = String($0.suffix(1)) }
                         ))
                         .multilineTextAlignment(.center)
-                        .font(.kanji(22, bold: true))
+                        .kanjiFont(22, bold: true)
                         .frame(width: 60)
                     }
                 } header: {
@@ -294,7 +298,7 @@ struct DeckEditorView: View {
                         } label: {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(card.prompt).foregroundStyle(Zen.ink)
-                                Text(card.answer).font(.system(size: 14)).foregroundStyle(Zen.inkSoft)
+                                Text(card.answer).scaledFont(size: 14).foregroundStyle(Zen.inkSoft)
                             }
                         }
                     }
@@ -435,20 +439,20 @@ struct BulkCardsView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 14) {
                 Text(tr("One card per line: question and answer, separated by ; or | or tab. Optionally followed by an example sentence and an explanation.", "Eine Karte pro Zeile: Frage und Antwort, getrennt durch ; oder | oder Tab. Optional danach ein Beispielsatz und eine Erklärung."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                 Text(tr("dog ; 犬 (いぬ)\nCapital of Peru ; Lima ; Lima lies on the Pacific.", "Hund ; 犬 (いぬ)\nHauptstadt von Peru ; Lima ; Lima liegt am Pazifik."))
-                    .font(.system(size: 13, design: .monospaced))
-                    .foregroundStyle(Zen.inkFaint)
+                    .scaledFont(size: 13, design: .monospaced)
+                    .foregroundStyle(Zen.inkSoft)
                 TextEditor(text: $text)
-                    .font(.system(size: 16, design: .monospaced))
+                    .scaledFont(size: 16, design: .monospaced)
                     .scrollContentBackground(.hidden)
                     .padding(10)
                     .background(Zen.card, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(Zen.line))
                 Text(tr("\(parsed.count) cards found", "\(parsed.count) Karten erkannt"))
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(parsed.isEmpty ? Zen.inkFaint : Zen.matcha)
+                    .scaledFont(size: 14, weight: .medium)
+                    .foregroundStyle(parsed.isEmpty ? Zen.inkSoft : Zen.matcha)
             }
             .padding(Zen.gutter)
             .background(AppBackground())

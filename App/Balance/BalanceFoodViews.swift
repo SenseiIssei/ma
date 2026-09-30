@@ -34,24 +34,24 @@ struct WaterCard: View {
                 addButton(glasses: glasses)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(Self.liters(glasses))
-                        .font(.display(30))
+                        .displayFont(30)
                         .monospacedDigit()
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.numericText())
                     Text(tr("of \(Self.liters(target))", "von \(Self.liters(target))"))
-                        .font(.system(size: 14, weight: .medium))
+                        .scaledFont(size: 14, weight: .medium)
                         .foregroundStyle(Zen.inkSoft)
                     Text(left == 0
                          ? tr("Goal reached. Well done.", "Ziel erreicht. Gut gemacht.")
                          : tr("\(left) more to go", "noch \(left)"))
-                        .font(.system(size: 14, weight: .semibold))
+                        .scaledFont(size: 14, weight: .semibold)
                         .foregroundStyle(left == 0 ? Zen.matcha : Zen.ai)
                     Button {
                         Haptics.tap()
                         balance.removeWater()
                     } label: {
                         Label(tr("One less", "Eins weniger"), systemImage: "minus")
-                            .font(.system(size: 13, weight: .semibold))
+                            .scaledFont(size: 13, weight: .semibold)
                             .foregroundStyle(Zen.inkSoft)
                             .padding(.vertical, 6)
                             .padding(.horizontal, 10)
@@ -69,12 +69,12 @@ struct WaterCard: View {
 
             Stepper(value: targetBinding, in: WaterMath.targetRange) {
                 Text(tr("Daily goal: \(target) glasses", "Tagesziel: \(target) Gläser"))
-                    .font(.system(size: 15, weight: .semibold))
+                    .scaledFont(size: 15, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             }
             Text(tr("One glass is 250 ml. Tea and other unsweetened drinks count too.",
                     "Ein Glas sind 250 ml. Tee und andere ungesüßte Getränke zählen mit."))
-                .font(.system(size: 13))
+                .scaledFont(size: 13)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -99,21 +99,26 @@ struct WaterCard: View {
                         .font(.system(size: 26, weight: .semibold))
                         .foregroundStyle(Zen.ai)
                     Text("\(glasses)")
-                        .font(.display(30))
+                        .displayFont(30)
                         .monospacedDigit()
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.numericText())
                     Text(tr("+1 glass", "+1 Glas"))
-                        .font(.system(size: 12, weight: .semibold))
+                        .scaledFont(size: 12, weight: .semibold)
                         .foregroundStyle(Zen.inkSoft)
                 }
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .padding(.horizontal, 26)
             }
             .frame(width: 140, height: 140)
+            // Three lines inside a fixed circle: stop growing before they spill out.
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .contentShape(Circle())
         }
         .buttonStyle(.plain)
         .accessibilityLabel(tr("Add a glass of water", "Ein Glas Wasser dazu"))
-        .accessibilityValue(tr("\(glasses) glasses", "\(glasses) Gläser"))
+        .accessibilityValue(tr("\(glasses) of \(balance.settings.waterTarget) glasses", "\(glasses) von \(balance.settings.waterTarget) Gläsern"))
     }
 
     private func glassRow(glasses: Int, target: Int) -> some View {
@@ -122,7 +127,7 @@ struct WaterCard: View {
         return LazyVGrid(columns: columns, spacing: 8) {
             ForEach(0..<shown, id: \.self) { index in
                 Image(systemName: index < glasses ? "drop.fill" : "drop")
-                    .font(.system(size: 18, weight: .semibold))
+                    .scaledFont(size: 18, weight: .semibold)
                     .foregroundStyle(index < glasses ? Zen.ai : Zen.inkFaint)
             }
         }
@@ -145,11 +150,11 @@ struct MealsCard: View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(tr("Meal check", "Mahlzeiten-Check"))
-                    .font(.display(18))
+                    .displayFont(18)
                     .foregroundStyle(Zen.ink)
                 Text(tr("Only for you: no calories, no judgement. Just a look at what was on the plate.",
                         "Nur für dich: keine Kalorien, kein Urteil. Nur ein Blick auf das, was auf dem Teller war."))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -174,18 +179,20 @@ struct MealsCard: View {
                 HStack(spacing: 12) {
                     IconBadge(systemName: meal.symbol, tint: Zen.kin, size: 36, filled: entry.eaten)
                     Text(meal.title)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .scaledFont(size: 16, weight: .semibold, design: .rounded)
                         .foregroundStyle(Zen.ink)
                     Spacer(minLength: 0)
                     Image(systemName: entry.eaten ? "checkmark.circle.fill" : "circle")
-                        .font(.system(size: 22))
+                        .scaledFont(size: 22)
                         .foregroundStyle(entry.eaten ? Zen.matcha : Zen.inkFaint)
                         .contentTransition(.symbolEffect(.replace))
+                        .accessibilityHidden(true)
                 }
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityAddTraits(entry.eaten ? .isSelected : [])
+            .accessibilityValue(entry.eaten ? tr("Eaten", "Gegessen") : "")
 
             LazyVGrid(columns: columns, alignment: .leading, spacing: 8) {
                 ForEach(MealTag.allCases) { tag in
@@ -203,8 +210,8 @@ struct MealsCard: View {
             action()
         } label: {
             Label(tag.title, systemImage: tag.symbol)
-                .font(.system(size: 13, weight: .semibold, design: .rounded))
-                .lineLimit(1)
+                .scaledFont(size: 13, weight: .semibold, design: .rounded)
+                .lineLimit(2)
                 .minimumScaleFactor(0.8)
                 .foregroundStyle(on ? Color.white : Zen.ink)
                 .padding(.vertical, 8)
@@ -232,13 +239,13 @@ struct NutritionTipCard: View {
                 IconBadge(systemName: tip.symbol, tint: Zen.matcha, size: 44)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(offset == 0 ? tr("Tip of the day", "Tipp des Tages") : tr("Another tip", "Noch ein Tipp"))
-                        .font(.system(size: 12, weight: .semibold))
+                        .scaledFont(size: 12, weight: .semibold)
                         .foregroundStyle(Zen.inkSoft)
                     Text(tip.title)
-                        .font(.display(18))
+                        .displayFont(18)
                         .foregroundStyle(Zen.ink)
                     Text(tip.text)
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -250,7 +257,7 @@ struct NutritionTipCard: View {
                 withAnimation(.easeInOut(duration: 0.3)) { offset += 1 }
             } label: {
                 Label(tr("Next tip", "Nächster Tipp"), systemImage: "arrow.triangle.2.circlepath")
-                    .font(.system(size: 14, weight: .semibold))
+                    .scaledFont(size: 14, weight: .semibold)
                     .foregroundStyle(Zen.shu)
             }
             .buttonStyle(.plain)
@@ -273,12 +280,12 @@ struct FoodWeekCard: View {
         return VStack(alignment: .leading, spacing: 16) {
             HStack(alignment: .firstTextBaseline) {
                 Text(tr("This week", "Diese Woche"))
-                    .font(.display(18))
+                    .displayFont(18)
                     .foregroundStyle(Zen.ink)
                 Spacer()
                 if streak > 1 {
                     Label(tr("\(streak) days of water", "\(streak) Tage Wasser"), systemImage: "flame.fill")
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.kin)
                 }
             }
@@ -288,6 +295,7 @@ struct FoodWeekCard: View {
                         .frame(maxWidth: .infinity)
                 }
             }
+            .dynamicTypeSize(...denseTypeLimit)
             HStack(spacing: 16) {
                 legend(icon: "drop.fill", tint: Zen.ai,
                        text: tr("Water goal: \(waterDays) of 7", "Wasserziel: \(waterDays) von 7"))
@@ -302,13 +310,13 @@ struct FoodWeekCard: View {
         let letter: String = day.date.formatted(.dateTime.weekday(.narrow).locale(Loc.locale))
         return VStack(spacing: 10) {
             Text(letter)
-                .font(.system(size: 13, weight: isToday ? .bold : .semibold, design: .rounded))
+                .scaledFont(size: 13, weight: isToday ? .bold : .semibold, design: .rounded)
                 .foregroundStyle(isToday ? Zen.shu : Zen.inkSoft)
             Image(systemName: day.water ? "drop.fill" : "drop")
-                .font(.system(size: 17, weight: .semibold))
+                .scaledFont(size: 17, weight: .semibold)
                 .foregroundStyle(day.water ? Zen.ai : Zen.inkFaint)
             Image(systemName: "carrot.fill")
-                .font(.system(size: 17, weight: .semibold))
+                .scaledFont(size: 17, weight: .semibold)
                 .foregroundStyle(day.vegetables ? Zen.matcha : Zen.inkFaint.opacity(0.5))
         }
         .accessibilityElement(children: .ignore)
@@ -330,6 +338,6 @@ struct FoodWeekCard: View {
             Image(systemName: icon)
                 .foregroundStyle(tint)
         }
-        .font(.system(size: 13, weight: .medium))
+        .scaledFont(size: 13, weight: .medium)
     }
 }

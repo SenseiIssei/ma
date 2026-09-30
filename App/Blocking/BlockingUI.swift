@@ -13,11 +13,12 @@ struct ScreenHeader: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
-                .font(.display(34))
+                .displayFont(34)
                 .foregroundStyle(Zen.ink)
+                .accessibilityAddTraits(.isHeader)
             if let subtitle {
                 Text(subtitle)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -40,11 +41,12 @@ struct StepRow: View {
                 .frame(width: 24, height: 24)
                 .background(Zen.shu, in: Circle())
             Text(text)
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.top, 2)
         }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -56,8 +58,9 @@ struct FormHeader: View {
     var body: some View {
         HStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.system(size: 12, weight: .semibold))
+                .scaledFont(size: 12, weight: .semibold)
                 .foregroundStyle(Zen.shu)
+                .accessibilityHidden(true)
             Text(title)
         }
     }
@@ -75,18 +78,19 @@ struct LinkCard: View {
             IconBadge(systemName: icon, tint: tint)
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)
-                    .font(.system(size: 17, weight: .semibold))
+                    .scaledFont(size: 17, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                 Text(subtitle)
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(Zen.inkFaint)
+                .accessibilityHidden(true)
         }
         .zenCard()
     }
@@ -153,12 +157,12 @@ struct LockdownCard: View {
                 IconBadge(systemName: "lock.fill", tint: Zen.shu, filled: true)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(tr("Lock everything now", "Jetzt alles sperren"))
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(BuildFlavor.screenTimeAvailable
                          ? tr("Every app from your boundaries and the focus list. No questions, no way through.", "Alle Apps aus deinen Grenzen und der Fokus-Liste. Keine Fragen, kein Ausweg.")
                          : tr("The Shortcuts gate lets nothing through. No questions, no pass.", "Die Kurzbefehle-Schranke lässt nichts durch. Keine Fragen, keine Freigabe."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -170,7 +174,7 @@ struct LockdownCard: View {
             }
             if BuildFlavor.screenTimeAvailable && coverage == 0 {
                 Text(tr("Nothing to lock yet. Add apps to a boundary first.", "Noch nichts zum Sperren da. Leg zuerst Apps in eine Grenze."))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.kin)
             }
             Button(buttonTitle) { confirm = true }
@@ -203,19 +207,20 @@ struct LockdownCard: View {
                             .foregroundStyle(Zen.shu)
                     }
                     .frame(width: 72, height: 72)
+                    .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(tr("Locked until \(BlockingFormat.time(until))", "Gesperrt bis \(BlockingFormat.time(until))"))
-                            .font(.display(20))
+                            .displayFont(20)
                             .foregroundStyle(Zen.ink)
                         Text(left > 0 ? tr("\(BlockingFormat.duration(left)) left", "Noch \(BlockingFormat.duration(left))") : tr("Time is up", "Die Zeit ist um"))
-                            .font(.system(size: 15, weight: .medium))
+                            .scaledFont(size: 15, weight: .medium)
                             .monospacedDigit()
                             .foregroundStyle(Zen.inkSoft)
                     }
                     Spacer(minLength: 0)
                 }
                 Text(tr("Nothing opens until then, and boundaries stay on.", "Bis dahin öffnet sich nichts, und die Grenzen bleiben an."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 if left > 0 {
@@ -267,24 +272,25 @@ struct OpenGrantRow: View {
         HStack(spacing: 12) {
             if let token = grant.applications.first {
                 Label(token).labelStyle(.iconOnly).frame(width: 32, height: 32)
+                    .accessibilityHidden(true)
             } else {
                 IconBadge(systemName: "lock.open.fill", tint: Zen.matcha, size: 32)
             }
             VStack(alignment: .leading, spacing: 2) {
                 if let token = grant.applications.first {
-                    Label(token).labelStyle(.titleOnly).font(.system(size: 16, weight: .semibold))
+                    Label(token).labelStyle(.titleOnly).scaledFont(size: 16, weight: .semibold)
                 } else if let web = grant.webDomains.first {
-                    Label(web).labelStyle(.titleOnly).font(.system(size: 16, weight: .semibold))
+                    Label(web).labelStyle(.titleOnly).scaledFont(size: 16, weight: .semibold)
                 } else {
-                    Text(tr("Unlock", "Freigabe")).font(.system(size: 16, weight: .semibold))
+                    Text(tr("Unlock", "Freigabe")).scaledFont(size: 16, weight: .semibold)
                 }
                 Text(tr("open until \(BlockingFormat.time(grant.expiresAt))", "offen bis \(BlockingFormat.time(grant.expiresAt))"))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
             }
             Spacer()
             Button(tr("Lock", "Sperren"), action: revoke)
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(Zen.shu)
         }
     }
@@ -303,7 +309,7 @@ struct TemplatePickerView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(tr("Start from a template. You pick the apps next, and can change everything later.", "Fang mit einer Vorlage an. Die Apps wählst du gleich danach, ändern kannst du alles später."))
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, 4)
@@ -346,21 +352,22 @@ struct TemplatePickerView: View {
             IconBadge(systemName: template.icon)
             VStack(alignment: .leading, spacing: 3) {
                 Text(template.name)
-                    .font(.system(size: 17, weight: .semibold))
+                    .scaledFont(size: 17, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                 Text(template.summary)
-                    .font(.system(size: 13, weight: .medium))
+                    .scaledFont(size: 13, weight: .medium)
                     .foregroundStyle(Zen.shu)
                 Text(template.blurb)
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(Zen.inkFaint)
+                .accessibilityHidden(true)
         }
         .zenCard()
     }

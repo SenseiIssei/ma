@@ -62,21 +62,101 @@ extension UIColor {
     }
 }
 
+// MARK: - Dynamic Type
+
+extension Font.TextStyle {
+    /// The text style a fixed design size grows with. Picked by size so a
+    /// caption grows like a caption and a big number like a title.
+    static func matching(_ size: CGFloat) -> Font.TextStyle {
+        if size <= 12 { return .caption }
+        if size <= 13 { return .footnote }
+        if size <= 15 { return .subheadline }
+        if size <= 17 { return .body }
+        if size <= 20 { return .title3 }
+        if size <= 28 { return .title2 }
+        return .largeTitle
+    }
+
+    var uiKit: UIFont.TextStyle {
+        switch self {
+        case .largeTitle: return .largeTitle
+        case .title: return .title1
+        case .title2: return .title2
+        case .title3: return .title3
+        case .headline: return .headline
+        case .subheadline: return .subheadline
+        case .callout: return .callout
+        case .footnote: return .footnote
+        case .caption: return .caption1
+        case .caption2: return .caption2
+        default: return .body
+        }
+    }
+}
+
+/// A system font that scales with Dynamic Type. `@ScaledMetric` reads the
+/// environment, so the size follows a text size change while the app runs.
+struct ScaledFont: ViewModifier {
+    @ScaledMetric private var size: CGFloat
+    private let weight: Font.Weight
+    private let design: Font.Design
+
+    init(size: CGFloat, weight: Font.Weight, design: Font.Design) {
+        _size = ScaledMetric(wrappedValue: size, relativeTo: Font.TextStyle.matching(size))
+        self.weight = weight
+        self.design = design
+    }
+
+    func body(content: Content) -> some View {
+        content.font(.system(size: size, weight: weight, design: design))
+    }
+}
+
+extension View {
+    /// Like `.font(.system(size:weight:design:))`, but grows with the text size.
+    func scaledFont(size: CGFloat, weight: Font.Weight = .regular, design: Font.Design = .default) -> some View {
+        modifier(ScaledFont(size: size, weight: weight, design: design))
+    }
+
+    /// Scaling form of `Font.display`.
+    func displayFont(_ size: CGFloat, weight: Font.Weight = .bold) -> some View {
+        modifier(ScaledFont(size: size, weight: weight, design: .rounded))
+    }
+
+    /// Scaling form of `Font.mincho`.
+    func minchoFont(_ size: CGFloat, weight: Font.Weight = .regular) -> some View {
+        let resolved: Font.Weight = weight == .regular ? .semibold : weight
+        return modifier(ScaledFont(size: size, weight: resolved, design: .rounded))
+    }
+
+    /// Scaling form of `Font.kanji`.
+    func kanjiFont(_ size: CGFloat, bold: Bool = false) -> some View {
+        modifier(ScaledFont(size: size, weight: bold ? .semibold : .regular, design: .default))
+    }
+}
+
 extension Font {
+    /// The size scaled for the current text size. Read once when the view
+    /// is built; prefer the `.scaledFont` family where a view allows it.
+    static func scaledSize(_ size: CGFloat) -> CGFloat {
+        let style: UIFont.TextStyle = Font.TextStyle.matching(size).uiKit
+        return UIFontMetrics(forTextStyle: style).scaledValue(for: size)
+    }
+
     /// Headlines and big numbers: SF Pro Rounded, bold and friendly.
     static func display(_ size: CGFloat, weight: Font.Weight = .bold) -> Font {
-        .system(size: size, weight: weight, design: .rounded)
+        .system(size: scaledSize(size), weight: weight, design: .rounded)
     }
 
     /// Kept for older call sites; now the same as `display`.
     static func mincho(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
-        .system(size: size, weight: weight == .regular ? .semibold : weight, design: .rounded)
+        .system(size: scaledSize(size), weight: weight == .regular ? .semibold : weight, design: .rounded)
     }
 
     /// Japanese learning content (kana, kanji in cards). Only for content,
     /// never for decoration.
     static func kanji(_ size: CGFloat, bold: Bool = false) -> Font {
-        .system(size: size, weight: bold ? .semibold : .regular)
+        .system(size: scaledSize(size), weight: bold ? .semibold : .regular)
     }
 }
 

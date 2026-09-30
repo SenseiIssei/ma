@@ -1,5 +1,19 @@
 import SwiftUI
 
+extension View {
+    /// Card content: the kanji face for Japanese or Chinese text, otherwise
+    /// the given system font. Both grow with Dynamic Type.
+    func cardFont(for text: String, kanji kanjiSize: CGFloat, bold: Bool = false,
+                  size: CGFloat, weight: Font.Weight = .regular, design: Font.Design = .default) -> some View {
+        let cjk: Bool = ExerciseEngine.containsCJK(text)
+        let kanjiWeight: Font.Weight = bold ? .semibold : .regular
+        let resolvedSize: CGFloat = cjk ? kanjiSize : size
+        let resolvedWeight: Font.Weight = cjk ? kanjiWeight : weight
+        let resolvedDesign: Font.Design = cjk ? .default : design
+        return modifier(ScaledFont(size: resolvedSize, weight: resolvedWeight, design: resolvedDesign))
+    }
+}
+
 /// Result an exercise reports back when it has been checked.
 struct Outcome {
     var correct: Bool
@@ -22,7 +36,7 @@ struct ExerciseView: View {
                 HStack(spacing: 10) {
                     IconBadge(systemName: Self.symbol(for: exercise.kind), tint: Zen.shu, size: 30)
                     Text(exercise.instruction)
-                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .scaledFont(size: 15, weight: .semibold, design: .rounded)
                         .foregroundStyle(Zen.inkSoft)
                 }
             }
@@ -79,12 +93,12 @@ struct TeachCard: View {
                 IconBadge(systemName: "lightbulb.fill", tint: Zen.kin, size: 34)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(tr("New card", "Neue Karte"))
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .scaledFont(size: 15, weight: .bold, design: .rounded)
                         .foregroundStyle(Zen.kin)
                     Text(exercise.deck.title)
-                        .font(.system(size: 13, weight: .medium))
+                        .scaledFont(size: 13, weight: .medium)
                         .foregroundStyle(Zen.inkSoft)
-                        .lineLimit(1)
+                        .lineLimit(2)
                 }
                 Spacer(minLength: 0)
             }
@@ -99,12 +113,13 @@ struct TeachCard: View {
                     .padding(.bottom, 14)
 
                 Text(tr("Answer", "Antwort"))
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(Zen.inkFaint)
+                    .scaledFont(size: 12, weight: .semibold)
+                    .foregroundStyle(Zen.inkSoft)
                     .textCase(.uppercase)
                     .padding(.bottom, 4)
                 Text(card.answer)
-                    .font(answerFont)
+                    .cardFont(for: card.answer, kanji: card.answer.count <= 4 ? 44 : 28, bold: true,
+                              size: card.answer.count > 30 ? 22 : 28, weight: .bold, design: .rounded)
                     .foregroundStyle(Zen.shu)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -113,7 +128,7 @@ struct TeachCard: View {
             if let note = card.note, !note.isEmpty {
                 infoBlock(icon: "info.circle.fill", tint: Zen.ai, title: tr("Why", "Warum")) {
                     Text(note)
-                        .font(.system(size: 16))
+                        .scaledFont(size: 16)
                         .foregroundStyle(Zen.ink)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -122,7 +137,7 @@ struct TeachCard: View {
             if let example = card.example, !example.isEmpty, example != card.answer {
                 infoBlock(icon: "text.quote", tint: Zen.matcha, title: tr("Example", "Beispiel")) {
                     Text(Self.highlighted(example, answer: card.answer))
-                        .font(ExerciseEngine.containsCJK(example) ? .kanji(19) : .system(size: 17))
+                        .cardFont(for: example, kanji: 19, size: 17)
                         .foregroundStyle(Zen.ink)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -147,17 +162,10 @@ struct TeachCard: View {
         }
     }
 
-    private var answerFont: Font {
-        if ExerciseEngine.containsCJK(card.answer) {
-            return .kanji(card.answer.count <= 4 ? 44 : 28, bold: true)
-        }
-        return .display(card.answer.count > 30 ? 22 : 28, weight: .bold)
-    }
-
     private func infoBlock<Content: View>(icon: String, tint: Color, title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Label(title, systemImage: icon)
-                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                .scaledFont(size: 13, weight: .semibold, design: .rounded)
                 .foregroundStyle(tint)
             content()
         }
@@ -182,10 +190,10 @@ struct PromptText: View {
     let text: String
 
     var body: some View {
-        let cjk = ExerciseEngine.containsCJK(text)
-        let font: Font = cjk ? .kanji(text.count <= 4 ? 64 : 30, bold: true) : .display(text.count > 60 ? 22 : 28, weight: .bold)
+        let kanjiSize: CGFloat = text.count <= 4 ? 64 : 30
+        let size: CGFloat = text.count > 60 ? 22 : 28
         Text(text)
-            .font(font)
+            .cardFont(for: text, kanji: kanjiSize, bold: true, size: size, weight: .bold, design: .rounded)
             .foregroundStyle(Zen.ink)
             .multilineTextAlignment(.leading)
             .fixedSize(horizontal: false, vertical: true)
@@ -223,7 +231,7 @@ struct ChoiceExercise: View {
         VStack(alignment: .leading, spacing: 14) {
             if exercise.kind == .cloze {
                 Text(exercise.statement)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
             }
             PromptText(text: exercise.prompt)
@@ -267,14 +275,16 @@ struct OptionRow: View {
         Button(action: action) {
             HStack {
                 Text(text)
-                    .font(ExerciseEngine.containsCJK(text) ? .kanji(20, bold: true) : .system(size: 17, weight: .medium))
+                    .cardFont(for: text, kanji: 20, bold: true, size: 17, weight: .medium)
                     .foregroundStyle(foreground)
                     .multilineTextAlignment(.leading)
                 Spacer(minLength: 8)
                 if state == .right {
                     Image(systemName: "checkmark.circle.fill").foregroundStyle(Zen.matcha)
+                        .accessibilityHidden(true)
                 } else if state == .wrong {
                     Image(systemName: "xmark.circle.fill").foregroundStyle(Zen.negative)
+                        .accessibilityHidden(true)
                 }
             }
             .padding(.vertical, 15)
@@ -287,6 +297,17 @@ struct OptionRow: View {
         }
         .buttonStyle(.plain)
         .animation(.spring(response: 0.3, dampingFraction: 0.8), value: state)
+        .accessibilityAddTraits(state == .picked ? .isSelected : [])
+        .accessibilityValue(spokenState)
+    }
+
+    /// Colour alone says right or wrong on screen; VoiceOver needs words.
+    private var spokenState: String {
+        switch state {
+        case .idle, .picked: ""
+        case .right: tr("Correct answer", "Richtige Antwort")
+        case .wrong: tr("Your answer, wrong", "Deine Antwort, falsch")
+        }
     }
 
     private var foreground: Color {
@@ -331,8 +352,9 @@ struct TrueFalseExercise: View {
             HStack(spacing: 10) {
                 Image(systemName: "arrow.turn.down.right")
                     .foregroundStyle(Zen.inkFaint)
+                    .accessibilityHidden(true)
                 Text(exercise.statement)
-                    .font(ExerciseEngine.containsCJK(exercise.statement) ? .kanji(24, bold: true) : .display(22, weight: .semibold))
+                    .cardFont(for: exercise.statement, kanji: 24, bold: true, size: 22, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.ink)
             }
             .padding(16)
@@ -348,8 +370,17 @@ struct TrueFalseExercise: View {
 
     private func answerButton(_ value: Bool, title: String, symbol: String) -> some View {
         let isRight = value == exercise.statementIsTrue
-        let missed: Color = said == value ? Zen.negative : Zen.inkFaint
+        let missed: Color = said == value ? Zen.negative : Zen.inkSoft
         let tint: Color = locked ? (isRight ? Zen.matcha : missed) : Zen.ink
+        let chosen: Bool = said == value
+        let spoken: String
+        if !locked {
+            spoken = ""
+        } else if isRight {
+            spoken = tr("Correct answer", "Richtige Antwort")
+        } else {
+            spoken = chosen ? tr("Your answer, wrong", "Deine Antwort, falsch") : ""
+        }
         return Button {
             guard !locked else { return }
             said = value
@@ -357,8 +388,9 @@ struct TrueFalseExercise: View {
             onCheck(Outcome(correct: isRight))
         } label: {
             VStack(spacing: 8) {
-                Image(systemName: symbol).font(.system(size: 26, weight: .bold))
-                Text(title).font(.system(size: 15, weight: .semibold, design: .rounded))
+                Image(systemName: symbol).scaledFont(size: 26, weight: .bold)
+                    .accessibilityHidden(true)
+                Text(title).scaledFont(size: 15, weight: .semibold, design: .rounded)
             }
             .foregroundStyle(tint)
             .frame(maxWidth: .infinity)
@@ -367,6 +399,8 @@ struct TrueFalseExercise: View {
             .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(locked && (isRight || said == value) ? tint : Zen.line, lineWidth: locked ? 2 : 1))
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(chosen ? .isSelected : [])
+        .accessibilityValue(spoken)
     }
 }
 
@@ -383,7 +417,7 @@ struct TypeExercise: View {
         VStack(alignment: .leading, spacing: 16) {
             PromptText(text: exercise.prompt)
             TextField(tr("Your answer", "Deine Antwort"), text: $text)
-                .font(.system(size: 20, weight: .medium))
+                .scaledFont(size: 20, weight: .medium)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .focused($focused)
@@ -470,7 +504,7 @@ struct Tile: View {
     var body: some View {
         Button(action: action) {
             Text(text)
-                .font(ExerciseEngine.containsCJK(text) ? .kanji(20, bold: true) : .system(size: 17, weight: .medium))
+                .cardFont(for: text, kanji: 20, bold: true, size: 17, weight: .medium)
                 .foregroundStyle(style == .ghost ? .clear : Zen.ink)
                 .padding(.vertical, 10)
                 .padding(.horizontal, 14)
@@ -483,6 +517,9 @@ struct Tile: View {
         }
         .buttonStyle(.plain)
         .disabled(style == .ghost)
+        // A ghost is only the empty slot of a word already placed.
+        .accessibilityHidden(style == .ghost)
+        .accessibilityHint(style == .placed ? tr("Takes the word out again", "Nimmt das Wort wieder heraus") : "")
     }
 }
 
@@ -541,7 +578,7 @@ struct PairsExercise: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(tr("Tap what belongs together, left and right.", "Tippe links und rechts, was zusammengehört."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
             HStack(alignment: .top, spacing: 12) {
                 VStack(spacing: 10) {
@@ -577,7 +614,7 @@ struct PairsExercise: View {
             resolve()
         } label: {
             Text(text)
-                .font(ExerciseEngine.containsCJK(text) ? .kanji(22, bold: true) : .system(size: 16, weight: .medium))
+                .cardFont(for: text, kanji: 22, bold: true, size: 16, weight: .medium)
                 .foregroundStyle(done ? Zen.matcha.opacity(0.6) : Zen.ink)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, minHeight: 54)
@@ -591,6 +628,8 @@ struct PairsExercise: View {
         .buttonStyle(.plain)
         .disabled(done)
         .animation(.easeOut(duration: 0.2), value: done)
+        .accessibilityAddTraits(picked ? .isSelected : [])
+        .accessibilityValue(done ? tr("Matched", "Zugeordnet") : "")
     }
 
     private func resolve() {
@@ -627,7 +666,7 @@ struct FlashExercise: View {
             PromptText(text: exercise.prompt)
             if revealed {
                 Text(exercise.solution)
-                    .font(ExerciseEngine.containsCJK(exercise.solution) ? .kanji(28, bold: true) : .display(24, weight: .semibold))
+                    .cardFont(for: exercise.solution, kanji: 28, bold: true, size: 24, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.ai)
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 if !locked {

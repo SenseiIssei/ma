@@ -8,6 +8,20 @@ struct QuizView: View {
     var onFinished: () -> Void
 
     @State private var outcome: Outcome?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// Slides in from the side, or just fades with Reduce Motion.
+    private var exerciseTransition: AnyTransition {
+        if reduceMotion { return .opacity }
+        return .asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .opacity
+        )
+    }
+
+    private var bannerTransition: AnyTransition {
+        reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -24,10 +38,7 @@ struct QuizView: View {
                     .padding(.horizontal, Zen.gutter)
                     .padding(.top, 24)
                     .padding(.bottom, 200)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                        removal: .opacity
-                    ))
+                    .transition(exerciseTransition)
                 }
                 .scrollDismissesKeyboard(.interactively)
             }
@@ -37,7 +48,7 @@ struct QuizView: View {
                 FeedbackBanner(outcome: outcome, exercise: exercise) {
                     next()
                 }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .transition(bannerTransition)
             }
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.9), value: outcome != nil)
@@ -53,6 +64,22 @@ struct QuizView: View {
         outcome = result
         session.grade(exercise, correct: result.correct, perCard: result.perCard)
         if result.correct { Haptics.success() } else { Haptics.warning() }
+        announce(result, for: exercise)
+    }
+
+    /// The banner appears without moving VoiceOver focus, so say the verdict.
+    private func announce(_ result: Outcome, for exercise: Exercise) {
+        let text: String
+        if result.typo {
+            text = tr("Almost, small typo. Correct: \(exercise.card.answer)", "Fast, kleiner Tippfehler. Richtig: \(exercise.card.answer)")
+        } else if result.correct {
+            text = tr("Correct", "Richtig")
+        } else if exercise.kind == .pairs {
+            text = tr("Not quite", "Nicht ganz")
+        } else {
+            text = tr("Not quite. Correct: \(exercise.card.answer)", "Nicht ganz. Richtig: \(exercise.card.answer)")
+        }
+        AccessibilityNotification.Announcement(text).post()
     }
 
     private func next() {
@@ -66,14 +93,15 @@ struct QuizView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 8) {
             InkProgress(value: session.progress, color: Zen.matcha, height: 10)
+                .accessibilityMeter(tr("Progress", "Fortschritt"), value: session.progress.formatted(.percent.precision(.fractionLength(0))))
             if case .gate = session.mode {
                 if session.current?.kind == .teach {
                     Label(tr("Learn this card first, the question comes next.", "Lern zuerst diese Karte, dann kommt die Frage."), systemImage: "lightbulb")
-                        .font(.system(size: 13, weight: .medium))
+                        .scaledFont(size: 13, weight: .medium)
                         .foregroundStyle(Zen.inkSoft)
                 } else {
                     Text(tr("\(session.correct) of \(session.needed) right", "\(session.correct) von \(session.needed) richtig"))
-                        .font(.system(size: 13, weight: .medium))
+                        .scaledFont(size: 13, weight: .medium)
                         .foregroundStyle(Zen.inkSoft)
                         .contentTransition(.numericText())
                 }
@@ -88,31 +116,34 @@ struct FeedbackBanner: View {
     let outcome: Outcome
     let exercise: Exercise
     let next: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 12) {
                 Image(systemName: outcome.correct ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .font(.system(size: 30, weight: .semibold))
+                    .scaledFont(size: 30, weight: .semibold)
                     .foregroundStyle(tint)
                     .symbolEffect(.bounce, value: outcome.correct)
+                    .symbolEffectsRemoved(reduceMotion)
+                    .accessibilityHidden(true)
                 Text(title)
-                    .font(.display(24))
+                    .displayFont(24)
                     .foregroundStyle(tint)
                 Spacer(minLength: 0)
             }
             if !outcome.correct || outcome.typo {
                 if exercise.kind == .pairs {
                     Text(tr("Have another look at the pairs, they will come back soon.", "Schau dir die Paare nochmal an, sie kommen bald wieder."))
-                        .font(.system(size: 16, weight: .medium))
+                        .scaledFont(size: 16, weight: .medium)
                         .foregroundStyle(Zen.ink)
                 } else {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(tr("Correct:", "Richtig:"))
-                            .font(.system(size: 14, weight: .semibold))
+                            .scaledFont(size: 14, weight: .semibold)
                             .foregroundStyle(tint)
                         Text(exercise.card.answer)
-                            .font(answerFont)
+                            .cardFont(for: exercise.card.answer, kanji: 22, bold: true, size: 18, weight: .bold, design: .rounded)
                             .foregroundStyle(Zen.ink)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -120,7 +151,7 @@ struct FeedbackBanner: View {
             }
             if let note = exercise.card.note, !note.isEmpty, exercise.kind != .pairs {
                 Text(note)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -152,10 +183,6 @@ struct FeedbackBanner: View {
 
     private var showsExplainMore: Bool {
         !outcome.correct && exercise.kind != .pairs && MaAI.offersInline
-    }
-
-    private var answerFont: Font {
-        ExerciseEngine.containsCJK(exercise.card.answer) ? .kanji(22, bold: true) : .system(size: 18, weight: .bold, design: .rounded)
     }
 
     private var title: String {

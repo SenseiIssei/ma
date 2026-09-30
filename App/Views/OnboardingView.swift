@@ -29,6 +29,7 @@ struct OnboardingView: View {
                     }
                 }
                 .animation(.spring(response: 0.35, dampingFraction: 0.8), value: page)
+                .accessibilityMeter(tr("Page", "Seite"), value: tr("\(page + 1) of 5", "\(page + 1) von 5"))
                 .padding(.bottom, 18)
             }
         }
@@ -68,7 +69,7 @@ struct OnboardingView: View {
         } footer: {
             if !BuildFlavor.screenTimeAvailable {
                 Text(BuildFlavor.previewNote)
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.shu)
                     .fixedSize(horizontal: false, vertical: true)
                 Button(tr("Continue", "Weiter")) { page = 2 }.buttonStyle(.primary)
@@ -80,7 +81,7 @@ struct OnboardingView: View {
                 }
                 .buttonStyle(.primary)
                 Button(tr("Later", "Später")) { page = 2 }
-                    .font(.system(size: 15, weight: .medium))
+                    .scaledFont(size: 15, weight: .medium)
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -110,7 +111,7 @@ struct OnboardingView: View {
                 }
                 .buttonStyle(.primary)
                 Button(tr("Later", "Später")) { page = 3 }
-                    .font(.system(size: 15, weight: .medium))
+                    .scaledFont(size: 15, weight: .medium)
                     .foregroundStyle(Zen.inkSoft)
             }
         }
@@ -137,13 +138,14 @@ struct OnboardingView: View {
                             // The deck's own symbol is content, e.g. a kana.
                             Hanko(text: deck.symbol, size: 38, color: active ? Zen.shu : Zen.inkFaint)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(deck.title).font(.system(size: 16, weight: .semibold)).foregroundStyle(Zen.ink)
-                                Text(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten")).font(.system(size: 13)).foregroundStyle(Zen.inkSoft)
+                                Text(deck.title).scaledFont(size: 16, weight: .semibold).foregroundStyle(Zen.ink)
+                                Text(tr("\(deck.cards.count) cards", "\(deck.cards.count) Karten")).scaledFont(size: 13).foregroundStyle(Zen.inkSoft)
                             }
                             Spacer()
                             Image(systemName: active ? "checkmark.circle.fill" : "circle")
-                                .font(.system(size: 22))
+                                .scaledFont(size: 22)
                                 .foregroundStyle(active ? Zen.shu : Zen.line)
+                                .accessibilityHidden(true)
                         }
                         .padding(12)
                         .background(Zen.card, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
@@ -153,6 +155,7 @@ struct OnboardingView: View {
                         )
                     }
                     .buttonStyle(.plain)
+                    .accessibilityAddTraits(active ? .isSelected : [])
                 }
             }
         } footer: {
@@ -188,7 +191,7 @@ struct OnboardingView: View {
             }
             .buttonStyle(.primary)
             Button(tr("Later", "Später")) { model.onboarded = true }
-                .font(.system(size: 15, weight: .medium))
+                .scaledFont(size: 15, weight: .medium)
                 .foregroundStyle(Zen.inkSoft)
         }
     }
@@ -253,11 +256,12 @@ struct OnboardingView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.top, 28)
                     Text(title)
-                        .font(.display(32))
+                        .displayFont(32)
                         .foregroundStyle(Zen.ink)
                         .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
                     Text(text)
-                        .font(.system(size: 17))
+                        .scaledFont(size: 17)
                         .foregroundStyle(Zen.inkSoft)
                         .lineSpacing(3)
                         .fixedSize(horizontal: false, vertical: true)
@@ -284,9 +288,10 @@ struct OnboardingView: View {
         let tint: Color = done ? Zen.matcha : Zen.inkSoft
         return HStack(spacing: 8) {
             Image(systemName: done ? "checkmark.circle.fill" : "circle.dashed")
-                .font(.system(size: 18, weight: .semibold))
+                .scaledFont(size: 18, weight: .semibold)
+                .accessibilityHidden(true)
             Text(done ? doneText : openText)
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .scaledFont(size: 15, weight: .semibold, design: .rounded)
         }
         .foregroundStyle(tint)
         .padding(.vertical, 9)

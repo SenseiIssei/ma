@@ -84,9 +84,12 @@ struct MoodPicker: View {
                     VStack(spacing: 8) {
                         MoodFace(mood: option, size: 50, selected: mood == nil || isOn)
                             .scaleEffect(isOn ? 1.12 : 1)
+                            .accessibilityHidden(true)
                         Text(option.title)
-                            .font(.system(size: 12, weight: isOn ? .semibold : .medium))
+                            .scaledFont(size: 12, weight: isOn ? .semibold : .medium)
                             .foregroundStyle(isOn ? Zen.ink : Zen.inkSoft)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: .infinity)
                     .contentShape(Rectangle())
@@ -95,6 +98,8 @@ struct MoodPicker: View {
                 .accessibilityAddTraits(isOn ? .isSelected : [])
             }
         }
+        // Five faces in one row: past this size the names would not fit.
+        .dynamicTypeSize(...denseTypeLimit)
     }
 }
 
@@ -115,7 +120,7 @@ struct MorningCheckInView: View {
 
                     VStack(alignment: .leading, spacing: 16) {
                         Text(tr("How do you feel?", "Wie fühlst du dich?"))
-                            .font(.display(24))
+                            .displayFont(24)
                             .foregroundStyle(Zen.ink)
                         MoodPicker(mood: $mood)
                     }
@@ -123,14 +128,14 @@ struct MorningCheckInView: View {
 
                     VStack(alignment: .leading, spacing: 12) {
                         Text(tr("One intention for today", "Ein Vorsatz für heute"))
-                            .font(.display(24))
+                            .displayFont(24)
                             .foregroundStyle(Zen.ink)
                         Text(tr("Small and concrete works best.", "Klein und konkret klappt am besten."))
-                            .font(.system(size: 15))
+                            .scaledFont(size: 15)
                             .foregroundStyle(Zen.inkSoft)
                         TextField(tr("e.g. Take a walk at lunch", "z. B. Mittags eine Runde gehen"), text: $intention, axis: .vertical)
                             .lineLimit(1...3)
-                            .font(.system(size: 17))
+                            .scaledFont(size: 17)
                             .focused($typing)
                             .submitLabel(.done)
                             .padding(14)
@@ -194,10 +199,10 @@ struct EveningReflectionView: View {
                             IconBadge(systemName: "scope", tint: Zen.shu, size: 36)
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(tr("This morning you set out to", "Heute Morgen hattest du vor"))
-                                    .font(.system(size: 13, weight: .medium))
+                                    .scaledFont(size: 13, weight: .medium)
                                     .foregroundStyle(Zen.inkSoft)
                                 Text(intention)
-                                    .font(.system(size: 17, weight: .semibold))
+                                    .scaledFont(size: 17, weight: .semibold)
                                     .foregroundStyle(Zen.ink)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
@@ -252,12 +257,12 @@ struct EveningReflectionView: View {
             HStack(spacing: 10) {
                 IconBadge(systemName: icon, tint: tint, size: 32)
                 Text(title)
-                    .font(.display(19, weight: .semibold))
+                    .displayFont(19, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             }
             TextField(placeholder, text: text, axis: .vertical)
                 .lineLimit(2...5)
-                .font(.system(size: 16))
+                .scaledFont(size: 16)
                 .padding(14)
                 .background(Zen.sand, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
         }

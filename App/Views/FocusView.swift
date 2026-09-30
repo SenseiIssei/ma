@@ -68,11 +68,13 @@ struct FocusView: View {
         VStack(spacing: 12) {
             HStack(spacing: 8) {
                 Image(systemName: phaseIcon)
-                    .font(.system(size: 15, weight: .semibold))
+                    .scaledFont(size: 15, weight: .semibold)
                     .foregroundStyle(tint)
+                    .accessibilityHidden(true)
                 Text(phase?.title ?? tr("Ready when you are", "Bereit, wenn du es bist"))
-                    .font(.display(24))
+                    .displayFont(24)
                     .foregroundStyle(Zen.ink)
+                    .multilineTextAlignment(.center)
             }
             roundDots
         }
@@ -116,27 +118,41 @@ struct FocusView: View {
         let progress = focus == nil ? 0 : min(1, elapsed / max(1, duration))
         let running: Bool = focus != nil
 
+        let totalMinutes: Int = Int((duration / 60).rounded())
+        let spokenValue: String = running
+            ? tr("\(Int(elapsed / 60)) of \(totalMinutes) minutes, \(Spoken.duration(remaining)) left",
+                 "\(Int(elapsed / 60)) von \(totalMinutes) Minuten, noch \(Spoken.duration(remaining))")
+            : tr("\(totalMinutes) minutes", "\(totalMinutes) Minuten")
+
         return ZStack {
             GlowRing(progress: progress, tint: tint, running: running)
                 .animation(.linear(duration: 1), value: progress)
             VStack(spacing: 6) {
                 Text(Self.clock(remaining))
-                    .font(.display(66, weight: .semibold))
+                    .displayFont(66, weight: .semibold)
                     .monospacedDigit()
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.numericText(countsDown: true))
                     .shadow(color: tint.opacity(running ? 0.35 : 0), radius: 12)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                 if let focus {
                     Text(tr("until \(focus.endsAt.formatted(date: .omitted, time: .shortened))", "bis \(focus.endsAt.formatted(date: .omitted, time: .shortened))"))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                 } else {
                     Text(tr("\(model.focusSettings.focusMinutes) min. focus, \(model.focusSettings.shortBreakMinutes) min. break", "\(model.focusSettings.focusMinutes) Min. Fokus, \(model.focusSettings.shortBreakMinutes) Min. Pause"))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.8)
                 }
             }
+            .padding(.horizontal, 36)
         }
+        .dynamicTypeSize(...denseTypeLimit)
+        .accessibilityMeter(phase?.title ?? tr("Focus timer", "Fokus-Timer"), value: spokenValue)
+        .accessibilityAddTraits(.updatesFrequently)
     }
 
     private var controls: some View {
@@ -149,13 +165,13 @@ struct FocusView: View {
                 }
                 .buttonStyle(.primary)
                 Text(tr("Round \(FocusEngine.upcomingRound) of \(model.focusSettings.roundsUntilLongBreak)", "Runde \(FocusEngine.upcomingRound) von \(model.focusSettings.roundsUntilLongBreak)"))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
             case .focus:
                 Button(tr("End round", "Runde beenden")) { model.requestStopFocus() }
                     .buttonStyle(.quiet)
                 Text(tr("Put the phone down. Ma keeps watch.", "Leg das Handy weg. Ma passt auf."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
             case .shortBreak, .longBreak:
                 Button(tr("Skip break", "Pause überspringen")) {
@@ -175,6 +191,7 @@ struct FocusView: View {
             HStack(spacing: 10) {
                 Image(systemName: model.focusSettings.strict ? "lock.fill" : "lock.open")
                     .foregroundStyle(model.focusSettings.strict ? Zen.shu : Zen.inkSoft)
+                    .accessibilityHidden(true)
                 Text(!BuildFlavor.screenTimeAvailable
                      ? (model.focusSettings.strict
                         ? tr("During focus the Shortcuts gate lets nothing through.", "Im Fokus lässt die Kurzbefehle-Schranke nichts durch.")
@@ -184,12 +201,12 @@ struct FocusView: View {
                      : model.focusSettings.strict
                         ? tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), no way through.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), ohne Ausweg.")
                         : tr("Blocked during focus: \(count) \(count == 1 ? "item" : "items"), questions allowed.", "Im Fokus gesperrt: \(count) \(count == 1 ? "Eintrag" : "Einträge"), Fragen erlaubt."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
             }
             Text(tr("\(model.today.pomodoros) rounds and \(model.today.focusMinutes) minutes today.", "\(model.today.pomodoros) Runden und \(model.today.focusMinutes) Minuten heute."))
-                .font(.system(size: 13))
-                .foregroundStyle(Zen.inkFaint)
+                .scaledFont(size: 13)
+                .foregroundStyle(Zen.inkSoft)
         }
         .zenCard()
     }
@@ -212,10 +229,10 @@ struct FocusView: View {
                 Toggle(isOn: during) {
                     VStack(alignment: .leading, spacing: 3) {
                         Text(tr("Play sound during focus", "Klang im Fokus abspielen"))
-                            .font(.system(size: 15, weight: .semibold))
+                            .scaledFont(size: 15, weight: .semibold)
                             .foregroundStyle(Zen.ink)
                         Text(tr("Starts with each round and fades out when it ends.", "Beginnt mit jeder Runde und klingt mit ihr aus."))
-                            .font(.system(size: 13))
+                            .scaledFont(size: 13)
                             .foregroundStyle(Zen.inkSoft)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -271,10 +288,12 @@ private struct GlowRing: View {
     var tint: Color
     var running: Bool
     var lineWidth: CGFloat = 16
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
-            if running {
+            // Reduce Motion keeps a steady glow; the arc still fills.
+            if running && !reduceMotion {
                 PhaseAnimator([0.0, 1.0]) { pulse in
                     rings(pulse: pulse)
                 } animation: { _ in

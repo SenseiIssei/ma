@@ -17,7 +17,7 @@ struct ShortcutsModeView: View {
                     HStack(spacing: 12) {
                         IconBadge(systemName: "bolt.fill", tint: model.shortcutLastRun == nil ? Zen.inkSoft : Zen.shu)
                         Text(tr("Shortcuts mode", "Kurzbefehle-Modus"))
-                            .font(.display(20))
+                            .displayFont(20)
                             .foregroundStyle(Zen.ink)
                     }
                     Text(tr("Works without Screen Time: a Shortcuts automation starts Ma whenever one of your apps opens. If you have an open pass, Ma stays invisible and the app opens as usual.",
@@ -25,7 +25,7 @@ struct ShortcutsModeView: View {
                         .foregroundStyle(Zen.inkSoft)
                     statusLine
                 }
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .padding(.vertical, 4)
             } header: {
                 FormHeader(icon: "questionmark.circle.fill", title: tr("How it works", "So funktioniert es"))
@@ -114,6 +114,7 @@ struct ShortcutsModeView: View {
         HStack(spacing: 8) {
             Image(systemName: model.shortcutLastRun == nil ? "circle.dashed" : "checkmark.circle.fill")
                 .foregroundStyle(model.shortcutLastRun == nil ? Zen.inkFaint : Zen.matcha)
+                .accessibilityHidden(true)
             if let last = model.shortcutLastRun {
                 Text(tr("Last run: \(last.formatted(date: .abbreviated, time: .shortened))", "Zuletzt ausgeführt: \(last.formatted(date: .abbreviated, time: .shortened))"))
                     .foregroundStyle(Zen.matcha)
@@ -122,6 +123,6 @@ struct ShortcutsModeView: View {
                     .foregroundStyle(Zen.inkSoft)
             }
         }
-        .font(.system(size: 14, weight: .medium))
+        .scaledFont(size: 14, weight: .medium)
     }
 }

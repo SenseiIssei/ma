@@ -47,12 +47,12 @@ struct MusicCard: View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeader(icon: "music.note", title: tr("Music", "Musik")) {
                 Text("Spotify")
-                    .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    .foregroundStyle(Zen.inkFaint)
+                    .scaledFont(size: 13, weight: .semibold, design: .rounded)
+                    .foregroundStyle(Zen.inkSoft)
             }
             VStack(alignment: .leading, spacing: 12) {
                 Text(tr("Opens a matching search in Spotify.", "Öffnet eine passende Suche in Spotify."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
                     ForEach(MusicLink.all) { link in
@@ -72,7 +72,7 @@ struct MusicCard: View {
             HStack(spacing: 10) {
                 IconBadge(systemName: link.symbol, tint: Zen.shu, size: 32)
                 Text(link.title)
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 14, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.ink)
                     .lineLimit(2)
                     .minimumScaleFactor(0.85)

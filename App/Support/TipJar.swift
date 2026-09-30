@@ -41,7 +41,7 @@ struct TipJarSection: View {
                 Section {
                     Text(tr("Ma is free and stays free. If it helps you, a tip keeps the developer account and the server running.",
                             "Ma ist kostenlos und bleibt es. Wenn es dir hilft, hält ein Trinkgeld Entwicklerkonto und Server am Laufen."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                     HStack(spacing: 10) {
                         ForEach(jar.products, id: \.id) { product in
@@ -49,13 +49,14 @@ struct TipJarSection: View {
                                 Task { await jar.buy(product) }
                             } label: {
                                 Text(product.displayPrice)
-                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 10)
                                     .background(Zen.sand, in: Capsule())
                             }
                             .buttonStyle(.plain)
                             .disabled(jar.busy)
+                            .accessibilityLabel(tr("Tip \(product.displayPrice)", "Trinkgeld \(product.displayPrice)"))
                         }
                     }
                     if jar.thanked {

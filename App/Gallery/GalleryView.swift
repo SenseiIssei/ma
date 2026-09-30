@@ -67,7 +67,7 @@ struct GalleryView: View {
             Illustration(name: "IllustrationLearn", height: 150)
             Text(tr("Topics written by people who use Ma. Each one teaches first and practises after, with examples and short notes.",
                     "Themen von Menschen, die Ma nutzen. Jedes erklärt zuerst und übt danach, mit Beispielen und kurzen Notizen."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -87,10 +87,14 @@ struct GalleryView: View {
                 }
                 .padding(.horizontal, 2)
             }
-            HStack(spacing: 8) {
-                ForEach(localeChoices) { choice in
-                    Chip(title: choice.title, selected: locale == choice.code) { locale = choice.code }
+            // Scrolls like the shelves above once large text makes the chips too wide.
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(localeChoices) { choice in
+                        Chip(title: choice.title, selected: locale == choice.code) { locale = choice.code }
+                    }
                 }
+                .padding(.horizontal, 2)
             }
         }
     }
@@ -107,7 +111,7 @@ struct GalleryView: View {
             VStack(spacing: 14) {
                 Illustration(name: "IllustrationEmpty", height: 150)
                 Text(text)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -126,7 +130,7 @@ struct GalleryView: View {
                 VStack(spacing: 12) {
                     Illustration(name: "IllustrationEmpty", height: 150)
                     Text(tr("No topic matches. Try another word, shelf or language.", "Kein Thema passt. Versuch ein anderes Wort, Regal oder eine andere Sprache."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -150,7 +154,7 @@ struct GalleryView: View {
     private var webLink: some View {
         Link(destination: GalleryClient.webURL) {
             Label(tr("Write your own topic for the gallery", "Eigenes Thema für die Galerie schreiben"), systemImage: "square.and.pencil")
-                .font(.system(size: 14, weight: .medium))
+                .scaledFont(size: 14, weight: .medium)
                 .foregroundStyle(Zen.shu)
         }
         .frame(maxWidth: .infinity)
@@ -169,17 +173,17 @@ struct GalleryView: View {
                     Hanko(text: entry.symbol, size: 48)
                     VStack(alignment: .leading, spacing: 3) {
                         Text(entry.title)
-                            .font(.display(17, weight: .semibold))
+                            .displayFont(17, weight: .semibold)
                             .foregroundStyle(Zen.ink)
                         if !entry.subtitle.isEmpty {
                             Text(entry.subtitle)
-                                .font(.system(size: 13))
+                                .scaledFont(size: 13)
                                 .foregroundStyle(Zen.inkSoft)
                                 .lineLimit(2)
                         }
                         Text(entry.facts)
-                            .font(.system(size: 12, weight: .medium))
-                            .foregroundStyle(Zen.inkFaint)
+                            .scaledFont(size: 12, weight: .medium)
+                            .foregroundStyle(Zen.inkSoft)
                     }
                     Spacer(minLength: 0)
                 }
@@ -213,7 +217,7 @@ struct GalleryView: View {
     private var bannerView: some View {
         if let banner {
             Label(banner.text, systemImage: banner.ok ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
-                .font(.system(size: 14, weight: .medium))
+                .scaledFont(size: 14, weight: .medium)
                 .foregroundStyle(banner.ok ? Zen.ink : Zen.negative)
                 .fixedSize(horizontal: false, vertical: true)
                 .zenCard(padding: 14)
@@ -296,6 +300,8 @@ struct GalleryView: View {
     private func show(_ text: String, ok: Bool) {
         let next = GalleryBanner(text: text, ok: ok)
         withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) { banner = next }
+        // The banner slides in away from VoiceOver focus, so read it out.
+        AccessibilityNotification.Announcement(text).post()
         Task {
             try? await Task.sleep(for: .seconds(4))
             if banner == next {
@@ -330,11 +336,11 @@ struct GalleryPreviewSheet: View {
                         Hanko(text: entry.symbol, size: 64)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(entry.title)
-                                .font(.display(26))
+                                .displayFont(26)
                                 .foregroundStyle(Zen.ink)
                             if !entry.subtitle.isEmpty {
                                 Text(entry.subtitle)
-                                    .font(.system(size: 15))
+                                    .scaledFont(size: 15)
                                     .foregroundStyle(Zen.inkSoft)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
@@ -368,8 +374,8 @@ struct GalleryPreviewSheet: View {
 
                     Text(tr("Community topics are written by people who use Ma and checked before they go online. Found a mistake? Tell us on GitHub.",
                             "Community-Themen schreiben Menschen, die Ma nutzen, und sie werden geprüft, bevor sie online gehen. Einen Fehler gefunden? Sag es uns auf GitHub."))
-                        .font(.system(size: 13))
-                        .foregroundStyle(Zen.inkFaint)
+                        .scaledFont(size: 13)
+                        .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal, Zen.gutter)
@@ -401,14 +407,14 @@ struct GalleryPreviewSheet: View {
             .zenCard(padding: 6)
             if deck.cards.count > shown {
                 Text(tr("and \(deck.cards.count - shown) more", "und \(deck.cards.count - shown) weitere"))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .frame(maxWidth: .infinity)
             }
         } else if let failure {
             VStack(spacing: 12) {
                 Text(failure)
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -432,9 +438,10 @@ struct GalleryPreviewSheet: View {
 
     private func fact(icon: String, text: String) -> some View {
         Label(text, systemImage: icon)
-            .font(.system(size: 13, weight: .semibold, design: .rounded))
+            .scaledFont(size: 13, weight: .semibold, design: .rounded)
             .foregroundStyle(Zen.inkSoft)
             .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .padding(.vertical, 7)
             .padding(.horizontal, 11)
             .background(Zen.sand, in: Capsule())
@@ -461,15 +468,15 @@ private struct GalleryCardRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(card.prompt)
-                .font(.system(size: 15, weight: .semibold))
+                .scaledFont(size: 15, weight: .semibold)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
             Text(card.answer)
-                .font(.system(size: 14, weight: .medium))
+                .scaledFont(size: 14, weight: .medium)
                 .foregroundStyle(Zen.matcha)
             if let note = card.note, !note.isEmpty {
                 Text(note)
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -477,6 +484,7 @@ private struct GalleryCardRow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
+        .accessibilityElement(children: .combine)
     }
 }
 

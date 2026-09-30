@@ -90,7 +90,7 @@ struct SettingsView: View {
                         Label(tr("Help and support", "Hilfe und Support"), systemImage: "questionmark.circle.fill")
                     }
                     Text(tr("Ma stores everything on your iPhone. No accounts, no ads, no analytics. Only if you join a friends circle, a random id, your nickname and daily numbers go to Ma's server.", "Ma speichert alles auf deinem iPhone. Keine Konten, keine Werbung, keine Analyse. Nur wenn du einem Freundeskreis beitrittst, gehen eine zufällige ID, dein Spitzname und Tageszahlen an Mas Server."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                 } header: {
                     FormHeader(icon: "info.circle.fill", title: tr("About Ma", "Über Ma"))
@@ -135,10 +135,10 @@ struct SettingsView: View {
                 Label(tr("allowed", "erlaubt"), systemImage: "checkmark.circle.fill")
                     .labelStyle(.titleAndIcon)
                     .foregroundStyle(Zen.matcha)
-                    .font(.system(size: 14, weight: .medium))
+                    .scaledFont(size: 14, weight: .medium)
             } else {
                 Button(tr("Allow", "Erlauben"), action: request)
-                    .font(.system(size: 15, weight: .semibold))
+                    .scaledFont(size: 15, weight: .semibold)
                     .foregroundStyle(Zen.shu)
             }
         }

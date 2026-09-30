@@ -84,7 +84,7 @@ struct BreathingView: View {
             VStack(alignment: .leading, spacing: 10) {
                 SoundPicker(scope: .breathing)
                 Text(tr("Plays softly while you breathe. Choose Off for silence.", "Läuft leise, während du atmest. Mit Aus bleibt es still."))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -99,10 +99,10 @@ struct BreathingView: View {
             VStack(alignment: .leading, spacing: 22) {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(tr("Breathe", "Atmen"))
-                        .font(.display(34))
+                        .displayFont(34)
                         .foregroundStyle(Zen.ink)
                     Text(tr("A few slow breaths calm the pull to reach for your phone.", "Ein paar ruhige Atemzüge nehmen dem Griff zum Handy den Zug."))
-                        .font(.system(size: 15))
+                        .scaledFont(size: 15)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -140,7 +140,7 @@ struct BreathingView: View {
 
                 if day.breath.sessions > 0 {
                     Label(statsLine, systemImage: "chart.bar.fill")
-                        .font(.system(size: 14, weight: .medium))
+                        .scaledFont(size: 14, weight: .medium)
                         .foregroundStyle(Zen.inkSoft)
                 }
 
@@ -174,10 +174,10 @@ struct BreathingView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 8) {
                         Text(option.title)
-                            .font(.system(size: 17, weight: .semibold))
+                            .scaledFont(size: 17, weight: .semibold)
                             .foregroundStyle(Zen.ink)
                         Text(option.rhythm)
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .scaledFont(size: 13, weight: .semibold, design: .rounded)
                             .monospacedDigit()
                             .foregroundStyle(Zen.shu)
                             .padding(.horizontal, 8)
@@ -185,7 +185,7 @@ struct BreathingView: View {
                             .background(Zen.shu.opacity(0.12), in: Capsule())
                     }
                     Text(option.summary)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -214,7 +214,7 @@ struct BreathingView: View {
             VStack(spacing: 28) {
                 Spacer(minLength: 0)
                 Text(pattern.title + "  " + pattern.rhythm)
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 14, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.inkSoft)
                 ZStack {
                     ProgressRing(progress: min(1, elapsed / length), lineWidth: 4, tint: Zen.shu.opacity(0.5))
@@ -222,23 +222,30 @@ struct BreathingView: View {
                         .padding(18)
                 }
                 .frame(width: 300, height: 300)
+                .accessibilityHidden(true)
                 VStack(spacing: 8) {
                     Text(state.kind.label)
-                        .font(.display(32))
+                        .displayFont(32)
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.opacity)
                         .animation(.easeInOut(duration: 0.3), value: state.tick)
                     Text("\(state.secondsLeft)")
-                        .font(.display(20, weight: .semibold))
+                        .displayFont(20, weight: .semibold)
                         .monospacedDigit()
                         .foregroundStyle(Zen.inkSoft)
                 }
+                .accessibilityMeter(state.kind.label, value: state.secondsLeft == 1
+                                    ? tr("1 second", "1 Sekunde")
+                                    : tr("\(state.secondsLeft) seconds", "\(state.secondsLeft) Sekunden"))
+                .accessibilityAddTraits(.updatesFrequently)
                 Spacer(minLength: 0)
                 VStack(spacing: 14) {
                     Text(tr("\(Self.clock(left)) left", "noch \(Self.clock(left))"))
-                        .font(.system(size: 14, weight: .medium))
+                        .scaledFont(size: 14, weight: .medium)
                         .monospacedDigit()
-                        .foregroundStyle(Zen.inkFaint)
+                        .foregroundStyle(Zen.inkSoft)
+                        .accessibilityLabel(tr("\(Spoken.duration(TimeInterval(left))) left", "noch \(Spoken.duration(TimeInterval(left)))"))
+                    // A separate element, so the button stays reachable.
                     Button(tr("End early", "Früher beenden")) { stop() }
                         .buttonStyle(.quiet)
                 }
@@ -246,7 +253,6 @@ struct BreathingView: View {
                 .padding(.bottom, 24)
             }
             .frame(maxWidth: .infinity)
-            .accessibilityElement(children: .combine)
         }
     }
 
@@ -259,13 +265,14 @@ struct BreathingView: View {
                     .font(.system(size: 48, weight: .bold))
                     .foregroundStyle(Zen.matcha)
             }
+            .accessibilityHidden(true)
             VStack(spacing: 8) {
                 Text(tr("Well breathed", "Gut geatmet"))
-                    .font(.display(30))
+                    .displayFont(30)
                     .foregroundStyle(Zen.ink)
                 Text(tr("\(Self.clock(seconds)) of calm. Session \(day.breathSessionsToday) today.",
                         "\(Self.clock(seconds)) Ruhe. Heute Übung Nummer \(day.breathSessionsToday)."))
-                    .font(.system(size: 16))
+                    .scaledFont(size: 16)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
             }
@@ -349,10 +356,12 @@ struct BreathingView: View {
                 finish(seconds: Int(length), record: true)
                 return
             }
-            let tick = pattern.state(at: elapsed).tick
-            if tick != lastTick {
+            let state: BreathState = pattern.state(at: elapsed)
+            if state.tick != lastTick {
                 if lastTick >= 0 { Haptics.tap() }
-                lastTick = tick
+                lastTick = state.tick
+                // What the haptic tap is for sighted users, spoken for VoiceOver.
+                AccessibilityNotification.Announcement(state.kind.label).post()
             }
             try? await Task.sleep(for: .milliseconds(100))
         }
@@ -367,9 +376,14 @@ struct BreathingView: View {
 struct BreathCircle: View {
     var openness: Double
     var tint: Color = Zen.shu
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        let o = CGFloat(min(1, max(0, openness)))
+        let raw = CGFloat(min(1, max(0, openness)))
+        // Reduce Motion: the circles keep their size and the core brightens
+        // on the in-breath instead of swelling.
+        let o: CGFloat = reduceMotion ? 1 : raw
+        let glow: Double = reduceMotion ? 0.4 + 0.6 * Double(raw) : 1
         ZStack {
             Circle()
                 .fill(tint.opacity(0.10))
@@ -381,6 +395,7 @@ struct BreathCircle: View {
                 .fill(Zen.accentGradient)
                 .scaleEffect(0.34 + 0.20 * o)
                 .shadow(color: tint.opacity(0.35), radius: 24, y: 8)
+                .opacity(glow)
         }
     }
 }

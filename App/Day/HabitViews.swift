@@ -6,29 +6,33 @@ import SwiftUI
 /// counts one up, a long press offers one less.
 struct HabitRow: View {
     @Environment(DayStore.self) private var day
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let habit: Habit
 
     var body: some View {
         let key = day.todayKey
         let done = habit.isDone(on: key)
         let streak = habit.streak()
+        let tapAnimation: Animation = reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.4, dampingFraction: 0.75)
         Button {
             let wasDone = done
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) { day.tap(habit) }
+            withAnimation(tapAnimation) { day.tap(habit) }
             let nowDone = day.habits.first(where: { $0.id == habit.id })?.isDone(on: key) ?? false
             if nowDone && !wasDone { Haptics.success() } else { Haptics.tap() }
         } label: {
             HStack(spacing: 14) {
                 HabitMark(habit: habit, key: key)
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(habit.title)
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                         .strikethrough(done && !habit.isCounter, color: Zen.inkFaint)
                     detail(key: key, streak: streak)
                 }
                 Spacer(minLength: 8)
                 trailing(done: done, key: key)
+                    .accessibilityHidden(true)
             }
             .contentShape(Rectangle())
         }
@@ -62,7 +66,7 @@ struct HabitRow: View {
                 Text(tr("Tap when done", "Tippen, wenn erledigt"))
             }
         }
-        .font(.system(size: 13, weight: .medium))
+        .scaledFont(size: 13, weight: .medium)
         .foregroundStyle(Zen.inkSoft)
     }
 
@@ -76,7 +80,7 @@ struct HabitRow: View {
                 .background(Zen.shu.opacity(0.12), in: Circle())
         } else {
             Image(systemName: done ? "checkmark.circle.fill" : "circle")
-                .font(.system(size: 26, weight: .regular))
+                .scaledFont(size: 26, weight: .regular)
                 .foregroundStyle(done ? Zen.matcha : Zen.inkFaint)
                 .contentTransition(.symbolEffect(.replace))
         }
@@ -131,10 +135,10 @@ struct HabitStarterCard: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(tr("Small habits", "Kleine Gewohnheiten"))
-                        .font(.display(20))
+                        .displayFont(20)
                         .foregroundStyle(Zen.ink)
                     Text(tr("A few tiny things, every day. Start with these or make your own.", "Ein paar kleine Dinge, jeden Tag. Fang mit diesen an oder leg eigene an."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -165,12 +169,13 @@ private struct FlowChips: View {
             ForEach(items) { habit in
                 HStack(spacing: 8) {
                     Image(systemName: habit.symbol)
-                        .font(.system(size: 13, weight: .semibold))
+                        .scaledFont(size: 13, weight: .semibold)
                         .foregroundStyle(Zen.shu)
+                        .accessibilityHidden(true)
                     Text(habit.title)
-                        .font(.system(size: 14, weight: .medium))
+                        .scaledFont(size: 14, weight: .medium)
                         .foregroundStyle(Zen.ink)
-                        .lineLimit(1)
+                        .lineLimit(2)
                         .minimumScaleFactor(0.8)
                 }
                 .padding(.vertical, 9)
@@ -200,7 +205,7 @@ struct HabitsView: View {
                             .frame(height: 140)
                             .accessibilityHidden(true)
                         Text(tr("No habits yet", "Noch keine Gewohnheiten"))
-                            .font(.display(20))
+                            .displayFont(20)
                             .foregroundStyle(Zen.ink)
                         Button(tr("Add the starter set", "Startset übernehmen")) {
                             withAnimation { day.adoptDefaults() }
@@ -221,18 +226,19 @@ struct HabitsView: View {
                                 IconBadge(systemName: habit.symbol, tint: Zen.shu, size: 38)
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(habit.title)
-                                        .font(.system(size: 17, weight: .semibold))
+                                        .scaledFont(size: 17, weight: .semibold)
                                         .foregroundStyle(Zen.ink)
                                     Text(HabitEditor.targetText(habit.target))
-                                        .font(.system(size: 13))
+                                        .scaledFont(size: 13)
                                         .foregroundStyle(Zen.inkSoft)
                                 }
                                 Spacer()
                                 let streak = habit.streak()
                                 if streak > 0 {
                                     Label("\(streak)", systemImage: "flame.fill")
-                                        .font(.system(size: 14, weight: .semibold))
+                                        .scaledFont(size: 14, weight: .semibold)
                                         .foregroundStyle(Zen.kin)
+                                        .accessibilityLabel(tr("\(streak) \(streak == 1 ? "day" : "days") in a row", "\(streak) \(streak == 1 ? "Tag" : "Tage") am Stück"))
                                 }
                             }
                             .padding(.vertical, 4)
@@ -301,10 +307,10 @@ struct HabitEditor: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         Text(tr("Name", "Name"))
-                            .font(.system(size: 13, weight: .semibold))
+                            .scaledFont(size: 13, weight: .semibold)
                             .foregroundStyle(Zen.inkSoft)
                         TextField(tr("e.g. Stretch", "z. B. Dehnen"), text: $habit.title)
-                            .font(.system(size: 17))
+                            .scaledFont(size: 17)
                             .padding(14)
                             .background(Zen.sand, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     }
@@ -312,7 +318,7 @@ struct HabitEditor: View {
 
                     VStack(alignment: .leading, spacing: 12) {
                         Text(tr("Symbol", "Symbol"))
-                            .font(.system(size: 13, weight: .semibold))
+                            .scaledFont(size: 13, weight: .semibold)
                             .foregroundStyle(Zen.inkSoft)
                         symbolGrid
                     }
@@ -320,17 +326,17 @@ struct HabitEditor: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         Text(tr("Daily target", "Tagesziel"))
-                            .font(.system(size: 13, weight: .semibold))
+                            .scaledFont(size: 13, weight: .semibold)
                             .foregroundStyle(Zen.inkSoft)
                         Stepper(value: $habit.target, in: 1...20) {
                             Text(Self.targetText(habit.target))
-                                .font(.system(size: 17, weight: .semibold))
+                                .scaledFont(size: 17, weight: .semibold)
                                 .foregroundStyle(Zen.ink)
                                 .monospacedDigit()
                         }
                         Text(tr("More than once turns it into a counter, like glasses of water.", "Mehr als einmal macht daraus einen Zähler, etwa für Gläser Wasser."))
-                            .font(.system(size: 13))
-                            .foregroundStyle(Zen.inkFaint)
+                            .scaledFont(size: 13)
+                            .foregroundStyle(Zen.inkSoft)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     .zenCard()
@@ -385,6 +391,7 @@ struct HabitEditor: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(spokenSymbolName(symbol))
                 .accessibilityAddTraits(isOn ? .isSelected : [])
             }
         }

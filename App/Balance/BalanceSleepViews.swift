@@ -24,10 +24,10 @@ struct SleepSection: View {
         let plan: SleepPlan = balance.settings.sleep
         return VStack(alignment: .leading, spacing: 2) {
             Text(SleepPlan.durationText(plan.opportunity))
-                .font(.display(26))
+                .displayFont(26)
                 .foregroundStyle(Zen.ink)
             Text(tr("of sleep opportunity", "Zeit zum Schlafen"))
-                .font(.system(size: 12, weight: .semibold))
+                .scaledFont(size: 12, weight: .semibold)
                 .foregroundStyle(Zen.inkSoft)
         }
         .padding(.vertical, 10)
@@ -85,7 +85,7 @@ struct SleepSection: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Text(tr("Wind-down before bed", "Runterfahren vor dem Schlafen"))
-                    .font(.system(size: 15, weight: .semibold))
+                    .scaledFont(size: 15, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                 HStack(spacing: 8) {
                     ForEach(SleepPlan.windDownChoices, id: \.self) { minutes in
@@ -102,10 +102,10 @@ struct SleepSection: View {
             Toggle(isOn: reminder) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(tr("Remind me to wind down", "Erinner mich ans Runterfahren"))
-                        .font(.system(size: 15, weight: .semibold))
+                        .scaledFont(size: 15, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(tr("Every day at \(SleepPlan.clock(plan.windDownStart)).", "Jeden Tag um \(SleepPlan.clock(plan.windDownStart))."))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                 }
             }
@@ -121,7 +121,7 @@ struct SleepSection: View {
             IconBadge(systemName: icon, tint: tint, size: 36)
             DatePicker(selection: selection, displayedComponents: .hourAndMinute) {
                 Text(title)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             }
             .environment(\.locale, Loc.locale)
@@ -142,13 +142,14 @@ struct SleepSection: View {
         return VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .firstTextBaseline) {
                 Text(tr("Tonight's wind-down", "Runterfahren heute Abend"))
-                    .font(.display(18))
+                    .displayFont(18)
                     .foregroundStyle(Zen.ink)
                 Spacer()
                 Text("\(ticked.count)/\(WindDownItem.allCases.count)")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 14, weight: .semibold, design: .rounded)
                     .monospacedDigit()
                     .foregroundStyle(ticked.count == WindDownItem.allCases.count ? Zen.matcha : Zen.inkSoft)
+                    .accessibilityLabel(tr("\(ticked.count) of \(WindDownItem.allCases.count) done", "\(ticked.count) von \(WindDownItem.allCases.count) erledigt"))
             }
             ForEach(WindDownItem.allCases) { item in
                 checkRow(item, on: ticked.contains(item))
@@ -169,19 +170,21 @@ struct SleepSection: View {
             HStack(spacing: 12) {
                 IconBadge(systemName: item.symbol, tint: Zen.shu, size: 36, filled: on)
                 Text(item.title)
-                    .font(.system(size: 16, weight: .medium))
+                    .scaledFont(size: 16, weight: .medium)
                     .foregroundStyle(on ? Zen.inkSoft : Zen.ink)
                     .strikethrough(on, color: Zen.inkFaint)
                 Spacer(minLength: 0)
                 Image(systemName: on ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 22))
+                    .scaledFont(size: 22)
                     .foregroundStyle(on ? Zen.matcha : Zen.inkFaint)
                     .contentTransition(.symbolEffect(.replace))
+                    .accessibilityHidden(true)
             }
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(on ? .isSelected : [])
+        .accessibilityValue(on ? tr("Done", "Erledigt") : "")
     }
 
     // MARK: Night boundary
@@ -192,11 +195,11 @@ struct SleepSection: View {
                 IconBadge(systemName: "shield.lefthalf.filled", tint: Zen.shu, size: 44)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(tr("Let the night guard itself", "Lass die Nacht auf sich aufpassen"))
-                        .font(.display(18))
+                        .displayFont(18)
                         .foregroundStyle(Zen.ink)
                     Text(tr("The Night template under Boundaries keeps the feeds closed from 22:00 to 07:00, so the wind-down is not a fight with your thumb.",
                             "Die Vorlage Nacht unter Grenzen hält die Feeds von 22:00 bis 07:00 geschlossen, damit das Runterfahren kein Kampf mit deinem Daumen wird."))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }

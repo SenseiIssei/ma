@@ -87,12 +87,12 @@ struct CreateTopicView: View {
             IconBadge(systemName: "sparkles", tint: Zen.ai, size: 46)
             VStack(alignment: .leading, spacing: 4) {
                 Text(tr("Let Apple Intelligence write the cards", "Lass Apple Intelligence die Karten schreiben"))
-                    .font(.display(19, weight: .semibold))
+                    .displayFont(19, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(tr("Questions, answers, wrong options, examples and short notes. You check them before anything is saved.",
                         "Fragen, Antworten, falsche Optionen, Beispiele und kurze Notizen. Du siehst sie dir an, bevor etwas gespeichert wird."))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 AIPrivacyLabel()
@@ -107,7 +107,7 @@ struct CreateTopicView: View {
             VStack(alignment: .leading, spacing: 8) {
                 fieldTitle(tr("What do you want to learn?", "Was möchtest du lernen?"))
                 TextField(tr("e.g. Photosynthesis or Spanish food words", "z. B. Fotosynthese oder spanische Wörter fürs Essen"), text: $topic, axis: .vertical)
-                    .font(.system(size: 18, weight: .medium))
+                    .scaledFont(size: 18, weight: .medium)
                     .lineLimit(1...3)
                     .focused($typing)
                     .submitLabel(.done)
@@ -139,8 +139,8 @@ struct CreateTopicView: View {
                 }
                 Text(tr("More cards take longer. Around half a minute per ten is normal.",
                         "Mehr Karten dauern länger. Etwa eine halbe Minute pro zehn ist normal."))
-                    .font(.system(size: 13))
-                    .foregroundStyle(Zen.inkFaint)
+                    .scaledFont(size: 13)
+                    .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -174,16 +174,18 @@ struct CreateTopicView: View {
                     Text(cards == 0
                          ? tr("Writing the first cards…", "Die ersten Karten entstehen…")
                          : tr("\(cards) of \(count) cards written…", "\(cards) von \(count) Karten geschrieben…"))
-                        .font(.system(size: 15, weight: .medium))
+                        .scaledFont(size: 15, weight: .medium)
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.numericText())
                 }
                 InkProgress(value: max(0.04, ratio), color: Zen.ai, height: 8)
+                    // The line above already says how many cards are written.
+                    .accessibilityHidden(true)
             }
             .zenCard()
         case .failed(let message):
             Label(message, systemImage: "exclamationmark.circle")
-                .font(.system(size: 14))
+                .scaledFont(size: 14)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(14)
@@ -196,7 +198,7 @@ struct CreateTopicView: View {
 
     private func fieldTitle(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 13, weight: .semibold))
+            .scaledFont(size: 13, weight: .semibold)
             .foregroundStyle(Zen.inkSoft)
             .textCase(.uppercase)
     }
@@ -209,10 +211,10 @@ struct CreateTopicView: View {
                 Hanko(text: draft.symbol, size: 56)
                 VStack(alignment: .leading, spacing: 6) {
                     TextField(tr("Title", "Titel"), text: draftBinding(\.title))
-                        .font(.display(22))
+                        .displayFont(22)
                         .foregroundStyle(Zen.ink)
                     TextField(tr("What is it about?", "Worum geht es?"), text: draftBinding(\.subtitle))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                 }
             }
@@ -220,7 +222,7 @@ struct CreateTopicView: View {
 
             if let shortfall = draft.shortfall {
                 Label(shortfall, systemImage: "info.circle")
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -315,7 +317,7 @@ struct AICardPreviewList: View {
         VStack(alignment: .leading, spacing: 10) {
             SectionHeader(icon: "rectangle.stack.fill", title: tr("\(cards.count) cards", "\(cards.count) Karten"))
             Text(tr("Tap the cross to drop a card you do not want.", "Tipp aufs Kreuz, um eine Karte wegzulassen."))
-                .font(.system(size: 13))
+                .scaledFont(size: 13)
                 .foregroundStyle(Zen.inkSoft)
             VStack(spacing: 10) {
                 ForEach(cards) { card in
@@ -339,29 +341,31 @@ struct AICardPreviewRow: View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 6) {
                 Text(card.prompt)
-                    .font(ExerciseEngine.containsCJK(card.prompt) ? .kanji(18, bold: true) : .system(size: 16, weight: .semibold))
+                    .cardFont(for: card.prompt, kanji: 18, bold: true, size: 16, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(card.answer)
-                    .font(ExerciseEngine.containsCJK(card.answer) ? .kanji(17, bold: true) : .system(size: 16, weight: .bold, design: .rounded))
+                    .cardFont(for: card.answer, kanji: 17, bold: true, size: 16, weight: .bold, design: .rounded)
                     .foregroundStyle(Zen.shu)
                 if !card.distractors.isEmpty {
                     let wrong = card.distractors.joined(separator: " · ")
                     Label(wrong, systemImage: "xmark")
-                        .font(.system(size: 13))
-                        .foregroundStyle(Zen.inkFaint)
+                        .scaledFont(size: 13)
+                        .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityLabel(tr("Wrong options: \(card.distractors.joined(separator: ", "))",
+                                               "Falsche Optionen: \(card.distractors.joined(separator: ", "))"))
                 }
                 if let example = card.example {
                     Text(TeachCard.highlighted(example, answer: card.answer))
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 if let note = card.note {
                     Text(note)
-                        .font(.system(size: 13))
-                        .foregroundStyle(Zen.inkFaint)
+                        .scaledFont(size: 13)
+                        .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }

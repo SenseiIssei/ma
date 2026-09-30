@@ -139,11 +139,12 @@ struct PageTitle: View {
                     .accessibilityHidden(true)
             }
             Text(title)
-                .font(.display(34))
+                .displayFont(34)
                 .foregroundStyle(Zen.ink)
+                .accessibilityAddTraits(.isHeader)
             if let subtitle {
                 Text(subtitle)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }

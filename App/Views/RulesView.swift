@@ -121,7 +121,7 @@ struct RulesView: View {
         VStack(alignment: .leading, spacing: 14) {
             Illustration(name: "IllustrationBlock", height: 150)
             Text(tr("No boundary yet. Start with a template: social media, a calm morning, deep work or the night.", "Noch keine Grenze. Fang mit einer Vorlage an: soziale Medien, ruhiger Morgen, konzentrierte Arbeit oder die Nacht."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -133,17 +133,17 @@ struct RulesView: View {
             HStack(spacing: 12) {
                 IconBadge(systemName: "hourglass", tint: Zen.kin)
                 Text(tr("Screen Time", "Bildschirmzeit"))
-                    .font(.system(size: 17, weight: .semibold))
+                    .scaledFont(size: 17, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             }
             if !BuildFlavor.screenTimeAvailable {
                 Text(BuildFlavor.previewNote)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             } else {
                 Text(tr("Ma needs Screen Time access, otherwise every boundary stays on paper.", "Ma braucht Zugriff auf Bildschirmzeit, sonst bleiben alle Grenzen nur auf dem Papier."))
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 Button(tr("Allow access", "Zugriff erlauben")) {
@@ -171,25 +171,31 @@ struct RuleCard: View {
                 IconBadge(systemName: rule.icon, tint: rule.isEnabled ? Zen.shu : Zen.inkFaint)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(rule.name)
-                        .font(.display(19, weight: .semibold))
+                        .displayFont(19, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(summary)
-                        .font(.system(size: 14))
+                        .scaledFont(size: 14)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+                // The card's tap gesture is invisible to VoiceOver; the title acts as the edit button.
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityHint(tr("Edit boundary", "Grenze bearbeiten"))
+                .accessibilityAction { edit() }
                 Spacer(minLength: 0)
                 Toggle("", isOn: Binding(get: { rule.isEnabled }, set: toggle))
                     .labelsHidden()
                     .tint(Zen.shu)
                     .disabled(locked && rule.isEnabled)
+                    .accessibilityLabel(rule.name)
             }
             HStack(spacing: 8) {
                 statusPill
                 if let pill = budgetPill { pill }
                 if rule.risingFriction && rule.allowsUnlock {
                     Image(systemName: "chart.line.uptrend.xyaxis")
-                        .font(.system(size: 12, weight: .semibold))
+                        .scaledFont(size: 12, weight: .semibold)
                         .foregroundStyle(Zen.kin)
                         .accessibilityLabel(tr("Rising friction", "Steigende Hürde"))
                 }
@@ -200,10 +206,11 @@ struct RuleCard: View {
                         Label(token)
                             .labelStyle(.iconOnly)
                             .frame(width: 30, height: 30)
+                            .accessibilityHidden(true)
                     }
                     if rule.selection.applicationTokens.count > 7 {
                         Text("+\(rule.selection.applicationTokens.count - 7)")
-                            .font(.system(size: 13, weight: .medium))
+                            .scaledFont(size: 13, weight: .medium)
                             .foregroundStyle(Zen.inkSoft)
                     }
                 }
@@ -218,7 +225,7 @@ struct RuleCard: View {
         let active = shielding && rule.isEnabled && !rule.isEmpty
         let tint: Color = active ? Zen.shu : Zen.inkSoft
         return Text(status)
-            .font(.system(size: 12, weight: .semibold))
+            .scaledFont(size: 12, weight: .semibold)
             .foregroundStyle(tint)
             .padding(.vertical, 5)
             .padding(.horizontal, 10)
@@ -230,7 +237,7 @@ struct RuleCard: View {
         let left = rule.unlocksLeft(usedToday: unlocksToday) ?? 0
         let tint: Color = left == 0 ? Zen.negative : Zen.inkSoft
         return Text(tr("\(unlocksToday) of \(limit) today", "\(unlocksToday) von \(limit) heute"))
-            .font(.system(size: 12, weight: .semibold))
+            .scaledFont(size: 12, weight: .semibold)
             .foregroundStyle(tint)
     }
 

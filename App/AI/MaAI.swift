@@ -134,11 +134,11 @@ enum MaAI {
 
 /// "Runs privately on your iPhone", with a lock. Shown next to every AI feature.
 struct AIPrivacyLabel: View {
-    var tint: Color = Zen.inkFaint
+    var tint: Color = Zen.inkSoft
 
     var body: some View {
         Label(MaAI.privacyLine, systemImage: "lock.iphone")
-            .font(.system(size: 12, weight: .medium))
+            .scaledFont(size: 12, weight: .medium)
             .foregroundStyle(tint)
     }
 }
@@ -153,10 +153,10 @@ struct AIUnavailableNote: View {
             IconBadge(systemName: icon, tint: Zen.kin, size: 34)
             VStack(alignment: .leading, spacing: 4) {
                 Text(tr("Apple Intelligence is not available", "Apple Intelligence ist nicht verfügbar"))
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .scaledFont(size: 15, weight: .semibold, design: .rounded)
                     .foregroundStyle(Zen.ink)
                 Text(MaAI.note(for: status))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }

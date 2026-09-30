@@ -70,7 +70,7 @@ struct RuleEditorView: View {
             HStack(spacing: 12) {
                 IconBadge(systemName: rule.icon, filled: true)
                 TextField(tr("Name", "Name"), text: $rule.name)
-                    .font(.display(20, weight: .semibold))
+                    .displayFont(20, weight: .semibold)
             }
             LazyVGrid(columns: iconColumns, spacing: 10) {
                 ForEach(iconChoices, id: \.self) { icon in
@@ -81,7 +81,8 @@ struct RuleEditorView: View {
                         IconBadge(systemName: icon, tint: rule.icon == icon ? Zen.shu : Zen.inkSoft, size: 40, filled: rule.icon == icon)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel(icon)
+                    .accessibilityLabel(spokenSymbolName(icon))
+                    .accessibilityAddTraits(rule.icon == icon ? .isSelected : [])
                 }
             }
             .padding(.vertical, 4)
@@ -155,7 +156,7 @@ struct RuleEditorView: View {
             if on { rule.schedule?.weekdays.remove(day) } else { rule.schedule?.weekdays.insert(day) }
         } label: {
             Text(RuleSchedule.dayName(day))
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .frame(maxWidth: .infinity, minHeight: 36)
                 .foregroundStyle(on ? Color.white : Zen.ink)
                 .background(on ? Zen.shu : Zen.sand, in: Circle())
@@ -219,7 +220,7 @@ struct RuleEditorView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(tr("Rising friction", "Steigende Hürde"))
                         Text(risingExample)
-                            .font(.system(size: 13))
+                            .scaledFont(size: 13)
                             .foregroundStyle(Zen.inkSoft)
                     }
                 }
@@ -230,7 +231,7 @@ struct RuleEditorView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(tr("Wait before the questions", "Warten vor den Fragen"))
                         Text(tr("A \(waitDefault) second countdown that cannot be skipped.", "Ein Countdown von \(waitDefault) Sekunden, den du nicht überspringen kannst."))
-                            .font(.system(size: 13))
+                            .scaledFont(size: 13)
                             .foregroundStyle(Zen.inkSoft)
                     }
                 }

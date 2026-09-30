@@ -108,6 +108,7 @@ struct GateView: View {
             if stage != .quiz && stage != .blocked {
                 InkProgress(value: stageProgress)
                     .frame(maxWidth: 160)
+                    .accessibilityMeter(tr("Progress", "Fortschritt"), value: stageProgress.formatted(.percent.precision(.fractionLength(0))))
             }
             Spacer()
         }
@@ -131,18 +132,18 @@ struct GateView: View {
             if let token = pending?.application {
                 Label(token)
                     .labelStyle(.titleAndIcon)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
             } else if let web = pending?.webDomain {
                 Label(web)
                     .labelStyle(.titleAndIcon)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
             } else if let app = shortcutApp, app != .any {
                 Text(app.displayName)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             } else {
                 Text(subjectText)
-                    .font(.system(size: 16, weight: .semibold))
+                    .scaledFont(size: 16, weight: .semibold)
                     .foregroundStyle(Zen.ink)
             }
         }
@@ -172,19 +173,20 @@ struct GateView: View {
             BreathingEnso(inhale: inhale, tint: Zen.shu)
                 .frame(width: 220, height: 220)
             VStack(spacing: 8) {
-                Text(breaths % 2 == 0 ? tr("Breathe in", "Atme ein") : tr("Breathe out", "Atme aus"))
-                    .font(.display(28, weight: .semibold))
+                Text(breathPhase)
+                    .displayFont(28, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                     .contentTransition(.opacity)
                     .animation(.easeInOut(duration: 0.6), value: breaths)
+                    .accessibilityAddTraits(.updatesFrequently)
                 Text(breatheLine)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 30)
                 if noQuestions {
                     Text(tr("Switch on at least one topic under Learn. Without questions the lockdown stays.", "Schalte unter Lernen mindestens ein Thema ein. Ohne Fragen bleibt die Sperre."))
-                        .font(.system(size: 14, weight: .medium))
+                        .scaledFont(size: 14, weight: .medium)
                         .foregroundStyle(Zen.negative)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 30)
@@ -203,8 +205,21 @@ struct GateView: View {
                 try? await Task.sleep(for: .seconds(4))
                 breaths += 1
                 withAnimation(.easeInOut(duration: 4)) { inhale.toggle() }
+                announceBreath()
             }
         }
+    }
+
+    private var breathPhase: String {
+        breaths % 2 == 0 ? tr("Breathe in", "Atme ein") : tr("Breathe out", "Atme aus")
+    }
+
+    /// VoiceOver hears each phase until the questions are ready, then stays
+    /// quiet so the buttons can be read in peace.
+    private func announceBreath() {
+        let waiting: Bool = (waitUntil ?? .distantPast) > Date()
+        guard breaths <= 2 || waiting else { return }
+        AccessibilityNotification.Announcement(breathPhase).post()
     }
 
     private var breatheLine: String {
@@ -259,18 +274,18 @@ struct GateView: View {
             Spacer()
             IconBadge(systemName: "hand.raised.fill", tint: Zen.shu, size: 64)
             Text(tr("You have earned it.\nDo you still want it?", "Du hast es dir verdient.\nWillst du es noch?"))
-                .font(.display(28))
+                .displayFont(28)
                 .foregroundStyle(Zen.ink)
                 .multilineTextAlignment(.center)
             subject
             if let session, !session.exercises.isEmpty {
                 Text(tr("\(session.correct) right, \(session.wrong) missed", "\(session.correct) richtig, \(session.wrong) daneben"))
-                    .font(.system(size: 14))
+                    .scaledFont(size: 14)
                     .foregroundStyle(Zen.inkSoft)
             }
             if let note = budgetNote {
                 Text(note)
-                    .font(.system(size: 14, weight: .medium))
+                    .scaledFont(size: 14, weight: .medium)
                     .foregroundStyle(Zen.kin)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
@@ -324,11 +339,12 @@ struct GateView: View {
                     .foregroundStyle(Zen.matcha)
             }
             .frame(width: 150, height: 150)
+            .accessibilityHidden(true)
             Text(tr("Open until \(openUntil.map(BlockingFormat.time) ?? "")", "Offen bis \(openUntil.map(BlockingFormat.time) ?? "")"))
-                .font(.display(26))
+                .displayFont(26)
                 .foregroundStyle(Zen.ink)
             Text(tr("After that the boundary closes again by itself. Just switch to the app now.", "Danach schließt sich die Grenze von selbst wieder. Wechsle jetzt einfach zur App."))
-                .font(.system(size: 15))
+                .scaledFont(size: 15)
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
@@ -364,7 +380,7 @@ struct GateView: View {
     private var appPicker: some View {
         VStack(spacing: 10) {
             Text(tr("Back to", "Zurück zu"))
-                .font(.system(size: 14))
+                .scaledFont(size: 14)
                 .foregroundStyle(Zen.inkSoft)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 96), spacing: 8)], spacing: 8) {
                 ForEach(GuardedApp.allCases.filter { $0 != .any }, id: \.self) { app in
@@ -389,11 +405,11 @@ struct GateView: View {
                     .padding(.horizontal, 40)
             }
             Text(blockedTitle)
-                .font(.display(28))
+                .displayFont(28)
                 .foregroundStyle(Zen.ink)
                 .multilineTextAlignment(.center)
             Text(blockedText)
-                .font(.system(size: 16))
+                .scaledFont(size: 16)
                 .foregroundStyle(Zen.inkSoft)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
@@ -421,13 +437,19 @@ struct GateView: View {
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(Zen.shu)
                     Text(BlockingFormat.clock(left))
-                        .font(.display(30, weight: .semibold))
+                        .displayFont(30, weight: .semibold)
                         .monospacedDigit()
                         .foregroundStyle(Zen.ink)
                         .contentTransition(.numericText(countsDown: true))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
+                .padding(.horizontal, 22)
             }
             .frame(width: 200, height: 200)
+            .dynamicTypeSize(...denseTypeLimit)
+            .accessibilityMeter(tr("Lockdown", "Sperre"), value: tr("\(Spoken.duration(left)) left", "noch \(Spoken.duration(left))"))
+            .accessibilityAddTraits(.updatesFrequently)
         }
     }
 

@@ -78,11 +78,11 @@ struct WeekReviewView: View {
             Illustration(name: "IllustrationEvening", height: 190)
             VStack(alignment: .leading, spacing: 4) {
                 Text(rangeText.uppercased(with: Loc.locale))
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .tracking(0.6)
                     .foregroundStyle(Zen.inkSoft)
                 Text(tr("Your week", "Deine Woche"))
-                    .font(.display(34))
+                    .displayFont(34)
                     .foregroundStyle(Zen.ink)
             }
         }
@@ -93,7 +93,7 @@ struct WeekReviewView: View {
         HStack(alignment: .top, spacing: 14) {
             IconBadge(systemName: "moon.stars.fill", tint: Zen.shu, size: 44)
             Text(summary.sentence)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .scaledFont(size: 18, weight: .semibold, design: .rounded)
                 .foregroundStyle(Zen.ink)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -107,7 +107,7 @@ struct WeekReviewView: View {
         return VStack(alignment: .leading, spacing: 12) {
             SectionHeader(icon: "chart.bar.fill", title: tr("With Ma", "Mit Ma")) {
                 Text(tr("vs. last week", "zur Vorwoche"))
-                    .font(.system(size: 13, weight: .medium))
+                    .scaledFont(size: 13, weight: .medium)
                     .foregroundStyle(Zen.inkSoft)
             }
             LazyVGrid(columns: columns, spacing: 12) {
@@ -167,8 +167,8 @@ struct WeekReviewView: View {
                     .frame(height: 700)
                 Text(tr("These numbers come from iOS and stay on this iPhone. Ma itself never sees them.",
                         "Diese Zahlen kommen von iOS und bleiben auf diesem iPhone. Ma selbst sieht sie nie."))
-                    .font(.system(size: 12))
-                    .foregroundStyle(Zen.inkFaint)
+                    .scaledFont(size: 12)
+                    .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             } else {
                 screenTimeMissing
@@ -187,7 +187,7 @@ struct WeekReviewView: View {
             HStack(alignment: .top, spacing: 14) {
                 IconBadge(systemName: "hourglass", tint: Zen.inkSoft, size: 44)
                 Text(text)
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -250,18 +250,19 @@ private struct MetricCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Image(systemName: icon)
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(tint)
+                .accessibilityHidden(true)
             Text(format(metric.current))
-                .font(.display(24))
+                .displayFont(24)
                 .monospacedDigit()
                 .foregroundStyle(Zen.ink)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
             Text(label)
-                .font(.system(size: 12, weight: .medium))
+                .scaledFont(size: 12, weight: .medium)
                 .foregroundStyle(Zen.inkSoft)
-                .lineLimit(1)
+                .lineLimit(2)
                 .minimumScaleFactor(0.8)
             TrendBadge(metric: metric, format: format)
         }
@@ -284,21 +285,29 @@ private struct TrendBadge: View {
         case .down: symbol = "arrow.down"
         case .same: symbol = "equal"
         }
-        let color: Color = metric.improved ? Zen.matcha : (metric.worsened ? Zen.kin : Zen.inkFaint)
+        let color: Color = metric.improved ? Zen.matcha : (metric.worsened ? Zen.kin : Zen.inkSoft)
         let amount: String = metric.trend == .same
             ? tr("same", "gleich")
             : format(abs(metric.delta))
         let before: String = tr("last week \(format(metric.previous))", "Vorwoche \(format(metric.previous))")
+        // The arrow carries the direction on screen; VoiceOver needs it in words.
+        let spoken: String
+        switch metric.trend {
+        case .up: spoken = tr("\(amount) more", "\(amount) mehr")
+        case .down: spoken = tr("\(amount) less", "\(amount) weniger")
+        case .same: spoken = tr("same", "gleich")
+        }
 
         return VStack(alignment: .leading, spacing: 2) {
             Label(amount, systemImage: symbol)
-                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .scaledFont(size: 13, weight: .bold, design: .rounded)
                 .foregroundStyle(color)
                 .labelStyle(TightLabel())
+                .accessibilityLabel(spoken)
             Text(before)
-                .font(.system(size: 11))
-                .foregroundStyle(Zen.inkFaint)
-                .lineLimit(1)
+                .scaledFont(size: 11)
+                .foregroundStyle(Zen.inkSoft)
+                .lineLimit(2)
                 .minimumScaleFactor(0.8)
         }
         .padding(.top, 2)
@@ -327,15 +336,15 @@ private struct HighlightCard: View {
             IconBadge(systemName: icon, tint: tint, size: 36)
             VStack(alignment: .leading, spacing: 2) {
                 Text(label)
-                    .font(.system(size: 12, weight: .semibold))
+                    .scaledFont(size: 12, weight: .semibold)
                     .foregroundStyle(Zen.inkSoft)
                 Text(title)
-                    .font(.display(19, weight: .semibold))
+                    .displayFont(19, weight: .semibold)
                     .foregroundStyle(Zen.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                 Text(detail)
-                    .font(.system(size: 12))
+                    .scaledFont(size: 12)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }

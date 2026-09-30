@@ -80,7 +80,7 @@ struct FriendsView: View {
         VStack(alignment: .leading, spacing: 18) {
             Text(tr("Keep each other going, without a feed. A circle of up to 20 people sees how your day went in numbers. No posts, no messages, no likes.",
                     "Haltet euch gegenseitig bei der Stange, ohne Feed. Ein Kreis aus bis zu 20 Leuten sieht in Zahlen, wie dein Tag lief. Keine Posts, keine Nachrichten, keine Likes."))
-                .font(.system(size: 16))
+                .scaledFont(size: 16)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
 
@@ -95,7 +95,7 @@ struct FriendsView: View {
                     FriendsFactRow(icon: "leaf", text: tr("How many habits you ticked off, only the count", "Wie viele Gewohnheiten du abgehakt hast, nur die Zahl"))
                     Text(tr("One set of numbers per day. The server keeps them for 30 days at most.",
                             "Eine Reihe Zahlen pro Tag. Der Server behält sie höchstens 30 Tage."))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -112,7 +112,7 @@ struct FriendsView: View {
                     FriendsFactRow(icon: "location.slash", text: tr("Where you are", "Wo du bist"), tint: Zen.matcha)
                     Text(tr("There is no account. Your phone makes a random key and keeps it in the Keychain. You can delete everything on the server with one tap.",
                             "Es gibt kein Konto. Dein Handy erzeugt einen zufälligen Schlüssel und bewahrt ihn im Schlüsselbund auf. Mit einem Tipp löschst du alles auf dem Server."))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -126,11 +126,11 @@ struct FriendsView: View {
             Toggle(isOn: sharingBinding) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(tr("Share my daily numbers", "Meine Tageszahlen teilen"))
-                        .font(.system(size: 17, weight: .semibold))
+                        .scaledFont(size: 17, weight: .semibold)
                         .foregroundStyle(Zen.ink)
                     Text(tr("Off by default. Nothing is sent until you switch this on.",
                             "Standardmäßig aus. Nichts wird gesendet, bevor du das einschaltest."))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -167,12 +167,17 @@ struct FriendsView: View {
             FriendAvatarBadge(avatar: store.profile?.avatar ?? FriendAvatar.fallback, size: 52, highlighted: true)
             VStack(alignment: .leading, spacing: 3) {
                 Text(store.profile?.nickname ?? "")
-                    .font(.display(20))
+                    .displayFont(20)
                     .foregroundStyle(Zen.ink)
                 Text(tr("Sharing your daily numbers", "Du teilst deine Tageszahlen"))
-                    .font(.system(size: 13))
+                    .scaledFont(size: 13)
                     .foregroundStyle(Zen.inkSoft)
             }
+            // The card's tap gesture is invisible to VoiceOver; the name acts as the button.
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityHint(tr("Edit profile", "Profil bearbeiten"))
+            .accessibilityAction { profileSheet = .edit }
             Spacer(minLength: 8)
             Toggle("", isOn: sharingBinding)
                 .labelsHidden()
@@ -182,7 +187,6 @@ struct FriendsView: View {
         .zenCard()
         .contentShape(Rectangle())
         .onTapGesture { profileSheet = .edit }
-        .accessibilityAction(named: tr("Edit profile", "Profil bearbeiten")) { profileSheet = .edit }
     }
 
     private var circlesSection: some View {
@@ -193,7 +197,7 @@ struct FriendsView: View {
             if store.circles.isEmpty {
                 Text(tr("No circle yet. Start one below and send the code to a few friends, or join theirs.",
                         "Noch kein Kreis. Gründe unten einen und schick den Code an ein paar Freunde, oder tritt ihrem bei."))
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                     .zenCard()
@@ -215,9 +219,9 @@ struct FriendsView: View {
             IconBadge(systemName: circle.isCreator ? "person.3.fill" : "person.3", tint: Zen.shu, size: 46)
             VStack(alignment: .leading, spacing: 3) {
                 Text(circle.name)
-                    .font(.system(size: 17, weight: .semibold))
+                    .scaledFont(size: 17, weight: .semibold)
                     .foregroundStyle(Zen.ink)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 HStack(spacing: 8) {
                     Text(tr("\(circle.memberCount) of \(circle.maxMembers)", "\(circle.memberCount) von \(circle.maxMembers)"))
                         .monospacedDigit()
@@ -226,13 +230,14 @@ struct FriendsView: View {
                             .lineLimit(1)
                     }
                 }
-                .font(.system(size: 13, weight: .medium))
+                .scaledFont(size: 13, weight: .medium)
                 .foregroundStyle(Zen.inkSoft)
             }
             Spacer(minLength: 8)
             Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .semibold))
+                .scaledFont(size: 13, weight: .semibold)
                 .foregroundStyle(Zen.inkFaint)
+                .accessibilityHidden(true)
         }
         .zenCard(padding: 14)
         .contentShape(Rectangle())
@@ -243,7 +248,7 @@ struct FriendsView: View {
             SectionHeader(icon: "plus.circle", title: tr("Start a circle", "Kreis gründen"))
             VStack(spacing: 12) {
                 TextField(tr("Name, e.g. Morning crew", "Name, z. B. Frühaufsteher"), text: $newCircleName)
-                    .font(.system(size: 17))
+                    .scaledFont(size: 17)
                     .submitLabel(.done)
                     .padding(14)
                     .background(Zen.sand, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -273,7 +278,7 @@ struct FriendsView: View {
             SectionHeader(icon: "key", title: tr("Join with a code", "Mit Code beitreten"))
             VStack(spacing: 12) {
                 TextField(tr("8 characters", "8 Zeichen"), text: $joinCode)
-                    .font(.system(size: 22, weight: .semibold, design: .monospaced))
+                    .scaledFont(size: 22, weight: .semibold, design: .monospaced)
                     .multilineTextAlignment(.center)
                     .textInputAutocapitalization(.characters)
                     .autocorrectionDisabled()
@@ -311,12 +316,12 @@ struct FriendsView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text(tr("Once a day, when you open Ma: streak, focus minutes, focus rounds, impulses resisted, right answers and the number of habits done. Nothing else.",
                         "Einmal am Tag, wenn du Ma öffnest: Serie, Fokusminuten, Fokusrunden, abgewehrte Impulse, richtige Antworten und die Zahl erledigter Gewohnheiten. Sonst nichts."))
-                    .font(.system(size: 15))
+                    .scaledFont(size: 15)
                     .foregroundStyle(Zen.ink)
                     .fixedSize(horizontal: false, vertical: true)
                 if let last = store.settings.lastUpload {
                     Text(tr("Last sent: \(last.date)", "Zuletzt gesendet: \(last.date)"))
-                        .font(.system(size: 13))
+                        .scaledFont(size: 13)
                         .foregroundStyle(Zen.inkSoft)
                         .monospacedDigit()
                 }
@@ -334,7 +339,7 @@ struct FriendsView: View {
             .disabled(store.isLoading)
             Text(tr("Removes your nickname, numbers and memberships from the server at once and forgets the key on this phone.",
                     "Entfernt Spitzname, Zahlen und Mitgliedschaften sofort vom Server und vergisst den Schlüssel auf diesem Handy."))
-                .font(.system(size: 13))
+                .scaledFont(size: 13)
                 .foregroundStyle(Zen.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }

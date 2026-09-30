@@ -114,12 +114,14 @@ struct SectionHeader<Trailing: View>: View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             if let icon {
                 Image(systemName: icon)
-                    .font(.system(size: 13, weight: .semibold))
+                    .scaledFont(size: 13, weight: .semibold)
                     .foregroundStyle(Zen.shu)
+                    .accessibilityHidden(true)
             }
             Text(title)
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .scaledFont(size: 20, weight: .bold, design: .rounded)
                 .foregroundStyle(Zen.ink)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             trailing()
         }
@@ -155,6 +157,9 @@ struct IconBadge: View {
                 RoundedRectangle(cornerRadius: size * 0.3, style: .continuous)
                     .fill(filled ? AnyShapeStyle(tint) : AnyShapeStyle(tint.opacity(0.13)))
             )
+            // Always sits next to a text that says the same. Icon-only
+            // buttons built from it carry their own label.
+            .accessibilityHidden(true)
     }
 }
 
@@ -174,6 +179,8 @@ struct Hanko: View {
                 RoundedRectangle(cornerRadius: size * 0.3, style: .continuous)
                     .fill(color.opacity(0.13))
             )
+            // The deck title next to it is what VoiceOver should read.
+            .accessibilityHidden(true)
     }
 }
 
@@ -205,7 +212,7 @@ struct InkButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 17, weight: .semibold, design: .rounded))
+            .scaledFont(size: 17, weight: .semibold, design: .rounded)
             .foregroundStyle(foreground)
             .padding(.vertical, 16)
             .padding(.horizontal, 22)
@@ -261,17 +268,61 @@ struct Chip: View {
             action()
         } label: {
             Text(title)
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .scaledFont(size: 15, weight: .semibold, design: .rounded)
                 .foregroundStyle(selected ? Color.white : Zen.ink)
                 .padding(.vertical, 9)
                 .padding(.horizontal, 15)
                 .background(selected ? AnyShapeStyle(Zen.shu) : AnyShapeStyle(Zen.sand), in: Capsule())
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 
 // MARK: - Progress
+
+extension View {
+    /// Reads a ring, bar or timer as one element, e.g. "Focus, 12 of 25 minutes".
+    func accessibilityMeter(_ label: String, value: String) -> some View {
+        accessibilityElement(children: .ignore)
+            .accessibilityLabel(label)
+            .accessibilityValue(value)
+    }
+}
+
+/// Dense, fixed-size content like ring centres and timers stops growing here,
+/// so big numbers stay inside their circle.
+let denseTypeLimit: DynamicTypeSize = .accessibility3
+
+/// A spoken name for an SF Symbol in pickers where the symbol is the whole
+/// choice: "figure.walk" becomes "figure walk". Plain, but better than silence.
+func spokenSymbolName(_ symbol: String) -> String {
+    let words: [Substring] = symbol.split(separator: ".").filter { $0 != "fill" }
+    return words.joined(separator: " ")
+}
+
+/// Words for VoiceOver where the screen shows a clock like "12:34", which
+/// would otherwise be read as a time of day.
+enum Spoken {
+    static func duration(_ seconds: TimeInterval) -> String {
+        let total: Int = max(0, Int(seconds.rounded(.up)))
+        let hours: Int = total / 3600
+        let minutes: Int = (total % 3600) / 60
+        let secs: Int = total % 60
+        var parts: [String] = []
+        if hours > 0 {
+            parts.append(hours == 1 ? tr("1 hour", "1 Stunde") : tr("\(hours) hours", "\(hours) Stunden"))
+        }
+        if minutes > 0 {
+            parts.append(minutes == 1 ? tr("1 minute", "1 Minute") : tr("\(minutes) minutes", "\(minutes) Minuten"))
+        }
+        if secs > 0 && hours == 0 {
+            parts.append(secs == 1 ? tr("1 second", "1 Sekunde") : tr("\(secs) seconds", "\(secs) Sekunden"))
+        }
+        if parts.isEmpty { return tr("0 seconds", "0 Sekunden") }
+        return parts.joined(separator: " ")
+    }
+}
 
 struct InkProgress: View {
     var value: Double
@@ -326,20 +377,26 @@ struct StatTile: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Image(systemName: icon)
-                .font(.system(size: 14, weight: .semibold))
+                .scaledFont(size: 14, weight: .semibold)
                 .foregroundStyle(tint)
             Text(value)
-                .font(.display(26))
+                .displayFont(26)
                 .monospacedDigit()
                 .foregroundStyle(Zen.ink)
                 .contentTransition(.numericText())
-            Text(label)
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(Zen.inkSoft)
                 .lineLimit(1)
+                .minimumScaleFactor(0.6)
+            Text(label)
+                .scaledFont(size: 12, weight: .medium)
+                .foregroundStyle(Zen.inkSoft)
+                .lineLimit(2)
                 .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        // One element: "Resisted, 7" instead of three stops.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(label)
+        .accessibilityValue(value)
     }
 }
 

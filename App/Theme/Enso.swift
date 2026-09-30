@@ -22,19 +22,25 @@ struct EnsoView: View, Animatable {
 struct BreathingEnso: View {
     var inhale: Bool
     var tint: Color = Zen.shu
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
+        // With Reduce Motion the circles hold still and only brighten or dim.
+        let grow: Bool = reduceMotion ? true : inhale
+        let glow: Double = reduceMotion ? (inhale ? 1 : 0.45) : 1
         ZStack {
             Circle()
                 .fill(tint.opacity(0.10))
-                .scaleEffect(inhale ? 1.0 : 0.62)
+                .scaleEffect(grow ? 1.0 : 0.62)
             Circle()
                 .fill(tint.opacity(0.18))
-                .scaleEffect(inhale ? 0.78 : 0.5)
+                .scaleEffect(grow ? 0.78 : 0.5)
             Circle()
                 .fill(Zen.accentGradient)
-                .scaleEffect(inhale ? 0.52 : 0.36)
+                .scaleEffect(grow ? 0.52 : 0.36)
                 .shadow(color: tint.opacity(0.35), radius: 24, y: 8)
+                .opacity(glow)
         }
+        .accessibilityHidden(true)
     }
 }

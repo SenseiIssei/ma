@@ -195,6 +195,24 @@ jobs:
           mkdir -p ~/.appstoreconnect/private_keys
           printf '%s\n' "$ASC_KEY_P8" > ~/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8
           echo "ASC_KEY_PATH=$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" >> "$GITHUB_ENV"
+      # One development certificate for every run, kept encrypted in the
+      # Actions cache. Without it each fresh runner mints a new one and the
+      # account hits Apple's certificate limit.
+      - name: Restore the development certificate
+        uses: actions/cache/restore@v4
+        with:
+          path: ci/.signing
+          key: ma-dev-cert-v1-${{ github.run_id }}
+          restore-keys: ma-dev-cert-v1-
+      - name: Install the development certificate
+        id: devcert
+        run: python3 ci/dev_cert.py
+      - name: Keep a new development certificate
+        if: steps.devcert.outputs.created == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ci/.signing
+          key: ma-dev-cert-v1-${{ github.run_id }}
       - name: Generate the Xcode project
         run: |
           brew install xcodegen

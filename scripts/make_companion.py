@@ -9,6 +9,7 @@ Needs ComfyUI on 127.0.0.1:8188 and the comfy_api helper from
 F:/Projects/web/cozy-orbit-wallpaper/tools. Run from the repo root:
     python scripts/make_companion.py explore      # a few candidates to pick from
     python scripts/make_companion.py              # base + all expressions
+    python scripts/make_companion.py loops        # idle videos (needs the bases)
 """
 
 import json
@@ -154,9 +155,56 @@ def build(who: str) -> None:
         print(f"{who} {name} in {seconds:.0f}s")
 
 
+# Idle loops for the chat header: Wan 2.2 image-to-video with the neutral
+# portrait as first and last frame, then every frame's colours pulled back
+# to the first one, because Wan drifts towards brown halfway through.
+LOOP_PROMPT = ("anime character idle animation, gentle breathing, hair moving softly in the wind, "
+               "glowing trim pulsing softly, magic particles drifting upward, subtle blinking, calm, looping, "
+               "static camera, consistent colors")
+LOOP_NEGATIVE = ("camera movement, zoom, fast motion, morphing, distorted face, color shift, brown, faded colors, "
+                 "extra limbs, text, watermark")
+LOOP_SEEDS = {"Nyx": 7, "Kael": 23}
+MEDIA = ROOT / "App" / "Companion" / "Media"
+
+
+def steady_colors(source: str, target: Path) -> None:
+    import av  # PyAV; ComfyUI's venv has it
+    import numpy as np
+
+    frames = [f.to_ndarray(format="rgb24").astype(np.float32) for f in av.open(source).decode(video=0)]
+    ref = frames[0].reshape(-1, 3)
+    ref_mean, ref_std = ref.mean(0), ref.std(0)
+    out = av.open(str(target), "w")
+    stream = out.add_stream("h264", rate=16)
+    stream.width, stream.height, stream.pix_fmt = frames[0].shape[1], frames[0].shape[0], "yuv420p"
+    stream.options = {"crf": "20", "movflags": "+faststart"}
+    for frame in frames:
+        flat = frame.reshape(-1, 3)
+        fixed = (frame - flat.mean(0)) / (flat.std(0) + 1e-6) * ref_std + ref_mean
+        for packet in stream.encode(av.VideoFrame.from_ndarray(np.clip(fixed, 0, 255).astype(np.uint8), format="rgb24")):
+            out.mux(packet)
+    for packet in stream.encode():
+        out.mux(packet)
+    out.close()
+
+
+def loop(who: str) -> None:
+    MEDIA.mkdir(parents=True, exist_ok=True)
+    workflow = comfy.wan14b_loop(f"ma_{who.lower()}_base.png", LOOP_PROMPT, LOOP_NEGATIVE, width=512, height=752,
+                                 length=81, seed=LOOP_SEEDS[who], fps=16, prefix=f"ma_{who.lower()}_loop")
+    files, seconds = comfy.run(workflow)
+    video = next(f for f in files if f.endswith(".mp4"))
+    steady_colors(video, MEDIA / f"{who.lower()}_loop.mp4")
+    print(f"{who} loop in {seconds:.0f}s")
+
+
 if __name__ == "__main__":
     if sys.argv[1:2] == ["explore"]:
         explore(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 6)
+    elif sys.argv[1:2] == ["loops"]:
+        # Run with ComfyUI's Python, it has PyAV and numpy.
+        for who in sys.argv[2:] or LOOP_SEEDS:
+            loop(who)
     else:
         for who in sys.argv[1:] or SEEDS:
             build(who)

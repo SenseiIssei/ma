@@ -198,6 +198,8 @@ jobs:
       # One development certificate for every run, kept encrypted in the
       # Actions cache. Without it each fresh runner mints a new one and the
       # account hits Apple's certificate limit.
+      - name: Check the bundle ids at Apple
+        run: python3 ci/bundle_ids.py
       - name: Restore the development certificate
         uses: actions/cache/restore@v4
         with:

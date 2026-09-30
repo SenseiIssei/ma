@@ -6,39 +6,49 @@ This app puts that kind of space between your thumb and the next feed. Open Inst
 
 Ma runs on the iPhone. No account, no ads, no analytics. The only thing that ever leaves the phone is optional: in a friends circle, a random id, a nickname and daily numbers go to a small server (`server/`, open source like the rest). It speaks English and German and follows the language of your phone.
 
+Website: https://senseiissei.github.io/ma/
+
 ## What's inside
 
-**Boundaries.** As many block lists as you like, made of apps, categories and websites, each with its own time window (always, or say 22:00 to 07:00 on weekdays), its own number of questions and its own unlock length. Start from a template (social media, morning calm, deep work, night) or from scratch. A boundary can have no way through at all, a daily limit of unlocks, rising friction (every unlock today costs one more question) and a short wait before the first question. You can switch them on and off at any time; if you want, switching one off costs three right answers itself.
+**Boundaries.** As many block lists as you like, made of apps, categories and websites, each with its own time window, number of questions and unlock length. Start from a template (social media, morning calm, deep work, night) or from scratch. A boundary can have no way through at all, a daily limit of unlocks, rising friction (every unlock today costs one more question) and a short wait before the first question.
 
 **Lockdown.** One tap blocks everything for 30 minutes up to the next morning, with no way through. Ending it early takes five right answers.
 
 **The gate.** The blocked screen offers "Answer a question". Tapping it sends a notification that opens Ma: first a breath, then the questions, then the decision. "I'll leave it" sits right next to "Open", just as big.
 
-**Duolingo-style learning.** From plain question and answer cards Ma builds eight kinds of exercise: multiple choice, reverse choice, true or not, fill the gap, match the pairs, build the sentence from tiles, type it yourself (with typo tolerance) and flash card. New cards are about recognising, cards you know well have to be recalled. Behind it sits a Leitner box per card.
+**Open without Reels.** No iPhone app may change what another app shows, so Reels inside the Instagram app cannot be hidden. Instead the gate offers the website in Safari, where Ma Filter hides Instagram Reels, YouTube Shorts, X Trends, the LinkedIn feed and Facebook Reels. This works during focus too.
 
-Bundled topics: hiragana, everyday Japanese, building Japanese sentences, Zen and Stoicism, capital cities, Rust. Every deck ships in English and German. You can add your own topics in the app, paste whole lists at once or import JSON. The app also has a template to copy that lets any AI produce a deck on any subject.
+**Learn first, then practise.** New cards are taught before they are asked: the answer, why it is so and an example. A lesson introduces at most three new cards and practises them right away with eight exercise types (choice, reverse choice, true or not, fill the gap, pairs, sentence tiles, typing with typo tolerance, flash card), driven by a Leitner box per card. The gate only asks about cards you have already learned.
 
-**Focus.** Pomodoro with 25/5/15 minutes (adjustable). During a round everything from your boundaries sleeps, without exceptions if you choose. The timer keeps running when the app is closed.
+21 bundled topics in English and German across languages (English, Spanish, French, Italian, Korean, Japanese kana and phrases), knowledge (history, science, capitals, mental math, general knowledge), mind (psychology, Zen and Stoicism), tech (Python, Rust, Git and Linux) and life (first aid). More in the community gallery, your own by hand, by list, by JSON, or written by Apple's on-device model, which also explains any card in more depth.
 
-**Reels filter for Safari.** Reels cannot be switched off inside the Instagram app, iOS lets no app do that. In the browser it works. Ma Filter hides Instagram Reels, YouTube Shorts, X Trends, the LinkedIn feed and Facebook Reels, and turns Shorts links into normal videos. Put the Instagram app inside a boundary and you get Instagram without Reels.
+**Focus.** Pomodoro with 25/5/15 minutes. During a round everything from your boundaries sleeps. Calm sounds synthesized on the phone (rain, brown noise, ocean, a night drone) keep playing when the screen locks, and Spotify shortcuts are one tap away. The timer sits in the Dynamic Island.
 
-**Today.** Three rings for the day (focus, learning, habits), a morning check-in with mood and one intention, an evening reflection with three short questions, small daily habits with streaks, and breathing exercises (box, 4-7-8, calm) with haptics.
+**Today.** Rings for the day, a morning check-in with mood and intention, an evening reflection, habits with streaks, breathing exercises, and a weekly review with your real Screen Time.
 
-**Learn first, then practise.** New cards are taught before they are asked: the answer, why it is so and an example. A lesson introduces at most three new cards and practises them right away; the gate before an app only asks about cards you have already learned.
+**Balance.** Short guided workouts with voice, water and a simple meal check, and a wind-down before bed with a reminder.
+
+**Friends without a feed.** Optional circles by invite code. Members see each other's streaks and daily numbers and share a weekly challenge. No timeline, no content.
+
+**Widgets and accessibility.** Home and Lock Screen widgets, Dynamic Type everywhere, VoiceOver labels for rings, timers and quiz answers, and Reduce Motion respected.
 
 ## How it is built
 
 ```
-App/                      SwiftUI app (iOS 18)
+App/                      SwiftUI app (iOS 26)
 Shared/                   code shared by the app and its extensions
-  ScreenTime/             rules, unlocks, pomodoro, scheduling
+  ScreenTime/             rules, unlocks, lockdown, pomodoro, scheduling
 Extensions/
   ShieldConfig/           draws the blocked screen
   ShieldAction/           handles its buttons
   Monitor/                watches time windows and unlocks, even with the app closed
   Filter/                 Safari extension against Reels and Shorts
+  Widgets/                widgets and the focus Live Activity
+  Report/                 the weekly Screen Time report (ExtensionKit)
+server/                   friends circles: Node 24, SQLite, no dependencies
+site/, gallery/           the website and the community topics (GitHub Pages)
 project.yml               XcodeGen spec, the Xcode project is generated from it
-ci/                       export settings and the install page
+ci/                       signing helpers, export settings, the install page
 scripts/                  icons, illustrations, deck validation
 ```
 
@@ -58,9 +68,11 @@ Both languages live inline in the code through `tr("English", "Deutsch")` rather
 Everything runs on GitHub Actions. Since the repo is public, the macOS runners cost nothing.
 
 - Every push to `main` validates the decks and compiles the app unsigned.
-- `Actions > iOS > Run workflow > testflight` signs and uploads to TestFlight.
+- `Actions > iOS > Run workflow > device` builds a development version with the full Screen Time entitlement and publishes it on an install page for registered iPhones.
+- `Actions > iOS > Run workflow > testflight` signs and uploads to TestFlight (needs Apple's Family Controls distribution approval).
+- `Pages` publishes the website and gallery on their own.
 
-Signing is automatic through an App Store Connect API key: `xcodebuild` fetches the certificate and profiles from Apple itself. No certificate repo, no fastlane. The one-time setup is in [docs/SETUP.md](docs/SETUP.md).
+Signing is automatic through an App Store Connect API key. For development builds one certificate is created once and kept encrypted in the Actions cache (`ci/dev_cert.py`), and every run first checks the bundle ids at Apple (`ci/bundle_ids.py`). The one-time setup is in [docs/SETUP.md](docs/SETUP.md).
 
 ## Your own decks
 
@@ -71,6 +83,7 @@ A deck is a JSON file:
   "title": "Korean",
   "subtitle": "First words",
   "symbol": "韓",
+  "category": "languages",
   "cards": [
     {
       "prompt": "물",
@@ -84,7 +97,7 @@ A deck is a JSON file:
 }
 ```
 
-Only `prompt` and `answer` are required. `example` has to contain the answer word for word, then you get gap exercises. An answer made of several space-separated parts becomes a sentence-building exercise. Bundled decks come as `deck-<id>.json` (German) and `deck-<id>.en.json` (English) with the same card ids; `python scripts/validate_decks.py` checks both.
+Only `prompt` and `answer` are required. `example` has to contain the answer word for word, then you get gap exercises. In language decks an answer made of several space-separated parts becomes a sentence-building exercise. Bundled decks come as `deck-<id>.json` (German) and `deck-<id>.en.json` (English) with the same card ids; `python scripts/validate_decks.py` checks both. Community decks live in `gallery/`, pull requests welcome.
 
 ## License
 

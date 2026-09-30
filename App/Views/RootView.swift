@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppModel.self) private var model
     @AppStorage("ma.appearance") private var appearance = Appearance.night.rawValue
+    @State private var showWhatsNew = false
 
     var body: some View {
         @Bindable var model = model
@@ -25,6 +26,22 @@ struct RootView: View {
             Button(tr("OK", "OK"), role: .cancel) { model.importMessage = nil }
         } message: {
             Text(model.importMessage ?? "")
+        }
+        .onAppear {
+            // New installs meet everything in onboarding; only people who
+            // update get the summary of what changed.
+            if !model.onboarded {
+                WhatsNew.markSeen()
+            } else if WhatsNew.isDue {
+                showWhatsNew = true
+            }
+        }
+        .sheet(isPresented: $showWhatsNew) {
+            WhatsNewView {
+                WhatsNew.markSeen()
+                showWhatsNew = false
+            }
+            .interactiveDismissDisabled()
         }
         .fullScreenCover(item: $model.gate) { reason in
             GateView(reason: reason)

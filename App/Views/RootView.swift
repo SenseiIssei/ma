@@ -84,6 +84,7 @@ extension EnvironmentValues {
 struct MainTabs: View {
     @Environment(AppModel.self) private var model
     @Environment(FitnessStore.self) private var fitness
+    @Environment(CompanionStore.self) private var companions
     @State private var selection: RootTab = .today
 
     var body: some View {
@@ -123,8 +124,12 @@ struct MainTabs: View {
             if model.tab != mirrored { model.tab = mirrored }
         }
         .onReceive(NotificationCenter.default.publisher(for: .maNotificationOpened)) { note in
-            if (note.userInfo?[Notifier.routeKey] as? String) == BalanceStore.windDownRoute {
+            let route: String? = note.userInfo?[Notifier.routeKey] as? String
+            if route == BalanceStore.windDownRoute {
                 selection = .balance
+            } else if route == CompanionReminder.route {
+                selection = .balance
+                companions.openChat = true
             }
         }
     }

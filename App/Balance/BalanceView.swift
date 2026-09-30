@@ -4,9 +4,11 @@ import SwiftUI
 /// the evening wind down. One calm scrolling page, summary first.
 struct BalanceView: View {
     @Environment(BalanceStore.self) private var balance
+    @Environment(CompanionStore.self) private var companions
     @State private var routine: Routine?
 
     var body: some View {
+        @Bindable var companions = companions
         NavigationStack {
             // Ticks once a minute so "today" and the sleep phase follow the
             // clock while the tab stays open, also across midnight.
@@ -14,6 +16,9 @@ struct BalanceView: View {
                 content(now: context.date)
             }
             .background(AppBackground())
+            .navigationDestination(isPresented: $companions.openChat) {
+                CompanionView()
+            }
             .fullScreenCover(item: $routine) { routine in
                 MovePlayerView(routine: routine)
                     .environment(balance)

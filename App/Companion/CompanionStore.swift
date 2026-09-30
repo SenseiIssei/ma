@@ -29,6 +29,8 @@ final class CompanionStore {
     private(set) var thinking = false
     /// The portrait on top follows the last answer for a while.
     var mood: CompanionMood = .neutral
+    /// Set by a tapped morning greeting; the Balance tab opens the chat.
+    var openChat = false
     var voiceOn: Bool = CompanionVoice.shared.enabled {
         didSet { CompanionVoice.shared.enabled = voiceOn }
     }

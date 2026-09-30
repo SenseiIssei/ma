@@ -225,6 +225,8 @@ struct CompanionView: View {
     @Environment(AppModel.self) private var model
     @State private var draft = ""
     @State private var picking = false
+    @State private var reminderOn = CompanionReminder.isOn
+    @State private var reminderMinute = CompanionReminder.minute
     @FocusState private var typing: Bool
 
     private var snapshot: CompanionSnapshot {
@@ -258,6 +260,25 @@ struct CompanionView: View {
                     Menu {
                         Button { picking = true } label: {
                             Label(tr("Change companion", "Begleiter wechseln"), systemImage: "person.2")
+                        }
+                        Toggle(isOn: Binding(get: { reminderOn }, set: { on in
+                            reminderOn = on
+                            let current: CompanionSnapshot = snapshot
+                            Task { reminderOn = await CompanionReminder.set(on, snapshot: current) }
+                        })) {
+                            Label(tr("Morning greeting", "Morgengruß"), systemImage: "sunrise")
+                        }
+                        if reminderOn {
+                            Picker(tr("Time", "Uhrzeit"), selection: Binding(get: { reminderMinute }, set: { minute in
+                                reminderMinute = minute
+                                CompanionReminder.minute = minute
+                                CompanionReminder.refresh(snapshot)
+                            })) {
+                                ForEach([6, 7, 8, 9, 10], id: \.self) { hour in
+                                    Text(String(format: "%d:00", hour)).tag(hour * 60)
+                                }
+                            }
+                            .pickerStyle(.menu)
                         }
                         Button(role: .destructive) { companions.clear() } label: {
                             Label(tr("Clear chat", "Verlauf löschen"), systemImage: "trash")

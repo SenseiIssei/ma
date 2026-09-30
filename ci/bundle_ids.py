@@ -8,6 +8,7 @@ fails early with a readable list of what to tick in the developer portal.
     python3 ci/bundle_ids.py   # env: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_PATH
 """
 
+import os
 import sys
 from pathlib import Path
 
@@ -26,6 +27,9 @@ WANTED = {
     "com.sensei.ma.watchkitapp": [],
 }
 
+# Missing ones of these do not stop the build; the app is built without them.
+OPTIONAL = {"com.sensei.ma.watchkitapp": "MA_SKIP_WATCH"}
+
 
 def main():
     status, body = api("GET", "/bundleIds?filter[identifier]=com.sensei.ma&limit=200&include=bundleIdCapabilities")
@@ -43,6 +47,13 @@ def main():
         have = found.get(ident)
         if have is None:
             print(f"{ident}: MISSING")
+            if ident in OPTIONAL:
+                print(f"::warning::{ident} does not exist yet; building without it. Register it to include it.")
+                env = os.environ.get("GITHUB_ENV")
+                if env:
+                    with open(env, "a", encoding="utf-8") as handle:
+                        handle.write(f"{OPTIONAL[ident]}=1\n")
+                continue
             problems.append(f"{ident} does not exist yet")
             continue
         print(f"{ident}: {', '.join(have) or 'no capabilities'}")

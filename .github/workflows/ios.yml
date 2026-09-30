@@ -215,6 +215,9 @@ jobs:
         with:
           path: ci/.signing
           key: ma-dev-cert-v1-${{ github.run_id }}
+      - name: Leave the watch app out until its bundle id exists
+        if: env.MA_SKIP_WATCH == '1'
+        run: python3 ci/strip_watch.py
       - name: Generate the Xcode project
         run: |
           brew install xcodegen

@@ -175,8 +175,46 @@ function record(ctx, req, body, status) {
   return { status: 200, body: { entry, progress } };
 }
 
+// Compile runs per account and minute; a coding session needs a few dozen
+// an hour, a loop gone wrong would need thousands.
+const RUNS_PER_MINUTE = 20;
+const runLog = new Map();
+
+function allowRun(accountId, now) {
+  const recent = (runLog.get(accountId) ?? []).filter((at) => now - at < 60_000);
+  if (recent.length >= RUNS_PER_MINUTE) return false;
+  recent.push(now);
+  runLog.set(accountId, recent);
+  return true;
+}
+
 export function dailyRoutes() {
   return [
+    {
+      method: 'POST',
+      path: '/daily/run',
+      auth: 'none',
+      bodyLimit: 512 * 1024,
+      async handler({ ctx, req, body }) {
+        const accountId = linkedAccount(ctx, req);
+        const { url, token } = ctx.config.runner;
+        if (!url || !token) throw new HttpError(503, 'not_configured', 'The compiler is not set up on the server yet');
+        if (!allowRun(accountId, ctx.now())) throw new HttpError(429, 'rate_limited', 'Many runs in a row, wait a moment');
+        let response;
+        try {
+          response = await ctx.fetchImpl(`${url}/run`, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(body ?? {}),
+            signal: AbortSignal.timeout(150_000),
+          });
+        } catch {
+          throw new HttpError(502, 'runner_unreachable', 'The compiler is not reachable right now');
+        }
+        const result = await response.json().catch(() => ({ error: 'internal' }));
+        return { status: response.status, body: result };
+      },
+    },
     {
       method: 'POST',
       path: '/daily/link-code',

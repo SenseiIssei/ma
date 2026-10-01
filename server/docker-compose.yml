@@ -33,6 +33,10 @@ services:
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID:-}
       DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET:-}
+      # The compile sandbox for the daily lessons, see daily-runner below.
+      RUNNER_URL: http://daily-runner:8096
+      RUNNER_TOKEN: ${RUNNER_TOKEN:-}
+    networks: [default, runner]
     volumes:
       - ma-friends-data:/data
     read_only: true
@@ -44,6 +48,41 @@ services:
       - ALL
     stop_grace_period: 15s
     mem_limit: 256m
+
+  # Compiles and runs C++ for the daily lessons. No internet (internal
+  # network), read-only except /tmp, capped memory, CPU and processes.
+  # SYS_PTRACE lets LeakSanitizer stop the program's threads to look for
+  # leaks; everything else is dropped.
+  daily-runner:
+    build: ./runner
+    image: daily-runner:latest
+    container_name: daily-runner
+    restart: unless-stopped
+    # tini as PID 1 collects the zombies of programs that fork.
+    init: true
+    environment:
+      RUNNER_TOKEN: ${RUNNER_TOKEN:-}
+    networks: [runner]
+    read_only: true
+    tmpfs:
+      - /tmp:exec,size=512m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+      # Docker's default profile plus personality(ADDR_NO_RANDOMIZE), which
+      # ThreadSanitizer needs on kernels with high mmap randomisation.
+      - seccomp=./runner/seccomp.json
+    cap_drop:
+      - ALL
+    cap_add:
+      - SYS_PTRACE
+    pids_limit: 256
+    mem_limit: 1536m
+    cpus: 1.5
+    stop_grace_period: 5s
+
+networks:
+  runner:
+    internal: true
 
 volumes:
   ma-friends-data:

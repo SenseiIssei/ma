@@ -42,7 +42,7 @@ export function createApp({ config, now = Date.now, log = console, fetchImpl = f
   const authenticateAccount = makeAccountAuthenticator(db, now);
   // Routes that accept either an account or a website token check it
   // themselves, so the authenticators travel in the context.
-  const ctx = { db, config, now, log, authenticate, authenticateAccount, sendNotification: makeSender(config, fetchImpl) };
+  const ctx = { db, config, now, log, fetchImpl, authenticate, authenticateAccount, sendNotification: makeSender(config, fetchImpl) };
   const r = config.rate;
   const limiters = {
     ip: RateLimiter.perMinute(r.ipCapacity, r.ipPerMinute, now),

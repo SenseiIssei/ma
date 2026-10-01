@@ -54,6 +54,9 @@ export function loadConfig(env = process.env) {
       pass: env.SMTP_PASS || '',
       from: env.EMAIL_FROM || '',
     },
+    // The compile sandbox for the daily lessons (server/runner), reachable
+    // only on the internal Docker network.
+    runner: { url: (env.RUNNER_URL || '').replace(/\/+$/, ''), token: env.RUNNER_TOKEN || '' },
     telegram: { botToken: env.TELEGRAM_BOT_TOKEN || '', botName: env.TELEGRAM_BOT_NAME || '' },
     discord: {
       botToken: env.DISCORD_BOT_TOKEN || '',

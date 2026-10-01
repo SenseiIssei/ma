@@ -20,7 +20,9 @@ const TOKEN = process.env.RUNNER_TOKEN || '';
 const COMPILE_TIMEOUT_MS = 30_000;
 const MAX_RUN_TIMEOUT_MS = 10_000;
 const OUTPUT_CAP = 64 * 1024;
-const BODY_LIMIT = 512 * 1024;
+// Algorithm tests carry inputs of up to a few hundred KB.
+const BODY_LIMIT = 1024 * 1024;
+const STDIN_LIMIT = 256 * 1024;
 const MAX_TESTS = 12;
 const MAX_QUEUE = 3;
 
@@ -62,7 +64,7 @@ export function parseRequest(body) {
   const tests = Array.isArray(body.tests) ? body.tests : [];
   if (tests.length > MAX_TESTS) throw new BadRequest(`at most ${MAX_TESTS} tests`);
   for (const test of tests) {
-    if (typeof test.stdin !== 'string' || test.stdin.length > 64 * 1024) throw new BadRequest('stdin must be text up to 64 KB');
+    if (typeof test.stdin !== 'string' || test.stdin.length > STDIN_LIMIT) throw new BadRequest('stdin must be text up to 256 KB');
   }
   const timeoutMs = Math.min(MAX_RUN_TIMEOUT_MS, Math.max(500, Number(body.timeoutMs) || 5_000));
   return { files, std, optimize, sanitizers, tests: tests.map((test, index) => ({ id: String(test.id ?? index), stdin: test.stdin })), timeoutMs };

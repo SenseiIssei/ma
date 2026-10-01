@@ -54,7 +54,7 @@ export function reminderText({ unit, unitNumber, unitCount, playlist, streak, bo
     `Serie: ${streak} ${streak === 1 ? 'Tag' : 'Tage'}. Ohne KI lösen, dafür ist die Aufgabe da.`,
   ];
   if (playlist) lines.push(`Musik: ${playlist.title} von ${playlist.artist} ${playlist.url}`);
-  lines.push(`Los geht's: ${siteOrigin}/ und im Terminal daily eingeben.`);
+  lines.push(`Los geht's: ${siteOrigin}/daily`);
   return lines.join('\n');
 }
 
@@ -77,8 +77,8 @@ export function startDailyReminders({ ctx, env = process.env, log = console, fet
   async function content() {
     if (Date.now() - cache.at < CONTENT_CACHE_MS && cache.curriculum) return cache;
     const [curriculum, playlists] = await Promise.all([
-      fetchJson(`${config.siteOrigin}/daily/curriculum.json`, { fetchImpl }),
-      fetchJson(`${config.siteOrigin}/daily/playlists.json`, { fetchImpl }).catch(() => null),
+      fetchJson(`${config.siteOrigin}/daily-data/curriculum.json`, { fetchImpl }),
+      fetchJson(`${config.siteOrigin}/daily-data/playlists.json`, { fetchImpl }).catch(() => null),
     ]);
     cache = { at: Date.now(), curriculum, playlists };
     return cache;

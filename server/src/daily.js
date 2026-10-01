@@ -194,7 +194,7 @@ export function dailyRoutes() {
       method: 'POST',
       path: '/daily/run',
       auth: 'none',
-      bodyLimit: 512 * 1024,
+      bodyLimit: 1024 * 1024,
       async handler({ ctx, req, body }) {
         const accountId = linkedAccount(ctx, req);
         const { url, token } = ctx.config.runner;
